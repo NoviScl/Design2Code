@@ -1,6 +1,13 @@
 from playwright.sync_api import sync_playwright
 import requests
-import base64
+import re
+
+placeholder_image = "rick.jpg"
+
+def replace_img_src(input_string):
+    pattern = r'(<img[^>]*src=")[^"]*("[^>]*>)'
+    replacement = r'\1' + placeholder_image + r'\2'
+    return re.sub(pattern, replacement, input_string)
 
 def fetch_and_embed_css(url):
     with sync_playwright() as p:
@@ -26,12 +33,14 @@ def fetch_and_embed_css(url):
             content = content.replace("<style>", "<style>\n" + inline_css)
         else:
             content = content.replace('<head>', '<head>\n<style>' + inline_css + "</style>")
+        
+        content = replace_img_src(content)
 
         browser.close()
 
         return content
 
 # Example usage
-html_content = fetch_and_embed_css("https://stevenyzzhang.github.io/website/")
-with open("yanzhe.html", "w", encoding="utf-8") as f:
+html_content = fetch_and_embed_css("https://aryaman.io/")
+with open("trial_dataset/aryaman.html", "w", encoding="utf-8") as f:
     f.write(html_content)
