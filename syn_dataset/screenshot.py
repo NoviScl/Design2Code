@@ -19,4 +19,4 @@ def take_screenshot(url, output_file="screenshot.png"):
 
         browser.close()
 
-take_screenshot("/Users/zhangyanzhe/Documents/GitHub/Maple/test.html")
+take_screenshot("test.html")
