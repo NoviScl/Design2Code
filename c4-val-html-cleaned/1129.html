@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<style></style>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="generator" content="hypermail 2.4.0, see http://www.hypermail-project.org/">
+<title>Re: [AMBER] Error: Sander output is missing values! VDWAALS = ************* from Bill Miller III on 2010-12-06 (Amber Archive Dec 2010)</title>
+<meta name="Author" content="Bill Miller III (brmilleriii.gmail.com)">
+<meta name="Subject" content="Re: [AMBER] Error: Sander output is missing values! VDWAALS = *************">
+<meta name="Date" content="2010-12-06">
+<style type="text/css">
+
+body {color: black; background: #ffffff;}
+dfn {font-weight: bold;}
+pre { background-color:inherit;}
+.head { border-bottom:1px solid black;}
+.foot { border-top:1px solid black;}
+th {font-style:italic;}
+table { margin-left:2em;}map ul {list-style:none;}
+#mid { font-size:0.9em;}
+#received { float:right;}
+address { font-style:inherit;}
+
+.quotelev1 {color : #990099;}
+.quotelev2 {color : #ff7700;}
+.quotelev3 {color : #007799;}
+.quotelev4 {color : #95c500;}
+.period {font-weight: bold;}
+</style>
+</head>
+<body>
+<div class="head">
+<h1>Re: [AMBER] Error: Sander output is missing values! VDWAALS = *************</h1>
+
+<ul class="links">
+<li><a name="options2" id="options2"></a><dfn>Contemporary messages sorted</dfn>: [ <a  title="Contemporary messages by date">by date</a> ] [ <a  title="Contemporary discussion threads">by thread</a> ] [ <a  title="Contemporary messages by subject">by subject</a> ] [ <a  title="Contemporary messages by author">by author</a> ] [ <a  title="Contemporary messages by attachment">by messages with attachments</a> ]</li>
+</ul>
+</div>
+
+<div class="mail">
+
+<a name="start" accesskey="j" id="start"></a><br>
+MMPBSA.py(.MPI) will remove the chloride ions from the trajectory
+<br>
+automatically unless strip_mdcrd=0 (strip_mdcrd=1 is default).
+<br>
+MMPBSA.py(.MPI) will remove all water molecules and all ions from the
+<br>
+trajectory by default. Are there any ions in your prmtop files? This error
+<br>
+is almost certainly due to an incompatibility between the prmtops provided
+<br>
+and the trajectory files made and used by MMPBSA.py.MPI. Do you intend to
+<br>
+keep the ions for the calculation or not? You can control what ions and
+<br>
+molecules are stripped from the trajectory file by MMPBSA.py(.MPI) by
+<br>
+changing the strip_mdcrd and strip_mask variables. See the manual for more
+<br>
+info.
+<br>
+<br>Good luck!
+<br>
+<br>-Bill
+<br>
+<br>On Mon, Dec 6, 2010 at 11:21 PM, kamlesh sahu &lt;kamleshsemail.gmail.com&gt;wrote:
+<br>
+<br><em class="quotelev1">&gt; Hello amber users,
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt; I am running MMPBSA.py.MPI on trajectories obtained from MD simulation on a
+</em><br>
+<em class="quotelev1">&gt; complex which contained four ZN ions and two Cl- ions. I did not remove Cl-
+</em><br>
+<em class="quotelev1">&gt; before simulations. Can that be the reason why I am getting this error ? -
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt; Starting pb calculation...
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt;  calculating ligand contribution...
+</em><br>
+<em class="quotelev1">&gt;  calculating receptor contribution...
+</em><br>
+<em class="quotelev1">&gt;  calculating complex contribution...
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt; Calculations complete. Writing output file(s)...
+</em><br>
+<em class="quotelev1">&gt; Error: Sander output is missing values!
+</em><br>
+<em class="quotelev1">&gt; VDWAALS = *************  EEL     =   -19824.2815  EPB        =
+</em><br>
+<em class="quotelev1">&gt;  -4539.5565
+</em><br>
+<em class="quotelev1">&gt; NOTE: All files have been retained for debugging purposes. Type MMPBSA.py
+</em><br>
+<em class="quotelev1">&gt; --clean to erase these files.
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt; The output file has correct guess for ligand and receptor so I guess the
+</em><br>
+<em class="quotelev1">&gt; prmtop and trajectories are compatible. Could you please tell me how to
+</em><br>
+<em class="quotelev1">&gt; remove these Cl- ions from the trajectories before running MMPBSA.py (if
+</em><br>
+<em class="quotelev1">&gt; Cl-
+</em><br>
+<em class="quotelev1">&gt; ions are the problem). I just did pb calculations (not gb because it was
+</em><br>
+<em class="quotelev1">&gt; saying 'bad atom type ZN')
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<em class="quotelev1">&gt; Thank you
+</em><br>
+<em class="quotelev1">&gt; kamlesh
+</em><br>
+<em class="quotelev1">&gt; --
+</em><br>
+<em class="quotelev1">&gt; Kamlesh Kumar Sahu (post doc researcher)
+</em><br>
+<em class="quotelev1">&gt; Riken, wako, Saitama, JAPAN
+</em><br>
+<em class="quotelev1">&gt; _______________________________________________
+</em><br>
+<em class="quotelev1">&gt; AMBER mailing list
+</em><br>
+<em class="quotelev1">&gt; AMBER.ambermd.org
+</em><br>
+<em class="quotelev1">&gt; <a >http://lists.ambermd.org/mailman/listinfo/amber</a>
+</em><br>
+<em class="quotelev1">&gt;
+</em><br>
+<br><br><br><pre>-- 
+Bill Miller III
+Quantum Theory Project,
+University of Florida
+Ph.D. Graduate Student
+352-392-6715
+_______________________________________________
+AMBER mailing list
+AMBER.ambermd.org
+<a >http://lists.ambermd.org/mailman/listinfo/amber</a>
+</pre>
+<span id="received"><dfn>Received on</dfn> Mon Dec 06 2010 - 21:00:03 PST</span>
+</div>
+
+<div class="foot">
+
+</div>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#FFFFFF;color:#000000">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-9700140137778662:razg1fu9f1b">
+        <input type="hidden" name="ie" value="ISO-8859-1">
+        <input type="text" name="q" size="60">
+        <input type="submit" name="sa" value="Search">
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="rick.jpg" alt="Google">
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+</body></html>

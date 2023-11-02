@@ -1,0 +1,1371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+<style>
+
+body {
+ margin: 0;
+ padding: 0;
+ font: 12px/19px Verdana, "Lucida Grande", "Lucida Sans Unicode", Tahoma, Arial, sans-serif; 
+ background: #fff;
+ color: #000;
+}
+
+a img {
+ border: none;
+}
+a		{ background:transparent; }
+a:link 		{ color:#006486; }
+a:active 	{ color:#1d93b6; }
+a:visited 	{ color:#464646; }
+a:hover 	{ color:#1d93b6; }
+
+#header {
+ background:#004e61 url("/static/bugs.jpg") repeat-y;
+}
+#logo {
+ padding: 10px;
+}
+
+#searchandlogin {
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ text-align: right;
+}
+#searchbox form {
+ margin: 0;
+ padding: 0;
+}
+
+#login { color: #fff; }
+#login a { font-size:90%; color: #fff; text-decoration: none; } 
+#login a:hover { color: #e97b00; text-decoration: underline; }
+
+#nav {
+  background-color: #006486;
+  float: left;
+  width: 100%;
+  border-width: 0px;;
+}
+
+#nav ul {
+  margin: 0;
+  padding: 0 10px;
+  list-style: none;
+  font-size: 85%;
+}
+
+#nav li {
+  float:left;
+  margin:0;
+  padding:0;
+  background-image:none;
+  line-height:normal;
+  text-indent:0;
+}
+
+* html #nav a {
+  width:1%;
+}
+
+#nav a {
+  display:block;
+  color:#f7f7f7;
+  font-weight: bold;
+  background-color: #666;
+  padding:5px 10px 6px;
+  border:solid 1px #ddd;
+  border-width: 0px;
+  border-left-width:1px;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+#nav a:hover {
+  background-color: #FFBC2F;
+  color: #666;
+}
+
+#nav #current a {
+  background: #EA7F07; 
+  border:none;
+}
+
+#nav #current a:hover {
+  color: #000;
+}
+#nav #h {
+}
+
+#content {
+ margin: 0px 10px;
+}
+
+.half {
+ float: left;
+ width: 46%;
+ padding: 2%;
+ background: transparent;
+}
+
+#footer	{ 
+ clear:both;
+ width:99%; 
+ margin:0px; 
+ padding:2px 0px 0px 0px; 
+ border-top:1px solid #ccc; 
+ color:#555; 
+ font-size: 90%;
+}
+#footer p { margin:0px 12px 0px 12px; float:left; }
+#footer ul { margin:0px; padding:0px; list-style-type: none; float:left; }
+#footer li { font-size:90%; margin:0px; padding:0px 8px 0px 6px; float:left; background:url("/images/sep.png") no-repeat right top;}
+#footer li.last	{ background:none; }
+
+#copyright-oracle{
+    clear: both;
+    text-align: right;
+    color: #666666;
+    font-size: 90%;
+    padding-top: 1px;
+}
+
+#copyright-oracle span {
+	vertical-align: top;
+}
+
+.lightgreenbox	{ margin:0px; padding:10px 16px 12px 12px; background:#f4f4ee; }
+.greenbox	{ margin:0px; padding:10px 16px 12px 12px; background:#e3ebe2; }
+
+#asearch th { font-weight: bold; text-align: left; }
+#asearch #primary  { background: #e3ebe2; }
+
+.buglisttop    { background:#e3ebe2; width:100%; border:2px solid #fff; }
+.buglisttop td { padding:4px 8px; }
+
+.buglist	{ width:100%; }
+.buglist th	{ background:#bdcebb; padding:6px 8px; font-weight:bold; }
+.buglist td	{ padding:2px 8px; }
+.buglist tr.open td		{ background:#ffde84; }
+.buglist tr.closed td		{ background:#f4f4ee; }
+.buglist tr.duplicate td	{ background:#d9d9d9; }
+.buglist tr.verified td		{ background:#ffedb8; }
+.buglist tr.patchpending td	{ background:#a0cddb; }
+.buglist tr.patchapproved td	{ background:#64bfdb; }
+.buglist tr.approved td		{ background:#fffbc9; }
+.buglist tr.patchqueued td	{ background:#99aacc; }
+.buglist tr.deferred td		{ background:#d9d9d9; }
+.buglist tr.wontfix td		{ background:#d9d9d9; }
+.buglist tr.cantrepeat td	{ background:#d9d9d9; }
+.buglist tr.nofeedback td	{ background:#a0cddb; }
+.buglist tr.needfeedback td	{ background:#64bfdb; }
+.buglist tr.notabug td		{ background:#d9d9d9; }
+.buglist tr.documenting td	{ background:#cdeecb; }
+
+.buglist tr.customer td.id { background: #fdd; }
+.buglist tr.beta td.id { background: #fbb; }
+
+.buglist a.private { background: #ecc; }
+
+#bugheader {
+  padding:0px 0px;
+  margin:0px;
+}
+#bugheader th {
+  text-align: right;
+  background: #f4f4ee;
+  padding: 1px 8px;
+  color: #666;
+}
+#bugheader td {
+  background: #e3ebe2;
+  padding: 1px 8px;
+}
+#bugheader tr.private th {
+ background: #ffe0e0;
+}
+#bugheader tr.private td {
+ background: #ecc;
+}
+#bugheader #title th, #bugheader #title td {
+  font-size: 110%;
+  font-weight: bold;
+  color: #000;
+  padding: 2px 8px;
+}
+#bugheader th.private {
+ background: #ffe0e0;
+}
+#bugheader td.private {
+ background: #ecc;
+}
+
+div.thanks {
+  padding: 0.5em;
+  background: #ffde84;
+  color: #000;
+}
+div.error {
+  background: #fdd;
+  color: #660000;
+  padding: 0.5em;
+}
+div.warning {
+  background: #ffd;
+  color: #660;
+  padding: 0.5em;
+}
+span.private {
+  background: #ecc;
+}
+
+span.privatebox {
+  border: solid 1px #f03;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background: #ecc;
+}
+
+#controls {
+  border-bottom: 1px solid #004e61;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 19px;
+}
+#controls ul, #controls li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+  padding: 2px 10px 2px 10px;
+  margin-right: 8px;
+  line-height: 14px;
+  border:  1px solid #1d93b6;
+  border-bottom: 1px solid #004e61;
+}
+#controls li {
+  background:#e3ebe2;
+}
+#controls li.active {
+  background: #fff;
+  font-weight: bold;
+  border: 1px solid #004e61;
+  border-bottom: 1px solid #fff;
+}
+#controls li a {
+  text-decoration: none;
+}
+#controls li a:hover, #controls li a:active {
+  text-decoration: underline;
+}
+
+#bugform th {
+  text-align: right;
+  font-weight: normal;
+  color: #666;
+}
+#bugform tr.private th {
+  background: #ffe0e0;
+}
+#bugform tr.private td {
+  background: #ecc;
+}
+#explainseverity {
+  position: absolute;
+  width: 300px;
+  font-size: smaller;
+  background: #efe;
+  border: 1px solid #cfc;
+  padding: 6px 8px;
+}
+
+select.private {
+  background: #ecc;
+}
+
+.comment {
+  padding: 8px;
+  margin: 0px;
+}
+.comment .header {
+  font-weight: bold;
+}
+div.private { background: #fdd; }
+div.pending { }
+div.rejected { }
+div.accepted { }
+pre.note { 
+  color: inherit; 
+  margin-left: 8px; 
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+}
+.added { color: #009; }
+.removed { color: #900; }
+
+.bugform th {
+  text-align: right;
+  font-weight: bold;
+}
+.bugform td, .bugform th {
+  padding: 5px 0px 6px 4px;
+}
+select {
+  font-size: 100%;
+}
+
+div.autocomplete {
+ position:absolute;
+ width:250px;
+ background-color:white;
+ border:1px solid #888;
+ margin:0px;
+ padding:0px;
+}
+div.autocomplete ul {
+ list-style-type:none;
+ margin:0px;
+ padding:0px;
+}
+div.autocomplete ul li.selected { background-color: #ffb;}
+div.autocomplete ul li {
+ list-style-type:none;
+ display:block;
+ margin:0;
+ padding:2px;
+ height:32px;
+ cursor:pointer;
+}
+
+#tags {
+ list-style: none;
+ margin: 0px;
+ padding: 0px;
+ text-align: center;
+}
+#tags li {
+ margin: 0px 5px;
+ display: inline;
+}
+#tags li a {
+ text-decoration: none;
+ vertical-align: middle;
+ white-space: nowrap;
+}
+#tags li a:hover {
+ text-decoration: underline;
+}
+
+.userlist th {
+  font-weight: bold;
+  background: #eee;
+  color: #666;
+  text-align: center;
+  padding: 4px 8px;
+}
+.userlist td {
+  padding: 4px;
+  text-align: center;
+}
+
+#monospacetextarea {
+  margin-top: 8px;
+  font-family: monospace;
+}
+
+#recaptcha {
+  margin: 0;
+  padding: 4px;
+} 
+
+.req { font-size: 100% }
+.reqerror { font-size: 100%; color: red; }
+ 
+
+.chosen-container {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 13px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.chosen-container * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.chosen-container .chosen-drop {
+  position: absolute;
+  top: 100%;
+  z-index: 1010;
+  width: 100%;
+  border: 1px solid #aaa;
+  border-top: 0;
+  background: #fff;
+  -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  display: none;
+}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+  display: block;
+}
+
+.chosen-container a {
+  cursor: pointer;
+}
+
+.chosen-container .search-choice .group-name, .chosen-container .chosen-single .group-name {
+  margin-right: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: normal;
+  color: #999999;
+}
+
+.chosen-container .search-choice .group-name:after, .chosen-container .chosen-single .group-name:after {
+  content: ":";
+  padding-left: 2px;
+  vertical-align: top;
+}
+
+.chosen-container-single .chosen-single {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0 0 0 8px;
+  height: 25px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #fff), color-stop(50%, #f6f6f6), color-stop(52%, #eee), to(#f4f4f4));
+  background: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+  color: #444;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 24px;
+}
+
+.chosen-container-single .chosen-single input[type="text"] {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+}
+
+.chosen-container-single .chosen-default {
+  color: #999;
+}
+
+.chosen-container-single .chosen-single span {
+  display: block;
+  overflow: hidden;
+  margin-right: 26px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chosen-container-single .chosen-single-with-deselect span {
+  margin-right: 38px;
+}
+
+.chosen-container-single .chosen-single abbr {
+  position: absolute;
+  top: 6px;
+  right: 26px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url("chosen-sprite.png") -42px 1px no-repeat;
+  font-size: 1px;
+}
+
+.chosen-container-single .chosen-single abbr:hover {
+  background-position: -42px -10px;
+}
+
+.chosen-container-single.chosen-disabled .chosen-single abbr:hover {
+  background-position: -42px -10px;
+}
+
+.chosen-container-single .chosen-single div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 18px;
+  height: 100%;
+}
+
+.chosen-container-single .chosen-single div b {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("chosen-sprite.png") no-repeat 0px 2px;
+}
+
+.chosen-container-single .chosen-search {
+  position: relative;
+  z-index: 1010;
+  margin: 0;
+  padding: 3px 4px;
+  white-space: nowrap;
+}
+
+.chosen-container-single .chosen-search input[type="text"] {
+  margin: 1px 0;
+  padding: 4px 20px 4px 5px;
+  width: 100%;
+  height: auto;
+  outline: 0;
+  border: 1px solid #aaa;
+  background: url("chosen-sprite.png") no-repeat 100% -20px;
+  font-size: 1em;
+  font-family: sans-serif;
+  line-height: normal;
+  border-radius: 0;
+}
+
+.chosen-container-single .chosen-drop {
+  margin-top: -1px;
+  border-radius: 0 0 4px 4px;
+  background-clip: padding-box;
+}
+
+.chosen-container-single.chosen-container-single-nosearch .chosen-search {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+.chosen-container .chosen-results {
+  color: #444;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0 4px 4px 0;
+  padding: 0 0 0 4px;
+  max-height: 240px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chosen-container .chosen-results li {
+  display: none;
+  margin: 0;
+  padding: 5px 6px;
+  list-style: none;
+  line-height: 15px;
+  word-wrap: break-word;
+  -webkit-touch-callout: none;
+}
+
+.chosen-container .chosen-results li.active-result {
+  display: list-item;
+  cursor: pointer;
+}
+
+.chosen-container .chosen-results li.disabled-result {
+  display: list-item;
+  color: #ccc;
+  cursor: default;
+}
+
+.chosen-container .chosen-results li.highlighted {
+  background-color: #3875d7;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #3875d7), color-stop(90%, #2a62bc));
+  background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
+  color: #fff;
+}
+
+.chosen-container .chosen-results li.no-results {
+  color: #777;
+  display: list-item;
+  background: #f4f4f4;
+}
+
+.chosen-container .chosen-results li.group-result {
+  display: list-item;
+  font-weight: bold;
+  cursor: default;
+}
+
+.chosen-container .chosen-results li.group-option {
+  padding-left: 15px;
+}
+
+.chosen-container .chosen-results li em {
+  font-style: normal;
+  text-decoration: underline;
+}
+
+.chosen-container-multi .chosen-choices {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 5px;
+  width: 100%;
+  height: auto;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #eee), color-stop(15%, #fff));
+  background-image: linear-gradient(#eee 1%, #fff 15%);
+  cursor: text;
+}
+
+.chosen-container-multi .chosen-choices li {
+  float: left;
+  list-style: none;
+}
+
+.chosen-container-multi .chosen-choices li.search-field {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  margin: 1px 0;
+  padding: 0;
+  height: 25px;
+  outline: 0;
+  border: 0 !important;
+  background: transparent !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #999;
+  font-size: 100%;
+  font-family: sans-serif;
+  line-height: normal;
+  border-radius: 0;
+  width: 25px;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+  position: relative;
+  margin: 3px 5px 3px 0;
+  padding: 3px 20px 3px 5px;
+  border: 1px solid #aaa;
+  max-width: 100%;
+  border-radius: 3px;
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), to(#eee));
+  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+  background-size: 100% 19px;
+  background-repeat: repeat-x;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  color: #333;
+  line-height: 13px;
+  cursor: default;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice span {
+  word-wrap: break-word;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url("chosen-sprite.png") -42px 1px no-repeat;
+  font-size: 1px;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
+  background-position: -42px -10px;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice-disabled {
+  padding-right: 5px;
+  border: 1px solid #ccc;
+  background-color: #e4e4e4;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), to(#eee));
+  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+  color: #666;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice-focus {
+  background: #d4d4d4;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice-focus .search-choice-close {
+  background-position: -42px -10px;
+}
+
+.chosen-container-multi .chosen-results {
+  margin: 0;
+  padding: 0;
+}
+
+.chosen-container-multi .chosen-drop .result-selected {
+  display: list-item;
+  color: #ccc;
+  cursor: default;
+}
+
+.chosen-container-active .chosen-single {
+  border: 1px solid #5897fb;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+  border: 1px solid #aaa;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #eee), color-stop(80%, #fff));
+  background-image: linear-gradient(#eee 20%, #fff 80%);
+  -webkit-box-shadow: 0 1px 0 #fff inset;
+          box-shadow: 0 1px 0 #fff inset;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div {
+  border-left: none;
+  background: transparent;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+  background-position: -18px 2px;
+}
+
+.chosen-container-active .chosen-choices {
+  border: 1px solid #5897fb;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.chosen-container-active .chosen-choices li.search-field input[type="text"] {
+  color: #222 !important;
+}
+
+.chosen-disabled {
+  opacity: 0.5 !important;
+  cursor: default;
+}
+
+.chosen-disabled .chosen-single {
+  cursor: default;
+}
+
+.chosen-disabled .chosen-choices .search-choice .search-choice-close {
+  cursor: default;
+}
+
+.chosen-rtl {
+  text-align: right;
+}
+
+.chosen-rtl .chosen-single {
+  overflow: visible;
+  padding: 0 8px 0 0;
+}
+
+.chosen-rtl .chosen-single span {
+  margin-right: 0;
+  margin-left: 26px;
+  direction: rtl;
+}
+
+.chosen-rtl .chosen-single-with-deselect span {
+  margin-left: 38px;
+}
+
+.chosen-rtl .chosen-single div {
+  right: auto;
+  left: 3px;
+}
+
+.chosen-rtl .chosen-single abbr {
+  right: auto;
+  left: 26px;
+}
+
+.chosen-rtl .chosen-choices li {
+  float: right;
+}
+
+.chosen-rtl .chosen-choices li.search-field input[type="text"] {
+  direction: rtl;
+}
+
+.chosen-rtl .chosen-choices li.search-choice {
+  margin: 3px 5px 3px 0;
+  padding: 3px 5px 3px 19px;
+}
+
+.chosen-rtl .chosen-choices li.search-choice .search-choice-close {
+  right: auto;
+  left: 4px;
+}
+
+.chosen-rtl.chosen-container-single .chosen-results {
+  margin: 0 0 4px 4px;
+  padding: 0 4px 0 0;
+}
+
+.chosen-rtl .chosen-results li.group-option {
+  padding-right: 15px;
+  padding-left: 0;
+}
+
+.chosen-rtl.chosen-container-active.chosen-with-drop .chosen-single div {
+  border-right: none;
+}
+
+.chosen-rtl .chosen-search input[type="text"] {
+  padding: 4px 5px 4px 20px;
+  background: url("chosen-sprite.png") no-repeat -30px -20px;
+  direction: rtl;
+}
+
+.chosen-rtl.chosen-container-single .chosen-single div b {
+  background-position: 6px 2px;
+}
+
+.chosen-rtl.chosen-container-single.chosen-with-drop .chosen-single div b {
+  background-position: -12px 2px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .chosen-rtl .chosen-search input[type="text"],
+  .chosen-container-single .chosen-single abbr,
+  .chosen-container-single .chosen-single div b,
+  .chosen-container-single .chosen-search input[type="text"],
+  .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
+  .chosen-container .chosen-results-scroll-down span,
+  .chosen-container .chosen-results-scroll-up span {
+    background-image: url("chosen-sprite@2x.png") !important;
+    background-size: 52px 37px !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+div.calendar { position: relative; }
+
+.calendar, .calendar table {
+  border: 1px solid #556;
+  font-size: 11px;
+  color: #000;
+  cursor: default;
+  background: #eef;
+  font-family: tahoma,verdana,sans-serif;
+}
+
+.calendar .button { 
+  text-align: center;    
+  padding: 2px;          
+}
+
+.calendar .nav {
+  background: #778 url(menuarrow.gif) no-repeat 100% 100%;
+}
+
+.calendar thead .title { 
+  font-weight: bold;      
+  text-align: center;
+  background: #fff;
+  color: #000;
+  padding: 2px;
+}
+
+.calendar thead .headrow { 
+  background: #778;
+  color: #fff;
+}
+
+.calendar thead .daynames { 
+  background: #bdf;
+}
+
+.calendar thead .name { 
+  border-bottom: 1px solid #556;
+  padding: 2px;
+  text-align: center;
+  color: #000;
+}
+
+.calendar thead .weekend { 
+  color: #a66;
+}
+
+.calendar thead .hilite { 
+  background-color: #aaf;
+  color: #000;
+  border: 1px solid #04f;
+  padding: 1px;
+}
+
+.calendar thead .active { 
+  background-color: #77c;
+  padding: 2px 0px 0px 2px;
+}
+
+.calendar tbody .day { 
+  width: 2em;
+  color: #456;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+}
+.calendar tbody .day.othermonth {
+  font-size: 80%;
+  color: #bbb;
+}
+.calendar tbody .day.othermonth.oweekend {
+  color: #fbb;
+}
+
+.calendar table .wn {
+  padding: 2px 3px 2px 2px;
+  border-right: 1px solid #000;
+  background: #bdf;
+}
+
+.calendar tbody .rowhilite td {
+  background: #def;
+}
+
+.calendar tbody .rowhilite td.wn {
+  background: #eef;
+}
+
+.calendar tbody td.hilite { 
+  background: #def;
+  padding: 1px 3px 1px 1px;
+  border: 1px solid #bbb;
+}
+
+.calendar tbody td.active { 
+  background: #cde;
+  padding: 2px 2px 0px 2px;
+}
+
+.calendar tbody td.selected { 
+  font-weight: bold;
+  border: 1px solid #000;
+  padding: 1px 3px 1px 1px;
+  background: #fff;
+  color: #000;
+}
+
+.calendar tbody td.weekend { 
+  color: #a66;
+}
+
+.calendar tbody td.today { 
+  font-weight: bold;
+  color: #00f;
+}
+
+.calendar tbody .disabled { color: #999; }
+
+.calendar tbody .emptycell { 
+  visibility: hidden;
+}
+
+.calendar tbody .emptyrow { 
+  display: none;
+}
+
+.calendar tfoot .footrow { 
+  text-align: center;
+  background: #556;
+  color: #fff;
+}
+
+.calendar tfoot .ttip { 
+  background: #fff;
+  color: #445;
+  border-top: 1px solid #556;
+  padding: 1px;
+}
+
+.calendar tfoot .hilite { 
+  background: #aaf;
+  border: 1px solid #04f;
+  color: #000;
+  padding: 1px;
+}
+
+.calendar tfoot .active { 
+  background: #77c;
+  padding: 2px 0px 0px 2px;
+}
+
+.calendar .combo {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  width: 4em;
+  cursor: default;
+  border: 1px solid #655;
+  background: #def;
+  color: #000;
+  font-size: 90%;
+  z-index: 100;
+}
+
+.calendar .combo .label,
+.calendar .combo .label-IEfix {
+  text-align: center;
+  padding: 1px;
+}
+
+.calendar .combo .label-IEfix {
+  width: 4em;
+}
+
+.calendar .combo .hilite {
+  background: #acf;
+}
+
+.calendar .combo .active {
+  border-top: 1px solid #46a;
+  border-bottom: 1px solid #46a;
+  background: #eef;
+  font-weight: bold;
+}
+
+.calendar td.time {
+  border-top: 1px solid #000;
+  padding: 1px 0px;
+  text-align: center;
+  background-color: #f4f0e8;
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm {
+  padding: 0px 3px 0px 4px;
+  border: 1px solid #889;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.calendar td.time .ampm {
+  text-align: center;
+}
+
+.calendar td.time .colon {
+  padding: 0px 2px 0px 3px;
+  font-weight: bold;
+}
+
+.calendar td.time span.hilite {
+  border-color: #000;
+  background-color: #667;
+  color: #fff;
+}
+
+.calendar td.time span.active {
+  border-color: #f00;
+  background-color: #000;
+  color: #0f0;
+}
+
+</style>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <title>MySQL Bugs: #13159: libmysqlclient.a in x86_64 RPM not compiled with -fPIC</title>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+                              </head>
+
+<body class="dev bugs">
+<div id="header">
+ <div id="logo"><a ><img src="rick.jpg" width="100" height="52" border="0" alt="MySQL"></a></div>
+ <div id="searchandlogin">
+  <div id="searchbox">
+   <form action="/search.php" method="get">
+    <input class="frm" type="text" name="search_for" size="20" maxlength="255">
+    <input class="submit2" type="submit" value="Search">
+   </form>
+  </div>
+  <div id="login">
+
+   <p class="s"><a >Login</a> /
+   <a >Register</a></p>
+  </div>
+ </div>
+</div>
+<div id="nav">
+ <ul>
+  <li><a >Developer Zone</a></li>
+  <li><a >Bugs Home</a></li>
+   <li><a >Report a bug</a></li>
+  <li><a >Advanced search</a></li>
+  <li><a >Saved searches</a></li>
+  <li><a >Tags</a></li>
+ </ul>
+</div>
+
+<br clear="both">
+
+<div id="content">
+<table id="bugheader" style="width: 100%">
+ <tbody><tr id="title">
+  <th>Bug&nbsp;#13159</th>
+  <td colspan="3">libmysqlclient.a in x86_64 RPM not compiled with -fPIC</td>
+ </tr>
+ <tr>
+  <th>Submitted:</th> <td>13 Sep 2005 22:44</td>
+  <th>Modified:</th> <td>9 Jun 2006 18:39</td>
+ </tr>
+ <tr>
+  <th>Reporter:</th>
+  <td>
+<a >Frank Maas</a>
+ (Basic Quality Contributor)  </td>
+  <th>Email Updates:</th>
+  <td>
+    <form style="margin:0px" method="get" action="https://dev.mysql.com/auth/login/">
+    <input type="hidden" name="dest" value="http://bugs.mysql.com/sub.php?action=Subscribe&amp;id=13159">
+    <input type="submit" name="action" value="Subscribe">    </form>
+  </td>
+ </tr>
+ <tr>
+  <th>Status:</th>
+  <td>
+  Closed  </td>
+  <th>Impact on me:</th>
+  <td>
+    <form style="margin:0px" method="get" action="https://dev.mysql.com/auth/login/">
+    <input type="hidden" name="dest" value="http://bugs.mysql.com/impact.php?action=&amp;id=13159">
+    None&nbsp;<input type="submit" name="action" value="Affects Me">    </form>
+  </td>
+ </tr>
+ <tr>
+  <th>Category:</th><td>MySQL Server: Packaging</td>
+  <th>Severity:</th><td>S1 (Critical)</td>
+ </tr>
+ <tr>
+  <th>Version:</th><td>5.0.13</td>
+  <th>OS:</th><td>Linux (Linux, Fedora 4)</td>
+ </tr>
+ <tr>
+  <th>Assigned to:</th>
+  <td>
+<a >Kent Boortz</a>
+  </td>
+  <th>CPU Architecture:</th><td>Any</td>
+ </tr>
+</tbody></table>
+
+<ul id="controls">
+<li class=" active">View</li>
+<li class=""><a >Add Comment</a></li>
+<li class=""><a >Files</a></li>
+<li class=""><a >Developer</a></li>
+<li class=""><a >Edit Submission</a></li>
+<li class=""><a >View Progress Log</a></li>
+<li class=""><a >Contributions</a></li>
+</ul>
+<br clear="all">
+ <div id="cmain" class="comment">
+  <div class="header">
+   [13 Sep 2005 22:44]
+   Frank Maas        </div>
+  <pre class="note"><strong>Description:</strong>
+In (at least) the x86_64 RPM set, the library "libmysqlclient.a" is not compiled with -fPIC. This makes it impossible (or maybe just hard) to create a shared object using the library, because the linker complains that "relocation against 'a local symbol' cannot be used".
+
+<strong>How to repeat:</strong>
+Try installing DBD::mysql after correcting the 'libs' var so that it contains -L/usr/lib64/mysql
+
+<strong>Suggested fix:</strong>
+Compile the library with -fPIC</pre>
+ </div>
+ <div id="c38598" class="comment">
+  <div class="header">
+   [13 Sep 2005 22:45]
+   Frank Maas        </div>
+  <pre class="note">Severity set to serious, because this bug prevents the implementation of tools, libraries and such that depend on MySQL</pre>
+ </div>
+ <div id="c38813" class="comment">
+  <div class="header">
+   [14 Sep 2005 21:31]
+   Jorge del Conde        </div>
+  <pre class="note">Verified using FC4 / AMD64</pre>
+ </div>
+ <div id="c40712" class="comment">
+  <div class="header">
+   [30 Sep 2005 11:38]
+   Frank Maas        </div>
+  <pre class="note">Updated version - problem persists in 5.0.13
+
+Workaround (at least for DBD::mysql):
+=====
+- (after patching mysql_config) create Makefile (perl Makefile.PL)
+- edit Makefile, look for -L/usr/lib64/mysql and prepend -L/usr/lib64[space]
+- do normal make, make test, make install routine</pre>
+ </div>
+ <div id="c48083" class="comment">
+  <div class="header">
+   [2 Dec 2005 23:51]
+   Dmitry Koterov        </div>
+  <pre class="note">Same effect. 
+
+gcc  -shared dbdimp.o mysql.o  -o blib/arch/auto/DBD/mysql/mysql.so   -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm
+/usr/bin/ld: /usr/lib64/mysql/libmysqlclient.a(libmysql.o): relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object; recompile with -fPIC
+/usr/lib64/mysql/libmysqlclient.a: could not read symbols: Bad value
+
+This bug was fixed in 4.1: <a >http://bugs.mysql.com/bug.php?id=8796</a> ("From now on - that is from 4.1.11 - static client libraries for x86_64 will be built with -fPIC" - ho-ho). And it welcomes us again in 5.0...
+
+Please correct devel RPMs for x68_64, they are unusable now (at least for Perl DBD::mysql)... work of 4 letters...</pre>
+ </div>
+ <div id="c48084" class="comment">
+  <div class="header">
+   [2 Dec 2005 23:54]
+   Dmitry Koterov        </div>
+  <pre class="note">Frank, seems to me you workaround does not work... maybe if in /usr/lib64 there are some other libmysqlclient.a, compiled correctly, workaround works, but if there is not - no effect.</pre>
+ </div>
+ <div id="c48157" class="comment">
+  <div class="header">
+   [4 Dec 2005 14:49]
+   Dmitry Koterov        </div>
+  <pre class="note">Workaround (build from source RPM):
+
+1. Open /usr/lib/rpm/rpmrc
+2. Add -fPIC flag in this file (e.g.: "optflags: x86_64 -O2 -fPIC")
+3. Run rpmbuild --rebuild <a >http://ftp.citkit.ru/pub/MySQL/Downloads/MySQL-5.0/MySQL-5.0.16-0.src.rpm</a>
+(for 5.0.16). Do not forget to install gcc-c++ and other devel tools if they are not installed!
+4. Get and install just builded RPMs from /usr/src/redhat/RPMS/x86_64
+
+After that DBD::mysql installs OK.</pre>
+ </div>
+ <div id="c64619" class="comment">
+  <div class="header">
+   [24 Apr 2006 13:12]
+   Andrei Nazarenko        </div>
+  <pre class="note">See <a  style="text-decoration: line-through">bug #18091</a> also.
+
+It worked fine for all production versions of 5.0.x until 5.0.20.
+Now it is not possible to compile anything against libmysqlclient.a  5.0.20(a).</pre>
+ </div>
+ <div id="c65639" class="comment">
+  <div class="header">
+   [2 May 2006 14:58]
+   Andrei Nazarenko        </div>
+  <pre class="note">Still the same problem with 5.0.21 x86_64 Linux.
+Compilation of PHP fails with the relocation error as before.</pre>
+ </div>
+ <div id="c66007" class="comment">
+  <div class="header">
+   [5 May 2006 6:35]
+   Leni Neto        </div>
+  <pre class="note">I found a way out to compile Mysql5 and PHP5 on Fedora4 64bits, here is how (hope it helps while we wait for a fix).
+
+First of all remove all Mysql and PHP packages you might have installed.
+Then manually remove the /usr/lib64/mysql folder, like this:
+rm -f /usr/lib64/mysql
+Also, remove the following packages: MyODBC, libdbi-dbd-mysql and mysqlclient10
+
+Now lets recompile with -fPIC
+- download MySQL-5.0.21-0.src.rpm from mysql's site (wget will do the job)
+# vi /usr/lib/rpm/rpmrc
+-Add the -fPIC flag. the line will look like this after you add it
+   optflags: i686 -O2 -g -march=i686 -fPIC
+# rpmbuild --rebuild
+# cd /usr/src/redhat/RPMS/x86_64
+#rpm -ihv MySQL-server-5.0.21-0.glibc23.x86_64.rpm
+#rpm -ihv MySQL-client-5.0.21-0.glibc23.x86_64.rp
+#rpm -ivh MySQL-devel-5.0.21-0.glibc23.x86_64.rpm
+
+Now go to your php source folder and run configure to fit your needs (i have php5 compiled with both mysql and mysqli). 
+AFTER configure is done, and BEFORE you start compiling, do this:
+#cd /usr/lib64/mysql
+#rename .a .a_old *.a
+#rename .la .la_old *.la
+Now let's get back to install 1 more mysql rpm
+# cd /usr/src/redhat/RPMS/x86_64
+# rpm -ihv MySQL-shared-5.0.15-0.i386.rpm
+OK, now get back to your php source folder, and let's get the job done
+# make &amp;&amp; make install
+PHP5 will now successfully compile (at least mysql wont be a problem anymore).
+After its done, lets undo the rename we did before
+#cd /usr/lib64/mysql
+#rename .a_old .a *.a_old
+#rename .la_old .la *.la_old
+And its all done!
+I had a really bad time getting this to work (and i needed it badly), so i hope this help you guys with similar problems.
+Cheers from Brazil to all of you, best of Luck
+
+Leni</pre>
+ </div>
+ <div id="c66083" class="comment">
+  <div class="header">
+   [5 May 2006 17:01]
+   Andrei Nazarenko        </div>
+  <pre class="note">I also had to recompile MySQL from src.rpm following Dmitry Koterov's advice above. This way I was able to get new libmysqlclient.a which could be used to compile PHP5 successfully.
+I really hope this is fixed soon. It is a major pain to mess with all those different libraries versions.</pre>
+ </div>
+ <div id="c66269" class="comment">
+  <div class="header">
+   [8 May 2006 13:51]
+   Marcel Kirsch        </div>
+  <pre class="note">Same problem here!
+I was able to rebuild the source-rpm of 5.0.19, so at least I was able to install MySQL. But now I would like to update to version 5.0.21, and it is not possibl to rebuild the source package.
+This is a bug, which should be fixed soon, because it is damn uncomfortable to live with these workarounds.</pre>
+ </div>
+ <div id="c69068" class="comment">
+  <div class="header">
+   [29 May 2006 19:51]
+   Valeriy Kravchuk        </div>
+  <pre class="note">In fact, <a  style="text-decoration: line-through">bug #18091</a> is a duplicate of this one (or vice versa). I hope, this will be fixed in 5.0.22.</pre>
+ </div>
+ <div id="c70070" class="comment">
+  <div class="header">
+   [6 Jun 2006 12:35]
+   Kent Boortz        </div>
+  <pre class="note">All binaries are compiled position independent in
+4.1.20 and 5.0.22, and will be in 5.1.11 beta.</pre>
+ </div>
+ <div id="c70509" class="comment">
+  <div class="header">
+   [9 Jun 2006 18:39]
+   Paul DuBois        </div>
+  <pre class="note">Noted in 4.1.20, 5.0.22, 5.1.11 changelogs.</pre>
+ </div>
+</div>
+
+<div id="footer">
+ <ul style="float: right; list-style: none">
+  <li><a >Legal Policies</a></li>
+  <li><a >Your Privacy Rights</a></li>
+  <li><a >Terms of Use</a></li>
+  <li><a >Contact Us</a></li>
+ </ul>
+ <br class="clear">
+ <p>Portions of this website are <a >copyright © 2001, 2002 The PHP Group</a></p>
+ <p style="float: right">
+Page generated in 0.018 sec. using MySQL 8.0.31-u7-cloud </p>
+ <br class="clear">
+ <br style="line-height: 8px;">
+ <p style="float: left">Timestamp references displayed by the system are UTC.<br>
+  Content reproduced on this site is the property of the
+  respective copyright holders.<br>It is not reviewed in advance
+  by Oracle and does not necessarily represent the opinion of
+  Oracle or any other party.</p>
+ <p style="float: right"><a ><img src="rick.jpg" alt="Oracle" width="91" height="22"></a>&nbsp;&nbsp;© 2023, Oracle Corporation and/or its affiliates</p>
+</div>
+
+</body></html>

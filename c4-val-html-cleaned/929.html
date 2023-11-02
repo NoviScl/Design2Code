@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+<style>
+@charset "utf-8";
+
+body {
+	margin:0px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+html {
+     overflow: -moz-scrollbars-vertical;
+}
+h1 {
+	font-size: 22px;
+	color: #102B4E;
+	margin-top:15px;
+	margin-bottom:15px;
+}
+h2 {
+	color: #14733A;
+	font-size:18px;
+}
+p {
+	font-size:12px;
+	line-height: 17px;
+}
+a {
+	outline:none;
+	text-decoration:none;
+	color: #14733A;
+	font-weight:bold;
+}
+a:hover {
+	text-decoration:underline;
+}
+li {
+	font-size:12px;
+	line-height: 20px;
+}
+.seperator {
+	height:1px;
+	width:100%;
+	background-color:#999;
+}
+.upcomingEvents .seperator {
+	height:1px;
+	width:260px;
+	background-color:#999;
+	margin: 5px 0px 5px 0px;
+}
+
+#headerContainer {
+	height: 95px;
+	width: 100%;
+	background-image: url(../images/bgHeader.png);
+	background-repeat: repeat-x;
+}
+#header {
+	height: 95px;
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#header .logo {
+	float: left;
+	height: 95px;
+	width: 475px;
+	margin-left: 10px;
+}
+#header .search {
+	float: right;
+	height: 56px;
+	width: 310px;
+	margin-top: 30px;
+	background-image: url(../images/bgSearch.png);
+	background-repeat: no-repeat;
+	position: relative;
+}
+#header .search #q {
+	position: absolute;
+	left: 55px;
+	top: 21px;
+	color: #666;
+	margin: 0px;
+	padding:0;
+	border: 0 none;
+	right: 83px;
+	bottom: 17px;
+	height: 16px;
+	width: 172px;
+	outline:none;
+}
+#header .search #go {
+	position: absolute;
+	right: 15px;
+	top: 17px;
+	width:40px;
+	background-image: url(../images/bgGo.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 23px;
+	color: #FFF;
+	cursor:pointer;
+	background-color: #F0F0F0;
+	border:none;
+}
+
+#navBarContainer {
+	width: 100%;
+	border-bottom: 2px solid #516C9B;
+	background-image: url(../images/bgNavbarContainer.png);
+	background-repeat: repeat-x;
+}
+#navBar {
+	height: 34px;
+	width: 980px;
+	margin-bottom:13px;
+	margin-right: auto;
+	margin-left: auto;
+	text-shadow: 1px 1px 3px #000;
+}
+.sttd {
+	text-shadow: 1px 1px 3px #000;
+}
+
+#bannerContainer {
+	height: 250px;
+	width: 100%;
+	background-image: url(../images/bgBanner.png);
+	background-repeat: repeat-x;
+}
+#banner {
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 250px;
+	position:relative;
+}
+#banner .imgWrapper {
+	background-image: url(../images/bgBannerImg.png);
+	float: left;
+	height: 222px;
+	width: 354px;
+	margin-top: 13px;
+}
+#banner .imgWrapper .img {
+	height: 200px;
+	width: 330px;
+	margin-top: 11px;
+	margin-right: auto;
+	margin-bottom: 11px;
+	margin-left: auto;
+}
+#banner .description {
+	width: 565px;
+	float: right;
+	margin-top: 20px;
+}
+#banner .description h2 {
+	color: #14733A;
+	margin: 0px;
+	font-size: 18px;
+}
+#banner .description p {
+	margin-top:5px;
+	color: #FFF;
+	line-height:14.5px;
+}
+#banner .readMore {
+	position:absolute;
+	display:block;
+	height: 27px;
+	width: 79px;
+	background-image: url(../images/readMoreBanner.png);
+	cursor: pointer;
+	right:0px;
+	bottom:10px;
+}
+#banner .readMore:hover {
+	background-image: url(../images/readMoreBannerRO.png);
+}
+#banner .readMore a {
+	display:block;
+	height: 27px;
+	width: 79px;	
+}
+
+#contentContainer {
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+	min-height:350px;
+}
+#content {
+	float: left;
+	width: 660px;
+	padding-right:20px;
+	padding-bottom:20px;
+}
+#content .faculty {
+	margin:15px;
+	padding:0px;
+	clear:both;
+	height:120px;
+}
+#content .faculty h2 {
+	color:#000;
+	font-size:16px;
+	padding-top:30px;
+	margin-bottom:0px;
+}
+#content .faculty a {
+	font-size:12px;
+}
+#content .postdoc {
+	margin:15px;
+	padding:0px;
+	clear:both;
+	height:120px;
+}
+#content .postdoc h2 {
+	color:#000;
+	font-size:16px;
+	padding-top:30px;
+	margin-bottom:0px;
+}
+#content .postdoc a {
+	font-size:12px;
+}
+
+#content .postdocAlumni {
+	margin:15px;
+	padding:0px;
+	clear:both;
+	height:20px;
+}
+#content .postdocAlumni h2 {
+	color:#000;
+	font-size:16px;
+	padding-top:0px;
+	margin-bottom:0px;
+}
+#content .postdocAlumni a {
+	font-size:16px;
+}
+#content .post {
+	clear:both;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+#content .recentNews, #content .upcomingEvents {
+	background-image: url(../images/bgHomeNewsEvents.jpg);
+	float: left;
+	height: 397px;
+	width: 326px;
+	margin-top:20px;
+}
+#content .recentNews h3, #content .upcomingEvents h3 {
+	color: #102B4E;
+	background-image: url(../images/dot.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	padding-bottom:3px;
+	margin-left:30px;
+	margin-top:25px;
+	width: 265px;
+}
+#content .recentNews a, #content .upcomingEvents a {
+	color:#14733A;
+	font-size:13px;
+	font-weight:bold;
+	padding-left:20px;
+}
+#content .recentNews .inner, #content .upcomingEvents .inner {
+	margin: 15px 30px 25px 30px;
+	overflow: auto;
+	width:283px;
+	height:300px;
+}
+#content .recentNews .newsPost {
+	margin:5px;
+}
+#content .recentNews .img {
+	width:80px;
+	height:80px;
+	padding-right:10px;
+}
+#content .recentNews .date, #content .upcomingEvents .date, #content .upcomingEvents .time {
+	font-size:11px;
+	color:#666;
+} 
+#content .recentNews .title, #content .upcomingEvents .title {
+	font-size:12px;
+	font-weight:bold;
+}
+#content .recentNews .inner .viewMore a, #content .upcomingEvents .inner .viewMore a {
+	font-size:11px;
+	color:#666;
+	font-weight:normal;
+	text-align:left;
+	padding-left:0px;
+}
+#content .recentNews .inner .viewMore, #content .upcomingEvents .inner .viewMore {
+	background-image: url(../images/greenArrow.png);
+	background-repeat: no-repeat;
+	background-position: 60px;
+}
+
+#sidebar {
+	float: left;
+	width: 300px;
+}
+#sidebar .mailingList {
+	width: 300px;
+	background-image: url(../images/bgMailingListtBox.png);
+	height: 205px;
+	margin-top:20px;
+	position:relative;
+}
+#sidebar .mailingList .inner {
+	padding:45px 20px 0px 20px;
+}
+#sidebar .mailingList .inner .button {
+	background-image: url(../images/mailingListButton.png);
+	margin: auto;
+	height: 48px;
+	width: 262px;
+	font-size: 18px;
+	color: #FFF;
+	position:absolute;
+	left:20px;
+	top:140px;
+}
+#sidebar .mailingList .inner .button .inner {
+	padding:12px 0px 0px 15px;
+}
+#sidebar .mailingList .inner .button .inner a {
+	color: #FFF;
+}
+#sidebar .contact {
+	width: 300px;
+	background-image: url(../images/bgContactBox.png);
+	height: 207px;
+	margin-top:10px;
+}
+#sidebar .contact p {
+	margin-top:11px;
+	margin-bottom:10px;
+}
+#sidebar .contact .inner {
+	padding:45px 20px 30px 60px;
+	line-height: 15px;
+}
+#sidebar .contact .inner a {
+	color: #14733A;
+	font-weight:bold;
+	text-align: right;
+	font-size: 12px;
+}
+#sidebar .events {
+	background-image: url(../images/sidebarEvents.png);
+	height: 44px;
+	width: 280px;
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#sidebar .news {
+	background-image: url(../images/sidebarNews.png);
+	height: 44px;
+	width: 280px;
+	margin-top:15px;
+	margin-bottom:30px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#sidebar .events a, #sidebar .news a {
+	font-size: 18px;
+	padding-left: 10px;
+	color: #102B4E;
+	line-height: 45px;
+}
+
+#footerContainer {
+	clear:both;
+	background-image: url(../images/bgFooter.png);
+	background-repeat: repeat-x;
+	height: 85px;
+	width: 100%;
+	margin-top:30px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+#footer {
+	height: 85px;
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 12px;
+	color: #999;
+	position:relative;
+}
+#footer img {
+	padding-left:10px;
+}
+#footer .shortcutMenu {
+	position: absolute;
+	top: 25px;
+	right: 0px;
+} 
+#footer .shortcutMenu ul {
+	list-style: none;
+	margin:0px;
+	padding:0px;
+	line-height:14px;
+} 
+#footer .shortcutMenu li {
+	display: inline;
+	background-image: none;
+	margin: 0px;
+	line-height:14px;
+} 
+#footer .shortcutMenu a {
+	padding-left: 8px;
+	padding-right: 8px;
+	border-left: 1px solid #FFF;
+	margin: 0px;
+	font-size: 12px;
+	color: #FFF;
+} 
+#footer .shortcutMenu ul a.first {
+	border-left: none;
+}
+#footer .designBy {
+	float:right;
+	width:300px;
+	position:absolute;
+	top:40px;
+	right:0px;
+	text-align:right;
+	font-size: 11px;
+}
+#footer .designBy a {
+	color:#FFF;
+}
+#footer .jrank {
+	visibility:hidden;
+}
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="google-site-verification" content="MdHHCIdook_R4zwspNfBW2bx7EHrJHs8XeibYwusB10">
+<title>Center for Pervasive Communications and Computing</title>
+
+<style type="text/css">
+.sttb{border-style:none;background-color:transparent;background-image:none;}
+.sttr{border-style:none;background-color:transparent;background-image:none;}
+.sttd{border-style:none;background-color:transparent;background-image:none;}
+.stdv{border-style:none;background-color:transparent;background-image:none;margin:0px;padding:0px;}
+.sta:link,.sta:hover,.sta:active,.sta:visited{display:block;border-style:none;background-color:transparent;background-image:none;margin:0px;padding:0px;}
+.sthd{display:none;}
+.stsp{border-style:none;background-color:transparent;background-image:none;margin:0px;padding:0px;}
+</style>
+
+</head>
+<body>
+<div id="headerContainer">
+	<div id="header">
+		<div class="logo"><a ></a><a ><img src="rick.jpg" alt="CPCC Logo" width="475" height="95" border="0"></a></div>
+		<div class="search">
+		<form action="http://www.jrank.org/api/search/v2" method="get">
+			<fieldset style="border: none; display: inline;">
+				<input id="key" name="key" type="hidden" value="e80c670a52fb54a20dfb23c22edd0425d42d99f8">
+				<input onfocus="if(this.value == 'Search . . .'){this.value = '';}" onblur="if(this.value == ''){this.value='Search . . .';}" name="q" type="text" id="q" value="Search . . ." size="25" border="0">
+				<input name="commit" id="go" type="submit" value="Go">
+			</fieldset>
+		</form>
+		</div>
+	</div>
+</div>
+<div id="navBarContainer">
+	<div id="navBar">
+		<div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><div style="display:none"><img class="stimg" src="rick.jpg" border="0"></div><table cellpadding="0" cellspacing="0" id="stUI2" class="sttb" style="visibility: visible;" align="center" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"><tbody><tr class="sttr"><td class="sttd" style="background-color:transparent;"><table cellpadding="0" cellspacing="0" align="center" id="stUI2_body" class="sttb"><tbody><tr><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI3_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI3" class="sttb" style="width:104px;height:34px;"><tbody><tr><td id="stUI3_ltab" class="sttd" style="width:8px;" align="right" valign="middle"><img class="stimg" src="rick.jpg" width="8" height="34" border="0" id="stUI3_ltabImg"></td><td id="stUI3_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI3_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI3_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI3_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">HOME</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI4" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI5_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI5" class="sttb" style="width:115px;height:34px;"><tbody><tr><td id="stUI5_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI5_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI5_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI5_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">ABOUT</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI11" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI12_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI12" class="sttb" style="width:115px;height:34px;"><tbody><tr><td id="stUI12_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI12_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI12_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI12_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">PEOPLE</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI18" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI19_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI19" class="sttb" style="width:128px;height:34px;"><tbody><tr><td id="stUI19_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI19_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI19_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI19_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">RESEARCH</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI20" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI21_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI21" class="sttb" style="width:153px;height:34px;"><tbody><tr><td id="stUI21_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI21_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI21_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI21_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">PUBLICATIONS</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI25" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI26_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI26" class="sttb" style="width:133px;height:34px;"><tbody><tr><td id="stUI26_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI26_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI26_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI26_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">SPONSORS</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI27" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI28_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI28" class="sttb" style="width:101px;height:34px;"><tbody><tr><td id="stUI28_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI28_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI28_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI28_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">NEWS</span></td></tr></tbody></table></td></tr></tbody></table></a></td><td class="sttd"><table cellpadding="0" cellspacing="0" id="stUI29" class="sttb" style="font-size: 1pt; line-height: 1pt; width: 2px; height: 34px; background-color: transparent;"><tbody><tr><td align="center" valign="middle"><img class="stimg" src="rick.jpg" width="2" height="34" border="0"></td></tr></tbody></table></td><td class="sttd"><a tabindex="100" onclick="return _STNS.UI.fbDmEnt(event,this)" onkeydown="return _STNS.UI.fbDmEnt(event,this)" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)"  target="_self" id="stUI30_lnk" class="sta" style="outline:none;text-decoration:none;cursor:hand"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0px" id="stUI30" class="sttb" style="width:114px;height:34px;"><tbody><tr><td id="stUI30_itd" nowrap="" align="center" valign="middle" class="sttd" style="height:34px;background-color:#10294c;background-image:url(/images/bgNavbar.png);background-repeat:repeat-x;"><table cellspacing="0" onmouseover="return _STNS.UI.fbDmEnt(event,this)" onmouseout="return _STNS.UI.fbDmEnt(event,this)" onmousemove="return _STNS.UI.fbDmEnt(event,this)" cellpadding="0" id="stUI30_itb" class="sttb" style="width:100%;height:100%;"><tbody><tr><td id="stUI30_cnt" nowrap="" class="sttd" style="font-size:1pt;" align="center" valign="middle"> <span id="stUI30_txt" class="stsp" style="color:#FFFFFF;font:bold 10pt Trebuchet MS;text-decoration:none;">EVENTS</span></td></tr></tbody></table></td><td id="stUI30_rtab" class="sttd" style="width:8px;" align="left" valign="middle"><img class="stimg" src="rick.jpg" width="8" height="34" border="0" id="stUI30_rtabImg"></td></tr></tbody></table></a></td></tr></tbody></table></td></tr></tbody></table>
+	</div><!--navBar End-->
+	<noscript>
+        <ul>
+            <li><a title="http://www.cpcc.uci.edu/"  target="_self">HOME</a></li>
+            <li><a title="director-corner.php"  target="_self">ABOUT</a>
+                <ul>
+                    <li><a title="director-corner.php"  target="_self">DIRECTORS CORNER</a></li>
+                    <li><a title="inauguration.php"  target="_self">INAUGURATION</a></li>
+                    <li><a title="mailing-list.php"  target="_self">MAILING LIST</a></li>
+                    <li><a title="directions.php"  target="_self">DIRECTIONS</a></li>
+                </ul>
+            </li>
+            <li><a title="faculty.php"  target="_self">PEOPLE</a>
+                <ul>
+                    <li><a title="faculty.php"  target="_self">FACULTY</a></li>
+                    <li><a title="postdocs.php"  target="_self">POSTDOCS</a></li>
+                    <li><a title="students.php"  target="_self">STUDENTS</a></li>
+                    <li><a title="alumni.php"  target="_self">ALUMNI</a></li>
+                </ul>
+            </li>
+            <li><a title="research.php"  target="_self">RESEARCH</a></li>
+            <li><a title="published-work.php"  target="_self">PUBLICATIONS</a>
+                <ul>
+                    <li><a title="published-work.php"  target="_self">PUBLISHED WORK</a></li>
+                    <!-- <li><a title="progress-reports.php"  target="_self">PROGRESS REPORTS</a></li>-->
+                    <li><a title="http://escholarship.org/uc/cpcc"  target="_self">TECHNICAL REPORTS</a></li>
+                </ul>
+            </li>
+            <li><a title="sponsors.php"  target="_self">SPONSORS</a></li>
+            <li><a title="news.php"  target="_self">NEWS</a></li>
+            <li><a title="events.php"  target="_self">EVENTS</a></li>
+        </ul>
+</noscript>
+</div><!--navBarContainer End-->
+
+<div id="contentContainer">
+	<div id="content">
+		<h1>Mailing List</h1>
+		<p>The CPCC Mailing List (<a target="_blank" >CPCC</a>) is a moderated electronic mailing list used for announcing the activities of the CPCC. This mailing list is housed on the UCI Mailman server. </p>
+		<p>You can subscribe to <a target="_blank" >CPCC</a> by clicking on <a target="_blank" >this link</a>. You can use the same link to unsubscribe or to change your subscription preferences. </p>
+	</div>
+	<div id="sidebar">
+	<div class="mailingList">
+		<div class="inner">
+			<p>Would you like to receive announcements of the Center for Pervasive Communications and Computing at the University of California, Irvine? Just click the link below to sign up.</p>
+			<div class="button">
+				<div class="inner"><a  target="_blank">Click Here To Join</a></div>
+			</div>
+		</div>
+	</div>
+	<div class="contact">
+		<div class="inner">
+			<p>4217 Engineering Hall, UCI,<br>
+				Irvine, CA 92697-2625</p>
+			<p style="margin:0px"><strong>Director: Hamid Jafarkhani</strong></p>
+			<p style="margin:0px"> <strong>Phone:</strong> 949-824-1755<br>
+				<strong>Fax:</strong> 949-824-2321<br>
+				<!-- strong>Email:</strong> <a >director [at] cpcc.uci.edu</a></p -->
+			<a  target="_blank">Campus Map&gt;&gt;</a> &nbsp; <a  target="_blank">Directions&gt;&gt; </a>
+		</p></div>
+	</div>
+	<div class="events"><a >View Our Events</a></div>
+	<div class="news"><a >View Our News</a></div>
+</div>
+</div>
+<div class="push"></div>
+<div id="footerContainer">
+	<div id="footer"> 
+		<a  target="_self"><img src="rick.jpg" alt="Center for Pervasive Communications and Computing Logo" width="98" height="85" border="0"></a>
+		<a  target="_blank"><img src="rick.jpg" alt="UCI" width="75" height="85" border="0"></a>
+		<a  target="_blank"><img src="rick.jpg" alt="UCI Seal" width="69" height="85" border="0"></a>
+		<div class="shortcutMenu">
+			<ul>
+				<li><a  class="first">Home</a></li>
+				<li><a >About</a></li>
+				<li><a >People</a></li>
+				<li><a >Research</a></li>
+				<li><a >Publications</a></li>
+				<li><a >Sponsors</a></li>
+				<li><a >News</a></li>
+				<li><a >Events</a></li>
+				<li><a >Sitemap</a></li>
+			</ul>
+		</div>
+		<div class="designBy">
+			<div class="jrank"><a >JRank</a></div>
+			Site by <a  target="_blank" title="Orange County Design, Web, SEO, &amp; IT">ARYOSYS Inc.</a>
+		</div>
+	</div><!--footer End-->
+</div><!--footerContainer End-->
+
+</body></html>

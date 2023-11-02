@@ -1,0 +1,1911 @@
+<!DOCTYPE html><html><head>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    casadi-bindings: mid-level bindings to CasADi
+  </title>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@hackage">
+  <meta property="og:url" content="//hackage.haskell.org/package/casadi-bindings">
+  <meta property="og:site_name" content="Hackage">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="casadi-bindings">
+  <meta property="og:description" content="mid-level bindings to CasADi">
+  
+  
+  
+  <style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                       -webkit-border-radius:15px;                 -moz-border-radius:15px;                    -khtml-border-radius:15px;                  box-shadow:0px 10px 20px #808080;           -webkit-box-shadow:0px 10px 20px #808080;   -moz-box-shadow:0px 10px 20px #808080;      -khtml-box-shadow:0px 10px 20px #808080;    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); }
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;               -moz-border-radius: 18px;                  -khtml-border-radius: 18px;                font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;               -moz-border-radius: 18px;                  -khtml-border-radius: 18px;                line-height:0;  padding:8px 0 6px     }
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                       -webkit-border-radius: 5px;               -moz-border-radius: 5px;                  -khtml-border-radius: 5px;                box-shadow:0px 10px 20px #808080;           -webkit-box-shadow:0px 10px 20px #808080;   -moz-box-shadow:0px 10px 20px #808080;      -khtml-box-shadow:0px 10px 20px #808080;  }
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style>
+  <base >
+<style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face  {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face  {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body>
+  <div id="page-header">
+
+  <a class="caption" >Hackage :: [Package]</a>
+
+<ul class="links" id="page-menu">
+
+    <li>
+      <form action="/packages/search" method="get" class="search">
+        <button type="submit">Search&nbsp;</button>
+        <input type="text" name="terms">
+      </form>
+    </li>
+
+    <li><a >Browse</a></li>
+
+    <li><a >What's new</a></li>
+
+    <li><a >Upload</a></li>
+
+    <li><a >User accounts</a></li>
+    
+
+</ul>
+
+</div>
+
+  <div id="content">
+    <h1><a >casadi-bindings</a>: <small>mid-level bindings to CasADi</small></h1>
+    <div style="font-size: small">
+      [ <a >lgpl</a>, <a >library</a>, <a >math</a>, <a >numerical</a> ]
+      [ <a >Propose Tags</a> ]
+    </div>
+
+          
+    
+
+    <div id="flex-container">
+      <div id="left-pane">
+
+        <div id="description">
+                    <p>Haskell bindings to the CasADi algorithmic differentiation and optimal control library.
+VERSION POLICY VIOLATION: version number x.y.z.w corresponds to the CasADi C++ library version x.y.z; the w referse to binding changes and may be completely breaking.</p><p>This package is a mid-level interface to the autogenerated low-level bindings `casadi-bindings-core`.</p><p>The module `casadi-bindings-core` is autogenerated
+from casadi's swig interface and corresponds to the casadi C++ API
+(though some functions will be missing).</p><p>The `casadi-bindings-internal` package is handwritten and provides some casadi memory management
+wrappers, C++ standard type marsahalling, and some hand-written wrapper code.</p><p>For high-level bindings, see my <a >dynobud</a> project</p><p>To install this, first install casadi using instructions from <a >www.casadi.org</a>. MAKE SURE pkg-config CAN FIND THE CASADI INSTALLATION, AS THIS IS HOW CABAL FINDS CASADI!!</p><p>Then cabal install this package:</p><pre>&gt; cabal update &amp;&amp; cabal install casadi-bindings</pre><p>If you are upgrading this package and see linker errors, you may need to first manually `ghc-pkg unregister casadi-bindings-internal`.</p><p>Temporary note: there is something wrong with casadi and ipopt related to <a >http://list.coin-or.org/pipermail/ipopt/2014-April/003670.html</a>, and <a >https://github.com/casadi/casadi/issues/1075</a>. Either update IPOPT or use a different linear solver than MUMPS.</p>
+          
+          
+        </div>
+
+        <div id="badges" style="margin-top: 20px;">
+                          <a >
+                <img src="rick.jpg">
+              </a>
+            
+            
+            
+                          <img src="rick.jpg">
+            
+        </div>
+
+        <div id="modules">
+          <h2>Modules</h2><div id="module-list"><ul class="modules"><li><i>Casadi</i><ul class="modules"><li><span class="module">Casadi.Callback</span></li><li><span class="module">Casadi.DM</span></li><li><span class="module">Casadi.Function</span></li><li><span class="module">Casadi.GenericType</span></li><li><span class="module">Casadi.Interpolant</span></li><li><span class="module">Casadi.MX</span></li><li><span class="module">Casadi.Matrix</span></li><li><span class="module">Casadi.Overloading</span></li><li><span class="module">Casadi.SX</span></li><li><span class="module">Casadi.Slice</span></li><li><span class="module">Casadi.Sparsity</span></li><li><span class="module">Casadi.Viewable</span></li></ul></li></ul></div>
+        </div>
+
+        
+
+        <div id="downloads">
+          <h2>Downloads</h2><ul><li><a >casadi-bindings-3.4.5.0.tar.gz</a> [<a >browse</a>] (Cabal source package)</li><li><a >Package description</a> (as included in the package)</li></ul>
+        </div>
+
+        <div id="maintainer-corner">
+          <h4>Maintainer's Corner</h4>
+          <p><a >Package maintainers</a></p>
+          <ul>
+            <li>
+              <a >GregHorn</a>
+            </li>
+          </ul>
+          <p>For package maintainers and hackage trustees</p>
+          <ul>
+            <li>
+              <a >
+                edit package information
+              </a>
+            </li>
+          </ul>
+          <p>Candidates</p>
+          <ul>
+            <li>
+              No Candidates
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div id="properties">
+        <table class="properties">
+          <tbody>
+
+            <tr>
+              <th>Versions <span style="font-weight:normal;font-size: small;">[<a >RSS</a>]</span></th>
+              <td><a >1.8.0.0</a>, <a >1.8.2.1</a>, <a >1.9.0.0</a>, <a >1.9.0.1</a>, <a >1.9.0.2</a>, <a >1.9.0.3</a>, <a >1.9.0.4</a>, <a >1.9.0.5</a>, <a >2.0.0</a>, <a >2.0.0.1</a>, <a >2.1.0.0</a>, <a >2.1.0.1</a>, <a >2.1.3.0</a>, <a >2.1.3.1</a>, <a >2.1.3.2</a>, <a >2.2.0.0</a>, <a >2.2.0.1</a>, <a >2.2.0.2</a>, <a >2.2.0.3</a>, <a >2.2.0.4</a>, <a >2.2.0.5</a>, <a >2.2.0.6</a>, <a >2.2.0.7</a>, <a >2.2.0.8</a>, <a >2.3.0.0</a>, <a >2.3.0.1</a>, <a >2.4.1.0</a>, <a >2.4.1.1</a>, <a >2.4.1.2</a>, <a >2.4.1.3</a>, <a >2.4.1.4</a>, <a >2.4.1.5</a>, <a >2.4.1.6</a>, <a >2.4.1.7</a>, <a >2.4.1.8</a>, <a >2.4.1.9</a>, <a >3.0.0.0</a>, <a >3.0.0.1</a>, <a >3.0.0.2</a>, <a >3.0.0.3</a>, <a >3.0.0.4</a>, <a >3.0.0.5</a>, <a >3.1.0.0</a>, <a >3.1.0.1</a>, <a >3.1.0.2</a>, <a >3.1.0.3</a>, <strong>3.4.5.0</strong></td>
+            </tr>
+
+            
+
+            <tr>
+              <th>Dependencies</th>
+              <td><span style="white-space: nowrap"><a >base</a> (&gt;=4.6 &amp;&amp; &lt;5)</span>, <span style="white-space: nowrap"><a >binary</a></span>, <span style="white-space: nowrap"><a >casadi-bindings-core</a> (==3.4.5.0)</span>, <span style="white-space: nowrap"><a >casadi-bindings-internal</a> (==0.1.6.1)</span>, <span style="white-space: nowrap"><a >cereal</a></span>, <span style="white-space: nowrap"><a >containers</a></span>, <span style="white-space: nowrap"><a >linear</a></span>, <span style="white-space: nowrap"><a >spatial-math</a> (&gt;=0.2.6.0)</span>, <span style="white-space: nowrap"><a >vector</a></span>, <span style="white-space: nowrap"><a >vector-binary-instances</a></span><span style="font-size: small"> [<a >details</a>]</span></td>
+            </tr>
+
+            <tr>
+              <th>License</th>
+              <td class="word-wrap"><a >LGPL-3.0-only</a></td>
+            </tr>
+
+                        <tr>
+              <th>Copyright</th>
+              <td class="word-wrap">(c) Greg Horn 2013-2018</td>
+            </tr>
+            
+
+            <tr>
+              <th>Author</th>
+              <td class="word-wrap">Greg Horn</td>
+            </tr>
+            <tr>
+              <th>Maintainer</th>
+              <td class="word-wrap">gregmainland@gmail.com</td>
+            </tr>
+
+            
+
+            
+
+                        <tr>
+              <th>Category</th>
+              <td><a >Numerical</a>, <a >Math</a></td>
+            </tr>
+            
+
+                        <tr>
+              <th>Home page</th>
+              <td class="word-wrap">
+                <a >http://github.com/ghorn/casadi-bindings</a>
+              </td>
+            </tr>
+            
+
+            
+
+                        <tr>
+              <th>Source&nbsp;repo</th>
+              <td class="word-wrap">head: git clone <a >git://github.com/ghorn/casadi-bindings.git</a></td>
+            </tr>
+            
+
+            <tr>
+              <th>Uploaded</th>
+              <td>by <a >GregHorn</a> at <span title="Sat Dec 15 23:49:08 UTC 2018">2018-12-15T23:49:08Z</span></td>
+            </tr>
+
+                        <tr>
+              <th>Distributions</th>
+              <td></td>
+            </tr>
+            
+
+                        <tr>
+              <th>Reverse Dependencies</th>
+              <td>2 direct, 0 indirect <span style="font-size: small" class="revdepdetails"> [<a >details</a>]</span></td>
+            </tr>
+            
+            
+
+            
+
+            <tr>
+              <th>Downloads</th>
+              <td>33379 total (2 in the last 30 days)</td>
+            </tr>
+
+            <tr>
+              <th> Rating</th>
+              <td>(no votes yet)
+              <span style="font-size: small">[estimated by <a >Bayesian average</a>]</span></td>
+            </tr>
+
+            <tr>
+              <th>Your&nbsp;Rating</th>
+              <td>
+                <ul class="star-rating">
+                  <li class="star uncool" id="1">λ</li>
+                  <li class="star uncool" id="2">λ</li>
+                  <li class="star uncool" id="3">λ</li>
+                </ul>
+              
+              </td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>Docs not available <span style="font-size: small">[<a >build log</a>]</span><br>All reported builds failed as of 2018-12-16 <span style="font-size: small">[<a >all 3 reports</a>]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+    </div>
+
+    
+  </div> 
+
+  <style>
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizYRExUiTo99u79D0e0x8mN.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79D0KEwA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh0O6tKA.ttf) format('truetype');
+}
+
+* { margin: 0; padding: 0 }
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: #333;
+  }
+  body {
+    background: #333;
+    color: #fefefe;
+  }
+}
+@media (prefers-color-scheme: light) {
+  html {
+    background-color: #fefefe;
+  }
+  body {
+    background: #fefefe;
+    color: #333;
+  }
+}
+body {
+  text-align: left;
+  min-height: 100vh;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1, "liga" 0;
+  -moz-font-feature-settings: "kern" 1, "liga" 0;
+  -o-font-feature-settings: "kern" 1, "liga" 0;
+  font-feature-settings: "kern" 1, "liga" 0;
+  letter-spacing: 0.0015rem;
+}
+
+table, ul {
+  line-height: 1.35rem;
+}
+
+ul li + li {
+  margin-top: 0.2rem;
+}
+
+ul + p {
+  margin-top: 0.93em;
+}
+
+p + ul {
+  margin-top: 0.5em;
+}
+
+p {
+  margin-top: 0.7rem;
+}
+
+ul, ol {
+  margin: 0.8em 0 0.8em 2em;
+}
+
+dl {
+  margin: 0.8em 0;
+}
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 2em;
+}
+
+a { text-decoration: none; }
+
+@media (prefers-color-scheme: dark) {
+  a[href]:link { color: #EB82DC; }    
+  a[href]:visited { color: #D5C5FF; } 
+}
+@media (prefers-color-scheme: light) {
+  a[href]:link { color: #9E358F; }
+  a[href]:visited {color: #6F5F9C; }
+}
+
+a[href]:hover { text-decoration:underline; }
+
+body, button {
+  font: 400 17px/1.43 'PT Sans',
+    
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen-Sans,
+    Cantarell,
+    'Helvetica Neue',
+    sans-serif;
+  *font-size: medium; 
+  *font:x-small; 
+}
+
+h1 { font-size: 153.9%;  }
+h2 { font-size: 131%;    }
+h3 { font-size: 116%;    }
+h4 { font-size: 100%;    }
+h5 { font-size: 100%;    }
+h6 { font-size: 100%;    }
+
+select, input, button, textarea {
+  font-size: 1rem;
+  margin: 0.5em;
+  padding: 0.1em;
+}
+
+table {
+  margin: 0.8em 0;
+  font-size:inherit;
+  font:100%;
+}
+
+pre, code, kbd, samp, .src {
+  font-family: monospace;
+}
+
+.links, .link {
+  font-size: 85%; 
+}
+
+#module-header .caption {
+  font-size: 182%; 
+}
+
+.info  {
+  font-size: 85%; 
+}
+
+@media (prefers-color-scheme: dark) {
+  .candidate-warn {
+    border-left: 6px solid #f44336;
+    padding: 0.01em 16px;
+    margin-bottom: 8px !important;
+    margin-top: 8px !important;
+  }
+
+  .candidate-info {
+    border-left: 6px solid #2196F3;
+    padding: 0.01em 16px;
+    margin-bottom: 8px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .candidate-warn {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+    padding: 0.01em 16px;
+    margin-bottom: 8px !important;
+    margin-top: 8px !important;
+  }
+
+  .candidate-info {
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+    padding: 0.01em 16px;
+    margin-bottom: 8px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .caption, h1, h2, h3, h4, h5, h6 {
+    color: #5E5184;
+    filter: brightness(2.0);
+  }
+}
+@media (prefers-color-scheme: light) {
+  .caption, h1, h2, h3, h4, h5, h6 {
+    color: #5E5184;
+  }
+}
+.caption, h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin: 1.33em 0 0.7em 0;
+  line-height: 1.05em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+#content h1:first-of-type {
+  margin-top: 1.6em;
+  margin-bottom: 0.75em;
+}
+
+ul.links li {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0;
+}
+
+ul.links li + li:before {
+  content: '\00B7';
+}
+
+ul.links li a, ul.links li form {
+  padding: 0.2em 0.5em;
+}
+
+.hide { display: none; }
+.show { display: inherit; }
+.clear { clear: both; }
+
+.collapser:before, .expander:before {
+  font-size: 0.9em;
+  color: #5E5184;
+  display: inline-block;
+  padding-right: 7px;
+}
+
+.collapser:before {
+  content: '-'
+}
+.expander:before {
+  content: "+";
+}
+
+.collapser, .expander {
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  pre {
+      background-color: #474747; 
+  }
+}
+@media (prefers-color-scheme: light) {
+  pre {
+      background-color: #f7f7f7;
+  }
+}
+pre {
+  padding: 0.5rem 1rem;
+  margin: 1em 0;
+  overflow: auto;
+}
+
+pre + p {
+  margin-top: 1em;
+}
+
+pre + pre {
+  margin-top: 0.5em;
+}
+
+blockquote {
+  border-left: 3px solid #c7a5d3;
+  background-color: #eee4f1;
+  margin: 0.5em;
+  padding: 0.0005em 0.3em 0.5em 0.5em;
+}
+
+.src {
+  background: #f4f4f4;
+  padding: 0.2em 0.5em;
+}
+
+.keyword { font-weight: normal; }
+.def { font-weight: bold; }
+
+#properties table.properties {
+  table-layout: fixed;
+  width: 100%;
+  margin: 7px 0;
+  line-height: 1.2em;
+}
+
+div#properties table.properties thead,
+div#properties table.properties tbody,
+div#properties table.properties tr,
+div#properties table.properties td,
+div#properties table.properties th {
+  display: block;
+}
+
+div#properties table.properties td {
+  font-size: 1rem;
+}
+
+div#properties table.properties tr {
+  padding-bottom: 3px;
+}
+
+div#properties table.properties td {
+  padding-top: 0px;
+}
+
+div#properties table.properties .star-rating {
+  overflow: hidden;
+  padding: 2px 0;
+}
+
+div #description img {
+    max-width:55%;
+}
+
+div #description table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+div #description table tr td {
+    border: 1px solid #ddd;
+    padding: 0.15em 0.45em;
+}
+
+div #description table th {
+  padding: 0.15em 0.45em;
+  background: #f0f0f0;
+}
+
+table.properties td:first-child, table.properties th:first-child {
+  padding-left: 0;
+}
+
+table.properties td:last-child, table.properties th:last-child {
+  padding-right: 0;
+}
+
+table.properties td, table.properties th {
+  vertical-align: top;
+  text-align: left;
+}
+
+.word-wrap {
+     
+    -ms-word-break: break-all;
+    word-break: break-all;
+    
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+@media only screen and (min-width: 1920px) {
+  #content {
+    
+    width: 60vw;
+  }
+
+  #left-pane > * {
+      
+      width: calc(min(36vw, .6 * 1450px) - 2em);
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1919px) {
+  #content {
+    width: 65vw;
+  }
+
+  #left-pane > * {
+      
+      width: calc(39vw - 2em);
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #table-of-contents {
+    position: fixed;
+    left: 10px;
+    max-width: 10vw;
+    top: 10.2em;
+  }
+
+  #content {
+    
+    max-width: 1450px;
+  }
+}
+
+@media only screen and (max-width: 1279px) {
+
+  div #description img {
+    max-width:45%;
+  }
+
+  #content {
+    width: 75vw;
+  }
+
+  #left-pane > * {
+      
+      width: calc(45vw - 2em);
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  #page-header {
+      text-align: left;
+      white-space: nowrap;
+      height: 40px;
+      padding: 4px 1.5em 0px 1.5em;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  #page-header .caption + ul.links {
+    margin-left: 1em;
+  }
+
+  #page-header ul.links {
+    list-style: none;
+    display: inline-table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  div #properties {
+      width: 40%;
+      margin-bottom: 2em;
+  }
+
+  #flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2em; 
+  }
+}
+
+@media only screen and (max-width: 949px) {
+  #content {
+    width: 88vw;
+  }
+
+  #left-pane > * {
+      width: fit-content;
+  }
+
+  #page-header {
+    text-align: center;
+    padding: 6px 0 4px 0;
+    overflow: hidden;
+  }
+
+  #page-header ul.links {
+    display: block;
+    text-align: center;
+    margin: 0;
+
+    
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: -17px;
+    height: 50px;
+  }
+
+  #page-header ul.links::-webkit-scrollbar {
+    display: none;
+  }
+
+  #page-header ul.links li:first-of-type {
+    padding-left: 1em;
+  }
+
+  #page-header ul.links li:last-of-type {
+    
+    padding-right: 1em;
+  }
+
+  #page-header .caption + ul.links {
+    padding-top: 9px;
+  }
+
+  div #properties {
+      width: 100%;
+      margin: 1.3em 0;
+  }
+
+  div #description img {
+    max-width:100%;
+  }
+
+}
+
+#left-pane > #modules {
+    
+    width: fit-content;
+}
+
+#content {
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 3em;
+}
+
+#page-header {
+  background: #5E5184;
+  border-bottom: 5px solid rgba(69, 59, 97, 0.5);
+  color: #ddd;
+  position: relative;
+  font-size: 1.2em;
+  margin: 0 auto;
+}
+
+#page-header .caption {
+  background: url(https://hackage.haskell.org/static/icons/ic_haskell_grayscale_32.svg) no-repeat 0em;
+  color: white;
+  margin: 0;
+  font-weight: bold;
+  font-style: normal;
+  padding-left: 2.2em;
+  font-size: 1.1rem;
+}
+
+#page-header ul.links, #page-header ul.links button {
+  font-size: 1rem;
+}
+
+#page-header ul.links li + li {
+  margin-top: 0px;
+}
+
+#page-header a:link, #page-header a:visited { color: white; }
+
+#module-header .caption {
+  color: rgb(94, 81, 132);
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+table.info {
+  float: right;
+  padding: 0.5em 1em;
+  border: 1px solid #ddd;
+  color: rgb(78,98,114);
+  background-color: #fff;
+  max-width: 60%;
+  border-spacing: 0;
+  position: relative;
+  top: -0.78em;
+  margin: 0 0 0 2em;
+}
+
+.info th {
+  padding: 0 1em 0 0;
+}
+
+div#style-menu-holder {
+  position: relative;
+  z-index: 2;
+  display: inline;
+}
+
+#style-menu {
+  position: absolute;
+  z-index: 1;
+  overflow: visible;
+  background: #374c5e;
+  margin: 0;
+  text-align: center;
+  right: 0;
+  padding: 0;
+  top: 1.25em;
+}
+
+#style-menu li {
+  display: list-item;
+  border-style: none;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  list-style-type: none;
+}
+
+#style-menu li + li {
+  border-top: 1px solid #919191;
+}
+
+#style-menu a {
+  width: 6em;
+  padding: 3px;
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  #footer {
+    background: #222;
+    color: #ededed;
+  }
+}
+@media (prefers-color-scheme: light) {
+  #footer {
+    background: #ededed;
+    color: #222;
+  }
+}
+#footer {
+  border-top: 1px solid #aaa;
+  padding: 0.5em 0;
+  text-align: center;
+  width: 100%;
+  height: 3em;
+  margin-top: 3em;
+  position: relative;
+  clear: both;
+}
+
+ul.links li form {
+  display: inline-block;
+}
+ul.links li form input {
+  border:0px;
+  padding:1px;
+  margin: 0px;
+  width: 8em;
+  border-radius: 3px;
+  background-color: rgba(255,255,255, 0.2);
+  color: #fff;
+}
+
+ul.links li form button {
+  border:0px;
+  margin: 0px;
+  cursor:pointer;
+  color: white;
+  background-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  #table-of-contents {
+    background: #222;
+  }
+}
+@media (prefers-color-scheme: light) {
+  #table-of-contents {
+    background:  #f7f7f7;
+  }
+}
+#table-of-contents {
+  padding: 1em;
+  margin: 0;
+  margin-top: 1em;
+}
+
+#table-of-contents .caption {
+  text-align: left;
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+#table-of-contents ul {
+  list-style: none;
+  margin: 0;
+  margin-top: 10px;
+  font-size: 95%;
+}
+
+#table-of-contents ul ul {
+  margin-left: 2em;
+}
+
+#description .caption {
+  display: none;
+}
+
+#synopsis {
+  display: none;
+}
+
+.no-frame #synopsis {
+  display: block;
+  position: fixed;
+  right: 0;
+  height: 80%;
+  top: 10%;
+  padding: 0;
+}
+
+#synopsis .caption {
+  float: left;
+  width: 29px;
+  color: rgba(255,255,255,0);
+  height: 110px;
+  margin: 0;
+  font-size: 1px;
+  padding: 0;
+}
+
+#synopsis ul {
+  height: 100%;
+  overflow: auto;
+  padding: 0.5em;
+  margin: 0;
+}
+
+#synopsis ul ul {
+  overflow: hidden;
+}
+
+#synopsis ul,
+#synopsis ul li.src {
+  background-color: #faf9dc;
+  white-space: nowrap;
+  list-style: none;
+  margin-left: 0;
+}
+
+#interface div.top + div.top {
+  margin-top: 3em;
+}
+#interface div.top { margin: 2em 0; }
+#interface h1 + div.top,
+#interface h2 + div.top,
+#interface h3 + div.top,
+#interface h4 + div.top,
+#interface h5 + div.top {
+   margin-top: 1em;
+}
+
+#interface .src .link {
+  float: right;
+  color: #888;
+  padding: 0 7px;
+  -moz-user-select: none;
+  font-weight: bold;
+  line-height: 30px;
+}
+#interface .src .selflink {
+  margin: 0 -0.5em 0 0.5em;
+}
+
+#interface table { border-spacing: 2px; }
+#interface td {
+  vertical-align: top;
+  padding-left: 0.5em;
+}
+#interface td.src {
+  white-space: nowrap;
+}
+#interface td.doc p {
+  margin: 0;
+}
+#interface td.doc p + p {
+  margin-top: 0.8em;
+}
+
+.subs dl {
+  margin: 0;
+}
+
+.subs dt {
+  float: left;
+  clear: left;
+  display: block;
+  margin: 1px 0;
+}
+
+.subs dd {
+  float: right;
+  width: 90%;
+  display: block;
+  padding-left: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.subs dd.empty {
+  display: none;
+}
+
+.subs dd p {
+  margin: 0;
+}
+
+.subs .subs .caption {
+  margin-top: 16px !important;
+  margin-bottom: 0px !important;
+}
+
+.subs .subs .caption + .src {
+  margin: 0px;
+  margin-top: 8px;
+}
+
+.subs .subs .src + .src {
+  margin-top: 8px;
+}
+
+.top p.src {
+  border-bottom: 3px solid #e5e5e5;
+  line-height: 2rem;
+  margin-bottom: 1em;
+}
+
+.subs, .doc {
+  
+  padding-left: 2em;
+}
+
+.arguments {
+  margin-top: -0.4em;
+}
+.arguments .caption {
+  display: none;
+}
+
+.fields { padding-left: 1em; }
+
+.fields .caption { display: none; }
+
+.fields p { margin: 0 0; }
+
+#mini {
+  margin: 0 auto;
+  padding: 0 1em 1em;
+}
+
+#mini > * {
+  font-size: 93%; 
+}
+
+#mini #module-list .caption,
+#mini #module-header .caption {
+  font-size: 125%; 
+}
+
+#mini #interface h1,
+#mini #interface h2,
+#mini #interface h3,
+#mini #interface h4 {
+  font-size: 109%; 
+  margin: 1em 0 0;
+}
+
+#mini #interface .top,
+#mini #interface .src {
+  margin: 0;
+}
+
+#mini #module-list ul {
+  list-style: none;
+  margin: 0;
+}
+
+#alphabet ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5em 0 0;
+  text-align: center;
+}
+
+#alphabet li {
+  display: inline;
+  margin: 0 0.25em;
+}
+
+#alphabet a {
+  font-weight: bold;
+}
+
+#index .caption,
+#module-list .caption { font-size: 131%;  }
+
+#index table {
+  margin-left: 2em;
+}
+
+#index .src {
+  font-weight: bold;
+}
+#index .alt {
+  font-size: 77%; 
+  font-style: italic;
+  padding-left: 2em;
+}
+
+#index td + td {
+  padding-left: 1em;
+}
+
+#module-list ul {
+  list-style: none;
+  margin: 0 0 0 20px;
+}
+
+#modules #module-list > ul.modules {
+  margin-left: 0px;
+}
+
+#modules #module-list ul.modules > li > i {
+  padding-bottom: 0.33rem;
+  display: block;
+}
+
+#detailed-dependencies ul {
+  list-style: none;
+  margin: 0 0 0 2em;
+}
+
+#module-list span.collapser,
+#module-list span.expander {
+  background-position: 0 0.3em;
+}
+
+#module-list .package {
+  float: right;
+}
+
+strong.warning { color: #f44336; }
+
+small.info { color: #888; }
+
+.flags-table td {
+  padding-right: 1em;
+  padding-bottom: 0.25em;
+  vertical-align: top;
+}
+
+.flags-table .flag-disabled {
+  color: #888;
+}
+
+td.flag-desc p {
+  margin: 0 0 0 0;
+}
+
+p.tip {
+  font-size: 85%;
+}
+
+.code {
+  font-family: monospace;
+}
+
+.preformatted {
+  white-space: pre
+}
+
+.embedded-author-content {
+  border-left: 1px solid #d8d7ad;
+  padding: 0.5em 1em;
+  margin: 0.5em 0 1em 1em;
+}
+
+.embedded-author-content img {
+  max-width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .box {
+        padding: 0.5em 1em;
+        max-width: 35em;
+        margin: 0.5em 0 1em 1em;
+    }
+}
+@media (prefers-color-scheme: light) {
+    .box {
+        background: #faf9dc;
+        border: 1px solid #d8d7ad;
+        padding: 0.5em 1em;
+        max-width: 35em;
+        margin: 0.5em 0 1em 1em;
+    }
+}
+
+table.simpletable th, table.simpletable td {
+  padding: 0.2em 1em;
+}
+
+table.fancy {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+table.fancy tr {
+  border: 1px solid #ddd;
+  border-width: 1px 0;
+}
+
+table.fancy th {
+  background: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  table.fancy td, table.properties td,
+  table.fancy th, table.properties th {
+    background: #333;
+  }
+  table.dataTable.compact.fancy tbody th,
+  table.dataTable.compact.fancy tbody td {
+    background: #333;
+  }
+  div#table_length.dataTables_length {
+    color: #fff
+  }
+  div#table_filter.dataTables_filter {
+    color: #fff
+  }
+}
+
+table.fancy td, table.properties td,
+table.fancy th, table.properties th {
+  padding: 0.15em 0.45em;
+}
+
+table.fancy tr.even td {
+  background-color: #eee;
+}
+
+table.dataTable.compact.fancy tbody th,
+table.dataTable.compact.fancy tbody td {
+  padding: 6px 10px;
+  line-height: normal;
+}
+
+ul.searchresults li {
+  margin-bottom: 1em;
+}
+
+ul.directory-list {
+  list-style: none;
+  margin: 0 0 0 2em;
+}
+
+.text-button {
+  font-size: small;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(196,69,29);
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+a.unpreferred[href]:link {
+    color: #ECBA13;
+}
+a.unpreferred[href]:visited {
+    color: #ECBA13;
+}
+
+a.deprecated[href]:link {
+    color: #D00B3C;
+}
+a.deprecated[href]:visited {
+    color: #D00B3C;
+}
+
+.versions a.normal[href]:link {
+    color: #61B01E;
+}
+
+.versions a.normal[href]:visited {
+    color: #61B01E;
+}
+
+#paginatorContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#paginatorContainer > div {
+  padding: 1em 0;
+}
+
+.paginator {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (prefers-color-scheme: dark) {
+      .paginator a {
+        color: #474747;
+      }
+      .paginate_button {
+        background-color: #979797;
+      }
+}
+
+@media (prefers-color-scheme: light) {
+      .paginator a {
+        color: #666 !important;
+      }
+}
+
+.paginator a {
+  cursor: default;
+  background: none;
+  border: none;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+.paginator span {
+  color: #333;
+  padding: 0.5em 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+      .paginator a:link:hover, .paginator a:visited:hover {
+        color: #474747;
+      }
+}
+
+@media (prefers-color-scheme: light) {
+      .paginator a:link:hover, .paginator a:visited:hover {
+        color: #333 !important;
+      }
+}
+
+.paginator a:link, .paginator a:visited {
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+      .paginator a:link:hover, .paginator a:visited:hover {
+        color: #585858;
+        background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+      }
+}
+
+@media (prefers-color-scheme: light) {
+      .paginator a:link:hover, .paginator a:visited:hover {
+        color: white !important;
+        background: linear-gradient(to bottom, #585858 0%, #111 100%);
+      }
+}
+
+.paginator a:link:hover, .paginator a:visited:hover {
+  border: 1px solid #111;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+      .paginator .current, .paginator .current:hover {
+        color: #474747;
+        background: linear-gradient(to bottom, #585858 0%, #111 100%);
+      }
+}
+
+@media (prefers-color-scheme: light) {
+      .paginator .current, .paginator .current:hover {
+        color: #666 !important;
+        background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+      }
+}
+
+.paginator .current,
+.paginator .current:hover {
+  border: 1px solid #979797;
+}
+
+p.registration-email {
+    border: 1px solid rgb(196,69,29);
+    padding: 0 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  div#modal #content {
+    background: #222;
+  }
+}
+@media (prefers-color-scheme: light) {
+  div#modal #content {
+    background: #fff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #search-results {
+    background: #222;
+  }
+}
+
+  div#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+
+  div#modal {
+    position: absolute;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  div#modal #content {
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  div#modal #close {
+    position: absolute;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAbCAYAAABm409WAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABCdJREFUeNqcVl1IbFUUnjNzr47enLFkvKUoDNk1S0kxDPHBH4gCTfHJH4jgYgrpg1APmqjQS2gggiLViyBdkEAxjARFSPBBfPCv/LcRS5tSlLzXMcdxZvWt3d6HmTkzXW8LPs45a6/1rbX3XmvvYzL9hxBRC/AjRZcD4BGQE41Di0JciMfnQDF/n5+fm2ZmZkxnZ2e6TWFhoSknJ4T3a03TmkxPE5C/q9JbX1+nmpoaslgsxEPhSE9Pp6GhIbq5uVEuU8DztyLv7e2NShwOzIRcLpdy/S4auQNws0VHR8etiIORmppKh4eHKshXkQLwZtH4+Pgzkyvk5+cHL1dOMLmTNV6vV6xrsFNxcTHV1tZSSkpKiL6srIyam5spLS0tRM97IuWRHsDv97ezZmRkxJDV3t4enZ6e0sDAADkcDqGrqqqizc1NwdLe3m7YeFXCeoBAIPADa8rLyw0BZmdnhfX19TX19fVRY2OjTg4/amhoMPisra2J8YuLizeY3wzDfVY4nU6DcW5uLq2srAiHy8tLQi+I96urK1EM8fHxBp/h4WGV1EMOYOF3VsTExETdPO4JJZx5T08Pmc3miPZc4iwej+dTMweAwxOOZLfbja2uaSabzcaFoOtQKSYkY0pISIhY8jzGgqLx8zMO0xXp8XKEZ1NZWUk7Ozv6smxvb6vsaHBwkJKTkw0+XOossP2AAzx3dHQkeqClpcVgPDY2pm9yW1sblZSU0OLiotD5fD6qqKgIsefu56pj6ezsfJ0DJMzNzX3MCt798ADd3d20sbFBXV1dhOXSj4apqSmanp6mvLy8EPvq6mpBfnJysoLvFBEAyHK73aL26uvrQxx4CYqKigzVkp2dTRkZGSHnFb9vbW2JAPPz84MqwD3glYmJiS954Pj4WDj+n6Oiv7//3w47ONjhEx24zwGsQDrw9tLS0s/qmH7WINwTSpqamrqgywXE0X0XSAYKkpKSPgL572zEGxW+XNHuhNHRUZ28tbX1G+jLgQwuINHJgA14ALyXmJj4GY6H35TD8vKyqB5utri4OEHKs+Py5Y7l7mbBrefDMfI9xj8E3gJeBGLVtRkr1+tN4H3gC1TPT1gyD91CJicnT7Kysr6F3yfAOzJ7Lh6LupMt3HDAC3I/MoFXgZfr6upeKy0tvV9QUHAvMzPzjtVq1fb39/27u7vehYWFx2gq1+rq6hZseWP5+QvwB/AY8GlBl/8dIF4GSQWcEmmAg08SOVO2vQE8AP8FuAE+ml3Ar8CfktzLB7UW9odxV87ELjee1/ElGSBRjvGeXQMXwKkkdMusOeATOe6P9NuiZhIr+8MuiW2yImJkAJ7BpSQ7B/6S73/zsnDmssoi/hdpkkQFskrEyhlqMjvO8ioIPqkPPPXHK2hMkwWgYFbXuCRThIFwYiX/CDAA8quvgv5A6LkAAAAASUVORK5CYII=) 0 0 no-repeat;
+    width: 24px;
+    height: 27px;
+    display: block;
+    text-indent: -9999px;
+    top: -7px;
+    right: -7px;
+  }
+
+  .cool {
+    color: gold;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  }
+
+  .uncool {
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  }
+
+  .star-rating {
+    margin: 0;
+    list-style-type: none;
+    font-size: 150%;
+    color: black;
+  }
+
+  .star-rating li {
+    float: left;
+    margin: 0 1% 0 1%;
+    cursor: pointer;
+  }
+
+  .clear-rating {
+    font-size: small;
+  }
+
+</style>
+
+  <div style="clear:both"></div>
+  <div id="footer">
+  <p>
+    Produced by <a >hackage</a> and <a >Cabal</a> 3.10.1.0.
+  </p>
+</div>
+
+  
+
+  
+
+<div id="overlay" style="display: none;"></div><div id="modal" style="display: none;"><div id="content"></div><a id="close" >close</a></div></body></html>

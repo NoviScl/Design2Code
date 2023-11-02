@@ -1,0 +1,704 @@
+<!DOCTYPE html><html><head>
+<style>
+@import url(reset.css);
+
+body {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.wrapper {
+  height: ;
+  margin: 20px auto;
+  text-align: left;
+  width: 830px;
+}
+
+header {
+  height: 31px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+header .logo {
+  background: url('../images/logo_purple.jpg') no-repeat;
+  float: right;
+  height: 31px;
+  width: 270px;
+}
+
+#portfolio header .logo {
+  background: url('../images/logo_green.jpg') no-repeat;
+}
+
+#clients header .logo {
+  background: url('../images/logo_orange.jpg') no-repeat;
+}
+
+#contact header .logo {
+  background: url('../images/logo_pink.jpg') no-repeat;
+}
+
+nav {
+  display: block;
+  height: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+nav ul {
+  float: left;
+  list-style-type: none;
+  margin: 0 20px 0 0;
+  padding: 0;
+  width: 540px;
+}
+
+nav ul li {
+  display: inline;
+  position: relative;
+  z-index: 7000;
+}
+
+nav ul li a {
+  color: white;
+  display: inline-block;
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  text-decoration: none;
+  text-indent: 5px;
+  text-transform: uppercase;
+  width: 135px;
+}
+
+nav ul li a:hover, nav ul li a.active { color: black; }
+
+nav ul li ul {
+  background: white;
+  border: 1px solid #ccc;
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: -135px;
+  width: 133px;
+  z-index: 7000;
+}
+
+@-moz-document url-prefix() {
+  nav ul li ul {
+    top: 30px;
+    left: -400px;
+  }
+}
+
+nav ul li:hover > ul { display: block; }
+
+nav ul li ul li {
+  display: list-item;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 5px;
+}
+
+nav ul li ul li a {
+  color: black;
+  text-transform: none;
+}
+
+nav ul li ul li:hover {
+  background: #b5cf97;
+  cursor: pointer;
+}
+
+nav ul li ul li ul {
+  position: absolute;
+  left: 133px;
+  top: -1px;
+}
+
+.full-stripe {
+  background: #a7afd6;
+}
+
+.stripe {
+  background: #a7afd6;
+  display: block;
+  height: 20px;
+  float: right;
+}
+
+#portfolio .stripe  { background: #b5cf97; }
+#clients .stripe    { background: #e4bd62; }
+#contact .stripe    { background: #d3add1; }
+
+.stripe.primary { width: 540px; }
+.stripe.sidebar { width: 270px; }
+
+.stripe.full {
+  margin-bottom: 20px;
+  width: 830px;
+}
+
+.primary-nav { background: #a7afd6; }
+
+#portfolio .primary-nav { background: #b5cf97; }
+#clients .primary-nav   { background: #e4bd62; }
+#contact .primary-nav   { background: #d3add1; }
+
+.main-content-area {
+  height: 700px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.col {
+  float: right;
+  line-height: 1.5;
+  width: 260px;
+}
+
+.col.left { float: left; }
+
+.main-content-area .info-block { display: none; }
+
+.main-content-area .info-block.active { display: block; }
+
+.main-content-area h3 {
+  color: #a7afd6;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+#portfolio h3 { color: #b5cf97; }
+
+.main-content-area p { margin-bottom: 10px; }
+
+.main-content-area p em {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.main-content-area p b {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.main-content-area ul li {
+  list-style-type: disc;
+  margin-bottom: 4px;
+}
+
+.main-content-area figure {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.main-content-area figure img {
+  margin-right: 20px;
+}
+
+.main-content-area figure figcaption {
+  height: 40px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+figcaption strong {
+  font-weight: bold;
+}
+
+.main-content-area figure figcaption small { color: #999; font-size: 9px; letter-spacing: -0.05em; }
+
+.main-image {
+  height: 466px;
+  margin: 0 0 15px 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  width: 540px;
+  z-index: -1;
+}
+
+.main-image img {
+  border: none;
+  float: right;
+  position: relative;
+  z-index: -2;
+}
+
+.primary-content, .sub-navigation { float: left; }
+
+.primary-content {
+  height: 531px;
+  line-height: 0;
+  margin-right: 20px;
+  position: relative;
+  width: 540px;
+  z-index: 2;
+}
+
+.primary-content ul li {
+  margin-left: 15px;
+  list-style-position: outside;
+}
+
+.sidebar {
+  line-height: 1.4;
+  overflow: hidden;
+  width: 270px;
+}
+
+.sidebar .sub-navigation, .sidebar .portfolio-detail {
+  clear: both;
+  display: block;
+  height: 486px;
+  margin-bottom: 20px;
+  overflow-y: hidden;
+  width: 270px;
+}
+
+@-moz-document url-prefix() {
+  .portfolio-detail { padding-right: 25px; }
+}
+
+.portfolio-detail::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar .portfolio-detail {
+  height: 600px;
+  margin-bottom: 0;
+}
+
+.sidebar .portfolio-detail h2 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.sidebar .portfolio-detail a { color: black; text-decoration: none }
+
+.sidebar .portfolio-detail a:hover { color: #777; }
+
+.sidebar .portfolio-detail h3 { margin-bottom: 5px; }
+
+.sidebar .sub-navigation ul li { list-style-type: none; }
+
+.sidebar .sub-navigation ul li a {
+  color: black;
+  line-height: 18px;
+  text-decoration: none;
+}
+
+.sidebar .sub-navigation ul li a:hover { color: #a7afd6; }
+
+.sidebar .sub-navigation ul li a.active { font-weight: bold; }
+
+.sidebar .sub-navigation ul li ul {
+  display: none;
+  margin-left: 10px;
+}
+
+.sidebar .sub-navigation ul li ul li a { line-height: 20px; }
+
+.sidebar .sub-navigation ul li ul li a.active {
+  color: #a7afd6;
+  font-weight: normal;
+}
+
+.sidebar .sub-navigation ul li a.active + ul { display: block; }
+
+.sidebar .contact-info {
+  background: white;
+  height: 486px;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.sidebar .contact-info address {
+  font-style: normal;
+  padding: 60px;
+  padding-top: 90px;
+}
+
+.sidebar .contact-info address p { margin-bottom: 15px; }
+
+.sidebar .contact-info a {
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar .contact-info a:hover { color: #ccc; }
+
+.sidebar .contact-info .credit-link {
+  bottom: 15px;
+  display: block;
+  left: 0;
+  position: absolute;
+  width: 270px;
+}
+
+.sidebar .contact-info .credits { padding-top: 90px; }
+
+.sidebar .contact-info ul li { line-height: 1; }
+
+.slideshow {
+  height: 527px;
+  overflow: hidden;
+}
+
+.slideshow.homepage {
+  height: 527px;
+  width: 830px;
+}
+
+.slideshow.interior {
+  height: 527px;
+  width: 540px;
+}
+
+.skip-intro {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.skip-intro a {
+  color: #777;
+  text-decoration: none;
+}
+
+.primary-content { line-height: 1.2; position: relative; }
+
+.primary-content .client-list li {
+  list-style-type: none;
+  margin: 0 0 4px 0;
+}
+
+li.list-head {
+  font-weight: bold;
+  list-style-type: ;
+  margin-left: 0;
+}
+
+.client-list li a, .client-list li a:visited, .client-list li a:active {
+  color: #e4bd62;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.client-list li a:hover { color: black; }
+
+.clients-sub-nav ul.sector-list-nav li a:hover, .clients-sub-nav li a:hover {
+  color: #e4bd62;
+}
+
+.clients-sub-nav ul.sector-list-nav li.paging-links.bullet {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: -2px;
+  margin-left: 0;
+}
+
+.clients-sub-nav ul li span {
+  margin-right: 5px;
+}
+
+.paging {
+  background: white;
+  display: block;
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  line-height: 20px;
+  overflow: hidden;
+  text-align: right;
+  width: 100%;
+}
+
+.paging-links { display: block; }
+
+.paging-links a {
+  color: #555;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.paging-links a.active {
+  color: black;
+  font-weight: bold;
+}
+
+.paging-links a:hover { text-decoration: underline; }
+
+.thumbnails {
+  float: right;
+  overflow: hidden;
+  padding-top: 5px;
+  width: 500px;
+}
+
+.thumbnails .row {
+  clear: both;
+}
+
+.thumbnail {
+  border: 5px solid white;
+  float: right;
+  height: 40px;
+  margin: 0;
+  margin-top: -5px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.thumbnail.active {
+  border: 5px solid #ccc;
+  margin-top: -5px;
+}
+
+.prev-image, .next-image {
+  cursor: pointer;
+  display: inline-block;
+  height: 466px;
+  position: absolute;
+  width: 200px;
+  z-index: 6001;
+
+  opacity: 0.75;
+}
+
+.prev-image {
+  background: url('../images/arrow_blank.png') no-repeat 20px center;
+}
+
+.next-image {
+  background: url('../images/arrow_blank.png') no-repeat 160px center;
+}
+
+.prev-image:hover {
+  background: url('../images/arrow_prev.png') no-repeat 20px center;
+}
+
+.next-image:hover {
+  background: url('../images/arrow_next.png') no-repeat 160px center;
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+  .prev-image, .next-image {
+    display: none;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+  .prev-image, .next-image {
+    display: none;
+  }
+}
+
+.prev-image { left: 0; }
+.next-image { right: 0; }
+
+footer {
+  clear: both;
+  display: block;
+  height: 20px;
+}
+
+footer .copyright {
+  color: #555;
+  display: inline-block;
+  font-style: normal;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 5px;
+  width: 270px;
+}
+
+footer { background: #a7afd6; }
+
+#portfolio footer { background: #b5cf97; }
+#clients footer   { background: #e4bd62; }
+#contact footer   { background: #d3add1; }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  
+  nav ul li ul {
+    top: 28px;
+    left: -400px;
+  }
+}
+
+</style>
+  <title>Frank &amp; Marcotullio Design Associates, Inc.</title>
+<meta name="author" content="Frank &amp; Marcotullio">
+<meta name="description" content="FRANK &amp; MARCOTULLIO DESIGN is a full service boutique commercial interior design studio best known for its unparalleled project management and principal hands on attention to detail.">
+<meta name="keywords" content="27th Street, Accessible Design, ADA Compliant Design, AIA, AIA Interiors Committee, AIA New York Chapter, American Society of Interior Designers, Architect, Architectural Design, Architectural Drawings, Architectural Interiors, Architectural Services, Architecture, Art Galleries, ASID, ASID Designers, AutoCAD drawings, Bank Design, Branch Bank Design, Branch Banks, Cad Drawings, Chelsea design firm, Commercial Interior Design, Commercial , Commercial Interiors, Complex Renovation Projects, Conceptual Design, Consolidate, Consolidation, Construction Documents, Consultation, Contract, Contract Administration, Contract Design, Contract Documents, Corporate Design, Corporate Office Design, Corporate Offices, Custom Metalcraft, Custom lighting design, Data Centers, Dental Office Design, Design, Design Concept, Design Development, EANYC, Educational Design, Educational Facilities, Entertainment Companies, Entertainment Facilities, Environmental Design, Environmental Office Design, Ergonomic Furniture, Ergonomic Planning, Ergonomic Projects, Ergonomics, Executives Association of Greater New York, F&amp;M, F&amp;M Design, F&amp;MDA, Feasibility, Feasibility Studies, Feasibility Study, Financial Institutions, FMDA, Frank, Frank &amp; Marcotullio, Frank &amp; Marcotullio Design Associates, Frank &amp; Marcotullio Design Associates, Inc., Frank and Marcotullio, Frank-Marcotullio, Furniture Planning, Furniture Specifications, Furniture Specifier, Healthcare Design, Healthcare Facilities, Hospitality Design, IDLNY, IFMA, IIDA, Innovative Design, Installation Plans, Institutional Design, Insurance Companies, Interior Architect, Interior Architectural Services, Interior architecture, Interior Decoration, Interior Design, Interior Design Firm, Interior Designer, Interior Designers for Legislation in New York, Interiors, International Facility Management Association, International Interior Design Association, Lighting design, Lighting Design, Marcotullio, Marjorie Frank, MBE, Minority business enterprise, National Minority Business Council, NCIDQ Certified Designers, New Jersey design, New Jersey interior designer, New York, New York Committee for Occupational Safety and Health, New York Design, New York Designer, Newspaper Design, NMBC, NYCOSH, Office Build Out, Office Design, Planning, Programming, Project Budgets, Project Management, Public Lobbies, Public Spaces, Publishing Companies, Relocate, Relocation, Renovate, Renovating, Renovation, Renovation Design, Retail Design, Retail Stores, Retail Store Design, Schematic Design, Showroom, Space Design, Space Planning, Specialty Design Projects, Specifier, Susan Marcotullio, Tenant Fit Out, Test Fit Studies, The American Institute of Architects, Trading Room Design, WBE, Women’s Business Enterprise, Woman Owned Business, Woman-Owned Business">
+
+</head>
+<body id="company">
+  <div class="wrapper">
+    <header>
+      <a class="logo" ></a>    </header>
+    <nav>
+      <ul class="primary-nav">
+  <li><a >Company</a></li>
+  <li><a >Portfolio</a>
+    <ul>
+      <li><a >Corporate</a>
+        <ul>
+          <li><a >Analytic Partners</a></li>
+          <li><a >Paradysz Matera</a></li>
+          <li><a >Elipze</a></li>
+          <li><a >Sorema/Groupama</a></li>
+          <li><a >Rosie O'Donnell Show</a></li>
+          <li><a >Rosie O'Donnell Nursery</a></li>
+          <li><a >Continental Can Co. NY</a></li>
+          <li><a >Continental Can Co. CT</a></li>
+        </ul>
+      </li>
+      <li><a >Financial</a>
+        <ul>
+          <li><a >Asset Management Co.</a></li>
+          <li><a >Capital One Bank</a></li>
+          <li><a >HSBC Brokerage USA</a></li>
+          <li><a >Republic National Bank</a></li>
+          <li><a >Elliott Management</a></li>
+          <li><a >Chancellor Capital</a></li>
+        </ul>
+      </li>
+      <li><a >Educational</a>
+        <ul>
+          <li><a >Barnard College</a></li>
+        </ul>
+      </li>
+      <li><a >Retail/Hospitality</a>
+        <ul>
+          <li><a >Superdry</a></li>
+          <li><a >Body Shop</a></li>
+          <li><a >Swatch</a></li>
+          <li><a >Laserfair</a></li>
+          <li><a >Laura Ashley</a></li>
+          <li><a >Estee Lauder</a></li>
+          <li><a >Caroline's Comedy Club</a></li>
+        </ul>
+      </li>
+      <li><a >Healthcare</a>
+        <ul>
+          <li><a >Silvercrest</a></li>
+        </ul>
+      </li>
+      <li><a >Public Spaces/Lobbies</a>
+        <ul>
+          <li><a >21st Street Lobby</a></li>
+          <li><a >8th Avenue Lobby</a></li>
+          <li><a >32nd Street Lobby</a></li>
+        </ul>
+      </li>
+      <li><a >Product Design</a>
+        <ul>
+          <li><a >Lighting</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a >Clients</a></li>
+  <li><a >Contact</a></li>
+</ul>
+<div class="stripe sidebar"></div>
+    </nav>
+    <div class="main-content-area">
+      <div class="primary-content">
+        <div name="susan" class="bio">
+          <div class="col left">
+            <figure>
+              <img src="rick.jpg" alt="Susan Marcotullio">
+              <figcaption><strong>Susan Marcotullio</strong> <small>IIDA, ASID, LEED AP ID+C<br>
+                Principal / Co-Founder</small>
+              </figcaption>
+              <ul>
+                <p>Affiliations:</p>
+                <li>International Interior Design Association, New York Chapter</li>
+                <li>AIANY Interiors Committee</li>
+                <li>US Green Building Council, New York Chapter</li>
+                <li>Urban Green Council, New York Chapter</li>
+                <li>American Society of Interior Designers, New York Metro Chapter Board of Directors</li>
+                <li>IDLNY</li>
+                <li>NYCOSH RSI Task Force</li>
+              </ul>
+            </figure>
+          </div>
+          <div class="col">
+            <p>As design and managing principal, Susan Marcotullio is responsible for principal and senior level leadership including team
+            and project management, programming, feasibility planning, design direction, quality assurance, construction document and
+            construction administration covering the client's needs on all levels with attentive leadership.</p>
+
+            <p>During her years of experience she has directed the space analysis and successful build out of large corporate and financial
+            offices, trading rooms, post production facilities, healthcare, schools, tenant fit-outs, data centers, retail stores, newspaper
+            production facilities, fast track and specialty design projects.</p>
+
+            <p>Susan's in-depth knowledge in the execution of all aspects of project planning and implementation, including design,
+            construction, furniture, ergonomic planning and project management, is appealing to clients. She is considered a trusted
+            advisor and has a following of repeat clients that she has serviced for many years. Her leadership and attention to detail leads
+            the path to successful projects.</p>
+
+            <p>Recent accomplishments include the relocation of sizeable financial institutions and bank headquarters, relocation of various
+            TV show entertainment offices and post-production facilities, and the design of NYC flagship retail stores for leading
+            corporations. She is a graduate of Michigan State University and was an associate at a New York architectural firm before
+            establishing Frank &amp; Marcotullio Design.</p>
+
+            <p>Her previous experience includes the planning, design and management of interior construction of corporate offices, nursing
+            homes, a hospice, housing developments for the elderly and handicapped, adult day care centers, and prominent national retail
+            shops such as Laura Ashley and The Forgotten Woman.</p>
+
+            <p>Susan is a LEED ID+C Accredited Professional and practices sustainability on all projects that she leads.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="sidebar">
+        <div class="sub-navigation">
+          <ul class="company-sub-nav">
+  <li><a >Profile</a></li>
+  <li><a class="active" >Principal Bios</a>
+    <ul id="bios">
+      <li><a >Marjorie Frank</a></li>
+      <li><a class="active" >Susan Marcotullio</a></li>
+    </ul>
+  </li>
+  <li><a >Types of Commissions</a></li>
+  <li><a >Services Offered</a>
+    <ul id="services-nav">
+      <li><a >Programming</a></li>
+      <li><a >Schematic Design</a></li>
+      <li><a >Design Development</a></li>
+      <li><a >Contract Documents</a></li>
+      <li><a >Bidding or Negotiation</a></li>
+      <li><a >Contract Administration</a></li>
+      <li><a >Other Services</a></li>
+    </ul>
+  </li>
+  <li><a >Project Management</a></li>
+  <li><a >Ergonomic Planning</a>
+    <ul id="ergonomics-nav">
+      <li><a >Ergonomics</a></li>
+      <li><a >Ergonomic Projects</a></li>
+    </ul>
+  </li>
+  <li><a >Recognition</a></li>
+</ul>
+        </div>
+        <footer>
+          <cite class="copyright">© Frank &amp; Marcotullio Design Associates, Inc.</cite>        </footer>
+      </aside>
+    </div>
+  </div>
+
+</body></html>

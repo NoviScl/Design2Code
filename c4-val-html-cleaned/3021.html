@@ -1,0 +1,2695 @@
+<!DOCTYPE html><html class="live emdash has-guide stl-standard" lang="en-US"><head>
+<style>
+
+.mfp-bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1042;
+  overflow: hidden;
+  position: fixed;
+  background: #0b0b0b;
+  opacity: 0.8;
+  filter: alpha(opacity=80); }
+
+.mfp-wrap {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1043;
+  position: fixed;
+  outline: none !important;
+  -webkit-backface-visibility: hidden; }
+
+.mfp-container {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 0 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.mfp-container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle; }
+
+.mfp-align-top .mfp-container:before {
+  display: none; }
+
+.mfp-content {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  text-align: left;
+  z-index: 1045; }
+
+.mfp-inline-holder .mfp-content, .mfp-ajax-holder .mfp-content {
+  width: 100%;
+  cursor: auto; }
+
+.mfp-ajax-cur {
+  cursor: progress; }
+
+.mfp-zoom-out-cur, .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
+  cursor: -moz-zoom-out;
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out; }
+
+.mfp-zoom {
+  cursor: pointer;
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in; }
+
+.mfp-auto-cursor .mfp-content {
+  cursor: auto; }
+
+.mfp-close, .mfp-arrow, .mfp-preloader, .mfp-counter {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; }
+
+.mfp-loading.mfp-figure {
+  display: none; }
+
+.mfp-hide {
+  display: none !important; }
+
+.mfp-preloader {
+  color: #cccccc;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  text-align: center;
+  margin-top: -0.8em;
+  left: 8px;
+  right: 8px;
+  z-index: 1044; }
+  .mfp-preloader a {
+    color: #cccccc; }
+    .mfp-preloader a:hover {
+      color: white; }
+
+.mfp-s-ready .mfp-preloader {
+  display: none; }
+
+.mfp-s-error .mfp-content {
+  display: none; }
+
+button.mfp-close, button.mfp-arrow {
+  overflow: visible;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  display: block;
+  outline: none;
+  padding: 0;
+  z-index: 1046;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0; }
+
+.mfp-close {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  padding: 0 0 18px 10px;
+  color: white;
+  font-style: normal;
+  font-size: 28px;
+  font-family: Arial, Baskerville, monospace; }
+  .mfp-close:hover, .mfp-close:focus {
+    opacity: 1;
+    filter: alpha(opacity=100); }
+  .mfp-close:active {
+    top: 1px; }
+
+.mfp-close-btn-in .mfp-close {
+  color: #333333; }
+
+.mfp-image-holder .mfp-close, .mfp-iframe-holder .mfp-close {
+  color: white;
+  right: -6px;
+  text-align: right;
+  padding-right: 6px;
+  width: 100%; }
+
+.mfp-counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #cccccc;
+  font-size: 12px;
+  line-height: 18px; }
+
+.mfp-arrow {
+  position: absolute;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  margin: 0;
+  top: 50%;
+  margin-top: -55px;
+  padding: 0;
+  width: 90px;
+  height: 110px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  .mfp-arrow:active {
+    margin-top: -54px; }
+  .mfp-arrow:hover, .mfp-arrow:focus {
+    opacity: 1;
+    filter: alpha(opacity=100); }
+  .mfp-arrow:before, .mfp-arrow:after, .mfp-arrow .mfp-b, .mfp-arrow .mfp-a {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 35px;
+    margin-left: 35px;
+    border: medium inset transparent; }
+  .mfp-arrow:after, .mfp-arrow .mfp-a {
+    border-top-width: 13px;
+    border-bottom-width: 13px;
+    top: 8px; }
+  .mfp-arrow:before, .mfp-arrow .mfp-b {
+    border-top-width: 21px;
+    border-bottom-width: 21px;
+    opacity: 0.7; }
+
+.mfp-arrow-left {
+  left: 0; }
+  .mfp-arrow-left:after, .mfp-arrow-left .mfp-a {
+    border-right: 17px solid white;
+    margin-left: 31px; }
+  .mfp-arrow-left:before, .mfp-arrow-left .mfp-b {
+    margin-left: 25px;
+    border-right: 27px solid #3f3f3f; }
+
+.mfp-arrow-right {
+  right: 0; }
+  .mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
+    border-left: 17px solid white;
+    margin-left: 39px; }
+  .mfp-arrow-right:before, .mfp-arrow-right .mfp-b {
+    border-left: 27px solid #3f3f3f; }
+
+.mfp-iframe-holder {
+  padding-top: 40px;
+  padding-bottom: 40px; }
+  .mfp-iframe-holder .mfp-content {
+    line-height: 0;
+    width: 100%;
+    max-width: 900px; }
+  .mfp-iframe-holder .mfp-close {
+    top: -40px; }
+
+.mfp-iframe-scaler {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-top: 56.25%; }
+  .mfp-iframe-scaler iframe {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    background: black; }
+
+img.mfp-img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  line-height: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 0 40px;
+  margin: 0 auto; }
+
+.mfp-figure {
+  line-height: 0; }
+  .mfp-figure:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 40px;
+    bottom: 40px;
+    display: block;
+    right: 0;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    background: #444444; }
+  .mfp-figure small {
+    color: #bdbdbd;
+    display: block;
+    font-size: 12px;
+    line-height: 14px; }
+  .mfp-figure figure {
+    margin: 0; }
+
+.mfp-bottom-bar {
+  margin-top: -36px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  cursor: auto; }
+
+.mfp-title {
+  text-align: left;
+  line-height: 18px;
+  color: #f3f3f3;
+  word-wrap: break-word;
+  padding-right: 36px; }
+
+.mfp-image-holder .mfp-content {
+  max-width: 100%; }
+
+.mfp-gallery .mfp-image-holder .mfp-figure {
+  cursor: pointer; }
+
+@media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
+  
+  .mfp-img-mobile .mfp-image-holder {
+    padding-left: 0;
+    padding-right: 0; }
+  .mfp-img-mobile img.mfp-img {
+    padding: 0; }
+  .mfp-img-mobile .mfp-figure:after {
+    top: 0;
+    bottom: 0; }
+  .mfp-img-mobile .mfp-figure small {
+    display: inline;
+    margin-left: 5px; }
+  .mfp-img-mobile .mfp-bottom-bar {
+    background: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    margin: 0;
+    top: auto;
+    padding: 3px 5px;
+    position: fixed;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .mfp-img-mobile .mfp-bottom-bar:empty {
+      padding: 0; }
+  .mfp-img-mobile .mfp-counter {
+    right: 5px;
+    top: 3px; }
+  .mfp-img-mobile .mfp-close {
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    text-align: center;
+    padding: 0; } }
+
+@media all and (max-width: 900px) {
+  .mfp-arrow {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  .mfp-arrow-left {
+    -webkit-transform-origin: 0;
+    transform-origin: 0; }
+  .mfp-arrow-right {
+    -webkit-transform-origin: 100%;
+    transform-origin: 100%; }
+  .mfp-container {
+    padding-left: 6px;
+    padding-right: 6px; } }
+
+.mfp-ie7 .mfp-img {
+  padding: 0; }
+.mfp-ie7 .mfp-bottom-bar {
+  width: 600px;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: 5px;
+  padding-bottom: 5px; }
+.mfp-ie7 .mfp-container {
+  padding: 0; }
+.mfp-ie7 .mfp-content {
+  padding-top: 44px; }
+.mfp-ie7 .mfp-close {
+  top: 0;
+  right: 0;
+  padding-top: 0; }
+
+@import "stelter-font-awesome.css";
+@import "stelter-popup.min.css";
+div.stl-colwrap:after,div.row:after{content:"\00a0";display:table;clear:both}
+div.stl-colwrap,.stl-center div.row{margin:-1%}
+div.stl-colwrap div.stl-col,.stl-center div.row > div{float:left;margin:1% 1% 0}
+div.stl-colwrap div.stl-col.stl-w-01,.stl-center .col-sm-1{width:6.33333%}
+div.stl-colwrap div.stl-col.stl-w-02,.stl-center .col-sm-2{width:14.666666%}
+div.stl-colwrap div.stl-col.stl-w-03,.stl-center .col-sm-3{width:22.999999%}
+div.stl-colwrap div.stl-col.stl-w-04,.stl-center .col-sm-4{width:31.333333%}
+div.stl-colwrap div.stl-col.stl-w-05,.stl-center .col-sm-5{width:39.666666%}
+div.stl-colwrap div.stl-col.stl-w-06,.stl-center .col-sm-6{width:48%}
+div.stl-colwrap div.stl-col.stl-w-07,.stl-center .col-sm-7{width:56.333333%}
+div.stl-colwrap div.stl-col.stl-w-08,.stl-center .col-sm-8{width:64.666666%}
+div.stl-colwrap div.stl-col.stl-w-09,.stl-center .col-sm-9{width:72.999999%}
+div.stl-colwrap div.stl-col.stl-w-10,.stl-center .col-sm-10{width:81.333333%}
+div.stl-colwrap div.stl-col.stl-w-12,.stl-center .col-sm-12{width:98%}
+.stl-container > .stl-colwrap{margin:0}
+.stl-container > div.stl-colwrap > div.stl-col{margin-right:2%;margin-left:0}
+.stl-container > div.stl-colwrap > div.stl-col:last-child{margin-right:0;margin-left:0}
+#stl-cms{background:#fff;padding-bottom:40px}
+#stl-cms div.clear,div.clearfix{clear:both}
+#stl-cms div.stl-spacer{clear:both;height:20px}
+#stl-cms .stl-alert{background:#FFEDED;border:1px solid #7A0000;color:#7A0000;padding:4px 9px}
+#stl-cms hr{background:#e1e1e1;border:none;clear:both;height:1px;margin:0 0 20px}
+#stl-cms table{margin:0 0 20px;width:100%}
+#stl-cms table td{border:1px solid #e1e1e1;padding:10px}
+#stl-cms table th{background:#2e2e2e;color:#fff;font-size:120%;font-weight:700;text-align:left;padding:5px 10px}
+#stl-cms div.stl-container{margin:0 auto;max-width:1160px;min-width:600px;padding:20px}
+#stl-cms .stl-fl-left{float:left;margin:5px 20px 10px 0}
+#stl-cms .stl-fl-right{float:right;margin:5px 0 10px 20px}
+#stl-cms .stl-caption{box-shadow:0 0 5px #616161;font-size:90%}
+#stl-cms .stl-caption img{display:block;margin:5px}
+#stl-cms .stl-caption span{display:block;padding:0 5px 5px}
+#stl-cms div.stl-box-header{background:#2e2e2e;color:#fff;font-size:120%;font-weight:700;margin:-20px -20px 20px;padding:10px 20px}
+#stl-cms .stl-heading-text{background:#2e2e2e;color:#fff;font-size:120%;font-weight:700;padding:5px;text-align:center}
+#stl-cms div.stl-border-box.stl-shaded{background:#f1f1f1}
+#stl-cms div.stl-border-box.stl-imgbg{background-position:center center;margin:0 0 5px;overflow:hidden;min-height:160px;overflow:hidden;position:relative;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}
+#stl-cms div.stl-border-box.stl-imgbg div.stl-text-overlay{background:rgba(46,46,46,0.8);color:#fff;font-size:90%;line-height:16px;padding:10px;width:40%}
+#stl-cms div.stl-border-box.imgbg div.stl-text-overlay.left{float:left;margin:10px 0 0 -19px}
+#stl-cms div.stl-border-box.imgbg div.stl-text-overlay.right{float:right;margin:10px -19px 0 0}
+#stl-cms div.stl-border-box{border:1px solid #e1e1e1;margin:0 0 20px;padding:19px 19px 0}
+#stl-cms div.stl-aside{background:#f1f1f1;box-shadow:0 0 5px #616161;float:right;margin:0 0 20px 20px;padding:20px;width:30%}
+#stl-cms .stl-button.stl-multi-text span{display:block;line-height:16px}
+#stl-cms .stl-button.stl-multi-text span.stl-top{font-size:14px;text-transform:uppercase}
+#stl-cms .stl-button.stl-multi-text span.stl-bottom{font-size:12px;font-weight:400;text-transform:uppercase}
+#stl-cms .stl-button,.stlButton{background:#2e2e2e;border-radius:5px;color:#fff;display:inline-block;font-weight:700;min-width:80px;opacity:.85;padding:5px 15px;text-align:center;text-decoration:none;margin-bottom:5px;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+#stl-cms .stl-button:hover,#stl-cms .stl-button:focus,.stlButton:hover,.stlButton:focus{opacity:1;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+#stl-cms ul.stl-nav{border-top:1px solid #e1e1e1;margin:0 0 20px;padding:0}
+#stl-cms ul.stl-nav li{list-style:none;margin:0;padding:0}
+#stl-cms ul.stl-nav li.on > a{background:#f1f1f1}
+#stl-cms ul.stl-nav li a{border-bottom:1px solid #e1e1e1;display:block;padding:5px;line-height:16px}
+#stl-cms ul.stl-nav ul{margin:0;padding:0}
+#stl-cms ul.stl-nav ul li a{padding-left:20px}
+#stl-cms div.stl-info-slider h3{background:#2e2e2e;color:#fff;padding:5px;margin:0}
+#stl-cms div.stl-info-slider{margin:0 0 20px;text-align:center}
+#stl-cms div.stl-info-slider .button{display:block}
+#stl-cms div.stl-info-slider div.stl-slider-wrap{background-position:center center;margin:0 0 5px;overflow:hidden;min-height:232px;position:relative;width:100%;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}
+#stl-cms div.stl-info-slider div.stl-slider-wrap img{position:static;width:100%}
+#stl-cms div.stl-info-slider div.stl-slider-wrap ul{opacity:0;left:0;margin:0;padding:0;position:absolute;text-align:left;top:300px;width:100%;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+#stl-cms div.stl-info-slider div.stl-slider-wrap ul li{border-bottom:1px solid #fff;display:block;list-style:none;padding:5px 10px 4px}
+#stl-cms div.stl-info-slider div.stl-slider-wrap ul li a{display:block}
+#stl-cms div.stl-info-slider:hover div.stl-slider-wrap ul{opacity:1;top:0;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+#stl-cms span.tooltip{position:relative}
+#stl-cms span.tooltip span.text{border-bottom:1px dotted #2e2e2e;cursor:help;position:relative}
+#stl-cms span.tooltip i{cursor:help}
+#stl-cms span.tooltip span.tip{border:3px solid #e1e1e1;background:#fff;display:block;left:-10px;opacity:0;padding:7px;position:absolute;width:260px;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+#stl-cms span.tooltip:hover span.tip,#stl-cms span.tooltip:focus span.tip{opacity:1;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+#stl-cms div.stl-accordion .stl-toggle{background:#2e2e2e;border-radius:10px;color:#fff;cursor:pointer;padding:5px 15px}
+#stl-cms div.stl-accordion .stl-toggle:after{content:"\f067";float:right;font-family:FontAwesome;font-weight:400}
+#stl-cms div.stl-accordion .stl-toggle.stl-open:after{content:"\f068"}
+#stl-cms div.stl-accordion div.stl-section{padding:0 15px}
+#stl-cms div.stl-drop-down{cursor:help;position:relative}
+#stl-cms div.stl-drop-down:hover div.stl-drop-wrap,#stl-cms div.stl-drop-down:focus div.stl-drop-wrap{display:block}
+#stl-cms div.stl-drop-down div.stl-drop-wrap{background:#fff;box-shadow:0 0 5px #616161;cursor:default;display:none;font-size:90%;left:0;line-height:16px;position:absolute;top:50px;width:100%;z-index:99}
+#stl-cms div.stl-drop-down div.stl-drop-wrap ul{border:3px solid #e1e1e1;margin:0;padding:7px 0}
+#stl-cms div.stl-drop-down div.stl-drop-wrap ul li{list-style:none}
+#stl-cms div.stl-drop-down div.stl-drop-wrap ul li a{display:block;padding:2px 10px}
+#stl-cms div.stl-drop-down div.stl-drop-wrap ul:after{color:#e1e1e1;content:"\f0d8";height:30px;font-size:30px;font-family:FontAwesome;line-height:30px;left:0;position:absolute;text-align:center;text-shadow:0 -2px 2px #616161;top:-20px;width:100%}
+#stl-cms div.stl-drop-down.stl-above div.stl-drop-wrap{top:auto;bottom:50px}
+#stl-cms div.stl-drop-down.stl-above div.stl-drop-wrap ul:after{bottom:-18px;content:"\f0d7";text-shadow:0 2px 2px #616161;top:auto}
+#stl-cms div.stl-drop-down.stl-right div.stl-drop-wrap{top:0;left:105%}
+#stl-cms div.stl-drop-down.stl-right div.stl-drop-wrap ul:after{content:"\f0d9";left:-24px;text-shadow:-2px 0 2px #616161;top:0;width:40px}
+#stl-cms div.stl-drop-down.stl-left div.stl-drop-wrap{top:0;left:-105%}
+#stl-cms div.stl-drop-down.stl-left div.stl-drop-wrap ul:after{content:"\f0da";left:auto;right:-24px;text-shadow:2px 0 2px #616161;top:0;width:40px}
+#stl-cms div.stl-drop-down.stl-left,#stl-cms div.stl-drop-down.stl-right{float:none}
+div.mfp-content{background:#fff;box-shadow:0 0 5px #000;margin:20px auto;max-width:500px;padding:20px;position:relative;width:auto}
+div.mfp-content .mfp-close{background:#fff;border-radius:22px;height:22px;line-height:24px;font-size:24px;font-weight:700;opacity:1;position:absolute;padding:0;right:7px;text-align:center;top:7px;width:22px}
+div.mfp-content .stl-box-header{background:#2e2e2e;color:#fff;font-size:120%;font-weight:700;margin:-20px -20px 20px;padding:5px 20px}
+.popup-flyover{display:none}
+.flyover-link-wrap.not-touch-device{position:relative}
+.flyover-link-wrap:hover > .popup-flyover,.popup-flyover:hover,.flyover-link-wrap:focus > .popup-flyover,.popup-flyover:focus{display:block}
+.popup-flyover{background:#fff;border:3px solid #e1e1e1;box-shadow:0 0 5px #616161;cursor:default;display:none;left:0;min-width:290px;padding:10px;margin:0 2%;position:absolute;top:12px;width:96%;z-index:99}
+.flyover-link-wrap.not-touch-device .popup-flyover{margin:0;width:100%;left:-13px}
+.popup-flyover .toolH3{display:block;font-size:110%;font-weight:700}
+.popup-flyover:after{background:#fff;border-radius:20px;content:'\f05a';font-family:FontAwesome;font-size:20px;position:absolute;right:-10px;top:-10px}
+.quicklinks{display:none}
+.visible-xs{display:none}
+#stl-cms .stl-journey-paths .stl-button{display:block}
+#stl-cms .stl-button-top{margin-bottom:10px}
+.modal-content button[aria-hidden="true"]{display:none}
+.stl-breadcrumbs{clear:both}
+#stl-cms ol.breadcrumb{margin:0;padding:0;float:left}
+ol.breadcrumb li{list-style-type:none;display:inline}
+.breadcrumb li:after{content:" / "}
+.breadcrumb li.current:after{content:""}
+.stl-share-wrapper{float:right}
+#stl-cms ul.nav li.onTrail > a{cursor:default}
+#stl-cms ul.nav li.onTrail > a:hover{text-decoration:none}
+.stl-info-slider h4{margin-top:10px}
+.stl-slider-wrap ul{background:none repeat scroll 0 0 rgba(0,0,0,0.6)}
+.stl-slider-wrap ul li a{color:#fff}
+#stl-whats-new ul{margin:10px}
+.pull-right{float:right;margin-left:10px}
+.main-copy .pull-right.ebro{width:33.3%}
+.case-study img{float:left;padding:0 10px 10px 0}
+.stl-border-box.stl-imgbg h3,.stl-border-box.stl-imgbg h4,.stl-border-box.stl-imgbg a{color:#fff}
+.GIfeature img{float:right;margin:5px 0 10px 20px}
+.next-steps ol li{list-style-type:decimal}
+.bigNumber{background:none repeat scroll 0 0 #767676;color:#fff!important;float:left;font:bold 20px/20px Arial,Helvetica,sans-serif;height:30px;margin:4px 10px 0 0;padding:5px 3px;text-align:center;width:24px}
+.hide{display:none}
+#siteContainerInner{background-color:#fff}
+.hotnews{width:40%}
+.stl-print-only{display:none}
+.stl-ebro-icon{margin:auto;max-width:200px}
+.stl-whats-new-image{float:left;padding-right:5px}
+.stl-next-steps-sidebar ol#next-steps{padding:0 10px 10px 0}
+.default-mobile-nav{display:none}
+@media screen and (max-width:767px) {
+.default-mobile-nav{display:block}
+.default-mobile-nav > ul,.default-mobile-nav > ul ul,.default-mobile-nav > ul li,.default-mobile-nav > ul a{display:block;font-weight:400;font-family:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif;list-style:none;margin:0;padding:0}
+.default-mobile-nav > ul{border:1px solid #b7b7b7;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}
+.default-mobile-nav ul a{background:#c8d7dc;border-bottom:1px solid #8B8C87;color:#454542;font-size:12px;font-weight:700;text-decoration:none;padding:7px 15px}
+.default-mobile-nav > ul ul a{background:#f2f5f6;color:#555;font-size:14px;font-weight:400;padding:12px 15px}
+.default-mobile-nav > ul ul a:hover{background:#e8edef}
+.default-mobile-nav > ul ul a:active{background:#d4dde1}
+.default-mobile-nav > ul li:last-child li:last-of-type a{border-bottom:none}
+}
+
+.mfp-content .stl-custom-form {margin: 0; padding: 20px 25px 15px; background: #fff; border-radius: 0;}
+.mfp-content .stl-custom-form fieldset {padding: 0; margin: 0; border: none;}
+
+.stl-policy-links {display:none; visibility:hidden;}
+.stl-consent-dialog {display:none; position:fixed; bottom:0; left:0; right:0; color:#fff; background: #111; font-size:16px; line-height:1.33; z-index:10001;}
+.stl-consent-dialog.stl-consent-show {display:block;}
+.stl-consent-wrapper {position:relative; display:flex; justify-content:space-between; align-items: flex-start; flex-wrap:wrap; padding:20px;}
+.stl-consent-message {flex:0 1 calc(100% - 50px); margin:0; color:#fff;}
+.stl-consent-link {color:#fff; font-weight:bold; text-decoration:underline; cursor:pointer;}
+.stl-consent-btn {padding:1rem 1.5rem; color:#000; background:#fff; font-weight:bold; cursor:pointer;}
+.stl-consent-allow {display:inline-block; margin:0; cursor:pointer;}
+.stl-consent-close {display:inline-block;position:absolute;top:10px;right:15px;padding: 7px 0;font-family:sans-serif;font-size:30px;line-height:1;width: 44px;text-align: center;}
+
+.syndicated table thead th {border: 1px solid #ddd; padding:5px 10px;}
+#stl-cms .syndicated table th {border: 1px solid #ddd; background:#eee; color:inherit; font-size:inherit;}
+#stl-cms .syndicated table th strong {color:inherit;}
+.syndicated table td {border: 1px solid #ddd; padding:5px 10px}
+
+#stl-quiz input {width:auto; display:inline; margin:0 10px 0 0; float:inherit;}
+#stl-quiz label {font-weight:normal; font-size:inherit; display:inline;}
+#stl-quiz .question {margin-top:30px;}
+#stl-quiz .question img {display:inline;}
+#stl-quiz p.quiz-buttons {margin:30px 0 50px;}
+
+#get-organized-page #stl-nav,
+#seventeen-reasons-page #stl-nav,
+#share-your-story-page #stl-nav,
+#ethical-will-page #stl-nav {display:none;}
+
+#get-organized-page #nav-toggle,
+#seventeen-reasons-page #nav-toggle,
+#share-your-story-page #nav-toggle,
+#ethical-will-page #nav-toggle {display:none;}
+
+#get-organized-page #stl-breadcrumbs,
+#seventeen-reasons-page #stl-breadcrumbs,
+#share-your-story-page #stl-breadcrumbs,
+#ethical-will-page #stl-breadcrumbs {display:none;}
+
+#stl-platform-promo {background:#eee; margin-bottom:20px; padding:30px;}
+#stl-cms .stl-platform-content .stl-custom-form {width:100%; background:none; padding:0;}
+#stl-cms .stl-platform-content .stl-custom-form .visible-after-submit {display:none;}
+#stl-cms .stl-platform-content .stl-custom-form.after-submit .visible-after-submit {padding:0 0 0 0;}
+
+.platform-form-container {background:#eee; padding:20px 7px 0 7px; display:flex; flex-direction:column; align-items:center; position:relative; transition:.25s ease; visibility:visible;}
+.platform-form-container .platform-form-icon {position:absolute; top:-5px; right:-5px; padding:17px; background:#999; background:#aaa; border-radius:100%; color:#fff; display:block; width:67px; height:64px;
+}
+.platform-form-container h3 {margin-right:45px;}
+
+.mfp-content .submit-text {opacity:0; color:#5cb85c; margin-left:10px; transition:.2s all;}
+#stl-platform-promo .stlButton {position:relative;}
+#stl-platform-promo .stlButton:after { display: inline-block; position: relative; top: -2px; margin-left: 10px; text-decoration: none; content: '\f24d'; font-family: FontAwesome; font-size: 80%; transform: rotate(-90deg);}
+
+.stl-platform-form .stlButton.external-link {position:relative;}
+.stl-platform-form .stlButton.external-link:after, #stl-platform-promo .stlButton.external-link:after {display: inline-block; position: relative; top:-1px; margin-left: 10px; text-decoration: none; content: '\f08e'; font-family: FontAwesome; font-size: 80%; transform:rotate(0deg);}
+
+.stl-platform-form .stlButton.download-link:after, #stl-platform-promo .stlButton.download-link:after { display: inline-block; position: relative; top:0; margin-left: 10px; text-decoration: none; content: '\f019'; font-family: FontAwesome; font-size: 100%; transform:rotate(0deg);}
+.mfp-content .stl-platform-form h2, .mfp-content .stl-platform-form h3 {margin-top:10px;}
+
+#share-your-story-page #stl-cms form.stl-custom-form.after-submit .visible-after-submit {padding:0;}
+
+.stl-platform-hidden {opacity:0; visibility:hidden;}
+
+@media screen and (max-width:380px) {
+    .platform-form-container #standard-form-captcha {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        max-width: 240px;
+    }
+}
+
+@media screen and (min-width:580px) {
+    .platform-form-container {padding:20px 30px 0 30px;}
+}
+
+@media screen and (min-width:992px) {
+    
+    .stl-platform-content {display:flex; align-items:flex-start;}
+    
+    
+    .platform-content-block-container {width:65%; padding-right:50px;}
+    
+    
+    .platform-form-container {width:35%; min-width:365px;}
+    .platform-form-container img {margin-top:-50px; max-width:165px;}
+    
+    
+    #share-your-story-page .platform-content-block-container {width:45%;}
+    #share-your-story-page .platform-form-container {width:55%;}
+}
+
+.syndicated .stl-bolded-list {font-weight:bold;}
+    .syndicated .stl-bolded-list span {font-weight:normal;}
+
+@import url("https://p.typekit.net/p.css?s=1&k=uok5xrg&ht=tk&f=39437.39436.24349.24354.24355.43309&a=2593099&app=typekit&e=css");
+
+@font-face {
+font-family:"linotype-didot-headline";
+src:url("https://use.typekit.net/af/83794c/00000000000000003b9b22ec/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/83794c/00000000000000003b9b22ec/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/83794c/00000000000000003b9b22ec/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"linotype-didot";
+src:url("https://use.typekit.net/af/3d6ac8/00000000000000003b9b22ed/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/3d6ac8/00000000000000003b9b22ed/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/3d6ac8/00000000000000003b9b22ed/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"canada-type-gibson";
+src:url("https://use.typekit.net/af/0d8f4c/00000000000000003b9b3882/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/0d8f4c/00000000000000003b9b3882/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/0d8f4c/00000000000000003b9b3882/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"canada-type-gibson";
+src:url("https://use.typekit.net/af/ef2129/00000000000000003b9b387c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/ef2129/00000000000000003b9b387c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/ef2129/00000000000000003b9b387c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"canada-type-gibson";
+src:url("https://use.typekit.net/af/403911/00000000000000003b9b3880/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/403911/00000000000000003b9b3880/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/403911/00000000000000003b9b3880/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
+}
+
+@font-face {
+font-family:"canada-type-gibson";
+src:url("https://use.typekit.net/af/aa1d64/00000000000000003b9b387a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/aa1d64/00000000000000003b9b387a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/aa1d64/00000000000000003b9b387a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:300;font-stretch:normal;
+}
+
+.tk-linotype-didot-headline { font-family: "linotype-didot-headline",serif; }
+.tk-linotype-didot { font-family: "linotype-didot",serif; }
+.tk-canada-type-gibson { font-family: "canada-type-gibson",sans-serif; }
+
+	img {max-width:100%; height:auto;} 
+	.vertical-nav-divider {display:none;}
+	div.stl-colwrap, .stl-center div.row, .stl-center div.row > div {margin:0;}
+		div.stl-colwrap:after, div.row:after {content: " ";line-height:0 !important;}
+
+	
+	*, *:before, *:after {box-sizing:border-box;}
+
+    
+    .hidden {display: none !important;visibility: hidden !important;}
+
+    
+    .force-upper {text-transform: uppercase !important;}
+    
+    .force-lower {text-transform: lowercase !important;}
+
+    
+    .serial-comma {display:none !important; visibility:hidden !important;}
+
+    
+    .show {display:block;}
+    .hide {display:none;}
+
+    .hidden{display:none!important;visibility:hidden!important}
+    
+    .visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+    
+    .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+    
+    .offscreen {position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;}
+
+    
+    .stl-clearfix:before,.stl-clearfix:after,
+    .stl-clear:before,.stl-clear:after,
+    .clearfix:before,.clearfix:after {content:"";display:table;}
+    .stl-clearfix:after, .stl-clear:after, .clearfix:after {clear:both;}
+    .stl-clearfix, .stl-clear, .clearfix {zoom:1;}
+
+    
+    .stl-right {float:right;}
+    .stl-left {float:left;}
+
+    
+    .stl-photo-wrap .stl-photo-caption {font-size:0.9em;}
+    @media screen and (max-width:767px){.stl-photo-wrap.stl-right, .stl-photo-wrap.stl-left {float:none;}} 
+    @media screen and (min-width:768px){
+        .stl-photo-wrap {display:table; width:1px;} 
+            .stl-photo-wrap.stl-right {margin:0 0 15px 20px;} 
+            .stl-photo-wrap.stl-left {margin:0 20px 15px 0;}
+            .stl-photo-wrap img {display:block; max-width:none;} 
+    }
+    
+    .stl-photo-left, .stl-photo-right {display:block; margin:0 0 20px;}
+    @media screen and (min-width:480px){
+        .stl-photo-left, .stl-photo-right {display:inline;}
+        .stl-photo-left, .donorpic {float:left; margin:0 20px 15px 0;} 
+        .stl-photo-right {float:right; margin:0 0 15px 20px;}
+    }
+
+	
+
+	
+	#stl-cms {background:transparent; padding:0; position:relative; overflow-x:hidden;}
+
+	
+	.wide-container {width:100%; padding:0;}
+	.narrow-container {width:100%; max-width:1200px; margin:0 auto;}
+	.container {width:100%; max-width:1200px; margin:0 auto; padding:0 15px;}
+	#stl-container {display:block; margin-top:30px;}
+	.home-page #stl-container {margin-top:0;}
+	.interior-container {width:100%;}
+
+	
+	.interior-two-col {text-align:left;}
+	.interior-two-col #stl-container, .subpage #stl-container {max-width:1200px; padding:0 15px; margin:30px auto 0;}
+
+	@media screen and (max-width:1023px) {
+		.interior-container + .interior-container {display:-webkit-box;display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column;}
+        #personal-estate-planning-kit-page.article-two-col .interior-container + .interior-container, #personal-estate-planning-kit-download-page.interior-two-col .interior-container + .interior-container, #personal-estate-planning-kit-download-page.article-one-col .interior-container + .interior-container {display:none;}
+	}
+
+	@media screen and (min-width:1024px) {
+		.interior-two-col #stl-container {display:-webkit-box;display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:normal; flex-direction:row; flex-wrap:wrap; }
+		.interior-two-col .interior-container {width: 64%; -webkit-box-flex: 1; flex: 1 1 64%; margin-right: 4%;}
+		.interior-two-col .interior-container + .interior-container {width: 32%; -webkit-box-flex: 0; flex: 0 1 32%; margin-right:0;}
+
+		#personal-estate-planning-kit-page.article-two-col .interior-container + .interior-container, #personal-estate-planning-kit-download-page.interior-two-col .interior-container + .interior-container, #personal-estate-planning-kit-download-page.article-one-col .interior-container + .interior-container {display:none;}
+		.article-page #stl-container, .contact-page #stl-container {text-align:left; margin:30px auto;}
+	}
+
+  	html {font-size:62.5%}
+  	body {background:#fff; margin:0; padding:0; font-family:canada-type-gibson, sans-serif; font-size:1.6rem; font-weight:100;line-height:1.5; color:#444;}
+
+	
+	.sub-middle-section a,
+	.stl-white-popup a, 
+	.getting-started-suggestion li a  {
+		color:#c3002f;text-decoration:none;
+		-webkit-transition: background .3s,color .3s;
+        transition: background .3s,color .3s;
+	}
+	.sub-middle-section a:hover, .sub-middle-section a:focus,
+	.stl-white-popup a:hover, .stl-white-popup a:focus,
+	.getting-started-suggestion li a:focus, .getting-started-suggestion li a:hover {
+		color:#252525;text-decoration:underline;
+	}
+	#stl-cms .stlButton, .stlButton, .mfp-content #stl-announcement .mfp-close.stlButton, .GIfeature .lightbox, #skip-link {
+    	cursor:pointer;
+		display:inline-block;
+		font-family:inherit;
+		font-size:inherit;
+		font-weight:600;
+		letter-spacing:1.5px;
+		color:#fff;
+		background-color:#c3002f;
+		border: 1px solid transparent;
+		border-radius:0;
+		padding:10px 30px;
+		margin:0 auto;
+		opacity:1;
+		position:relative;
+		text-decoration:none;
+		text-transform:uppercase;
+		width:auto;
+		 -webkit-transition: border .3s ease 0s,color .3s ease 0s,background .3s ease 0s;
+        transition: border .3s ease 0s,color .3s ease 0s,background .3s ease 0s
+	}
+	#stl-cms .stlButton:before, #stl-cms .stlButton:after,
+	.stlButton:before, .stlButton:after,
+	.GIfeature .lightbox:before, .GIfeature .lightbox:after {
+		content: "";
+		display: block;
+		width: 100%;
+		max-width: 0;
+		height: 2px;
+		position: absolute;
+		background-color: #c3002f;
+		opacity: 0;
+		-webkit-transition: opacity .4s ease 0s,max-width .4s ease 0s;
+		transition: opacity .4s ease 0s,max-width .4s ease 0s;
+	}
+    #stl-cms .stlButton:before, .stlButton:before, .GIfeature .lightbox:before {top:0;right:0;}
+    #stl-cms .stlButton:after, .stlButton:after, .GIfeature .lightbox:after {bottom:0;left:0;}
+
+	#stl-cms .stlButton:hover:before, #stl-cms .stlButton:hover:after,
+	#stl-cms .stlButton:focus:before, #stl-cms .stlButton:focus:after,
+	.stlButton:hover:before, .stlButton:focus:before,
+	.stlButton:hover:after, .stlButton:focus:after,
+	.GIfeature .lightbox:hover:before, .GIfeature .lightbox:hover:after {
+		max-width: 100%;
+		opacity: 1;
+		-webkit-transition: opacity .8s ease 0s,max-width .8s ease 0s;
+		transition: opacity .8s ease 0s,max-width .8s ease 0s;
+	}
+
+	#stl-cms .stlButton:hover, #stl-cms .stlButton:focus, .stlButton:hover, .stlButton:focus,
+	.stlButton:hover, .stlButton:focus,
+    .mfp-content #stl-announcement .mfp-close.stlButton:hover, .mfp-content #stl-announcement .mfp-close.stlButton:focus,
+    .GIfeature .lightbox:hover, .GIfeature .lightbox:focus,
+    #skip-link:hover, #skip-link:focus {
+        border-color: transparent!important;
+		background-color: transparent;
+		color:#c3002f;text-decoration:none;
+    }
+
+  	
+  	#skip-link {position:absolute; top:10px; left:10px; padding:5px; z-index:1;}
+
+	
+	.sub-middle-section p, .sub-middle-section table, .sub-middle-section tr, .sub-middle-section td, .sub-middle-section form, .sub-middle-section label, .sub-middle-section blockquote {}
+	.sub-middle-section p, .sub-middle-section table, .sub-middle-section form {margin:0 0 1.5rem;}
+	.sub-middle-section blockquote {margin:0 20px 1.5rem; padding:3px 15px; border-left:4px solid #ddd;}
+    .sub-middle-section p.intro-copy {}
+
+	
+	h1, .h1, h2, .h2, h3, .h3, h4, .h4 {font-weight:400;margin-top:0;} 
+	h1, h2 {
+		font-family:linotype-didot, Georgia, serif;
+		font-weight:400;letter-spacing:0;
+	}
+	.stl-page-header {font-size:3.2rem; color:inherit;} 
+	.stl-page-title {font-size:3.3rem; text-transform:uppercase;} 
+	.stl-page-subtitle {font-size:2.4rem; color:inherit;} 
+        .subpage #stl-cms .stl-page-subtitle {margin-bottom:30px;}
+    .sub-middle-section h2 {}
+	.sub-middle-section h3 {}
+
+	@media screen and (min-width:1024px){
+		.stl-page-title { font-size:4.5rem;}
+	}
+
+	
+	.interior-one-col header {max-width:990px; margin:0 auto 10px; padding:0 15px;}
+
+	
+	.interior-two-col header {width:100%; -webkit-box-flex:0; flex:0 0 auto;}
+
+	
+	.sub-middle-section ul, .sub-middle-section ol {font:inherit; color:inherit;}
+		.sub-middle-section li {font:inherit; color:inherit;}
+
+	.main-copy ol {margin:0 0 1.5rem 30px; padding:0;}
+	.main-copy ul {margin:0 0 1.5rem 30px; padding:0;}
+	.main-copy ol li {list-style:decimal;}
+	.main-copy ul li {}
+	.main-copy p + ul, .main-copy p + ol {}
+	.main-copy .stl-checklist li {list-style-image: none; list-style: none;}
+	.main-copy .stl-checklist li:before {content: ''; height: 13px; width: 13px; display: inline-block; border: 1px solid #333; margin-right: 7px; margin-left: -20px; }
+
+    
+    #stl-cms .syndicated ul, #stl-cms .syndicated ol, .syndicated ul, .syndicated ol {display:block; list-style-position:outside;}
+    #stl-cms .syndicated ol > ol {margin:0;padding:0;}
+    @media screen and (min-width:768px){
+        #stl-cms .syndicated ul, #stl-cms .syndicated ol, .syndicated ul, .syndicated ol {margin-left:30px;}
+        #stl-cms .syndicated ol > ol {margin-left:0;}
+    }
+    #stl-cms .syndicated li, .syndicated li {background:none !important; margin-bottom:1.4em; padding-left:0;} 
+    #stl-cms .syndicated ol.no-space li, #stl-cms .syndicated ul.no-space li,
+    .syndicated ol.no-space li, .syndicated ul.no-space li {margin-bottom:0;}
+    #stl-cms .syndicated ul li, #stl-cms .syndicated ol ul li,
+    .syndicated ul li, .syndicated ol ul li {list-style-type:disc;}
+    #stl-cms .syndicated ol li, .syndicated ol li {list-style-type:decimal;}
+    #stl-cms .syndicated ol li ul, .syndicated ol li ul {margin-top:1.4em;}
+    .syndicated blockquote {font-size: inherit;}
+
+    
+    .syndicated .stl-checklist li, #stl-cms .syndicated .stl-checklist li {list-style-image: none; list-style: none;}
+    .syndicated .stl-checklist li:before, #stl-cms .syndicated .stl-checklist li:before {content: ''; height: 13px; width: 13px; display: inline-block; border: 1px solid #333; margin-right: 7px; margin-left: -20px; }
+
+    
+    .syndicated table thead th {border: 1px solid #000; text-align: center; padding:5px 10px;}
+    .syndicated table td {border: 1px solid #000; padding:5px 10px}
+
+    .syndicated .stl-caution {background:url(/Images/Stelter/caution.png) 0 2px no-repeat; padding-left:25px;}
+
+		strong { font-weight:600; }
+
+	
+	.stl-header {
+		background:url(../images/banner.jpg) center center no-repeat;
+		background-size:cover;
+		position:relative;
+	}
+	.stl-header:before {
+    	content:"";display:block;
+    	position: absolute;
+		height:100%;width: 100%;
+		top: 0;
+		margin-bottom: 0;
+		background: rgba(0,0,0,.75);
+		background-repeat: repeat-x;
+		background-size: auto 100%;
+		z-index: 0;
+		background: -webkit-gradient(linear,left top, left bottom,from(rgba(0,0,0,0.75)),to(transparent));
+		background: linear-gradient(rgba(0,0,0,0.75),transparent);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=0 );
+    }
+	.stl-header .container { position:relative;z-index:1;}
+
+	@-webkit-keyframes mover {
+		0% {bottom:2rem;}
+		50% {bottom:1rem;}
+		100% {bottom:2rem;}
+	}
+
+	@keyframes mover {
+		0% {bottom:2rem;}
+		50% {bottom:1rem;}
+		100% {bottom:2rem;}
+	}
+
+    .stl-header .down-arrow {
+        display:block;
+        color:#fff;
+        -webkit-filter: drop-shadow(0 2px 0 #000);
+                filter: drop-shadow(0 2px 0 #000);
+        height:32px;width:40px;
+        position:absolute;
+        bottom:1rem;left:calc(50% - 20px);
+        -webkit-animation-name: mover;
+                animation-name: mover;
+	    -webkit-animation-duration: 1s;
+	            animation-duration: 1s;
+	    -webkit-animation-iteration-count: 2.5;
+	            animation-iteration-count: 2.5;
+    }
+    .stl-header .down-arrow-color { fill:#fff; }
+    .stl-header #stl-page-copy-container { color:#fff;position:relative;text-align:center; width:100%;z-index:0; }
+    .stl-header #stl-page-copy-container:after {
+    	position: absolute;
+		width: 100%;
+		height: 100%;
+		bottom: 0;
+		margin-bottom: 0;
+		background: rgba(0,0,0,.75);
+		background-repeat: repeat-x;
+		background-size: auto 100%;
+		z-index: -1;
+		background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(0,0,0,.95) 100%); 
+		background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,0,0,.95) 100%); 
+		background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(0,0,0,.95) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#000000',GradientType=0 );
+    }
+
+	@media screen and (min-width:900px){
+		.home-page .stl-header {
+			height:100vh;
+			display:-webkit-box;
+			display:flex;
+			-webkit-box-orient:vertical;
+			-webkit-box-direction:normal;
+			        flex-direction:column;
+			-webkit-box-pack:justify;
+			        justify-content:space-between;
+		}
+		.stl-header .down-arrow { bottom:2rem; }
+	}
+
+	
+     .subpage .stl-header {
+     	height:100vh;
+    	min-height: 433px;
+        max-height: 566px;
+        background-position:center center;
+    }
+    @media screen and (max-width:767px){
+    	.subpage .stl-header { height:433px; }
+    }
+
+	.stl-footer {background:#272727; color:#fff;}
+
+	
+	#stl-journey-container {}
+	#stl-getting-started-container {}
+	.hotnews {color:#fff; background:#333;}
+		#stl-whats-new a.stl-wn-view-more {color:#fff; background:#07c;}
+
+	
+	.mfp-content {border-color:#272727;}
+	div.mfp-content .mfp-close {color:#272727;}
+	.getting-started-popup div.mfp-content .mfp-close, div.mfp-content .mfp-iframe-scaler .mfp-close {color:#fff; background:#272727;}
+
+	.stl-header .container {display:-webkit-box;display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:normal; flex-direction:row; -webkit-box-pack:justify; justify-content:space-between; -webkit-box-align:start; align-items:flex-start; padding:20px 15px;}
+	.client-logo {display:block;}
+        .client-logo img {display: block;max-width:100%;}
+
+    @media screen and (max-width:767px){
+    	.stl-header .client-logo { width:75px; }
+    }
+
+	.stl-footer p {font-size:1.4rem;}
+	.stl-footer p a {color:inherit;}
+    .stl-footer #stl-question-widget-form p {font-size:inherit;}
+
+	#stl-copyright-container p {}
+
+    
+    .stl-copyright, .stl-copyright p,
+    #stl-page .stl-copyright, #stl-page .stl-copyright p,
+    #stl-cms .stl-copyright, #stl-cms .stl-copyright p,
+    .copyright, .copyright p,
+    #stl-page .copyright, #stl-page .copyright p,
+    #stl-cms .copyright, #stl-cms .copyright p {
+        font-size:1.4rem;
+    }
+    .cga-copyright {display: none !important; visibility: hidden !important;}
+    #charitable-gift-annuities-page .cga-copyright, body.charitable-gift-annuities .cga-copyright,
+    #gift-of-income-for-life-page .cga-copyright, body.gift-of-income-for-life .cga-copyright,
+    #cross-estate-planning-off .cga-copyright, body.cross-estate-planning-off .cga-copyright,
+    #cga-right-for-you-page .cga-copyright, body.cga-right-for-you .cga-copyright,
+    .cga-page .cga-copyright {
+        display:inline !important; visibility: visible !important;
+    }
+
+    #stl-tax-id-container .stl-fedid { display:none; }
+    #stl-tax-id-container p {font-size:1.8rem; font-weight:500;}
+	.footer-bottom {display:-webkit-box;display:flex; -webkit-box-orient:vertical; -webkit-box-direction:reverse; flex-direction:column-reverse; -webkit-box-align:center; align-items:center; padding:10px 0 0;}
+	.footer-right a {color:inherit; font-size:2.0rem; margin:0 5px; opacity:0.85;}
+	.footer-right a:hover, .footer-right a:focus {opacity:1;}
+    .footer-bottom {padding-bottom:60px;}
+
+	@media screen and (max-width:767px){
+		.footer-right a {padding:11px;}
+	}
+	@media screen and (min-width:768px) {
+		.footer-bottom {-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row; -webkit-box-pack:justify; justify-content:space-between;}
+	}
+
+	
+	@media screen and (min-width:1200px) {
+        .stl-header .container {max-width:none; margin:0 auto;padding:2rem 3rem; }
+	}
+
+	#nav-toggle {display:block; position:relative; font-size:3.0rem; padding:.5rem .75re; margin:0; color:inherit; background:transparent; border:1px solid #fff;; z-index:101; cursor:pointer;}
+	#nav-toggle:before {display:inline-block; content:'\f0c9'; font-family:FontAwesome; color:#fff;}
+	.nav-active #nav-toggle:before {content:'\f00d';}
+	#nav-toggle .stl-menu-text {display:none; font-size:1.4rem; color:#fff;}
+	.navigation {display:block; width:100%; margin:0 0 0 2rem; -webkit-box-flex:0; flex:0 1 auto;}
+
+	#stl-cms ul#rightnav {margin:0; padding:0; border:none;}
+	#stl-cms ul#rightnav li {font:inherit;}
+	#stl-cms ul#rightnav li a {font:inherit; line-height:1.25; border:none;}
+
+	#stl-cms ul#rightnav li a:hover, #stl-cms ul#rightnav li a:focus {text-decoration:none;}
+	#stl-cms ul#rightnav li.sectionhome a:hover, #stl-cms ul#rightnav li.sectionhome a:focus {}
+	#stl-cms ul#rightnav li.onTrail > a:hover, #stl-cms ul#rightnav li.onTrail > a:focus, #stl-cms ul#rightnav li.onTrail a[aria-expanded='true'] {cursor:default; text-decoration:none;}
+	#stl-cms ul#rightnav li.onTrail li a:hover, #stl-cms ul#rightnav li.onTrail li a:focus {color:#fff;}
+
+	@media screen and (max-width:1199px) {
+		body.nav-active {overflow:hidden; position:fixed; top:0;}
+
+		
+		.navigation {
+			display:block; position:fixed; height:100%; width:400px; top:0px; right:-100%;
+			background:#eee; z-index:100; overflow-y:auto;
+			padding-top:8rem;
+			-webkit-overflow-scrolling: touch; -webkit-transition:0.4s ease; transition:0.4s ease;
+		}
+
+		body.nav-active #nav-toggle {
+			background:#eee;border-color:#5f5f5f;
+		}
+		body.nav-active #nav-toggle:before {
+			color:#5f5f5f;border-color:#5f5f5f;
+		}
+		.navigation.nav-active {right:0;}
+		ul#rightnav li.onTrail ul {max-height:0;overflow:hidden;padding-left:3rem;-webkit-transition:500ms;transition:500ms;}
+		ul#rightnav ul[aria-hidden="false"] {}
+		#stl-cms ul#rightnav li.onTrail ul[aria-hidden="false"] {max-height:400px; -webkit-transition:1s; transition:1s;}
+		#stl-cms ul#rightnav {margin:0; padding:0;}
+		#stl-cms ul#rightnav li a {color:#5f5f5f;  display:inline-block; padding:12px 25px; display:block;text-decoration:none;}
+        #stl-cms ul#rightnav li.onTrail li a:hover, #stl-cms ul#rightnav li.onTrail li a:focus {
+        	color:#c3002f;
+        }
+
+		#stl-cms ul#rightnav > li > a {font-family: linotype-didot,Georgia,serif;font-size: 1.4em; text-transform:uppercase;display:block;}
+		#stl-cms ul#rightnav > li > a:not(:only-child):after {
+			color:#c3002f;
+			content:"\f0da";
+			font-family:FontAwesome;
+			position:absolute;
+			right:35px;
+			-webkit-transition: all 500ms ease;
+			transition: all 500ms ease;
+			-webkit-transform-origin: center center;
+			        transform-origin: center center;
+		}
+		#stl-cms ul#rightnav > li > a[aria-expanded="true"]:after {-webkit-transform:rotate(90deg);transform:rotate(90deg);}
+
+		
+		.social-mobile {display:-webkit-box;display:flex; justify-content:space-around; margin:4rem 10% 0; padding-bottom:10.0rem;}
+			.social-mobile a {padding:5px 15px; margin:0;}
+				.social-mobile i {color:#c3002f; font-size:3rem;}
+
+	}
+	@media screen and (max-width:550px){
+		.navigation { width:100%;}
+	}
+	@media screen and (min-width:1200px) {
+		#nav-toggle, .social-mobile {display:none;}
+
+        .stl-header .container { -webkit-box-align:center; align-items:center; }
+		.stl-header .client-logo { margin-right:6rem;}
+		#stl-cms ul#rightnav {display:-webkit-box;display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:normal; flex-direction:row; flex-wrap:nowrap; -webkit-box-pack:end; justify-content:flex-end; margin:0;}
+		#stl-cms ul#rightnav > li {display:inline-block; -webkit-box-flex: 0; flex: 0 1 auto; line-height:normal; position:relative;}
+		#stl-cms ul#rightnav li a {color: #fff;text-decoration:none;}
+		#stl-cms ul#rightnav > li > a {
+			display:inline-block;
+			font-family:canada-type-gibson, sans-serif;font-weight:600;
+			font-size:1.6rem;letter-spacing:3.2px;
+			text-transform:uppercase; padding:1rem 2rem;
+			position:relative;z-index:99;
+		}
+        #stl-cms ul#rightnav li.onTrail:hover > a, #stl-cms ul#rightnav li.onTrail:focus > a,
+        #stl-cms ul#rightnav li.sectionhome a:hover, #stl-cms ul#rightnav li.sectionhome a:focus,
+        #stl-cms ul#rightnav > li > a:hover, #stl-cms ul#rightnav > li > a:focus,
+        #stl-cms ul#rightnav li.onTrail a[aria-expanded="true"] {
+
+		}
+		#stl-cms ul#rightnav li.onTrail > a:after {display: block; position: absolute;content: ''; bottom: -20px;height: 20px; left: 0;width: 100%;background: transparent;}
+		#stl-cms ul#rightnav li.onTrail ul {
+			display:block; position:absolute; left:0;;
+			padding:0; background:#3f3f3f;
+			z-index:10; margin-top:0; max-height:0; overflow:hidden; white-space:nowrap;
+			width:262px;
+		}
+		#stl-cms ul#rightnav li.onTrail ul:before {display: block; position: absolute; content: ''; top: -20px; height: 20px; left: 0; width: 100%; background: transparent;}
+		#stl-cms ul#rightnav li.onTrail ul[aria-hidden="false"], #stl-cms ul#rightnav li.onTrail:hover ul, #stl-cms ul#rightnav li.onTrail:focus ul {
+			max-height:1000px; padding:15px 20px; margin-top:20px;z-index:0;
+		}
+		#stl-cms ul#rightnav li.onTrail li { border-bottom: 1px solid #5d5d5d;display:block;}
+		#stl-cms ul#rightnav li.onTrail li a {color:#fff;padding:2rem .5rem;}
+        #stl-cms ul#rightnav li.onTrail li a:hover, #stl-cms ul#rightnav li.onTrail li a:focus { opacity:.7;}
+
+        #stl-cms ul#rightnav li.onTrail > a:before {
+        	content:"";background:#c3002f;
+        	width:100%;max-width:195px;
+        	height:12px;max-height:0;
+        	position:absolute;top:calc(100% + 16px);z-index:99;
+        	-webkit-transition: max-height .3s ease 0s;
+            transition: max-height .3s ease 0s;
+        }
+        #stl-cms ul#rightnav li.onTrail:hover > a:before, #stl-cms ul#rightnav li.onTrail:focus > a:before {
+        	max-height:1.2rem;
+        }
+
+	}
+
+	@media screen and (min-width:1440px) {
+        #stl-cms ul#rightnav > li > a { font-size:2rem; }
+	}
+
+    #stl-page-copy-container-mobile { display:none; }
+
+	* update with client specific background-image */
+    @media screen {
+        .stl-top {position:relative;}
+        .stl-intro {color:#fff;margin:0; padding:0 0 4rem; text-align:center;position:relative;z-index:1;}
+        .stl-intro p {max-width:90%; margin:0 auto 20px;}
+    }
+    .stl-header .stl-intro { padding-bottom:4rem;}
+    .stl-header .stl-intro h1 { font-size:3.1rem;line-height:1; text-transform:uppercase;text-shadow: 0 0 11px #000;margin-bottom:1rem;}
+    .stl-header .stl-intro h2 { font-size:2.4rem; text-shadow: 0 0 8px #000;}
+    .stl-header .stl-intro p { font-size:1.6rem; text-shadow: 0 0 6px #000;}
+
+	@media screen and (min-width:700px) {
+		.stl-header .stl-intro { padding-bottom:6rem; }
+        .stl-header .stl-intro h1 { font-size:6rem; }
+        .stl-header .stl-intro h2 { font-size:4rem;}
+        .stl-header .stl-intro p { font-size:2rem;}
+	}
+	@media screen and (min-width:900px) {
+		.stl-header .stl-intro { padding-bottom: 8rem; }
+        .stl-header .stl-intro h1 { font-size:7.2rem; }
+        .stl-header .stl-intro h2 { font-size:5.6rem;}
+	}
+	@media screen and (min-width:1200px) {
+        .stl-header .stl-intro { padding:0 8rem 8rem;}
+	}
+
+/*  Gift Notification
+  -------------------------------------------------------*/
+    /* variation styling */
+    .home-page #stl-notification-container {padding:3.0rem; background:#f5f5f5; text-align:center;}
+    	#stl-notification-container .container {display:-webkit-box;display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-pack:center; justify-content:center; -webkit-box-align:center; align-items:center;}
+			.home-page #stl-notification-container h2 {margin:auto 0;}
+			#stl-notification-btn.stlButton {margin:1.0rem 0 0 0;}
+
+    @media screen and (min-width:768px) {
+        #stl-notification-container .container {-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;}
+        	#stl-notification-btn.stlButton {margin:0 2.0rem;}
+    }
+
+    /* hide on gift intention and thank you pages */
+    #gift-intention-page #stl-notification-container, #gift-intention-thank-you-page #stl-notification-container {display:none;}
+
+/*  Whats New
+  -------------------------------------------------------*/
+	.hotnews {display:none !important;}
+
+/*  Journey
+  -------------------------------------------------------*/
+	.stl-white-popup {padding:25px; font:inherit;}
+	.stl-white-popup h2 {font-size:1.25em; margin:10px 0;}
+	.stl-white-popup p {font:inherit; margin:0 0 10px;}
+	.stl-white-popup ul {font:inherit; margin:0 0 0 17px; padding:0;}
+	.stl-white-popup li {margin-bottom:5px;}
+
+	#stl-cms .stl-journey-paths {}
+
+	#stl-cms .stl-journey-paths div.stl-colwrap div.stl-col.stl-w-04 {width:100%; margin:0 auto 20px;}
+
+	/* Top Buttons Images Journey - REMOVE IF NOT USED	*/
+	#stl-journey-container {padding:6.0rem 0 8.0rem;text-align:center;}
+
+    #stl-journey-container h2 {
+    	color:#c3002f;
+    	font-family:canada-type-gibson, sans-serif;font-weight:400;
+    	font-size:2rem;text-transform:uppercase;
+    }
+    #stl-journey-container p {
+    	font-family:linotype-didot, Georgia, serif;
+    	font-size:3.4rem;text-transform:uppercase;letter-spacing:.3px;
+    	line-height:1.2;margin:2rem;
+    }
+    @media screen and (min-width:900px){
+    	#stl-journey-container p { font-size:4.4rem;margin:2rem 8rem; }
+    }
+
+	#stl-journey-container .journey-main {max-width:1080px; margin:0 auto;}
+	#stl-journey-container .journey-main .stl-w-04 {width:100%; margin:0 auto 20px;}
+	#stl-cms div.stl-info-slider {position:relative; margin:0;}
+	#stl-cms div.stl-info-slider .stl-button {
+		position:relative; display:block;font-family:linotype-didot,Georgia,serif; font-size:2.5rem; line-height: 1;
+		padding: 10px; margin:0; border-radius:0; opacity:1; z-index:5;
+	}
+	#stl-cms div.stl-info-slider div.stl-slider-wrap {margin:0; min-height:0; background-color:#c3002f; background-position:center; background-size:cover; background-repeat:no-repeat;}
+	#stl-cms div.stl-info-slider div.stl-slider-wrap ul {font:inherit; padding:15px; top:-100%; text-align:center; }
+	#stl-cms div.stl-info-slider div.stl-slider-wrap ul li {border:none; padding:0;}
+	#stl-cms div.stl-info-slider div.stl-slider-wrap ul li a {display:inline-block; line-height:1.2; padding:5px 0;}
+	#stl-cms div.stl-info-slider div.stl-slider-wrap ul li a:hover, #stl-cms div.stl-info-slider div.stl-slider-wrap ul li a:focus {color:#fff;}
+
+	@media only screen and (max-width:1023px) {
+		#stl-cms div.stl-info-slider div.stl-slider-wrap {background-image:none !important;}
+		#stl-cms div.stl-info-slider div.stl-slider-wrap ul {display:block !important; position:relative; top:0; opacity:1; min-height:0; background:transparent;}
+	}
+	@media only screen and (min-width:1024px) {
+		#stl-journey-container .journey-main {display:-webkit-box;display:flex; flex-wrap:nowrap; -webkit-box-pack:justify; justify-content:space-between;}
+		#stl-cms .stl-journey-paths div.stl-colwrap div.stl-col.stl-w-04 {width:30%; -webkit-box-flex:0; flex:0 1 auto; margin:0 auto;}
+
+        #stl-cms div.stl-info-slider div.stl-slider-wrap {
+        	background-color:#000;background-size:105%;
+        	-webkit-transition: all .4s ease-in-out;
+			transition: all .4s ease-in-out;
+        }
+
+        #stl-cms .giving-amount-wrap div.stl-info-slider div.stl-slider-wrap {
+			background-image:url(../images/journey1.jpg) !important;
+		}
+		#stl-cms .age-wrap div.stl-info-slider div.stl-slider-wrap {
+			background-image:url(../images/journey2.jpg) !important;
+		}
+		#stl-cms .assets-wrap div.stl-info-slider div.stl-slider-wrap {
+			background-image:url(../images/journey3.jpg) !important;
+		}
+
+        #stl-cms div.stl-info-slider:before {
+        	content:"";display:block;
+        	height:100%;width:100%;
+        	position:absolute;top:0;left:0;
+        	background:rgba(0,0,0,.5);z-index:1;
+        	opacity:.25;
+        	-webkit-transition: all .5s ease-in-out;
+			transition: all .5s ease-in-out;
+        }
+        #stl-cms div.stl-info-slider .stl-button {
+        	position:absolute;bottom:0;z-index:99;
+        	text-align:left;width:100%;
+        	background:rgba(0,0,0,.25);color: #fff;
+        	padding:2rem 3rem;text-shadow:0 2px 10px #000;
+        	-webkit-transition: all .5s ease-in-out;
+			transition: all .5s ease-in-out;
+        }
+
+		#stl-cms div.stl-info-slider div.stl-slider-wrap {padding-top:120%;}
+		#stl-cms div.stl-info-slider div.stl-slider-wrap ul {
+			background:rgba(0,0,0,.25);padding:0 3rem;
+			display:-webkit-box;
+			display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-pack:start; justify-content:flex-start;
+			height:60%; min-height:0;top:auto;bottom:-60%;
+			text-align:left;
+	    }
+
+	    #stl-cms div.stl-info-slider:hover div.stl-slider-wrap { background-size:115%;}
+
+        #stl-cms div.stl-info-slider:hover:before,#stl-cms div.stl-info-slider:focus:before,
+        #stl-cms div.stl-info-slider[aria-expanded="true"]:before {opacity:1;}
+
+	    #stl-cms div.stl-info-slider:hover .stl-button { bottom:60%;}
+	    #stl-cms div.stl-info-slider:hover div.stl-slider-wrap ul,
+	    #stl-cms div.stl-info-slider:focus div.stl-slider-wrap ul
+		#stl-cms div.stl-info-slider[aria-expanded="true"] div.stl-slider-wrap ul,
+		#stl-cms div.stl-info-slider div.stl-slider-wrap ul[aria-hidden="false"] {
+			top:auto;bottom:0; opacity:1;z-index:98;
+		}
+	}
+
+    /* Additional Journey styles */
+    .stl-white-popup .journey li a {text-transform:lowercase; display: block;}
+    .stl-white-popup .journey li a:first-letter {text-transform:uppercase;}
+
+/*  Get Started
+  -------------------------------------------------------*/
+	.not-sure-where-to-being-questionnaire {position:absolute; top:0; bottom:0; left:0; right:0; height:auto; padding:10px 20px 20px; font:inherit; color:inherit; background:#fff; overflow:auto; -webkit-overflow-scrolling:touch;}
+	.not-sure-where-to-being-questionnaire .stl-page-header {font-family:inherit; font-size: 3.0rem !important; line-height: 1.1; font-weight: normal; text-transform: none; margin: 0; color: inherit; padding:15px 0 5px;}
+	.not-sure-where-to-being-questionnaire ul {margin:10px 0px; list-style:none; padding-left:0;}
+	.not-sure-where-to-being-questionnaire ul li {margin:0 0 25px;}
+	.not-sure-where-to-being-questionnaire ul li.q1 > div {padding: 8px 15px 8px 33px; margin:0;}
+	.not-sure-where-to-being-questionnaire ul li.q2 > div, .not-sure-where-to-being-questionnaire ul li.q3 > div {padding:0 0 0 33px;}
+		.not-sure-where-to-being-questionnaire ul li input {display:inline-block; margin: 4px 10px 4px -23px; width:auto; background:transparent; vertical-align:top;}
+
+		.not-sure-where-to-being-questionnaire p {margin:0;}
+			.not-sure-where-to-being-questionnaire ul > li > p, .getting-started-suggestion > p {border-bottom:2px solid #ccc; padding-bottom:5px; margin-bottom:10px;}
+			.not-sure-where-to-being-questionnaire ul li.q1 > p {margin:0 0 10px;}
+		.getting-started-suggestion ul {margin-left:33px;}
+		.getting-started-suggestion ul li {list-style:disc; margin:0 0 5px; padding:0;}
+
+		.getting-started-suggestion li a {padding-left:0; margin-bottom:5px; display:inline-block; vertical-align:top;}
+		.getting-started-suggestion a:hover, .getting-started-suggestion a:focus {}
+
+    #stl-home-bottom.one-col {margin-bottom:20px;}
+	#stl-getting-started-container {display: -webkit-box;display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -webkit-box-pack: center; justify-content: center; padding:40px; margin:0; text-align:center;}
+	.notSure {}
+	.not-sure-inside h2 {font-size:3.0rem; margin-bottom:10px;}
+	.not-sure-inside p {margin:0; font-size:2.0rem;}
+	.not-sure-inside p a {font-weight:500;}
+
+	@media screen and (min-width:768px) {
+		#stl-home-bottom {display:-webkit-box;display:flex; flex-wrap:nowrap;}
+		#stl-home-bottom.one-col {-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;}
+		#stl-home-bottom.two-col {-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row; -webkit-box-pack:justify; justify-content:space-between;}
+		.one-col #stl-getting-started-container {width:100%; margin:0;}
+		.two-col #stl-getting-started-container {width:calc(50% - 20px); -webkit-box-flex:0; flex:0 1 auto; margin-bottom:40px;}
+	}
+
+/*  Home PEPC Feature
+  -------------------------------------------------------*/
+    #stl-home-pepc-container {background:#eee; padding:50px 30px; margin-bottom:20px; text-align:center;}
+    #stl-home-pepc-container h2 {font-size:3.0rem;}
+    #stl-home-pepc-container img {max-width:291px;}
+
+    @media screen and (min-width:768px) {
+        #stl-home-pepc-container {text-align:left;}
+        #stl-home-pepc-container .container {max-width:930px;}
+        /*#stl-home-pepc-container p {overflow:hidden; max-width:600px;}*/
+        #stl-home-pepc-container img {float:left; margin-top:-65px; margin-right:30px;}
+    }
+
+/*  Custom Home Features -- Remove if unnecessary
+  -------------------------------------------------------*/
+    .home-feature {
+    	border-bottom:3px solid #c3002f;-webkit-box-align:center;align-items:center; text-align:center;
+    	display: -webkit-box;
+    	display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -webkit-box-pack:justify; justify-content:space-between; width:100%; clear:both; float:none; padding:4rem; margin:0; position:relative;
+    	-webkit-transition:0.4s ease;
+    	transition:0.4s ease;
+    }
+    .home-feature:hover, .home-feature:focus {
+    	background:#f5f5f5;
+    }
+
+    .home-feature h2 {font-size:2.5rem}
+    .home-feature p {max-width:350px;}
+    .home-feature:last-child p { max-width:none;}
+
+    #stl-cms .home-feature .stlButton {min-width:200px;}
+
+    .home-feature:last-child { background:#eee;border-bottom:none;color:inherit;}
+
+	@media screen and (min-width:768px) {
+        #stl-home-features {display:-webkit-box;display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:normal; flex-direction:row; -webkit-box-pack:justify; justify-content:space-between; flex-wrap:wrap;margin:2rem auto;max-width:1060px;padding:0 2rem;position:relative;}
+        #stl-home-features:after {
+        	content:"";display:block;
+        	height:40%;width:3px;
+        	background:#efefef;
+        	position:absolute;
+        	left:50%;top:15%;
+        }
+
+		.home-feature {width:40%; margin:0;padding:4rem 2rem;}
+        .home-feature:last-child {width:100vw;position:relative;left:50%;margin-left:-50vw;margin-top:4rem;padding:4rem;}
+
+	}
+
+/*  Home Contact Feature
+  -------------------------------------------------------*/
+    #stl-contact-callout-container {text-align:center; background:#333 url(/documents/Stelter/sds/images/contact-us5.jpg) no-repeat; background-size:cover; background-position:center; color:#fff; position:relative;}
+	#stl-contact-callout-container .stl-contact-callout {padding:50px 0;}
+    #stl-contact-callout-container:before {content:''; display:block; position:absolute; width:100%; height:100%; top:0; left:0; background:rgba(0,0,0,.7);}
+    #stl-contact-callout-container h2 {font-size:3.0rem; margin-bottom:5px;}
+    #stl-contact-callout-container p {max-width:350px; margin-left:auto; margin-right:auto;}
+    #stl-contact-callout-container h2, #stl-contact-callout-container .container {z-index:1; position:relative;}
+
+    #stl-contact-callout-container .stl-contact-callout .stlButton { border:none;}
+    #stl-contact-callout-container .stl-contact-callout .stlButton:hover,
+    #stl-contact-callout-container .stl-contact-callout .stlButton:focus { background:#fff;}
+
+/*************************************************************************************************************
+//////////////////////     Sub-Page
+*************************************************************************************************************/
+
+/*  Breadcrumbs
+  -------------------------------------------------------*/
+  #stl-breadcrumbs {width:100%; margin-bottom:3rem;}
+  #stl-cms ol.breadcrumb {width:100%; float:none;}
+  #stl-cms ol.breadcrumb li { color:#000;font-size:1.2rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+  #stl-cms ol.breadcrumb li a { color:#252525; }
+
+  /* To Override Breadcrumb dividers */
+  .breadcrumb li:after { display:none;}
+  .breadcrumb > li + li:before {content:"\f105";font-family:FontAwesome; padding:0 1rem; color:#adb5bd;}
+
+/*  Interior Copy
+  -------------------------------------------------------*/
+	.main-copy {margin: 0 auto;}
+	.interior-one-col .main-copy {max-width:990px; padding:0 15px; text-align:left;}
+	.interior-one-col #stl-breadcrumbs {max-width:990px; padding:0 15px; margin-left:auto; margin-right:auto;}
+	.interior-one-col .main-copy p {text-align:left; max-width:960px; margin-left:auto; margin-right:auto;}
+	#stl-cms .main-copy > p:last-child, #stl-cms .main-copy > ul:last-child, #stl-cms .main-copy > ol:last-child {margin-bottom: 0;}
+
+/*  Videos
+  -------------------------------------------------------*/
+    /* Responsive Video: http://webdesignerwall.com/tutorials/css-elastic-videos */
+    .video-container {
+        position:relative;
+        padding-bottom:56.25%;
+        padding-top:0;
+        height:0;
+        overflow:hidden;
+        margin-bottom:30px;
+    }
+    .video-container iframe,
+    .video-container video,
+    .video-container object,
+    .video-container embed {
+        position:absolute; top:0; left:0;
+        width:100%; height:100%;
+    }
+
+    #stl-video-container {display:none;}
+	body[id*=".xml"] #stl-video-container {display:block;} /* Show this feature on all pages in Preview */
+	#bequests-and-wills-page #stl-video-container,
+	#wills-and-living-trusts-page #stl-video-container,
+	#beneficiary-designations-page #stl-video-container,
+	#charitable-gift-annuities-page #stl-video-container,
+	#life-insurance-page #stl-video-container,
+	#retirement-plan-assets-page #stl-video-container {display:block;}
+    #bequests-and-wills-page .see-how-it-works,
+    #wills-and-living-trusts-page .see-how-it-works,
+    #beneficiary-designations-page .see-how-it-works,
+    #charitable-gift-annuities-page .see-how-it-works,
+    #life-insurance-page .see-how-it-works,
+    #retirement-plan-assets-page .see-how-it-works {display:block;float:none;width:100%;}
+
+    .see-how-it-works h3 {display:none;}
+    .video-container {margin-bottom:0;}
+    .stl-video div.mfp-content {max-width:720px;}
+    #stl-video-btn .stlButton .fa {margin-left:10px;}
+
+    /* Display video button only on pages with video */
+    #stl-video-btn {display:none; margin-bottom:1.5rem;}
+    #wills-and-living-trusts-page #stl-video-btn, #beneficiary-designations-page #stl-video-btn, #charitable-gift-annuities-page #stl-video-btn, #life-insurance-page #stl-video-btn, #retirement-plan-assets-page #stl-video-btn {display:block;}
+
+/*  Case Study
+  -------------------------------------------------------*/
+    /* Hide case study title if it's empty */
+    #stl-case-study-container h3:empty {display: none;}
+
+	.case-study {margin:0 auto 40px;}
+	.interior-one-col .case-study {padding:0 15px; max-width:990px;}
+	.case-study h2 {text-align:left;}
+	.case-study p img {/*display:none;*/}
+	.case-study img {width:100%; height:auto; padding:0; margin:0 0 15px;}
+	.case-study p { display: block; text-align: left;}
+	.case-study p:last-child {margin-bottom: 0;}
+
+    /* Update sites globally without affecting hardcoded images at 218px */
+    @media screen and (max-width:479px) {.case-study img {width:100%; max-width:100%;}}
+
+	/* Remove for one column layout */
+	@media screen and (min-width:992px) {
+		.case-study {/*display:flex; align-items:flex-start;*/}
+		.case-study img {-webkit-box-flex:0;flex:0 1 auto; width:48%; min-width:48%; height:auto; padding:0; margin: 0 20px 15px 0;}
+		.case-study-inside {-webkit-box-flex:0;flex:0 1 auto;}
+	}
+
+	#bank-or-brokerage-accounts-page .case-study, #cash-page .case-study, #commercial-annuities-page .case-study, #life-insurance-page .case-study, #tangible-personal-property-page .case-study, #retirement-plan-assets-page .case-study, #appreciated-securities-page .case-study, #closely-held-stock-page .case-study, #for-professional-advisors-page .case-study, #personal-estate-planning-kit-page .case-study, #personal-estate-planning-kit-download-page .case-study {display:none;}
+
+/*  Fund It
+  -------------------------------------------------------*/
+	.fund-it {padding:0; margin:0 0 40px;}
+	.fund-it.fund-buttons {width:100%;}
+	.fund-it p {display:none;}
+
+	.learn-how-to-fund {width:100%; max-width:960px; margin:0 auto; /*padding:25px;*/}
+
+	.fund-buttons ul { width:calc(100% + 10px); margin:0 -5px; padding:0; display:-webkit-box; display:flex; flex-wrap:wrap; }
+	.fund-buttons ul li {position:relative; width:auto; line-height:1.3; margin:5px; padding:0; color:#5b9a98; vertical-align:top; display:-webkit-box; display:flex; -webkit-box-flex:1; flex:1 1 auto; flex-wrap:wrap; }
+	.fund-buttons ul li a {
+		display:-webkit-box;
+		display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:center; align-items:center;
+		font-family:inherit; font-size:1.4rem; font-weight:500;
+		color:#c3002f; background-color:#fff; border:2px solid #c3002f; border-radius:0;
+		padding:11px 20px 12px 20px; margin:0 auto; opacity:1;
+		text-align:center; text-decoration:none; width:100%; min-width:100px; -webkit-transition:0.2s ease; transition:0.2s ease;
+	}
+	.fund-buttons ul li a:hover, .fund-buttons ul li a:focus {opacity:1; background:#c3002f; color:#fff;text-decoration:none;}
+
+	@media only screen and (min-width:480px) {
+		.learn-how-to-fund ul {-webkit-column-count:2;-moz-column-count:2;column-count:2; -webkit-column-gap: 40px; -moz-column-gap: 40px; column-gap: 40px;}
+			.learn-how-to-fund ul li {
+                -webkit-column-break-inside: avoid;
+                page-break-inside: avoid;
+                -moz-column-break-inside: avoid;
+                     break-inside: avoid;
+			}
+	}
+
+	#real-estate-page #stl-fund-it-container, #bank-or-brokerage-accounts-page #stl-fund-it-container, #cash-page #stl-fund-it-container, #commercial-annuities-page #stl-fund-it-container, #life-insurance-page #stl-fund-it-container, #tangible-personal-property-page #stl-fund-it-container, #retirement-plan-assets-page #stl-fund-it-container, #appreciated-securities-page #stl-fund-it-container, #closely-held-stock-page #stl-fund-it-container, #personal-estate-planning-kit-page #stl-fund-it-container, #personal-estate-planning-kit-download-page #stl-fund-it-container, #for-professional-advisors-page #stl-fund-it-container, #ira-charitable-rollover-page #stl-fund-it-container {display:none;}
+
+/*  Gift Illustrator
+  -------------------------------------------------------*/
+	#stl-gift-illustrator-container {border-bottom:3px solid #c3002f;padding:25px; margin:0 0 40px; text-align:center;}
+	.GIfeature {max-width:960px; margin:0 auto;}
+	.interior-two-col .GIfeature {text-align:center;}
+	.GIfeature p + p {margin:0;}
+
+	#charitable-gift-annuities-page #stl-gift-illustrator-container, #charitable-remainder-trusts-page #stl-gift-illustrator-container, #charitable-lead-trusts-page #stl-gift-illustrator-container, #cash-page #stl-gift-illustrator-container, #appreciated-securities-page #stl-gift-illustrator-container {display:block;}
+
+/*  eBrochure pullouts
+  -------------------------------------------------------*/
+    /* hide ebrochure pullouts on pages that don't have ebrochures */
+	#memorials-and-tribute-gifts-page .ebro,
+	#cash-page .ebro,
+	#commercial-annuities-page .ebro,
+	#tangible-personal-property-page .ebro,
+	#securities-page .ebro, #appreciated-securities-page .ebro,
+	#for-professional-advisors-page .ebro,
+	#personal-estate-planning-kit-page .ebro,
+    #personal-estate-planning-kit-download-page .ebro,
+	#bank-or-brokerage-accounts-page .ebro,
+	#closely-held-stock-page .ebro,
+	#ira-charitable-rollover-page .ebro {display:none;}
+
+	#ebrochure-pullout-container {border-bottom:3px solid #c3002f;padding:25px ; margin:0 0 40px; text-align:center;}
+	#ebrochure-pullout-container h2 { margin:0 0 10px;}
+	#ebrochure-pullout-container p {margin:0 auto 20px; max-width:600px;}
+
+	/* DCGA */
+	#dcga-container {margin-top:20px; margin-bottom:20px;}
+	#dcga-container p { margin:0; }
+
+/*  PEPK
+  -------------------------------------------------------*/
+    .stl-pepk-promo-container {border-bottom:3px solid #c3002f;padding:25px; margin:90px 0 40px; text-align:center;}
+    .stl-pepk-promo-container.stl-pepc-promo {display:block;}
+    .stl-pepk-promo-container .container {padding:0; max-width:990px;}
+    .stl-pepk-promo-container img {margin-top:-100px; max-width:187px;}
+
+    /* Main column styling */
+    .stl-pepk-promo-container.main-column {text-align:left; margin-top:0;}
+    .stl-pepk-promo-container.main-column img {margin-top:0;}
+    .stl-pepk-promo-container.main-column h2 {margin-top:10px;}
+
+    .stl-pepk-promo-container.main-column, #beneficiary-designations-page.interior-two-col .stl-pepk-promo-container.main-column, #for-professional-advisors-page .stl-pepk-promo-container {display:none;}
+    /* For balance, display the pepc promo in the main column on pages where the right sidebar would be too long */
+    #wills-and-living-trusts-page .stl-pepk-promo-container, #memorials-and-tribute-gifts-page .stl-pepk-promo-container, #endowed-gifts-page .stl-pepk-promo-container, #donor-advised-funds-page .stl-pepk-promo-container, #commercial-annuities-page .stl-pepk-promo-container, #life-insurance-page .stl-pepk-promo-container, #retirement-plan-assets-page .stl-pepk-promo-container, #closely-held-stock-page .stl-pepk-promo-container, #personal-estate-planning-kit-page .stl-pepk-promo-container, #personal-estate-planning-kit-download-page .stl-pepk-promo-container {display:none;}
+    #wills-and-living-trusts-page .stl-pepk-promo-container.main-column, #memorials-and-tribute-gifts-page .stl-pepk-promo-container.main-column, #endowed-gifts-page .stl-pepk-promo-container.main-column, #donor-advised-funds-page .stl-pepk-promo-container.main-column, #commercial-annuities-page .stl-pepk-promo-container.main-column, #life-insurance-page .stl-pepk-promo-container.main-column, #retirement-plan-assets-page .stl-pepk-promo-container.main-column, #closely-held-stock-page .stl-pepk-promo-container.main-column {display:block;}
+
+    @media screen and (min-width:768px) {
+        .stl-pepk-promo-container.main-column img {margin-top:0; margin-right:20px; float:left;}
+    }
+
+/*  Next Steps
+  -------------------------------------------------------*/
+    /* hide next steps on pages that don't have it */
+	#for-professional-advisors-page .next-steps,
+	#personal-estate-planning-kit-page .next-steps,
+    #personal-estate-planning-kit-download-page .next-steps {display:none;}
+
+	.next-steps {background:#f5f5f5; padding:25px; margin:0 0 40px; text-align:left;}
+	.interior-one-col .next-steps {text-align:center;}
+	.interior-one-col .wide-container .next-steps {margin:0;}
+	.next-steps h2 {text-align:center;}
+	.next-steps ol { margin:0 0 20px 20px; padding:0;}
+    .next-steps ol li {margin-bottom:1rem;}
+	.interior-one-col .next-steps ol {max-width:960px; margin:0 auto 20px; text-align:left;}
+	.interior-one-col .next-steps p {max-width:960px; margin:0 auto 20px; text-align:left;}
+
+	@media screen and (max-width:768px) {
+		.interior-two-col .next-steps {-webkit-box-ordinal-group: 3;order: 2;}
+	}
+
+/*  Accordions / Toggles
+-------------------------------------------------------*/
+    .reg-toggle-container {margin-bottom:1rem;}
+    .reg-toggle-box {background:transparent;border:1px solid #e2e2e2;color:#696969;font-weight:500; padding:1rem 1rem 1rem 4rem; cursor:pointer; position:relative;}
+    .reg-toggle-box:before {
+        float: left;
+        content: '+';
+        font-weight:100;font-size:2.6rem;
+        position: absolute;
+        margin: 0;
+        left: 10px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+    }
+    .reg-toggle-box .toggle-span {display:none;}
+        .reg-content {display:none; padding:10px 25px 0;}
+            #stl-cms .reg-content .stlButton {width:auto;}
+
+    /* 	toggle heading Hover/Active  */
+    .reg-toggle-box:hover, .reg-toggle-box:focus,
+    .reg-toggle-box.stl-is-active {
+        background:#c3002f;color:#fff;
+    }
+    /* Icon Hover	*/
+    .reg-toggle-box:hover:before, .reg-toggle-box:focus:before {
+        color:#fff;
+    }
+    /* Icon Active */
+    .reg-toggle-box.stl-is-active:before {
+        color:#fff;
+        content: 'â';
+    }
+
+/*  Popup Forms
+  -------------------------------------------------------*/
+    #brochureform fieldset {padding: 0; margin: 0; border: none;} /* Hide the default fieldset styles so forms aren't affected */
+    #PEPCForm fieldset {padding: 0; margin: 0; border: none;} /* Hide the default fieldset styles so forms aren't affected */
+    #DCGAbrochureform fieldset {padding: 0; margin: 0; border: none;} /* Hide the default fieldset styles so forms aren't affected */
+
+    /* Popup ReCaptcha on Mobile */
+    @media screen and (max-width:360px) {
+        #ebroReCaptcha, #pepcReCaptcha, #dcgaReCaptcha {-webkit-transform:scale(0.88); transform:scale(0.88); -webkit-transform-origin:0 0; transform-origin:0 0; max-width:270px;}
+    }
+
+	div.mfp-content {font-family:inherit; border-width:4px; border-style:solid; border-radius:0; background:#fff; padding:0; margin:0;}
+	#brochureform, #DCGAbrochureform, #PEPCForm {margin: 0; padding: 20px 25px 15px 25px; border-radius:0; background:#fff;}
+	#brochureform p, #DCGAbrochureform p, #PEPCForm p {margin:0 0 10px;}
+	#brochureform p:first-of-type, #DCGAbrochureform p:first-of-type, #PEPCForm p:first-of-type {margin: 15px 0 10px !important;}
+	div.mfp-content .mfp-close {top:15px; right:15px;}
+    #brochureform .stlButton, #DCGAbrochureform .stlButton, #PEPCForm .stlButton {margin-top:10px !important;}
+
+	.mfp-bg {width:100%;}
+	.mfp-wrap {position:fixed !important; top:0 !important; height:100% !important;}
+	.mfp-content input {font-family:inherit; font-size:inherit; color:inherit; padding:4px; width:100%; display:block;}
+	.mfp-content .stlButton {margin:0 !important; opacity:1; cursor:pointer;}
+	.mfp-content .stlButton:hover, .mfp-content .stlButton:focus {opacity:1;}
+
+	/* Getting Started and Gift Illustrator popup styling */
+	.getting-started-popup div.mfp-content .mfp-close, div.mfp-content .mfp-iframe-scaler .mfp-close {top:-15px; right:-15px;}
+	.getting-started-popup div.mfp-content .mfp-close:hover, .getting-started-popup div.mfp-content .mfp-close:focus, div.mfp-content .mfp-iframe-scaler .mfp-close:hover, div.mfp-content .mfp-iframe-scaler .mfp-close:focus {opacity:1;}
+	.gift-illustrator-popup .mfp-iframe-scaler {height:100%; width:100%; top:0; left:0; background:#fff !important; overflow:hidden; padding:0;}
+	.gift-illustrator-popup iframe {background:#fff !important; position:absolute; top:0; bottom:0; left:0; right:0; overflow:auto; -webkit-overflow-scrolling:touch;}
+	.mfp-container {display: -webkit-box;display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center;}
+	.getting-started-popup .mfp-container, .gift-illustrator-popup .mfp-container {padding: 0;}
+	.getting-started-popup .mfp-content {width:90%; max-width: 700px; height:calc(100vh - 35px); max-height:500px; border-width: 8px; border-radius: 5px; margin:0; overflow:visible;}
+	.gift-illustrator-popup .mfp-content {width:95%; max-width: 990px; height: 620px; max-height:calc(100vh - 35px); border-width: 8px; border-radius: 5px; margin:0; overflow:visible;}
+
+	@media only screen and (max-width:767px) {
+		div.mfp-content {margin:20px auto;}
+		#brochureform, #DCGAbrochureform, #PEPCForm {padding: 20px 15px 15px 15px;}
+	}
+
+	@media only screen and (min-width:768px) {
+		.getting-started-popup .mfp-content {height:400px;}
+	}
+
+/*  Definition Flyovers
+  -------------------------------------------------------*/
+	.flyover-link {cursor:pointer;}
+	.flyover-link:after {display:inline-block; position:relative; top:-2px; margin-left:3px; text-decoration:none; content:'\f24d'; font-family:FontAwesome; font-size:80%; -webkit-transform:rotate(-90deg); transform:rotate(-90deg);}
+	.mfp-flyover .mfp-content > span {display: block; padding: 15px 20px 10px;}
+	.mfp-flyover div.mfp-content .mfp-close {top:0; right:0;}
+	.mfp-flyover div.mfp-content .mfp-close:hover, .mfp-flyover div.mfp-content .mfp-close:focus {opacity:0.8;}
+	.mfp-flyover .mfp-content {opacity: 0; -webkit-transform: scale(0.8); transform: scale(0.8); -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
+	.mfp-flyover.mfp-ready .mfp-content {opacity: 1; -webkit-transform: scale(1); transform: scale(1);}
+
+/*  Contact Us Page and Forms
+  -------------------------------------------------------*/
+	.stl_ContactInfo {margin:20px 0;}
+	.stl_ContactInfo span {}
+    .contact-page .stl_ContactInfo:nth-of-type(1) .stl_ContactName {display:inline;}
+    .stl_ContactPhoto {display:block;}
+		.stl_ContactName {font-weight:600;}
+		.stl_ContactTitle {font-style:italic;}
+
+		/* form */
+		#stl-contact-form input[type="text"], #stl-contact-form input[type="email"], #stl-contact-form textarea,
+        #gift-intention-form input[type="text"], #gift-intention-form input[type="email"], #gift-intention-form textarea,
+        #stl-cms form input[type="text"], #stl-cms form input[type="email"], #stl-cms form textarea {font:inherit; border:1px solid #999; padding:8px; width:100%;}
+		.contact-page #stl-cms .stlButton {}
+		#contactReCaptcha, .contact-page #reCaptcha, #gift-intention-captcha, #standard-form-captcha, #ebroReCaptcha, #dcgaReCaptcha, #reengage-captcha {margin:2.5rem 0 1rem;}
+        #stl-contact-form label, #gift-intention-form label, #stl-cms form label {display:block; margin-bottom:5px;}
+        #gift-intention-form .textbox-group {margin-bottom:20px;}
+        #reengagement-response-form > fieldset > p > label {margin-bottom: -20px;}
+
+		@media only screen and (min-width:768px) {
+            #stl-cms form input[type="text"], #stl-cms form input[type="email"], #stl-cms form textarea {width:100%;}
+			/*form#stl-contact-form input[type="text"], form#stl-contact-form input[type="email"], form#stl-contact-form textarea,
+            form#gift-intention-form input[type="text"], form#gift-intention-form input[type="email"], form#gift-intention-form textarea {width:50%;}*/
+            #stl-cms #stl-pepc-form-container form input[type="text"], #stl-cms #stl-pepc-form-container form input[type="email"], #stl-cms #stl-pepc-form-container form textarea {width:100%;}
+            form#stl-contact-form, form#gift-intention-form, form#reengagement-response-form {width:50%;}
+		}
+
+    fieldset {padding:0; border:0;}
+
+/*  Global Gift Intention Form
+  -------------------------------------------------------*/
+    .gift-intention-form-container #gift-intention-form fieldset {border:none;margin:20px 0;padding:0;}
+    .gift-intention-form-container #gift-intention-form input[type=checkbox] {-webkit-appearance:checkbox;margin-right:10px;}
+    .gift-intention-form-container #gift-intention-form .checkbox {display: -webkit-box;display: flex;margin-bottom: 0;}
+    .gift-intention-form-container #gift-intention-form legend {font-weight:600;}
+    .gift-intention-form-container #gift-intention-form .inline-input {display:-webkit-box;display:flex;}
+    .gift-intention-form-container #gift-intention-form .inline-input input[type=text] {margin-left:5px;}
+
+/*  Articles
+  -------------------------------------------------------*/
+	.article-page .main-copy {}
+	.article-page .main-copy p:last-of-type {}
+	#for-professional-advisors-page #stl-cms .stl-copyright, .contact-page #stl-cms .stl-copyright, #personal-estate-planning-kit-page #stl-cms .stl-copyright, .article-page #stl-cms .stl-copyright {margin-top: 30px;}
+
+    /* Article Callouts */
+    #stl-callout-container {margin-bottom:40px;}
+    .stl_CalloutList, .stl_CalloutTitle {display:none;}
+    #stl-callout-container .stl_CalloutList, #stl-callout-container .stl_CalloutTitle {display:block;}
+    .stl_Callout {border:1px solid #ddd; border-radius:5px; padding:20px; margin-bottom:20px; display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column;}
+    .stl_CalloutTitle {margin-top:0;}
+    #stl-callout-container .stl_CalloutAbstract {margin-bottom:auto;}
+    #stl-callout-container .stl_Callout img {margin-top:auto;}
+
+    @media screen and (min-width:768px) {
+        #stl-callout-container .stl_CalloutList {display:-webkit-box;display:flex; -webkit-box-pack:justify; justify-content:space-between;}
+        #stl-callout-container .stl_Callout {-webkit-box-flex:1;flex:1 1 0; margin:1%;}
+    }
+
+    /* Article Callouts - Donor Story Listing Page */
+    #donor-listing-page .stl_CalloutList {display:block;}
+    #donor-listing-page .stl_Callout {display:block; width:auto; margin-bottom:20px; padding-left:0; border:none;}
+    #donor-listing-page .stl_CalloutImage {float:left; margin-right:20px;}
+    #donor-listing-page #stl-callout-container .stl_Callout img {width:150px;}
+
+    /* Meet our Donors styling */
+    .meet-our-donors-teaser {margin-bottom:2.5rem; display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-pack:justify; justify-content:space-between;}
+	.meet-our-donors-thumb {width:150px; min-width:150px; height:150px;}
+    .meet-our-donors-thumb a {height:100%; overflow:hidden; display:-webkit-box; display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:start; align-items:flex-start;}
+    .meet-our-donors-text {-webkit-box-flex:1;flex-grow:1; width:calc(100% - 150px;)}
+    @media screen and (min-width:768px) {
+        .meet-our-donors-teaser {-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;}
+        .meet-our-donors-thumb {margin-right:2.5rem;}
+    }
+
+    /* Lightbox styles for photos - override other magnific styles used elsewhere on the site */
+    .image-popup-vertical-fit:hover {cursor:-webkit-zoom-in;cursor:zoom-in;}
+    .image-popup-vertical-fit:hover img {opacity:.9;}
+    .mfp-img-mobile .mfp-image-holder .mfp-content {background:none; border:none; box-shadow:none;}
+    .mfp-img-mobile div.mfp-content .mfp-close {right:-6px; background:none; opacity:.65; color:#fff;}
+    .mfp-img-mobile .mfp-title {padding-right:0; word-wrap: normal;}
+
+    /* Article Listing (teasers) */
+    .stl-article-listing:empty {display:none;}
+    .stl-teaser {margin-bottom:2.5rem; display:-webkit-box; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-pack:justify; justify-content:space-between;}
+    .stl-teaser-thumb {width:150px; min-width:150px; height:150px;}
+    .stl-teaser-thumb a {height:100%; overflow:hidden; display:-webkit-box; display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:start; align-items:flex-start;}
+    .stl-teaser-text {-webkit-box-flex:1;flex-grow:1; width:calc(100% - 150px;)}
+
+    @media screen and (min-width:768px) {
+        .stl-teaser {-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;}
+        .stl-teaser-thumb {margin-right:2.5rem;}
+    }
+
+/*  PEPC Page
+  -------------------------------------------------------*/
+    #personal-estate-planning-kit-page #stl-pepk-promo-container.stl-pepc-promo {display:none;}
+    #personal-estate-planning-kit-page .main-copy {margin-bottom:0;}
+    #stl-pepc-form-container {background:#eee; margin-bottom:0; padding:20px 0; text-align:center; position:relative;}
+    #stl-pepc-form-container:before {display:block; content:''; background:#eee; width:1000%; height:100%; position:absolute; top:0; left:-500%; z-index:-1;}
+    #stl-pepc-form-container form {margin-bottom:0;}
+    #stl-pepc-form-container fieldset {text-align:left;}
+    #stl-pepc-form-container img {margin:auto; max-width:207px;}
+
+    #stl-pepc-content-block-container {padding:25px 0;}
+    #stl-pepc-content-block-container .content-row {display:-webkit-box;display:flex; flex-wrap:wrap; margin-left:-15px; margin-right:-15px;}
+    #stl-pepc-content-block-container .content-section {padding:30px; width:100%;}
+    #stl-pepc-content-block-container .btn-visible-after-submit {margin-left:0; float:none !important;}
+
+    @media only screen and (min-width:768px) {
+        #stl-pepc-form-container {margin-top:50px;}
+        #stl-pepc-form-container form {display:-webkit-box;display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:center; align-items:center;}
+        #stl-pepc-form-container img {max-width:207px; margin-top:-50px; margin-right:25px;}
+        #stl-pepc-form-container form img {margin-top:0; max-width:50%;}
+        #stl-pepc-form-container img, #stl-pepc-form-container fieldset {-webkit-box-flex:1;flex-grow:1; flex-basis:0;}
+
+        #stl-pepc-content-block-container .content-section {-webkit-box-flex:0;flex:0 0 50%; max-width:50%; display:-webkit-box; display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:reverse; flex-direction:row-reverse; -webkit-box-align:start; align-items:flex-start; -webkit-box-pack:end; justify-content:flex-end;}
+        #stl-pepc-content-block-container .content-section + .content-section {border-left:1px solid;}
+    }
+    @media only screen and (min-width:769px) {
+        #personal-estate-planning-kit-page.article-two-col .interior-container:first-of-type {margin-right:0;}
+    }
+
+    /* Two column - remove if one column */
+    @media screen and (min-width:992px) {
+        #personal-estate-planning-kit-page.article-two-col #stl-cms #stl-container {max-width:990px; margin-left:auto; margin-right:auto;}
+        #personal-estate-planning-kit-page.article-two-col p.intro-copy {max-width:580px;}
+
+        .article-two-col #stl-pepc-content-block-container .content-row {display:block; margin-left:0; margin-right:0;}
+        .article-two-col #stl-pepc-content-block-container .content-section {padding:0;}
+        .article-two-col #stl-pepc-content-block-container .content-section + .content-section {border:none;}
+
+        .article-two-col #stl-pepc-form-container {float:right; width:340px; padding:20px; margin-top:-75px;}
+        .article-two-col #stl-pepc-form-container:before {display:none; content:'';}
+        .article-two-col #stl-pepc-form-container form {display:block; text-align:center;}
+        .article-two-col #stl-pepc-form-container form img {max-width:207px; margin:-100px auto 15px auto;}
+        .article-two-col #stl-pepc-form-container fieldset {text-align:center;}
+        .article-two-col #stl-pepc-form-container fieldset label, .article-two-col #stl-pepc-form-container fieldset input {text-align:left;}
+    }
+
+/*  PEPC Download Page
+  -------------------------------------------------------*/
+    #stl-pepc-download-content-block-container .content-section {margin-bottom:30px;}
+    @media only screen and (min-width:768px) {
+        #stl-pepc-download-content-block-container .content-row {display:-webkit-box;display:flex;}
+        #stl-pepc-download-content-block-container .content-section {-webkit-box-flex:0;flex:0 0 50%; max-width:50%;}
+    }
+
+/*  Planning Toolkit Page
+  -------------------------------------------------------*/
+    #stl-planning-toolkit-form-container .intro-copy {margin-bottom:30px;}
+    #stl-planning-toolkit-form-container form {margin:0;}
+    #stl-planning-toolkit-form-container .user-form {background:#f5f5f5; padding:20px;}
+    #stl-cms form input[type="checkbox"] {float:left; margin:3px 10px 15px 0; font-size:1.6rem;}
+    #stl-cms form .stl-checkbox {/*display:flex; align-items:flex-start;*/ margin-bottom:20px;}
+    #stl-cms form .stl-checkbox .large {font-size:1.8rem; font-weight:600; line-height:1;}
+    #stl-cms form .stl-checkbox .small {display:block; margin-top:10px; margin-left:25px; margin-bottom:35px;}
+
+    /* After user submits form, display links to view all resources */
+    #stl-cms form .btn-visible-after-submit {display:none; float:left; margin-right:20px;}
+    #stl-cms form.after-submit .btn-visible-after-submit {display:inline-block;}
+    #planning-toolkit-form.after-submit .stl-checkbox .small {margin-left:120px; margin-bottom:25px;}
+
+    @media screen and (min-width:768px) {
+        #stl-planning-toolkit-form-container .user-form {float:right; margin-left:30px; z-index:1; position:relative;}
+    }
+    @media screen and (min-width:992px) {
+        #stl-planning-toolkit-form-container .user-form {width:516px; }
+    }
+    @media screen and (max-width:767px) {
+        #stl-planning-toolkit-form-container form, #stl-planning-toolkit-form-container form .hidden-after-submit {display:-webkit-box;display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column;}
+        #stl-planning-toolkit-form-container .user-form {-webkit-box-ordinal-group:3;order:2;}
+    }
+
+    /* Hide form elements during loading */
+    #stl-cms form.stl-custom-form.loading * {
+        display: none;
+    }
+    /* Display loading animation during loading */
+    #stl-cms form.stl-custom-form.loading .lds-ring, #stl-cms form.stl-custom-form.loading .lds-ring * {display:-webkit-box;display:flex;}
+    #stl-cms form.stl-custom-form.loading .lds-ring * {display:block;}
+
+    /* loader */
+    .lds-ring {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+        display:-webkit-box;
+        display:flex; -webkit-box-pack:center; justify-content:center; width:100%; margin-top:50px; margin-bottom:50px;
+        display:none;
+    }
+    .lds-ring div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 51px;
+      height: 51px;
+      margin: 6px;
+      border: 6px solid #07c;
+      border-radius: 50%;
+      -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+              animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #07c transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+      -webkit-animation-delay: -0.45s;
+              animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+      -webkit-animation-delay: -0.3s;
+              animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+      -webkit-animation-delay: -0.15s;
+              animation-delay: -0.15s;
+    }
+    @-webkit-keyframes lds-ring {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+      }
+    }
+    @keyframes lds-ring {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+      }
+    }
+
+/*  Planning Toolkit Download Page
+  -------------------------------------------------------*/
+    #stl-planning-toolkit-resources-container {margin-top:0; padding-top:0 !important;}
+    #stl-planning-toolkit-resources-container h2 {margin-top:3rem;}
+    #stl-planning-toolkit-resources-container .content-section {margin-bottom:3rem; border:1px solid #ccc; border-radius:8px; padding:2rem 2rem 1rem 2rem;}
+    #stl-planning-toolkit-resources-container .view-options {margin-top:3rem;}
+    #stl-planning-toolkit-resources-container .content-section p + .stlButton {margin-top:2rem; margin-bottom:1rem;}
+    #stl-planning-toolkit-resources-container .content-section .stlButton {margin-right:2rem;}
+
+    @media only screen and (min-width:768px) {
+        #stl-planning-toolkit-resources-container .content-row {display:-webkit-box;display:flex; margin:0 -20px;}
+        #stl-planning-toolkit-resources-container .content-section {display:-webkit-box;display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; flex-direction:column; -webkit-box-flex:1; flex:1 1 30%; max-width:49%; /*flex-grow:1;*/ padding:2rem 2rem 1rem 2rem;}
+        #stl-planning-toolkit-resources-container .content-section:not(:last-child) {margin-left:0; margin-right:2%;}
+        #stl-planning-toolkit-resources-container .content-section > p:last-of-type {margin-bottom:2rem;}
+        #stl-planning-toolkit-resources-container .content-section p + .stlButton {margin-top:auto; width:100%;}
+        #stl-planning-toolkit-resources-container .content-section .stlButton {-webkit-box-align:start;align-items:flex-start; white-space:nowrap; margin-right:0; margin-bottom:1rem;}
+        #stl-planning-toolkit-resources-container .content-section > * {width:100%;}
+        #stl-planning-toolkit-resources-container .content-section.hide {display:none !important;}
+    }
+
+/*  Global Announcement
+  -------------------------------------------------------*/
+    .stl-announcement div.mfp-content {max-width:720px;}
+    #stl-announcement {padding:50px 30px 30px 30px; text-align:center;}
+    #stl-announcement .btn-row {display:-webkit-box;display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:reverse; flex-direction:row-reverse; -webkit-box-pack:justify; justify-content:space-between; margin-top:40px;}
+    #stl-announcement .btn-row .stlButton {width:calc(50% - 20px) !important; display:-webkit-box; display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:center; align-items:center;}
+    .mfp-content #stl-announcement .mfp-close.stlButton {position:relative; top:0; right:auto; height:auto; font:inherit; font-weight:600; border:1px solid #07c; color:inherit; background:none;}
+    .mfp-content #stl-announcement #announcement-nothanks {background:#ccc; color:inherit;}
+
+/*  Standard Forms (includes ebrochure form)
+  -------------------------------------------------------*/
+    #stl-cms form.stl-custom-form {border-radius:5px;}
+
+    /* Same page form submission confirmation text */
+    #stl-cms form.stl-custom-form .spinner {display:none;}
+    #stl-cms form.stl-custom-form .hidden-after-submit {-webkit-transition:.5s all ease;transition:.5s all ease;}
+    #stl-cms form.stl-custom-form .visible-after-submit {height:0; opacity:0; -webkit-transition:.5s opacity ease, .5s height ease; transition:.5s opacity ease, .5s height ease; /*background:#ddd;*/}
+    #stl-cms form.stl-custom-form.loading .spinner {display:block;}
+    #stl-cms form.stl-custom-form.after-submit .hidden-after-submit {height:0; width:0; opacity:0; display:none;}
+    #stl-cms form.stl-custom-form.after-submit .visible-after-submit {display:block; height:auto; width:auto; opacity:1; padding:20px;}
+
+    .stl-input-field {position:relative; margin-bottom:1.25rem;}
+
+    /* Label */
+    .stl-input-field label {top:0; left:0; -webkit-transition:-webkit-transform .2s ease-out; transition:-webkit-transform .2s ease-out; transition:transform .2s ease-out; transition:transform .2s ease-out, -webkit-transform .2s ease-out; display:block; margin-bottom:5px;}
+    .stl-input-field.active label {}
+
+    /* Input */
+    .stl-input-field input, .stl-input-field textarea, .mfp-content .stl-input-field input {font:inherit; border-radius:5px; padding:8px; border:1px solid #999;}
+    .stl-input-field input[type="text"] {}
+    #stl-cms .stl-input-field.invalid input, #stl-cms .stl-input-field.invalid textarea, .mfp-content .stl-input-field.invalid input, .mfp-content .stl-input-field.invalid textarea {border-color:#d9534f;}
+    #stl-cms .stl-input-field.valid input, #stl-cms .stl-input-field.valid textarea, .mfp-content .stl-input-field.valid input, .mfp-content .stl-input-field.valid textarea {border-color:#5cb85c;}
+
+    /* Validation */
+    .stl-input-field .validation:after {content:""; font-family:'FontAwesome'; position:absolute; /*top:38px;*/ top:53%; left:calc(100% - 25px); display:none;}
+    .stl-input-field.valid .validation:after {content:"\f00c"; display:block; color:#5cb85c;}
+    .stl-input-field.invalid .validation:after {content:"\f00d"; display:block; color:#d9534f;}
+
+    /* text */
+    .stl-input-field .text {font-size:1.3rem; margin-top:.1em; display:block; position:absolute; width:100%; text-align:right;}
+    #stl-cms form .required-text {font-size:1.3rem;}
+
+    /* Helper text */
+    .stl-input-field .helper-text {display:block;}
+    .stl-input-field.invalid .helper-text {visibility:hidden; opacity:1;}
+
+    /* Validation text */
+    .stl-input-field .validation-text {visibility:hidden; opacity:0;}
+    .stl-input-field.invalid .validation-text {visibility:visible; opacity:1; color:#d9534f;}
+
+    /* Button */
+    #stl-cms form .stlButton[disabled] {opacity:.3;}
+    #stl-cms form.valid .stlButton {opacity:1;}
+
+    /* Submit text */
+    #stl-cms form .submit-text {opacity:0; color:#5cb85c; margin-left:10px; -webkit-transition:.2s all; transition:.2s all;}
+    #stl-cms form .submit-text.visible {opacity:.8;}
+
+/*  Question Widget
+  -------------------------------------------------------*/
+    #stl-question-widget {position:fixed; bottom:20px; right:20px; opacity:0; -webkit-transition:.5s all; transition:.5s all; border-radius:50px; width:52px; height:52px; max-width:52px; background:#ddd; color:#444; display:-webkit-box; display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:center; align-items:center; box-shadow: 0 0px 7px rgba(0,0,0,0.4); -webkit-transition:.2s all; transition:.2s all; z-index:5;}
+        #stl-question-widget .widget-toggle {display:-webkit-box;display:flex; -webkit-box-pack:center; justify-content:center; -webkit-box-align:center; align-items:center; border:0; padding:0; background:none; color:#444;}
+        #stl-question-widget .widget-toggle:hover {cursor:pointer;}
+        #stl-question-widget .fa-question {font-size:3.0rem; padding:0 15px;}
+        #stl-question-widget .button-text {width:0; max-width:0; opacity:0; white-space:nowrap; font-size:1.6rem;}
+
+        #stl-question-widget button.close {position:absolute; right:12px; font:inherit; color:#333; border:0;}
+        #stl-question-widget button.close:hover, #stl-question-widget button.close:focus {cursor:pointer; text-decoration:none;}
+        #stl-question-widget .stlButton {margin-top:.5em;}
+
+         #stl-question-widget-form {background:#fff; padding:20px; width:380px; top:calc(100% + 20px); bottom:0; right:-10px; border:1px solid #ccc; box-shadow: 8px 8px 6px -6px black; -webkit-transition:.5s all ease; transition:.5s all ease; position:absolute;}
+        #stl-cms #stl-question-widget-form input[type="text"], #stl-cms #stl-question-widget-form input[type="email"], #stl-cms #stl-question-widget-form textarea {width:100%;}
+
+    /* text appears on hover */
+    #stl-question-widget:hover, #stl-question-widget:focus {width:207px; max-width:9999px;}
+    #stl-question-widget:hover .button-text, #stl-question-widget:focus .button-text {width:auto; max-width:9999px; display:inline; padding-right:20px; opacity:1; -webkit-transition:.2s opacity; transition:.2s opacity; -webkit-transition-delay:.2s; transition-delay:.2s; -webkit-transition-property:opacity; transition-property:opacity;}
+
+    /* widget appears on scroll */
+    #stl-question-widget.visible {display:-webkit-box;display:flex; opacity:1;}
+
+    /* form appears on click */
+    #stl-question-widget.active #stl-question-widget-form {top:auto; bottom:0;}
+
+/*  Hide Empty Containers
+  -------------------------------------------------------*/
+	#stl-video-container:empty, #stl-fund-it-container:empty, #stl-gift-illustrator-container:empty, #stl-pepk-container:empty, .stl-page-subtitle:empty {display:none;}
+	#stl_case-study:empty {margin:0;} /* margin is set on the container, so have to adjust */
+
+/*************************************************************************************************************
+//////////////////////     Print Styles
+*************************************************************************************************************/
+    @page {margin: 2.54cm 1.27cm;} /* paper margins 1"x.5" */
+
+    @media print {
+        /* hide everything but body .sub-middle-section */
+        body * {visibility: hidden; height:0; text-align:left !important; text-transform: none !important; max-width:100% !important;}
+			#stl-cms {height:auto;}
+				#stl-container, #stl-container * {visibility: visible; height:auto; width:100% !important;}
+				#stl-container {position:absolute; left:0; top:0; display:block;}
+
+        /* Resets */
+        body {margin:0; padding:0;}
+        body, #stl-container *, #stl-container {
+            background:transparent !important;
+            color: black !important; text-shadow:none !important;
+            -webkit-filter:none !important;
+                    filter:none !important; -ms-filter: none !important;
+            border:none !important;
+            box-shadow:none !important;
+        }
+        /* Margins/ Padding Reset */
+		body .container {width:100%; max-width:100%; margin:0; padding:0;}
+        #stl-container > div:not(#stl-banner), #stl-home-features > div {margin-bottom:1.5em; padding:0 !important;}
+        #stl-fund-it-container, #stl-cms .stlButton, #stl-notification-btn.stlButton {margin:0; padding:0;}
+        #dcga-container, #stl-page-copy-container {margin:1.5rem 0 0 !important;}
+        .subpage #stl-cms .interior-container > div {margin:0; padding:0;}
+
+        /* Hide specific sections */
+        .stl-header, .stl-footer, video, audio, object, embed, #stl-gift-illustrator-container, #stl-breadcrumbs, #stl-video-btn, #stl-video-container, #stl-journey-container, .not-sure, #stl-getting-started-container, #stl-whats-new, #stl-container img, #stl-contact-callout-container, #stl-container .hide, #stl-container .visible-after-submit, #ebrochure-pullout-container, #stl-planning-toolkit-form-container .user-form, #planning-toolkit-page input, #stl-contact-form-container, #gift-intention-form, #stl-pepc-form-container {
+            display:none !important;
+            visibility: hidden !important;
+        }
+        /* Reset sections */
+        #stl-container, .pull-right, .learn-how-to-fund, #stl_case-study, #planning-toolkit-page #stl-cms form .stl-checkbox .small, #stl-pepc-content-block-container .content-section, #stl-pepc-content-block-container .content-row, #stl-pepc-content-block-container {
+			width:100% !important;
+			max-width: 100% !important;
+			margin:0 !important;
+			padding:0 !important;
+			top:0 !important;
+			float: none !important;
+			position: relative !important;
+        }
+        #stl-container span {display:inline;}
+
+        /* Typography */
+		body {color:#000; font:normal 12pt/1.5 Georgia, "Times New Roman", Times, serif !important; text-align:left;}
+		#stl-container p, #stl-container table, #stl-container form, blockquote {margin-bottom:1em !important;}
+
+        /* Headings */
+        #stl-container h1, #stl-container h1.stl-page-title, #stl-container h2, #stl-container h3 {
+        	color:#000 !important;
+        	font-family: Georgia, "Times New Roman", Times, serif !important;
+        	text-transform: initial !important;
+        	font-weight:normal !important;
+        	text-align:left !important;
+        	padding:0;
+        	page-break-after: avoid;
+        	orphans: 3;
+        	widows: 3;
+		}
+        #stl-container h1.stl-page-title {font-size: 24pt !important; margin:0 0 1.5rem !important;}
+        #stl-container h2 {font-size: 22pt; margin:1rem 0 1.25rem;}
+        #stl-container h3 {font-size: 18pt; margin:1rem 0 1.25rem;}
+
+        /* Lists */
+		#stl-container ul, #stl-container ol {margin:1.5rem 0 !important; padding-left: 2.45em; float:none; width:100%;}
+        #stl-container ul li {list-style:disc !important;}
+        #stl-container ol li {list-style-type:decimal !important;}
+			#stl-container li {display:list-item; padding:0;}
+			#stl-container li:before {content:none;}
+
+        /* Links */
+        body a {word-wrap:break-word;}
+        body a:after {content: " (" attr(href) ")"; font-size:80%; font-weight:normal; color:#ccc;}
+        body a[href^="#"], body a[rel^="#"], body a[href*="mailto"] {text-decoration:none !important;}
+        body a[href^="#"]:after, body a[rel^="#"]:after, body a[href*="mailto"]:after {display:none; content: none;}
+
+        /* Accordions */
+        #stl-container .reg-toggle-box {margin:0; padding:0; font-weight:600;}
+        	#stl-container .reg-toggle-box .toggle-span, #stl-container .reg-toggle-box:before, #stl-container .reg-toggle-box:after {display:none;}
+        #stl-container .reg-content {display:block; margin:0; padding:0;}
+    }
+
+/*************************************************************************************************************
+//////////////////////     Gift Exclusions
+*************************************************************************************************************/
+/* Appreciated Securities
+.ge-as {display:none !important; visibility:hidden !important;}*/
+
+/* Bargain Sale
+.ge-bs {display:none !important; visibility:hidden !important;} */
+
+/* Charitable Gift Annuities */
+.ge-cga {display:none !important; visibility:hidden !important;}
+
+/* Charitable Remainder Trust
+.ge-crt {display:none !important; visibility:hidden !important;}*/
+
+/* Charitable Lead Trust
+.ge-clt {display:none !important; visibility:hidden !important;}*/
+
+/* Charitable Remainder Unitrust
+.ge-crut {display:none !important; visibility:hidden !important;}*/
+
+/* Deferred Charitable Gift Annuities */
+.ge-dcga {display:none !important; visibility:hidden !important;}
+
+/* Donor Advised Funds */
+.ge-daf {display:none !important; visibility:hidden !important;}
+
+/* Endowed Gift
+.ge-endow {display:none !important; visibility:hidden !important;}*/
+
+/* life insurance
+.ge-li {display:none !important; visibility:hidden !important;}*/
+
+/* Memorial Gift
+.ge-mem {display:none !important; visibility:hidden !important;}*/
+
+/* Real Estate
+.ge-re {display:none !important; visibility:hidden !important;}*/
+
+/* Retained Life Estate
+.ge-rle {display:none !important; visibility:hidden !important;}*/
+
+/* securities
+.ge-sec {display:none !important; visibility:hidden !important;}*/
+
+/* tangible personal property
+.ge-tpp {display:none !important; visibility:hidden !important;}*/
+
+</style><meta http-equiv="origin-trial" content="Az520Inasey3TAyqLyojQa8MnmCALSEU29yQFW8dePZ7xQTvSt73pHazLFTK5f7SyLUJSo2uKLesEtEa9aUYcgMAAACPeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVUaGlyZFBhcnR5U3RvcmFnZVBhcnRpdGlvbmluZyIsImV4cGlyeSI6MTcyNTQwNzk5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
+	        <base >
+
+	    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta http-equiv="last-modified" content="Mon, 28 Feb 2022 10:28:38 PM">
+
+	    <title>Charitable Lead Trusts | Lake Highland Preparatory School</title>
+
+	                <meta name="description" content="A charitable lead trust is a great charitable giving option for those who want to give back to an organization they love and still provide for their loved ones.">
+                <meta name="keywords" content="">
+                            
+                
+                <meta name="twitter:card" content="summary">
+                <meta name="twitter:site" content="">
+                <meta name="twitter:title" content="A Gift That Gives Back">
+                <meta name="twitter:description" content="Making a donation with a charitable lead trust to Lake Highland Preparatory School not only benefits us, but your family, friends and loved ones too.">
+                <meta name="twitter:creator" content="">
+                <meta name="twitter:url" content="https://lhps.myplannedgift.org/charitable-lead-trusts">
+                <meta name="twitter:image" content="https://lhps.myplannedgift.org/documents/L/lake-highland-preparatory-school/r1/images/lhp-og.png">
+                <meta name="twitter:image:alt" content="Lake Highland Preparatory School">
+                
+                <meta property="og:title" content="A Gift That Gives Back">
+                <meta property="og:site_name" content="Lake Highland Preparatory School">
+                <meta property="og:url" content="https://lhps.myplannedgift.org/charitable-lead-trusts">
+                <meta property="og:description" content="Making a donation with a charitable lead trust to Lake Highland Preparatory School not only benefits us, but your family, friends and loved ones too.">
+                <meta property="og:type" content="website">
+                <meta property="og:locale" content="en_US">
+                <meta property="og:image" content="https://lhps.myplannedgift.org/documents/L/lake-highland-preparatory-school/r1/images/lhp-og.png">
+                <meta property="og:image:alt" content="Lake Highland Preparatory School">
+                
+                
+                    
+                    
+                    
+
+	
+
+    
+	
+
+	        
+ 
+	    
+            
+            
+            
+
+	
+            
+
+</head>
+<body class="interior-page interior-two-col subpage" id="charitable-lead-trusts-page">
+<a id="skip-link" class="visuallyhidden focusable" >Skip to main content</a>
+<div id="stl-cms">
+	<header class="stl-header"><div class="container">
+			<a  class="client-logo">
+				<img src="rick.jpg" alt="Lake Highland Preparatory School">
+			</a>
+			<button id="nav-toggle" type="button" aria-pressed="false" aria-label="Toggle Navigation" aria-expanded="false"><span class="stl-menu-text">Menu</span></button>
+			    <div class="navigation section-nav " style="" id="stl-nav" aria-labelledby="nav-toggle">
+	    <ul id="rightnav" class="rtnav stl-nav" role="menubar">
+                    <li class="sectionhome currentPage" role="none">
+					    
+                            <a class="stlHomelink"  role="menuitem">Planned Giving Home</a>
+                        
+				    </li>
+                            <li class="onTrail currentPage" role="none">
+                                    <a role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">Easy Gifts</a>
+
+                                <ul role="menu" aria-label="EASY GIFTS">
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Wills and Living Trusts</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Beneficiary Designations</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Give From Your IRA</a></li>
+                                </ul>
+                            </li>
+                            <li class="onTrail currentPage" role="none">
+                                    <a role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">Income Gifts</a>
+
+                                <ul role="menu" aria-label="INCOME GIFTS">
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Charitable Remainder Trusts</a></li>
+                                </ul>
+                            </li>
+                            <li class="onTrail currentPage" role="none">
+                                    <a role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">More Ways to Give</a>
+
+                                <ul role="menu" aria-label="MORE WAYS TO GIVE">
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Memorials and Tribute Gifts</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Real Estate</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Endowed Gifts</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Charitable Lead Trusts</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Appreciated Securities</a></li>
+                                </ul>
+                            </li>
+                            <li class="onTrail currentPage" role="none">
+                                    <a role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">Resources &amp; More</a>
+
+                                <ul role="menu" aria-label="RESOURCES &amp; MORE">
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Gift Illustrator</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Your Planning Library</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Bequest Language</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Planning Toolkit</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">The Lake Highland Legacy Society</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">Supporters Like You</a></li>
+                                            <li role="none"><a  role="menuitem" tabindex="-1">For Professional Advisors</a></li>
+                                </ul>
+                            </li>
+                    <li role="none">
+                        <a  role="menuitem">Contact Us</a>
+                    </li>
+        </ul><div class="social-mobile">
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:facebook&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:facebook&quot;})"><i class="fa fa-facebook" aria-hidden="true"></i><span class="visuallyhidden">Facebook</span></a>
+                    
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:twitter&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:twitter&quot;})"><i class="fa fa-twitter" aria-hidden="true"></i><span class="visuallyhidden">Twitter</span></a>
+                    
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:youtube&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:youtube&quot;})"><i class="fa fa-youtube" aria-hidden="true"></i><span class="visuallyhidden">YouTube</span></a>
+                    
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:instagram&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:instagram&quot;})"><i class="fa fa-instagram" aria-hidden="true"></i><span class="visuallyhidden">Instagram</span></a>
+                </div>
+    </div>
+
+		</div></header>
+
+	<main role="main" id="stl-container" class="wide-container sub-middle-section">
+		<div id="stl-breadcrumbs">            <ol class="breadcrumb">
+                            <li><a >Planned Giving</a></li>
+                            <li class="current">Charitable Lead Trust</li>
+
+            </ol>
+</div>
+
+        <header>
+            <h1 class="stl-page-title">Charitable Lead Trust</h1>
+            <p class="stl-page-subtitle">Protect Your Assets</p>
+        </header>
+
+		<div class="interior-container">
+			<div id="stl-page-copy-container" class="main-copy stl-clearfix">	
+				<p>If you want to make an impact now at Lake Highland Preparatory School and also provide for your family later, consider setting up a charitable lead trust. You transfer cash or other assets to a trust that makes payments to Lake Highland Preparatory School for a period of time. When the term is up, the remaining trust passes to your family or other beneficiaries you select.</p>
+<p>There are two ways that charitable lead trusts make payments to LHP:</p>
+<p>A <strong>charitable lead annuity trust</strong> pays a <em>fixed</em> amount each year to LHP and is more attractive when interest rates are low.</p>
+<p>A <strong>charitable lead unitrust</strong> pays a <em>variable</em> amount each year to LHP based on the value of the assets in the trust. With a unitrust, if the trust's assets go up in value, for example, the payments to LHP go up as well.</p>
+
+				<div id="stl-video-btn">
+				    <a  class="stlButton popup-with-form fancybox-form">Watch to Learn More <i class="fa fa-play-circle"></i></a>
+				</div>
+				<div id="stl-video-container" class="mfp-hide stl-clearfix">
+                        <div class="see-how-it-works">
+
+    </div>
+
+                </div>
+			</div>
+			
+			<div id="stl-case-study-container" class="case-study stl-clearfix">
+				
+				<img alt="Extended family smiling" class="stl-photo-left" height="372" src="rick.jpg" width="600"><div id="stl-case-study"><h2>An Example of How It Works</h2>            
+<p> George would like to support LHP and receive tax benefits. George received a windfall amount of income and needs a large income tax deduction to offset the income. Following his advisor’s recommendation, George funds a grantor charitable lead annuity trust with assets valued at $1,000,000. George’s trust pays $60,000 (6% of the initial fair market value) to LHP each year for 15 years, which will total $900,000. After that, the balance in the trust reverts back to George. He receives an income tax charitable deduction of $639,970. Assuming the trust earns an average 8% annual rate of return, George receives approximately $1,534,987 at the end of the trust term.</p><p><small>*Based on a 4.6% charitable midterm federal rate. Deductions and calculations will vary depending on your personal circumstances.</small></p></div>
+			</div>
+
+			<div id="stl-fund-it-container" class="fund-it fund-buttons stl-clearfix">        <div class="learn-how-to-fund subList">
+                    <h2>Fund Your Donation With:</h2>
+                <ul>
+                                <li>
+                                    <a >Cash</a>
+                                </li>
+                                <li>
+                                    <a >Appreciated Securities </a>
+                                </li>
+                                <li>
+                                    <a >Closely Held Stock</a>
+                                </li>
+                                <li>
+                                    <a >Real Estate</a>
+                                </li>
+
+                </ul>
+
+        </div>
+
+</div>
+
+			<div id="stl-gift-illustrator-container" class="stl-clearfix">    <div class="GIfeature clearfix " style="">
+                    <h2>Calculate Your Benefits</h2>
+        <p>Submit a few details and see how a charitable lead trust can benefit you.</p>
+<p><a class="lightbox" >See My Benefits</a></p>
+        <div class="clearfix"></div>
+    </div>
+</div>
+			
+			<div class="stl-pepk-promo-container main-column stl-pepc-promo stl-clearfix">
+                <div class="container">
+                    <img src="rick.jpg" alt="Personal Estate Planning Kit">
+                    <h2>Our Top Free Resource</h2>
+                    <p>This comprehensive estate planning kit helps you protect your family and establish your legacy. FREE!</p>
+                    <a class="stlButton" >Download My Kit</a>
+                </div>
+             </div>
+
+		</div>
+
+		<div class="interior-container">
+			<div id="stl-next-steps-container" class="next-steps nextSteps stl-clearfix">
+				<h2 class="next-steps-head">Next Steps</h2>
+				<ol>
+<li><span>Contact Susan Clayton at <span class="next-steps-phone">407-206-1900,&nbsp;Ext.&nbsp;3345</span> or <a  class="contactEMAddr" data-uname="sclayton" data-domain="lhps.org">sclayton@lhps.org</a> to talk about supporting LHP by setting up a charitable lead trust. </span></li>
+<li><span>Seek the advice of your financial or legal advisor.</span></li>
+<li><span>If you include LHP in your plans, please use our legal name and federal tax ID.</span></li>
+</ol>
+<p><strong>Legal name:</strong> Lake Highland Preparatory School, Inc. <br><strong>Address:</strong> 901 Highland Ave., Orlando, FL 32803 <br><strong class="stl-fedid">Federal tax ID number:&nbsp;</strong>Please contact us for our federal tax ID number.</p>
+			</div>
+			<div id="ebrochure-pullout-container" class="eBrochure ebro">
+                <h2>Discover More</h2>
+                <p>See which type of charitable trust best fits your estate plan with the FREE guide <em>Trusts: Choose From Two Ways to Donate</em>.</p>
+                <a class="stlButton popup-with-form fancybox-form" >View My Guide</a>
+            </div>
+			<div class="stl-pepk-promo-container stl-pepc-promo stl-clearfix">
+                <div class="container">
+                    <img src="rick.jpg" alt="Personal Estate Planning Kit">
+                    <h2>Our Top Free Resource</h2>
+                    <p>This comprehensive estate planning kit helps you protect your family and establish your legacy. FREE!</p>
+                    <a class="stlButton" >Download My Kit</a>
+                </div>
+            </div>
+		</div>
+
+	</main>
+
+	<footer class="stl-footer">
+		<div id="stl-contact-callout-container">
+		    <div class="container">
+		                <div class="stl-contact-callout">
+<h2>Contact Us</h2><p>Our planned giving team would be happy to speak with you in confidence, with no obligation.</p>                        <p style="margin-bottom:2rem;"><a  class="stlButton">I Have a Question</a></p>
+<p>Already included us in your estate plan?</p>                        <p style="margin-bottom:2rem;"><a  class="stlButton">Let Us Know</a></p>
+
+        </div>
+
+                
+                
+
+		    </div>
+		</div>
+
+        <div class="container">
+            <div id="stl-tax-id-container">
+                <p><span class="stl-fedid">Federal tax ID number:&nbsp;</span>Please contact us for our federal tax ID number.</p>            
+            </div>
+        
+            <div id="stl-copyright-container" class="stl-copyright">
+                <p>Information contained herein was accurate at the time of posting. The information on this website is not intended as legal or tax advice. For such advice, please consult an attorney or tax advisor. Figures cited in any examples are for illustrative purposes only. References to tax rates include federal taxes only and are subject to change. State law may further impact your individual results. <span class="cga-copyright"><strong>California residents: Annuities are subject to regulation by the State of California. Payments under such agreements, however, are not protected or otherwise guaranteed by any government agency or the California Life and Health Insurance Guarantee Association.</strong> Oklahoma residents: A charitable gift annuity is not regulated by the Oklahoma Insurance Department and is not protected by a guaranty association affiliated with the Oklahoma Insurance Department. <strong>South Dakota residents: Charitable gift annuities are not regulated by and are not under the jurisdiction of the South Dakota Division of Insurance.</strong></span><span class="stl-policy-links" style="display: none;"><a >Privacy Policy</a> | <a >Cookie Policy</a></span></p>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <p>© 2023 Lake Highland Preparatory School | 901 Highland Ave. | Orlando, FL 32803</p>
+                </div>
+
+                <div class="footer-right">
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:facebook&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:facebook&quot;})"><i class="fa fa-facebook" aria-hidden="true"></i><span class="visuallyhidden">Facebook</span></a>
+                    
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:twitter&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:twitter&quot;})"><i class="fa fa-twitter" aria-hidden="true"></i><span class="visuallyhidden">Twitter</span></a>
+                    
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:youtube&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:youtube&quot;})"><i class="fa fa-youtube" aria-hidden="true"></i><span class="visuallyhidden">YouTube</span></a>
+                    
+                    <a  target="_blank" rel="noopener" onclick="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:instagram&quot;})" onkeypress="_satellite.track(&quot;site_tool.interaction&quot;,{&quot;toolName&quot;:&quot;social:instagram&quot;})"><i class="fa fa-instagram" aria-hidden="true"></i><span class="visuallyhidden">Instagram</span></a>
+                </div>
+            </div>
+        </div>
+    <div id="stl-question-widget" class="visible">
+                <button class="widget-toggle" role="button" tabindex="0" onclick="_satellite.track('site_tool.interaction',{'toolName':'I Have a Question: toggle'})" onkeydown="_satellite.track('site_tool.interaction',{'toolName':'I Have a Question: toggle'})"><i class="fa fa-question"></i><span class="button-text">I Have a Question</span></button>
+
+	    <form id="stl-question-widget-form" class="stl-custom-form recaptcha-disabled" name="questionform">
+            <fieldset>
+                <legend class="visuallyhidden">Let us know your questions.</legend>
+                        <button title="Close (Esc)" type="button" class="close" aria-label="Close" onclick="_satellite.track('site_tool.interaction',{'toolName':'I Have a Question: close button'})" onkeydown="_satellite.track('site_tool.interaction',{'toolName':'I Have a Question: close button'})"><i class="fa fa-times"></i></button>
+
+                    <div class="hidden-after-submit">
+                        <h2>I Have a Question</h2>
+                        <p>
+                        <label for="contact-comments" class="visuallyhidden">Comments</label>
+                        <textarea id="contact-comments" name="comments" rows="6" placeholder="Type a question here..."></textarea>
+                        </p>
+                        <div class="stl-input-field">
+                            <label for="contact-name" class="">Name</label>
+                            <input type="text" id="contact-name" name="Name" required="required">
+                            <span class="validation"></span><span class="text helper-text"></span><span class="text validation-text">Name is required</span>
+                        </div>
+                        <div class="stl-input-field">
+                            <label for="contact-email">Email Address</label>
+                            <input type="email" name="Email" id="contact-email" required="required">
+                            <span class="validation"></span><span class="text helper-text"></span><span class="text validation-text">Please include an '@' in the email address</span>
+                        </div>
+
+                        <p class="hidden">
+                            <label class="visuallyhidden" for="contact-contactCheckpoint">Checkpoint</label>
+                            <input autocomplete="nope" id="contact-contactCheckpoint" class="checkpoint" name="contactCheckpoint" type="text" tabindex="-1">
+                        </p>
+                        <div>
+                        <button class="stlButton" type="submit"><span>Submit</span></button>
+                        </div>
+                    </div>
+                
+                <input id="widget-orgname" name="orgname" type="hidden" value="Lake Highland Preparatory School">
+                <input id="widget-formname" name="formname" type="hidden" value="Contact Us">
+                <input id="widget-nextpage" name="nextpage" type="hidden" value="" data-samepage="true">
+                <input id="widget-subject" name="subject" type="hidden" value="Lake Highland Preparatory School I Have a Question Form Submission">
+                <input id="widget-toEmail" name="toEmail" type="hidden" value="sclayton@lhps.org">
+                <input id="widget-bccEmail" name="bccEmail" type="hidden" value="dmp.forms@stelter.com"><input name="__RequestVerificationToken" type="hidden" value="tWFxw3MdKoIG6C4dH39Zi-9KXghqZJrbkNKznX_XgY5QfdTxWJaA5Q9mChg1puMb-LwgrTntIh6oq2WCltYADfNIEyU1"><input id="ContactUs-orgId" name="orgId" type="hidden" value="A0006073"><input id="ContactUs-amcvId" name="amcvId" type="hidden" value="80934692069549992991124170854307866686">
+                
+                <div class="visible-after-submit">
+                    <h3>Thank You for Contacting&nbsp;Us</h3>
+                    <p>Someone from Lake Highland Preparatory School will be in contact with you soon. If you need to speak to us immediately, please call us at 407-206-1900, Ext. 3345.</p>
+                </div>
+              </fieldset>
+        </form>
+	</div>
+</footer>
+
+</div>
+
+	        
+        
+
+	
+
+	    
+
+	        
+ 
+	            
+ 
+	<div style="display:none;">
+		                        <span class="" id="charitablebequestdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>A <strong>charitable bequest</strong> is one or two sentences in your will or living trust that leave to Lake Highland Preparatory School a specific item, an amount of money, a gift contingent upon certain events or a percentage of your estate.</p>
+                        </span>
+                        <span class="" id="beneficiarydefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>an individual or organization designated to receive benefits or funds under a will or other contract, such as an insurance policy, trust or retirement plan</p>
+                        </span>
+                        <span class="" id="bequestlanguagedefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>"I give to Lake Highland Preparatory School, a nonprofit corporation currently located at 901 Highland Ave., Orlando, FL 32803, or its successor thereto, <span class="stl-underscore">______________</span> [written amount or percentage of the estate or description of property] for its unrestricted use and purpose."</p>
+                        </span>
+                        <span class="" id="revocabledefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>able to be changed or cancelled</p>
+                        </span>
+                        <span class="" id="revocabletrustdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>A <strong>revocable living trust</strong> is set up during your lifetime and can be revoked at any time before death. They allow assets held in the trust to pass directly to beneficiaries without probate court proceedings and can also reduce federal estate taxes.</p>
+                        </span>
+                        <span class="" id="irrevocabledefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>cannot be changed or cancelled</p>
+                        </span>
+                        <span class="" id="gifttaxdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>tax on gifts generally paid by the person making the gift rather than the recipient</p>
+                        </span>
+                        <span class="" id="costbasisdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>the original value of an asset, such as stock, before its appreciation or depreciation</p>
+                        </span>
+                        <span class="" id="capitalgainsdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>the growth in value of an asset like stock or real estate since the original purchase</p>
+                        </span>
+                        <span class="" id="fairmarketvaluedefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>the price a willing buyer and willing seller can agree on</p>
+                        </span>
+                        <span class="" id="annuitantdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>The person receiving the gift annuity payments.</p>
+                        </span>
+                        <span class="" id="residuaryestatedefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>the part of an estate left after debts, taxes and specific bequests have been paid</p>
+                        </span>
+                        <span class="" id="codicildefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>a written and properly witnessed legal change to a will</p>
+                        </span>
+                        <span class="" id="executordefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>the person named in a will to manage the estate, collect the property, pay any debt, and distribute property according to the will</p>
+                        </span>
+                        <span class="" id="donoradvisedfunddefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>A <strong>donor advised fund</strong> is an account that you set up but which is managed by a nonprofit organization. You contribute to the account, which grows tax-free. You can recommend how much (and how often) you want to distribute money from that fund to LHP or other charities. You cannot direct the gifts.</p>
+                        </span>
+                        <span class="" id="endowedgiftdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>An <strong>endowed gift</strong> can create a new endowment or add to an existing endowment. The principal of the endowment is invested and a portion of the principal’s earnings are used each year to support our mission.</p>
+                        </span>
+                        <span class="" id="capitalgainstaxdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>Tax on the growth in value of an asset—such as real estate or stock—since its original purchase.</p>
+                        </span>
+                        <span class="" id="appreciateddefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>Securities, real estate or any other property having a fair market value greater than its original purchase price.</p>
+                        </span>
+                        <span class="" id="realestatedefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p><strong>Real estate</strong> can be a personal residence, vacation home, timeshare property, farm, commercial property or undeveloped land.</p>
+                        </span>
+                        <span class="" id="charitableremaindertrustdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>A charitable remainder trust provides you or other named individuals income each year for life or a period not exceeding 20 years from assets you give to the trust you create.</p>
+                        </span>
+                        <span class="" id="charitableleadtrustdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>You give assets to a trust that pays our organization set payments for a number of years, which you choose. The longer the length of time, the better the potential tax savings to you. When the term is up, the remaining trust assets go to you, your family or other beneficiaries you select. This is an excellent way to transfer property to family members at a minimal cost.</p>
+                        </span>
+                        <span class="" id="charitableremainderunitrustdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>You fund this type of trust with cash or appreciated assets—and may qualify for a federal income tax charitable deduction when you itemize. You can also make additional gifts; each one also qualifies for a tax deduction. The trust pays you, each year, a variable amount based on a fixed percentage of the fair market value of the trust assets. When the trust terminates, the remaining principal goes to LHP as a lump sum.</p>
+                        </span>
+                        <span class="" id="charitableremainderannuitytrustdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>You fund this trust with cash or appreciated assets—and may qualify for a federal income tax charitable deduction when you itemize. Each year the trust pays you or another named individual the same dollar amount you choose at the start. When the trust terminates, the remaining principal goes to LHP as a lump sum.</p>
+                        </span>
+                        <span class="" id="beneficiarydesignationdefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>A <strong>beneficiary designation</strong> clearly identifies how specific assets will be distributed after your death.</p>
+                        </span>
+                        <span class="" id="charitablegiftannuitydefinition-flyover" style="">
+                                <span class="toolH3"></span>
+<p>A <strong>charitable gift annuity</strong> involves a simple contract between you and LHP where you agree to make a gift to LHP and we, in return, agree to pay you (and someone else, if you choose) a fixed amount each year for the rest of your life.</p>
+                        </span>
+  
+		
+
+            <div class="hide">
+                <form action="" id="PEPCForm" target="_parent" name="PEPCForm" method="POST" class="white-popup-block clearfix" onsubmit="">
+                    <fieldset>
+                        <legend class="offscreen">Personal Estate Planning Kit Request Form</legend>
+                        <p style="margin-bottom:30px;">Please provide the following information to view the materials for planning your estate.</p>
+                        <div class="stl-input-field">
+                            <label for="pepcFirst" class="">First Name</label>
+                            <input id="pepcFirst" name="first" type="text" required="required">
+                            <span class="validation"></span>
+                            <span class="text helper-text"></span>
+                            <span class="text validation-text">First name is required</span>
+                        </div>
+                        <div class="stl-input-field">
+                            <label for="pepcLast" class="">Last Name</label>
+                            <input id="pepcLast" name="last" type="text" required="required">
+                            <span class="validation"></span>
+                            <span class="text helper-text"></span>
+                            <span class="text validation-text">Last Name is required</span>
+                        </div>
+                        <div class="stl-input-field">
+                            <label for="pepcEmail" class="">Email Address</label>
+                            <input id="pepcEmail" name="email" type="email" required="required">
+                            <span class="validation"></span>
+                            <span class="text helper-text"></span>
+                            <span class="text validation-text">Please include an '@' in the email address</span>
+                        </div>
+                        <p class="visuallyhidden"><label for="pepcCheckpoint" class="visuallyhidden">Checkpoint</label><input type="text" name="pepcCheckpoint" id="pepcCheckpoint" autocomplete="nope" tabindex="-1"></p>
+                            <div id="pepcReCaptcha"><div style="width: 304px; height: 78px;"><div></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" aria-hidden="true" aria-label="recaptcha response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+                        <p>
+                            <button class="stlButton" type="submit"><span>Download My FREE Personal Estate Planning&nbsp;Kit</span></button>
+                        </p>
+                        <input id="pepcNextpage" name="nextpage" value="/personal-estate-planning-kit" type="hidden">
+                        <input id="pepcToEmail" name="toEmail" value="sclayton@lhps.org" type="hidden">
+                        <input id="pepcPageName" name="pageName" value="Charitable Lead Trusts" type="hidden">
+                        <input id="pepcOrgName" name="orgName" value="Lake Highland Preparatory School" type="hidden"><input name="__RequestVerificationToken" type="hidden" value="9b6AZTZq9v2yk_rnmllf0gKj_WyyHge9eh8JiyGdey6G3gmK-j-C-a1Tq7CtsR_xz54CdSjvzHS8JbLVcaJDQr0F4Gw1"><input id="PEPCForm-orgId" name="orgId" type="hidden" value="A0006073"><input id="PEPCForm-amcvId" name="amcvId" type="hidden" value="80934692069549992991124170854307866686">
+                    </fieldset>
+                </form>            
+            </div>
+  
+		
+
+    <div class="hide">
+        <form id="brochureform" target="_blank" name="brochureform" method="POST" class="white-popup-block clearfix">
+            <fieldset>
+                <legend class="offscreen">eBrochure Request Form</legend>
+                <p style="margin-bottom:30px;">Please provide the following information to view the brochure.</p>
+                <div class="stl-input-field">
+                    <label for="first" class="">First Name</label>
+                    <input id="first" name="first" type="text" required="required" value="">
+                    <span class="validation"></span>
+                    <span class="text helper-text"></span>
+                    <span class="text validation-text">First name is required</span>
+                </div>
+                <div class="stl-input-field">
+                    <label for="last" class="">Last Name</label>
+                    <input id="last" name="last" type="text" required="required" value="">
+                    <span class="validation"></span>
+                    <span class="text helper-text"></span>
+                    <span class="text validation-text">Last Name is required</span>
+                </div>
+                <div class="stl-input-field">
+                    <label for="email" class="">Email Address</label>
+                    <input id="email" name="email" type="email" required="required" value="">
+                    <span class="validation"></span>
+                    <span class="text helper-text"></span>
+                    <span class="text validation-text">Please include an '@' in the email address</span>
+                </div>
+                <p class="hidden">
+                    <label for="ebroCheckpoint" class="visuallyhidden">Checkpoint</label>
+                    <input type="text" name="ebroCheckpoint" id="ebroCheckpoint" autocomplete="nope" tabindex="-1">
+                </p>
+                    <div id="ebroReCaptcha"><div style="width: 304px; height: 78px;"><div></div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response" aria-hidden="true" aria-label="recaptcha response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+                <p>
+                    <button class="stlButton" type="submit"><span>View My Guide</span></button>
+                </p>
+                <input id="nextpage" name="nextpage" value="trusts-guide" type="hidden">
+                <input id="toEmail" name="toEmail" value="sclayton@lhps.org" type="hidden">
+                <input id="pageName" name="pageName" value="Charitable Lead Trusts" type="hidden">
+                <input id="eBrochureId" name="eBrochureId" value="Trusts: Choose From Two Win-Win Ways to Donate" type="hidden">
+                <input id="orgName" name="orgName" value="Lake Highland Preparatory School" type="hidden"><input name="__RequestVerificationToken" type="hidden" value="S3AdZeVbKMZA_qgDhdQfc6lejpSyHqRJeNWcJALpXYC07Hpq5MMO0hKrsYBFLTSBSaHlydBf8133TMuJKpS9s_29LQQ1"><input id="brochureform-orgId" name="orgId" type="hidden" value="A0006073"><input id="brochureform-amcvId" name="amcvId" type="hidden" value="80934692069549992991124170854307866686">
+            </fieldset>
+        </form>
+    </div>
+
+ 
+	</div>
+	 	
+
+</body></html>

@@ -1,0 +1,2843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" class="js"><head>
+<style>
+
+#aggregator .feed-source .feed-title {
+  margin-top: 0;
+}
+#aggregator .feed-source .feed-image img {
+  margin-bottom: 0.75em;
+}
+#aggregator .feed-source .feed-icon {
+  float: right; 
+  display: block;
+}
+#aggregator .feed-item {
+  margin-bottom: 1.5em;
+}
+#aggregator .feed-item-title {
+  margin-bottom: 0;
+  font-size: 1.3em;
+}
+#aggregator .feed-item-meta, #aggregator .feed-item-body {
+  margin-bottom: 0.5em;
+}
+#aggregator .feed-item-categories {
+  font-size: 0.9em;
+}
+#aggregator td {
+  vertical-align: bottom;
+}
+#aggregator td.categorize-item {
+  white-space: nowrap;
+}
+#aggregator .categorize-item .news-item .body {
+  margin-top: 0;
+}
+#aggregator .categorize-item h3 {
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+.book-navigation .menu {
+  border-top: 1px solid #888;
+  padding: 1em 0 0 3em;
+}
+.book-navigation .page-links {
+  border-top: 1px solid #888;
+  border-bottom: 1px solid #888;
+  text-align: center;
+  padding: 0.5em;
+}
+.book-navigation .page-previous {
+  text-align: left;
+  width: 42%;
+  display: block;
+  float: left; 
+}
+.book-navigation .page-up {
+  margin: 0 5%;
+  width: 4%;
+  display: block;
+  float: left; 
+}
+.book-navigation .page-next {
+  text-align: right;
+  width: 42%;
+  display: block;
+  float: right;
+}
+#book-outline {
+  min-width: 56em;
+}
+.book-outline-form .form-item {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#edit-book-bid-wrapper .description {
+  clear: both;
+}
+#book-admin-edit select {
+  margin-right: 24px;
+}
+#book-admin-edit select.progress-disabled {
+  margin-right: 0;
+}
+#book-admin-edit tr.ahah-new-content {
+  background-color: #ffd;
+}
+#book-admin-edit .form-item {
+  float: left;
+}
+
+.node-unpublished {
+  background-color: #fff4f4;
+}
+.preview .node {
+  background-color: #ffffea;
+}
+#node-admin-filter ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+#node-admin-buttons {
+  float: left; 
+  margin-left: 0.5em; 
+  clear: right; 
+}
+td.revision-current {
+  background: #ffc;
+}
+.node-form .form-text {
+  display: block;
+  width: 95%;
+}
+.node-form .container-inline .form-text {
+  display: inline;
+  width: auto;
+}
+.node-form .standard {
+  clear: both;
+}
+.node-form textarea {
+  display: block;
+  width: 95%;
+}
+.node-form .attachments fieldset {
+  float: none;
+  display: block;
+}
+.terms-inline {
+  display: inline;
+}
+
+.poll .bar {
+  height: 1em;
+  margin: 1px 0;
+  background-color: #ddd;
+}
+.poll .bar .foreground {
+  background-color: #000;
+  height: 1em;
+  float: left; 
+}
+.poll .links {
+  text-align: center;
+}
+.poll .percent {
+  text-align: right; 
+}
+.poll .total {
+  text-align: center;
+}
+.poll .vote-form {
+  text-align: center;
+}
+.poll .vote-form .choices {
+  text-align: left; 
+  margin: 0 auto;
+  display: table;
+}
+.poll .vote-form .choices .title {
+  font-weight: bold;
+}
+.node-form #edit-poll-more {
+  margin: 0;
+}
+td.poll-chtext {
+  width: 80%;
+}
+td.poll-chvotes .form-text {
+  width: 85%;
+}
+
+fieldset {
+  margin-bottom: 1em;
+  padding: .5em;
+}
+form {
+  margin: 0;
+  padding: 0;
+}
+hr {
+  height: 1px;
+  border: 1px solid gray;
+}
+img {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  text-align: left; 
+  padding-right: 1em; 
+  border-bottom: 3px solid #ccc;
+}
+
+.clear-block:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clear-block {
+  display: inline-block;
+}
+
+* html .clear-block {
+  height: 1%;
+}
+.clear-block {
+  display: block;
+}
+
+body.drag {
+  cursor: move;
+}
+th.active img {
+  display: inline;
+}
+tr.even, tr.odd {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  padding: 0.1em 0.6em;
+}
+tr.drag {
+  background-color: #fffff0;
+}
+tr.drag-previous {
+  background-color: #ffd;
+}
+td.active {
+  background-color: #ddd;
+}
+td.checkbox, th.checkbox {
+  text-align: center;
+}
+tbody {
+  border-top: 1px solid #ccc;
+}
+tbody th {
+  border-bottom: 1px solid #ccc;
+}
+thead th {
+  text-align: left; 
+  padding-right: 1em; 
+  border-bottom: 3px solid #ccc;
+}
+
+.breadcrumb {
+  padding-bottom: .5em
+}
+div.indentation {
+  width: 20px;
+  height: 1.7em;
+  margin: -0.4em 0.2em -0.4em -0.4em; 
+  padding: 0.42em 0 0.42em 0.6em; 
+  float: left; 
+}
+div.tree-child {
+  background: url(../../misc/tree.png) no-repeat 11px center; 
+}
+div.tree-child-last {
+  background: url(../../misc/tree-bottom.png) no-repeat 11px center; 
+}
+div.tree-child-horizontal {
+  background: url(../../misc/tree.png) no-repeat -11px center;
+}
+.error {
+  color: #e55;
+}
+div.error {
+  border: 1px solid #d77;
+}
+div.error, tr.error {
+  background: #fcc;
+  color: #200;
+  padding: 2px;
+}
+.warning {
+  color: #e09010;
+}
+div.warning {
+  border: 1px solid #f0c020;
+}
+div.warning, tr.warning {
+  background: #ffd;
+  color: #220;
+  padding: 2px;
+}
+.ok {
+  color: #008000;
+}
+div.ok {
+  border: 1px solid #00aa00;
+}
+div.ok, tr.ok {
+  background: #dfd;
+  color: #020;
+  padding: 2px;
+}
+.item-list .icon {
+  color: #555;
+  float: right; 
+  padding-left: 0.25em; 
+  clear: right; 
+}
+.item-list .title {
+  font-weight: bold;
+}
+.item-list ul {
+  margin: 0 0 0.75em 0;
+  padding: 0;
+}
+.item-list ul li {
+  margin: 0 0 0.25em 1.5em; 
+  padding: 0;
+  list-style: disc;
+}
+ol.task-list li.active {
+  font-weight: bold;
+}
+.form-item {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+tr.odd .form-item, tr.even .form-item {
+  margin-top: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+tr.merge-down, tr.merge-down td, tr.merge-down th {
+  border-bottom-width: 0 !important;
+}
+tr.merge-up, tr.merge-up td, tr.merge-up th {
+  border-top-width: 0 !important;
+}
+.form-item input.error, .form-item textarea.error, .form-item select.error {
+  border: 2px solid red;
+}
+.form-item .description {
+  font-size: 0.85em;
+}
+.form-item label {
+  display: block;
+  font-weight: bold;
+}
+.form-item label.option {
+  display: inline;
+  font-weight: normal;
+}
+.form-checkboxes, .form-radios {
+  margin: 1em 0;
+}
+.form-checkboxes .form-item, .form-radios .form-item {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+.marker, .form-required {
+  color: #f00;
+}
+.more-link {
+  text-align: right; 
+}
+.more-help-link {
+  font-size: 0.85em;
+  text-align: right; 
+}
+.nowrap {
+  white-space: nowrap;
+}
+.item-list .pager {
+  clear: both;
+  text-align: center;
+}
+.item-list .pager li {
+  background-image:none;
+  display:inline;
+  list-style-type:none;
+  padding: 0.5em;
+}
+.pager-current {
+  font-weight:bold;
+}
+.tips {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 0.9em;
+}
+dl.multiselect dd.b, dl.multiselect dd.b .form-item, dl.multiselect dd.b select {
+  font-family: inherit;
+  font-size: inherit;
+  width: 14em;
+}
+dl.multiselect dd.a, dl.multiselect dd.a .form-item {
+  width: 10em;
+}
+dl.multiselect dt, dl.multiselect dd {
+  float: left; 
+  line-height: 1.75em;
+  padding: 0;
+  margin: 0 1em 0 0; 
+}
+dl.multiselect .form-item {
+  height: 1.75em;
+  margin: 0;
+}
+
+.container-inline div, .container-inline label {
+  display: inline;
+}
+
+ul.primary {
+  border-collapse: collapse;
+  padding: 0 0 0 1em; 
+  white-space: nowrap;
+  list-style: none;
+  margin: 5px;
+  height: auto;
+  line-height: normal;
+  border-bottom: 1px solid #bbb;
+}
+ul.primary li {
+  display: inline;
+}
+ul.primary li a {
+  background-color: #ddd;
+  border-color: #bbb;
+  border-width: 1px;
+  border-style: solid solid none solid;
+  height: auto;
+  margin-right: 0.5em; 
+  padding: 0 1em;
+  text-decoration: none;
+}
+ul.primary li.active a {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-bottom: #fff 1px solid;
+}
+ul.primary li a:hover {
+  background-color: #eee;
+  border-color: #ccc;
+  border-bottom-color: #eee;
+}
+ul.secondary {
+  border-bottom: 1px solid #bbb;
+  padding: 0.5em 1em;
+  margin: 5px;
+}
+ul.secondary li {
+  display: inline;
+  padding: 0 1em;
+  border-right: 1px solid #ccc; 
+}
+ul.secondary a {
+  padding: 0;
+  text-decoration: none;
+}
+ul.secondary a.active {
+  border-bottom: 4px solid #999;
+}
+
+#autocomplete {
+  position: absolute;
+  border: 1px solid;
+  overflow: hidden;
+  z-index: 100;
+}
+#autocomplete ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#autocomplete li {
+  background: #fff;
+  color: #000;
+  white-space: pre;
+  cursor: default;
+}
+#autocomplete li.selected {
+  background: #0072b9;
+  color: #fff;
+}
+
+html.js input.form-autocomplete {
+  background-image: url(../../misc/throbber.gif);
+  background-repeat: no-repeat;
+  background-position: 100% 2px; 
+}
+html.js input.throbbing {
+  background-position: 100% -18px; 
+}
+
+html.js fieldset.collapsed {
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  margin-bottom: 0;
+  height: 1em;
+}
+html.js fieldset.collapsed * {
+  display: none;
+}
+html.js fieldset.collapsed legend {
+  display: block;
+}
+html.js fieldset.collapsible legend a {
+  padding-left: 15px; 
+  background: url(../../misc/menu-expanded.png) 5px 75% no-repeat; 
+}
+html.js fieldset.collapsed legend a {
+  background-image: url(../../misc/menu-collapsed.png); 
+  background-position: 5px 50%; 
+}
+
+* html.js fieldset.collapsed legend,
+* html.js fieldset.collapsed legend *,
+* html.js fieldset.collapsed table * {
+  display: inline;
+}
+
+html.js fieldset.collapsible {
+  position: relative;
+}
+html.js fieldset.collapsible legend a {
+  display: block;
+}
+
+html.js fieldset.collapsible .fieldset-wrapper {
+  overflow: auto;
+}
+
+.resizable-textarea {
+  width: 95%;
+}
+.resizable-textarea .grippie {
+  height: 9px;
+  overflow: hidden;
+  background: #eee url(../../misc/grippie.png) no-repeat center 2px;
+  border: 1px solid #ddd;
+  border-top-width: 0;
+  cursor: s-resize;
+}
+html.js .resizable-textarea textarea {
+  margin-bottom: 0;
+  width: 100%;
+  display: block;
+}
+
+.draggable a.tabledrag-handle {
+  cursor: move;
+  float: left; 
+  height: 1.7em;
+  margin: -0.4em 0 -0.4em -0.5em; 
+  padding: 0.42em 1.5em 0.42em 0.5em; 
+  text-decoration: none;
+}
+a.tabledrag-handle:hover {
+  text-decoration: none;
+}
+a.tabledrag-handle .handle {
+  margin-top: 4px;
+  height: 13px;
+  width: 13px;
+  background: url(../../misc/draggable.png) no-repeat 0 0;
+}
+a.tabledrag-handle-hover .handle {
+  background-position: 0 -20px;
+}
+
+.joined + .grippie {
+  height: 5px;
+  background-position: center 1px;
+  margin-bottom: -2px;
+}
+
+.teaser-checkbox {
+  padding-top: 1px;
+}
+div.teaser-button-wrapper {
+  float: right; 
+  padding-right: 5%; 
+  margin: 0;
+}
+.teaser-checkbox div.form-item {
+  float: right; 
+  margin: 0 5% 0 0; 
+  padding: 0;
+}
+textarea.teaser {
+  display: none;
+}
+html.js .no-js {
+  display: none;
+}
+
+.progress {
+  font-weight: bold;
+}
+.progress .bar {
+  background: #fff url(../../misc/progress.gif);
+  border: 1px solid #00375a;
+  height: 1.5em;
+  margin: 0 0.2em;
+}
+.progress .filled {
+  background: #0072b9;
+  height: 1em;
+  border-bottom: 0.5em solid #004a73;
+  width: 0%;
+}
+.progress .percentage {
+  float: right; 
+}
+.progress-disabled {
+  float: left; 
+}
+.ahah-progress {
+  float: left; 
+}
+.ahah-progress .throbber {
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  background: transparent url(../../misc/throbber.gif) no-repeat 0px -18px;
+  float: left; 
+}
+tr .ahah-progress .throbber {
+  margin: 0 2px;
+}
+.ahah-progress-bar {
+  width: 16em;
+}
+
+#first-time strong {
+  display: block;
+  padding: 1.5em 0 .5em;
+}
+
+tr.selected td {
+  background: #ffc;
+}
+
+table.sticky-header {
+  margin-top: 0;
+  background: #fff;
+}
+
+#clean-url.install {
+  display: none;
+}
+
+html.js .js-hide {
+  display: none;
+}
+
+#system-modules div.incompatible {
+  font-weight: bold;
+}
+
+#system-themes-form div.incompatible {
+  font-weight: bold;
+}
+
+span.password-strength {
+  visibility: hidden;
+}
+input.password-field {
+  margin-right: 10px; 
+}
+div.password-description {
+  padding: 0 2px;
+  margin: 4px 0 0 0;
+  font-size: 0.85em;
+  max-width: 500px;
+}
+div.password-description ul {
+  margin-bottom: 0;
+}
+.password-parent {
+  margin: 0 0 0 0;
+}
+
+input.password-confirm {
+  margin-right: 10px; 
+}
+.confirm-parent {
+  margin: 5px 0 0 0;
+}
+span.password-confirm {
+  visibility: hidden;
+}
+span.password-confirm span {
+  font-weight: normal;
+}
+
+ul.menu {
+  list-style: none;
+  border: none;
+  text-align:left; 
+}
+ul.menu li {
+  margin: 0 0 0 0.5em; 
+}
+li.expanded {
+  list-style-type: circle;
+  list-style-image: url(../../misc/menu-expanded.png);
+  padding: 0.2em 0.5em 0 0; 
+  margin: 0;
+}
+li.collapsed {
+  list-style-type: disc;
+  list-style-image: url(../../misc/menu-collapsed.png); 
+  padding: 0.2em 0.5em 0 0; 
+  margin: 0;
+}
+li.leaf {
+  list-style-type: square;
+  list-style-image: url(../../misc/menu-leaf.png);
+  padding: 0.2em 0.5em 0 0; 
+  margin: 0;
+}
+li a.active {
+  color: #000;
+}
+td.menu-disabled {
+  background: #ccc;
+}
+ul.links {
+  margin: 0;
+  padding: 0;
+}
+ul.links.inline {
+  display: inline;
+}
+ul.links li {
+  display: inline;
+  list-style-type: none;
+  padding: 0 0.5em;
+}
+.block ul {
+  margin: 0;
+  padding: 0 0 0.25em 1em; 
+}
+
+#permissions td.module {
+  font-weight: bold;
+}
+#permissions td.permission {
+  padding-left: 1.5em; 
+}
+#access-rules .access-type, #access-rules .rule-type {
+  margin-right: 1em; 
+  float: left; 
+}
+#access-rules .access-type .form-item, #access-rules .rule-type .form-item {
+  margin-top: 0;
+}
+#access-rules .mask {
+  clear: both;
+}
+#user-login-form {
+  text-align: center;
+}
+#user-admin-filter ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+#user-admin-buttons {
+  float: left; 
+  margin-left: 0.5em; 
+  clear: right; 
+}
+#user-admin-settings fieldset .description {
+  font-size: 0.85em;
+  padding-bottom: .5em;
+}
+
+.profile {
+  clear: both;
+  margin: 1em 0;
+}
+.profile .picture {
+  float: right; 
+  margin: 0 1em 1em 0; 
+}
+.profile h3 {
+  border-bottom: 1px solid #ccc;
+}
+.profile dl {
+  margin: 0 0 1.5em 0;
+}
+.profile dt {
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+}
+.profile dd {
+  margin: 0 0 1em 0;
+}
+
+.field .field-label,
+.field .field-label-inline,
+.field .field-label-inline-first {
+  font-weight:bold;
+}
+.field .field-label-inline,
+.field .field-label-inline-first {
+  display:inline;
+}
+.field .field-label-inline {
+  visibility:hidden;
+}
+
+.node-form .content-multiple-table td.content-multiple-drag {
+  width:30px;
+  padding-right:0;
+}
+.node-form .content-multiple-table td.content-multiple-drag a.tabledrag-handle{
+  padding-right:.5em;
+}
+
+.node-form .content-add-more .form-submit{
+  margin:0;
+}
+
+.node-form .number {
+  display:inline;
+  width:auto;
+}
+.node-form .text {
+  width:auto;
+}
+
+.form-item #autocomplete .reference-autocomplete {
+  white-space:normal;
+}
+
+.form-item #autocomplete .reference-autocomplete label {
+  display:inline;
+  font-weight:normal;
+}
+
+#content-field-overview-form .advanced-help-link,
+#content-display-overview-form .advanced-help-link {
+  margin: 4px 4px 0 0;
+}
+#content-field-overview-form .label-group,
+#content-display-overview-form .label-group,
+#content-copy-export-form .label-group {
+  font-weight: bold;
+}
+table#content-field-overview .label-add-new-field,
+table#content-field-overview .label-add-existing-field,
+table#content-field-overview .label-add-new-group {
+  float: left;
+}
+table#content-field-overview tr.content-add-new .tabledrag-changed {
+  display: none;
+}
+table#content-field-overview tr.content-add-new .description {
+  margin-bottom: 0;
+}
+table#content-field-overview .content-new {
+  font-weight: bold;
+  padding-bottom: .5em;
+}
+
+.advanced-help-topic h3,
+.advanced-help-topic h4,
+.advanced-help-topic h5,
+.advanced-help-topic h6  {
+  margin:1em 0 .5em 0;
+}
+.advanced-help-topic dd {
+  margin-bottom: .5em;
+}
+.advanced-help-topic span.code {
+  background-color:#EDF1F3;
+  font-family:"Bitstream Vera Sans Mono",Monaco,"Lucida Console",monospace;
+  font-size:0.9em;
+  padding:1px;
+}
+.advanced-help-topic .content-border {
+  border:1px solid #AAA
+}
+
+.ctools-locked {
+  color: red;
+  border: 1px solid red;
+  padding: 1em;
+}
+
+.ctools-owns-lock {
+  background: #FFFFDD none repeat scroll 0 0;
+  border: 1px solid #F0C020;
+  padding: 1em;
+}
+
+a.ctools-ajaxing,
+input.ctools-ajaxing,
+button.ctools-ajaxing,
+select.ctools-ajaxing {
+  padding-right: 18px !important;
+  background: url(../images/status-active.gif) right center no-repeat;
+}
+
+div.ctools-ajaxing {
+  float: left;
+  width: 18px;
+  background: url(../images/status-active.gif) center center no-repeat;
+}
+
+.wrapper.tagadelic {
+  text-align : justify;
+  margin-right: 1em;
+}
+
+.tagadelic.level1 {
+  font-size : 1em;
+}
+.tagadelic.level2 {
+  font-size : 1.2em;
+}
+.tagadelic.level3 {
+  font-size : 1.4em;
+}
+.tagadelic.level4 {
+  font-size : 1.6em;
+}
+.tagadelic.level5 {
+  font-size : 1.8em;
+}
+.tagadelic.level6 {
+  font-size : 2em;
+}
+.tagadelic.level7 {
+  font-size : 2.2em;
+}
+.tagadelic.level8 {
+  font-size : 2.4em;
+}
+.tagadelic.level9 {
+  font-size : 2.6em;
+}
+.tagadelic.level10 {
+  font-size : 2.8em;
+}
+
+div.fieldgroup {
+  margin:.5em 0 1em 0;
+}
+div.fieldgroup .content {
+  padding-left:1em;
+}
+
+div.panel-pane div.admin-links {
+  font-size: xx-small;
+  margin-right: 1em;
+}
+
+div.panel-pane div.admin-links li a {
+  color: #ccc;
+}
+
+div.panel-pane div.admin-links li {
+  padding-bottom: 2px;
+  background: white;
+  z-index: 201;
+}
+
+div.panel-pane div.admin-links:hover a,
+div.panel-pane div.admin-links-hover a {
+  color: #000;
+}
+
+div.panel-pane div.admin-links a:before {
+  content: "[";
+}
+
+div.panel-pane div.admin-links a:after {
+  content: "]";
+}
+
+div.panel-pane div.panel-hide {
+  display: none;
+}
+
+div.panel-pane div.panel-hide-hover,
+div.panel-pane:hover div.panel-hide {
+  display: block;
+  position: absolute;
+  z-index: 200;
+  margin-top: -1.5em;
+}
+
+div.panel-pane div.node {
+  margin: 0;
+  padding: 0;
+}
+
+div.panel-pane div.feed a {
+  float: right;
+}
+
+.views-exposed-form .views-exposed-widget {
+  float: left; 
+  padding: .5em 1em 0 0; 
+}
+
+.views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 1.6em;
+}
+
+.views-exposed-form .form-item,
+.views-exposed-form .form-submit {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.views-exposed-form label {
+  font-weight: bold;
+}
+
+.views-exposed-widgets {
+  margin-bottom: .5em;
+}
+
+html.js a.views-throbbing,
+html.js span.views-throbbing {
+  background:url(../images/status-active.gif) no-repeat right center;
+  padding-right:18px;
+}
+
+div.view div.views-admin-links {
+  font-size: xx-small;
+  margin-right: 1em;
+  margin-top: 1em;
+
+}
+
+.block div.view div.views-admin-links {
+  margin-top: 0;
+}
+
+div.view div.views-admin-links ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.view div.views-admin-links li {
+  margin: 0;
+  padding: 0 0 2px 0;
+  z-index: 201;
+}
+
+div.view div.views-admin-links li a {
+  padding: 0;
+  margin: 0;
+  color: #ccc;
+}
+
+div.view div.views-admin-links li a:before {
+  content: "[";
+}
+div.view div.views-admin-links li a:after {
+  content: "]";
+}
+
+div.view div.views-admin-links-hover a,
+div.view div.views-admin-links:hover a {
+  color: #000;
+}
+
+div.view div.views-admin-links-hover,
+div.view div.views-admin-links:hover {
+  background: transparent;
+}
+
+div.view div.views-hide {
+  display: none;
+}
+
+div.view div.views-hide-hover,
+div.view:hover div.views-hide {
+  display: block;
+  position: absolute;
+  z-index: 200;
+}
+
+div.view:hover div.views-hide {
+  margin-top: -1.5em;
+}
+
+.views-view-grid tbody {
+  border-top: none;
+}
+
+html {
+	font-size: 100%; 
+}
+font, basefont {
+	font-size: 100%; 
+}
+body {
+	font-family: "Helvetica neue", Helvetica, Arial, Verdana, sans-serif;
+	font-size:12px;
+	color: #555555;
+	margin: 0;
+	padding: 0;
+	text-align: center; 
+	background: #eaeaea url(bg-header.png) repeat-x top left;
+	min-width: 800px;
+}
+div#wrapper {
+	margin: 0 auto;
+	margin-bottom: 10px;
+	padding: 0px;
+	line-height: 1em;
+	background: transparent;
+}
+
+div#container {
+	margin: 0px;
+	padding: 0px;
+	text-align: left; 
+	line-height:1.5em;
+	background: transparent;
+}
+table, tr, td, thead, tbody {
+	border-spacing: 0;
+	border-collapse: collapse;
+	border-width: 0px;
+}
+tr.odd td, tr.even td {
+	padding: 0.4em;
+}
+tr.odd {
+	background: #fcfbfb;
+}
+tr.even {
+	background: #fefefe;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.3em;
+}
+h1 {
+  font-size: 1.3em;
+}
+h2 {
+  font-size: 1.2em;
+}
+h3, h4, h5, h6 {
+  font-size: 1.1em;
+}
+p {
+  margin-top: 0.4em;
+  margin-bottom: 0.8em;
+}
+em {
+	text-decoration: none;
+	font-weight: normal;
+}
+div#cr8 {
+	padding-top: 8px;
+}
+table {
+	
+	font-size: 1em;
+	width: 100%;
+	margin: 0px;
+}
+.form-item label {
+	font-size: 1em;
+	color: #666666;
+	font-weight: normal;
+}
+ul {
+	padding: 0;
+	padding-left: 1em;
+	margin: 0px;
+}
+li {
+	padding: 0;
+	margin: 0px;
+	padding-left: 0;
+	line-height: 1.6em;
+}
+li a, li a:visited, li a:active, li a:hover {
+	font-weight: normal;
+}
+
+.item-list ul {
+	padding: 0px;
+	margin: 0px;
+}
+.item-list ul li {
+	font-size: 11px;
+}
+.item-list .title {
+  font-size: 1em;
+}
+div.links {
+	margin-bottom: 0;
+	margin-top: 10px;
+	text-align: right;
+}
+ul.links li {
+	padding: 0px 0px 0px 10px;
+	margin: 0;
+}
+.comment .links {
+  margin-bottom: 0;
+}
+.more-link, .more-link a {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.submitted {
+  color: #666666;
+  font-size: 0.8em;
+}
+.links {
+  color: #666666;
+}
+.links a {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.box {
+	background: #fcfbfb;
+	padding: 15px;
+}
+.box h2 {
+	padding-bottom: 2px;
+	border-bottom: solid 1px #f5f5f5;
+}
+
+a, a.active {
+	text-decoration: none;
+	font-weight: bold;
+	color: #180b7f;
+}
+a:link, a.active:link {
+	color: #180b7f;
+}
+a:visited, a.active:visited {
+	color: #281d8d;
+}
+a:hover, a.active:hover {
+	color: #3d319d;
+	text-decoration: underline;
+}
+a:focus, a.active:focus {
+	outline: none;
+}
+
+table#header {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: top;
+	line-height: 0em;
+	height: 80px;
+}
+table#header tr {
+	padding: 0px;
+	margin: 0px;
+}
+#logo {
+	width: 10px;
+	padding: 0px;
+	margin: 0px;
+}
+#site_name {
+	text-align: left;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: bottom;
+	overflow: hidden;
+	padding-bottom: 10px;
+}
+#site_name h1 {
+	text-align: left;
+	font-size: 36px;
+	line-height: 1em;
+	padding: 0px 5px;
+	margin: 0px;
+}
+#site_name h1 a {
+	color: #ffffff;
+}
+#site_name h1 a:hover {
+	text-decoration: none;
+}
+#site_name .site-slogan {
+	color: #eeeeee;
+	font-size: 1em;
+	line-height: 1em;
+	padding: 0px;
+	margin: 0px;
+	text-align: left;
+	padding-left: 7px;
+	padding-bottom: 2px;
+	padding-top: 4px;
+}
+#site_search {
+	margin: 0px;
+	padding: 0px;
+	padding-right: 8px;
+	padding-bottom: 12px;
+	text-align: right;
+	vertical-align: bottom;
+}
+
+.block .links {
+	font-size: 11px;
+}
+.block .content {
+	padding: 5px 5px;
+}
+
+table#header-area {
+	background: #f3f2f2;
+}
+table#content {
+	background: #f9f9f9;
+}
+#main-content {
+	background: #f9f9f9;
+	padding-bottom: 15px;
+}
+#main {
+	
+	padding: 15px;
+}
+.node .content, .comment .content {
+  line-height: 1.5em;
+}
+#help {
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+.breadcrumb {
+	padding: 0px;
+	padding-bottom: 2px;
+}
+.error {
+  border-color: red;
+}
+#sidebar-left, #sidebar-right {
+	background: #f3f2f2;
+	padding: 10px;
+	vertical-align: top;
+}
+#sidebar-left {
+	width: 200px;	
+}
+#sidebar-right {
+	width: 200px;	
+}
+table#footer {
+	margin: 0;
+	padding: 0px;
+	text-align: center;
+	font-size: 11px;
+	color: #ffffff;
+	line-height: 1.5em;
+}
+#footer a {
+	text-decoration: underline;
+	font-weight: bold;
+}
+#footer .block .block-bc, #footer .block .block-tc {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	padding-top: 2px;
+}
+#footer .block .content {
+	padding: 0px;
+	margin: 0px;
+}
+
+#main-l {
+	width: 10px;
+	background: url(bg-main-l.png) repeat-y top right;
+}
+#main-r {
+	width: 10px;
+	background: url(bg-main-r.png) repeat-y top left;
+}
+#main-c {
+	padding: 10px 20px;
+}
+#foot-l {
+	width: 10px;
+	background: url(bg-foot-l.png) no-repeat top right;
+}
+#foot-r {
+	width: 10px;
+	background: url(bg-foot-r.png) no-repeat top left;
+}
+#foot {
+	padding: 10px;
+	background: url(bg-foot.png) repeat-x top left;
+}
+
+.sidebar .block h3 {
+	padding: 0px 3px;
+	font-size: 12px;
+}
+.sidebar .block ul.links li {
+	font-size: 10px;
+}
+
+.sidebar .block {
+	width: 200px;	
+	margin: 0px;
+	padding: 0px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+.sidebar .block h2 {
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0px;
+	text-align: center;
+	padding: 4px 2px;
+	background: url(bg-sidebar.png) no-repeat center center;
+}
+
+.node {		
+	margin: 0;
+	padding: 0px;
+	overflow: hidden;
+	background: #f9f9f9;
+}
+.sticky {
+	background: #fcfcfc;
+}
+.teaser {
+	background: #f9f9f9;
+}
+.node .content, .comment .content {
+	clear: both;
+	margin: 10px 5px 5px 5px;
+}
+.node .taxonomy {
+	font-size: 0.8em;
+	padding-left: 1.5em;
+}
+.node .taxonomy li {
+	padding: 1px 5px;
+}
+.node .picture {
+	border: 1px solid #f8f8f8;
+	float: right;
+	margin: 0.5em;
+}
+.node table.nodetitle {
+	margin-bottom: 0px;
+}
+.node .submitted {
+	color: #777777;
+}
+.node div.links {
+}
+.node h2.title {
+	font-size: 18px;
+}
+.node h2.title a:hover {
+	text-decoration: none;
+	color: #3d319d;
+}
+.node h2.title {
+	margin: 0px;
+	padding-top: 0px;
+	padding-bottom: 2px;
+}
+
+.pagetitle {
+	padding: 0px;
+	margin: 2px 0px 10px 0px;
+}
+.pagetitle h1 {
+	margin: 0px;
+	font-size: 18px;
+	color: #ffffff;
+}
+.pagetitle-l {
+	width: 30px;
+	height: 34px;
+	background: url(bg-title-l.png) no-repeat top right;
+}
+.pagetitle-c {
+	height: 34px;
+	background: url(bg-title-c.png) repeat-x top left;
+}
+.pagetitle-r {
+	width: 30px;
+	height: 34px;
+	background: url(bg-title-r.png) no-repeat top left;
+}
+
+.node-tl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 6px;
+	border-width: 0px;
+	line-height: 1;
+	background: url(bg-divider-l.png) no-repeat bottom right;
+}
+.node-tc {
+	padding: 0px;
+	margin: 0px;
+	height: 6px;
+	border-width: 0px;
+	background: url(bg-divider-c.png) repeat-x bottom left;
+	line-height: 1;
+}
+.node-tr {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 6px;
+	border-width: 0px;
+	line-height: 1;
+	background: url(bg-divider-r.png) no-repeat bottom left;
+}
+.node-bl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 10px;
+	border-width: 0px;
+	line-height: 1;
+}
+.node-bc {
+	padding: 0px;
+	margin: 0px;
+	height: 10px;
+	border-width: 0px;
+	line-height: 1;
+}
+.node-br {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 10px;
+	border-width: 0px;
+	line-height: 1;
+}
+.node-ml {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	border-width: 0px;
+	line-height: 1;
+}
+.node-mc {
+	margin: 0px;
+	padding: 10px 5px;
+}
+.node-mr {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	border-width: 0px;
+	line-height: 1;
+}
+
+.teaser-node-tl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: none;
+}
+.teaser-node-tc {
+	padding: 0px;
+	margin: 0px;
+	height: 12px;
+	background: none;
+}
+.teaser-node-tr {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: none;
+}
+.teaser-node-ml {
+	padding: 0px;
+	margin: 0px;
+	width: 12px;
+	background: none;
+}
+.teaser-node-mc {
+	padding: 5px;
+	margin: 0px;
+	background: none;
+}
+.teaser-node-mr {
+	padding: 0px;
+	margin: 0px;
+	width: 12px;
+	background: none;
+}
+
+.teaser-node-bl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 6px;
+	background: url(bg-divider-l.png) no-repeat top right;
+}
+.teaser-node-bc {
+	padding: 0px;
+	margin: 0px;
+	height: 6px;
+	background: url(bg-divider-c.png) repeat-x top left;
+}
+.teaser-node-br {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 6px;
+	background: url(bg-divider-r.png) no-repeat top left;
+}
+
+.sticky-node-tl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-tl.png) no-repeat bottom right;
+}
+.sticky-node-tc {
+	padding: 0px;
+	margin: 0px;
+	height: 12px;
+	background: url(bg-node-tc.png) repeat-x bottom left;
+}
+.sticky-node-tr {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-tr.png) no-repeat bottom left;
+}
+.sticky-node-ml {
+	padding: 0px;
+	margin: 0px;
+	width: 12px;
+	background: url(bg-node-ml.png) repeat-y top right;
+}
+.sticky-node-mc {
+	padding: 5px;
+	margin: 0px;
+	background: none;
+}
+.sticky-node-mr {
+	padding: 0px;
+	margin: 0px;
+	width: 12px;
+	background: url(bg-node-mr.png) repeat-y top left;
+}
+
+.sticky-node-bl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-bl.png) no-repeat top right;
+}
+.sticky-node-bc {
+	padding: 0px;
+	margin: 0px;
+	height: 12px;
+	background: url(bg-node-bc.png) repeat-x top left;
+}
+.sticky-node-br {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-br.png) no-repeat top left;
+}
+
+.comment {
+	margin: 5px;
+	margin-bottom: 15px;
+	padding: 0px;
+	background: #fcfcfc;
+}
+.comment .title a {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 10px;
+}
+.comment .content {
+	padding: 0px 10px;
+}
+.comment .new {
+	padding-right: 10px;
+	text-align: right;
+	font-weight: bold;
+	font-size: 0.8em;
+	float: right;
+	color: red;
+}
+.comment .picture {
+	border: 1px solid #eaeaea;
+	float: right;
+	margin: 0.5em;
+}
+.comment .comment-id {
+	font-size: 16px;
+	font-weight: bold;
+	padding-right: 10px;
+}
+.comment .submitted {
+	font-size: 11px;
+	margin-bottom: 10px;
+	padding: 4px 5px 2px 5px;
+	color: #666666;
+	border-bottom: solid 1px #efefef;
+}
+.comment div.links {
+	padding: 5px;
+	margin-top: 0px;
+}
+
+#comment-tl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-tl.png) no-repeat bottom right;
+}
+#comment-tc {
+	padding: 0px;
+	margin: 0px;
+	height: 12px;
+	background: url(bg-node-tc.png) repeat-x bottom left;
+}
+#comment-tr {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-tr.png) no-repeat bottom left;
+}
+#comment-ml {
+	padding: 0px;
+	margin: 0px;
+	width: 12px;
+	background: url(bg-node-ml.png) repeat-y top right;
+}
+#comment-mc {
+	padding: 5px 5px 0px 5px;
+	margin: 0px;
+	background: none;
+}
+#comment-mr {
+	padding: 0px;
+	margin: 0px;
+	width: 12px;
+	background: url(bg-node-mr.png) repeat-y top left;
+}
+
+#comment-bl {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-bl.png) no-repeat top right;
+}
+#comment-bc {
+	padding: 0px;
+	margin: 0px;
+	height: 12px;
+	background: url(bg-node-bc.png) repeat-x top left;
+}
+#comment-br {
+	padding: 0px;
+	margin: 0px;
+	width: 14px;
+	height: 12px;
+	background: url(bg-node-br.png) no-repeat top left;
+}
+
+#comments .box {
+	margin: 10px;
+	padding: 15px;
+}
+
+#aggregator .feed-source {
+  background-color: #fbfbfb;
+  border: 1px solid #f4f4f4;
+  padding: 1em;
+  margin: 1em 0;
+}
+#aggregator .news-item .categories, #aggregator .source, #aggregator .age {
+  font-style: italic;
+  font-size: 0.9em;
+}
+#aggregator .title {
+  margin-bottom: 0.5em;
+  font-size: 1em;
+}
+#aggregator h3 {
+  margin-top: 1em;
+}
+
+#forum table {
+	margin: 5px;
+	margin-top: 10px;
+	width: 100%;
+	border: solid 0px #ffffff;
+}
+#forum {
+	margin: 15px 0px;
+}
+#forum td.container {
+	background: #f0f0f0;
+}
+#forum thead, #forum tbody {
+	border: solid 0px #ffffff;
+}
+td.icon {
+	text-align: center;
+}
+#forum td.forum {
+	margin: 0px;
+	padding: 0px;
+}
+#forum td.last-reply {
+	background: none;
+}
+#forum .name a {
+	margin: 0px;
+	padding: 0px;
+}
+#forum .description {
+	padding: 0px;
+	margin: 0;
+}
+.block-forum h3 {
+  margin-bottom: .5em;
+}
+div.forum-topic-navigation a.topic-next {
+	text-align: right;
+}
+div.forum-topic-navigation a.topic-previous {
+	text-align: left;
+}
+
+#profile .profile {
+  clear: both;
+  border: 1px solid #eaeaea;
+  padding: .5em;
+  margin: 1em 0em;
+}
+#profile .profile .name {
+  padding-bottom: 0.5em;
+}
+.block-forum h3 {
+  margin-bottom: .5em;
+}
+
+div.admin, div.admin .left, div.admin .right {
+	margin: 0px;
+	padding: 5px;
+	overflow: hidden;
+}
+div.admin-panel {
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 15px;
+	background: #ffffff;
+}
+div.admin-panel a {
+	font-weight: normal;
+	overflow: hidden;
+}
+div.admin-panel .description {
+}
+div.admin-panel .body {
+	font-size: 11px;
+}
+div.admin-panel h3 {
+	padding: 5px 8px 5px;
+	margin: 0;
+	background: #eaeaea;
+	color: #ffffff;
+}
+div.help {
+	margin: 0px;
+	padding: 2px 5px;
+	margin-top: 5px;
+}
+
+div.item-list ul.pager li {
+	padding: 0px;
+	margin: 0px;
+	font-size: 13px;
+}
+ul.pager {
+	padding: 10px 0px;
+	margin: 0px;
+}
+ul.pager li {
+	padding: 0px;
+	margin: 0px;
+}
+div.item-list ul.pager li.pager-current {
+	color: #ffffff;
+	margin: 2px;
+	padding: 4px 8px;
+	background: #ededed;
+}
+.pager a {
+	margin: 2px;
+	padding: 4px 8px;
+	background: transparent;
+}
+.pager a:hover {
+	background: #ede1e1;
+}
+
+.tabs {
+	font-size: 12px;
+}
+.tabs a {
+	font-weight: normal;
+	line-height: 2.2em;
+}
+.tabs ul {
+	padding: 0;
+	margin: 0;
+	padding-left: 5px;
+	border-bottom: solid 0px #ffffff;
+	margin-bottom: 10px;
+}
+.tabs ul li {
+}
+.tabs ul li a {
+	margin: 0px;
+	padding: 4px 10px;
+	background: #ffffff;
+	border: solid 1px #f5f5f5;
+}
+.tabs ul li a:hover {
+	text-decoration: underline;
+	background: #e2cfcf;
+	border: solid 1px #f5f5f5;
+}
+.tabs ul li a.active, .tabs ul li.active a {
+	color: #ffffff;
+	background: url(bg-bar-lite.png) repeat-x center center;
+	border: solid 1px #eaeaea;
+}
+.tabs ul li a.active:hover {
+	text-decoration: underline;
+	background: url(bg-bar.png) repeat-x center center;
+	border: solid 1px #954c4c;
+}
+ul.secondary {
+}
+ul.secondary li {
+	font-size: 11px;
+	margin: 0;
+	padding: 0;
+	border: solid 0px #ffffff;
+}
+ul.secondary li a {
+	margin: 0;
+	padding: 2px 4px;
+	margin-right: 2px;
+	margin-left: 0px;
+	border: solid 1px #f0e7e7;
+}
+
+.sidebar .block-archive .content {
+	padding: 10px 5px 10px 5px;
+}
+.sidebar .block-archive .content tr {
+	background: none;
+	border: solid 0px #ffffff;
+}
+.sidebar .block-archive .content table td {
+	border: solid 1px #ededed;
+	padding: 1px 2px;
+	text-align: center;
+}
+
+table#mission {
+	margin: 10px 20px 0px 20px;
+}
+#mission h1 {
+	text-align: center;
+	font-size: 16px;
+	color: #ffffff;
+	padding: 0px;
+	line-height: 1em;
+}
+
+.poll .bar {
+	background-color: #eeeeee;
+	border: solid 1px #999999;
+}
+.poll .bar .foreground {
+	background: url(bg-gbar.png) repeat-x center left;
+}
+
+.book-navigation {
+	padding-bottom: 5px;
+}
+.book-navigation ul.menu {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+div.page-links a.page-previous {
+	width: 40%;
+	padding: 0px;
+	margin: 0px;
+}
+div.page-links a.page-up {
+	width: 19%;
+	padding: 0px;
+	margin: 0px;
+}
+div.page-links a.page-next {
+	width: 40%;
+	padding: 0px;
+	margin: 0px;
+}
+
+ul.galleries li {
+	border: solid 1px #aaaaaa;
+	background: #ffffff;
+}
+ul.galleries li h3 a {
+	font-size: 1.1em;
+	font-weight: bold;
+	
+}
+ul.images {
+	border: solid 1px #aaaaaa;
+	overflow: hidden;
+}
+ul.images li {
+	text-align: center;
+}
+ul.images li h3 {
+	margin: 0px;
+	padding: 0px;
+}
+
+.pushbutton, button, .form-submit {
+	margin-bottom: 1px;
+	cursor: pointer;
+	padding: 2px 10px;
+	color: #666666;
+	font-weight: normal;
+	font-size: 12px;
+	border: solid 1px #888888;
+	background: #fff url(button.gif) repeat-x center;
+}
+.pushbutton:hover, button:hover, .form-submit:hover {
+	color: #000000;
+	border: solid 1px #666666;
+	background: #fff url(button-o.gif) repeat-x center;
+}
+
+pre {
+	margin: 0px 3px;
+	padding: 5px;
+	background: #222222;
+	border: solid 1px #111111;
+	color: #dddddd;
+	white-space: -moz-pre-wrap;	
+	white-space: -pre-wrap;     
+	white-space: -o-pre-wrap;   
+	white-space: pre-wrap;      
+	word-wrap: break-word;      
+	line-height: 1.5em;
+
+	background: #eeeeee;
+	border: solid 1px #bbbbbb;
+	color: #222222;
+}
+
+blockquote {
+	margin: 4px 10px;
+	padding: 10px 15px;
+	background: #edcaa7;	
+}
+
+.messages {
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  padding: 0.3em;
+  margin-bottom: 1em;
+}
+.messages li {
+	margin-left: 10px;
+}
+
+#menu-l {
+	width: 10px;
+	background: url(bg-menu-l.png) no-repeat top right;
+}
+#menu-r {
+	width: 10px;
+	background: url(bg-menu-r.png) no-repeat top left;
+}
+table#menu {
+	height: 32px;
+	vertical-align: middle;
+	padding: 0px;
+	margin: 0;
+	text-align: right;
+	background: url(bg-menu.png) repeat-x top left;
+}
+#menu ul li {
+	list-style-type: none;
+	list-style-image: none;
+}
+
+#navlist {
+	font-size: 1.0em;
+	padding: 2px 10px 0px 10px;
+	list-style-type: none;
+	list-style-image: none;
+}
+#navlist li {
+	padding: 0px 8px;
+	list-style-type: none;
+	list-style-image: none;
+}
+#navlist a {
+	font-size: 12px;
+	font-weight: bold;
+	color: #ffffff;
+}
+#subnavlist {
+	border-top: solid 1px #888888;
+	padding: 1px 0px 0px 0px;
+	font-size: 1.0em;
+}
+#subnavlist a {
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+div#search {
+	margin-right: 10px;
+	text-align: right;
+	font-size: 11px;
+	margin-top: 26px;	
+}
+#search .form-text {
+	width: 10em;
+	padding: 2px 2px;
+	border: solid 1px #888888;
+}
+div#search label {
+	color: #ffffff;
+	padding: 2px;
+}
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Radreffies' blogs | Radical Reference</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  
+
+  
+
+    
+  
+</head>
+
+<body>
+
+<div id="wrapper" style="width: 90%;">
+
+<div id="container">
+
+<table border="0" cellpadding="0" cellspacing="0" id="header">
+<tbody><tr>
+    <td id="logo" valign="top">
+      <a  title="Home"><img src="rick.jpg" alt="Home"></a>  </td>
+  <td id="site_name">
+                </td>
+    <td id="site_search">
+      <form action="/aggregator/categories/1" accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <label for="edit-search-theme-form-1">Search this site: </label>
+ <input type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</div>
+<input type="submit" name="op" id="edit-submit-1" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-VtWF223XjPrCuB_Ers0WfsUSUX_SYL1XMN6A4RzEcO4" value="form-VtWF223XjPrCuB_Ers0WfsUSUX_SYL1XMN6A4RzEcO4">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+</div>
+
+</div></form>
+  </td>
+</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" id="menu">
+<tbody><tr>
+  <td id="menu-l"></td>
+    <td id="menu">
+      <ul class="links" id="navlist"><li class="menu-118 first"><a >About Us</a></li>
+<li class="menu-3228"><a  title="">Local Collectives</a></li>
+<li class="menu-124"><a >Reference Shelf</a></li>
+<li class="menu-126"><a >Volunteer</a></li>
+<li class="menu-121"><a >Wiki</a></li>
+<li class="menu-3898 last"><a  title="">Blog</a></li>
+</ul>    </td>
+  <td id="menu-r"></td>
+</tr>
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0" id="content">
+
+  <tbody><tr>
+  <td id="main-l"></td>
+
+  
+  <td id="main-content" valign="top">
+
+    
+    <div id="main">
+    <div class="breadcrumb"><a >Home</a> » <a >Radreffies' blogs</a> » <a >Categories</a></div>                  <table border="0" cellpadding="0" cellspacing="0" class="pagetitle">
+        <tbody><tr>
+          <td class="pagetitle-l"></td>
+          <td class="pagetitle-c">
+              <h1>Radreffies' blogs</h1>
+          </td>
+          <td class="pagetitle-r"></td>
+        </tr>
+        </tbody></table>
+              <div class="tabs"></div>
+            <div id="aggregator">
+  <div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >By: GrokSurf</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Free Government Information</a> -
+      <span class="feed-item-date">Mon, 06/12/2023 - 8:50pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    <p>In reply to <a >Russell</a>.</p>
+<p>The official grammarians would endorse your comma after “Myths” (but perhaps not after “Fabrications).”  Plus, that’s the way they have it in their title tag.</p>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >By: Paul Adasiak</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Free Government Information</a> -
+      <span class="feed-item-date">Mon, 06/12/2023 - 8:50pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    <p>In reply to <a >Anonymous</a>.</p>
+<p>First: According to the Wikipedia page on the <a >serial comma</a>, the GPO Style Manual supports its mandatory use.  Given FGI’s subject matter, your preference seems appropriate.</p>
+<p>Second: The question of whether or not the blog title uses the serial comma depends on where in the page you look.  The prominent, white words in the brown box make it look as though the serial comma has been omitted.  However, the page is coded to <em>include</em> the serial comma in the Title tag — just look in your window’s title bar for confirmation.  In fact, if you search the HTML, there isn’t a single place where “myths and” appears without a comma after “myths”.  You appear to have correctly quoted the blog’s content rather than its title’s graphical representation.  Well done.</p>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >JLOE Idea Lab: Social Media in the Time of Musk</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Lower East Side librarian</a> -
+      <span class="feed-item-date">Fri, 05/19/2023 - 2:50pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    <p>The <em>Journal of Library Outreach and Engagement</em> is looking for contributors for our upcoming issue’s Idea Lab section (<a >example</a>). Idea Lab is practice-centered, is not peer-reviewed, and focuses on a theme selected by the editorial board. Public librarians, school librarians, and LIS graduate students are highly encouraged to contribute. We are looking for short contributions (approx. 200-600 words) responding to the following theme.</p>
+<p>In recent years, social media companies like Twitter and Meta have come under scrutiny. These companies face data leaks; provide platforms for hate speech and disinformation; promote unchecked echo chambers; and are becoming increasingly predatory. Still, many libraries continue to use these platforms as a convenient tool to reach their users. Considering these ethical challenges, should librarians and libraries walk our digital footprints away from exploitative platforms?&nbsp; Authors might address the following topics and questions:</p>
+<ul>
+<li>As information professionals, do we have a responsibility to our users to lead by example and stop lending our credibility to troubling products?</li>
+<li>What other platforms (Mastodon, post.com, bluesky, etc.) are you using or considering as Twitter alternatives&nbsp; and why? How effective are they?</li>
+<li>How can we communicate with our users as ethically as possible?</li>
+</ul>
+<p>Please send questions and a <em>statement of interest</em> to Jenna Freedman at <a > jfreedma@barnard.edu</a> and Stephanie Diaz at <a >sad35@psu.edu</a> no later than June 10, 2023. Final submissions are due ~June 15, 2023, and expected publication will be in fall 2023. JLOE is a peer-reviewed, open access interdisciplinary journal focused on advancing library outreach and engagement. To learn more about <em>JLOE</em>, visit <a >https://iopn.library.illinois.edu/journals/jloe</a>.</p>
+<p>You will not be paid, nor will anyone involved in the editorial process, but neither will Elsevier!</p>
+<p>FYI I'm on the editorial board of this journal, hence the post and co-editing the lab. Mwah!</p>
+free: <ul class="links"><li class="taxonomy-term-reference-0"><a >calls for submissions</a></li><li class="taxonomy-term-reference-1"><a >open access</a></li></ul>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Books of 2016</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source"> alycia.brokenja.ws</a> -
+      <span class="feed-item-date">Sat, 01/21/2017 - 2:07pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    <p>Books I read in 2016, in reverse chronological order according to when I read them, favorites starred.</p>
+<p>I made it past my goal of 60 books, and then basically didn't finish anything in all of December. Writing up this list I saw a lot of books that now seem like they weren't worth the time, or now are barely worth remembering--somehow I seem to have ended up finshing things this year that I might have let go in other years. But I also read some really great stuff, and it was great to get so many things read this year. I didn't make it to my goal of 25 books by women of color, but I did read 16, and setting that goal did make me really think carefully about how I cho(o)se what to read, what is most promoted at large, and what is suggested to me/in my filter bubble. </p>
+<ol>
+<li> Behold the Dreamers / Mbue *
+</li><li> Train Your Dog Positively / Stillwell
+</li><li> Both Ways is the Only Way I Want It / Meloy *
+</li><li> The Everything New Puppy Book / DeVito
+</li><li> Dear Sister / Factora-Borchers
+</li><li> Asking for It / Harding *
+</li><li> Baise-Moi / Despentes
+</li><li> Turning Japanese / MariNaomi
+</li><li> Post-Digital Print / Ludovico
+</li><li> The Century of Artists' Books / Drucker (re-read)
+</li><li> A Child of Books / Jeffers *
+</li><li> Americanah / Adichie *
+</li><li> King Kong Theory / Despentes *
+</li><li> The Promise of Happiness / Ahmed<br>
+</li></ol><p><a  target="_blank">read more</a></p>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Three Mile Pilot – Chief Assassin to the Sinister – 12″ LP</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">The Experiment--A Free News Experiment</a> -
+      <span class="feed-item-date">Sun, 01/12/2014 - 6:07pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    Negative Pulse Records – NEG -6 Three Mile Pilot – Chief Assassin to the Sinister – 12″ LP  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Circuit Bending</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">The Experiment--A Free News Experiment</a> -
+      <span class="feed-item-date">Sat, 01/11/2014 - 5:53pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    Experiment: Circuit Bending Participant(s): Jason Soares, JFRE ‘robot’ Coad, J Lesser, P Hix and Rob Crow Time Frame: 1994 + Location: San Diego Submitted By: Jason Soares Submission Date: 2002-03-23 In the mid ’90s we learned of an idea called “curcuit bending”, the term of which was created by Qubais Reed Ghazala. Its the idea […]  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >hacked labelle duo 16</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">The Experiment--A Free News Experiment</a> -
+      <span class="feed-item-date">Sat, 01/11/2014 - 5:35pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    Experiment: hacked labelle duo 16 Participant(s): Matt Lorenz &amp; Jason Soares Time Frame: 1994 – 1995 Location: San Diego and Tour of US Submitted By: Matt Lorenz Submission Date: 2002-03-28 Around the spring of 1994 I found a bizarre old combo-projector at a secondhand store called thrift village in Linda vista, ca. It was called […]  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >The Killer Whale Copyright Experiment</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">The Experiment--A Free News Experiment</a> -
+      <span class="feed-item-date">Sat, 01/11/2014 - 5:23pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    Experiment: Killer Whale Copyright Participant(s): Jason Soares Time Frame: 1998 Location: San Diego / Internet Submitted By: Jason Soares Submission Date: 1998-01-27 In January of 1998 I received a cease and desist letter from the law offices of Wienberg Sullivan about offending slide photographs I had posted on The Experiment. The photos were found in […]  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Photos from our SE Asia trip to Singapore, Vietnam and Korea</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Wed, 07/28/2010 - 12:57am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Sorry it took so long, but I finally got around to uploading our photos from our trip. Check them out! Related posts:Graphics and Photos from U.S. Government Vietnam wrap-up Eating and wandering through Korea
+
+Related posts:<ol><li><a  rel="bookmark" title=" Graphics and Photos from U.S.  Government">Graphics and Photos from U.S.  Government</a></li>
+<li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+<li><a  rel="bookmark" title=" Eating and wandering through Korea">Eating and wandering through Korea</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Eating and wandering through Korea</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Tue, 07/20/2010 - 9:19am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+It’s been a busy few days full of trains, buses, walking, eating (especially eating!), meeting relatives (brothers, cousins, aunts, nieces and nephews). After spending last week in Daegu with Shinjoung’s parents, we headed up to Seoul and its surroundings to visit myriad relatives — I know some names, but mostly I remember them as relations [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Right at home in Taegu, Korea">Right at home in Taegu, Korea</a></li>
+<li><a  rel="bookmark" title=" South Korea – U.S. FTA Jan 15-19">South Korea – U.S. FTA Jan 15-19</a></li>
+<li><a  rel="bookmark" title=" Photos from our SE Asia trip to Singapore, Vietnam and Korea">Photos from our SE Asia trip to Singapore, Vietnam and Korea</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Right at home in Taegu, Korea</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Tue, 07/13/2010 - 3:26am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Yes we’re still on our SE Asian tour. Shinjoung and I have been in Taegu, Korea for the last few days. No videos to post yet (and also no tour books to consult ). We’ve been staying pretty close to home, visiting with family, eating, visiting with more family. As some of you know, Shinjoung’s [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Eating and wandering through Korea">Eating and wandering through Korea</a></li>
+<li><a  rel="bookmark" title=" Mountain Voice">Mountain Voice</a></li>
+<li><a  rel="bookmark" title=" Hotspots for democracy">Hotspots for democracy</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Vietnam wrap-up</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Tue, 07/06/2010 - 11:06am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Well we’re off tomorrow for Korea. It’s been a great (but IMMENSELY HOT &amp; HUMID!) 4 days in Hanoi. We ate tons of street food — Bun Cha, Pho (pronounced like “fur”), Banh Mi, Banh Goi, Chao Ga, and a bunch of things we don’t know the names of but are listed on the wikipedia [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Vietnam day 2 &amp; 3">Vietnam day 2 &amp; 3</a></li>
+<li><a  rel="bookmark" title=" Shinjoung’s Yalta">Shinjoung’s Yalta</a></li>
+<li><a  rel="bookmark" title=" Overnight sleeper to Hanoi">Overnight sleeper to Hanoi</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Shinjoung&amp;#8217;s Yalta</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Tue, 07/06/2010 - 11:05am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+As our Vietnam trip comes to an end, I have to admit that we haven’t completely abolished the guide book but have come to a detente. It’s hard to kick old habits ☺. We’ve had fun, lots of laughs and continuous debates – did you expect anything less from me?! One of the most exciting [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Experiment of un-lonely planet guide experience">Experiment of un-lonely planet guide experience</a></li>
+<li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+<li><a  rel="bookmark" title=" wanderer vs. planner">wanderer vs. planner</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Overnight sleeper to Hanoi</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Sat, 07/03/2010 - 10:52am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Shinjoung and I took the overnight sleeper train from Hue to Hanoi. Originally we tried to get our own ticket at the station but were defeated because a) we didn’t have enough Vietnamese Dong on us (thought wrongly that at least the train station would have the ability to use a visa card); and b) [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Shinjoung’s Yalta">Shinjoung’s Yalta</a></li>
+<li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+<li><a  rel="bookmark" title=" Experiment of un-lonely planet guide experience">Experiment of un-lonely planet guide experience</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Experiment of un-lonely planet guide experience</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Wed, 06/30/2010 - 11:09pm</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Today we’re heading for Hanoi and I proposed to James to do the un-lonely planet guide experience. James insists that he is different since he is using a rough guide instead of a lonely planet guide.&nbsp; I will let him believe whatever makes him feel good ☺. James is not unique among travelers. You can [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Shinjoung’s Yalta">Shinjoung’s Yalta</a></li>
+<li><a  rel="bookmark" title=" wanderer vs. planner">wanderer vs. planner</a></li>
+<li><a  rel="bookmark" title=" Guide to DRM restrictions">Guide to DRM restrictions</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Traipsing around Hue</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Wed, 06/30/2010 - 11:18am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+We decided to rent motorcycles (and drivers, we’re not THAT crazy!) today in order to get further afield in Hue, Vietnam. Below is a video cobbled together of the day. We’re off tomorrow to Hanoi on the overnight sleeper train which should be fun. At least it’ll be air-conditioned Related posts:Overnight sleeper to Hanoi Vietnam [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Overnight sleeper to Hanoi">Overnight sleeper to Hanoi</a></li>
+<li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+<li><a  rel="bookmark" title=" Experiment of un-lonely planet guide experience">Experiment of un-lonely planet guide experience</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >wanderer vs. planner</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Tue, 06/29/2010 - 4:11am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+James and I have a little different travel style. I’m a wanderer while James is more of a planner (who likes to wander).&nbsp; I rarely plan for any trips or read about the place where I will visit partially because I’m lazy but also because I enjoy trips with few plans or goals. On the [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Experiment of un-lonely planet guide experience">Experiment of un-lonely planet guide experience</a></li>
+<li><a  rel="bookmark" title=" Shinjoung’s Yalta">Shinjoung’s Yalta</a></li>
+<li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Vietnam day 2 &amp;amp; 3</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Mon, 06/28/2010 - 11:04am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Day 2 we decided to take an organized tour (against our better judgement) to the Mekong delta. It was pretty cheap ($24/person) but it was mostly ferrying the group around to various places to buy trinkets. The water coconut farm was interesting, but I wanted to spend more time visiting the beekeepers and listening to [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+<li><a  rel="bookmark" title=" wanderer vs. planner">wanderer vs. planner</a></li>
+<li><a  rel="bookmark" title=" Photos from our SE Asia trip to Singapore, Vietnam and Korea">Photos from our SE Asia trip to Singapore, Vietnam and Korea</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+<div class="feed-item">
+  <h3 class="feed-item-title">
+    <a >Greetings from Ho Chi Minh City</a>
+  </h3>
+
+  <div class="feed-item-meta">
+      <a  class="feed-item-source">Expect Resistance</a> -
+      <span class="feed-item-date">Sat, 06/26/2010 - 4:23am</span>
+  </div>
+
+  <div class="feed-item-body">
+    
+	
+	
+Shinjoung and I landed in Ho Chi Minh City last night and are staying a couple of days at Madam Cuc’s hotel. We went out exploring today and this is the first thing we saw: Click To Play Traffic in Ho Chi Minh City We had some delicious soup, gluttonous rice wrapped in banana leaf, [...]
+
+Related posts:<ol><li><a  rel="bookmark" title=" Experiment of un-lonely planet guide experience">Experiment of un-lonely planet guide experience</a></li>
+<li><a  rel="bookmark" title=" Vietnam wrap-up">Vietnam wrap-up</a></li>
+<li><a  rel="bookmark" title=" Vietnam day 2 &amp; 3">Vietnam day 2 &amp; 3</a></li>
+</ol>  </div>
+
+  <div class="feed-item-categories">
+    Categories: <a  class="active">Radreffies' blogs</a>  </div>
+
+</div>
+  </div>
+    <a  class="feed-icon"><img src="rick.jpg" alt="Syndicate content" title="Radical Reference aggregator - Radreffies&amp;#039; blogs" width="16" height="16"></a>    </div>
+  </td>
+
+    <td id="sidebar-right" class="sidebar sidebar-right" valign="top">
+    <div id="block-views-questioned_answered-block_1" class="clear-block block block-views">
+  <h2>Answered Questions</h2>
+  <div class="content"><div class="view view-questioned-answered view-id-questioned_answered view-display-id-block_1 view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <div class="item-list">
+    <ul>
+          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field-title">
+                <span class="field-content"><a >QUESTION: WILPF U.S. Section Executive Director during the 1960s and 1970s</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field-title">
+                <span class="field-content"><a >QUESTION: Introverts vs. Extroverts</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field-title">
+                <span class="field-content"><a >QUESTION: Sanctuary/Religious activism in Dallas, TX</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field-title">
+                <span class="field-content"><a >QUESTION: Boycott the Palm, homelessness in NYC</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-5 views-row-odd views-row-last">  
+  <div class="views-field-title">
+                <span class="field-content"><a >QUESTION: Socially-Motivated Photo-Illustrated Children's Books (50's. 60's, 70's, 80's)</a></span>
+  </div>
+</li>
+      </ul>
+</div>    </div>
+  
+  
+  
+      
+<div class="more-link">
+  <a >
+    more...  </a>
+</div>
+  
+  
+  
+</div> </div>
+</div>
+<div id="block-tagadelic-7" class="clear-block block block-tagadelic">
+  <h2>Tags in Subjects</h2>
+  <div class="content"><a  class="tagadelic level2" rel="tag" title="">activism</a> 
+<a  class="tagadelic level2" rel="tag" title="">ALA</a> 
+<a  class="tagadelic level1" rel="tag" title="">anarchism</a> 
+<a  class="tagadelic level2" rel="tag" title="">archives</a> 
+<a  class="tagadelic level1" rel="tag" title="">cataloging</a> 
+<a  class="tagadelic level2" rel="tag" title="">Conferences</a> 
+<a  class="tagadelic level1" rel="tag" title="">copyright</a> 
+<a  class="tagadelic level2" rel="tag" title="">feminism</a> 
+<a  class="tagadelic level1" rel="tag" title="">free events</a> 
+<a  class="tagadelic level1" rel="tag" title="">immigration</a> 
+<a  class="tagadelic level1" rel="tag" title="">labor</a> 
+<a  class="tagadelic level3" rel="tag" title="">libraries</a> 
+<a  class="tagadelic level6" rel="tag" title="">local collectives</a> 
+<a  class="tagadelic level1" rel="tag" title="">media</a> 
+<a  class="tagadelic level1" rel="tag" title="">meeting minutes</a> 
+<a  class="tagadelic level4" rel="tag" title="">meetings</a> 
+<a  class="tagadelic level6" rel="tag" title="">nyc</a> 
+<a  class="tagadelic level1" rel="tag" title="">oregon</a> 
+<a  class="tagadelic level1" rel="tag" title="">portland</a> 
+<a  class="tagadelic level2" rel="tag" title="">prison</a> 
+<a  class="tagadelic level2" rel="tag" title="">prisons</a> 
+<a  class="tagadelic level2" rel="tag" title="">radical reference</a> 
+<a  class="tagadelic level2" rel="tag" title="">statistics</a> 
+<a  class="tagadelic level2" rel="tag" title="">women</a> 
+<a  class="tagadelic level2" rel="tag" title="">zines</a> 
+<div class="more-link"><a >more tags</a></div></div>
+</div>
+<div id="block-block-6" class="clear-block block block-block">
+  <div class="content"><a class="twitter-timeline" data-tweet-limit="3" >Tweets by RadReference</a> </div>
+</div>
+<div id="block-user-0" class="clear-block block block-user">
+  <h2>User login</h2>
+  <div class="content"><form action="/aggregator/categories/1?destination=aggregator%2Fcategories%2F1" accept-charset="UTF-8" method="post" id="user-login-form">
+<div><div class="form-item" id="edit-name-wrapper">
+ <label for="edit-name">Username: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" maxlength="60" name="name" id="edit-name" size="15" value="" class="form-text required">
+</div>
+<div class="form-item" id="edit-pass-wrapper">
+ <label for="edit-pass">Password: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="password" name="pass" id="edit-pass" maxlength="60" size="15" class="form-text required">
+</div>
+<input type="submit" name="op" id="edit-submit" value="Log in" class="form-submit">
+<div class="item-list"><ul><li class="first last"><a  title="Request new password via e-mail.">Request new password</a></li>
+</ul></div><input type="hidden" name="form_build_id" id="form-mELCPWZ1UNss4B04kR4sp_rWaeYk486jPUWlo6OJWWE" value="form-mELCPWZ1UNss4B04kR4sp_rWaeYk486jPUWlo6OJWWE">
+<input type="hidden" name="form_id" id="edit-user-login-block" value="user_login_block">
+
+</div></form>
+</div>
+</div>
+<div id="block-user-1" class="clear-block block block-user">
+  <h2>Navigation</h2>
+  <div class="content"><ul class="menu"><li class="collapsed first"><a  title="Information about local Radical Reference Collectives">Local Collectives</a></li>
+<li class="leaf last"><a >Dream projects</a></li>
+</ul></div>
+</div>
+  </td>
+  
+  <td id="main-r"></td>
+
+  </tr>
+</tbody></table>
+
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" id="footer">
+<tbody><tr>
+  <td id="foot-l"></td><td>
+  </td><td id="foot">
+  <h5><a >Contact</a> | <a >Press</a> | <a >Volunteer</a></h5>
+
+<p>Hosted by <a >LISHost</a>. Powered by <a  target="_blank">Drupal</a>. All software and art licensed under the GPL.</p>
+<a rel="license" ><img alt="Creative Commons License" src="rick.jpg"></a>
+
+  </td>
+  <td id="foot-r"></td><td>
+</td></tr>
+</tbody></table>
+
+</div>
+
+</body></html>

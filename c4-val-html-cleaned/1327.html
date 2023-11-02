@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="en"><head>
+<style>
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:1em;font:inherit;vertical-align:baseline}a{text-decoration:none}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}table{border-collapse:collapse;border-spacing:0}.container{width:90%;margin-left:auto;margin-right:auto}@media only screen and (min-width: 33.75em){.container{width:80%}}@media only screen and (min-width: 60em){.container{width:75%;max-width:60rem}}.row{position:relative;width:100%}.row>.col,.row [class^="col"]{float:left;margin:0.5rem 2%;min-height:0.125rem;box-sizing:border-box}.row::after{content:"";display:table;clear:both}.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12{width:96%}.col-1-sm{width:4.3333333333%}.col-2-sm{width:12.6666666667%}.col-3-sm{width:21%}.col-4-sm{width:29.3333333333%}.col-5-sm{width:37.6666666667%}.col-6-sm{width:46%}.col-7-sm{width:54.3333333333%}.col-8-sm{width:62.6666666667%}.col-9-sm{width:71%}.col-10-sm{width:79.3333333333%}.col-11-sm{width:87.6666666667%}.col-12-sm{width:96%}@media only screen and (min-width: 45em){.col-1{width:4.3333333333%}.col-2{width:12.6666666667%}.col-3{width:21%}.col-4{width:29.3333333333%}.col-5{width:37.6666666667%}.col-6{width:46%}.col-7{width:54.3333333333%}.col-8{width:62.6666666667%}.col-9{width:71%}.col-10{width:79.3333333333%}.col-11{width:87.6666666667%}.col-12{width:96%}.hidden-sm{display:block}}body{color:#232323;font-family:"Inconsolata",monospace;font-size:1em;line-height:1.5}h1,h2,h3,h4,h5,h6{font-family:"Inconsolata",monospace;font-size:1em;line-height:1.2;margin:.75em 0 .75em 0;font-weight:300}h1{font-size:rem(30)}h2{font-size:rem(26)}h3{font-size:rem(24)}h4{font-size:rem(20)}h5,h6{font-size:rem(16)}sup{vertical-align:super;font-size:smaller}p{margin:0 0 .75em}p.lead{font-size:rem(22);font-weight:300}a{color:#000;text-decoration:none;transition:all 150ms ease;transition-property:color, border, background-color}a:active,a:focus,a:hover{color:shade(#000, 25%)}hr{border-bottom:1px solid #d9d9d9;border-left:0;border-right:0;border-top:0;margin:1.5em 0}img,picture{margin:0;max-width:100%}blockquote{padding:0 0 0 1.5em;margin:1.5em 0;color:#232323;line-height:1.8;border-left:.75em solid #d9d9d9;background:white}blockquote cite{font-weight:bold;color:#909090}blockquote cite:before{content:' ~ '}code{background:none;border-radius:0;border:none;margin:0;padding:2px 4px;background-color:#d9d9d9}pre{-webkit-overflow-scrolling:touch;margin:0;padding:5px 10px !important;overflow:auto;max-height:60em;white-space:pre}pre code{line-height:1.75em;padding:0 !important}strong{font-weight:bold}em{font-style:italic}ul,ol,dl{margin-top:0;margin-left:1.2em;margin-bottom:1rem}ul{list-style-type:square;list-style-position:outside;list-style-image:none}ol{list-style-position:inside}.subdued{color:#909090}.org-src-container pre,pre.example,.highlighter-rouge pre.highlight{background:#fff;border:2px solid #aaa;padding:0.25em;margin:1em 0}.highlighter-rouge .highlight{margin:1.5em 0;padding:0;box-shadow:0px 0px 2px rgba(0,0,0,0.1)}.highlighter-rouge .highlighter-rouge .highlight,.highlighter-rouge .highlight,.highlighter-rouge .highlight .hll,.highlighter-rouge .highlight pre,.highlighter-rouge .highlight code{background-color:#fafafa !important}.highlighter-rouge .highlight pre{margin:0;padding:1.5em;white-space:pre;line-height:23px;overflow-x:auto;margin-bottom:0;word-break:inherit;word-wrap:inherit}.highlighter-rouge .highlight pre,.highlighter-rouge .highlight pre code{color:#232323}.highlighter-rouge .highlight pre code{white-space:pre;padding:0 !important}.highlighter-rouge .highlight pre code *{white-space:nowrap}.highlighter-rouge .highlight .c{color:#998;font-style:italic}.highlighter-rouge .highlight .err{color:#a61717;background-color:#e3d2d2}.highlighter-rouge .highlight .k{font-weight:bold}.highlighter-rouge .highlight .o{font-weight:bold}.highlighter-rouge .highlight .cm{color:#998;font-style:italic}.highlighter-rouge .highlight .cp{color:#999;font-weight:bold}.highlighter-rouge .highlight .c1{color:#998;font-style:italic}.highlighter-rouge .highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlighter-rouge .highlight .gd{color:#000;background-color:#fdd}.highlighter-rouge .highlight .gd .x{color:#000;background-color:#faa}.highlighter-rouge .highlight .ge{font-style:italic}.highlighter-rouge .highlight .gr{color:#a00}.highlighter-rouge .highlight .gh{color:#999}.highlighter-rouge .highlight .gi{color:#000;background-color:#dfd}.highlighter-rouge .highlight .gi .x{color:#000;background-color:#afa}.highlighter-rouge .highlight .go{color:#888}.highlighter-rouge .highlight .gp{color:#555}.highlighter-rouge .highlight .gs{font-weight:bold}.highlighter-rouge .highlight .gu{color:#aaa}.highlighter-rouge .highlight .gt{color:#a00}.highlighter-rouge .highlight .kc{font-weight:bold}.highlighter-rouge .highlight .kd{font-weight:bold}.highlighter-rouge .highlight .kp{font-weight:bold}.highlighter-rouge .highlight .kr{font-weight:bold}.highlighter-rouge .highlight .kt{color:#458;font-weight:bold}.highlighter-rouge .highlight .m{color:#099}.highlighter-rouge .highlight .s{color:#d14}.highlighter-rouge .highlight .na{color:#008080}.highlighter-rouge .highlight .nb{color:#0086B3}.highlighter-rouge .highlight .nc{color:#458;font-weight:bold}.highlighter-rouge .highlight .no{color:#008080}.highlighter-rouge .highlight .ni{color:#800080}.highlighter-rouge .highlight .ne{color:#900;font-weight:bold}.highlighter-rouge .highlight .nf{color:#900;font-weight:bold}.highlighter-rouge .highlight .nn{color:#555}.highlighter-rouge .highlight .nt{color:#000080}.highlighter-rouge .highlight .nv{color:#008080}.highlighter-rouge .highlight .ow{font-weight:bold}.highlighter-rouge .highlight .w{color:#bbb}.highlighter-rouge .highlight .mf{color:#099}.highlighter-rouge .highlight .mh{color:#099}.highlighter-rouge .highlight .mi{color:#099}.highlighter-rouge .highlight .mo{color:#099}.highlighter-rouge .highlight .sb{color:#d14}.highlighter-rouge .highlight .sc{color:#d14}.highlighter-rouge .highlight .sd{color:#d14}.highlighter-rouge .highlight .s2{color:#d14}.highlighter-rouge .highlight .se{color:#d14}.highlighter-rouge .highlight .sh{color:#d14}.highlighter-rouge .highlight .si{color:#d14}.highlighter-rouge .highlight .sx{color:#d14}.highlighter-rouge .highlight .sr{color:#009926}.highlighter-rouge .highlight .s1{color:#d14}.highlighter-rouge .highlight .ss{color:#990073}.highlighter-rouge .highlight .bp{color:#999}.highlighter-rouge .highlight .vc{color:#008080}.highlighter-rouge .highlight .vg{color:#008080}.highlighter-rouge .highlight .vi{color:#008080}.highlighter-rouge .highlight .il{color:#099}body{background-color:#fff;font-size:1.1em}a{color:#0047b5;border-bottom:2px solid transparent}a:hover,a:focus,a:active{color:#005be8;border-bottom:2px solid #005be8}dl{margin:0 0 1rem}dl dd{margin:0 0 1rem}dl dd:last-child{margin:0}b{font-weight:bold}i{font-style:italic}hr{border:0;height:2px;background:#d9d9d9}h4{font-size:1.25rem}.highlight--blue,.highlight--green,.highlight--orange,.highlight--yellow{box-shadow:none}.highlight--blue{background:#DBEAFF !important}.highlight--green{background:#C2FFC7 !important}.highlight--orange{background:#FFD79E !important}.highlight--yellow{background:#F8FFA8 !important}.separator{color:#909090}.is-strikethrough{text-decoration:line-through;color:#910000}.org-dl dt{font-weight:bold}.org-dl dd{margin-bottom:0.5em;margin-left:1em}.org-dl dd:last-child{margin-bottom:0.5em;margin-left:1em}.text-assistive{-webkit-clip-path:polygon(0 0, 0 0, 0 0, 0 0);clip-path:polygon(0 0, 0 0, 0 0, 0 0);box-sizing:border-box;position:absolute;margin:0;padding:0}.text-assistive.display-at-top-on-focus{top:0;left:0;width:100%}.text-assistive.display-at-top-on-focus:focus{-webkit-clip-path:none;clip-path:none;z-index:999;height:80px;line-height:80px;background:#d9d9d9;font-size:1.2rem;text-decoration:none;color:#0047b5;text-align:center}.site-header{padding:0.5em 0;background:#f6f6f6;margin-bottom:1em}.site-header .inner{max-width:700px;margin:0 auto;overflow:hidden;display:flex;flex-flow:row nowrap;align-items:flex-end}.site-header .site-title,.site-header ul{margin:0;padding:0.25em 0}.site-header .site-title{font-size:1.875rem}.site-header .site-title a{background:#f6f6f6;display:inline-block;padding:0.25em 0.5em;border:0;margin-left:2px}.site-header .site-navigation{margin-left:auto;font-size:1em;margin-bottom:0.75em}.site-header .site-navigation li{margin:0 0.25em}.site-header .site-navigation a{padding:0.25em 0.5em;background:#f6f6f6;border:none;transition:none;color:#0047b5}.site-header .site-navigation a:hover{background:#0047b5;color:white}.site-header .site-navigation a:focus{box-shadow:0 0 0 2px #0047b5}.site-header ul li{display:inline;padding:0}.site-header .site-title a:hover{background:white;border:0;animation-name:logo-hover-cycle;animation-duration:4s;animation-direction:alternate;animation-iteration-count:infinite;-webkit-animation-name:logo-hover-cycle;-webkit-animation-duration:4s;-webkit-animation-direction:alternate;-webkit-animation-iteration-count:infinite}@keyframes logo-hover-cycle{0%{color:#0047b5}20%{color:#00b56c}40%{color:#fe2300}60%{color:#9000b5}80%{color:#00b5b5}}@-webkit-keyframes logo-hover-cycle{0%{color:#0047b5}20%{color:#00b56c}40%{color:#fe2300}60%{color:#9000b5}80%{color:#00b5b5}}.body--post .site-footer{border-top:0}.site-footer{max-width:700px;margin:0 auto;border-top:2px solid #d9d9d9;padding:1em;text-align:center}.site-footer p{font-size:0.8em}.site-footer ul{list-style:none;margin:1em 0;font-size:0.8em}.site-footer ul li{display:inline-block}.site-footer ul li a{border:0}.site-footer ul li a:hover{background:#d9d9d9}.site-footer ul li a:before{content:'['}.site-footer ul li a:after{content:']'}.page,.post{padding:1em;margin-left:auto;margin-right:auto;max-width:700px;font-weight:normal}.page header h1,.page header h2,.post header h1,.post header h2{font-size:1.4em;font-weight:bold;padding-bottom:0.2em;border-bottom:2px solid #d9d9d9;margin-bottom:0.2em;margin-top:inherit}.page h2,.post h2{color:black;padding-bottom:0.2em;border-bottom:2px solid #d9d9d9;font-size:1.2em;font-weight:bold;margin-top:2em}.page h3,.post h3{color:black;font-size:1.1em;font-weight:bold;margin-top:1em}.page h4,.post h4{font-weight:bold}.page .article-published-info,.post .article-published-info{margin-bottom:2em;color:#909090}.page .article-author-info,.post .article-author-info{display:none}.page .article-meta,.post .article-meta{border-top:2px solid #d9d9d9;padding:0.5em 0}.page>header{margin-bottom:1em}.comments-container{background:#f0f0f0}.comments-container .inner{padding:1em;margin-left:auto;margin-right:auto;max-width:700px;font-weight:normal}.comments-form{background:#e0e0e0}.comments-form h3{color:black;font-size:1.2em;font-weight:bold;margin-top:0.25em}.comments-form form{padding:1em;margin-left:auto;margin-right:auto;max-width:700px;font-weight:normal}.comments-form .button--submit[disabled]{border-color:#909090 !important;background:#d9d9d9;color:#909090}.comments-form .user_info{margin-bottom:1em}.comments-form .user_info p{overflow:hidden;margin:4px 0}.comments-form .user_info label{clear:both;padding:4px 0;min-width:8em;display:inline-block}.comments-form .user_info input[type='text'],.comments-form .user_info input[type='email']{color:#232323;font-family:"Inconsolata",monospace;font-size:90%;line-height:1.5;max-width:480px;padding:4px 0.5em;border:1px solid #d9d9d9}.comments-form textarea.comment_box{font-family:"Inconsolata",monospace;font-size:90%;width:98%;border:1px solid #d9d9d9;padding:4px}.comments-form .inner{position:relative}.comments-form .inner .form-overlay{position:absolute;top:0;left:0;opacity:0.5;background:#FFF;width:100%;height:100%}.comments-form .message{border:2px solid #FFF;padding:4px 8px;display:block;margin-bottom:1em;font-weight:bold}.comments-form .message.success{color:#080;border-color:#080;background:rgba(0,128,0,0.1)}.comments-form .message.error{color:#800;border-color:#800;background:rgba(128,0,0,0.1)}.newsletter-signup p{font-style:normal}.newsletter-signup hr{margin:1em 0;background:#909090}.newsletter-signup form{font-weight:normal}.newsletter-signup form .button[disabled]{border-color:#909090 !important;background:#d9d9d9;color:#909090}.newsletter-signup form p{overflow:hidden;margin:4px 0}.newsletter-signup form label{clear:both;font-weight:bold;padding:4px 0;display:block}.newsletter-signup form input[type='text'],.newsletter-signup form input[type='email']{font-size:1em;color:#232323;font-family:"Inconsolata",monospace;line-height:1.5;width:100%;border:0;padding:0.5em;box-sizing:border-box}.blog-navigation{margin:8px auto 16px;max-width:700px;padding-top:8px}.blog-navigation ul{list-style:none;overflow:hidden;margin:0;padding:3px}.blog-navigation ul li{float:left;display:block}.blog-navigation ul li.previous{text-align:left;width:25%}.blog-navigation ul li.archives{text-align:center;width:50%;font-weight:bold}.blog-navigation ul li.next{text-align:right;width:25%}article.resource{overflow:hidden;margin-bottom:24px}article.resource div.description{margin-left:227px}article.resource div.description.narrow{width:310px}article.resource div.preview{box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border:2px solid #909090;margin:5px;float:left}@media (prefers-color-scheme: dark){article.resource div.preview{box-shadow:0 0 0 4px #909090;-moz-box-shadow:0 0 0 4px #909090;-webkit-box-shadow:0 0 0 4px #909090}}article.resource div.preview img{vertical-align:top}article.resource div.preview:hover{border-color:#0047b5}article.resource div.preview a{display:block}article.resource div.preview a:focus{box-shadow:0 0 0 6px #0047b5;-moz-box-shadow:0 0 0 6px #0047b5;-webkit-box-shadow:0 0 0 6px #0047b5}article.resource ul{list-style:none;padding-left:16px}article.resource ul li{margin:2px 0}.resource--pomodoro-app{margin-bottom:24px}.resource--pomodoro-app div.preview{box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border:2px solid #909090}@media (prefers-color-scheme: dark){.resource--pomodoro-app div.preview{box-shadow:0 0 0 4px #909090;-moz-box-shadow:0 0 0 4px #909090;-webkit-box-shadow:0 0 0 4px #909090}}.resource--pomodoro-app div.preview img{vertical-align:top}.resource--pomodoro-app div.preview:hover{border-color:#0047b5}.resource--pomodoro-app div.preview img{width:100%;height:auto}.resource--pomodoro-app div.description h4{margin-top:0}.resource--pomodoro-app ul{list-style:none;padding-left:16px}.resource--pomodoro-app ul li{margin:2px 0}section.resource{overflow:hidden;margin-bottom:24px}section.resource.wide div.description{width:330px}section.resource div.description{float:right;width:390px}section.resource div.description p:first-child{margin-top:0}section.resource figure{padding:0;margin:0}section.resource figure p{margin:0}section.resource div.preview,section.resource figure{margin:5px;float:left}section.resource div.preview img,section.resource figure img{box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border:2px solid #909090;display:block;margin-bottom:16px}@media (prefers-color-scheme: dark){section.resource div.preview img,section.resource figure img{box-shadow:0 0 0 4px #909090;-moz-box-shadow:0 0 0 4px #909090;-webkit-box-shadow:0 0 0 4px #909090}}section.resource div.preview img img,section.resource figure img img{vertical-align:top}section.resource div.preview img:hover,section.resource figure img:hover{border-color:#0047b5}section.resource ul{list-style:none;padding-left:16px}section.resource ul li{margin:2px 0}.page--book .book-info .book-cover img{box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border:2px solid #909090;max-width:100%}.page--book .book-price,.resource--book .book-price{margin-left:1em}a.template{box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border:2px solid #909090}a.template img{vertical-align:top}a.template:hover{border-color:#0047b5}p.resource{text-align:center}p.resource img{box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border:2px solid #909090;vertical-align:top;max-width:520px}p.resource a:hover img{box-shadow:0 0 0 4px #0047b5;-moz-box-shadow:0 0 0 4px #0047b5;-webkit-box-shadow:0 0 0 4px #0047b5}.post-list h4{margin:2em 0 0.5em 0}.post-list h4:first-child{margin-top:0}.post-list .post-item{margin-bottom:0.2em;display:block}.post-list .post-item a{color:#000;font-weight:bold}.post-list .post-item .article-title{display:inline-block;width:85%;border-bottom:1px dashed #f3f3f3}.post-list .post-item .date-label{border:1px solid #f3f3f3;padding:0 0.2em;margin-left:1em;margin-top:2px;float:right}.post-list.post-list--category .article-title{width:80%}.post-list .post-meta{color:#909090;text-transform:uppercase;display:inline-block;letter-spacing:1px;font-size:0.875rem}.post-list .post-meta.tag-label{border:1px solid #f3f3f3;padding:0 0.2em;margin-left:1em;margin-top:2px;float:right;text-transform:lowercase}.breadcrumb{display:none !important}.breadcrumb.hide_first ul li:first-child{display:none}.breadcrumb p{display:none}.breadcrumb ul{overflow:hidden;padding:0;margin:0;list-style:none}.breadcrumb ul li{float:left;padding:0;margin:0;line-height:inherit}.breadcrumb ul li.current{display:none}.breadcrumb ul li:after{content:'/';color:#888;font-size:0.64em;margin:0 0.5em 0 0;top:-3px;position:relative}.breadcrumb ul li:last-child:after{display:none}.breadcrumb.hide_home span:first-child{display:none}.breadcrumb.hide_home span:after{content:'/';margin-left:4px;margin-right:4px}.breadcrumb.hide_home span.current:after{display:none}body .sidebar-checkbox{display:none}.sidebar-toggle{position:absolute;top:1rem;left:1rem;display:block;width:1rem;padding:.5rem .65rem;color:#505050;background-color:#fff;border-radius:2px;cursor:pointer;border:2px solid white}.sidebar-toggle:hover{border:2px solid #505050}.sidebar-toggle:before{display:block;content:"";width:100%;padding-bottom:.125rem;border-top:.375rem double;border-bottom:.125rem solid;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.sidebar-toggle:active,#sidebar-checkbox:checked~.sidebar-toggle{color:#fff;background-color:#505050;border-color:#505050}@media (min-width: 30.1em){.sidebar-toggle{position:fixed;width:1.5rem}.sidebar-toggle:before{padding-bottom:.15rem;border-top-width:.45rem;border-bottom-width:.15rem}}.wrap,.sidebar,.sidebar-toggle{-webkit-backface-visibility:hidden;-ms-backface-visibility:hidden;backface-visibility:hidden}.wrap,.sidebar,.sidebar-toggle{-webkit-transition:-webkit-transform .3s ease-in-out;transition:transform .3s ease-in-out}#sidebar-checkbox:checked+.sidebar{z-index:10;visibility:visible}#sidebar-checkbox:checked~.sidebar,#sidebar-checkbox:checked~.wrap,#sidebar-checkbox:checked~.sidebar-toggle{-webkit-transform:translateX(16rem);-ms-transform:translateX(16rem);transform:translateX(16rem)}.sidebar{position:fixed;top:0;left:-16rem;width:16rem;background:#fafafa;z-index:1000;height:100%;bottom:0}.sidebar section:first-child h2{border-top:0}.sidebar h2{margin:0;font-size:1.1em;font-weight:bold;background:#d9d9d9;padding:1em;border-top:2px solid #d9d9d9;border-bottom:2px solid #d9d9d9}.sidebar ul{list-style:none;padding:1em 0;margin:0;background:#fafafa}.sidebar ul a{display:block;padding:0.25em 1em}.sidebar ul a:hover{background:#d9d9d9}a[href$='.pdf'],.pdf_link{background:transparent url("../images/icons/icn_pdf.png") center left no-repeat;display:inline-block;padding:1px 0px 2px 20px;line-height:18px;min-height:18px;overflow:visible}a[href$='.odt'],.odt_link{background:transparent url("../images/icons/icn_odt.png") center left no-repeat;display:inline-block;padding:1px 0px 2px 20px;line-height:18px;min-height:18px;overflow:visible}a[href$='.ods'],.ods_link{background:transparent url("../images/icons/icn_ods.png") center left no-repeat;display:inline-block;padding:1px 0px 2px 20px;line-height:18px;min-height:18px;overflow:visible}a[href$='.doc'],.doc_link{background:transparent url("../images/icons/icn_doc.png") center left no-repeat;display:inline-block;padding:1px 0px 2px 20px;line-height:18px;min-height:18px;overflow:visible}a[href$='.xls'],.xls_link{background:transparent url("../images/icons/icn_xls.png") center left no-repeat;display:inline-block;padding:1px 0px 2px 20px;line-height:18px;min-height:18px;overflow:visible}.table--blogs-list{width:100%;border-spacing:0 1px}.table--blogs-list tbody{border-spacing:0 1px}.table--blogs-list td,.table--blogs-list th{border:0;padding:0.25em}.table--blogs-list tbody:nth-child(odd) td,.table--blogs-list tbody:nth-child(odd) th{background:#fafafa}.table--blogs-list tbody:nth-child(even) td,.table--blogs-list tbody:nth-child(even) th{background:#fff}.table--blogs-list td.icon,.table--blogs-list td.description{border-bottom:2px solid #d9d9d9}.table--blogs-list td.icon{width:18px;vertical-align:top}.table--blogs-list td.icon img{margin-top:4px}.table--blogs-list th[scope='row']{font-weight:bold;text-align:left;background:none}.table--blogs-list td.secondary{color:#909090;text-align:right}.table--full{width:100%;border-spacing:0 1px;background:white}.table--full thead th{background:#d9d9d9;text-align:left;font-weight:bold}.table--full tbody{border-spacing:0 1px}.table--full td,.table--full th{padding:0.5em}.table--full th[scope='row']{font-weight:bold;text-align:left;background:none}.table--dark-header thead th{background:#232323;color:white}.table--striped tbody tr:nth-child(even) td,.table--striped tbody tr:nth-child(even) th{background:#d9d9d9}.table--striped tbody tr:nth-child(odd) td,.table--striped tbody tr:nth-child(odd) th{background:#fff}.table--outlined{width:100%;border-spacing:0 1px;border:2px solid #909090;background:white}.table--outlined thead th{background:#d9d9d9;text-align:left;font-weight:bold;border-bottom:2px solid #909090}.table--outlined tbody{border-spacing:0 1px}.table--outlined td,.table--outlined th{padding:0.5em}.table--outlined th[scope='row']{font-weight:bold;text-align:left;background:none}.table--shortcuts .column--command{width:20%}.table--shortcuts code{padding:0 0.5em;background:white;border:1px solid #d9d9d9;box-shadow:2px 2px 0 0 rgba(0,0,0,0.2)}kbd{padding:0 0.5em;background:white;border:1px solid #d9d9d9;box-shadow:2px 2px 0 0 rgba(0,0,0,0.2)}.table--bordered{width:100%;border-spacing:0 1px;border:2px solid #909090}.table--bordered thead th{background:#d9d9d9;text-align:left;font-weight:bold}.table--bordered tbody{border-spacing:0 1px}.table--bordered td,.table--bordered th{border-bottom:2px solid #909090;padding:0.5em}.table--bordered th[scope='row']{font-weight:bold;text-align:left;background:none}.table--simple{border-spacing:0 1px;margin-bottom:0.5em}.table--simple th,.table--simple td{padding:0.5em}.table--simple thead th{background:#d9d9d9;text-align:left;font-weight:bold}.table--simple tbody{border-spacing:0 1px}.table--simple tr th{border-bottom:2px solid #909090}.table--simple th[scope='row']{font-weight:bold;text-align:left;background:none}.comments-container .comment{border:2px solid #d9d9d9;background:#fff;margin-bottom:32px}.comments-container .comment.trackback{margin-bottom:16px}.comments-container .comment.author{border-color:#00b56c}.comments-container .comment header{padding:0.5em;background:#d9d9d9;border:none;margin:0;border-bottom:2px solid #d9d9d9}.comments-container .comment .content{padding:0.75em 0.5em 0}.inter-post-navigation{width:700px;margin:0 auto;overflow:hidden}dl.summary{overflow:hidden}dl.summary dt{margin:0 0.25em 2px 0;float:left;padding:4px;width:22%;text-align:right;background:#d9d9d9;font-weight:bold;clear:both;margin-bottom:2px !important}dl.summary dd{margin:0;padding:4px;float:left;width:75%;margin-bottom:2px !important}.page section.downloads{text-align:center;margin:1em 0 2em}.button{color:#232323;font-family:"Inconsolata",monospace;font-size:1em;line-height:1.5;background:#fff;border-radius:0;border:2px solid #0047b5 !important;font-weight:normal;color:#0047b5;cursor:pointer;padding:0.25em 1em}.button:hover{background:#0047b5;color:white}.button:focus{background:#d9d9d9}.image-caption.center{display:block;text-align:center}img.center,img.centered,a.center,a.centered,iframe.center,iframe.centered,object.center,object.centered{margin-left:auto;margin-right:auto;display:block}img.left,a.left,iframe.left,object.left{float:left;margin-right:16px;margin-bottom:8px}img.right,a.right,iframe.right,object.right{float:right;margin-left:16px;margin-bottom:8px}img.shadowed,a.shadowed,iframe.shadowed,object.shadowed{box-shadow:4px 4px 0 0 rgba(0,0,0,0.1);border:2px solid #909090}img.shadowed>img,a.shadowed>img,iframe.shadowed>img,object.shadowed>img{float:none;border:none;box-shadow:none;display:block;margin:0}img.bordered,a.bordered,iframe.bordered,object.bordered{padding:1px;border:2px solid #909090}article figure{margin:1em auto 1.5em;text-align:center}article figure figcaption{color:#232323}article figure figcaption .figure-number{font-weight:bold}article figure a.bordered{display:inline-block;box-shadow:0 0 0 4px #d9d9d9;-moz-box-shadow:0 0 0 4px #d9d9d9;-webkit-box-shadow:0 0 0 4px #d9d9d9;border-color:#909090}article figure a.bordered:hover{border-color:#0047b5}article figure a.bordered img{border:0;padding:0;vertical-align:top}a.boxy:before{content:'['}a.boxy:after{content:']'}a.boxy:hover{background:#d9d9d9}.tabs--horizontal{margin-bottom:32px}.tabs--horizontal ul{list-style:none;margin:0;padding:0 0 0 8px;height:38px;border-bottom:2px solid #909090}.tabs--horizontal ul li{float:left;margin-right:8px}.tabs--horizontal ul li.current a{border:2px solid #909090;border-bottom:2px solid #fff;background:white;font-weight:bold}.tabs--horizontal ul a{display:block;padding:5px 1em;height:40px;box-sizing:border-box;text-decoration:none;background:transparent;border-bottom:2px solid #909090;border-top:2px solid #fff}.tabs--horizontal ul a:hover{background:#d9d9d9}#search-box{width:100%;height:42px}.search-credits{font-size:0.9em;color:#888;text-align:center;margin:0}@media (max-width: 480px){html{font-size:90%}article.resource{text-align:center}article.resource div.preview{float:none;margin:1em auto;text-align:center;display:inline-block;display:none}article.resource div.description{text-align:left;margin:0;width:100%}p.resource img{max-width:100%}}.table--timeline{width:100%;position:relative}.table--timeline td,.table--timeline th{padding:0.5em}table.timeline{width:100%}table.timeline th,table.timeline td{padding:2px 20px}table.timeline th p,table.timeline td p{margin:8px 0 !important}table.timeline th{padding:10px 20px;vertical-align:top}table.timeline th[scope='row']{text-align:right}table.timeline tr.important th[scope='row']{border-color:#668cff}table.timeline tr.red th[scope='row']{border-color:#ff4e32}table.timeline tr.orange th[scope='row']{border-color:#ffa632}table.timeline tr.yellow th[scope='row']{border-color:#ffc432}table.timeline tr.green th[scope='row']{border-color:#00e88a}table.timeline tr.blue th[scope='row']{border-color:#005be8}table.timeline tr.large th,table.timeline tr.large td{padding-bottom:80px}table.timeline tr.bold,table.timeline tr.bold p{font-weight:bold}table.timeline tr.attention,table.timeline tr.attention p{font-size:120% !important}table.timeline tr.plus th[scope='row']::after{content:"+";font-size:2em;display:block;position:absolute;top:-8px;left:117px;padding:4px 8px;color:#668cff}table.timeline th[scope='row']{border-right:3px solid #d9d9d9;width:10%}article aside{border-top:4px solid #232323;font-size:1em;background:#d9d9d9;position:relative;padding:10px;color:#232323;margin:16px 0}article aside p{margin:8px 0 !important;font-style:italic}article aside.note,article aside.about,article aside.info,article aside.aside{padding:48px 16px 16px}article aside.note::after,article aside.about::after,article aside.info::after,article aside.aside::after{display:block;position:absolute;top:0;left:0;padding:4px 8px;text-transform:lowercase;background:#232323;color:white}article aside.note::after{content:"Note"}article aside.about::after{content:'About'}article aside.info::after{content:'Info'}article aside.aside::after{content:'Aside'}article aside code{background:rgba(0,0,0,0.1)}.ajax-indicator:after{overflow:hidden;display:inline-block;vertical-align:middle;-webkit-animation:animated-ellipsis steps(4, end) 1500ms infinite;animation:animated-ellipsis steps(4, end) 1500ms infinite;content:"...";width:0;position:relative;top:-2px}@keyframes animated-ellipsis{to{width:2em}}@-webkit-keyframes animated-ellipsis{to{width:2em}}#resource-adsense-links{overflow:hidden;margin:1em auto;text-align:center;width:100%}.bits-section{margin-bottom:2em}.bits-section h2{margin-top:0;padding:0.25em 0.5em;background:#d9d9d9;border:0}.progress-bar{border:2px solid #d9d9d9;position:relative;overflow:hidden;padding:2px}.progress-bar .progress-bar-inner{box-sizing:border-box;display:block;background:#00b56c;color:white}.progress-bar .progress-bar-inner.is-empty{color:#232323;padding:0 0.25em;background:none}.progress-bar .progress-line{box-sizing:border-box;position:absolute;display:block;width:2px;background:#d9d9d9;height:100%;top:0;border-top:2px solid white;border-bottom:2px solid white}.placeholder{background:#d9d9d9;display:inline-block}.icon-table td{vertical-align:top}.icon-table .description{padding-left:1em}.bits-goals p{margin:0}.bits-goals .bits-goal--complete{color:#275927}.stat{text-align:center;background:#d9d9d9;border:2px solid #909090;padding:0.5em}.stat .large{font-size:2.5em}.stat .large .unit{font-size:50%;color:#909090}ul.task-list{list-style:none;margin-left:0}ul.task-list .task-list li{margin-left:1.2em}ul.task-list .task-list-item-checkbox{-webkit-appearance:none}ul.task-list .task-list-item-checkbox:after{font-family:sans-serif;font-size:150%;content:"\2610"}ul.task-list .task-list-item-checkbox:checked:after{content:"\2611"}.checkmark--tick:after,.checkmark--cross:after{font-family:sans-serif}.checkmark--tick:after{color:#00b56c;content:"\2714"}.checkmark--cross:after{color:#fe2300;content:"\2718"}.org-ul li.on code,.org-ul li.off code{background:none;padding:0}.footdef{overflow:hidden}.footdef sup{float:left;width:2em;font-size:1em;vertical-align:baseline;border-right:2px solid #d9d9d9;margin-right:1em}.footdef .footpara{margin-left:1.5em}.section--roadmap>header{display:none}.section--roadmap .label--in-progress,.section--roadmap .label--complete,.section--roadmap .label--done,.section--roadmap .label--todo{text-transform:lowercase;font-size:1em;padding:0 1em;background:#aaa;color:white;font-weight:bold}.section--roadmap .label--in-progress{background:#00b56c}.section--roadmap .label--complete,.section--roadmap .label--done{background:#0047b5}.section--roadmap .label--todo{background:#910000}.section--roadmap .version{margin-bottom:1.5em}.section--roadmap .version header{border-bottom:2px solid #d9d9d9;overflow:hidden;padding-top:0;position:relative;padding:0.25em 0.5em;margin-bottom:0.5em;background:#fafafa}.section--roadmap .version header h4{margin:0.25em 0;font-weight:bold}.section--roadmap .version header h4 span{font-weight:normal}.section--roadmap .version header .label{position:absolute;top:0.25em;right:0.5em;margin:0.25em}.section--roadmap .version .version-tasks{padding:0.25em}.section--roadmap .version .version-tasks .version-task{border-bottom:2px solid #d9d9d9;padding:0.1em 0.25em}.section--roadmap .version .version-tasks .version-task p{margin:0}.section--roadmap .version .version-tasks .checkbox{font-size:1.5em;color:#909090}.section--roadmap .version .version-tasks .version-task--complete{background:#d8eed8;border-color:#92CE92;color:#275927}.section--roadmap .version .version-tasks .version-task--todo{background:#f4f4f4}.label.label--pro{color:#00b56c;font-weight:bold}.label.label--con{color:#fe2300;font-weight:bold}.label--count{color:#909090}@media only screen and (max-width: 800px){.site-header .inner{display:block;text-align:center}.site-header .inner li a{padding:0}}@media (prefers-color-scheme: dark){body{background-color:#232323;color:#d9d9d9}blockquote{background-color:#484848;color:#d9d9d9;border-color:#909090}a{color:#006dff;border-color:#006dff}a:hover{color:#0091ff;border-color:#0091ff}a:focus{background:#006dff;color:white}.site-header{background:black}.site-header a{background:black !important;color:#00b5b5 !important}.site-header a:hover{background:#00b5b5 !important;color:black !important}.site-header a:focus{box-shadow:0 0 0 2px #00b5b5 !important}.page header h1,.page header h2,.post header h1,.post header h2{border-color:#484848}.page h2,.page h3,.post h2,.post h3{color:#d9d9d9;border-color:#484848}.page .meta,.post .meta{border-color:#484848}hr{background:#484848}.site-footer{border-color:black;width:100%}.post-list .post-item a{color:#006dff;border-bottom:0}.post-list .post-item .article-title,.post-list .post-item .date-label{border-color:#484848}code,.org-src-container pre,pre.example{background:#161616 !important}dl.summary dt{background:#484848}.button{background:#232323;color:#006dff}.button:focus{border-color:#00b5b5 !important}.sidebar-toggle{background:#484848;border-color:#484848}.sidebar-toggle:hover{background:#6d6d6d;border-color:#6d6d6d}.sidebar-toggle:before{border-color:#d9d9d9}.sidebar{background:#484848}.sidebar h2{background:#6d6d6d;border-color:#6d6d6d}.sidebar ul{background:#484848}.sidebar ul a{color:#00b5b5;border-color:#6d6d6d}.sidebar ul a:hover{background:#6d6d6d}.comments-container{background:#161616}.comments-container .comment{border-color:black;background:#232323}.comments-container .comment header{background:#232323;border-color:black;color:#d9d9d9}.comments-form{background:#0a0a0a}.comments-form h3{color:#d9d9d9}.comments-form input,.comments-form textarea{background:#232323;color:#d9d9d9 !important}.button{background:#232323 !important;border-color:#d9d9d9 !important;color:#d9d9d9 !important}.button:hover{background:#d9d9d9 !important;color:#232323 !important}.newsletter-signup{background:#161616 !important;color:#d9d9d9;border-color:#303030}.tabs--horizontal ul{border-color:#484848}.tabs--horizontal ul li.current a{border-color:#484848;background:#484848}.tabs--horizontal ul li a{border-color:#484848;border-top:2px solid transparent}.tabs--horizontal ul li a:hover{background:#909090;color:white}.section--roadmap .version header{background:#484848;border-color:#6d6d6d}.section--roadmap .version .version-tasks .version-task{border-color:#484848}.bits-section h2{background:#909090;color:#d9d9d9}.table--dark-header thead th{background:black;color:white}.table--striped tbody tr:nth-child(even) td,.table--striped tbody tr:nth-child(even) th{background:#303030;color:#d9d9d9}.table--striped tbody tr:nth-child(odd) td,.table--striped tbody tr:nth-child(odd) th{background:#232323;color:white}.table--simple thead th{background:#303030;color:#d9d9d9}.table--simple tr th{border-bottom:2px solid #909090}.stat{background:rgba(255,255,255,0.1)}article.resource div.preview a:focus{box-shadow:0 0 0 6px #0047b5;-moz-box-shadow:0 0 0 6px #0047b5;-webkit-box-shadow:0 0 0 6px #0047b5}article aside{border-top:4px solid #d9d9d9;background:#909090;color:#d9d9d9}article aside.note::after,article aside.about::after,article aside.info::after,article aside.aside::after{background:#d9d9d9;color:black}article aside code{background:rgba(255,255,255,0.1)}}
+
+</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>
+      Blog page 6 - philnewton.net
+    </title>
+    
+  </head>
+  <body id="top" class="body--blog">
+    <a class="text-assistive display-at-top-on-focus" >↓ Skip to Content</a>
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+    <header class="site-header" role="banner">
+      <div class="inner">
+        <span class="site-title"><a  rel="home">pn.net</a></span>
+        <nav class="site-navigation" role="navigation" aria-label="Main Menu">
+          <ul class="navbar">
+            <li><a >Blog</a></li>
+            <li><a >Archives</a></li>
+            <li><a >Books</a></li>
+            <li><a >Guides</a></li>
+            <li><a >Resources</a></li>
+            <li><a >Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <a class="text-assistive" name="start-of-content" id="start-of-content">Start of content</a>
+    <section id="content-container">
+      <article class="post post--excerpt">
+        <header>
+          <h2>
+            <a  rel="permalink">Adding emoji to Emacs buffers with emojify</a>
+          </h2>
+        </header>
+        <div class="article-published-info">
+          <p class="article-date-published">
+            <time class="dt-published" datetime="2021-03-10T07:56:00-0500">March 10, 2021</time>
+          </p>
+        </div>
+        <div class="article-body">
+          <p>
+            <a >emojify</a> is an Emacs package that adds emoji support to any Emacs buffer.
+          </p>
+          <figure>
+            <a  alt="emojify-mode works in all kinds of places" class="center bordered" width="693" loading="lazy"><img src="rick.jpg" alt="emojify-mode works in all kinds of places" class="center bordered" width="693" loading="lazy"></a>
+          </figure>
+          <p>
+            Running <code>M-x emojify-mode</code> will turn on emoji support for the current buffer. It
+            does not alter the contents of the buffer, only how it's displayed. This makes
+            it safer to use, but it does have some weird side-effects when aligning text in
+            certain buffers (like <code>org-agenda</code>).
+          </p>
+          <p>
+            There is also no support for html export, although there's a <a >GitHub issue</a> open
+            with some workarounds.
+          </p>
+          <p>
+            Any required images will be downloaded the first time running <code>emojify-mode</code>,
+            and a full list of supported emojis can be viewed with
+            <code>emojify-list-emojis</code>. There are over 5,000 so it can take a while to display.
+          </p>
+          <p>
+            <code>global-emojify-mode</code> can be used enable the mode everywhere:
+          </p>
+          <div class="org-src-container">
+            <pre class="src src-emacs-lisp">;; Enable everywhere via an init hook.
+(add-hook 'after-init-hook #'global-emojify-mode)
+
+;; Or with use-package.
+(use-package emojify
+  :init
+  (global-emojify-mode))
+</pre>
+          </div>
+          <p>
+            I prefer to enable <code>emojify</code> on a per-project basis, so I use <code>.dir-locals.el</code>
+            to enable it for org and markdown buffers:
+          </p>
+          <div class="org-src-container">
+            <pre class="src src-emacs-lisp">((org-mode      . ((mode . emojify)))
+ (markdown-mode . ((mode . emojify))))
+</pre>
+          </div>
+          <p>
+            Yet another reason to ❤️ Emacs.
+          </p>
+        </div>
+        <p class="article-meta">
+          Posted in:
+          <span class="categories">
+            <a class="category p-category" >Emacs</a>
+          </span>
+          |
+          <a >Comments (0)</a>
+        </p>
+      </article>
+      <hr>
+      <article class="post post--excerpt">
+        <header>
+          <h2>
+            <a  rel="permalink">Finding areas to improve</a>
+          </h2>
+        </header>
+        <div class="article-published-info">
+          <p class="article-date-published">
+            <time class="dt-published" datetime="2021-03-08T16:56:00-0500">March 08, 2021</time>
+          </p>
+        </div>
+        <div class="article-body">
+          <p>
+            One of my major goals for this year is to <a >improve my processes</a>. It's a bit of a
+            vague goal at the moment, but the general idea is to examine how I currently get
+            things done and to tweak things as needed.
+          </p>
+          <p>
+            I've been doing the same job for over a decade now (and programming computers
+            even longer) so I feel like there there are plenty of areas where I've
+            stagnated.
+          </p>
+          <p>
+            The first step is finding <b>where</b> I can make improvements. There are a couple of
+            different ways I can do this:
+          </p>
+          <ol class="org-ol">
+            <li><b>Thinking through things</b> – This is a bit like proofreading my own work; it
+              finds problems, but it misses just as many. I still think it's useful to sit
+              down and examine my routines, but it's not a foolproof strategy.</li>
+            <li><b>Get outside help</b> – If the previous method is proofreading, this is hiring
+              an editor. I get regular feedback on my work from clients, but it's usually
+              on <i>what</i> I've done, not <i>how</i> I've done it.</li>
+            <li><b>Record myself working</b> – It's pretty common for people to record
+              themselves to check their form when working out. This is the same thing, but
+              with boring work instead of lifting weights.</li>
+          </ol>
+          <p>
+            Right now I'm trying out #3 with some success. It's a little time consuming to
+            watch videos of my work, but it's helped me find a couple of small things
+            already:
+          </p>
+          <ul class="org-ul">
+            <li>When working BlitzMax code I spend a fair amount of time typing closing
+              statements like <code>End Function</code> or <code>End Method</code>. This is something I can fix
+              in <a >blitzmax-mode</a>.</li>
+            <li>I'm not comfortable renaming files I'm working on from within Emacs, so I'll
+              open the file manager to do it.</li>
+            <li>I'll switch to a browser to look something up and usually end up getting
+              distracted. Either blocking distracting sites or using Emacs to search
+              documentation would fix this.</li>
+          </ul>
+          <p>
+            There are still plenty of things I'd like to improve on, but these came up
+            within a few sessions of recording myself.
+          </p>
+        </div>
+        <p class="article-meta">
+          Posted in:
+          <span class="categories">
+            <a class="category p-category" >Productivity Toolbox</a>
+          </span>
+          |
+          <a >Comments (0)</a>
+        </p>
+      </article>
+      <hr>
+      <article class="post post--excerpt">
+        <header>
+          <h2>
+            <a  rel="permalink">Filtering referral spam from my server logs, part 2</a>
+          </h2>
+        </header>
+        <div class="article-published-info">
+          <p class="article-date-published">
+            <time class="dt-published" datetime="2021-03-05T13:15:00-0500">March 05, 2021</time>
+          </p>
+        </div>
+        <div class="article-body">
+          <p>
+            There are two tasks that never seem to end: removing dog hair from my clothes,
+            and filtering spam.
+          </p>
+          <p>
+            Last year I implemented a basic system for <a >filtering my logs</a>, but over time it
+            has been less effective. I wanted to create something that:
+          </p>
+          <ul class="org-ul">
+            <li>Could be reused across all of my sites.</li>
+            <li>Could be configured through files instead of having update the report
+              generation script.</li>
+            <li>Could utilize third-party spam lists.</li>
+          </ul>
+          <p>
+            Before implementing any changes my goaccess reports looked like this:
+          </p>
+          <figure>
+            <a  alt="Referer spam REALLY ruins everything" class="center bordered" width="700" loading="lazy"><img src="rick.jpg" alt="Referer spam REALLY ruins everything" class="center bordered" width="700" loading="lazy"></a>
+          </figure>
+          <p>
+            Nearly everything on that list is spam, and that's only the top 10. For monthly
+            and yearly reports this amount of spam makes it hard to find pages that are
+            actually doing well.
+          </p>
+          <p>
+            In the end I modified my existing <code>grep</code> setup with additional passes. It's a
+            little slow on large logs, so I usually save the filtered log to speed up
+            subsequent reports.
+          </p>
+          <p>
+            I created three files with keywords to remove:
+          </p>
+          <ul class="org-ul">
+            <li><code>bots.list</code> contains a list of bot user agents that I want to ignore. This
+              can also be done from within <code>goaccess</code>, but I wanted them completely
+              scrubbed from my logs.</li>
+            <li><code>global-spammers.list</code> is the contents of <code>src/domains.txt</code> from the
+              <a >referrer-spam-blocker</a> project. It's a pretty hefty list.</li>
+            <li><code>spammers.list</code> contains a list of spam domains that aren't in the global
+              list. I normally add new items once or twice a week.</li>
+          </ul>
+          <p>
+            All of these files live in my "~/.config/" directory so I can use them on
+            different projects. They're simple lists that have one entry per line:
+          </p>
+          <div class="org-src-container">
+            <pre class="src src-text">spammersdomain.com
+spammersdomain.org
+anotherspammer.net
+</pre>
+          </div>
+          <p>
+            Filtering the access log looks like this:
+          </p>
+          <div class="org-src-container">
+            <pre class="src src-bash">grep -v -e '\"GET / HTTP/1.1\" 301 194' -e '\"HEAD / HTTP/1.1\"' access_log \
+    | grep -v -f "~/.config/spammers.list" \
+    | grep -v -f "~/.config/bots.list" \
+    | grep -v -f "~/.config/global-spammers.list" \
+    | goaccess -a
+</pre>
+          </div>
+          <p>
+            Which results in a report like this (over 50% of the hits before were from bots
+            or spammers):
+          </p>
+          <figure>
+            <a  alt="A yearly report with 90% less spam" class="center bordered" width="700" loading="lazy"><img src="rick.jpg" alt="A yearly report with 90% less spam" class="center bordered" width="700" loading="lazy"></a>
+          </figure>
+          <p>
+            No system will be 100% perfect, but so far this has cut out a large portion of
+            the noise from my logs.
+          </p>
+        </div>
+        <p class="article-meta">
+          Posted in:
+          <span class="categories">
+            <a class="category p-category" >Tools</a>
+          </span>
+          |
+          <a >Comments (0)</a>
+        </p>
+      </article>
+      <hr>
+      <article class="post post--excerpt">
+        <header>
+          <h2>
+            <a  rel="permalink">Groundhog Day Resolutions - March 2021</a>
+          </h2>
+        </header>
+        <div class="article-published-info">
+          <p class="article-date-published">
+            <time class="dt-published" datetime="2021-03-02T22:03:03-0500">March 02, 2021</time>
+          </p>
+        </div>
+        <div class="article-body">
+          <p>
+            February is the shortest month of the year, so naturally I tried to cram in as
+            much as possible. It actually went pretty well.
+          </p>
+          <section id="outline-container-orgf7f1073" class="outline-2">
+            <h2 id="orgf7f1073">February's primary goals</h2>
+            <div class="outline-text-2" id="text-orgf7f1073">
+              <p>
+                <span class="checkmark--cross"></span>
+                <b>1. Finish version 0.3 of Craft Roulette</b>
+              </p>
+              <p>
+                Ooof, straight into a failure. I didn't even touch this during February.
+              </p>
+              <p>
+                <span class="checkmark--tick"></span>
+                <b>2. Finish version 0.7 of Writing PHP with Emacs</b>
+              </p>
+              <p>
+                I published a new version that contains all of the core content. There are still
+                places I'd like to improve, but this was a big step.
+              </p>
+              <p>
+                <span class="checkmark--tick"></span>
+                <b>3. Complete one session of deliberate practice</b>
+              </p>
+              <p>
+                My original plan was to experiment with a fullscreen version of Splodey Boats,
+                but I was feeling all 'sploded out so I went for something completely different:
+                setting up my Atari ST development environment.
+              </p>
+              <p>
+                I'm still writing up the notes for this, but having a plan before I started
+                helped keep me focused and made things much easier.
+              </p>
+            </div>
+          </section>
+          <section id="outline-container-org7b8660a" class="outline-2">
+            <h2 id="org7b8660a">February's secondary goals</h2>
+            <div class="outline-text-2" id="text-org7b8660a">
+              <p>
+                <span class="checkmark--tick"></span>
+                <b>1. Run 90 miles</b>
+              </p>
+              <p>
+                I had to skip two runs due to being iced in, but I still managed to hit this
+                target. Just.
+              </p>
+              <p>
+                <span class="checkmark--tick"></span>
+                <b>2. Create detail pages for all my major goals</b>
+              </p>
+              <p>
+                All of <a >my 2021 major goals</a> now have detail pages.
+              </p>
+              <p>
+                <span class="checkmark--tick"></span>
+                <b>3. Write a post-mortem for Splodey Boats 2000</b>
+              </p>
+              <p>
+                Read the <a >Splodey Boats 2000 Post Mortem</a>. It's not very exciting.
+              </p>
+            </div>
+          </section>
+          <section id="outline-container-org084ec59" class="outline-2">
+            <h2 id="org084ec59">Primary goals for March</h2>
+            <div class="outline-text-2" id="text-org084ec59">
+            </div>
+            <div id="outline-container-org6644efe" class="outline-3">
+              <h3 id="org6644efe">1. Finish version 1.0 of Writing PHP with Emacs</h3>
+              <div class="outline-text-3" id="text-org6644efe">
+                <p>
+                  There are 6 "recipe" chapters to write and then version 1.0 is <b>complete</b>. I
+                  still have more ideas for version 1.1 - and beyond - but this version will
+                  contain everything I originally had in mind when I started.
+                </p>
+              </div>
+            </div>
+            <div id="outline-container-org800c2e5" class="outline-3">
+              <h3 id="org800c2e5">2. Complete another session of deliberate practice</h3>
+              <div class="outline-text-3" id="text-org800c2e5">
+                <p>
+                  I'm on a roll with the Atari development stuff, so I'm going to continue on that
+                  path for now.
+                </p>
+              </div>
+            </div>
+            <div id="outline-container-org36e1e72" class="outline-3">
+              <h3 id="org36e1e72">3. Finish version 0.3 of Craft Roulette</h3>
+              <div class="outline-text-3" id="text-org36e1e72">
+                <p>
+                  Let's try this again.
+                </p>
+              </div>
+            </div>
+            <div id="outline-container-orgf733b36" class="outline-3">
+              <h3 id="orgf733b36">4. Contribute to a free software project</h3>
+              <div class="outline-text-3" id="text-orgf733b36">
+                <p>
+                  This is one of my goals for 2021. I've already contributed a couple of bug fixes
+                  this year and I'd like to do the same in March.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section id="outline-container-org2f5add8" class="outline-2">
+            <h2 id="org2f5add8">Secondary goals for March</h2>
+            <div class="outline-text-2" id="text-org2f5add8">
+            </div>
+            <div id="outline-container-org2003f2c" class="outline-3">
+              <h3 id="org2003f2c">1. Run 120 miles</h3>
+              <div class="outline-text-3" id="text-org2003f2c">
+                <p>
+                  Everything aches, but the training must continue.
+                </p>
+              </div>
+            </div>
+            <div id="outline-container-org4b4e6fa" class="outline-3">
+              <h3 id="org4b4e6fa">2. Read a book</h3>
+              <div class="outline-text-3" id="text-org4b4e6fa">
+                <p>
+                  "Read 6 books" is one of my goals for 2021, but I need to actually <i>read</i> books
+                  if I want to complete it.
+                </p>
+              </div>
+            </div>
+            <div id="outline-container-orge5aad05" class="outline-3">
+              <h3 id="orge5aad05">3. Add detail pages to my secondary goals</h3>
+              <div class="outline-text-3" id="text-orge5aad05">
+                <p>
+                  Not all of them require much explanation, but I'd like to clarify some of the
+                  larger ones.
+                </p>
+                <p>
+                  —
+                </p>
+                <p>
+                  February felt like a really unproductive month, but now that I've looked over
+                  everything I'm a little more positive.
+                </p>
+                <p>
+                  My first session of deliberate practice was short but productive. I ended up
+                  taking a lot more notes than I expected, so that's something I need to be aware
+                  of for future sessions. Having a list of questions I wanted to answer helped
+                  keep my focus.
+                </p>
+                <p>
+                  I've also increased my writing output to 3 days a week. My goal for 100 posts
+                  meant I would need to publish on different days each week which doesn't really
+                  fit my style. I feel much better about a Monday-Wednesday-Friday schedule.
+                </p>
+                <p>
+                  I still have a lot that I want to get done, but I don't think things will really
+                  kick in until after my marathon in May. The longer runs are sapping my weekend
+                  energy which makes it harder to really sit down and work on things.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <p class="article-meta">
+          Posted in:
+          <span class="categories">
+            <a class="category p-category" >GHD</a>, <a class="category p-category" >GHD 2021</a>
+          </span>
+          |
+          <a >Comments (0)</a>
+        </p>
+      </article>
+      <hr>
+      <article class="post post--excerpt">
+        <header>
+          <h2>
+            <a  rel="permalink">Keeping a changelog with Emacs and change-log-mode</a>
+          </h2>
+        </header>
+        <div class="article-published-info">
+          <p class="article-date-published">
+            <time class="dt-published" datetime="2021-03-01T16:06:00-0500">March 01, 2021</time>
+          </p>
+        </div>
+        <div class="article-body">
+          <p>
+            There are usually two files I creat when starting a new project: a <a >TODO.org</a> file
+            for organizing tasks, and a <code>CHANGELOG</code> file for keeping tabs on what I've
+            done. I don't limit myself to only writing about direct file changes; I also use
+            it to keep notes about overall changes I've made.
+          </p>
+          <p>
+            Here's a snippet from the CHANGELOG I use for this site:
+          </p>
+          <figure>
+            <a  alt="An example CHANGELOG file" class="center bordered" width="100%" loading="lazy"><img src="rick.jpg" alt="An example CHANGELOG file" class="center bordered" width="100%" loading="lazy"></a>
+          </figure>
+          <p>
+            It's not exactly thrilling stuff, but it's handy when looking over traffic
+            numbers to see if any changes I made worked. Or not.
+          </p>
+          <p>
+            <code>change-log-mode</code> works fine without additional configuration, but there are a
+            few options to tweak. I also wrote some functions to add <a >projectile</a> integration.
+          </p>
+          <nav id="table-of-contents">
+            <h2>Table of Contents</h2>
+            <div id="text-table-of-contents">
+              <ul>
+                <li><a >Configuring your name and email address</a></li>
+                <li><a >Configuring the default file name</a></li>
+                <li><a >Configuring indentation sizes</a></li>
+                <li><a >Adding projectile integration</a></li>
+              </ul>
+            </div>
+          </nav>
+          <section id="outline-container-org44ac1c7" class="outline-2">
+            <h2 id="org44ac1c7">Configuring your name and email address</h2>
+            <div class="outline-text-2" id="text-org44ac1c7">
+              <p>
+                Calling <code>add-change-log-entry</code> will insert a new date heading with your name and
+                email address.
+              </p>
+              <p>
+                There are two variables to modify what is inserted:
+              </p>
+              <ul class="org-ul">
+                <li><code>add-log-full-name</code> - The full name to use.</li>
+                <li><code>add-log-mailing-address</code> - The email address to use.</li>
+              </ul>
+              <p>
+                Something like this will set both of variables:
+              </p>
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">(setq add-log-full-name       "My name"
+      add-log-mailing-address "test@example.org")
+</pre>
+              </div>
+              <p>
+                Emacs will attempt to figure your name or email if either of these are <code>nil</code>.
+              </p>
+            </div>
+          </section>
+          <section id="outline-container-orga49cfba" class="outline-2">
+            <h2 id="orga49cfba">Configuring the default file name</h2>
+            <div class="outline-text-2" id="text-orga49cfba">
+              <p>
+                <code>change-log-mode</code> looks for "ChangeLog" by default, but I use
+                "CHANGELOG". Setting <code>change-log-default-name</code> will modify this behaviour:
+              </p>
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">(setq change-log-default-name "CHANGELOG")
+</pre>
+              </div>
+            </div>
+          </section>
+          <section id="outline-container-org6c8a455" class="outline-2">
+            <h2 id="org6c8a455">Configuring indentation sizes</h2>
+            <div class="outline-text-2" id="text-org6c8a455">
+              <p>
+                The default indentation width is a little large for my tastes, so I add this to
+                my configuration file to narrow things:
+              </p>
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">(add-hook 'change-log-mode-hook
+	  (lambda ()
+	    (make-local-variable 'tab-width)
+	    (make-local-variable 'left-margin)
+	    (setq tab-width   2
+		  left-margin 2)))
+</pre>
+              </div>
+              <p>
+                Alternatively these can be set inside a ".dir-locals.el" file if you don't want
+                to change the global behaviour:
+              </p>
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">((change-log-mode . ((tab-width   . 2)
+		     (left-margin . 2))))
+</pre>
+              </div>
+            </div>
+          </section>
+          <section id="outline-container-org9f8246d" class="outline-2">
+            <h2 id="org9f8246d">Adding projectile integration</h2>
+            <div class="outline-text-2" id="text-org9f8246d">
+              <p>
+                I use projectile <b>a lot</b>, so I wanted to make it easier to add log entries from
+                within a project. I wrote two functions for this:
+              </p>
+              <dl class="org-dl">
+                <dt><code>sodaware/projectile-goto-project-changelog</code></dt>
+                <dd>This opens the CHANGELOG
+                  file for the current projectile project.</dd>
+                <dt><code>sodaware/projectile-add-to-project-changelog</code></dt>
+                <dd>This works the same way as
+                  <code>add-change-log-entry</code>, but it automatically selects the project CHANGELOG
+                  instead of prompting for a file name.</dd>
+              </dl>
+              <p>
+                The full code is below:
+              </p>
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">(defun sodaware/project-changelog-path ()
+  "Get the full path to the current project's changelog file, or NIL if not found."
+  (let ((change-log-file (concat (projectile-project-root)
+				 (file-name-nondirectory change-log-default-name))))
+    (if (file-exists-p change-log-file)
+	change-log-file
+	nil)))
+
+(defun sodaware/projectile-goto-project-changelog ()
+  "Open the CHANGELOG for the current project."
+  (interactive)
+  (let ((change-log-file (sodaware/project-changelog-path)))
+    (if change-log-file
+	(find-file change-log-file)
+	(message "Project does not contain a changelog file."))))
+
+(defun sodaware/projectile-add-to-project-changelog ()
+  "Add a new entry to the CHANGELOG for the current project."
+  (interactive)
+  (let ((change-log-file (sodaware/project-changelog-path)))
+    (if change-log-file
+	(progn
+	  (find-file change-log-file)
+	  (add-change-log-entry))
+	(message "Project does not contain a changelog file."))))
+</pre>
+              </div>
+              <p>
+                I added key bindings for both of these functions because I don't want to type
+                that much:
+              </p>
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">(use-package projectile
+  :diminish projectile-mode
+  :bind
+  (:map projectile-mode-map
+	("C-c p G" . sodaware/projectile-goto-project-changelog)
+	("C-c p L" . sodaware/projectile-add-to-project-changelog))
+  :config
+  (projectile-mode)
+  :custom
+  (projectile-keymap-prefix     (kbd "C-c p"))
+  (projectile-enable-caching    t)
+  (projectile-completion-system 'default))
+</pre>
+              </div>
+            </div>
+          </section>
+        </div>
+        <p class="article-meta">
+          Posted in:
+          <span class="categories">
+            <a class="category p-category" >Emacs</a>
+          </span>
+          |
+          <a >Comments (0)</a>
+        </p>
+      </article>
+      <hr>
+      <nav class="blog-navigation">
+        <ul>
+          <li class="previous">
+            <a >« Newer Articles</a>
+          </li>
+          <li class="archives"><a >Complete Archives</a></li>
+          <li class="next">
+            <a >Older Articles »</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    <nav id="primary-sidebar" class="sidebar">
+      <section>
+        <h2>Navigation</h2>
+        <ul>
+          <li><a  title="Personal Development Articles and Resources - PhilNewton.net">Home</a></li>
+          <li><a  title="Read Phil's personal development blog">Blog</a></li>
+          <li><a  title="Browse the archives of previous personal development articles">Archives</a></li>
+          <li><a >Recommended Books</a></li>
+          <li><a >Guides</a></li>
+          <li><a >Templates &amp; Printables</a></li>
+          <li><a >Source Code</a></li>
+          <li><a >Search</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Popular Articles</h2>
+        <ul>
+          <li><a >Agile Achievement</a></li>
+          <li><a >Goal setting for beginners</a></li>
+          <li><a >Keeping a progress log</a></li>
+          <li><a >How to create an effective schedule</a></li>
+        </ul>
+      </section>
+    </nav>
+    <footer class="site-footer">
+      <p class="copyright-information">
+        Copyright © 2005 -- 2023 Phil Newton. All Rights Reserved.
+      </p>
+      <ul>
+        <li><a >Contact</a></li>
+        <li><a >Privacy Policy</a></li>
+        <li><a  rel="author">About Phil</a></li>
+        <li><a >RSS Feed</a></li>
+        <li><a >Changelog</a></li>
+      </ul>
+    </footer>
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+  
+</body></html>

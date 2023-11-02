@@ -57,8 +57,6 @@ def remove_extra_linebreaks(html_content):
 
 def length_filter(html_content):
     ## filter too short pages
-    if len(html_content.split("\n")) <= 20:
-        return None
     html_len = len(tokenizer(html_content)["input_ids"])
     if html_len <= 100 or html_len >= 80000:
         return None
@@ -66,9 +64,10 @@ def length_filter(html_content):
     return html_content
 
 def html_validator(html_content):
-    ## I removed the HTML validator - it's too lenient to be any useful
-    if "404 " in html_content or "(404)" in html_content or "WordPress.com" in html_content:
-        return None
+    skip_words = ["404", "wordpress", "you have been blocked", "buy this domain", "403 "]
+    for w in skip_words:
+        if w.lower() in html_content.lower():
+            return None
 
     return html_content
 
@@ -116,10 +115,11 @@ def all_filters(html_content):
     if not html_content:
         return None
     html_content = remove_extra_linebreaks(html_content)
+    if len(html_content.split("\n")) <= 30 or len(html_content.split("\n")) >= 50000:
+        return None
     html_content = remove_html_comments(html_content)
     html_content = remove_css_js_comments(html_content)
     html_content = remove_tags(html_content, tag="script")
-    html_content = remove_tags(html_content, tag="address")
     html_content = remove_tags(html_content, tag="audio")
     html_content = remove_tags(html_content, tag="video")
     html_content = remove_tags(html_content, tag="iframe")
@@ -127,6 +127,7 @@ def all_filters(html_content):
     html_content = remove_tags(html_content, tag="svg")
     html_content = remove_link_tags(html_content)
     html_content = remove_href_links(html_content)
+    html_content = remove_extra_linebreaks(html_content)
     html_content = length_filter(html_content)
     if not html_content:
         return None
@@ -135,7 +136,7 @@ def all_filters(html_content):
 
 counter = 0
 # for file in tqdm(os.listdir("c4-val-html")):
-for idx in tqdm(range(1, 51)):
+for idx in tqdm(range(1, 5136)):
     full_path = os.path.join("c4-val-html", str(idx)+".html")
     if os.path.isfile(full_path):
         with open(full_path, "r", encoding="utf-8") as f:

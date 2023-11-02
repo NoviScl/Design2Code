@@ -1,0 +1,206 @@
+<html><head>
+<style></style>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title></title>
+</head>
+<body>
+
+<hr>
+
+<p>courier_tcpd_selinux(8) SELinux Policy courier_tcpd
+courier_tcpd_selinux(8)</p>
+
+<p>NAME courier_tcpd_selinux - Security Enhanced Linux
+Policy for the courier_tcpd processes</p>
+
+<p>DESCRIPTION Security-Enhanced Linux secures the
+courier_tcpd processes via flexible mandatory access
+control.</p>
+
+<p>The courier_tcpd processes execute with the
+courier_tcpd_t SELinux type. You can check if you have these
+processes running by executing the ps command with the -Z
+qualifier.</p>
+
+<p>For example:</p>
+
+<p>ps -eZ | grep courier_tcpd_t</p>
+
+<p>ENTRYPOINTS The courier_tcpd_t SELinux type can be
+entered via the courier_tcpd_exec_t file type.</p>
+
+<p>The default entrypoint paths for the courier_tcpd_t
+domain are the fol- lowing:</p>
+
+<p>/usr/lib(64)?/courier/couriertcpd,
+/usr/sbin/couriertcpd</p>
+
+<p>PROCESS TYPES SELinux defines process types (domains)
+for each process running on the system</p>
+
+<p>You can see the context of a process using the -Z option
+to ps</p>
+
+<p>Policy governs the access confined processes have to
+files. SELinux courier_tcpd policy is very flexible allowing
+users to setup their courier_tcpd processes in as secure a
+method as possible.</p>
+
+<p>The following process types are defined for
+courier_tcpd:</p>
+
+<p>courier_tcpd_t</p>
+
+<p>Note: semanage permissive -a courier_tcpd_t can be used
+to make the process type courier_tcpd_t permissive. SELinux
+does not deny access to permissive process types, but the
+AVC (SELinux denials) messages are still generated.</p>
+
+<p>BOOLEANS SELinux policy is customizable based on least
+access required. courier_tcpd policy is extremely flexible
+and has several booleans that allow you to manipulate the
+policy and run courier_tcpd with the tight- est access
+possible.</p>
+
+<p>If you want to allow all daemons to write corefiles to
+/, you must turn on the allow_daemons_dump_core boolean.
+Disabled by default.</p>
+
+<p>setsebool -P allow_daemons_dump_core 1</p>
+
+<p>If you want to allow all daemons to use tcp wrappers,
+you must turn on the allow_daemons_use_tcp_wrapper boolean.
+Disabled by default.</p>
+
+<p>setsebool -P allow_daemons_use_tcp_wrapper 1</p>
+
+<p>If you want to allow all daemons the ability to
+read/write terminals, you must turn on the
+allow_daemons_use_tty boolean. Disabled by default.</p>
+
+<p>setsebool -P allow_daemons_use_tty 1</p>
+
+<p>If you want to allow all domains to use other domains
+file descriptors, you must turn on the allow_domain_fd_use
+boolean. Enabled by default.</p>
+
+<p>setsebool -P allow_domain_fd_use 1</p>
+
+<p>If you want to allow sysadm to debug or ptrace all
+processes, you must turn on the allow_ptrace boolean.
+Disabled by default.</p>
+
+<p>setsebool -P allow_ptrace 1</p>
+
+<p>If you want to allow all domains to have the kernel load
+modules, you must turn on the domain_kernel_load_modules
+boolean. Disabled by default.</p>
+
+<p>setsebool -P domain_kernel_load_modules 1</p>
+
+<p>If you want to allow all domains to execute in
+fips_mode, you must turn on the fips_mode boolean. Enabled
+by default.</p>
+
+<p>setsebool -P fips_mode 1</p>
+
+<p>If you want to enable reading of urandom for all
+domains, you must turn on the global_ssp boolean. Disabled
+by default.</p>
+
+<p>setsebool -P global_ssp 1</p>
+
+<p>If you want to enable support for upstart as the init
+program, you must turn on the init_upstart boolean. Enabled
+by default.</p>
+
+<p>setsebool -P init_upstart 1</p>
+
+<p>MANAGED FILES The SELinux process type courier_tcpd_t
+can manage files labeled with the following file types. The
+paths listed are the default paths for these file types.
+Note the processes UID still need to have DAC per-
+missions.</p>
+
+<p>courier_var_lib_t</p>
+
+<p>/var/lib/courier(/.*)?</p>
+
+<p>courier_var_run_t</p>
+
+<p>/var/run/courier(/.*)?</p>
+
+<p>root_t</p>
+
+<p>/ /initrd</p>
+
+<p>FILE CONTEXTS SELinux requires files to have an extended
+attribute to define the file type.</p>
+
+<p>You can see the context of a file using the -Z option to
+ls</p>
+
+<p>Policy governs the access confined processes have to
+these files. SELinux courier_tcpd policy is very flexible
+allowing users to setup their courier_tcpd processes in as
+secure a method as possible.</p>
+
+<p>STANDARD FILE CONTEXT</p>
+
+<p>SELinux defines the file context types for the
+courier_tcpd, if you wanted to store files with these types
+in a diffent paths, you need to execute the semanage command
+to sepecify alternate labeling and then use restorecon to
+put the labels on disk.</p>
+
+<p>semanage fcontext -a -t courier_tcpd_exec_t
+/srv/courier_tcpd/con- tent(/.*)? restorecon -R -v
+/srv/mycourier_tcpd_content</p>
+
+<p>Note: SELinux often uses regular expressions to specify
+labels that match multiple files.</p>
+
+<p>The following file types are defined for
+courier_tcpd:</p>
+
+<p>courier_tcpd_exec_t</p>
+
+<p>- Set files with the courier_tcpd_exec_t type, if you
+want to transi- tion an executable to the courier_tcpd_t
+domain.</p>
+
+<p>Paths: /usr/lib(64)?/courier/couriertcpd,
+/usr/sbin/couriertcpd</p>
+
+<p>Note: File context can be temporarily modified with the
+chcon command. If you want to permanently change the file
+context you need to use the semanage fcontext command. This
+will modify the SELinux labeling database. You will need to
+use restorecon to apply the labels.</p>
+
+<p>COMMANDS semanage fcontext can also be used to
+manipulate default file context mappings.</p>
+
+<p>semanage permissive can also be used to manipulate
+whether or not a process type is permissive.</p>
+
+<p>semanage module can also be used to
+enable/disable/install/remove policy modules.</p>
+
+<p>semanage boolean can also be used to manipulate the
+booleans</p>
+
+<p>system-config-selinux is a GUI tool available to
+customize SELinux pol- icy settings.</p>
+
+<p>AUTHOR This manual page was auto-generated using
+sepolicy manpage .</p>
+
+<p>SEE ALSO selinux(8), courier_tcpd(8), semanage(8),
+restorecon(8), chcon(1) , setsebool(8)</p>
+
+<p>courier_tcpd 13-09-27 courier_tcpd_selinux(8)</p>
+<hr>
+
+</body></html>

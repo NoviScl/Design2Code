@@ -1,0 +1,859 @@
+<!DOCTYPE html><html lang="en"><head>
+<style>
+div#cgit {
+	padding: 0em;
+	margin: 0em;
+	font-family: sans-serif;
+	font-size: 10pt;
+	color: #333;
+	background: white;
+	padding: 4px;
+}
+
+div#cgit a {
+	color: blue;
+	text-decoration: none;
+}
+
+div#cgit a:hover {
+	text-decoration: underline;
+}
+
+div#cgit table {
+      border-collapse: collapse;
+}
+
+div#cgit table#header {
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+div#cgit table#header td.logo {
+	width: 96px;
+	vertical-align: top;
+}
+
+div#cgit table#header td.main {
+	font-size: 250%;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+
+div#cgit table#header td.main a {
+	color: #000;
+}
+
+div#cgit table#header td.form {
+	text-align: right;
+	vertical-align: bottom;
+	padding-right: 1em;
+	padding-bottom: 2px;
+	white-space: nowrap;
+}
+
+div#cgit table#header td.form form,
+div#cgit table#header td.form input,
+div#cgit table#header td.form select {
+	font-size: 90%;
+}
+
+div#cgit table#header td.sub {
+	color: #777;
+	border-top: solid 1px #ccc;
+	padding-left: 10px;
+}
+
+div#cgit table.tabs {
+	border-bottom: solid 3px #ccc;
+	border-collapse: collapse;
+	margin-top: 2em;
+	margin-bottom: 0px;
+	width: 100%;
+}
+
+div#cgit table.tabs td {
+	padding: 0px 1em;
+	vertical-align: bottom;
+}
+
+div#cgit table.tabs td a {
+	padding: 2px 0.75em;
+	color: #777;
+	font-size: 110%;
+}
+
+div#cgit table.tabs td a.active {
+	color: #000;
+	background-color: #ccc;
+}
+
+div#cgit table.tabs td.form {
+	text-align: right;
+}
+
+div#cgit table.tabs td.form form {
+	padding-bottom: 2px;
+	font-size: 90%;
+	white-space: nowrap;
+}
+
+div#cgit table.tabs td.form input,
+div#cgit table.tabs td.form select {
+	font-size: 90%;
+}
+
+div#cgit div.path {
+	margin: 0px;
+	padding: 5px 2em 2px 2em;
+	color: #000;
+	background-color: #eee;
+}
+
+div#cgit div.content {
+	margin: 0px;
+	padding: 2em;
+	border-bottom: solid 3px #ccc;
+}
+
+div#cgit table.list {
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+}
+
+div#cgit table.list tr {
+	background: white;
+}
+
+div#cgit table.list tr.logheader {
+	background: #eee;
+}
+
+div#cgit table.list tr:hover {
+	background: #eee;
+}
+
+div#cgit table.list tr.nohover:hover {
+	background: white;
+}
+
+div#cgit table.list th {
+	font-weight: bold;
+	
+	padding: 0.1em 0.5em 0.05em 0.5em;
+	vertical-align: baseline;
+}
+
+div#cgit table.list td {
+	border: none;
+	padding: 0.1em 0.5em 0.1em 0.5em;
+}
+
+div#cgit table.list td.commitgraph {
+	font-family: monospace;
+	white-space: pre;
+}
+
+div#cgit table.list td.commitgraph .column1 {
+	color: #a00;
+}
+
+div#cgit table.list td.commitgraph .column2 {
+	color: #0a0;
+}
+
+div#cgit table.list td.commitgraph .column3 {
+	color: #aa0;
+}
+
+div#cgit table.list td.commitgraph .column4 {
+	color: #00a;
+}
+
+div#cgit table.list td.commitgraph .column5 {
+	color: #a0a;
+}
+
+div#cgit table.list td.commitgraph .column6 {
+	color: #0aa;
+}
+
+div#cgit table.list td.logsubject {
+	font-family: monospace;
+	font-weight: bold;
+}
+
+div#cgit table.list td.logmsg {
+	font-family: monospace;
+	white-space: pre;
+	padding: 0 0.5em;
+}
+
+div#cgit table.list td a {
+	color: black;
+}
+
+div#cgit table.list td a.ls-dir {
+	font-weight: bold;
+	color: #00f;
+}
+
+div#cgit table.list td a:hover {
+	color: #00f;
+}
+
+div#cgit img {
+	border: none;
+}
+
+div#cgit input#switch-btn {
+	margin: 2px 0px 0px 0px;
+}
+
+div#cgit td#sidebar input.txt {
+	width: 100%;
+	margin: 2px 0px 0px 0px;
+}
+
+div#cgit table#grid {
+	margin: 0px;
+}
+
+div#cgit td#content {
+	vertical-align: top;
+	padding: 1em 2em 1em 1em;
+	border: none;
+}
+
+div#cgit div#summary {
+	vertical-align: top;
+	margin-bottom: 1em;
+}
+
+div#cgit table#downloads {
+	float: right;
+	border-collapse: collapse;
+	border: solid 1px #777;
+	margin-left: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+div#cgit table#downloads th {
+	background-color: #ccc;
+}
+
+div#cgit div#blob {
+	border: solid 1px black;
+}
+
+div#cgit div.error {
+	color: red;
+	font-weight: bold;
+	margin: 1em 2em;
+}
+
+div#cgit a.ls-blob, div#cgit a.ls-dir, div#cgit .ls-mod {
+	font-family: monospace;
+}
+
+div#cgit td.ls-size {
+	text-align: right;
+	font-family: monospace;
+	width: 10em;
+}
+
+div#cgit td.ls-mode {
+	font-family: monospace;
+	width: 10em;
+}
+
+div#cgit table.blob {
+	margin-top: 0.5em;
+	border-top: solid 1px black;
+}
+
+div#cgit table.blob td.lines {
+	margin: 0; padding: 0 0 0 0.5em;
+	vertical-align: top;
+	color: black;
+}
+
+div#cgit table.blob td.linenumbers {
+	margin: 0; padding: 0 0.5em 0 0.5em;
+	vertical-align: top;
+	text-align: right;
+	border-right: 1px solid gray;
+}
+
+div#cgit table.blob pre {
+	padding: 0; margin: 0;
+}
+
+div#cgit table.blob td.linenumbers a,
+div#cgit table.ssdiff td.lineno a {
+	color: gray;
+	text-align: right;
+	text-decoration: none;
+}
+
+div#cgit table.blob td.linenumbers a:hover,
+div#cgit table.ssdiff td.lineno a:hover {
+	color: black;
+}
+
+div#cgit table.bin-blob {
+	margin-top: 0.5em;
+	border: solid 1px black;
+}
+
+div#cgit table.bin-blob th {
+	font-family: monospace;
+	white-space: pre;
+	border: solid 1px #777;
+	padding: 0.5em 1em;
+}
+
+div#cgit table.bin-blob td {
+	font-family: monospace;
+	white-space: pre;
+	border-left: solid 1px #777;
+	padding: 0em 1em;
+}
+
+div#cgit table.nowrap td {
+	white-space: nowrap;
+}
+
+div#cgit table.commit-info {
+	border-collapse: collapse;
+	margin-top: 1.5em;
+}
+
+div#cgit div.cgit-panel {
+	float: right;
+	margin-top: 1.5em;
+}
+
+div#cgit div.cgit-panel table {
+	border-collapse: collapse;
+	border: solid 1px #aaa;
+	background-color: #eee;
+}
+
+div#cgit div.cgit-panel th {
+	text-align: center;
+}
+
+div#cgit div.cgit-panel td {
+	padding: 0.25em 0.5em;
+}
+
+div#cgit div.cgit-panel td.label {
+	padding-right: 0.5em;
+}
+
+div#cgit div.cgit-panel td.ctrl {
+	padding-left: 0.5em;
+}
+
+div#cgit table.commit-info th {
+	text-align: left;
+	font-weight: normal;
+	padding: 0.1em 1em 0.1em 0.1em;
+	vertical-align: top;
+}
+
+div#cgit table.commit-info td {
+	font-weight: normal;
+	padding: 0.1em 1em 0.1em 0.1em;
+}
+
+div#cgit div.commit-subject {
+	font-weight: bold;
+	font-size: 125%;
+	margin: 1.5em 0em 0.5em 0em;
+	padding: 0em;
+}
+
+div#cgit div.commit-msg {
+	white-space: pre;
+	font-family: monospace;
+}
+
+div#cgit div.notes-header {
+	font-weight: bold;
+	padding-top: 1.5em;
+}
+
+div#cgit div.notes {
+	white-space: pre;
+	font-family: monospace;
+	border: solid 1px #ee9;
+	background-color: #ffd;
+	padding: 0.3em 2em 0.3em 1em;
+	float: left;
+}
+
+div#cgit div.notes-footer {
+	clear: left;
+}
+
+div#cgit div.diffstat-header {
+	font-weight: bold;
+	padding-top: 1.5em;
+}
+
+div#cgit table.diffstat {
+	border-collapse: collapse;
+	border: solid 1px #aaa;
+	background-color: #eee;
+}
+
+div#cgit table.diffstat th {
+	font-weight: normal;
+	text-align: left;
+	text-decoration: underline;
+	padding: 0.1em 1em 0.1em 0.1em;
+	font-size: 100%;
+}
+
+div#cgit table.diffstat td {
+	padding: 0.2em 0.2em 0.1em 0.1em;
+	font-size: 100%;
+	border: none;
+}
+
+div#cgit table.diffstat td.mode {
+	white-space: nowrap;
+}
+
+div#cgit table.diffstat td span.modechange {
+	padding-left: 1em;
+	color: red;
+}
+
+div#cgit table.diffstat td.add a {
+	color: green;
+}
+
+div#cgit table.diffstat td.del a {
+	color: red;
+}
+
+div#cgit table.diffstat td.upd a {
+	color: blue;
+}
+
+div#cgit table.diffstat td.graph {
+	width: 500px;
+	vertical-align: middle;
+}
+
+div#cgit table.diffstat td.graph table {
+	border: none;
+}
+
+div#cgit table.diffstat td.graph td {
+	padding: 0px;
+	border: 0px;
+	height: 7pt;
+}
+
+div#cgit table.diffstat td.graph td.add {
+	background-color: #5c5;
+}
+
+div#cgit table.diffstat td.graph td.rem {
+	background-color: #c55;
+}
+
+div#cgit div.diffstat-summary {
+	color: #888;
+	padding-top: 0.5em;
+}
+
+div#cgit table.diff {
+	width: 100%;
+}
+
+div#cgit table.diff td {
+	font-family: monospace;
+	white-space: pre;
+}
+
+div#cgit table.diff td div.head {
+	font-weight: bold;
+	margin-top: 1em;
+	color: black;
+}
+
+div#cgit table.diff td div.hunk {
+	color: #009;
+}
+
+div#cgit table.diff td div.add {
+	color: green;
+}
+
+div#cgit table.diff td div.del {
+	color: red;
+}
+
+div#cgit .sha1 {
+	font-family: monospace;
+	font-size: 90%;
+}
+
+div#cgit .left {
+	text-align: left;
+}
+
+div#cgit .right {
+	text-align: right;
+}
+
+div#cgit table.list td.reposection {
+	font-style: italic;
+	color: #888;
+}
+
+div#cgit a.button {
+	font-size: 80%;
+	padding: 0em 0.5em;
+}
+
+div#cgit a.primary {
+	font-size: 100%;
+}
+
+div#cgit a.secondary {
+	font-size: 90%;
+}
+
+div#cgit td.toplevel-repo {
+
+}
+
+div#cgit table.list td.sublevel-repo {
+	padding-left: 1.5em;
+}
+
+div#cgit ul.pager {
+	list-style-type: none;
+	text-align: center;
+	margin: 1em 0em 0em 0em;
+	padding: 0;
+}
+
+div#cgit ul.pager li {
+	display: inline-block;
+	margin: 0.25em 0.5em;
+}
+
+div#cgit ul.pager a {
+	color: #777;
+}
+
+div#cgit ul.pager .current {
+	font-weight: bold;
+}
+
+div#cgit span.age-mins {
+	font-weight: bold;
+	color: #080;
+}
+
+div#cgit span.age-hours {
+	color: #080;
+}
+
+div#cgit span.age-days {
+	color: #040;
+}
+
+div#cgit span.age-weeks {
+	color: #444;
+}
+
+div#cgit span.age-months {
+	color: #888;
+}
+
+div#cgit span.age-years {
+	color: #bbb;
+}
+div#cgit div.footer {
+	margin-top: 0.5em;
+	text-align: center;
+	font-size: 80%;
+	color: #ccc;
+}
+div#cgit div.footer a {
+	color: #ccc;
+	text-decoration: none;
+}
+div#cgit div.footer a:hover {
+	text-decoration: underline;
+}
+div#cgit a.branch-deco {
+	color: #000;
+	margin: 0px 0.5em;
+	padding: 0px 0.25em;
+	background-color: #88ff88;
+	border: solid 1px #007700;
+}
+div#cgit a.tag-deco {
+	color: #000;
+	margin: 0px 0.5em;
+	padding: 0px 0.25em;
+	background-color: #ffff88;
+	border: solid 1px #777700;
+}
+div#cgit a.remote-deco {
+	color: #000;
+	margin: 0px 0.5em;
+	padding: 0px 0.25em;
+	background-color: #ccccff;
+	border: solid 1px #000077;
+}
+div#cgit a.deco {
+	color: #000;
+	margin: 0px 0.5em;
+	padding: 0px 0.25em;
+	background-color: #ff8888;
+	border: solid 1px #770000;
+}
+
+div#cgit div.commit-subject a.branch-deco,
+div#cgit div.commit-subject a.tag-deco,
+div#cgit div.commit-subject a.remote-deco,
+div#cgit div.commit-subject a.deco {
+	margin-left: 1em;
+	font-size: 75%;
+}
+
+div#cgit table.stats {
+	border: solid 1px black;
+	border-collapse: collapse;
+}
+
+div#cgit table.stats th {
+	text-align: left;
+	padding: 1px 0.5em;
+	background-color: #eee;
+	border: solid 1px black;
+}
+
+div#cgit table.stats td {
+	text-align: right;
+	padding: 1px 0.5em;
+	border: solid 1px black;
+}
+
+div#cgit table.stats td.total {
+	font-weight: bold;
+	text-align: left;
+}
+
+div#cgit table.stats td.sum {
+	color: #c00;
+	font-weight: bold;
+
+}
+
+div#cgit table.stats td.left {
+	text-align: left;
+}
+
+div#cgit table.vgraph {
+	border-collapse: separate;
+	border: solid 1px black;
+	height: 200px;
+}
+
+div#cgit table.vgraph th {
+	background-color: #eee;
+	font-weight: bold;
+	border: solid 1px white;
+	padding: 1px 0.5em;
+}
+
+div#cgit table.vgraph td {
+	vertical-align: bottom;
+	padding: 0px 10px;
+}
+
+div#cgit table.vgraph div.bar {
+	background-color: #eee;
+}
+
+div#cgit table.hgraph {
+	border: solid 1px black;
+	width: 800px;
+}
+
+div#cgit table.hgraph th {
+	background-color: #eee;
+	font-weight: bold;
+	border: solid 1px black;
+	padding: 1px 0.5em;
+}
+
+div#cgit table.hgraph td {
+	vertical-align: middle;
+	padding: 2px 2px;
+}
+
+div#cgit table.hgraph div.bar {
+	background-color: #eee;
+	height: 1em;
+}
+
+div#cgit table.ssdiff {
+	width: 100%;
+}
+
+div#cgit table.ssdiff td {
+	font-size: 75%;
+	font-family: monospace;
+	white-space: pre;
+	padding: 1px 4px 1px 4px;
+	border-left: solid 1px #aaa;
+	border-right: solid 1px #aaa;
+}
+
+div#cgit table.ssdiff td.add {
+	color: black;
+	background: #cfc;
+	min-width: 50%;
+}
+
+div#cgit table.ssdiff td.add_dark {
+	color: black;
+	background: #aca;
+	min-width: 50%;
+}
+
+div#cgit table.ssdiff span.add {
+	background: #cfc;
+	font-weight: bold;
+}
+
+div#cgit table.ssdiff td.del {
+	color: black;
+	background: #fcc;
+	min-width: 50%;
+}
+
+div#cgit table.ssdiff td.del_dark {
+	color: black;
+	background: #caa;
+	min-width: 50%;
+}
+
+div#cgit table.ssdiff span.del {
+	background: #fcc;
+	font-weight: bold;
+}
+
+div#cgit table.ssdiff td.changed {
+	color: black;
+	background: #ffc;
+	min-width: 50%;
+}
+
+div#cgit table.ssdiff td.changed_dark {
+	color: black;
+	background: #cca;
+	min-width: 50%;
+}
+
+div#cgit table.ssdiff td.lineno {
+	color: black;
+	background: #eee;
+	text-align: right;
+	width: 3em;
+	min-width: 3em;
+}
+
+div#cgit table.ssdiff td.hunk {
+	color: black;
+	background: #ccf;
+	border-top: solid 1px #aaa;
+	border-bottom: solid 1px #aaa;
+}
+
+div#cgit table.ssdiff td.head {
+	border-top: solid 1px #aaa;
+	border-bottom: solid 1px #aaa;
+}
+
+div#cgit table.ssdiff td.head div.head {
+	font-weight: bold;
+	color: black;
+}
+
+div#cgit table.ssdiff td.foot {
+	border-top: solid 1px #aaa;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+}
+
+div#cgit table.ssdiff td.space {
+	border: none;
+}
+
+div#cgit table.ssdiff td.space div {
+	min-height: 3em;
+}
+
+.num    { color:#ff0000; }
+.esc    { color:#000000; }
+.ppc    { color:#cd00cd; }
+.str    { color:#ff0000; }
+.dstr   { color:#cd00cd; }
+.slc    { color:#0000ff; font-style:bold; }
+.com    { color:#0000ff; font-style:bold; }
+.dir    { color:#cd00cd; }
+.sym    { color:#000000; }
+.line   { color:#0000ff; }
+.kwa    { color:#a0a000; font-weight:bold; }
+.kwb    { color:#00cd00; font-weight:bold; }
+.kwc    { color:#00cd00; font-weight:bold; }
+.kwd    { color:#000000; }
+
+</style>
+<title>hurd-web.git - Web pages</title>
+<meta name="generator" content="cgit v1.2.3">
+<meta name="robots" content="index, nofollow">
+
+</head>
+<body>
+<div id="cgit"><table id="header">
+<tbody><tr>
+<td class="logo" rowspan="2"><a ><img src="rick.jpg" alt="cgit logo"></a></td>
+<td class="main"><a >index</a> : <a >hurd-web.git</a></td><td class="form"><form method="get">
+<input type="hidden" name="id" value="eccdd13dd3c812b8f0b3d046ef9d8738df00562a"><select name="h" onchange="this.form.submit();">
+<option value="master" selected="selected">master</option>
+<option value="toolchain/logs/master">toolchain/logs/master</option>
+</select> <input type="submit" value="switch"></form></td></tr>
+<tr><td class="sub">Web pages</td><td class="sub right"></td></tr></tbody></table>
+<table class="tabs"><tbody><tr><td>
+<a >summary</a><a >refs</a><a >log</a><a >tree</a><a >commit</a><a class="active" >diff</a></td><td class="form"><form class="right" method="get" action="/cgit/hurd-web.git/log/open_issues/hurd_init.mdwn">
+<input type="hidden" name="id" value="eccdd13dd3c812b8f0b3d046ef9d8738df00562a"><select name="qt">
+<option value="grep">log msg</option>
+<option value="author">author</option>
+<option value="committer">committer</option>
+<option value="range">range</option>
+</select>
+<input class="txt" type="search" size="10" name="q" value="">
+<input type="submit" value="search">
+</form>
+</td></tr></tbody></table>
+<div class="path">path: <a >root</a>/<a >open_issues</a>/<a >hurd_init.mdwn</a></div><div class="content"><div class="cgit-panel"><b>diff options</b><form method="get"><input type="hidden" name="id" value="eccdd13dd3c812b8f0b3d046ef9d8738df00562a"><table><tbody><tr><td colspan="2"></td></tr><tr><td class="label">context:</td><td class="ctrl"><select name="context" onchange="this.form.submit();"><option value="1">1</option><option value="2">2</option><option value="3" selected="selected">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option></select></td></tr><tr><td class="label">space:</td><td class="ctrl"><select name="ignorews" onchange="this.form.submit();"><option value="0" selected="selected">include</option><option value="1">ignore</option></select></td></tr><tr><td class="label">mode:</td><td class="ctrl"><select name="dt" onchange="this.form.submit();"><option value="0" selected="selected">unified</option><option value="1">ssdiff</option><option value="2">stat only</option></select></td></tr><tr><td></td><td class="ctrl"><noscript><input type='submit' value='reload'/></noscript></td></tr></tbody></table></form></div><div class="diffstat-header"><a >Diffstat</a> (limited to 'open_issues/hurd_init.mdwn')</div><table summary="diffstat" class="diffstat"><tbody><tr><td class="mode">-rw-r--r--</td><td class="add"><a >open_issues/hurd_init.mdwn</a></td><td class="right">216</td><td class="graph"><table summary="file diffstat" width="100%"><tbody><tr><td class="add" style="width: 100.0%;"></td><td class="rem" style="width: 0.0%;"></td><td class="none" style="width: 0.0%;"></td></tr></tbody></table></td></tr>
+</tbody></table><div class="diffstat-summary">1 files changed, 216 insertions, 0 deletions</div><table summary="diff" class="diff"><tbody><tr><td><div class="head">diff --git a/open_issues/hurd_init.mdwn b/open_issues/hurd_init.mdwn<br>new file mode 100644<br>index 00000000..b0b58a70<br>--- /dev/null<br>+++ b/<a >open_issues/hurd_init.mdwn</a></div><div class="hunk">@@ -0,0 +1,216 @@</div><div class="add">+[[!meta copyright="Copyright © 2013 Free Software Foundation, Inc."]]</div><div class="add">+</div><div class="add">+[[!meta license="""[[!toggle id="license" text="GFDL 1.2+"]][[!toggleable</div><div class="add">+id="license" text="Permission is granted to copy, distribute and/or modify this</div><div class="add">+document under the terms of the GNU Free Documentation License, Version 1.2 or</div><div class="add">+any later version published by the Free Software Foundation; with no Invariant</div><div class="add">+Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license</div><div class="add">+is included in the section entitled [[GNU Free Documentation</div><div class="add">+License|/fdl]]."]]"""]]</div><div class="add">+</div><div class="add">+[[!tag open_issue_hurd]]</div><div class="add">+</div><div class="add">+</div><div class="add">+# [[!message-id "20130625154749.17799.36923@thinkbox.jade-hamburg.de"]]</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-07-22</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; ok, so back to the drawing board for the next big issue, the</div><div class="add">+      potential proc and init merge</div><div class="add">+    &lt;teythoon&gt; Roland had some harsh words for that proposal, but noone else</div><div class="add">+      raised concerns</div><div class="add">+    &lt;youpi&gt; noone else does not mean much</div><div class="add">+    &lt;youpi&gt; I guess only Roland actually understands the matter</div><div class="add">+    &lt;youpi&gt; so I'd tend to believe him</div><div class="add">+    &lt;teythoon&gt; even though, his criticism was so superficial, he could at least</div><div class="add">+      be a bit more specific...</div><div class="add">+    &lt;braunr&gt; i agree that the argument, being simply based on vague principle,</div><div class="add">+      isn't very convincing</div><div class="add">+    &lt;teythoon&gt; so, what should I do?</div><div class="add">+    &lt;braunr&gt; you can either keep them separate, or fight with roland</div><div class="add">+    &lt;teythoon&gt; common braunr, I need a little more guidance in these kind of</div><div class="add">+      social issues</div><div class="add">+    &lt;teythoon&gt; a statement like this is of little use ;)</div><div class="add">+    &lt;braunr&gt; that's the best i can give you</div><div class="add">+    &lt;teythoon&gt; :/</div><div class="add">+    &lt;braunr&gt; i have one patch "fixing" HZ on the hurd, and i even get to fight</div><div class="add">+      about it</div><div class="add">+    &lt;teythoon&gt; I understand Roland has been around forever and keeps an eye on</div><div class="add">+      stuff</div><div class="add">+    &lt;teythoon&gt; but could/would he block a patch for hurd if e.g. youpi would</div><div class="add">+      accept it</div><div class="add">+    &lt;teythoon&gt; i.e. how much control has he in practice?</div><div class="add">+    &lt;teythoon&gt; me fighting with him over a patch is of little value for anyone</div><div class="add">+      and I don't care to do so</div><div class="add">+    &lt;braunr&gt; not much i suppose now</div><div class="add">+    &lt;braunr&gt; but we also have to agree with the change</div><div class="add">+    &lt;braunr&gt; with *real* arguments</div><div class="add">+    &lt;braunr&gt; (well, if it was up to me, i'd even merge exec with proc so ..)</div><div class="add">+    &lt;teythoon&gt; ok, so I whip up a patch to see how it goes in practice and</div><div class="add">+      present it so we could talk about the issue with something to look at</div><div class="add">+      first</div><div class="add">+    &lt;braunr&gt; although maybe not ;p</div><div class="add">+    &lt;braunr&gt; you'll hit the same reaction</div><div class="add">+    &lt;teythoon&gt; from Roland?</div><div class="add">+    &lt;braunr&gt; yes</div><div class="add">+    &lt;braunr&gt; and youpi said he tends to trust what roland says</div><div class="add">+    &lt;braunr&gt; so let's discuss the pros and cons a bit more</div><div class="add">+    &lt;teythoon&gt; yes, but I'd honor his concerns if they were properly</div><div class="add">+      presented. just telling me to hack on linux instead even though I think I</div><div class="add">+      have demonstrated that I do want to work on Hurd is so childish in my</div><div class="add">+      eyes that I do not consider that a valid argument at the moment</div><div class="add">+    &lt;teythoon&gt; sure, shoot</div><div class="add">+    &lt;braunr&gt; well, functionally, they're unrelated</div><div class="add">+    &lt;teythoon&gt; head -n1 init/init.c</div><div class="add">+    &lt;teythoon&gt; /* Start and maintain hurd core servers and system run state</div><div class="add">+    &lt;youpi&gt; and thus it makes sense to make them separate, even if it does not</div><div class="add">+      seem to bring anything useful now</div><div class="add">+    &lt;youpi&gt; history has shown that it makes a bed for nice things later</div><div class="add">+    &lt;braunr&gt; teythoon: that's not what proc is about</div><div class="add">+    &lt;teythoon&gt; braunr: I know</div><div class="add">+    &lt;teythoon&gt; braunr: that's what init is about in its own words ;)</div><div class="add">+    &lt;youpi&gt; teythoon: also, "simplifying the code" is not necessarily an</div><div class="add">+      argument that would be considered</div><div class="add">+    &lt;youpi&gt; depending on the simplification</div><div class="add">+    &lt;youpi&gt; linux made it all simple by using a monolithic kernel :)</div><div class="add">+    &lt;youpi&gt; separating concerns is complex</div><div class="add">+    &lt;youpi&gt; but in the end it usually pays off on the Hurd</div><div class="add">+    &lt;youpi&gt; personally, I'd be fine with Guillem's solution, and renumbering</div><div class="add">+      init's pid in Debian</div><div class="add">+    &lt;youpi&gt; there's a pending question from Roland actually: what information</div><div class="add">+      is exchanged between init and proc in the end?</div><div class="add">+    &lt;youpi&gt; that's actually the point of the discussion: is that information</div><div class="add">+      really big or not</div><div class="add">+    &lt;teythoon&gt; I'm sorry, you lost me, where did he ask that question?</div><div class="add">+    &lt;pinotree&gt; $ git grep proc_getmsgport | egrep '[0-9]' ← /hurd/init as pid 1</div><div class="add">+      is hardcoded in few places</div><div class="add">+    &lt;youpi&gt; teythoon: he didn't ask it this way, but that's the question I had</div><div class="add">+      to be able to answer his</div><div class="add">+    &lt;youpi&gt; Date: Mon, 15 Jul 2013 10:36:35 -0700 (PDT)</div><div class="add">+    &lt;youpi&gt; &gt; That's not what he said. He said there is a lot of information</div><div class="add">+    &lt;youpi&gt; &gt; propagated from init to proc, and thus the separation is</div><div class="add">+      questionable.</div><div class="add">+    &lt;youpi&gt; Are you talking about bootstrap, or what?</div><div class="add">+    &lt;youpi&gt; as I haven't investigated much, I couldn't answer this</div><div class="add">+    &lt;youpi&gt; pinotree: right. We could patch these in Debian</div><div class="add">+    &lt;teythoon&gt; youpi: so, shall I refresh, test and refine Guillems patch and</div><div class="add">+      resend it?</div><div class="add">+    &lt;youpi&gt; it's probably an easier way</div><div class="add">+    &lt;teythoon&gt; ok, I start by doing that</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-07-25</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; pinotree: btw, there are two /sbin/init processes even with my</div><div class="add">+      hacked up init/proc variant where /sbin/init gets to be pid 1</div><div class="add">+    &lt;pinotree&gt; never seen that</div><div class="add">+    &lt;pinotree&gt; what are their parents?</div><div class="add">+    &lt;teythoon&gt; pinotree: well, pid 1 is /sbin/init now, pid 13 or something has</div><div class="add">+      the parent 1</div><div class="add">+    &lt;teythoon&gt; looks like init forks or something</div><div class="add">+    &lt;pinotree&gt; i guess your sysvinit is compiled without INITDEBUG?</div><div class="add">+    &lt;pinotree&gt; nothing in syslog either?</div><div class="add">+    &lt;teythoon&gt; pinotree: it's compiled like the sysvinit shipped with debian</div><div class="add">+    &lt;pinotree&gt; teythoon: do you have custom additions in inittab?</div><div class="add">+    &lt;teythoon&gt; pinotree: a terminal for my serial console</div><div class="add">+    &lt;teythoon&gt; *getty</div><div class="add">+    &lt;pinotree&gt; are the getty started correctly for you, btw?</div><div class="add">+    &lt;teythoon&gt; pinotree: yes</div><div class="add">+    &lt;pinotree&gt; interesting</div><div class="add">+    &lt;pinotree&gt; teythoon: back then, they were costantly respawning, with hurd's</div><div class="add">+      getty's failing to start when exec'ed by (sysv)init</div><div class="add">+    &lt;pinotree&gt; wonder what changed</div><div class="add">+    &lt;teythoon&gt; pinotree: cool, magically went away then :)</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-07-29</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; youpi: I need some feedback on the not freezing translators</div><div class="add">+      issue, more specifically whether I understood you correctly in your mail</div><div class="add">+      from wednesday (20130724131552.GG9576@type.bordeaux.inria.fr)</div><div class="add">+    &lt;teythoon&gt; oh yeah, and I had some questions yesterday too, about rpctrace</div><div class="add">+      and dead-name notifications, specifically why /hurd/init is not receiving</div><div class="add">+      any for the root translator and the exec server</div><div class="add">+    &lt;braunr&gt; teythoon: more details please</div><div class="add">+    &lt;teythoon&gt; ok, so /hurd/init is registering for dead name notifications for</div><div class="add">+      essential tasks</div><div class="add">+    &lt;teythoon&gt; the rootfs and exec both register as essential tasks at init and</div><div class="add">+      init requests successfully dead name notifications for them</div><div class="add">+    &lt;teythoon&gt; if you e.g. kill the auth server, /hurd/init will notice and</div><div class="add">+      crash the system</div><div class="add">+    &lt;teythoon&gt; if you kill exec or the rootfs, /hurd/init does not get notified</div><div class="add">+    &lt;teythoon&gt; I verified this with gdb and an subhurd</div><div class="add">+    &lt;teythoon&gt; I'm puzzled by this, as the kernel is the one who sends the</div><div class="add">+      notifications, right?</div><div class="add">+    &lt;braunr&gt; yes</div><div class="add">+    &lt;braunr&gt; teythoon: where is the problem ?</div><div class="add">+    &lt;teythoon&gt; and it is not that the system is not sending any messages, it</div><div class="add">+      is, I see the msgcount increase over time</div><div class="add">+    &lt;teythoon&gt; braunr: dunno, as far as I can tell the kernel does not deliver</div><div class="add">+      the notification for rootfs and exec</div><div class="add">+    &lt;braunr&gt; oh</div><div class="add">+    &lt;teythoon&gt; those are the two processes loaded by grub, maybe they are</div><div class="add">+      different somehow</div><div class="add">+    &lt;braunr&gt; is that affecting your work ?</div><div class="add">+    &lt;teythoon&gt; no, not directly, I strayed around at the weekend, trying to</div><div class="add">+      think of cool stuff hurd could do</div><div class="add">+    &lt;teythoon&gt; youpi: I need some feedback on the not freezing translators</div><div class="add">+      issue, more specifically whether I understood you correctly in your mail</div><div class="add">+      from wednesday (20130724131552.GG9576@type.bordeaux.inria.fr)</div><div class="add">+    &lt;youpi&gt; teythoon: ok, now I'm available for the not-freezing-translators</div><div class="add">+      thing :)</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-08-05</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; youpi: I'm in the process of producing a unified</div><div class="add">+      sysvinit-as-pid1 and please-dont-kill-important-processes patch series</div><div class="add">+    &lt;teythoon&gt; youpi: there is one issue with changing /hurd/inits pid, libcs</div><div class="add">+      reboot() also assumes that it has the pid 1</div><div class="add">+    &lt;youpi&gt; argl</div><div class="add">+    &lt;youpi&gt; that's bad, because it's then an ABI, not just an internal thing</div><div class="add">+    &lt;teythoon&gt; hardcoding the pid is the worst way of getting a handle of any</div><div class="add">+      server :/</div><div class="add">+    &lt;teythoon&gt; I've been thinking to make it explicit by binding it to</div><div class="add">+      /servers/startup or something</div><div class="add">+    &lt;youpi&gt; that would be more hurdish than using a pid, yes</div><div class="add">+    &lt;teythoon&gt; yes, and not only does it break the abi, but in a bad way</div><div class="add">+      too. if the libc is updated before the hurd, the shutdown sequence is</div><div class="add">+      broken in a way that the translators aren't synced :/</div><div class="add">+    &lt;teythoon&gt; youpi: as a workaround, we could make reboot() signal both pid 1</div><div class="add">+      and 2</div><div class="add">+    &lt;youpi&gt; at worse pid 1 shouldn't get harmed by receiving a startup_reboot</div><div class="add">+      RPC indeed</div><div class="add">+    &lt;teythoon&gt; yes</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-08-16</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; grml, the procfs hardcodes the kernels pid :/</div><div class="add">+    &lt;teythoon&gt; there's always one more thing to fix...</div><div class="add">+    &lt;teythoon&gt; uh, and we made pids.h a private header, so no nice constant for</div><div class="add">+      the procfs translator :/</div><div class="add">+    &lt;teythoon&gt; server lookup by hardcoding the pid should be banned...</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-09-16</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; youpi: I'm thinking about splitting /hurd/init into /hurd/init</div><div class="add">+      and /hurd/startup</div><div class="add">+    &lt;teythoon&gt; that way, you could also merge the init as pid1 patches</div><div class="add">+    &lt;teythoon&gt; that should be doable within the week</div><div class="add">+    &lt;youpi&gt; that would probably be better received by Roland than merging init</div><div class="add">+      into proc :)</div><div class="add">+    &lt;teythoon&gt; yes, I suppose so :D</div><div class="add">+    &lt;youpi&gt; perhaps you should start the discussion on the list about it</div><div class="add">+      already, with just a sketch of which would do what</div><div class="add">+    &lt;teythoon&gt; ok</div><div class="add">+    &lt;teythoon&gt; fwiw I like the name startup b/c it speaks the startup protocol</div><div class="add">+    &lt;braunr&gt; teythoon: +1 startup</div><div class="add">+</div><div class="add">+</div><div class="add">+## IRC, freenode, #hurd, 2013-09-23</div><div class="add">+</div><div class="add">+    &lt;teythoon&gt; I've been hacking on init/startup, I've looked into cleaning it</div><div class="add">+      up</div></td></tr></tbody></table></div> 
+<div class="footer">generated by <a >cgit v1.2.3</a> (<a >git 2.39.1</a>) at 2023-10-29 21:40:24 +0000</div>
+</div> 
+
+</body></html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+<style>
+body {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  font-family: "Times New Roman", Times, serif;
+  color: #660000;
+  background-color: #FFF;
+  }
+
+h1 {
+    text-align: center;
+   }
+
+h2 {
+    text-align: center;
+   }
+
+h3 {
+    text-align: center;
+   }
+
+h4 {
+    text-align: center;
+   }
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color:  #CC0000;
+  outline: none;
+  }
+a:visited {
+  color:  #993333;
+  }
+a:active {
+  color:  #CC6666;
+  }
+a:hover {
+  color: #CC6666;
+  text-decoration: underline;
+  }
+
+img {
+  border: 0;
+  }
+
+#common {
+  color: #FF6666;
+  }
+  
+#common a {
+  color: #CC6666;
+  }
+  
+#common a:active {
+  color: #FF9999;
+  }
+
+#common a:hover {
+  color: #FF9999;
+  }
+  
+#top {
+  margin: 0px 0px 0px 0px;
+  padding: 10px;
+  border: 0px;
+  background-image:   url("/img/curtback.gif");
+  background-repeat: repeat;
+  text-align: center;
+  border-bottom: 2px solid #300;
+  height: 100px;
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  height: 78px;
+  }
+html>body #top {
+  height: 78px; 
+  }
+  
+#left {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  margin: 0px;
+  padding: 10px;
+  border-right: 2px solid #300;
+  background-image:   url("/img/curtside.gif");
+  background-repeat: repeat-y;
+  text-align: right;
+  height: 680px;
+  width: 122px; 
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width: 100px;
+  }
+html>body #left {
+  width: 100px;
+  }
+
+#left a {
+  display:block;
+  padding: 10px 0 0 0;
+  font-size: 0.75em;
+  }
+
+#announce {
+    width: 90%;
+    border-bottom: 4px solid #600;
+    margin: 0px auto 40px;
+    padding-bottom: 10px;
+    }
+
+#content {
+  padding: 20px 40px;
+  border: 0px;
+  margin: 0px 122px 0px 122px;
+  height: 680px;
+  text-align: center;
+  overflow: scroll;
+  }
+
+#ljcontent {
+
+  border: 0px;
+  margin: 0px 122px 0px 122px;
+
+  text-align: left;
+  overflow: scroll;
+  }
+
+div#right {
+  position: absolute;
+  overflow: auto;
+  top: 100px;
+  right: 0px;
+  margin: 0px;
+  padding: 10px;
+  border: 0px;
+  border-left: 2px solid #300;
+  font-size: 0.75em;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-image:   url("/img/curtside.gif");
+  background-repeat: repeat-y;
+  height: 680px;
+  width: 122px; 
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width: 100px;
+  }
+html>body #right {
+  width: 100px;
+  }
+  
+div#right a:hover {
+  color: #FF9999;
+  }
+    
+div#right a:active {
+  color: #FF9999;
+  }
+
+.TopTitle {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: bold;
+  font-variant: normal;
+  color: #FFCCCC;
+  margin-bottom: 15px;
+}
+#topnav ul {
+  font-size: 18px;
+  display: inline;
+  list-style-type: none;
+  padding-top: 20px;
+}
+#topnav ul li {
+  display: inline;
+  margin: 10px;
+  padding: 5px;
+}
+#topnav {
+  position: relative;
+  top: 15px;
+}
+div#right ul {
+  list-style-type: none;
+}
+div#right>ul>li {
+  display: block;
+  padding: 0 0 0 0;
+  font-size: .75em;
+  font-weight: bold;
+  margin: 10px 0px 0 -35px;
+  width: 94px;  
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width: 72px;
+}
+div#right div.yearMenu ul {
+  font-size: 1em;
+  display: block;
+  list-style-type: none;
+}
+div#right div.yearMenu>ul>li {
+  display:block;
+  margin: 10px 0px 0px -35px;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0px 0 0 0;
+  width: 94px;  
+  voice-family: "\"}\"";
+  voice-family:inherit;
+  width: 72px;
+}
+div#right div.yearMenu {
+  display: none;
+  margin-left: 5px;
+}
+.showlogo {
+  margin: 5px;
+}
+
+.error {
+    color: red;
+    margin-bottom: -8pt
+}
+
+.red {
+    color: red;
+}
+
+.purple {
+    color: purple;
+}
+
+.silver {
+    color: silver;
+}
+
+.accepted {
+    color: green;
+}
+
+.declined {
+    text-decoration: line-through;
+}
+
+.showdiv {
+  display: inline-block;
+  height: 240px;
+  width: 200px;
+}
+
+.showdates {
+  font-weight: bold;
+  font-size: 1.2em;
+  align: bottom;
+}
+
+td,th.showprefs {
+    padding: 8px;
+}
+
+.notavail {
+    text-decoration: line-through;
+    font-weight: lighter;
+}
+
+</style> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>MTI's Production of The Adventures of Tom Sawyer</title>
+
+</head>
+<body onload="initPix();">
+<div id="common">
+<div id="top">
+<a ><img src="rick.jpg" border="0" style="float:left; padding-left:10px;"></a>
+<a ><img src="rick.jpg" border="0" style="float:right; padding-right:10px;"></a>
+<span class="TopTitle">Music Theatre of Idaho</span>
+<div id="topnav"><ul><li><a >About Us</a></li>
+<li><a >Policies</a></li>
+<li><a >Contact Us</a></li>
+
+</ul> </div> 
+</div>
+<div id="left">
+<a >Current Production</a>
+<a >Buy Tickets</a>
+<a >Season 2018</a>
+<a >Season 2018 Cast Lists</a>
+<a >Audition Info</a>
+<a >Information board (cast)</a>
+
+<form name="ccoptin" action="http://visitor.constantcontact.com/d.jsp" target="_blank" method="post" style="margin-bottom:3;">
+<div style="margin-top: 25px; text-align: left; color: #FF9999; font-size: .75em;"> Join Our Email List<br>
+Enter Email: <input type="text" name="ea" size="12" value="">&nbsp;<br><input type="submit" name="go" value="Join" class="submit" style="font-family:Arial,Helvetica,sans-serif; font-size:11px;">
+<input type="hidden" name="m" value="1102961785555">
+<input type="hidden" name="p" value="oi">
+
+<a  target="_blank"><p>Privacy by SafeSubscribe®</p></a>
+
+ 
+
+<a  target="_blank"><p>For Email Marketing you can trust</p></a> 
+</div></form>
+
+</div>
+<div id="right">
+  <div style="border-bottom:2px solid #f99; margin-bottom:5px">Past Seasons</div>
+<ul>
+<li><a  onclick="return toggleMenu(&quot;11menu&quot;)">2022</a>
+<div id="11menu" class="yearMenu">
+<ul>
+<li><a >Seussical</a></li>
+<li><a >Roald Dahl's Matilda the Musical</a></li>
+<li><a >Hello Dolly!</a></li>
+<li><a >The Sound of Music</a></li>
+<li><a >The SpongeBob Musical</a></li>
+<li><a >The Secret Garden</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;10menu&quot;)">2021</a>
+<div id="10menu" class="yearMenu">
+<ul>
+<li><a >Forever Plaid</a></li>
+<li><a >Shrek the Musical</a></li>
+<li><a >Evita</a></li>
+<li><a >Something Rotten!</a></li>
+<li><a >The Adventures of Tom Sawyer</a></li>
+<li><a >Little Women</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;9menu&quot;)">2020</a>
+<div id="9menu" class="yearMenu">
+<ul>
+<li><a >The Wizard of Oz</a></li>
+<li><a >Rodgers and Hammerstein's Cinderella</a></li>
+<li><a >Pirates of Penzance</a></li>
+<li><a >Chess</a></li>
+<li><a >Mamma Mia!</a></li>
+<li><a >Into The Woods</a></li>
+<li><a >Elf the Musical</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;8menu&quot;)">2019</a>
+<div id="8menu" class="yearMenu">
+<ul>
+<li><a >Mamma Mia!</a></li>
+<li><a >Joseph and the Amazing Technicolor Dreamcoat</a></li>
+<li><a >South Pacific</a></li>
+<li><a >Roald Dahl's Matilda the Musical</a></li>
+<li><a >Cats</a></li>
+<li><a >Newsies</a></li>
+<li><a >The Hunchback of Notre Dame</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;7menu&quot;)">2018</a>
+<div id="7menu" class="yearMenu">
+<ul>
+<li><a >You're a Good Man, Charlie Brown</a></li>
+<li><a >Titanic</a></li>
+<li><a >Disney's Beauty and the Beast</a></li>
+<li><a >Chicago</a></li>
+<li><a >My Fair Lady</a></li>
+<li><a >Oliver!</a></li>
+<li><a >She Loves Me</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;6menu&quot;)">2017</a>
+<div id="6menu" class="yearMenu">
+<ul>
+<li><a >Bye Bye Birdie</a></li>
+<li><a >Seven Brides for Seven Brothers</a></li>
+<li><a >Annie</a></li>
+<li><a >1776</a></li>
+<li><a >Monty Python's Spamalot</a></li>
+<li><a >Peter Pan</a></li>
+<li><a >A Christmas Carol</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;5menu&quot;)">2016</a>
+<div id="5menu" class="yearMenu">
+<ul>
+<li><a >Fiddler on the Roof</a></li>
+<li><a >Seussical</a></li>
+<li><a >The Secret Garden</a></li>
+<li><a >Legally Blonde The Musical</a></li>
+<li><a >Really Rosie</a></li>
+<li><a >Oklahoma!</a></li>
+<li><a >Disney's The Little Mermaid</a></li>
+<li><a >Mary Poppins</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;4menu&quot;)">2015</a>
+<div id="4menu" class="yearMenu">
+<ul>
+<li><a >Into The Woods</a></li>
+<li><a >Pippin</a></li>
+<li><a >Yours, Anne</a></li>
+<li><a >Chitty Chitty Bang Bang</a></li>
+<li><a >Godspell</a></li>
+<li><a >Chess</a></li>
+<li><a >Young Frankenstein</a></li>
+<li><a >Miracle on 34th Street</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;3menu&quot;)">2014</a>
+<div id="3menu" class="yearMenu" style="display:block">
+<ul>
+<li><a >Schoolhouse Rock Live!</a></li>
+<li>The Adventures of Tom Sawyer</li>
+<li><a >Guys and Dolls</a></li>
+<li><a >Forbidden Broadway</a></li>
+<li><a >West Side Story</a></li>
+<li><a >Disney's Mulan Jr.</a></li>
+<li><a >Shrek the Musical</a></li>
+<li><a >Sweeney Todd</a></li>
+<li><a >The Sound of Music</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2menu&quot;)">2013</a>
+<div id="2menu" class="yearMenu">
+<ul>
+<li><a >The Taffetas</a></li>
+<li><a >Thoroughly Modern Millie</a></li>
+<li><a >Little Women</a></li>
+<li><a >Some Enchanted Evening</a></li>
+<li><a >A Funny Thing Happened on the Way to the Forum</a></li>
+<li><a >Les Misérables</a></li>
+<li><a >Pirates of Penzance</a></li>
+<li><a >A Christmas Carol</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;1menu&quot;)">2012</a>
+<div id="1menu" class="yearMenu">
+<ul>
+<li><a >Forever Plaid</a></li>
+<li><a >Fiddler on the Roof</a></li>
+<li><a >Children of Eden</a></li>
+<li><a >Hello Dolly!</a></li>
+<li><a >Little Shop of Horrors</a></li>
+<li><a >Peter Pan</a></li>
+<li><a >White Christmas</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2011menu&quot;)">2011</a>
+<div id="2011menu" class="yearMenu">
+<ul>
+<li><a >Company</a></li>
+<li><a >Joseph and the Amazing Technicolor Dreamcoat</a></li>
+<li><a >The Secret Garden</a></li>
+<li><a >South Pacific</a></li>
+<li><a >Hairspray</a></li>
+<li><a >The Music Man</a></li>
+<li><a >The Wizard of Oz</a></li>
+<li><a >A Christmas Carol</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2010menu&quot;)">2010</a>
+<div id="2010menu" class="yearMenu">
+<ul>
+<li><a >I Do! I Do!</a></li>
+<li><a >The Sound of Music</a></li>
+<li><a >Willy Wonka</a></li>
+<li><a >Into the Woods</a></li>
+<li><a >CATS</a></li>
+<li><a >Jekyll &amp; Hyde</a></li>
+<li><a >Cinderella</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2009menu&quot;)">2009</a>
+<div id="2009menu" class="yearMenu">
+<ul>
+<li><a >Seussical, the Musical</a></li>
+<li><a >The Adventures of Tom Sawyer</a></li>
+<li><a >The King and I</a></li>
+<li><a >Les Misérables</a></li>
+<li><a >Sweet Charity</a></li>
+<li><a >Disney’s Beauty and the Beast</a></li>
+<li><a >Annie</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2008menu&quot;)">2008</a>
+<div id="2008menu" class="yearMenu">
+<ul>
+<li><a >Brigadoon</a></li>
+<li><a >Oliver</a></li>
+<li><a >Chicago</a></li>
+<li><a >Jesus Christ Superstar</a></li>
+<li><a >Oklahoma!</a></li>
+<li><a >I Remember Mama</a></li>
+<li><a >Sweeney Todd</a></li>
+<li><a >A Christmas Carol</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2007menu&quot;)">2007</a>
+<div id="2007menu" class="yearMenu">
+<ul>
+<li><a >Forever Plaid</a></li>
+<li><a >The Secret Garden</a></li>
+<li><a >Miss Saigon</a></li>
+<li><a >Tomfoolery</a></li>
+<li><a >Pump Boys and Dinettes</a></li>
+<li><a >Evita</a></li>
+<li><a >Really Rosie</a></li>
+<li><a >Fiddler on the Roof</a></li>
+<li><a >She Loves Me</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2006menu&quot;)">2006</a>
+<div id="2006menu" class="yearMenu">
+<ul>
+<li><a >CATS</a></li>
+<li><a >Yours, Anne</a></li>
+<li><a >Titanic - the Musical</a></li>
+<li><a >My Fair Lady</a></li>
+<li><a >Anything Goes</a></li>
+<li><a >Peter Pan</a></li>
+<li><a >Cinderella</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2005menu&quot;)">2005</a>
+<div id="2005menu" class="yearMenu">
+<ul>
+<li><a >Seussical, the Musical</a></li>
+<li><a >The Sound of Music</a></li>
+<li><a >1776</a></li>
+<li><a >Joseph and the Amazing Technicolor Dreamcoat</a></li>
+<li><a >Grease</a></li>
+<li><a >Disney’s Beauty and the Beast</a></li>
+<li><a >A Christmas Carol</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2004menu&quot;)">2004</a>
+<div id="2004menu" class="yearMenu">
+<ul>
+<li><a >Les Misérables</a></li>
+<li><a >The Adventures of Tom Sawyer</a></li>
+<li><a >Annie</a></li>
+<li><a >The Music Man</a></li>
+<li><a >West Side Story</a></li>
+<li><a >Camelot</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2003menu&quot;)">2003</a>
+<div id="2003menu" class="yearMenu">
+<ul>
+<li><a >The Secret Garden</a></li>
+<li><a >The Wizard of Oz</a></li>
+<li><a >South Pacific</a></li>
+<li><a >Into the Woods</a></li>
+<li><a >A Christmas Carol</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2002menu&quot;)">2002</a>
+<div id="2002menu" class="yearMenu">
+<ul>
+<li><a >Abraham Lincoln</a></li>
+<li><a >Peter Pan</a></li>
+<li><a >Forever Plaid</a></li>
+<li><a >You’re a Good Man, Charlie Brown</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2001menu&quot;)">2001</a>
+<div id="2001menu" class="yearMenu">
+<ul>
+<li><a >Oliver!</a></li>
+<li><a >The Sound of Music</a></li>
+<li><a >Cinderella</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;2000menu&quot;)">2000</a>
+<div id="2000menu" class="yearMenu">
+<ul>
+<li><a >Schoolhouse Rock Live!</a></li>
+<li><a >Fiddler on the Roof</a></li>
+<li><a >Joseph and the Amazing Technicolor Dreamcoat</a></li>
+<li><a >Annie</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;1999menu&quot;)">1999</a>
+<div id="1999menu" class="yearMenu">
+<ul>
+<li><a >Yours, Anne</a></li>
+<li><a >I Do! I Do!</a></li>
+<li><a >Snoopy!!!</a></li>
+<li><a >Into the Woods</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;1998menu&quot;)">1998</a>
+<div id="1998menu" class="yearMenu">
+<ul>
+<li><a >Forever Plaid</a></li>
+<li><a >Joseph and the Amazing Technicolor Dreamcoat</a></li>
+<li><a >Really Rosie</a></li>
+<li><a >Grease</a></li>
+<li><a >The Taffetas</a></li>
+</ul></div></li>
+<li><a  onclick="return toggleMenu(&quot;1997menu&quot;)">1997</a>
+<div id="1997menu" class="yearMenu">
+<ul>
+<li><a >Annie</a></li>
+<li><a >Arsenic and Old Lace</a></li>
+<li><a >How to Eat Like a Child</a></li>
+<li><a >How to Succeed in Business Without Really Trying</a></li>
+<li><a >The Secret Garden</a></li>
+</ul></div></li>
+</ul>
+
+</div>
+</div>
+<div id="content"><h2>Our Season 2014 Production of</h2>
+<h1>The Adventures of Tom Sawyer</h1><h2>Mark Twain’s Classic Tale Comes to Life</h2>
+<p><img src="rick.jpg" alt="The Adventures of Tom Sawyer, Feb 13-15" class="showlogo"></p>
+<h4> Thu-Sat Feb 13-15 at 7:30 pm<br>Matinee Sat Feb 15 at 1:30 pm<br></h4>
+<p><img src="rick.jpg" name="pix" alt="The Adventures of Tom Sawyer" onmouseover="freezePic=true;" onmouseout="freezePic=false"></p>
+<p> </p><p>Mark Twain’s classic story comes to exuberant musical life in this Broadway adaptation of America’s favorite book. <b>The Adventures Of Tom Sawyer</b> is the irresistible story of a fourteen-year-old boy growing up in the heartland of America. This Broadway musical version of Mark Twain’s immortal novel is set in 1840 in St. Petersburg, Missouri, a bustling town on the banks of the Mississippi River. In the course of the story, Tom matches wits with his stern Aunt Polly, falls in love with the beautiful, feisty Becky Thatcher, and goes on the adventure of his life with Becky and that irresistible renegade, Huckleberry Finn. Along the way we meet a terrifying villain named Injun Joe, Tom’s bratty half-brother Sid, and all the other boys and girls in the village.</p> <p></p>
+<h3><a >Cast list</a></h3><div style="float:left; width:25%; text-align:left">
+<a >Previous Show</a></div>
+<div style="float:right; width:25%; text-align:right">
+<a >Next Show</a></div>
+<a >Season 2014 Home</a>
+<p>All productions are subject to change pending final contract negotiations.</p>
+</div>
+
+</body></html>
