@@ -14,29 +14,6 @@ def replace_img_src(content):
     replacement = r'\1' + placeholder_image + r'\2'
     return re.sub(pattern, replacement, content)
 
-# def remove_script(html_content):
-#     while "<script" in html_content:
-#         start_index = html_content.find("<script")
-#         end_index = html_content.find("</script>") + 9  # +9 to account for the length of "</script>"
-
-#         # Ensure both opening and closing tags are found
-#         if start_index == -1 or end_index < 9:
-#             break
-
-#         # Remove content between and including the script tags
-#         html_content = html_content[:start_index] + html_content[end_index:]
-
-#     return html_content
-        
-# def html_validator(content):
-#     return
-
-# def filter(content):
-#     if "dns resolution error" in content.lower():
-#         return None 
-    
-#     return content
-
 def fetch_and_embed_css(url, navigation_timeout=2000, request_timeout=10):
     try:
         with sync_playwright() as p:
