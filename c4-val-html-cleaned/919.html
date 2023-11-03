@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+<style>
+body{font-family:Verdana, Helvetica, Arial;font-size:12px;font-weight: normal;line-height:18px;color: #000020;padding:0px;margin:0px;}
+
+div, p{margin:0px;padding:0px;}
+h3{padding:0px;margin:0px;}
+.clearBoth{clear:both;}
+
+div#pager{width:780px;margin:10px auto 0px auto;}
+div#leftPanel{width:240px;margin-right:2px;float:left;color:#fff;padding-bottom:0px;}
+
+div#topLogo{width:240px;text-align:center;background-color:#e1e1e1;background-image:url(images/gray-header.gif);background-position:top center;background-repeat:no-repeat;padding-top:11px;}
+div#topLogoFooter{width:240px;background-image:url(images/gray-footer.gif);background-position:bottom center;background-repeat:no-repeat;background-color:#e1e1e1;height:9px;#height:7px;clear:both;font-size:0px;margin-bottom:2px;padding-top:1px;}
+div#topLogo a{border:none;border:none;} 
+div#topLogo img{border:none;border:none;}
+
+div.redBox{width:216px;background-color:#990033;background-image:url(images/red-header.gif);background-position:top center;background-repeat:no-repeat;padding:12px 12px 0px 12px;float:left;}
+div.redBoxFooter{width:240px;background-image:url(images/red-footer.gif);background-position:bottom center;background-color:#990033;background-repeat:no-repeat;height:8px;clear:both;font-size:0px;margin-bottom:2px;}
+div.redBoxFooter-full{width:240px;background-image:url(images/red-footer.gif);background-position:bottom center;background-color:#990033;background-repeat:no-repeat;height:8px;clear:both;font-size:0px;margin-bottom:2px;}
+div.redBox h3{font-size:14px;font-family:Verdana, Helvetica, Arial;font-weight:bold;color:#ff9933;}
+div.redBox p{line-height:18px;margin-top:4px;}
+div.redBox p.italic{margin-top:4px;line-height:12px;font-style:italic;}
+div.redBox p.current{margin-top:6px;color:#dedede;background-image:url(images/arrow-red.gif);background-position:0px 2px;background-repeat:no-repeat;padding-left:13px;line-height:normal;}
+
+div.greenBox{width:216px;background-color:#006666;background-image:url(images/green-header.gif);background-position:top center;background-repeat:no-repeat;padding:12px 12px 0px 12px;margin-top:0px;float:left;}
+div.greenBoxFooter{width:240px;background-image:url(images/green-footer.gif);background-position:bottom center;background-color:#006666;background-repeat:no-repeat;height:8px;clear:both;font-size:0px;margin-bottom:2px;}
+div.greenBox h3{font-size:14px;font-family:Verdana, Helvetica, Arial;font-weight:bold;color:#fff;}
+div.greenBox p{line-height:18px;margin-top:1px;margin-bottom:6px;}
+div.greenBox p.italic{margin-top:4px;line-height:12px;font-style:italic;margin-bottom:0px;}
+div.greenBox p.current{margin-top:6px;color:#dedede;background-image:url(images/arrow-green.gif);background-position:0px 2px;background-repeat:no-repeat;padding-left:13px;line-height:normal;}
+
+div.blueBox{width:216px;background-color:#003366;background-image:url(images/blue-header.gif);background-position:top center;background-repeat:no-repeat;padding:12px 12px 0px 12px;float:left;}
+div.blueBoxFooter{width:240px;background-image:url(images/blue-footer.gif);background-position:bottom center;background-color:#003366;background-repeat:no-repeat;height:8px;clear:both;font-size:0px;margin-bottom:2px;}
+div.blueBox h3{font-size:14px;font-family:Verdana, Helvetica, Arial;font-weight:bold;color:#fff;}
+div.blueBox p{line-height:normal;}
+div.blueBox p.italic{margin-top:4px;line-height:12px;font-style:italic;}
+div.blueBox p.current{margin-top:6px;color:#dedede;background-image:url(images/arrow-blue.gif);background-position:0px 2px;background-repeat:no-repeat;padding-left:13px;}
+div.blueBox p{margin-top:6px;color:#dedede;padding-left:1px;}
+
+div.blueBox a
+{font-size:12px;font-family:Verdana, Helvetica, Arial;line-height:18px;font-weight:normal;text-decoration:none; color:#ffcc99;border-bottom-color:#7fa5cb;border-bottom-width:1px;border-bottom-style:solid;}
+div.blueBox a:link,div.blueBox a:visited
+{color: #ffcc99;border-bottom-color: #7fa5cb;}
+div.blueBox a:hover,div.blueBox a:visited:hover
+{color: #003366;border-bottom-color: #ff9900;border-bottom-width:4px;border-bottom-style: solid;background-color: #ff9900;}
+div.blueBox a:active, div.blueBox a:visited:active 
+{color: #FF0000;border-bottom-width: thin;border-bottom-style: none;}
+
+div.greenBox a				
+{font-size:12px;font-family:Verdana, Helvetica, Arial;line-height:18px;font-weight:normal;text-decoration:none; color:#ffcc99;border-bottom-color:#85bfbf;border-bottom-width:1px;border-bottom-style:solid;}
+div.greenBox a:link, div.greenBox a:visited
+{color: #ffcc99;border-bottom-color: #85bfbf;}
+div.greenBox a:hover, div.greenBox a:visited:hover
+{color: #006666;border-bottom-color: #ff9900;border-bottom-width:4px;border-bottom-style: solid;background-color: #ff9900;}
+div.greenBox a:active, div.greenBox a:visited:active
+{color: #FF0000;border-bottom-width: thin;border-bottom-style: none;}
+
+div.redBox a
+{font-size:12px; font-family:Verdana, Helvetica, Arial;line-height:18px;font-weight: normal; text-decoration: none; color:#ffcc99;border-bottom-color:#e789a8;border-bottom-width:1px;border-bottom-style:solid;}
+div.redBox a:link, div.redBox a:visited	
+{color: #ffcc99;border-bottom-color: #e789a8;}
+div.redBox a:hover, div.redBox a:visited:hover	
+{color: #990033;border-bottom-color: #ff9900;border-bottom-width:4px;border-bottom-style: solid;background-color: #ff9900;}
+div.redBox a:active, div.redBox a:visited:active	
+{color: #FF0000;border-bottom-width: thin;border-bottom-style: none;}
+
+div.redBox ul.links{margin:0px;padding:4px 0px 2px 1px;list-style:none;}
+div.redBox ul.links li{color:#ffcc99;margin:0px 0px 4px 0px;padding:0px 0px 0px 12px;background-image:url(images/bullet-red.gif);background-position:0px 6px;background-repeat:no-repeat;}
+div.redBox ul.links li.current{color:#dedede;margin:0px 0px 4px 0px;padding:0px 0px 0px 12px;background-image:url(images/arrow-red.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.redBox ul.links li.lev2-current
+{color:#dedede;margin:0px 0px 4px 14px;padding:0px 0px 0px 10px;background-image:url(images/arrow-red.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.redBox ul.links li.lev2
+{color:#ffcc99;margin:0px 0px 4px 14px;padding:0px 0px 0px 10px;background-image:url(images/arrow-dash.jpg);background-position:0px 6px;background-repeat:no-repeat;}
+div.redBox ul.links li.lev3-current
+{color:#dedede;margin:0px 0px 4px 26px;padding:0px 0px 0px 10px;background-image:url(images/arrow-red.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.redBox ul.links li.lev3
+{color:#dedede;margin:0px 0px 4px 26px;padding:0px 0px 0px 10px;background-image:url(images/arrow-nodes.jpg);background-position:-1px 4px;background-repeat:no-repeat;}
+
+div.greenBox ul.links{margin:0px;padding:4px 0px 2px 1px;list-style:none;}
+div.greenBox ul.links li{color:#ffcc99;margin:0px 0px 4px 0px;padding:0px 0px 0px 12px;background-image:url(images/bullet-green.gif);background-position:0px 6px;background-repeat:no-repeat;}
+div.greenBox ul.links li.current{color:#dedede;margin:0px 0px 4px 0px;padding:0px 0px 0px 12px;background-image:url(images/arrow-green.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.greenBox ul.links li.lev2-current
+{color:#dedede;margin:0px 0px 4px 14px;padding:0px 0px 0px 10px;background-image:url(images/arrow-green.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.greenBox ul.links li.lev2
+{color:#ffcc99;margin:0px 0px 4px 14px;padding:0px 0px 0px 10px;background-image:url(images/arrow-dash-green.gif);background-position:0px 6px;background-repeat:no-repeat;}
+div.greenBox ul.links li.lev3-current
+{color:#dedede;margin:0px 0px 4px 26px;padding:0px 0px 0px 10px;background-image:url(images/arrow-green.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.greenBox ul.links li.lev3
+{color:#dedede;margin:0px 0px 4px 26px;padding:0px 0px 0px 10px;background-image:url(images/arrow-green-nodes.jpg);background-position:-1px 4px;background-repeat:no-repeat;}
+
+div.blueBox ul.links{margin:0px;padding:4px 0px 2px 1px;list-style:none;}
+div.blueBox ul.links li{color:#ffcc99;margin:0px 0px 4px 0px;padding:0px 0px 0px 12px;background-image:url(images/bullet-blue.gif);background-position:0px 6px;background-repeat:no-repeat;}
+div.blueBox ul.links li.current{color:#dedede;margin:0px 0px 4px 0px;padding:0px 0px 0px 12px;background-image:url(images/arrow-blue.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.blueBox ul.links li.lev2-current
+{color:#dedede;margin:0px 0px 4px 14px;padding:0px 0px 0px 10px;background-image:url(images/arrow-blue.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.blueBox ul.links li.lev2
+{color:#ffcc99;margin:0px 0px 4px 14px;padding:0px 0px 0px 10px;background-image:url(images/arrow-dash-blue.gif);background-position:0px 6px;background-repeat:no-repeat;}
+div.blueBox ul.links li.lev3-current
+{color:#dedede;margin:0px 0px 4px 26px;padding:0px 0px 0px 10px;background-image:url(images/arrow-blue.gif);background-position:-1px 4px;background-repeat:no-repeat;}
+div.blueBox ul.links li.lev3
+{color:#dedede;margin:0px 0px 4px 26px;padding:0px 0px 0px 10px;background-image:url(images/arrow-blue-nodes.jpg);background-position:-1px 4px;background-repeat:no-repeat;}
+
+div.blueBox span.boxHeader{background-image:url(images/blue-border-header.gif);background-position:bottom center;background-repeat:no-repeat;padding:0px 0px 0px 0px;margin:4px 0px 0px 0px;width:218px;height:9px;display:block;clear:both;font-size:0px; }
+div.blueBox span.boxContent{background-image:url(images/blue-border-content.gif);background-position:top center;background-repeat:repeat-y;padding:0px 2px 0px 9px;margin:0px;width:207px;display:block;overflow:visible;}
+div.blueBox span.boxContentDivider{background-image:url(images/blue-border-content-divider.gif);background-position:center center;background-repeat:repeat-y;padding:0px;margin:0px;width:218px;height:10px;display:block;clear:both; font-size:0px;}
+div.blueBox span.boxFooter{background-image:url(images/blue-border-footer.gif);background-position:top center;background-repeat:no-repeat;padding:0px 0px 0px 0px;margin:0px 0px 5px 0px;width:218px;height:9px;display:block;font-size:0px;}
+
+div.blueBox span.boxGoogleAd{text-align:center;background-image:url(images/blue-border-content.gif);background-position:top center;background-repeat:repeat-y;padding:0px;margin:0px;width:218px;display:block;overflow:visible;}
+div.blueBox span.boxGoogleAd img{border:none;}
+div.blueBox span.boxGoogleAd a, div.blueBox span.boxGoogleAd a:hover{border:none;text-decoration:none;}
+
+#headerImages {
+	float:right;position:relative;width:538px;height:220px;
+	background-color:#e1e1e1;background-image:url(images/gray-header-large.gif);background-position:top center;background-repeat:no-repeat;padding-top:9px;
+	text-align:center;	
+}
+#headerImages IMG {position:absolute;top:9px;left:8px;z-index:8;opacity:0.0;margin:0px auto 0px auto;}
+#headerImages IMG.active {z-index:10;opacity:1.0;}
+#headerImages IMG.last-active{z-index:9;}
+#headerImagesFooter{width:538px;background-image:url(images/gray-footer-large.gif);background-position:bottom center;background-repeat:no-repeat;background-color:#e1e1e1;display:block;height:9px;font-size:0px;margin-bottom:2px;float:left;}
+
+#previousWorkImages {
+	float:right;position:relative;width:538px;height:220px;
+	background-color:#e1e1e1;background-image:url(images/gray-header-large.gif);background-position:top center;background-repeat:no-repeat;padding-top:9px;
+	text-align:center;	
+}
+#previousWorkImagesFooter{width:538px;background-image:url(images/gray-footer-large.gif);background-position:bottom center;background-repeat:no-repeat;background-color:#e1e1e1;display:block;height:9px;font-size:0px;margin-bottom:2px;float:left;}
+	
+div#topBanner a{border:none;border:none;} 
+div#topBanner img{border:none;border:none;}
+
+div#searchBar{width:538px;text-align:center;background-color:#ff9900;background-image:url(images/orange-header-large.gif);background-position:top center;background-repeat:no-repeat;padding-top:9px;float:right;height:24px;}
+div#searchBar{#height:26px;}
+div#searchBarFooter{width:538px;background-image:url(images/orange-footer-large.gif);background-position:bottom center;background-repeat:no-repeat;background-color:#ff9900;display:block;height:9px;#height:7px;font-size:0px;margin-bottom:2px;float:left;}
+
+div#searchBar ul#search{list-style:none;margin:0px;padding:0px 6px 0px 6px;}
+div#searchBar ul#search li {float:left;display:block;padding-left:5px;padding-top:2px;}
+div#searchBar ul#search li input#searchButton {font-size:11px; line-height:12px;font-weight:normal;color:#e1e1e1;border:solid 1px #fff;margin-top:2px;}
+div#searchBar ul#search li input#searchInput{font-size:11px; line-height:12px;font-weight:normal;color:#003366;border-style:solid;border-color:#003366;border-width:1px;width:115px;height:13px;margin-left:15px;margin-top:2px;}
+
+div#centerPanel{width:538px;float:left;padding-bottom:10px;}
+div#centerPanel-full{width:780px;float:left;margin:0px;padding:0px;}
+
+div#contents{width:538px;background-color:#e1e1e1;background-image:url(images/gray-header-large.gif);background-position:top center;background-repeat:no-repeat;padding:24px 0px 0px 0px;float:left;clear:both;}
+div#contentsFooter{width:538px;background-image:url(images/gray-footer-large.gif);background-position:bottom center;background-repeat:no-repeat;clear:both;text-align:center;padding-top:30px;height:40px;}
+
+div#contents-full{width:740px;background-color:#e1e1e1;background-image:url(images/gray-content-header.gif);background-position:top center;background-repeat:no-repeat;padding:24px 20px 0px 20px;float:left;clear:both;}
+div#contents-full-Footer{width:780px;background-color:#e1e1e1;background-image:url(images/gray-content-footer.gif);background-position:bottom center;background-repeat:no-repeat;clear:both;text-align:center;padding-top:30px;height:40px;margin-bottom:10px;}
+
+div#contentsFooter .hr, div#contents-full-Footer .hr{width:488px;border-bottom:solid 1px #999999;margin:0px auto 12px auto;padding:0px;font-size:0px;line-height:0px;}
+div#contentsFooter img.dot, div#contents-full-Footer img.dot{display:inline-block;padding:0px 5px 0px 5px;}
+
+div#contents-full p.mapLegend{clear:both;font-size:12px;display:block;overflow:hidden;margin-bottom:0px;#margin-bottom:0px;padding-bottom:0px;border:solid 1px #e1e1e1;}
+div#contents-full p.mapLegend img{float:left;padding-right:10px;}
+div#contents-full p.mapLegend span{float:left;padding-top:8px;}
+div#contents-full p.last{margin-bottom:10px;}
+
+div#contents h1, div#contents-full h1    	{font-size:19px;line-height:22px;font-weight:bold;color:#003366;padding:0px 9px 0px 9px;margin:0px 0px 17px 0px;#margin-bottom:15px;}
+div#contents h2, div#contents-full h2    	{font-size:17px;line-height:20px;font-weight:bold;color:#003366;padding:5px 9px 0px 9px;margin:0px 0px 9px 0px;}
+div#contents h3, div#contents-full h3    	{font-size:14px; line-height:17px;font-weight: bold; color: #003366;padding:5px 5px 0px 18px;margin:0px 0px 5px 0px;}
+div#contents h4, div#contents-full h4    	{font-size:12px; line-height:15px;font-weight: bold; color: #003366;padding:5px 5px 0px 23px;margin:0px 0px 5px 0px;}
+div#contents h5, div#contents-full h5    	{font-size:12px; line-height:15px;font-weight: bold; color: #003366;padding:5px 5px 0px 23px;margin:0px 0px 5px 0px;}
+div#contents h6, div#contents-full h6    	{font-size:14px; line-height:17px;font-weight: bold; color: #003366;padding:5px 5px 0px 23px;margin:0px 0px 5px 0px;}
+
+div#contents p, div#contents-full p{padding:0px 20px 0px 25px;margin-bottom:9px;#margin-bottom:9px;}
+div#contents p.listItem, div#contents-full p.listItem{line-height:22px;margin-bottom:20px;}
+
+div#contents p.ulHead, div#contents-full p.ulHead{padding:0px 20px 0px 25px;margin-bottom:9px;#margin-bottom:9px;}
+div#contents ul, div#contents-full ul{line-height:18px;margin:0px;margin-bottom:9px;padding:0px 15px 0px 29px;list-style:none;#margin-bottom:9px;}
+div#contents ul li, div#contents-full ul li{background-image:url(images/bullet-blue-trans.gif);background-position:0px 6px;background-repeat:no-repeat;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 10px;}
+div#contents ul li.noBullet, div#contents-full ul li.noBullet{background-image:none;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 10px;}
+div#contents ul li.level2, div#contents-full ul li.level2{background-image:url(images/bullet-blue-trans.gif);background-position:12px 6px;background-repeat:no-repeat;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 22px;}
+div#contents ul li.level2noBullet, div#contents-full ul li.level2noBullet{background-image:none;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 22px;}
+div#contents ul li.level3, div#contents-full ul li.level3{background-image:url(images/bullet-blue-trans.gif);background-position:24px 6px;background-repeat:no-repeat;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 34px;}
+div#contents ul li.level3noBullet, div#contents-full ul li.level3noBullet{background-image:none;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 34px;}
+div#contents ul li.level4, div#contents-full ul li.level4{background-image:url(images/bullet-blue-trans.gif);background-position:36px 6px;background-repeat:no-repeat;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 46px;}
+div#contents ul li.level4noBullet, div#contents-full ul li.level4noBullet{background-image:none;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 46px;}
+div#contents ul li.level5, div#contents-full ul li.level5{background-image:url(images/bullet-blue-trans.gif);background-position:48px 6px;background-repeat:no-repeat;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 58px;}
+div#contents ul li.level5noBullet, div#contents-full ul li.level5noBullet{background-image:none;line-height:18px;margin:0px;margin-bottom:9px;padding:0px 0px 0px 58px;}
+
+div#contents p.movetop, div#contents-full p.movetop
+{padding:0px 0px 0px 16px;margin:14px 0px 18px 25px;background-image:url(images/arrow-top.gif);background-position:0px 3px;background-repeat:no-repeat;}
+
+div#contents p.movetop a,div#contents-full p.movetop a, div#contents p.movetop-LastLnk a, div#contents-full p.movetop-LastLnk a
+{font-weight:bold;text-decoration:none;color:#003366;border-bottom-color:#F4F4FF;border-bottom-width:1px;border-bottom-style:solid;}
+div#contents p.movetop a:hover,div#contents-full p.movetop a:hover, div#contents p.movetop-LastLnk a:hover, div#contents-full p.movetop-LastLnk a:hover
+{color:#E1E1E1;border-bottom-color:#003366;border-bottom-width:1px;border-bottom-style:solid;background-color:#003366;}
+
+a.blueBold 
+{line-height:18px;font-weight:bold;text-decoration:none;color:#003366;border-bottom-color:#4e4e4f;border-bottom-width:1px;border-bottom-style:solid;}
+a.blueBold:link, a.blueBold:visited
+{color: #003366;border-bottom-color: #4e4e4f;border-bottom-width: 1px;border-bottom-style: solid;}
+a.blueBold:hover, a.blueBold:visited:hover
+{color: #E1E1E1;border-bottom-color: #003366;border-bottom-width: 1px;border-bottom-style: solid;background-color: #003366;}
+
+a.orangeBold 
+{line-height:18px;font-weight:normal;text-decoration:none;color:#000099;border-bottom-color:#ffeaca;border-bottom-width:1px;border-bottom-style:solid;font-size:11px;}
+a.orangeBold:link, a.orangeBold:visited
+{color: #000099;border-bottom-color: #ffeaca;border-bottom-width: 1px;border-bottom-style: solid;}
+a.orangeBold:hover, a.orangeBold:visited:hover
+{color: #ffcc99;border-bottom-color: #004800;border-bottom-width: 1px;border-bottom-style: solid;background-color: #004800;}
+
+a.orange 
+{line-height:18px;font-weight:normal;text-decoration:none;color:#ffcc99;border-bottom-color:#7fa5cb;border-bottom-width:1px;border-bottom-style: solid;}
+a.orange:link, a.orange:visited {color: #ffcc99;border-bottom-color: #7fa5cb;}
+a.orange:hover, a.orange:visited:hover{color: #003366;border-bottom-style: none;background-color: #ff9900;}
+a.orange:active, a.orange:visited:active{color: #FF0000;border-bottom-width: 1px;border-bottom-style: none;}
+
+a.red
+{line-height:18px;font-weight:normal;text-decoration:none;color:#990033;border-bottom-color:#4e4e4f;border-bottom-width:1px;border-bottom-style: solid;}
+a.red:link, a.red:visited {color: #990033;border-bottom-color: #4e4e4f;}
+a.red:hover, a.red:visited:hover{color: #E1E1E1;border-bottom-style: none;background-color: #990033;}
+a.red:active, a.red:visited:active{color: #E1E1E1;border-bottom-width: 1px;border-bottom-style: none;}
+
+a.blueBoldNav
+{line-height:normal;font-weight:bold;text-decoration:none;color:#003366;margin-bottom:22px;padding-bottom:1px;}
+a.blueBoldNav:link, a.blueBoldNav:visited
+{color: #003366;}
+a.blueBoldNav:hover, a.blueBoldNav:visited:hover
+{color: #E1E1E1;background-color: #003366;}
+
+span.pages{padding-left:15px;padding-right:15px;}
+p.contents-sub span.replyLnk{clear:both;display:block;padding:10px 0px 0px 0px;margin:0px;}
+p.contents-sub span.last{margin-bottom:30px;}
+
+p.bottomLinks{color:#003366;font-weight:bold;line-height:25px;padding:0px 14px 0px 14px;margin-bottom:18px;margin-top:9px;}
+p.header-main{clear:both;background-color:#003366;color:#e1e1e1;font-size:13px;font-weight:bold;line-height:18px;padding:10px 12px 10px 12px;margin:10px 12px 14px 12px;}
+p.header-sub{background-color:#003366;color:#e1e1e1;font-size:12px;font-weight:bold;line-height:18px;padding:10px 8px 10px 8px;margin:15px 25px 10px 25px;}
+p.contents-full{font-size:13px;line-height:18px;padding:3px 14px 7px 14px;margin-bottom:12px;margin:0px;}
+p.contents-sub{font-size:12px;line-height:18px;padding:0px 10px 5px 10px;margin:0px 25px 5px 25px;}
+p.header-sub-red{color:#990033;font-size:13px;font-weight:bold;line-height:18px;padding:10px 10px 12px 10px;margin:15px 25px 0px 25px;}
+
+span.advBoxHeader{background-image:url(images/gray-border-header.gif);background-position:bottom center;background-repeat:no-repeat;padding:0px 0px 0px 0px;margin:15px 0px 0px 8px;width:484px;height:10px;display:block;clear:both;font-size:0px; }
+span.advBoxContent{background-image:url(images/gray-border-content.gif);background-position:top center;background-repeat:repeat-y;padding:5px;margin-left:8px;width:474px;display:block;overflow:visible;text-align:center;}
+span.advBoxFooter{background-image:url(images/gray-border-footer.gif);background-position:top center;background-repeat:no-repeat;padding:0px 0px 0px 0px;margin:0px 0px 20px 8px;width:484px;height:10px;display:block;font-size:0px;}
+span.advStart{margin-top:50px;}
+
+.search    {font-size:11px; line-height:18px;font-weight:normal;color:#e1e1e1;}
+.searchbox {font-size:11px; line-height:14px;font-weight:normal;color:#003366;border-style:solid;border-color:#003366;border-width:1px;width:210px;height:16px;}
+
+sup{font-size:9px;bottom:10px;height:10px;vertical-align: super;}
+span.blueBold{font-weight:bold;color:#003366;}
+span.redBold{font-weight:bold;color:#990033;}
+span.greenBold{font-weight:bold;color:#006666;}
+
+div#contents-full ul.innerLinks{line-height:normal;padding:10px;list-style:none;margin:10px 10px 10px 10px;}
+div#contents-full ul.innerLinks li{line-height:normal;margin:0px;margin-bottom:0px;padding:0px;background:none;}
+
+div#contents-full ul.innerLinks li.red {background-color:#990033;margin:0px 0px 0px 0px;padding:10px;background-image:url(images/bullet-red.gif);background-position:10px 14px;background-repeat:no-repeat;#padding:8px;padding-left:25px;}
+div#contents-full ul.innerLinks li.redCurrent {background-image:url(images/arrow-red.gif);background-position:10px 12px;background-repeat:no-repeat;}
+div#contents-full ul.innerLinks li.blue {background-color:#003366;margin:0px 0px 0px 0px;padding:10px;background-image:url(images/bullet-blue.gif);background-position:10px 14px;background-repeat:no-repeat;#padding:8px;padding-left:25px;}
+div#contents-full ul.innerLinks li.blueCurrent {background-image:url(images/arrow-blue.gif);background-position:10px 12px;background-repeat:no-repeat;}
+div#contents-full ul.innerLinks li.green {background-color:#006666;margin:0px 0px 0px 0px;padding:10px;background-image:url(images/bullet-green.gif);background-position:10px 14px;background-repeat:no-repeat;#padding:8px;padding-left:25px;}
+div#contents-full ul.innerLinks li.greenCurrent {background-image:url(images/arrow-green.gif);background-position:10px 12px;background-repeat:no-repeat;}
+
+div#contents-full ul.innerLinks li.red a{text-decoration: none; color:#ffcc99;border-bottom-color:#e789a8;border-bottom-width:1px;border-bottom-style:solid;}
+div#contents-full ul.innerLinks li.red a:link, li.red a:visited	 {color: #ffcc99;border-bottom-color: #e789a8;}
+div#contents-full ul.innerLinks li.red a:hover, li.red a:visited:hover	{color: #990033;border-bottom-color: #ff9900;border-bottom-width:2px;border-bottom-style: solid;background-color: #ff9900;}
+div#contents-full ul.innerLinks li.red a:active, li.red a:visited:active {color: #FF0000;border-bottom-width: thin;border-bottom-style: none;}
+
+div#contents-full ul.innerLinks li.redlev2
+{background-image:url(images/arrow-dash.jpg);background-position:20px 10px;background-repeat:no-repeat;padding-left:35px;padding-bottom:8px;padding-top:8px;#padding-top:6px;#padding-bottom:6px;}
+div#contents-full ul.innerLinks li.redlev3
+{background-image:url(images/arrow-nodes.jpg);background-position:30px 8px;background-repeat:no-repeat;padding-left:45px;padding-bottom:5px;padding-top:5px;#padding-top:3px;#padding-bottom:3px;}
+div#contents-full ul.innerLinks li.redlev4
+{background-image:url(images/arrow-nodes.jpg);background-position:60px 5px;background-repeat:no-repeat;padding-left:70px;padding-bottom:3px;padding-top:3px;#padding-top:1px;#padding-bottom:1px;}
+
+div#contents-full ul.innerLinks li.blue a{text-decoration: none; color: #ffcc99;border-bottom-color:#7fa5cb;border-bottom-width:1px;border-bottom-style:solid;}
+div#contents-full ul.innerLinks li.blue a:link, li.blue a:visited	 {color: #ffcc99;border-bottom-color: #7fa5cb;}
+div#contents-full ul.innerLinks li.blue a:hover, li.blue a:visited:hover	{color: #003366;border-bottom-color: #ff9900;border-bottom-width:2px;border-bottom-style: solid;background-color: #ff9900;}
+div#contents-full ul.innerLinks li.blue a:active, li.blue a:visited:active {color: #FF0000;border-bottom-width: thin;border-bottom-style: none;}
+
+div#contents-full ul.innerLinks li.bluelev2
+{background-image:url(images/arrow-dash-blue.gif);background-position:20px 10px;background-repeat:no-repeat;padding-left:35px;padding-bottom:8px;padding-top:8px;#padding-top:6px;#padding-bottom:6px;}
+div#contents-full ul.innerLinks li.bluelev3
+{background-image:url(images/arrow-blue-nodes.jpg);background-position:40px 8px;background-repeat:no-repeat;padding-left:55px;padding-bottom:5px;padding-top:5px;#padding-top:3px;#padding-bottom:3px;}
+div#contents-full ul.innerLinks li.bluelev4
+{background-image:url(images/arrow-blue-nodes.jpg);background-position:60px 5px;background-repeat:no-repeat;padding-left:70px;padding-bottom:3px;padding-top:3px;#padding-top:1px;#padding-bottom:1px;}
+div#contents-full ul.innerLinks li.bluelev5
+{background-image:url(images/arrow-dash-blue.gif);background-position:20px 10px;background-repeat:no-repeat;padding-left:35px;padding-bottom:13px;padding-top:8px;#padding-top:6px;#padding-bottom:11px;}
+div#contents-full ul.innerLinks li.bluelev6
+{background-image:url(images/arrow-blue-nodes.jpg);background-position:40px 8px;background-repeat:no-repeat;padding-left:55px;padding-bottom:13px;padding-top:5px;#padding-top:3px;#padding-bottom:11px;}
+
+div#contents-full ul.innerLinks li.green a{text-decoration: none; color:#ffcc99;border-bottom-color:#85bfbf;border-bottom-width:1px;border-bottom-style:solid;}
+div#contents-full ul.innerLinks li.green a:link, li.green a:visited	 {color: #ffcc99;border-bottom-color: #85bfbf;}
+div#contents-full ul.innerLinks li.green a:hover, li.green a:visited:hover	{color: #006666;border-bottom-color: #ff9900;border-bottom-width:2px;border-bottom-style: solid;background-color: #ff9900;}
+div#contents-full ul.innerLinks li.green a:active, li.green a:visited:active {color: #FF0000;border-bottom-width: thin;border-bottom-style: none;}
+
+div#contents-full ul.innerLinks li.greenlev2
+{background-image:url(images/arrow-dash-green.gif);background-position:20px 10px;background-repeat:no-repeat;padding-left:35px;padding-bottom:8px;padding-top:8px;#padding-top:6px;#padding-bottom:6px;}
+div#contents-full ul.innerLinks li.greenlev3
+{background-image:url(images/arrow-green-nodes.jpg);background-position:40px 8px;background-repeat:no-repeat;padding-left:55px;padding-bottom:8px;padding-top:8px;#padding-top:6px;#padding-bottom:6px;}
+div#contents-full ul.innerLinks li.greenlev4
+{background-image:url(images/arrow-green-nodes.jpg);background-position:60px 5px;background-repeat:no-repeat;padding-left:70px;padding-bottom:8px;padding-top:8px;#padding-top:6px;#padding-bottom:6px;}
+
+div#contents-full ul.innerLinks li.noBullet{background-image:none;}
+div#contents-full ul.innerLinks li.greenBullet{background-image:url(images/bullet-green.gif);}
+div#contents-full ul.innerLinks li.blueBullet{background-image:url(images/bullet-blue.gif);}
+div#contents-full ul.innerLinks li.redBullet{background-image:url(images/bullet-red.gif);}
+div#contents-full ul.innerLinks li.bottomItem{padding-bottom:25px;}
+
+form#inquery{margin:0px;}
+form#inquery p{clear:both;border-bottom:solid 1px #999999;padding:0px;margin:0px 15px 0px 15px;padding:0px;padding-bottom:3px;padding-top:3px;text-align:left;overflow:visible;}
+form#inquery p.noBorder{border:none;overflow:visible;}
+form#inquery p.lastRow{border:none;overflow:visible;height:40px;text-align:center;padding-top:20px;}
+
+form#inquery label{width:285px;float: left;text-align: right;display: block;font-size:11px;}
+
+form#inquery input{font-size:11px;width:190px;margin-left:0.5em;}
+form#inquery select{font-size:11px;margin-left:0.5em;}
+form#inquery textarea{font-size:11px;width:190px;margin-left:0.5em;height:50px;}
+
+form#inquery textarea.largeInput{font-size:11px;width:350px;margin-left:1em;height:50px;}
+form#inquery input.largeInput{margin-left:1em;font-size:11px;width:350px;}
+form#inquery select.largeInput{margin-left:1em;width:120px;}
+
+form#inquery h2{margin-top:10px;margin-bottom:5px;}
+form#inquery span{display:block;font-size:11px;}
+form#inquery input.option{font-size:11px;width:15px;}
+form#inquery input.check{font-size:11px;width:15px;}
+
+form#inquery div.border{border-bottom:solid 1px #999999;display:block;float:inherit;margin:0px 15px 0px 15px;padding:0px;width:505px;font-size:11px;padding-bottom:0px;}
+form#inquery ul{display: inherit;list-style:none;padding:0px;overflow:hidden;margin:0px;}
+form#inquery ul li{background:none;}
+form#inquery ul li.inLine{float:left;background:none;height:20px;}
+form#inquery .btnBlue 	{background-color: #003366; color: #ffcc99;padding: 2px 8px 2px 8px;font: 11px verdana;font-weight:bold;}
+
+img.rightAlign{float:right;margin:4px 25px 15px 15px;}
+img.leftAlign{float:left;margin:4px 15px 15px 25px;}
+img.border{padding:2px;border:solid 1px #666666;}
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>What Do We Want to Achieve with Management Reporting? | ProjectDeveloper.com | Cost effective IT project management services and database development services</title>
+<meta name="distribution" content="Global"> 
+<meta name="content-language" content="English"> 
+<meta name="rating" content="General"> 
+<meta name="description" content="I do have good solutions to offer, when management reporting is used for setting and achieving manageable operational objectives and goals"> 
+<meta name="keywords" content="cost effective it, it projects management, database development services, database developer, it project development, web developer database"> 
+<meta name="ROBOTS" content="INDEX, FOLLOW"> 
+<meta name="author" content="Project Developer, Inc."> 
+<meta name="copyright" content="Copyright (c) ProjectDeveloper.com. All rights reserved"> 
+<meta name="revisit-after" content="7 days"> 
+<meta http-equiv="expires" content="0"> 
+ 
+
+</head>
+<body>
+<a name="Top"></a>
+<div id="pager">
+	
+    <div id="leftPanel">
+        <div id="topLogo">
+        	<a ><img src="rick.jpg" width="220" height="60" border="0" alt="Database application project developer" title="Database application project developer"></a>
+        </div>
+        <div id="topLogoFooter"></div>        
+
+        <div class="redBox">
+			<h3>Website sections:</h3>
+            <ul class="links">
+                <li class="current">Services Provided</li>            
+                <li><a >IT Project Management</a></li>
+                <li><a >Application Development</a></li>
+                <li><a >Creativity Management</a></li>
+                <li><a >Previous Work Experience</a></li>
+                <li><a >Site Map</a></li>
+                <li><a >Contact Information</a></li>
+            </ul>
+        </div><div class="redBoxFooter"></div>                   
+
+        <div class="greenBox">
+			<h3>Current section's content:</h3>
+            <ul class="links">
+                <li><a >About the Services Provided</a></li>
+                <li class="lev2"><a >Overview of the Services Provided</a></li>
+                <li class="lev2"><a >Objectives and Work History</a></li>
+                <li class="lev2"><a >Additionally About Myself</a></li>
+                <li><a >Build a Sustainable Software Application Infrastructure Cost Effectively Around Software Development Talent</a></li>
+                <li><a >From Task Management to Advanced Process Management Applications</a></li>
+            	<li class="current">What Do We Want to Achieve with Management Reporting?</li>
+                <li><a >Preferred Project Development Principles</a></li>
+                <li><a >Custom Developed Workflow Software and Business Process Software</a></li>
+                <li><a >Database Application Development Principles</a></li>                
+                <li><a >How Much Customization Is the Right Amount?</a></li>                
+                <li><a >Custom Software Development Process in a Nutshell</a></li>                
+                <li><a >Cost Effective Software</a></li>                
+                <li><a >My Billing and Charging Ethics Handbook</a></li>                
+            </ul>
+        </div>
+        <div class="greenBoxFooter"></div>  
+        
+    </div>
+
+    <div id="headerImages">
+        <img src="rick.jpg" title="event planning tools" alt="event planning tools" class="active">
+        <img src="rick.jpg" alt="access development">
+        <img src="rick.jpg" alt="it project manager">                                        
+        <img src="rick.jpg" alt="business process software">
+        <img src="rick.jpg" alt="workflow software">
+        <img src="rick.jpg" alt="user interface development">
+        <img src="rick.jpg" alt="project developer">
+        <img src="rick.jpg" alt="sales crm example">
+        <img src="rick.jpg" alt="database development services">
+        <img src="rick.jpg" alt="ms access database">
+        <img src="rick.jpg" alt="it projects management">
+        <img src="rick.jpg" alt="user interface designing">        
+    </div>  
+	<div id="headerImagesFooter"></div>            
+       
+    <div id="searchBar">
+        <ul id="search">
+            <li><a  class="orangeBold">What can your database do for you?</a></li>
+            <li><img src="rick.jpg" width="95" height="1" border="0" alt=""></li>
+            <li><input id="searchInput" onclick="Clear();" value="" name="searchInput"></li>
+            <li><input id="searchButton" onclick="GoTo();" type="image" src="../../images/search-home.gif"></li>
+        </ul>    
+    </div><div id="searchBarFooter"></div>        
+
+    <div id="centerPanel">    
+
+        <div id="contents">
+            <h1>What Do We Want to Achieve with Management Reporting?</h1>
+            <p>
+            By <a class="blueBold" >Thomas Eklund</a>
+            </p><p>
+            In order to make management reporting an operationally useful tool, just like in software development areas, one of the main questions to ask is: What do we want to achieve here?
+            </p><p>
+            In management reporting areas, I have good solutions to offer, when <strong>management reporting is used for setting and achieving manageable operational objectives and goals</strong>.
+            </p><p>
+            For the sake of clarity, I will add that I <strong>define objective</strong> as <strong>an overall aim or project development direction</strong>. Objectives are general descriptions and may be subject to interpretations. Project's goals should reflect what the person or persons who are responsible for the project's development and management intend to achieve with the project. Compared to objectives <strong>goals should be specific, actionable and, preferably, measurable</strong>.
+            </p><p>
+            Following broadly defined steps can be helpful when management reporting is used for setting and achieving manageable operational objectives and goals.
+            </p>
+            <ul>
+                <li>Define the operational activity and task areas that affect the outcome. What units (departments, workgroups, and so on) and what actions affect the outcome?</li>
+                <li>For each operational activity and task area define the objectives and goals, and get participants buy-in.</li>
+                <li>Define the metrics that should be used and actually support the operational activity and task area objectives and goals. For example, if the goal is to have 0% of defects, then average or median number of defects is not right metric, the percentage is.</li>
+                <li>Make sure that the operational objectives and goals are actually manageable. External factors that the participants cannot manage, but affect the operational outcomes, can be part of the report. Perhaps such factors can be forecasted, or, if other parties (other companies or divisions) manage these factors, perhaps it is possible to set up collaborative objectives and goals in a manner similar to the above, and report on how well these objectives and goals are being achieved.</li>
+                <li>For reporting purposes, use easy to understand and digest graphical solutions (PowerPoint, for example), accompanied with concise explanatory text. People who see the report without any personal explanations should also be able to understand what each slide in the report is about and is trying to communicate.</li>
+                <li>Graphical solutions that look visually engaging and are also understandable, are more likely to get the viewers attention than are dull-looking ones, especially, if their purpose and message are unclear.</li>
+                <li>If you need to use complicated sets of data in the report, start the report with easy to understand and digest graphical solutions, and then build from there toward more complex data sets.</li>
+                <li>As needed, provide support data separately in a searchable format. For data, use workbooks and spreadsheets, not PDFs.</li>
+            </ul>         
+
+            <div id="contentsFooter">
+                 <div class="hr"></div>
+                 <img class="dot" src="rick.jpg" alt=""><a  class="blueBold">Copyright © ProjectDeveloper.com</a><img class="dot" src="rick.jpg" alt=""><a  class="blueBold">Top <img src="rick.jpg" width="12" height="11" border="0" alt=""></a>
+            </div> 
+
+        </div>
+
+        
+    </div>
+</div>
+
+</body></html>

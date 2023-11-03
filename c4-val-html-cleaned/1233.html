@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+<style>
+html, body, div, ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+body 
+{
+    background: #000;
+    -webkit-text-size-adjust: 100%;
+    font-size: 12px;
+	font-family: 'Antic Slab', serif;
+    line-height: 1.6em;
+	color: #272727;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1  
+{
+    font-size: 32px;
+    font-family: palatino;
+    margin: 0px;
+    padding: 0px;
+}
+
+hr 
+{
+    border:1px dotted #999; 
+    border-width:1px 0 0; 
+    background:transparent;
+    margin:25px 0px;
+}
+
+a 
+{
+	outline: none;
+}
+
+ul 
+{
+	margin-bottom: 24px;
+	padding-left: 30px;
+}
+
+div 
+{
+	text-align: left;
+}
+
+#postit 
+{
+    position:absolute;
+	left: 50%;
+    margin-left: 290px;
+	top: 76px;
+	z-index:65335;
+}
+ 
+#redtop 
+{
+    width:930px;
+    background-color:#c73535;
+    -moz-border-radius:12px 12px 0px 0px;
+	-webkit-border-radius:12px 12px 0px 0px;
+	border-radius:12px 12px 0px 0px;
+}
+
+#redbottom 
+{
+    width:930px;
+    background-color:#c73535;
+    -moz-border-radius:0px 0px 12px 12px;
+	-webkit-border-radius:0px 0px 12px 12px;
+	border-radius:0px 0px 12px 12px;
+}
+	
+#billboard 
+{
+    background:#FFF;
+    width:930px;
+    height:220px;
+    background-image:url('/Images/PeterGreenPublic/billboard.jpg');
+}
+
+a:link  
+{ 
+    color: #c73535; 
+    text-decoration: none 
+}
+
+a:visited  
+{ 
+    color: #c73535; 
+    text-decoration: none 
+}
+
+a:active  
+{ 
+    color: #c73535; 
+    text-decoration: none 
+}
+
+a:hover  
+{ 
+    color: #c73535; 
+    text-decoration: underline 
+}
+
+a:link.whitelink  
+{ 
+    color: #FFFFFF; 
+    text-decoration: none 
+}
+
+a:visited.whitelink  
+{ 
+    color: #FFFFFF; 
+    text-decoration: none 
+}
+
+a:active.whitelink  
+{ 
+    color: #FFFFFF; 
+    text-decoration: none 
+}
+
+a:hover.whitelink  
+{ 
+    color: #FFFFFF; 
+    text-decoration: underline 
+}
+
+.black 
+{
+	font-size: 15px;
+	line-height: 22px;
+	color: #272727;
+	font-family: 'Antic Slab', serif;
+ 	letter-spacing: .07em;
+}
+
+.black2 
+{
+	font-size: 13px;
+	line-height: 18px;
+	color: #000;
+	font-family: 'Antic Slab', serif;
+	letter-spacing: .07em;
+}
+
+.white 
+{
+	font-size: 14px;
+	line-height: 18px;
+	color: #FFF;
+	font-family: 'Antic Slab', serif;
+}
+
+.white2 
+{
+	font-size: 10px;
+	color: #888;
+	font-family: 'Antic Slab', serif;
+	letter-spacing: .07em;
+}
+
+ .whitelarge 
+ {
+	font-size: 16px;
+	line-height: 17px;
+	color: #FFFFFF;
+	font-family: arial, helvetica;
+	font-weight: bold;
+}
+ 
+ .headline 
+ {
+	font-size: 25px;
+	color: #44362a;
+	font-family: arial, helvetica;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+ 
+a.button:link 
+{
+	background: #c73535;
+	color:#FFF;
+	font-family: 'Antic Slab', serif;
+	letter-spacing: .07em;
+	letter-spacing: .07em;
+	text-align: center;
+	font-size:16px;
+    padding-top: 18px;
+    font-weight:normal;
+    text-transform:uppercase;
+    display: block;
+    cursor: pointer;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	border:0px;
+	display:inline-block;
+    padding-bottom: 30px;
+    text-transform:uppercase;
+    padding:12px 22px;
+	text-decoration:none;
+}
+
+a.button:hover 
+{
+	background-color:#454545;
+}
+
+a.button:active 
+{
+	position:relative;
+	top:1px;
+}
+
+a.button:visited
+{
+    color: #FFF;
+}
+
+.red 
+{
+    color: #c02c2b;
+    font-family: 'Antic Slab', serif;
+    letter-spacing: .07em;
+    text-align: center;
+    font-size:18px;
+    line-height: 30px;
+    font-weight: bold;
+    text-transform:uppercase;
+}          
+
+.talkbubble 
+{
+    padding:20px;
+    background: #c73535;
+    position: relative;
+    -moz-border-radius:    10px;
+    -webkit-border-radius: 10px;
+    border-radius:         10px;
+    color: #FFF;
+    margin-left:30px;
+    width:780px;
+}
+
+.talkbubble:before 
+{
+   content:"";
+   position: absolute;
+   right: 100%;
+   top: 26px;
+   width: 0;
+   height: 0;
+   border-top: 13px solid transparent;
+   border-right: 26px solid #c73535;
+   border-bottom: 13px solid transparent;
+}
+
+.screenshot 
+{
+   -moz-border-radius:    4px;
+   -webkit-border-radius: 4px;
+   border-radius:         4px;
+   border:1px solid #454545;
+}
+
+div#menu 
+{
+    height:50px;
+	background: #7c7c7c;
+	width:930px;
+
+}
+
+div#menu ul 
+{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+}
+
+div#menu ul.menu 
+{
+    padding-left: 0px;
+    text-align:center;
+}
+
+div#menu li 
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    float: left;
+    z-index: 6000;
+}
+   
+
+div#menu a 
+{
+    position: relative;
+    height: 50px;
+    display: block;
+    float: left;	
+    padding: 0 0px 0 0px;
+ 	text-decoration: none;
+ 	color: #FFF;
+}
+
+div#menu span 
+{
+	font-family: 'Antic Slab', serif;
+	letter-spacing: .07em;
+	text-align: center;
+    font-size:18px;
+    padding-top: 15px;
+    font-weight:bold;
+    text-transform:uppercase;
+    display: block;
+    cursor: pointer;
+}
+
+div#menu li 
+{
+    border-right: 1px solid #929292;  
+}
+
+div#menu li.last 
+{ 
+    border-right: 0px;
+}
+
+div#menu li a:hover 
+{
+ 	background-color:#454545 !important;	
+    color:#FFF !important; 
+}
+
+div#menu ul li a.active 
+{  
+ 	background-color: #FFF;
+ 	color: #000;
+}  
+
+@font-face {
+  font-family: 'Antic Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: url(http://fonts.gstatic.com/s/anticslab/v16/bWt97fPFfRzkCa9Jlp6IacVcWQ.ttf) format('truetype');
+}
+
+</style><title>
+	Our School Pages - Your Future PTA Web Destination
+</title><meta name="format-detection" content="telephone=no"><meta name="keywords" content="Our School Pages"><meta name="description" content="Our School Pages provides a beautiful and functional website solution to any local PTA. The website is easy to use and customize, and includes the features that every PTA needs."><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+    
+
+</head>
+
+<body>
+<div style="width: 930px; margin: 0px auto 0px auto;">
+    <br>
+    <div id="postit"><a ><img src="rick.jpg" style="border:0px; width:208px; height:223px;" alt="Post it note"></a></div>
+
+    <div id="redtop">
+        <table style="width: 930px; height: 50px; border: 0px; margin-bottom: 0px;" cellpadding="0px" cellspacing="0px">
+            <tbody><tr>
+                <td style="width:30px;"> </td>
+                <td><span class="white">Our School Pages - Your Future PTA Web Destination</span></td>
+                <td align="right"><span class="white"><a  class="whitelink">info@ourschoolpages.com</a>&nbsp;&nbsp;&nbsp;&nbsp;315-677-1766&nbsp;&nbsp;&nbsp;</span></td>
+                <td style="width:20px;"><a  target="facebook"><img src="rick.jpg" style="margin-top:0px;width:20px;height:20px;border:0px;" alt="Facebook"></a></td>
+                <td style="width:20px;"> </td>
+            </tr>
+        </tbody></table> 
+    </div>
+
+    <div id="billboard">
+        <a ><img src="rick.jpg" style="width:300px; height:150px; margin:12px 0 0 45px; border:0px" alt="Our School Pages"></a>
+        <br>
+        <img src="rick.jpg" style="width:319px;height:17px; margin:15px 0 0 30px;" alt="Your Future PTA Web Destination">
+    </div>
+
+    <div id="menu">
+        <ul class="menu">
+
+            <li><a  class=""><span style="width:140px;">Home</span></a></li>        
+            <li><a  class=""><span style="width:130px;">About</span></a></li>
+            <li><a  class=""><span style="width:155px;">Features</span></a></li>
+            <li><a  class=""><span style="width:200px;">Testimonials</span></a></li>        
+            <li><a  class=""><span style="width:135px;">Pricing</span></a></li>        
+            <li class="last"><a  class=""><span style="width:150px;">Contact</span></a></li>        
+        </ul>
+    </div>
+
+    <div style="background-color:#FFF;width:930px;">  
+        <div class="black" style="width:870px;margin-left:30px;"> 
+            
+    <br>
+
+    <table>
+        <tbody><tr>
+            <td style="width:500px;" valign="top">
+                <span class="black">Our School Pages provides a beautiful and functional website solution to any local PTA. The website is easy to use and 
+                customize, and includes the features that every PTA needs.<br><br>
+                The BEST way to experience Our School Pages is to set up your own PTA website!<br><br></span>
+
+                <div>
+                    <a class="button" style="width:450px; font-size:25px; line-height:35px;" >CLICK HERE to Begin Your<br>30-day Free Trial!</a>
+                </div>
+                <br><br>
+
+                <img src="rick.jpg" class="screenshot" style="margin-top:10px;width:490px;height:253px;" alt="Palm Crest PTA website screenshot">
+            </td>
+            <td style="width:30px;">
+            </td>
+            <td valign="top">
+                <span class="black">
+                    <img src="rick.jpg" class="screenshot" style="width:320px;height:258px;" alt="H. Guy Child PTA website screenshot">
+                    <br><br>
+                </span>
+                <div style="margin-left:20px;">
+                    Easy to customize! Simple Pricing!<br>Features Built for Every School!
+                    <ul>
+                        <li style="margin-left:40px;margin-top:10px;">Volunteer Sign up</li>
+                        <li style="margin-left:40px;">PTA Membership</li>
+                        <li style="margin-left:40px;">Interactive Calendar</li>
+                        <li style="margin-left:40px;">Event Registration</li>
+                        <li style="margin-left:40px;">Online Payments</li>
+                        <li style="margin-left:40px;">Email to Parents</li>
+                    </ul>
+                    <div style="margin-top:15px;margin-left:0px;margin-right: 40px;">
+                        <a  class="button" style="display: block; ">View full feature list</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody></table>
+
+    <hr>
+ 
+    "I really love the entire website. I have never done any website coordination and this program is easy and very user friendly. It updates immediately so everyone can see the changes and no one has to wait hours before you know what is going on."
+    — Ivonne Gauzin, <a  target="new">Discovery Elementary</a>, Sammamish, WA
+    <br><br> 
+ 
+
+        </div>
+
+        <br>
+    </div>
+    <div id="redbottom">
+        <table style="width:930px; height:50px; border:0px; margin-bottom:0px;" cellpadding="0px" cellspacing="0px">
+            <tbody><tr>
+                <td style="width:30px"> </td>
+                <td><span class="white">All Content ©2014 Our School Pages&nbsp;·&nbsp;&nbsp;<a  class="whitelink">Privacy Pledge</a></span></td>
+                <td align="right"><span class="white"><a  class="whitelink">info@ourschoolpages.com</a>&nbsp;&nbsp;&nbsp;&nbsp;315-677-1766&nbsp;&nbsp;&nbsp;</span></td>
+                <td style="width:20px"><a  target="facebook"><img src="rick.jpg" style="margin-top:0px;width:20px;height:20px;border:0px;" alt="Facebook"></a></td>
+                <td style="width:20px"></td>
+            </tr>
+        </tbody></table> 
+    </div>
+    <br><br><br>
+</div>
+
+</body></html>

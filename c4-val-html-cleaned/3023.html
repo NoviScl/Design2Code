@@ -1,0 +1,1442 @@
+<!DOCTYPE html><html><head>
+<style>
+body {
+    background-color: #fff;
+    color: #222;
+    font-family: Verdana, Arial, helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: #005386;
+    text-decoration: none;
+}
+
+#main a:hover, footer a:hover {
+    color: red;
+}
+
+#nav a:hover {
+    background-color: #d7ffd7;
+    text-decoration: none;
+}
+
+#menu, footer {
+    clear: both;
+    overflow: hidden;
+    color: #000;
+    background-color: #d7ffd7;
+    padding: 0.7ex;
+    font-size: 94%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#menu {
+    padding-left: 1.75em;
+}
+
+#menu a {
+    padding: 0.5ex 1ex 0.5ex 1ex;
+    color: #2E8B57;
+}
+
+#menu a:hover {
+    color: red;
+}
+
+header {
+    clear: both;
+    color: #666;
+    background-color: #eee;
+    font-size: 1.8em;
+    padding: 0.7ex 0.7ex 0.7ex 1em;
+}
+
+#headerLink {
+    color: #2E8B57;
+    margin-left: 5px;
+}
+
+h1 {
+    margin: 1em 1ex 0.5ex 0;
+    font-size: 1.4em;
+}
+
+h2 {
+    margin: 1em 1ex 0.5ex 0;
+    font-size: 1.3em;
+}
+
+h3 {
+    margin: 1em 1ex 0.5ex 0;
+    font-size: 1.2em;
+}
+
+h4 {
+    margin: 1em 1ex 0.5ex 0;
+    font-size: 1.1em;
+}
+
+#headerSubtitle {
+    font-size: 0.6em;
+    font-style: italic;
+    margin-left: 3em;
+}
+
+#content {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+#nav {
+    background-color: #fff;
+    float: left;
+    margin: 0 1px 0 0;
+    padding: 1em 0;
+    border-right: 1px dotted #ccc;
+    width: 12.3em;
+    font-size: 0.85em;
+}
+
+#nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+#nav li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#nav h3 {
+    padding-left: 1.6em !important;
+}
+
+#nav li ul {
+    padding-left: 1.2em !important;
+}
+
+#nav li a {
+    display: block;
+    margin: 0;
+    padding: 0.8ex 2em 0.8ex 2.6em;
+}
+
+#nav li a.thisPage {
+    color: #222;
+    font-weight: bold;
+}
+
+#main {
+    width: auto;
+    margin-left: 11em;
+    padding: 1em 0;
+}
+
+#matrix #main {
+    width: auto;
+    margin: 0;
+    padding: 1em;
+}
+
+#main > * {
+    margin-left: 48px;
+    margin-right: 48px;
+}
+
+#main > table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.right {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+table tr {
+    border: 1px solid #000;
+}
+
+#matrix th, #matrix td {
+    min-width: 30px;
+    font-size: 8pt;
+}
+
+table th {
+    background-color: #eee;
+    font-weight: bold;
+    border: 1px solid #000;
+    margin: 0;
+    padding: 0.24em 0.5em;
+}
+
+table td {
+    border: 1px solid #000;
+    margin: 0;
+    padding: 0.2em 0.4em;
+}
+
+.date {
+    font-size: 0.9em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+
+.tpinitial {
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 1.7em;
+    padding-right: 0.7em;
+}
+
+#menu img {
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+#menu .urlImg {
+    background: url(../style/rss_orange.png) no-repeat 0px 5px;
+    margin-left: 1.5em;
+}
+
+#menu .urlImg:hover {
+    background: url(../style/rss_red.png) no-repeat 0px 5px;
+}
+
+footer .lastupdate {
+    font-size: 0.75em;
+    padding: 0.33em;
+}
+
+footer .comments {
+    font-size: 0.75em;
+    padding: 0.33em;
+    float: right;
+    text-align: right;
+}
+
+.needsDisclaimer {
+   background-color: #ffe0e0; 
+}
+.noDisclaimer {
+   background-color: #e0ffe0; 
+}
+
+.restricted {
+   background-color: #fff0f0; 
+}
+.liberal {
+   background-color: #f0fff0; 
+}
+
+.externalButPresent {
+   background-color: #f8d0f8; 
+}
+.external {
+   background-color: #e8e8e8; 
+}
+
+.untranslated {
+   background-color: #d0f0f8; 
+}
+.empty {
+   background-color: #7777ff; 
+}
+
+.level0 {
+   background-color: #ff7777;
+}
+.level1 {
+   background-color: #f7bf77;
+}
+.level2 {
+   background-color: #efdf77;
+}
+.level3 {
+   background-color: #efef8f;
+}
+.level4 {
+   background-color: #dfef77;
+}
+.level5 {
+   background-color: #bff777;
+}
+.level6 {
+   background-color: #77ff77;
+}
+
+.overflow {
+   background-color: #00f8f8;
+}
+
+</style>
+   <meta charset="utf-8">
+   <title>Translation team for Marathi</title>
+   <meta name="robots" content="index,follow">
+   
+   
+</head>
+<body>
+   <header>
+      <a id="headerLink" ><span class="tpinitial">TP</span> Translation Project</a>
+      <span id="headerSubtitle">You code, we translate.</span>
+   </header>
+
+   <div id="menu">
+      <span class="left">
+         <a >Welcome</a>
+      </span>
+
+      <span class="right">
+         <a >Latest</a>
+      </span>
+   </div>
+
+   <div id="content">
+      <div id="nav">
+         <h3>Overview</h3>
+         <ul style="background: linear-gradient(#0077ff 50%, #ffee00 50%)">
+            <li><a >The Packages</a></li>
+            <li><a >The Teams</a></li>
+            <li><a >The Disclaimer</a></li>
+            <li><a >The Robot</a></li>
+         </ul>
+
+         <h3>Info for…</h3>
+         <ul>
+            <li><a >Maintainers</a></li>
+            <li><a >Translators</a></li>
+            <li><a >Coordinators</a></li>
+         </ul>
+
+         <h3>Documents</h3>
+         <ul>
+            <li><a >Site overview</a></li>
+            <li><a >Contributors</a></li>
+            <li><a >Changes</a></li>
+            <li><a >Matrix</a></li>
+            <li><a >Tools</a></li>
+         </ul>
+      </div>
+
+      <div id="main">
+<h1>Translation team for Marathi</h1>
+  <p>The Marathi translation team uses <b><code>mr</code></b> as its language code.  This code is part of the Marathi PO file names.  It is also sometimes used as a short identification for the team.</p>
+  <p>
+   The team uses <a >sshedmak@redhat.com</a> as official email address, which reaches either a mailing list or someone who broadcasts information to all other team members.
+   <a >Sandeep Shedmake</a> currently acts as the team leader, and you may write to him or her for all matters related to team coordination.
+   If you've found a translation error in one of the PO files listed below, please report it to the above email address.
+  </p>
+  <p>The Marathi team currently consists of the following translators:</p>
+  <table align="center" border="2">
+   <tbody><tr align="center">
+    <th>Translator</th>
+    <th>Assignments</th>
+    <th>Disclaimed</th>
+    <th>Autosend</th>
+   </tr>
+   <tr align="center">
+    <td align="left"><a >Sandeep Shedmake</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>plain</td>
+   </tr>
+  </tbody></table>
+  <p>The Autosend column is for translators who want the PO file sent to them when a new POT file is added to the project -- they don't want to fetch the PO file themselves, but wish to receive it together with the notice.  <a >Just ask</a> if you want this service for yourself.</p>
+  <p>Here is the current list of assignments of textual domains to translators, as known to the Translation Project registry.  The robot relies on this information for directly accepting submissions from translators.  The domains with a pinkish background require that the translator has filled out a disclaimer; those with a greenish background are freely translatable. If you find some error or omission on this page, please write to <a >Sandeep Shedmake</a> to get it corrected.</p>
+  <table align="center" border="2">
+   <tbody><tr align="center">
+    <th>Domain</th>
+    <th>Version</th>
+    <th>Translated</th>
+    <th>Updated</th>
+    <th>Assigned&nbsp;translator</th>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >a2ps</a></td>
+    <td><a >4.15.5</a></td>
+    <td class="untranslated">0 / 157</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >anubis</a></td>
+    <td><a >4.2.91</a></td>
+    <td class="untranslated">0 / 307</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >aspell</a></td>
+    <td><a >0.60.8-pre2</a></td>
+    <td class="untranslated">0 / 303</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >bash</a></td>
+    <td><a >5.2-rc1</a></td>
+    <td class="untranslated">0 / 597</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >beebase</a></td>
+    <td><a >1.0</a></td>
+    <td class="untranslated">0 / 888</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >bfd</a></td>
+    <td><a >2.40.90</a></td>
+    <td class="untranslated">0 / 1905</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >binutils</a></td>
+    <td><a >2.40.90</a></td>
+    <td class="untranslated">0 / 2644</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >bison</a></td>
+    <td><a >3.7.90</a></td>
+    <td class="untranslated">0 / 253</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >bison-runtime</a></td>
+    <td><a >3.5.90</a></td>
+    <td class="untranslated">0 / 9</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >buzztrax</a></td>
+    <td><a >0.10.0</a></td>
+    <td class="untranslated">0 / 362</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >ccd2cue</a></td>
+    <td><a >0.5</a></td>
+    <td class="untranslated">0 / 46</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >ccide</a></td>
+    <td><a >0.6.6pre1</a></td>
+    <td class="untranslated">0 / 25</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >cflow</a></td>
+    <td><a >1.7</a></td>
+    <td class="untranslated">0 / 171</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >clisp</a></td>
+    <td><a >2.49.60</a></td>
+    <td class="untranslated">0 / 1551</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >coreutils</a></td>
+    <td><a >9.4-pre1</a></td>
+    <td class="untranslated">0 / 1885</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >cpio</a></td>
+    <td><a >2.14</a></td>
+    <td class="untranslated">0 / 314</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >cppi</a></td>
+    <td><a >1.17</a></td>
+    <td class="untranslated">0 / 61</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >cpplib</a></td>
+    <td><a >13.1-b20230212</a></td>
+    <td class="untranslated">0 / 267</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >cryptsetup</a></td>
+    <td><a >2.6.1-rc0</a></td>
+    <td class="untranslated">0 / 808</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >datamash</a></td>
+    <td><a >1.4.12.1</a></td>
+    <td class="untranslated">0 / 133</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >denemo</a></td>
+    <td><a >2.6-rc2</a></td>
+    <td class="untranslated">0 / 6301</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >dfarc</a></td>
+    <td><a >3.14</a></td>
+    <td class="untranslated">0 / 137</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >dialog</a></td>
+    <td><a >1.3.20210117</a></td>
+    <td class="untranslated">0 / 25</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >dico</a></td>
+    <td><a >2.10.90</a></td>
+    <td class="untranslated">0 / 644</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >diffutils</a></td>
+    <td><a >3.8.43</a></td>
+    <td class="untranslated">0 / 263</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >dink</a></td>
+    <td><a >1.08.20190120</a></td>
+    <td class="untranslated">0 / 2220</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >direvent</a></td>
+    <td><a >5.3</a></td>
+    <td class="untranslated">0 / 245</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >doodle</a></td>
+    <td><a >0.7.2</a></td>
+    <td class="untranslated">0 / 114</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >dos2unix</a></td>
+    <td><a >7.5.0-beta5</a></td>
+    <td class="untranslated">0 / 129</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >dos2unix-man</a></td>
+    <td><a >7.5.0-beta5</a></td>
+    <td class="untranslated">0 / 301</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >e2fsprogs</a></td>
+    <td><a >1.46.6-rc1</a></td>
+    <td class="untranslated">0 / 1620</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >enscript</a></td>
+    <td><a >1.6.5.90</a></td>
+    <td class="untranslated">0 / 208</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >exif</a></td>
+    <td><a >0.6.22</a></td>
+    <td class="untranslated">0 / 71</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >fetchmail</a></td>
+    <td><a >6.4.35</a></td>
+    <td class="untranslated">0 / 750</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >findutils</a></td>
+    <td><a >4.9.0</a></td>
+    <td class="untranslated">0 / 247</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >flex</a></td>
+    <td><a >2.6.4</a></td>
+    <td class="untranslated">0 / 169</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >freedink</a></td>
+    <td><a >109.4</a></td>
+    <td class="untranslated">0 / 43</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >fusionforge</a></td>
+    <td><a >6.1.0rc2</a></td>
+    <td class="untranslated">0 / 5256</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gas</a></td>
+    <td><a >2.40.90</a></td>
+    <td class="untranslated">0 / 4794</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gawk</a></td>
+    <td><a >5.2.1b</a></td>
+    <td class="untranslated">0 / 795</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gcal</a></td>
+    <td><a >4.1</a></td>
+    <td class="untranslated">0 / 1448</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gcc</a></td>
+    <td><a >13.2.0</a></td>
+    <td class="untranslated">0 / 15789</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gdbm</a></td>
+    <td><a >1.23</a></td>
+    <td class="untranslated">0 / 294</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gettext-examples</a></td>
+    <td><a >0.22</a></td>
+    <td class="untranslated">0 / 19</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gettext-runtime</a></td>
+    <td><a >0.22</a></td>
+    <td class="untranslated">0 / 47</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gettext-tools</a></td>
+    <td><a >0.22</a></td>
+    <td class="untranslated">0 / 793</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gnubik</a></td>
+    <td><a >2.4.3</a></td>
+    <td class="untranslated">0 / 83</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gnuchess</a></td>
+    <td><a >6.2.9-pre3</a></td>
+    <td class="untranslated">0 / 147</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gnucobol</a></td>
+    <td><a >3.2</a></td>
+    <td class="untranslated">0 / 1538</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gnulib</a></td>
+    <td><a >4.0.0.2567</a></td>
+    <td class="untranslated">0 / 247</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gnunet</a></td>
+    <td><a >0.10.1</a></td>
+    <td class="untranslated">0 / 1799</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gnunet-gtk</a></td>
+    <td><a >0.10.1</a></td>
+    <td class="untranslated">0 / 605</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gnutls</a></td>
+    <td><a >3.6.8</a></td>
+    <td class="untranslated">0 / 385</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gold</a></td>
+    <td><a >2.40.90</a></td>
+    <td class="untranslated">0 / 931</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gphoto2</a></td>
+    <td><a >2.5.28</a></td>
+    <td class="untranslated">0 / 345</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gprof</a></td>
+    <td><a >2.39.90</a></td>
+    <td class="untranslated">0 / 98</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >grep</a></td>
+    <td><a >3.10.12</a></td>
+    <td class="untranslated">0 / 116</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >grip</a></td>
+    <td><a >4.1.0</a></td>
+    <td class="untranslated">0 / 279</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >grub</a></td>
+    <td><a >2.12-rc1</a></td>
+    <td class="untranslated">0 / 1523</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gsasl</a></td>
+    <td><a >2.2.0</a></td>
+    <td class="untranslated">0 / 103</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gss</a></td>
+    <td><a >1.0.1</a></td>
+    <td class="untranslated">0 / 63</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gst-plugins-bad</a></td>
+    <td><a >1.21.90</a></td>
+    <td class="untranslated">0 / 29</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gst-plugins-base</a></td>
+    <td><a >1.21.90</a></td>
+    <td class="untranslated">0 / 218</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gst-plugins-good</a></td>
+    <td><a >1.21.90</a></td>
+    <td class="untranslated">0 / 102</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gst-plugins-ugly</a></td>
+    <td><a >1.21.90</a></td>
+    <td class="untranslated">0 / 10</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gstreamer</a></td>
+    <td><a >1.21.90</a></td>
+    <td class="untranslated">0 / 386</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >gtick</a></td>
+    <td><a >0.5.4</a></td>
+    <td class="untranslated">0 / 96</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gtkam</a></td>
+    <td><a >0.2.0</a></td>
+    <td class="untranslated">0 / 193</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gtkspell</a></td>
+    <td><a >3.0.7</a></td>
+    <td class="untranslated">0 / 7</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >gutenprint</a></td>
+    <td><a >5.3.4</a></td>
+    <td class="untranslated">0 / 4805</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >hello</a></td>
+    <td><a >2.12</a></td>
+    <td class="untranslated">0 / 46</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >help2man</a></td>
+    <td><a >1.47.17</a></td>
+    <td class="untranslated">0 / 49</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >help2man-texi</a></td>
+    <td><a >1.47.17</a></td>
+    <td class="untranslated">0 / 171</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >idutils</a></td>
+    <td><a >4.6.21</a></td>
+    <td class="untranslated">0 / 132</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >kbd</a></td>
+    <td><a >2.6-rc1</a></td>
+    <td class="untranslated">0 / 339</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >klavaro</a></td>
+    <td><a >3.12</a></td>
+    <td class="untranslated">0 / 231</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >ld</a></td>
+    <td><a >2.40.90</a></td>
+    <td class="untranslated">0 / 1144</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >libc</a></td>
+    <td><a >2.37.9000</a></td>
+    <td class="untranslated">0 / 1430</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >libexif</a></td>
+    <td><a >0.6.24</a></td>
+    <td class="untranslated">0 / 1320</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >libextractor</a></td>
+    <td><a >1.9</a></td>
+    <td class="untranslated">0 / 490</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >libgphoto2</a></td>
+    <td><a >2.5.31</a></td>
+    <td class="untranslated">0 / 2928</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >libgphoto2_port</a></td>
+    <td><a >2.5.28</a></td>
+    <td class="untranslated">0 / 78</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >libiconv</a></td>
+    <td><a >1.17-pre1</a></td>
+    <td class="untranslated">0 / 46</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >libidn</a></td>
+    <td><a >1.40</a></td>
+    <td class="untranslated">0 / 58</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >libidn2</a></td>
+    <td><a >2.3.3</a></td>
+    <td class="untranslated">0 / 41</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >lilypond</a></td>
+    <td><a >2.23.80</a></td>
+    <td class="untranslated">0 / 1022</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >lordsawar</a></td>
+    <td><a >0.3.3-pre2</a></td>
+    <td class="untranslated">0 / 2184</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >lynx</a></td>
+    <td><a >2.9.0-dev8</a></td>
+    <td class="untranslated">0 / 1284</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >m4</a></td>
+    <td><a >1.4.18d</a></td>
+    <td class="untranslated">0 / 197</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >mailfromd</a></td>
+    <td><a >8.17.91</a></td>
+    <td class="untranslated">0 / 915</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >mailutils</a></td>
+    <td><a >3.16</a></td>
+    <td class="untranslated">0 / 1967</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >make</a></td>
+    <td><a >4.4.0.90</a></td>
+    <td class="untranslated">0 / 477</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >man-db</a></td>
+    <td><a >2.12.0-pre1</a></td>
+    <td class="untranslated">0 / 204</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >man-db-manpages</a></td>
+    <td><a >2.12.0-pre2</a></td>
+    <td class="untranslated">0 / 396</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >meritous</a></td>
+    <td><a >1.5</a></td>
+    <td class="untranslated">0 / 164</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >midi-instruments</a></td>
+    <td><a >0.2</a></td>
+    <td class="untranslated">0 / 192</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >minicom</a></td>
+    <td><a >2.9-rc1</a></td>
+    <td class="untranslated">0 / 417</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >mpop</a></td>
+    <td><a >1.4.17</a></td>
+    <td class="untranslated">0 / 345</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >msmtp</a></td>
+    <td><a >1.8.21</a></td>
+    <td class="untranslated">0 / 326</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >nano</a></td>
+    <td><a >7.0-pre1</a></td>
+    <td class="untranslated">0 / 632</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >opcodes</a></td>
+    <td><a >2.40.90</a></td>
+    <td class="untranslated">0 / 473</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >parted</a></td>
+    <td><a >3.4.64.2</a></td>
+    <td class="untranslated">0 / 570</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >pies</a></td>
+    <td><a >1.8</a></td>
+    <td class="untranslated">0 / 578</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >pnmixer</a></td>
+    <td><a >0.7.1-rc3</a></td>
+    <td class="untranslated">0 / 108</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >procps-ng</a></td>
+    <td><a >4.0.4-rc1</a></td>
+    <td class="untranslated">0 / 925</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >procps-ng-man</a></td>
+    <td><a >4.0.4-rc1</a></td>
+    <td class="untranslated">0 / 2381</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >psmisc</a></td>
+    <td><a >23.6-rc1</a></td>
+    <td class="untranslated">0 / 95</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >psmisc-man</a></td>
+    <td><a >23.6-rc1</a></td>
+    <td class="untranslated">0 / 241</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >pspp</a></td>
+    <td><a >2.0.0-pre1</a></td>
+    <td class="untranslated">0 / 2648</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >pyspread</a></td>
+    <td><a >1.1</a></td>
+    <td class="untranslated">0 / 603</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >radius</a></td>
+    <td><a >1.6.1</a></td>
+    <td class="untranslated">0 / 628</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >recode</a></td>
+    <td><a >3.7.1</a></td>
+    <td class="untranslated">0 / 77</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >recutils</a></td>
+    <td><a >1.8</a></td>
+    <td class="untranslated">0 / 305</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >rush</a></td>
+    <td><a >2.2</a></td>
+    <td class="untranslated">0 / 178</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >sarg</a></td>
+    <td><a >2.4.0</a></td>
+    <td class="untranslated">0 / 529</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >savane</a></td>
+    <td><a >3.12</a></td>
+    <td class="untranslated">0 / 2220</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >sed</a></td>
+    <td><a >4.8.44</a></td>
+    <td class="untranslated">0 / 146</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >sharutils</a></td>
+    <td><a >4.15.2</a></td>
+    <td class="untranslated">0 / 304</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >shepherd</a></td>
+    <td><a >0.10.2rc1</a></td>
+    <td class="untranslated">0 / 165</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >shishi</a></td>
+    <td><a >1.0.2</a></td>
+    <td class="untranslated">0 / 207</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >skribilo</a></td>
+    <td><a >0.9.3.16</a></td>
+    <td class="untranslated">0 / 74</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >solfege</a></td>
+    <td><a >3.22.1-pre1</a></td>
+    <td class="untranslated">0 / 1102</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >solfege-manual</a></td>
+    <td><a >3.22.1-pre1</a></td>
+    <td class="untranslated">0 / 264</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >spotmachine</a></td>
+    <td><a >0.3.2</a></td>
+    <td class="untranslated">0 / 82</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >sudo</a></td>
+    <td><a >1.9.14b1</a></td>
+    <td class="untranslated">0 / 240</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >sudoers</a></td>
+    <td><a >1.9.15b1</a></td>
+    <td class="untranslated">0 / 705</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >sysstat</a></td>
+    <td><a >12.7.2</a></td>
+    <td class="untranslated">0 / 83</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >tar</a></td>
+    <td><a >1.35</a></td>
+    <td class="untranslated">0 / 598</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >texinfo</a></td>
+    <td><a >7.0.92</a></td>
+    <td class="untranslated">0 / 813</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >texinfo_document</a></td>
+    <td><a >7.0.92</a></td>
+    <td class="untranslated">0 / 208</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >tigervnc</a></td>
+    <td><a >1.12.90</a></td>
+    <td class="untranslated">0 / 196</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >tin</a></td>
+    <td><a >2.6.2</a></td>
+    <td class="untranslated">0 / 1581</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >tin-man</a></td>
+    <td><a >2.6.2</a></td>
+    <td class="untranslated">0 / 1864</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >trader</a></td>
+    <td><a >7.16</a></td>
+    <td class="untranslated">0 / 238</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >util-linux</a></td>
+    <td><a >2.39-rc3</a></td>
+    <td class="untranslated">0 / 5077</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >util-linux-man</a></td>
+    <td><a >2.39-rc3</a></td>
+    <td class="untranslated">0 / 6327</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >ve</a></td>
+    <td><a >0.1.4-rc1</a></td>
+    <td class="untranslated">0 / 79</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >vmm</a></td>
+    <td><a >0.7.0</a></td>
+    <td class="untranslated">0 / 273</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >vorbis-tools</a></td>
+    <td><a >1.4.0</a></td>
+    <td class="untranslated">0 / 501</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >wastesedge</a></td>
+    <td><a >0.3.7</a></td>
+    <td class="untranslated">0 / 1211</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >wcd</a></td>
+    <td><a >6.0.3-beta6</a></td>
+    <td class="untranslated">0 / 244</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >wcd-man</a></td>
+    <td><a >6.0.3-beta7</a></td>
+    <td class="untranslated">0 / 415</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >wdiff</a></td>
+    <td><a >1.2.2</a></td>
+    <td class="untranslated">0 / 119</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >wget</a></td>
+    <td><a >1.21.4</a></td>
+    <td class="untranslated">0 / 599</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >wget2</a></td>
+    <td><a >2.1.0</a></td>
+    <td class="untranslated">0 / 480</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >wyslij-po</a></td>
+    <td><a >3.3</a></td>
+    <td class="untranslated">0 / 106</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="restricted"><a >xboard</a></td>
+    <td><a >4.9.0-pre2</a></td>
+    <td class="untranslated">0 / 718</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >xdg-user-dirs</a></td>
+    <td><a >0.17</a></td>
+    <td class="level6">28 / 28</td>
+    <td class="date">2010-01-27</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >xkeyboard-config</a></td>
+    <td><a >2.39.99</a></td>
+    <td class="untranslated">0 / 1269</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >xz</a></td>
+    <td><a >5.4.4-pre1</a></td>
+    <td class="untranslated">0 / 180</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr align="center">
+    <td align="left" class="liberal"><a >xz-man</a></td>
+    <td><a >5.4.4-pre1</a></td>
+    <td class="untranslated">0 / 662</td>
+    <td class="date">&nbsp;</td>
+    <td>&nbsp;</td>
+   </tr>
+  </tbody></table>
+<br>
+  <p>For backup purposes, each month a <a >  tarball containing all the above PO files</a> is made.</p>
+      </div>
+   </div>
+
+   <footer>
+      <div class="comments">Your <a >comments</a> are welcome.</div>
+      <div class="lastupdate">Last updated on 2023-10-21 13:34 +0200.</div>
+   </footer>
+
+</body></html>

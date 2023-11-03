@@ -1,0 +1,1096 @@
+<!DOCTYPE html><html lang="en"><head>
+<style>
+@charset "utf-8";
+
+body { 
+	background:#5b4c45 url(/images/fhwa2/bg/bg_body.png) left top repeat-x !important;
+	font-family:Arial, Helvetica, sans-serif;
+	margin:0px;
+	padding:0px; 
+	text-align:center
+}
+
+.fhwacontainer { border:#f00 0px solid; margin:auto; width:960px }
+
+#fhwaheader {
+	background:#063472 url(/images/fhwa2/bg/bg_headersm.png) left top repeat-x;
+	border:#F00 0px solid;
+	padding:5px 0px;
+	text-align:left;
+}
+#fhwaheader img.imgdotfhwalg { display:none; } 
+#fhwaheader .logo {
+	border:#F00 0px solid;
+	float:left;
+	
+	width:30%;
+}
+#fhwaheader .dropdown {
+	border:#00F 0px solid;
+	float:left;
+	margin-top:13px;
+	
+	width:50%;
+}
+#fhwaheader .dropdown ul {
+	float:right;
+	z-index:597;
+}
+
+#fhwaheader .dropdown ul li {
+	z-index: 99999999;
+}
+#fhwaheader .socialbtns {
+	border:#F00 0px solid;
+	float:right;
+	margin-top:10px;
+	
+} 
+#fhwaheader .socialbtns img { margin-left:2px; } 
+
+#fhwaheader .dropdown ul ul {
+	border-left:#000 1px solid;
+	border-right:#000 1px solid;
+	border-top:#000 1px solid;
+	z-index:598;
+}
+
+#fhwaheader .dropdown ul li a {
+	font-size:0.8em;
+	font-weight:normal;
+	padding:2px 8px 9px 0px;
+}
+
+#fhwaheader .dropdown ul li:hover a {
+	background:none;
+	color:#f60;
+}
+
+#fhwaheader .dropdown li:hover li a {
+	background:#fff;
+	border-bottom:#000 1px solid;
+	color:#000;
+	padding:5px 20px 5px 10px;
+}
+
+#fhwaheader .dropdown ul li li {
+	font-size:0.9em;
+}
+
+#fhwaheader .dropdown ul li li a span {
+	background:url(/images/fhwa2/bg/arrow_blkrgt.png) right no-repeat;
+	display:block;
+	margin-right:-17px;
+	
+}
+
+#fhwaheader .dropdown ul li li:hover span {
+	background:url(/images/fhwa2/bg/arrow_whtrgt.png) right no-repeat;
+}
+
+#fhwaheader .dropdown li:hover li a:hover {
+	background:#036;
+	color:#f60;
+}
+
+#fhwanavmenu {
+	background:#000;
+	clear:both;
+	height:36px;
+	margin-bottom:20px;
+}
+#fhwanavmenu .dropdown ul {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+#fhwanavmenu .dropdown ul ul {
+	border-left:#000 1px solid;
+	border-right:#000 1px solid;
+	border-top:#000 1px solid;
+	z-index:596;
+}
+
+#fhwanavmenu .dropdown ul li a {	
+	font-size:0.95em;
+	font-weight:normal;
+	padding:8px 10px 9px 10px;
+}
+
+#fhwanavmenu .dropdown ul li li {
+	font-size:0.9em;
+}
+
+#fhwanavmenu .dropdown ul li li a span {
+	background:url(/images/fhwa2/bg/arrow_blkrgt.png) right no-repeat;
+	display:block;
+	margin-right:-17px;
+	padding-right:15px;
+}
+
+#fhwanavmenu .dropdown ul li li:hover span {
+	background:url(/images/fhwa2/bg/arrow_whtrgt.png) right no-repeat;
+}
+
+#fhwanavmenu .dropdown ul li:hover a {
+	background:none;
+	color:#9CF;
+}
+
+#fhwanavmenu .dropdown li:hover li a {
+	background:#FFF;
+	border-bottom:#000 1px solid;
+	color:#000;
+	padding:5px 20px 5px 10px;
+}
+
+#fhwanavmenu .dropdown li:hover li a:hover {
+	background:#000;
+	color:#9CF;
+}
+
+#fhwanavmenu .search {  margin-top:6px; float:right; }
+#fhwanavmenu .search fieldset { background:#fff; border:none; width:225px; margin:0px; padding:0px; }
+#fhwanavmenu .search input { border:none; }
+#fhwanavmenu .search input.srchbox { border-left:#fff 3px solid; color:#666; float:left; font-size:12px; height:22px; width:184px; }
+#fhwanavmenu .search input.srchbox { height:17px\9; padding-top:3px\9; } 
+#fhwanavmenu .search input.srchbtn { border-right:#fff 2px solid; float:right; }
+
+.arrow-whtdwn { background:url(/images/fhwa2/bg/arrow_whtdwn.png) bottom center no-repeat; }
+.arrow-blkrgt { background:url(/images/fhwa2/bg/arrow_blkrgt.png) right no-repeat; }
+
+#fhwabreadcrumbs { background:#333; clear:both; color:#FFF; font-size:0.7em; text-align:left }
+#fhwabreadcrumbs p { margin:0px; padding:5px 10px; color:#FFF;  }
+#fhwabreadcrumbs a, #fhwabreadcrumbs a:active { color:#9CF; text-decoration:none }
+#fhwabreadcrumbs a:hover { color:#FFF }
+
+#featurecontainer { margin-bottom:20px } 
+.nofeature #featurecontainer { display:none } 
+
+#fhwacontent { background:#FFF; clear:both; font-size:0.8em; margin:0px auto 20px; padding:10px; text-align:left }
+#fhwacontent.fhwacontainer { width:940px }
+#fhwacontent #sectiontitle p { 
+	border-bottom:#999 1px solid; 
+	color:#003; 
+	font-size:1.8em; 
+	font-weight:normal;
+	margin:0px;
+	padding-bottom:10px
+}
+
+#fhwacontent #pagedates { border-top:#999 1px solid; clear:both; padding-top:10px }
+.nopagedates #fhwacontent #pagedates { display:none }
+
+#fhwacontent .txtboxsmall, #fhwacontent .txtboxlarge, #fhwacontent .txtboxmedium  { background:#fff; margin-bottom:20px; padding-bottom:15px }
+#fhwacontent .txtboxsmall { width:301px }
+#fhwacontent .txtboxmedium { width:465px }
+#fhwacontent .txtboxlarge { width:629px }
+#fhwacontent .maxwidth { width:auto }
+
+#fhwacontent .txtboxsmall p, #fhwacontent .txtboxmedium p, #fhwacontent .txtboxlarge p, 
+#fhwacontent .txtboxsmall ul, #fhwacontent .txtboxmedium ul, #fhwacontent .txtboxlarge ul { padding:0px 10px }
+#fhwacontent .txtboxsmall ul.lstregular, #fhwacontent .txtboxmedium ul.lstregular, #fhwacontent .txtboxlarge ul.lstregular { margin-left:32px }
+#fhwacontent .txtboxsmall h1, #fhwacontent .txtboxlarge h1, #fhwacontent .txtboxmedium h1 { font-size:1.4em }
+#fhwacontent .txtboxsmall h2, #fhwacontent .txtboxlarge h2, #fhwacontent .txtboxmedium h2 { font-size:1.2em }
+#fhwacontent .txtboxsmall h1, #fhwacontent .txtboxlarge h1, #fhwacontent .txtboxmedium h1,
+#fhwacontent .txtboxsmall h2, #fhwacontent .txtboxlarge h2, #fhwacontent .txtboxmedium h2 {
+	font-weight:normal;
+	margin:0px 0px 8px 0px;
+	padding:8px 10px;
+	text-transform:uppercase
+}
+#fhwacontent .txtboxsmall h1, #fhwacontent .txtboxlarge h1, #fhwacontent .txtboxmedium h1,
+#fhwacontent .txtboxsmall h1 a, #fhwacontent .txtboxlarge h1 a, 
+#fhwacontent .txtboxmedium h1 a, #fhwacontent .txtboxsmall h1 a:hover,
+#fhwacontent .txtboxlarge h1 a:hover, #fhwacontent .txtboxmedium h1 a:hover,
+#fhwacontent .txtboxsmall h2, #fhwacontent .txtboxlarge h2, #fhwacontent .txtboxmedium h2,
+#fhwacontent .txtboxsmall h2 a, #fhwacontent .txtboxlarge h2 a, 
+#fhwacontent .txtboxmedium h2 a, #fhwacontent .txtboxsmall h2 a:hover,
+#fhwacontent .txtboxlarge h2 a:hover, #fhwacontent .txtboxmedium h2 a:hover { color:#fff }
+#fhwacontent .lstdisplaybox ul { list-style-type:none; margin:0px; padding:0px 10px }
+#fhwacontent .lstdisplaybox ul li { border-bottom:#CCC 1px solid; padding:10px 0px }
+#fhwacontent .lstdisplaybox ul li.nobdrbottom { border-bottom:0px }
+#fhwacontent .lstdisplaybox ul li.nopadbottom { padding-bottom:0px }
+#fhwacontent .lstdisplaybox ul li.nopadtop { background-position:left top; padding-top:0px }
+#fhwacontent .crosstopics { width:275px; border:1px #036 solid; margin-top:10px; padding:0px }
+#fhwacontent .crosstopics h3 { background:#036; color:#FFF; font-size:16px; margin:0px; padding:5px }
+#fhwacontent .crosstopics ul { margin:5px 3px 5px 12px; padding:5px 3px 5px 12px }
+#fhwacontent .crosstopics ul ul { margin-bottom:0px; margin-top:0px; padding-bottom:0px; padding-top:0px }
+
+.nosectiontitle #fhwacontent #sectiontitle { display:none }
+
+h1 { font-size:1.6em }
+h1, h1 a { color:#033; font-weight:normal }
+h2 { font-size:1.4em }
+h2, h2 a { color:#036; font-weight:normal }
+h3 { font-size:1.3em }
+h3, h3 a { font-weight:normal }
+h4 { font-size:1.2em }
+h5 { font-size:1em }
+
+#fhwacontent .colleft { float:left; margin-right:10px; padding-right:10px; width:50% } 
+#fhwacontent .colright { float:right; margin-left:10px; padding-left:10px; width:50% } 
+#fhwacontent .rowbottom ul li { width:465px }
+#fhwacontent .rowbottom { background:#deedfd; border:#deedfd 10px solid; clear:both }
+#fhwacontent .rowbottom ul { list-style-type:none; margin:0px; padding:0px }
+#fhwacontent .rowbottom ul li { display:inline; float:left }
+#fhwacontent .rowbottom ul li.morepadbottom { padding-bottom:10px }
+#fhwacontent .rowbottom ul li h2, #fhwacontent .rowbottom ul li p { margin:0px }
+
+#fhwacontent .subnav { float:left; padding-right:10px; width:200px }
+.nosubnav #fhwacontent .subnav { display:none } 
+
+#fhwacontent .subnav ul { margin:0px; padding:0px; list-style-type: none }
+#fhwacontent .subnav ul a { background:#036; border-bottom:1px solid #eee; color:#fff; display:block; padding:5px 12px; text-decoration:none }
+#fhwacontent .subnav a:hover { background:#003; color:#fff; text-decoration:none }
+#fhwacontent .subnav ul a.activesub { background:#003 }
+#fhwacontent .subnav ul ul { width:200px; border-top:#036 0px solid; border-bottom:#fff 1px solid }
+#fhwacontent .subnav ul ul li { text-align:left; border-right:0px }
+#fhwacontent .subnav ul ul li a {
+	background:#fff; ;
+	border-bottom:#036 1px solid;
+	border-left:#036 1px solid;
+	border-right:#036 1px solid;
+	color:#000;
+	font-size:12px;
+	padding:2px 6px 2px 25px;
+	text-transform:none
+}
+#fhwacontent .subnav ul ul li a:hover, #fhwacontent .subnav ul ul li a.activesub {
+	background:#CCC url(/images/fhwa2/nav/imgarrowblkvrt.png) 12px 4px no-repeat;
+	color:#000
+}
+
+#fhwacontent .subnav ul ul li a.activesub {
+	background-image:url(/images/fhwa2/nav/imgarrowblkhov.png);
+}
+#fhwacontent .subnav ul ul li a.activesubnac {
+	background:#CCC url(/images/fhwa2/nav/imgarrowblkvrt.png) 12px 4px no-repeat;
+}
+
+#fhwacontent .subnav ul ul ul li a {
+	background:#3C78B4 url(/images/fhwa2/nav/imgarrowwhtvrt.png) 25px 4px no-repeat;
+	color:#fff;
+	padding:2px 6px 2px 40px;
+}
+
+#fhwacontent .subnav ul ul ul li a:hover, #fhwacontent .subnav ul ul ul li a.activesub {
+	background-color:#fff;
+	background-image:url(/images/fhwa2/nav/imgarrowblkvrt.png);
+	background-position:25px 4px;
+}
+
+#fhwacontent .contenttext { float:right; width:730px }
+.nosubnav #fhwacontent .contenttext { float:none; width:auto }
+
+#fhwacontent .contenttext .rightcol { float:right; margin-left:10px; padding-left:10px; width:280px }
+
+.canceled #fhwacontent { background:url(/images/fhwa2/canceled.gif) top repeat }
+
+.archived #fhwacontent { background:url(/images/fhwa2/archived.png) top repeat }
+
+.superseded #fhwacontent { background:url(/css/images/superseded.gif) top repeat }
+
+.rescinded #fhwacontent { background:url(/css/images/rescinded.gif) top repeat }
+
+#fhwacontent #video img { border:#103c6a 3px solid; margin:0px 15px }
+
+p.returntoplink { display:none }
+.returntop #fhwacontent p.returntoplink { clear:right; display:block; font-size:0.85em }
+
+.PopBoxImageSmall { border: none 0px #ffffff; cursor: url("/images/magnify/magplus.cur"), pointer; }
+.PopBoxImageLarge { border: solid 1px #999999; cursor: url("/images/magnify/magminus.cur"), pointer; }
+.PopBoxImageShrink { cursor: url("/images/magnify/magminus.cur"), pointer; }
+.PopBoxImageLink { cursor: pointer; }
+.PopBoxImageMove { border: none 0px #ffffff; cursor: pointer; }
+
+a, a:active { color:#00F; text-decoration:underline; }
+a:visited { color:#639 }
+a:hover { color:#f60; text-decoration:underline; }
+
+.bgdarkblue { background-color:#036; }
+.bgslateblue { background-color:#376694; }
+.bgdarkgray { background-color:#666; }
+.bggray { background-color:#999; }
+.bglightgray { background-color:#CCC; }
+.bglightergray {background-color:#ebebeb; }
+.bgforestgreen { background-color:#4b6208; }
+.bgblue { background-color:#194077; }
+.bgburgundy { background-color:#7c2300; }
+.bgpurple { background-color:#636; }
+.bgorange { background-color:#C60; }
+.bggold { background-color:#A78600; }
+.bghighlight { background-color:#FFFF99; }
+
+.txtwhite { color:#fff; }
+.txtred { color:#F00; }
+
+.txtnormal { font-weight:normal; }
+.txtbold { font-weight:bold; }
+.txtitalic { font-style:italic; }
+.txtlcase { text-transform:lowercase; }
+.txtucase { text-transform:uppercase; }
+.txtuline { text-decoration:underline }
+.txtcenter { text-align:center }
+.txtleft { text-align:left }
+.txtright { text-align:right }
+.txtjustify { text-align:justify }
+.txtlarge { font-size:1.6em }
+.txtsmall, .footnote, .moddate, .readers { font-size:0.85em; }
+.txthide {display: none;}
+.msgerror { background:#FF9; border:#000 1px solid; color:#F00; font-size:0.9em; font-style:italic; padding:0px 3px; text-transform:uppercase }
+
+.floatleft { float:left; }
+.floatnone { float:none; }
+.floatright { float:right; }
+
+.clearall { clear:both !important; }
+.clearleft { clear:left; }
+.clearright { clear:right; }
+.clearnone { clear:none; }
+
+img { border:0px }
+.imgleft { float:left; padding:0px 10px 5px 0px }
+.imgright { float:right; padding:0px 0px 5px 10px }
+
+.bdrblack { border:#000 1px solid }
+.bdrdrkblue { border:#036 1px solid }
+.bdrdrkbluetop { border-top:#036 1px solid }
+.bdrbtmdrkblue { border-bottom:#036 1px solid }
+.bdrgraybtm { border-bottom:#ccc 1px solid }
+.bdrleftgray { border-left:#999 1px solid }
+.bdrrightgray { border-right:#999 1px solid }
+.bdrbtmgray { border-bottom:#999 1px solid }
+.bdrtopgray { border-top:#999 1px solid }
+.nobdr { border:0px }
+.nobdrbottom { border-bottom:0px }
+
+.datatable { font-size:0.9em }
+.row { font-weight:normal }
+
+.lstleft { margin-left:8px; padding-left:8px }
+.lstnobults { list-style-type:none; }
+
+li.hang { list-style-type: none; text-indent: -1.3em }
+li.hang td {text-indent: 0!important;}
+
+.nomarginall { margin:0px }
+.nomargintop { margin-top:0px }
+.nomarginleft { margin-left:0px }
+.nomarginright { margin-right:0px }
+.nomarginbottom { margin-bottom:0px }
+
+.nopadall { padding:0px }
+.nopadtop { padding-top:0px }
+.nopadleft { padding-left:0px }
+.nopadright { padding-right:0px }
+.nopadbottom { padding-bottom:0px }
+
+ .noticepdf {
+	border: 1px solid #666;
+	color: #000;
+	background-color: #FFD;
+	width: 270px;
+	padding: 4px;
+	text-align: left;
+	clear: right;
+	margin: 2px;
+}
+.noticepdf p {
+	font-size: 0.85em;
+	padding-top: 1px;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.noticepdf .pdfsmall { font-size: .7em }
+
+hr { color:#376694 }
+
+.printonly { display:none }
+
+#fhwafooter { 
+	clear:both; 
+	color:#fff; 
+	font-size:0.7em; 
+	padding-bottom:20px; 
+	text-align:left 
+}
+#fhwafooter .fhwasign { 
+	background:url(/images/fhwa2/bg/imgfhwasign.png) left no-repeat; 
+	border-right:#fff 1px solid; 
+	float:left; 
+	margin-right:10px; 
+	height:60px; 
+	width:162px 
+}
+#fhwafooter .foottext { margin-top:2px }
+#fhwafooter a { color:#fff }
+#fhwafooter a:hover { color:#9CF }
+
+.fullpagedisplay #fhwacontent.fhwacontainer { background:#fff !important; }
+
+.canceled #fhwacontent.fhwacontainer { background:url(/images/fhwa2/canceled.gif) top repeat !important; }
+
+.archived #fhwacontent.fhwacontainer { background:url(/images/fhwa2/archived.png) top repeat !important; }
+
+.superseded #fhwacontent.fhwacontainer { background:url(/css/images/superseded.gif) top repeat !important; }
+
+.rescinded #fhwacontent.fhwacontainer { background:url(/css/images/rescinded.gif) top repeat !important; }
+.fullpagedisplay #fhwabreadcrumbs, .fullpagedisplay #fhwacontent.fhwacontainer { min-width:960px; padding:auto 0px; width:auto; }
+.fullpagedisplay .fhwacontainer { min-width:960px; width:auto; }
+.fullpagedisplay #fhwaheader .fhwacontainer,
+.fullpagedisplay #fhwanavmenu .fhwacontainer,
+.fullpagedisplay #programtitle .fhwacontainer,
+.fullpagedisplay #fhwafooter .fhwacontainer {
+	padding-left:10px; padding-right:10px;
+}
+.fullpagedisplay #fhwacontent .contenttext { width:auto; }
+.fullpagedisplay #fhwafooter {  padding-top:15px; }
+
+.prgmoffice #programtitle { background:#003d73; display:block; }
+#programtitle { display:none }
+#programtitle .fhwacontainer { background:url(/images/fhwa2/bg/bg_programtitle_hwy.png) right no-repeat; }
+#programtitle p { color:#FFF; font-size:2em; margin:0px; padding:10px 0px; text-align:left; }
+#programtitle a, 
+#programtitle a:active, 
+#programtitle a:hover, 
+#programtitle a:visited {
+	color:#fff;
+	text-decoration:none;
+}
+
+.prgmhome #fhwacontent { background:none; padding:0px; width:960px; }
+
+.shrp2 .fhwacontainer { width:980px; }
+.shrp2 #fhwanavmenu { height:10px; }
+.shrp2 #fhwafooter { margin-top:10px; }
+
+#divcontact { border:#fff 1px solid; width:217px } 
+#divcontact .crosstopics { margin-top:0px; width:215px }
+#divcontact p { margin:0px; padding:5px }
+#divcontact .icons { text-align:center }
+#divcontact .icons p a { font-size:1.1em; font-weight:bold }
+
+#fhwanavmenu .search input.usagov-search-autocomplete { border-left:#fff 3px solid; color:#666; float:left; font-size:12px; height:22px; width:184px }
+#fhwanavmenu .search input.usagov-search-autocomplete { height:17px\9; padding-top:3px\9 } 
+
+.buttonbil1 {
+  background-color: #4671C7;
+  border: thin black solid;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px 2px 2px;
+  border-radius: 8px;
+}
+.bilbuttondiv {
+float:right;  margin-top:-2em;	
+margin-bottom:1em;
+}
+
+@charset "utf-8";
+
+.dropdown ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	
+}
+.dropdown ul li {
+	display: block;
+	position: relative;
+	float: left;
+	z-index: 99999998;
+	
+}
+
+.dropdown li ul { display: none; }
+.dropdown ul li a {
+	display: block;
+	padding: 1em;
+	text-decoration: none;
+	white-space: nowrap;
+	color: #fff;
+}
+
+.dropdown ul li a:hover { background: #2c3e50; }
+.dropdown li:hover > ul {
+	display: block;
+	position: absolute;
+	text-align: left;
+}
+.dropdown li:hover li { float: none; }
+.dropdown li:hover a { background: #1bc2a2; }
+.dropdown li:hover li a:hover { background: #2c3e50; }
+.main-navigation li ul li { border-top: 0; }
+
+.dropdown ul ul ul {
+  left: 100%;
+  top: 0;
+}
+
+.dropdown ul:before,
+.dropdown ul:after {
+	content: " "; 
+	display: table; 
+}
+.dropdown ul:after { clear: both; }
+
+@charset "utf-8";
+
+#fhwaheader, 
+#fhwanavmenu,
+#featurecontainer,
+#fhwabreadcrumbs,
+#fhwacontent .subnav,
+#fhwacontent .h1box p,
+.nosubnav #fhwacontent .subnav,
+.nopagedates #fhwacontent #pagedates,
+#fhwacontent .returntoplink,
+#featurecontainer,
+.noticepdf,
+#fhwafooter { display:none }
+
+#home #fhwacontent .coretopics ul li a span p { margin:0px }
+#home #fhwacontent ul.lstprintpad { margin-left:0px; padding-left:0px }
+#home #fhwacontent img { display:block }
+#home #fhwacontent .txtboxsmall, #home #fhwacontent .txtboxlarge { border-bottom:#000 1px solid }
+
+#fhwacontent #sectiontitle p { font-size:23px; font-weight:bold } 
+#programtitle p { font-size:23px; font-weight:bold } 
+h1 { font-size:22px }
+h2 { font-size:20px }
+h3 { font-size:18px }
+h4 { font-size:16px }
+h5 { font-size:14px }
+.txtsmall, .footnote, .moddate { font-size:12px }
+
+li.hang { list-style-type:none; text-indent: -1.3em }
+
+#printfhwatitle { font-size:25px; font-weight:bold } 
+.noprint { display:none } 
+.noborder { border:0px } 
+.lstprintpad li { padding-top:15px }
+.lstprintpad li.nopadtop { padding-top:0px }
+
+ 
+#fhwacontent .text { width:725px }
+
+#map21 .divhome { background-image:url(../images/bgheader.png); background-repeat:no-repeat }
+#map21 .divhome { background-position:top right }
+#map21 .divhomesub { background-position:bottom right }
+#map21 .divhome h1, #policy .divhomesub h1 { font-size:32px; text-align:center }
+#map21 .divhome h1 { padding:35px 0px }
+#map21 .divhomesub h1 { padding:10px 0px }
+#map21 .divhomesub h1 span { font-size:20px }
+
+#fhwacontent .crosstopics {
+	font-size:0.9em;
+	margin:0px 0px 5px 10px;
+	width:230px;
+}
+
+#collage {
+	background:url(../images/bgheader.png) top no-repeat;
+	border-bottom:#fff 1px solid;
+	font-family:"Times New Roman", Times, serif;
+	padding:55px 0px 10px 0px;
+	text-align:center;
+}
+#collage h1 { color:#000; font-size:28px; font-weight:normal }
+#collage h2 { color:#000; font-size:20px; font-weight:normal; margin-top:5px }
+#collage hr { width:70% }
+
+#map21 .whitespace { height:50px }
+
+#fhwacontent .navigate, #fhwacontent .navigateft { background:color:#000; padding:10px 5px; text-align:center }
+#fhwacontent .navigate a, #fhwacontent .navigate a:visited, #fhwacontent .navigateft a, #fhwacontent .navigateft a:visited { color:#930; font-weight:bold; text-decoration:none }
+#fhwacontent .navigate a:hover, #fhwacontent .navigateft a:hover { color:#063472; text-decoration:underline }
+#fhwacontent .navigateft { font-size:11px }
+
+#jobs, #reforms, #safety, #innovate, #strength, #perform { color:#fff; height:300px }
+
+#jobs { background:#577494 url(../images/bgjobs.png) right top no-repeat }
+
+#reforms { background:#000 url(../images/bgsimplify.png) left top no-repeat }
+
+#safety { background:#00376d url(../images/bgsafety.png) right top no-repeat }
+
+#innovate { background:#2e2623 url(../images/bginnovate.png) left top no-repeat }
+
+#strength { background:#00376d url(../images/bgstrength.png) right top no-repeat }
+
+#perform { background:#fff url(../images/bgperform.png) left top no-repeat; color:#000 }
+
+table.datatablesmaller {
+
+	border-collapse : collapse;
+
+	margin : 12px auto 12px auto;
+
+	font-size:0.875em;
+
+}
+
+.pdfholderright{
+
+	padding: 5px 5px 5px 5px;
+
+	border: 1px solid #39362f;
+
+	width: 320px;
+
+	background-color:#FFC;
+
+	font-size:11px;
+
+	margin-right:10px;
+
+	float:right
+
+}
+
+.pdfholderleft{
+
+	padding: 5px 5px 5px 5px;
+
+	border: 1px solid #39362f;
+
+	width: 320px;
+
+	background-color:#FFC;
+
+	font-size:11px;
+
+	margin-left:16px;
+
+	margin-right:10px;
+
+	float:left
+
+}
+
+.map21subnav { padding-top:36px }
+
+.txtlarger { font-size:1.2em }
+
+#fhwacontent .superseded {background-image:url("/map21/guidance/superseded.png");
+
+#pagecontents, #contents, #memo, .contenttext, #content.article {
+	background-image: url(/hep/images/superseded.png);
+	}
+
+</style>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="msvalidate.01" content="44D41FB1AC5699252BC80EEF9FDD7F12">
+
+<title>MAP-21 - Fact Sheets - National Highway Performance Program (NHPP)
+
+ | Federal Highway Administration</title>
+ 
+ 
+ 
+
+ 
+
+	 
+
+<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
+<body class="prgmoffice nosectiontitle returntop">
+<a id="top"></a>
+
+<div class="printonly">
+	<p>U.S. Department of Transportation<br>
+ 	<span id="printfhwatitle">Federal Highway Administration</span><br>
+  1200 New Jersey Avenue, SE<br>Washington, DC 20590<br>
+  202-366-4000</p>
+ 	<hr>
+</div>
+
+<div id="fhwaheader">
+	<div class="fhwacontainer">
+ 	<a  class="floatleft noprint" tabindex="1"><img src="rick.jpg" width="1" height="1" alt="Skip to content"></a>
+  <div class="logo">
+  	<a  tabindex="2"><img class="imgdotfhwalg" src="rick.jpg" alt="U.S. Department of Transportation/Federal Highway Administration"><img class="imgdotfhwasm" src="rick.jpg" alt="U.S. Department of Transportation/Federal Highway Administration"></a>
+  	</div>
+	
+
+	<div class="dropdown">
+	<ul>
+	<li class="arrow-whtdwn mnabout"><a  tabindex="3">About</a>
+		
+	 
+
+<ul>
+
+	<li><a >FHWA Organization</a></li>
+
+   	<li><a >Headquarters Offices</a></li>
+
+    <li><a >Field Offices</a></li>
+
+    <li><a >Careers</a></li>
+    <li><a >Strategic Plan</a></li>
+
+    <li><a >Business Opportunities</a></li>
+
+    <li><a >Staff Directories</a></li>
+    
+    <li><a >Highway History</a></li>
+
+    
+
+</ul>
+	</li>
+	<li class="arrow-whtdwn mnprograms"><a  tabindex="4">Programs</a>
+		
+	 
+<ul><li><a >Acquisition Management</a></li>
+	<li><a >Civil Rights</a></li>
+	<li><a >Federal Lands Highway</a></li>
+    <li><a >Infrastructure</a></li>
+    <li><a >Innovative Program Delivery</a></li>
+    <li><a >Operations</a></li>
+    <li><a >Planning, Environment, and Realty</a></li>
+    <li><a >Policy</a></li>
+    <li><a >Research, Development &amp; Technology</a></li>
+    <li><a >Safety</a></li>
+    <li><a >Browse by Topics</a></li>
+</ul>
+		</li>
+	<li class="arrow-whtdwn mnresources"><a  tabindex="5">Resources</a>
+		
+			 
+
+<ul>
+  <li><a  title="Core Highway Topics"> Core Highway Topics</a></li>
+  <li><a  title="Federal-Aid Essentials"> Federal-Aid Essentials</a></li>
+  <li><a  title="Automation"> Automation</a></li>
+  <li><a  title="Automation">Complete Streets</a></li>
+  <li><a  title="Publications &amp; Statistics">Publications &amp; Statistics</a></li>
+  <li><a  title="Laws &amp; Regulations">Laws &amp; Regulations</a></li>
+  <li><a  title="Policy &amp; Guidance Center">Policy &amp; Guidance Center</a></li>
+  <li><a  title="Section 508">Section 508</a></li>
+  <li><a  title="Professional Development">Professional Development</a></li>
+  <li><a >National Highway Institute (NHI)</a></li>
+  <li><a  title="Resource Center">Resource Center</a></li>
+  <li><a  title="Accessibility Resource Library">Accessibility Resource Library</a></li>
+  <li><a  title="FHWA Research Library">FHWA Research Library</a></li>
+</ul>
+		</li>
+	<li class="arrow-whtdwn mnbriefing"><a  tabindex="6">Briefing Room</a>
+	 
+	 
+<ul><li><a  title="Press Releases">Press Releases</a></li>
+	<li><a  title="Speeches &amp; Testimony">Speeches &amp; Testimony</a></li>
+    <li><a  title="Photos" target="_blank" rel="noopener noreferrer">Photos</a></li>
+    <li><a  title="Videos" target="_blank" rel="noopener noreferrer">Videos</a></li>
+    <li><a  title="Media Contacts">Media Contacts</a></li>
+</ul>
+	</li>
+	<li class="mncontact"><a  tabindex="7">Contact</a></li>
+	
+	<li class="mnsearch"><a  tabindex="8"><span>Search FHWA</span></a></li>
+	
+	</ul>
+	</div>
+	
+	
+  <div class="socialbtns"><a  title="Like Us on Facebook" target="_blank" rel="noopener noreferrer" tabindex="9"><img src="rick.jpg" alt="Facebook icon"></a><a  title="Watch Us on YouTube" target="_blank" rel="noopener noreferrer" tabindex="10"><img src="rick.jpg" alt="YouTube icon"></a><a  title="Follow Us on Twitter" target="_blank" rel="noopener noreferrer" tabindex="11"><img src="rick.jpg" alt="Twitter icon"></a><a  title="See Our Photos on Flickr" target="_blank" rel="noopener noreferrer" tabindex="12"><img src="rick.jpg" alt="Flickr icon"></a><a  title="Connect with Us on LinkedIn" target="_blank" rel="noopener noreferrer" tabindex="13"><img src="rick.jpg" alt="LinkedIn"></a><a  title="See our photos on Instagram" target="_blank" rel="noopener noreferrer" tabindex="14"><img src="rick.jpg" alt="Instagram"></a></div>
+  
+ 	</div>
+	<div class="clearall"></div>
+</div>
+
+<div id="programtitle">
+	<div class="fhwacontainer"><p>MAP-21 - Moving Ahead for Progress in the 21st Century</p></div>
+</div>
+
+<div id="fhwanavmenu">
+<div class="fhwacontainer">
+    	
+		
+	
+	
+	<div class="search">
+    
+	<fieldset>
+	<form accept-charset="UTF-8" action="//search.usa.gov/search" id="search_form" method="get" role="search">
+    	<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+		<input id="affiliate" name="affiliate" type="hidden" value="dot-fhwa">
+        
+        <input autocomplete="off" class="usagov-search-autocomplete" id="query" name="query" type="text" maxlength="256" value="Search FHWA" title="Search FHWA" onblur="if(this.value == '') {this.value = 'Search FHWA';}" onfocus="if(this.value == 'Search FHWA'){this.value = '';}">
+		<label for="query"><span class="txthide">Search FHWA</span></label>
+    	<input type="image" class="srchbtn" src="/images/fhwa2/bg/imgbgsrchbtn.png" name="commit" value="Search" alt="Submit Search" title="Submit Search">
+  	</form>
+	</fieldset>
+	</div>
+    
+	
+    <div class="mainnav">
+    	<div class="dropdown">
+			<ul><li class="arrow-whtdwn mnabout"><a  title="About" tabindex="15"><span class="adjleftmgn">About</span></a>
+            	
+                
+
+<ul>
+
+	<li><a >FHWA Organization</a></li>
+
+   	<li><a >Headquarters Offices</a></li>
+
+    <li><a >Field Offices</a></li>
+
+    <li><a >Careers</a></li>
+    <li><a >Strategic Plan</a></li>
+
+    <li><a >Business Opportunities</a></li>
+
+    <li><a >Staff Directories</a></li>
+    
+    <li><a >Highway History</a></li>
+
+    
+
+</ul>
+                </li>
+                <li class="arrow-whtdwn mnprograms"><a  title="Programs" tabindex="15"><span>Programs</span></a>
+                
+                
+<ul><li><a >Acquisition Management</a></li>
+	<li><a >Civil Rights</a></li>
+	<li><a >Federal Lands Highway</a></li>
+    <li><a >Infrastructure</a></li>
+    <li><a >Innovative Program Delivery</a></li>
+    <li><a >Operations</a></li>
+    <li><a >Planning, Environment, and Realty</a></li>
+    <li><a >Policy</a></li>
+    <li><a >Research, Development &amp; Technology</a></li>
+    <li><a >Safety</a></li>
+    <li><a >Browse by Topics</a></li>
+</ul>
+                </li>
+                <li class="arrow-whtdwn mnresources"><a  title="Resources" tabindex="16"><span>Resources</span></a>
+                
+                
+
+<ul>
+  <li><a  title="Core Highway Topics"> Core Highway Topics</a></li>
+  <li><a  title="Federal-Aid Essentials"> Federal-Aid Essentials</a></li>
+  <li><a  title="Automation"> Automation</a></li>
+  <li><a  title="Automation">Complete Streets</a></li>
+  <li><a  title="Publications &amp; Statistics">Publications &amp; Statistics</a></li>
+  <li><a  title="Laws &amp; Regulations">Laws &amp; Regulations</a></li>
+  <li><a  title="Policy &amp; Guidance Center">Policy &amp; Guidance Center</a></li>
+  <li><a  title="Section 508">Section 508</a></li>
+  <li><a  title="Professional Development">Professional Development</a></li>
+  <li><a >National Highway Institute (NHI)</a></li>
+  <li><a  title="Resource Center">Resource Center</a></li>
+  <li><a  title="Accessibility Resource Library">Accessibility Resource Library</a></li>
+  <li><a  title="FHWA Research Library">FHWA Research Library</a></li>
+</ul>
+                </li>
+                <li class="arrow-whtdwn mnbriefing"><a  title="Briefing Room" tabindex="17"><span>Briefing Room</span></a>
+                
+                
+<ul><li><a  title="Press Releases">Press Releases</a></li>
+	<li><a  title="Speeches &amp; Testimony">Speeches &amp; Testimony</a></li>
+    <li><a  title="Photos" target="_blank" rel="noopener noreferrer">Photos</a></li>
+    <li><a  title="Videos" target="_blank" rel="noopener noreferrer">Videos</a></li>
+    <li><a  title="Media Contacts">Media Contacts</a></li>
+</ul>
+                </li>
+                <li class="mncontact"><a  title="Contact" tabindex="18"><span>Contact</span></a></li>
+        	</ul>
+    	</div>
+    </div>
+
+	</div>
+</div>
+
+<a name="content"></a> 
+
+<div id="fhwabreadcrumbs" class="fhwacontainer">
+ <p><a >Home</a> / <a >MAP-21</a> / <a >Fact Sheets</a> / National Highway Performance Program (NHPP)
+
+</p>
+    
+</div>
+
+<div id="fhwacontent" class="fhwacontainer">
+    
+    
+    
+<div class="subnav">
+	<ul><li><a >Summary</a></li>
+    	<li><a >Q &amp; A</a></li>
+    	<li><a  class="activesub">Fact Sheets</a></li>
+    	<li><a >Cross Reference</a></li>
+        <li><a >Reports/Publications</a></li>
+    	<li><a >Presentations</a></li>
+    	<li><a >Legislation</a></li>
+		<li><a >Funding Tables</a></li>
+		<li><a >Webinars</a></li>
+		<li><a >Guidance</a></li>
+   	</ul>
+</div>
+    
+    
+    
+    <div class="contenttext">
+    <p><strong>This MAP-21 fact sheet has been superseded by a <a >FAST Act fact sheet</a>.</strong></p>
+         <h2>National Highway Performance Program (NHPP)</h2>
+<table width="375" border="1" align="center" cellpadding="3" cellspacing="0">
+<tbody><tr>
+<th align="center">
+Year
+</th>
+<th align="center">
+2013
+</th>
+<th align="center">
+2014
+</th>
+</tr>
+<tr>
+<th align="center">
+Estimated funding
+</th>
+<td align="center">
+$ 21.8 B * 
+</td>
+<td align="center">
+$ 21.9 B * 
+</td>
+</tr>
+</tbody></table>
+<p align="center">* Calculated (sum of estimated individual State NHPP apportionments)</p>
+<p><strong>Program purpose</strong></p>
+<p>The NHPP provides support for the condition and performance of the National Highway System (NHS), for the construction of new facilities on the NHS, and to ensure that investments of Federal-aid funds in highway construction are directed to support progress toward the achievement of performance targets established in a State's asset management plan for the NHS.</p>
+<p><strong>Statutory citation(s): </strong>MAP-21 §1106; 23 USC 119</p>
+<p><strong>Funding features</strong></p>
+<p>Funded by contract authority from the Highway Account of the Highway Trust Fund. Funds are subject to the overall Federal-aid obligation limitation.</p>
+<p>MAP-21 has a new approach to core formula program funding, authorizing a lump sum total instead of individual authorizations for each program. Once each State's share of the total is calculated, it is divided up by program within the State. (See "Apportionment" fact sheet for more detail).</p>
+<p class="txtuline">Set-asides</p>
+<p>From the State's NHPP apportionment, the following sums are to be set aside:</p>
+<ul>
+  <li>A proportionate share of funds for the State's Transportation Alternatives (TA) program. (See "Apportionment" fact sheet for a description of this calculation).</li>
+  <li>2% for State Planning and Research (SPR). [§52005; 23 USC 505]</li>
+</ul>
+<p><strong>Federal share: </strong>Determined in accordance with 23 USC 120, including a special rate for certain safety projects and a new provision for increased Federal share for projects incorporating Innovative Project Delivery. The Federal share for NHPP projects for a State that has not implemented an asset management plan within the established timeframe is limited to 65%. Other exceptions to 23 USC 120 are provided for certain freight projects, workforce development, training, and education activities, Appalachian development highway system projects. (See "Federal Share" fact sheet)</p>
+<p><strong>Eligible activities</strong></p>
+<p>NHPP projects must be on an eligible facility and support progress toward achievement of national performance goals for improving infrastructure condition, safety, mobility, or freight movement on the NHS, and be consistent with Metropolitan and Statewide planning requirements. Eligible activities include:</p>
+<ul>
+  <li>Construction, reconstruction, resurfacing, restoration, rehabilitation, preservation, or operational improvements of NHS segments.</li>
+  <li>Construction, replacement (including replacement with fill material), rehabilitation, preservation, and protection (including scour countermeasures, seismic retrofits, impact protection measures, security countermeasures, and protection against extreme events) of NHS bridges and tunnels.</li>
+  <li>Bridge and tunnel inspection and evaluation on the NHS and inspection and evaluation of other NHS highway infrastructure assets.</li>
+  <li>Training of bridge and tunnel inspectors.</li>
+  <li>Construction, rehabilitation, or replacement of existing ferry boats and facilities, including approaches, that connect road segments of the NHS.</li>
+  <li>Construction, reconstruction, resurfacing, restoration, rehabilitation, and preservation of, and operational improvements for, a Federal-aid highway not on the NHS, and construction of a transit project eligible for assistance under chapter 53 of title 49, if the project is in the same corridor and in proximity to a fully access-controlled NHS route, if the improvement is more cost-effective (as determined by a benefit-cost analysis) than an NHS improvement, and will reduce delays or produce travel time savings on the NHS route and improve regional traffic flow.</li>
+  <li>Bicycle transportation and pedestrian walkways.</li>
+  <li>Highway safety improvements on the NHS.</li>
+  <li>Capital and operating costs for traffic and traveler information, monitoring, management, and control facilities and programs.</li>
+  <li>Development and implementation of a State Asset Management Plan for the NHS including data collection, maintenance and integration, software costs, and equipment costs.</li>
+  <li>Infrastructure-based ITS capital improvements.</li>
+  <li>Environmental restoration and pollution abatement.</li>
+  <li>Control of noxious weeds and establishment of native species.</li>
+  <li>Environmental mitigation related to NHPP projects.</li>
+  <li>Construction of publicly owned intracity or intercity bus terminals servicing the NHS.</li>
+</ul>
+<p>Workforce development, training, and education activities are also an eligible use of NHPP funds.</p>
+<p>[§1109; 23 USC 504(e)]</p>
+<p class="txtuline">Location of projects</p>
+<p>NHPP funds may only be used for projects on or associated with the NHS as described above under "Eligible activities." An exception is provided under certain circumstances for non-NHS highway or transit projects in an NHS corridor.</p>
+<p><strong>Program features</strong></p>
+<p class="txtuline">Enhanced National Highway System</p>
+<p>Under MAP-21, the enhanced NHS is composed of approximately 220,000 miles of rural and urban roads serving major population centers, international border crossings, intermodal transportation facilities, and major travel destinations. It includes:</p>
+<ul>
+  <li>The Interstate System.</li>
+  <li>All principal arterials (including those not previously designated as part of the NHS) and border crossings on those routes.</li>
+  <li>Intermodal connectors -- highways that provide motor vehicle access between the NHS and major intermodal transportation facilities.</li>
+  <li>STRAHNET -- the network of highways important to U.S. strategic defense.</li>
+  <li>STRAHNET connectors to major military installations.</li>
+</ul>
+<p>[§1104; 23 USC 103]</p>
+<p class="txtuline">Asset management</p>
+<p>Within 18 months of enactment, the Secretary is directed to publish a rulemaking establishing the process for States to use in developing a risk-based, performance-based asset management plan for preserving and improving the condition of the NHS. States are encouraged to include all infrastructure assets within the right-of-way corridor. The plan must include at least the following:</p>
+<ul>
+  <li>Summary list, including condition, of the State's NHS pavements and bridges</li>
+  <li>Asset management objectives and measures</li>
+  <li>Performance gap identification</li>
+  <li>Lifecycle cost and risk management analysis</li>
+  <li>Financial plan</li>
+  <li>Investment strategies</li>
+</ul>
+<p>Each State's process must be reviewed and recertified at least every 4 years. If certification is denied, the State has 90 days to cure deficiencies. If a State has not developed and implemented an asset management plan consistent with requirements by the beginning of the 2<sup>nd</sup> fiscal year after the establishment of the process, the Federal share for NHPP projects in that fiscal year is reduced to 65%.</p>
+<p class="txtuline">Minimum pavement and bridge conditions</p>
+<ul>
+  <li><em>Interstate conditions</em> --The Secretary will establish a minimum level of condition for Interstate pavements, which may vary by geographic region. If, during two consecutive reporting periods, Interstate pavement conditions in a State fall below the minimum set by the Secretary, the State must, at a minimum, devote the following resources to improve Interstate pavement conditions during the following fiscal year (and each year thereafter if the condition remains below the minimum):
+    <ul>
+      <li>NHPP funds in an amount equal to the State's FY 2009 Interstate Maintenance (IM) apportionment, to increase by 2% per year for each year after FY 2013.</li>
+      <li>Funds transferred from the STP (not from suballocated amounts) to the NHPP in an amount equal to 10% of the amount of the State's FY 2009 IM apportionment.</li>
+    </ul>
+  </li>
+  <li><em>Bridge conditions</em> – MAP-21 establishes a minimum standard for NHS bridge conditions. If more than 10% of the total deck area of NHS bridges in a State is on structurally deficient bridges for three consecutive years, the State must devote NHPP funds in an amount equal to 50% of the State's FY 2009 Highway Bridge Program apportionment to improve bridge conditions during the following fiscal year (and each year thereafter if the condition remains below the minimum).</li>
+</ul>
+<p class="txtuline">Bridge and tunnel inspection standards</p>
+<p>If a State is in noncompliance with bridge and tunnel inspection standards established by the Secretary, a portion of NHPP funds must be used to correct the problem. (See "Bridge and Tunnel Inspection" fact sheet). [§1111; 23 USC 144(h)(5)]</p>
+<p><strong>Performance </strong></p>
+<p>Within 18 months of enactment, the Secretary, in consultation with States, MPOs, and other stakeholders, is directed to publish a rulemaking establishing:</p>
+<ul>
+  <li>Minimum standards for States to use in developing and operating bridge and pavement management systems.</li>
+  <li>Performance measures for Interstate and NHS pavement condition, NHS bridge condition, and Interstate and NHS performance.</li>
+  <li>Minimum conditions for Interstate pavements – may vary geographically.</li>
+  <li>Data elements necessary to collect and maintain standardized data to carry out a performance-based approach.</li>
+</ul>
+<p>[§1203; 23 USC 150(c)]</p>
+<p>States are required to establish targets for these measures within 1 year of the final rule on national performance measures. [§1203; 23 USC 150(d)]</p>
+<ul>
+  <li>States will report to DOT on progress in achieving targets within 4 years of enactment and then every 2 years [§1203; 23 USC 150(e)] and MPOs will report to DOT on progress in their Metropolitan Transportation Plan (4 or 5 year frequency). [§1201; 23 USC 134(i)]</li>
+  <li>If a State does not meet or make significant progress toward targets for 2 consecutive reporting periods, the State must document in its next report the actions it will take to achieve the targets. [§1106; 23 USC 119(e)(7)]</li>
+</ul>
+<p class="txtuline">Transition period</p>
+<p>Until a State has in effect an approved asset management plan and has established performance targets, but no later than 18 months after the Secretary has promulgated the rulemaking for the performance measures, the Secretary will approve obligations of funds in that State for the NHPP that otherwise meet the NHPP eligibility criteria. This transition period may be extended if the Secretary determines that the State has made a good faith effort to establish an asset management plan and performance targets.</p>
+<p>[§1106(b)]</p>
+        </div>
+
+    
+
+    
+    <p class="txtright txtsmall noprint returntoplink"><a >Return to top</a></p>
+
+    
+    
+
+      
+<div id="pagedates" class="txtsmall">
+
+    Page last modified on September 12, 2013 
+</div>
+
+</div>
+        
+
+<div id="fhwafooter">
+	<div class="fhwacontainer">
+    	<div class="fhwasign" title="U.S. Department of Transportation/Federal Highway Administration"></div>
+        <div class="noprint"><a >Privacy Policy</a> | <a >Freedom of Information Act (FOIA)</a> | <a >Accessibility</a> | <a >Web Policies &amp; Notices</a> | <a >No Fear Act</a> | <a >Report Waste, Fraud and Abuse</a> <br> <a >U.S. DOT Home</a> | <a >USA.gov</a> | <a >WhiteHouse.gov</a><br><br></div>
+        <div>
+            <a >Federal Highway Administration</a> | 1200 New Jersey Avenue, SE | Washington, DC 20590 | 202-366-4000
+                        
+            
+            
+     	</div>
+    </div>
+</div>
+
+ </body></html>

@@ -1,0 +1,803 @@
+<!DOCTYPE html><html lang="en" itemscope="" itemtype="https://schema.org/BlogPosting" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<style>
+@font-face {
+  font-family: "Crimson Pro";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/CrimsonPro-Regular-Latin-VariableFont_wght.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/CrimsonPro-Regular-LatinExt-VariableFont_wght.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/CrimsonPro-Italic-Latin-VariableFont_wght.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/CrimsonPro-Italic-Latin-VariableFont_wght.woff2) format("woff2");
+}
+
+:root {
+    
+    --font-size-small: calc(16rem / 16);
+    --font-size-body: calc(21rem / 16);
+    --font-size-subtitle: calc(28rem / 16);
+    --font-size-title: calc(36rem / 16);
+
+    --vertical-measure: calc(28rem / 16);
+    --page-max-width: 60rem; 
+
+    --color-background: hsl(60deg 7% 12%);
+    --color-body-text: hsla(0deg 0% 100% / 0.77);
+    --color-meta-text: hsla(0deg 0% 100% / 0.60);
+    --color-link: white;
+    --color-primary-accent: hsl(47deg 74% 69%); 
+    --color-secondary-accent: hsl(13deg 67% 57%); 
+    --color-tertiary-accent: hsl(176deg 90% 35%); 
+    --color-medium-gray: hsla(0deg 0% 100% / 0.3);
+
+    --color-code-background: hsl(60deg 8% 20%);
+    --color-code-text: white;
+    --color-inline-code-background: var(--color-code-background);
+    --color-inline-code-text: var(--color-body-text);
+
+    --weight-normal: 300;
+    --weight-bold: 400;
+    --weight-bolder: 600;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Crimson Pro", Georgia, serif;
+    font-size: var(--font-size-body);
+    font-weight: var(--weight-normal);
+    background-color: var(--color-background);
+    color: var(--color-body-text);
+}
+
+h1 {
+    font-size: var(--font-size-title);
+    font-weight: var(--weight-bolder);
+    line-height: calc(var(--vertical-measure) * 1.5);
+    color: var(--color-primary-accent);
+}
+
+h2 {
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--weight-bold);
+    line-height: var(--vertical-measure);
+    margin-top: calc(var(--vertical-measure) * 1.0);
+    margin-bottom: calc(var(--vertical-measure) * 0.5);
+    color: var(--color-secondary-accent);
+}
+
+a, a:visited {
+    color: var(--color-link);
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-secondary-accent);
+    text-decoration-thickness: 1.5px;
+    transition: color 150ms;
+}
+
+a:hover, a:focus {
+    color: var(--color-tertiary-accent);
+}
+
+a:focus {
+    outline: 1px dashed var(--color-primary-accent);
+}
+
+strong {
+    font-weight: var(--weight-bolder);
+}
+
+pre { 
+    
+    background-color: var(--color-code-background) !important;
+    padding: 0.5rem 1rem 1rem 1rem;
+}
+
+code {
+    font-family: monospace;
+    font-size: var(--font-size-small);
+    color: var(--color-code-text);
+}
+
+code:not(pre > code) {
+    font-family: monospace;
+    background-color: var(--color-inline-code-background);
+    color: var(--color-inline-code-text);
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+}
+
+#main-content {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    line-height: var(--vertical-measure);
+    padding: 0 1rem var(--vertical-measure) 1rem;
+}
+
+header {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    margin-bottom: var(--vertical-measure);
+    padding: 0 1rem;
+}
+
+#top {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#top a {
+    background-color: var(--color-inline-code-background);
+    border-bottom: 0.3rem solid var(--color-secondary-accent);
+    color: var(--color-link);
+    display: block;
+    padding: 0.5rem 0.8rem 0.5rem 1rem;
+    text-decoration: none;
+}
+
+#top a:hover,
+#top a:focus {
+    background-color: var(--color-tertiary-accent);
+    transition: background-color 150ms;
+}
+
+#top-nav {
+    display: none;
+}
+
+#bottom-nav {
+    margin: calc(1 * var(--vertical-measure)) 1rem 0 1rem;
+}
+
+#bottom-nav ul {
+    list-style-type: none;
+    border-top: 1px solid var(--color-medium-gray);
+}
+
+#bottom-nav ul li a {
+    padding: 1rem 0 1rem 1rem;
+    border-left: 0.3em solid transparent;
+    color: var(--color-body-text);
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-medium-gray);
+}
+
+#bottom-nav ul li a:hover,
+#bottom-nav ul li a:focus,
+.back-to-top:hover,
+.back-to-top:focus {
+    color: var(--color-link);
+    background-color: var(--color-tertiary-accent);
+    transition: background-color 150ms, color 150ms;
+}
+
+#bottom-nav ul li.active a {
+    border-left: 0.3em solid var(--color-secondary-accent);
+}
+
+#bottom-nav ul li.active a:hover,
+#bottom-nav ul li.active a:focus {
+    border-left: 0.3em solid var(--color-secondary-accent);
+    transition: border-color 150ms;
+}
+
+.back-to-top {
+    display: block;
+    margin: var(--vertical-measure) 1rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    color: var(--color-body-text);
+    background-color: var(--color-inline-code-background);
+    text-decoration: none;
+}
+
+#homepage-title {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: var(--vertical-measure);
+}
+
+#homepage-intro-text {
+    font-size: var(--font-size-subtitle);
+    margin-bottom: var(--vertical-measure);
+    line-height: 1.2;
+}
+
+#homepage-image {
+    width: 100%;
+    max-width: 16rem;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: var(--vertical-measure);
+}
+
+#homepage-container ul {
+    margin-left: 1em;
+}
+
+#homepage-container li {
+    margin-bottom: var(--vertical-measure);
+}
+
+.reading-block {
+    margin: 0 auto;
+    max-width: 43rem; 
+    hyphens: auto;
+}
+
+.reading-block p,
+.reading-block ol,
+.reading-block ul,
+.reading-block pre,
+.reading-block blockquote {
+    margin-bottom: calc(var(--vertical-measure) * 0.5);
+}
+
+.reading-block div {
+    margin-bottom: var(--vertical-measure);
+}
+
+.reading-block.list-page div {
+    margin-bottom: 0;
+}
+
+.reading-block ol,
+.reading-block ul {
+    margin-left: 1.2em;
+}
+
+.reading-block ol {
+    list-style-type: decimal;
+}
+
+.reading-block blockquote {
+    padding-left: 0.9em;
+    font-style: italic;
+    border-left: 0.3rem solid var(--color-tertiary-accent);
+}
+
+.reading-block img {
+    max-width: 100%;
+}
+
+.reading-block table {
+    width: 100%;
+    margin-bottom: var(--vertical-measure);
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.reading-block table th,
+.reading-block table td {
+    padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.reading-block table td {
+    border-top: 1px solid var(--color-medium-gray);
+}
+
+.reading-block hr {
+    border: none;
+    border-top: 1px solid var(--color-medium-gray);
+    margin: var(--vertical-measure) auto;
+}
+
+.reading-block .post-meta {
+    font-size: var(--font-size-small);
+    line-height: var(--vertical-measure);
+    color: var(--color-meta-text);
+    margin-bottom: calc(var(--vertical-measure) * 0.5);
+}
+
+.column-left {
+    margin-bottom: var(--vertical-measure);
+}
+
+#speaking-photo {
+    margin-bottom: 0;
+}
+
+.list-page h1 {
+    margin-bottom: calc(var(--vertical-measure) * 0.5);
+}
+
+.list-page h1:not(:first-of-type) {
+    margin-top: calc(var(--vertical-measure) * 1.5);
+}
+
+.list-page .meta {
+    font-size: var(--font-size-small);
+    color: var(--color-meta-text);
+    display: inline-block;
+    font-feature-settings: "tnum";
+}
+
+.book-information {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 1rem;
+    row-gap: var(--vertical-measure);
+}
+
+.book-title {
+    grid-column: 1 / 3;
+}
+
+.reading-block div.book-meta {
+    margin-bottom: 0;
+}
+
+@media only screen and (min-width: 29rem) {
+    
+    header {
+        margin-bottom: calc(2 * var(--vertical-measure));
+    }
+
+    #top-nav {
+        padding-top: 0.5rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #top-nav ul {
+        list-style: none;
+        display: flex;
+    }
+
+    #top-nav ul li a {
+        padding: 1rem 0.7rem;
+        border-bottom: none;
+        color: var(--color-body-text);
+        display: block;
+        text-decoration: none;
+    }
+
+    #top-nav ul li a:hover,
+    #top-nav ul li a:focus {
+        color: var(--color-tertiary-accent);
+    }
+
+    #top-nav ul li.active {
+        border-bottom: 0.3rem solid var(--color-secondary-accent);
+    }
+
+    #top-nav ul li.active a {
+        color: var(--color-link);
+    }
+
+    #bottom-nav,
+    #top,
+    .back-to-top {
+        display: none;
+    }
+
+    .list-item-layout {
+        display: grid;
+        grid-template-columns: 4fr minmax(5rem, 1fr) 1fr;
+        column-gap: 1rem;
+    }
+
+    .book-information {
+        row-gap: 0;
+    }
+
+    .book-title {
+        grid-column: 2 / 3;
+        grid-row: 1;
+    }
+
+    .book-cover {
+        grid-column: 1;
+        grid-row: 1 / 3;
+    }
+
+    .book-meta {
+        grid-column: 2 / 3;
+        grid-row: 2;
+    }
+
+    .book-meta br {
+        display: none;
+    }
+
+    .reading-block .book-meta p.post-meta {
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 39rem) {
+    
+    #top-nav ul li a {
+        padding: 1rem 1.5rem;
+    }
+
+    #speaking-photo {
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 46rem) {
+    
+    :root {
+        --font-size-small: calc(18rem / 16);
+        --font-size-body: calc(24rem / 16);
+        --font-size-subtitle: calc(32rem / 16);
+        --font-size-title: calc(42rem / 16);
+
+        --vertical-measure: calc(32rem / 16);
+    }
+
+    #homepage-container {
+        display: grid;
+        grid-template-columns: 33% 13% 8% 13% 33%;
+        grid-template-areas:
+            "title   title   title   title   image"
+            "intro   intro   intro   intro   intro"
+            "lc      lc      .       rc      rc"
+            "bc      bc      bc      bc      bc";
+            
+        row-gap: var(--vertical-measure);
+        padding: 0 1rem;
+    }
+
+    #homepage-title {
+        grid-area: title;
+        align-self: center;
+        font-size: 4rem;
+        margin-bottom: 0;
+    }
+
+    #homepage-intro-text {
+        grid-area: intro;
+        margin-bottom: 0;
+    }
+
+    #homepage-image {
+        grid-area: image;
+        max-width: 100%;
+        align-self: center;
+        margin-bottom: 0;
+    }
+
+    #homepage-bottom-content {
+        grid-area: bc;
+    }
+
+    #homepage-left-content {
+        grid-area: lc;
+    }
+
+    #homepage-right-content {
+        grid-area: rc;
+    }
+    #homepage-container ul {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (min-width: 50rem) {
+    
+    .reading-block ul,
+    .reading-block ol {
+        margin-left: 0;
+    }
+
+    .reading-block blockquote {
+        margin-left: -1.2em;
+    }
+}
+
+@media only screen and (min-width: 60rem) {
+    
+    .reading-block img.wide {
+        max-width: 136%;
+        margin-left: -18%;
+    }
+}
+
+@media only screen and (min-width: 68rem) {
+    
+    .reading-block img.wide {
+        max-width: 143.679%;
+        margin-left: -21.839%;
+    }
+
+    
+    .list-page h1 {
+        text-align: right;
+        position: relative;
+        width: 10rem;
+        right: 13rem;
+        top: 2.8rem;
+        margin-top: -1em;
+        margin-bottom: 0;
+    }
+    .list-page h1:not(:first-of-type) {
+        margin-top: -1em;
+    }
+
+    
+    .column-container {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .column-left {
+        max-width: 18rem;
+    }
+
+    #speaking-photo {
+        height: auto;
+        overflow: hidden;
+    }
+
+    #speaking-photo img {
+        margin-left: -8rem;
+        max-width: none;
+    }
+
+    #photo {
+        width: 18rem;
+    }
+
+    #homepage-container {
+        padding: 0;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-background: hsl(60deg 75% 97%);
+        --color-body-text: hsla(0deg 0% 0% / 0.80);
+        --color-meta-text: hsla(0deg 0% 0% / 0.70);
+        --color-link: black;
+        --color-primary-accent: hsla(0deg 0% 0% / 0.80); 
+        --color-secondary-accent: hsl(13deg 74% 42%); 
+        --color-medium-gray: hsla(0deg 0% 0% / 0.3);
+
+        --color-inline-code-background: hsla(0deg 0% 0% / 0.13);
+        --color-code-background: hsl(60deg 8% 15%);
+
+        --weight-normal: 400;
+        --weight-bold: 500;
+        --weight-bolder: 700;
+    }
+
+    a, a:visited {
+        text-decoration-thickness: 2px;
+        font-weight: var(--weight-bold);
+    }
+
+    #homepage-image {
+        filter: contrast(2) invert(100%);
+        mix-blend-mode: multiply;
+    }
+
+    .reading-block img.blend {
+        mix-blend-mode: multiply;
+    }
+
+}
+
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#20201C">
+  
+  
+  <title>Three days to Sydney, part two · Merlin Rebrović</title>
+  
+
+  
+      
+<meta property="og:title" content="Three days to Sydney, part two">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://merlin.rebrovic.net/blog/three-days-to-sydney-part-two/">
+<meta property="article:published_time" content="2013-02-28">
+<meta property="article:section" content="Travel">
+<meta name="twitter:title" content="Three days to Sydney, part two">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@merlinrebrovic">
+
+<meta property="og:image" content="https://merlin.rebrovic.net/img/social_share_default.jpg">
+
+  
+</head>
+<body>
+  <header>
+    <div id="top">
+      <a >Menu ▼</a>
+    </div>
+    <nav id="top-nav">
+      <ul>
+  
+  
+  <li><a >Home</a></li>
+  <li class="active"><a >Blog</a></li>
+  <li><a >Essays</a></li>
+  <li><a >Talks</a></li>
+  <li><a >Books</a></li>
+  <li><a >About</a></li>
+</ul>
+
+    </nav>
+  </header>
+  <div id="main-content">
+    
+<div class="reading-block">
+<article>
+
+<h1 itemprop="headline">Three days to Sydney, part two</h1>
+<p class="post-meta">
+    Published on <time datetime="2013-02-28">
+    2013-02-28
+    </time> · Travel
+</p>
+
+<div itemprop="articleBody">
+  <p><img src="rick.jpg" alt="A poster on the Sydney airport.">
+</p>
+<p><a >Deja vu</a>. Goodbyes, a security and passport check, a bus
+ride aaaaand no turboprop airplane :) Wow, this time we might
+even fly over Slovenia.</p>
+<h2 id="hour-0">Hour 0</h2>
+<p>Team Sydney, the three person cell of combined age of more
+than 150 years, prepared for take off. I was sitting next to
+an emergency exit which means I had 20cm of legroom more. For
+a tall guy like me, it’s a lifesaver. The flight was shaky,
+but uneventful.</p>
+<p>Frankfurt met us with cold and rain. We got out, drove on a
+train to another terminal and sat for a drink in front of our
+gate. Leo, the eldest team member, started talking about his
+early life and how his brother, one of eleven kids, emigrated
+to Australia. It was during 1950s while he was still very
+young. He traveled by ship for 35 days. 28 hours we were
+about to make seemed like a blink of an eye. We finished our
+drinks and headed for the gate.</p>
+<h2 id="hour-4-qantas">Hour 4, Qantas</h2>
+<p>Australian airline Qantas is the second oldest in the world,
+dating from 1920s. During boarding their Boeing 747 I noticed
+most of the staff was 40 or older and almost of them were men.
+And not just any men - they looked like the whole James Bond
+lineup. Suits, well groomed, had class. Only a darker beach
+tan and an Aussie accent gave them away. When I think about it
+now, they probably have a storage on an airplane where they
+keep women’s underwear that’s thrown at them during a flight.</p>
+<p>I was sitting between two people, but when the pilot said that
+there were many free seats and we could relocate after the
+seatbelt sign turned off, I became a man with a mission.</p>
+<h2 id="hour-5">Hour 5</h2>
+<p>The taxi and the take-off took a while, but when the sign
+turned off, I was in a low start and ready. Fifteen seconds
+later I got myself a seat next to an aisle which allowed me to
+extend my legs. It was a time for a meal after which the
+lights were turned off and that was the cue for us to go to
+sleep. It was midnight local time and the sleep came easy.</p>
+<h2 id="hour-9">Hour 9</h2>
+<p>I’m wide awake after only three hours. This is not good; we
+still have seven hours to go. I started watching a few TED
+videos on my phone. Luckily for me, they weren’t very good
+(I’m complaining about that lately), so it was as fun as
+trying to memorize renaissance history in high school. In
+other words, I dropped dead like a log.</p>
+<p>Just a note for future flights. Foam ear plugs can isolate
+four extra powerful jet engines, but a baby’s cry will cut
+through them like a hot knife through butter. Babies are
+trolls; cute, but still trolls.</p>
+<h2 id="hour-15">Hour 15</h2>
+<p>I slowly woke up when the staff turned the lights on. I found
+myself pushed out of my seat by a granny who occupied three
+seats already. Her husband was stretched over the whole row
+behind us, so she wanted to follow his example. And I was in
+the way.</p>
+<p>A smell of the second in-flight meal spread through the cabin
+and the granny woke up with a smile. At least someone had a
+good and uninterrupted sleep. Meals were hot and tasty, and
+they kept me full during the flight. When the crew took away
+our dishes, the pilot announced a technical stop in Singapore
+for cleaning and refueling. I really needed it; more than
+twelve hours of sitting made some parts of my body numb.</p>
+<h2 id="hour-18-singapore">Hour 18, Singapore</h2>
+<p>I rushed through the gate and headed straight for the
+bathroom. I won’t go into any details, but beware of the
+toilets. They aren’t triggered by handles, but by proximity
+sensors. You have to sit very straight all the time to be
+close to the wall. If you bend forward even a little, it will
+flush. Guess how I found that out. On the other hand, I
+welcomed the surprising refreshment.</p>
+<p>A fresh shirt, wet wipes and a toothbrush can be a
+resurrection on such long flights so be sure to pack them with
+you.</p>
+<p>Two things caught my attention: free Internet, and kids in
+military uniforms and bulletproof vests, holding machine guns.
+Other than that, just an ordinary airport.</p>
+<p>I went through the procedures and paperwork with Leo and Mary,
+and then helped them by translating on a security check. We
+boarded the plane again and were ready for the last leg of the
+trip.</p>
+<h2 id="hour-20-are-we-there-yet">Hour 20, Are we there yet?</h2>
+<p>I got the middle seat again, but this time the flight was
+full, so I was stuck. The fact that I wasn’t sleepy at all
+made it even worse. It was midday back home and while most of
+the passengers were sound asleep after a meal, I’ve managed to
+go through a 250 page book about Sydney, watched a few
+videos and then started another book. The seven and a half
+hour flight was slow. Really, really slow. S. L. O. W.
+Sssssllooooo … OK, you get the picture.</p>
+<h2 id="hour-28">Hour 28</h2>
+<p>I was so happy when I saw Sydney for the first time during
+descent. It marked the end of this too long voyage. From
+Sunday 17:35 in Zagreb (the first try) to Wednesday 6:55 in
+Sydney.</p>
+<p>I took Team Sydney through the passport and customs control,
+and then to baggage claim. I reported some stuff they thought
+could be suspicious, so a dog had to sniff me and my baggage.
+He looked at me, winked and reported (barked) nothing.</p>
+<p>Leo’s family was waiting for us outside. They were so happy to
+see Team Sydney arrive safely and they thanked me through
+tears in a mix of Croatian and English. I wasn’t prepared for
+this much affection, but was very happy to help the people in
+need. We parted ways and I headed off for the train.</p>
+<p>Sydney, <a >here I come</a>.</p>
+
+</div>
+</article>
+
+<hr>
+
+<p>Previous blog post:<br>
+  <a >Three days to Sydney, part one</a>
+</p>
+
+<p>Stay up to date:<br>
+   <a >Email</a> ·
+   <a >RSS feed</a> ·
+   <a >LinkedIn</a> ·
+   <a >Mastodon</a>
+</p>
+
+</div>
+
+  </div>
+  <nav id="bottom-nav">
+    <ul>
+  
+  
+  <li><a >Home</a></li>
+  <li class="active"><a >Blog</a></li>
+  <li><a >Essays</a></li>
+  <li><a >Talks</a></li>
+  <li><a >Books</a></li>
+  <li><a >About</a></li>
+</ul>
+
+  </nav>
+  <a  class="back-to-top">Back to top ▲</a>
+
+</body></html>

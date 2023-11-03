@@ -1,0 +1,2644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb"><head>
+<style>
+
+.ja-tabswrap {
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	z-index: 10;
+}
+
+.ja-tabswrap div.ja-tab-subcontent {
+	padding: 0px;	
+}
+
+.ja-tabswrap div.ja-tab-content {
+	position: absolute;	
+	border: none;
+	z-index: 100;
+	padding: 0;
+	width: 100%;
+}
+
+.ja-tabswrap .ja-tab-content ul {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.ja-tabswrap .ja-tab-content li {
+	padding: 4px 0 6px;
+	margin: 0;
+	background: none;
+}
+
+.ja-tabs-title-top {
+	position: relative;
+	z-index: 10;
+}
+
+.ja-tabs-title-top ul.ja-tabs-title {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+* html .ja-tabs-title-top ul.ja-tabs-title { 
+	bottom: -1px;
+}
+
+.ja-tabs-title-top ul.ja-tabs-title li {
+	float: left;
+	background: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+}
+
+.ja-tab-panels-top {
+	position: relative;
+	clear: both;
+	overflow: hidden;
+	bottom: 0;
+	left: 0px;
+	width: 100%;
+	z-index: 1;	
+}
+
+.ja-tabs-title-left {
+	float:left;	
+}
+
+.ja-tabs-title-left ul.ja-tabs-title {
+	margin: 0;
+	padding: 0;
+	top: 10px;
+	left: 0px;
+	width: 100%;
+}
+
+.ja-tabs-title-left ul.ja-tabs-title li {
+	margin: 0px 0 0 1px;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+}
+
+.ja-tab-panels-left {
+	position: relative;
+	overflow: hidden;
+	top: 5px;
+	height:100%;
+	left:10px;
+}
+
+.ja-tabs-title-right {
+	position: relative;
+	float:right;	
+	height:100%;
+}
+
+.ja-tabs-title-right ul.ja-tabs-title {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 10px;
+	right: 0;
+	width: 100%;
+}
+
+.ja-tabs-title-right ul.ja-tabs-title li {
+	margin: 0 0 0 1px;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+}
+
+.ja-tab-panels-right {
+	position: relative;
+	overflow: hidden;
+	top: 5px;
+	height:100%;
+}
+
+.ja-tabs-title-bottom {
+}
+
+.ja-tabs-title-bottom ul.ja-tabs-title {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+* html .ja-tabs-title-bottom ul.ja-tabs-title { 
+	top: -1px;
+}
+
+.ja-tabs-title-bottom ul.ja-tabs-title li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+}
+
+.ja-tab-panels-bottom {
+	position: relative;
+	clear: both;
+	overflow: hidden;
+	top: 0;
+	width:100%;
+	left: 10px;
+	right: 0px;
+	z-index: 1;
+}
+
+input.system-openid, input.com-system-openid {
+   background: url(http://openid.net/images/login-bg.gif) no-repeat;
+   background-color: #fff;
+   background-position: 0 50%;
+   color: #000;
+   padding-left: 18px;
+}
+
+.system-unpublished {
+background: #e8edf1;
+border-top: 4px solid #c4d3df;
+border-bottom: 4px solid #c4d3df;
+}
+
+#system-message    { margin-bottom: 10px; padding: 0;}
+#system-message dt { font-weight: bold; }
+#system-message dd { margin: 0; font-weight: bold; text-indent: 30px; }
+#system-message dd ul { color: #0055BB; margin-bottom: 10px; list-style: none; padding: 10px; border-top: 3px solid #84A7DB; border-bottom: 3px solid #84A7DB;}
+
+#system-message dt.message { display: none; }
+#system-message dd.message {  }
+
+#system-message dt.error { display: none; }
+#system-message dd.error ul { color: #c00; background-color: #E6C0C0; border-top: 3px solid #DE7A7B; border-bottom: 3px solid #DE7A7B;}
+
+#system-message dt.notice { display: none; }
+#system-message dd.notice ul { color: #c00; background: #EFE7B8; border-top: 3px solid #F0DC7E; border-bottom: 3px solid #F0DC7E;}
+
+#system-debug     { color: #ccc; background-color: #fff; padding: 10px; margin: 10px; }
+#system-debug div { font-size: 11px;}
+
+.invalid { border-color: #ff0000; }
+label.invalid { color: #ff0000; }
+
+#editor-xtd-buttons {
+	padding: 5px;
+}
+
+.button2-left,
+.button2-right,
+.button2-left div,
+.button2-right div {
+	float: left;
+}
+
+.button2-left a,
+.button2-right a,
+.button2-left span,
+.button2-right span {
+	display: block;
+	height: 22px;
+	float: left;
+	line-height: 22px;
+	font-size: 11px;
+	color: #666;
+	cursor: pointer;
+}
+
+.button2-left span,
+.button2-right span {
+	cursor: default;
+	color: #999;
+}
+
+.button2-left .page a,
+.button2-right .page a,
+.button2-left .page span,
+.button2-right .page span {
+	padding: 0 6px;
+}
+
+.page span {
+	color: #000;
+	font-weight: bold;
+}
+
+.button2-left a:hover,
+.button2-right a:hover {
+	text-decoration: none;
+	color: #0B55C4;
+}
+
+.button2-left a,
+.button2-left span {
+	padding: 0 24px 0 6px;
+}
+
+.button2-right a,
+.button2-right span {
+	padding: 0 6px 0 24px;
+}
+
+.button2-left {
+	background: url(../images/j_button2_left.png) no-repeat;
+	float: left;
+	margin-left: 5px;
+}
+
+.button2-right {
+	background: url(../images/j_button2_right.png) 100% 0 no-repeat;
+	float: left;
+	margin-left: 5px;
+}
+
+.button2-left .image {
+	background: url(../images/j_button2_image.png) 100% 0 no-repeat;
+}
+
+.button2-left .readmore {
+	background: url(../images/j_button2_readmore.png) 100% 0 no-repeat;
+}
+
+.button2-left .pagebreak {
+	background: url(../images/j_button2_pagebreak.png) 100% 0 no-repeat;
+}
+
+.button2-left .blank {
+	background: url(../images/j_button2_blank.png) 100% 0 no-repeat;
+}
+
+div.tooltip {
+	float: left;
+	background: #ffc;
+	border: 1px solid #D4D5AA;
+	padding: 5px;
+	max-width: 200px;
+	z-index:13000;
+}
+
+div.tooltip h4 {
+	padding: 0;
+	margin: 0;
+	font-size: 95%;
+	font-weight: bold;
+	margin-top: -15px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+	background: url(../images/selector-arrow.png) no-repeat;
+}
+
+div.tooltip p {
+	font-size: 90%;
+	margin: 0;
+}
+
+.img_caption.left {
+	float: left;
+	margin-right: 1em;
+}
+
+.img_caption.right {
+	float: right;
+	margin-left: 1em;
+}
+
+.img_caption.left p {
+	clear: left;
+	text-align: center;
+}
+
+.img_caption.right p {
+	clear: right;
+	text-align: center;
+}
+
+.img_caption  {
+text-align: center!important;
+}
+
+a img.calendar {
+	width: 16px;
+	height: 16px;
+	margin-left: 3px;
+	background: url(../images/calendar.png) no-repeat;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+pre, .code {
+	background: #F7F6F5;
+	border-left: 5px solid #CCCCCC;
+	font: 1em/1.5 "Courier News", monospace;
+	margin: 5px 0 15px;
+	padding: 10px 15px;
+}
+
+blockquote {
+	padding: 1em 40px 1em 15px;
+}
+
+blockquote span.open {
+	background: url(../images/so-q.gif) no-repeat left top;
+	padding: 2px 0 2px 25px;
+}
+
+blockquote span.close {
+	background: url(../images/sc-q.gif) no-repeat bottom right;
+	padding: 2px 25px 2px 0;
+}
+
+.dropcap {
+	color: #C55901;
+	display: block;
+	float: left;
+	font: 60px/58px Georgia, Times, serif;
+	padding: 0 10px 0 0;
+}
+
+p.error {
+	background: url(../images/icon-error.png) no-repeat 0px 0px;
+	color: #CC0000;
+	padding-left: 25px;
+}
+
+p.message {
+	background: url(../images/icon-info.png) no-repeat 0px 0px;
+	color: #00AFF0;
+	padding-left: 25px;
+}
+
+p.tips {
+	background: url(../images/icon-tips.png) no-repeat 0px 0px;
+	color: #F99412;
+	padding-left: 25px;
+}
+
+p.feed {
+	background: url(../images/icon-rss.gif) no-repeat 0px 0px;
+	padding: 3px 0 3px 25px;
+}
+
+.highlight {
+	color: #D33615;
+	font-weight: bold;
+	padding: 1px 5px;
+}
+
+p.stickynote {
+	background: url(../images/icon-sticky.png) no-repeat left top #FFFFFF;
+	border: 1px solid #CCCCCC;
+	padding: 15px 10px 15px 60px;
+}
+
+p.download {
+	background: url(../images/icon-download.png) no-repeat left top #FFFFFF;
+	border: 1px solid #CCCCCC;
+	padding: 15px 10px 15px 60px;
+}
+
+.blocknumber {
+	clear: both;
+	padding: 5px 15px 10px;
+	position: relative;
+}
+
+ul.checklist {
+	list-style: none;
+}
+
+ul.checklist li {
+	background: url(../images/icon-checklist.gif) no-repeat 0 4px !important;
+	margin-left: 15px !important;
+	padding: 0 0 0 20px !important;
+}
+
+ul.arrow {
+	list-style: none;
+}
+
+ul.arrow li {
+	background: url(../images/icon-arrow.gif) no-repeat 3px 5px;
+	margin-left: 15px;
+	padding: 0 0 0 20px;
+}
+
+.bignumber {
+	background: url(../images/ol-bg.gif) no-repeat top left;
+	color: #FFFFFF;
+	display: block;
+	float: left;
+	font: bold 20px/normal Arial, sans-serif;
+	margin-right: 8px;
+	padding: 6px 7px;
+}
+
+div.bubble1, div.bubble2, div.bubble3, div.bubble4 {
+	margin: 15px 0;
+}
+
+div.bubble1 span.author,
+div.bubble2 span.author,
+div.bubble3 span.author,
+div.bubble4 span.author {
+	font-weight: bold;
+	margin-left: 10px;
+	padding-left: 0px;
+}
+
+div.bubble1 div {
+	background: url(../images/bub1-br.gif) no-repeat bottom right;
+	margin: 0;
+	width: 100%;
+}
+
+div.bubble1 div div {
+	background: url(../images/bub1-bl.gif) no-repeat bottom left;
+}
+
+div.bubble1 div div div {
+	background: url(../images/bub1-tr.gif) no-repeat top right;
+}
+
+div.bubble1 div div div div {
+	background: url(../images/bub1-tl.gif) no-repeat top left;
+}
+
+div.bubble1 div div div div div {
+	margin: 0;
+	padding: 10px 15px 20px;
+	width: auto;
+}
+
+div.bubble2 div {
+	background: url(../images/bub2-br.gif) no-repeat bottom right;
+	margin: 0;
+	width: 100%;
+}
+
+div.bubble2 div div {
+	background: url(../images/bub2-bl.gif) no-repeat bottom left;
+}
+
+div.bubble2 div div div {
+	background: url(../images/bub2-tr.gif) no-repeat top right;
+}
+
+div.bubble2 div div div div {
+	background: url(../images/bub2-tl.gif) no-repeat top left;
+}
+
+div.bubble2 div div div div div {
+	margin: 0;
+	padding: 10px 15px 25px;
+	width: auto;
+}
+
+div.bubble3 div {
+	background: url(../images/bub3-br.gif) no-repeat bottom right;
+	margin: 0;
+	width: 100%;
+}
+
+div.bubble3 div div {
+	background: url(../images/bub3-bl.gif) no-repeat bottom left;
+}
+
+div.bubble3 div div div {
+	background: url(../images/bub3-tr.gif) no-repeat top right;
+}
+
+div.bubble3 div div div div {
+	background: url(../images/bub3-tl.gif) no-repeat top left;
+}
+
+div.bubble3 div div div div div {
+	margin: 0;
+	padding: 10px 15px 45px;
+	width: auto;
+}
+
+div.bubble4 div {
+	background: url(../images/bub4-br.gif) no-repeat bottom right;
+	margin: 0;
+	width: 100%;
+}
+
+div.bubble4 div div {
+	background: url(../images/bub4-bl.gif) no-repeat bottom left;
+}
+
+div.bubble4 div div div {
+	background: url(../images/bub4-tr.gif) no-repeat top right;
+}
+
+div.bubble4 div div div div {
+	background: url(../images/bub4-tl.gif) no-repeat top left;
+}
+
+div.bubble4 div div div div div {
+	margin: 0;
+	padding: 10px 15px 45px;
+	width: auto;
+}
+
+.legend-title {
+	background: #FFFFFF;
+	color: #555555;
+	display: block;
+	font-size: 100%;
+	float: left;
+	font-weight: bold;
+	left: 7px;
+	margin: 0;
+	padding: 0 3px;
+	position: absolute;
+	top: -10px;
+}
+
+.legend {
+	border: 1px solid #CCCCCC;
+	margin: 20px 0;
+	padding: 0 10px;
+	position: relative;
+}
+
+#ja-cssmenu {
+	margin: 0; 
+	padding: 0;
+}
+
+#ja-cssmenu ul {
+	margin: 0; 
+	padding: 0;
+}
+
+#ja-cssmenu li {
+	float: left;
+	display: block;
+	padding: 0;
+	margin: 0;
+	background: none;
+}
+
+#ja-cssmenu li ul {
+	width: 10.0em;
+	position: absolute; 
+	z-index: 99;
+	left: -999em; 
+	height: auto;
+	w\idth: 12.4em;
+}
+
+#ja-cssmenu li ul ul {
+	margin: -2em 0 0 10em; 
+}
+
+#ja-cssmenu li li {
+	padding: 0 0.5em 0 0;
+	margin: 0;
+	width: 12.0em;
+}
+
+#ja-cssmenu ul a {
+	width: 12.0em;
+	w\idth: 10.8em;
+}
+
+#ja-cssmenu li:hover ul ul, #ja-cssmenu li:hover ul ul ul,
+#ja-cssmenu li.sfhover ul ul, #ja-cssmenu li.havechildsfhover ul ul, #ja-cssmenu li.havechild-activesfhover ul ul, #ja-cssmenu li.activesfhover ul ul,
+#ja-cssmenu li.sfhover ul ul ul, #ja-cssmenu li.havechildsfhover ul ul ul, #ja-cssmenu li.havechild-activesfhover ul ul ul, #ja-cssmenu li.activesfhover ul ul ul {
+	left: -999em;
+}
+
+#ja-cssmenu li:hover ul, #ja-cssmenu li li:hover ul, #ja-cssmenu li li li:hover ul,
+#ja-cssmenu li.sfhover ul, #ja-cssmenu li.havechildsfhover ul, #ja-cssmenu li.havechild-activesfhover ul, #ja-cssmenu li.activesfhover ul,
+#ja-cssmenu li li.sfhover ul, #ja-cssmenu li li.havesubchildsfhover ul, #ja-cssmenu li li.havesubchild-activesfhover ul, #ja-cssmenu li li.activesfhover ul,
+#ja-cssmenu li li li.sfhover ul, #ja-cssmenu li li li.havesubchildsfhover ul, #ja-cssmenu li li li.havesubchild-activesfhover ul, #ja-cssmenu li li li.activesfhover ul {
+	left: auto;
+}
+
+#ja-cssmenu li a {
+	border-right: 1px solid #666666; 
+	display: block;
+	text-decoration: none;
+	font-size: 100%;
+	color: #999999;
+	padding: 10px 23.5px;
+	text-transform: uppercase;
+}
+
+#ja-cssmenu li a:hover,
+#ja-cssmenu li a:active,
+#ja-cssmenu li a:focus {
+	color: #FFD200;
+}
+
+#ja-cssmenu li:hover a,
+#ja-cssmenu li.sfhover a,
+#ja-cssmenu li.havechildsfhover a,
+#ja-cssmenu li.havechild-activesfhover a {
+	color: #FFD200;
+}
+
+#ja-cssmenu li.active {
+	background: none;	
+}
+
+#ja-cssmenu li.active a {
+	background: none;	
+	color: #FFD200;
+}
+
+#ja-cssmenu li a.active:hover,
+#ja-cssmenu li a.active:active,
+#ja-cssmenu li a.active:focus {
+	color: #FFD200;
+}
+
+#ja-cssmenu li ul {
+	border: 1px solid #202020;
+	background: url(../../images/trans-bg.png);
+}
+
+#ja-cssmenu li ul ul {
+	border: 1px solid #202020;
+}
+
+#ja-cssmenu li ul li {
+	border-bottom: 1px solid #202020;
+	border-right: none;
+	background: none;
+}
+
+#ja-cssmenu li ul a {
+	border-right: none;
+	margin: 0;
+	padding: 5px 10px;
+	background: none !important;
+	text-transform: none;
+	font-weight: normal;
+	font-size: 92%;
+	white-space: nowrap;
+	color: #CCCCCC !important;
+}
+
+#ja-cssmenu li.havesubchild,
+#ja-cssmenu li.havesubchild-active {
+	background: url(img/arrow-1.gif) no-repeat 95% 50%;
+}
+
+#ja-cssmenu li ul a:hover,
+#ja-cssmenu li ul a:active,
+#ja-cssmenu li ul a:focus,
+#ja-cssmenu ul li:hover,
+#ja-cssmenu ul li.sfhover,
+#ja-cssmenu ul li.havesubchildsfhover,
+#ja-cssmenu ul li.havesubchild-activesfhover,
+#ja-cssmenu ul ul li:hover,
+#ja-cssmenu ul ul li.sfhover,
+#ja-cssmenu ul ul li.havesubchildsfhover,
+#ja-cssmenu ul ul li.havesubchild-activesfhover {
+	background: #202020;
+	color: #FFD200 !important;
+}
+
+#ja-cssmenu ul li a.active {
+	background: none !important;
+	color: #FFD200 !important;
+	font-weight: bold !important;
+}
+
+#ja-cssmenu ul li a.active:hover,
+#ja-cssmenu ul li a.active:active,
+#ja-cssmenu ul li a.active:focus {
+	color: #FFD200 !important;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+}
+
+ul{
+	list-style: none;
+}
+
+a img { border: 0; }
+
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+	border-color:#CCCCCC;
+}
+
+.clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+* html > body .clearfix {
+	display: block;
+	width: 100%;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.clear, .divider {clear: both !important;}
+
+.no-display		{display: none !important;}
+.nowrap,.nobr	{white-space: nowrap !important;}
+.no-border 		{bottom: 0 !important;}
+.no-padding		{padding: 0 !important}
+.no-margin		{margin: 0 !important;}
+
+.normal-weight {font-weight: normal !important;}
+
+.auto-width {width: auto;}
+
+.first { background: none !important; border: 0 !important; }
+
+.v-top 		{vertical-align: top;}
+.v-middle	{vertical-align: middle;}
+.v-bottom 	{vertical-align: bottom;}
+
+.alignleft		{text-align: left;}
+.aligncenter	{text-align: center;}
+.alignright		{text-align: right;}
+
+.left		{float: left;}
+.right	{float: right;}
+
+ 
+
+body {
+	background: #FFFFFF;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.8;
+}
+
+body#bd {
+	background: url(../images/bg.gif) repeat-x top left;
+	color: #666666;
+}
+
+body.contentpane {
+	color: #000000;
+	font-size: 12pt;
+	line-height: 1.3em;
+	margin: 1em 2em;
+	width: auto; 
+}
+
+body.fs1 {font-size: 10px;}
+body.fs2 {font-size: 11px;}
+body.fs3 {font-size: 12px;}
+body.fs4 {font-size: 13px;}
+body.fs5 {font-size: 14px;}
+body.fs6 {font-size: 15px;}
+
+a {
+	color: #222222;
+	text-decoration: underline;
+}
+
+a:hover, a:active, a:focus {
+	color: #008852;
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4,
+.contentheading, .componentheading, .blog_more strong,
+.nftitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	line-height: 1.2;
+	color: #222222;
+}
+	
+
+small, .small, .smalldark, .createby, .createdate, .modifydate, .img_caption,
+span.site-slogan, a.readon, #ja-headtools, #ja-pathway, #ja-botsl21, #ja-botsl22, #ja-footer {
+	font-size: 92%;
+}
+
+small, .small, .img_caption {
+	color: #999999;
+}
+
+img.caption {
+}
+
+h1 {
+	font-size: 200%;
+}
+
+h2 {
+	font-size: 150%;
+}
+
+h3 {
+	font-size: 125%;
+}
+
+h4, h5, h6 {
+	font-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, blockquote, ul, ol {
+	margin: 15px 0;
+	padding: 0;
+}
+
+ul {
+	list-style: url(../images/arrow.png);
+	list-style-position:inside;
+}
+
+ul li {
+	background: none;
+	line-height: 160%;
+	padding-left: 30px;
+}
+
+ol li {
+	line-height: 180%;
+	margin-left: 35px;
+}
+
+th {
+	font-weight: bold;
+	padding: 5px;
+	text-align: left;
+}
+
+fieldset {
+	border: none;
+	padding: 10px 5px;
+}
+
+fieldset a {
+	font-weight: bold;
+}
+
+fieldset.input {
+	padding: 0;
+}
+
+hr {
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: 1px solid #DDDDDD;
+	height: 1px;
+}
+
+td, div {
+	font-size: 100%;
+}
+
+a img {
+	border: none;
+	margin: 2px;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+form label {
+	cursor: pointer;
+}
+
+input, select, textarea, .inputbox, .button {
+	font-family: Arial, sans-serif;
+	font-size: 100% !important;
+}
+
+.inputbox {
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	color: #666666;
+	padding: 2px;
+	margin: 0 5px;
+}
+
+.button {
+	background: #FFD200 !important;
+	border: 1px solid #DDDDDD;
+	color: #666666;
+	font-weight: bold;
+	padding: 1px 8px !important;
+}
+
+.button:hover,
+.button:active,
+.button:focus {
+	background: #FFD200 !important;
+	color: #111111;
+	font-weight: bold;
+	padding: 1px 8px;
+	text-decoration: none;
+}
+
+* html .button {
+	padding: 0 5px !important; 
+}
+
+*+html .button {
+	padding: 0 5px !important; 
+}
+
+.article_separator {
+	clear: both;
+	display: block;
+	height: 30px;
+	background: url(../images/dot.gif) repeat-x center;
+}
+
+.article-content img {
+	margin-right: 10px;
+	margin-top: 5px;
+	padding: 3px;
+	border: 1px solid #DDDDDD;
+}
+
+.article-tools .article-meta {
+	float: left;
+}
+
+.article-tools .buttonheading {
+	float: right;
+}
+
+.img_caption {
+	float: left;
+}
+
+.column_separator {
+	padding: 0 5px;
+}
+
+span.open {
+	background: url(../images/so-q.gif) no-repeat  left top;
+	padding: 2px 0 2px 10px;
+}
+
+span.close {
+	background: url(../images/sc-q.gif) no-repeat right bottom;
+	padding: 2px 10px 2px 0;
+}
+
+.sectiontableheader {
+	background: #1D1A1A;
+	border-right: 1px solid #CCCCCC;
+	padding: 4px;
+}
+
+tr.sectiontableentry0 td,
+tr.sectiontableentry1 td,
+tr.sectiontableentry2 td {
+	padding: 4px;
+}
+
+tr.sectiontableentry2 td {
+	background: #E5E5E5;
+}
+
+table.contentpane {
+	border: none;
+	width: 100%;
+}
+
+table.contentpaneopen {
+	border: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table.contenttoc {
+	font-size: 92%;
+	margin: 0 0 10px 10px;
+	padding: 0;
+	width: 35%;
+}
+
+table.contenttoc a {
+	text-decoration: none;
+}
+
+table.contenttoc td {
+	background: url(../images/bullet.gif) no-repeat 10px 7px;
+	padding: 1px 5px 1px 15px;
+}
+
+table.contenttoc th {
+	border-bottom: 1px solid #E5E5E5;
+	padding: 0 0 3px;
+	text-indent: 5px;
+}
+
+table.poll {
+	border-collapse: collapse;
+	padding: 0;
+	width: 100%;
+}
+
+table.pollstableborder {
+	border: none;
+	padding: 0;
+	text-align: left;
+	width: 100%;
+}
+
+table.pollstableborder img {
+	vertical-align: baseline;
+}
+
+table.pollstableborder td {
+	background: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+	padding: 4px !important;
+}
+
+table.pollstableborder tr.sectiontableentry1 td {
+	background: #E5E5E5;
+}
+
+table.searchintro {
+	padding: 10px 0;
+	width: 100%;
+}
+
+table.searchintro td {
+	padding: 5px!important;
+}
+
+.blog_more strong {
+	display: block;
+	font-size: 125%;
+	margin: 0 0 5px;
+	font-weight: bold;
+}
+
+.blog_more ul {
+	margin: 0;
+	padding: 0;
+}
+
+.blog_more ul li {
+	background: url(../images/arrow.png) no-repeat 6px 7px;
+	margin: 0;
+	padding: 0 0 0 15px;
+}
+
+.category {
+	font-weight: bold;
+}
+
+h1.componentheading, .componentheading {
+	border-bottom: 1px solid #DDDDDD;
+	margin: 0 0 15px;
+	padding: 0 0 15px;
+}
+
+.componentheading {
+	font-size: 200%;
+}
+
+h2.contentheading, .contentheading {
+	font-size: 175%;
+	font-weight: bold;
+	margin: 0 0 5px;
+	padding: 0;
+}
+
+.blog h2.contentheading, .blog .contentheading {
+	font-size: 150%;
+}
+
+a.contentpagetitle {}
+
+a.contentpagetitle:hover,
+a.contentpagetitle:active,
+a.contentpagetitle:focus {
+	color: #008852;
+}
+
+.contentdescription {
+	padding-bottom: 30px;
+}
+
+table.contentpane form,
+table.contentpane table {
+	width: 100%;
+}
+
+a.readon {
+	background: #1D1A1A;
+	color: #CCCCCC;
+	text-align: center;
+	text-decoration: none;
+	padding: 2px 5px;
+}
+
+a.readon:hover, a.readon:focus, a.readon:active {
+	background: #008852;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+table.contentpaneopen td, table.contentpane td {
+}
+
+table.contentpaneopen, table.contentpane, table.blog {
+	width: 100%;
+}
+
+.moduletable {
+	padding: 0;
+}
+
+div.blog_more {
+	padding-top: 15px;
+}
+
+ul.pagination {
+	margin: 0;
+	padding: 0;
+}
+
+ul.pagination li {
+	background: none;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+ul.pagination li span{
+	padding: 2px 5px;
+}
+
+ul.pagination a {
+	padding: 2px 3px;
+	text-decoration: none;
+}
+
+ul.pagination a:hover, ul.pagination a:active, ul.pagination a:focus {
+}
+
+.pagenavbar {
+	background: url(../images/icon-pages.gif) no-repeat center left;
+	font-weight: bold;
+	padding-left: 14px;
+}
+
+.pagenavcounter {
+	background: url(../images/icon-pages.gif) no-repeat 0 11px;
+	font-weight: bold;
+	padding: 8px 14px 0 14px;
+}
+
+.sectiontableheader {
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 8px 5px;
+}
+
+.sectiontableheader a {
+	color: #FFFFFF;
+}
+
+tr.sectiontableentry1 td {
+	padding: 8px 5px;
+}
+
+tr.sectiontableentry2 td {
+	padding: 8px 5px;
+}
+
+tr.sectiontableentry1:hover td,
+tr.sectiontableentry2:hover td {
+}
+
+.smalldark {
+	text-align: left;
+}
+
+div.syndicate div {
+	text-align: center;
+}
+
+.pollstableborder tr.sectiontableentry1 td,
+.pollstableborder tr.sectiontableentry2 td {
+	background: none;
+}
+
+.createdate {
+	color: #999999;
+}
+
+.modifydate {
+	color: #999999;
+	display: block;
+	float: left;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.buttonheading {
+}
+
+.buttonheading img {
+	border: 0;
+	float: right;
+	margin: 7px 5px 0 0;
+}
+
+.wrap {
+	clear: both;
+	width: 100%;
+}
+
+.main {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#ja-content {
+	display: inline;
+	float: left;
+	width: 745px;
+}
+
+#ja-content .main {
+	width: 730px;
+}
+
+#ja-col1 {
+	display: inline;
+	float: left;
+	padding-top: 15px;
+	width: 215px;
+	line-height: 1.5;
+}
+
+#ja-container-fl #ja-current-content {
+	float: left;
+	width: 700px;
+}
+
+#ja-container-fl #ja-content {
+	width: 100%;
+}
+
+#ja-container-fr #ja-current-content {
+	width: 715px;
+}
+
+#ja-container-f #ja-current-content,
+#ja-container-f #ja-current-content .contentpane,
+#ja-container-f #ja-current-content .contentpane .wrapper {
+	width: 100%;
+	display: block;
+}
+
+#ja-container #ja-current-content {
+	float: left;
+	width: 470px;
+}
+
+#ja-current-content .article-content {
+	clear: both;
+}
+
+#ja-container-fl #ja-content .main{
+	padding: 15px 0;
+	width: 100%;
+}
+
+#ja-container #ja-content .main {
+	padding: 15px 0 15px 15px;
+}
+
+#ja-container-f #ja-content .main {
+	padding: 15px 0;
+	width: 100%;
+}
+
+#ja-container-fr #ja-content .main {
+	padding: 15px 0 15px 15px;
+}
+	
+
+#ja-col2 {
+	float: right;
+	width: 240px;
+	line-height: 1.5;
+}
+
+#ja-col2 .main {
+	padding-top: 15px;
+	width: 100%;
+}
+
+#ja-col2 div.inner {
+	padding: 15px;
+}
+
+#ja-cols table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#ja-cols .article_separator {
+	display: none;
+}
+
+#ja-cols ul {
+	list-style: none;
+}
+
+#ja-container,
+#ja-container-f,
+#ja-container-c,
+#ja-container-fl {
+	clear: both;
+	min-height: 400px;
+	padding: 0 0 15px;
+}
+
+#ja-container-f .main {
+	background: none;
+}
+
+#ja-container-f #ja-content {
+	width: 100%;
+}
+
+#ja-container-c .main {
+	background: none;
+}
+
+#ja-container-c #ja-content {
+	width: 75%;
+}
+
+#ja-container-c #ja-cols {
+	width: 22%;
+}
+
+#ja-container-c #ja-col2{
+	width: 100%;
+}
+
+div.moduletable h3,
+div.moduletable_text h3,
+div.moduletable_menu h3{
+	border-bottom: 1px solid #DDDDDD;
+	color: #413E3E;
+	letter-spacing: .5px;
+	margin: 0 0 10px;
+	padding: 2px 0 5px;
+}
+
+span.first-word {
+	color: #1D1A1A;
+}
+
+div.moduletable,
+div.moduletable_text,
+div.moduletable_menu {
+	margin: 0 0 15px;
+	padding: 0 0 5px;
+}
+
+div.moduletable_blank  h3{
+	margin: 0 0 15px;
+	color: #008852;
+}
+
+div.color1 h3 {
+	color: #008852;
+}
+
+div.color2 h3 {
+	color: #008852;
+	
+}
+
+div.color3 h3 {
+	color: #008852;
+}
+
+div.moduletable ul,
+div.moduletable_text ul{
+	margin: 0;
+	padding: 0;
+}
+
+div.moduletable li,
+div.moduletable_text li,
+div.moduletable_menu li {
+	line-height: 20px;
+	margin: 0;
+	padding-left: 0;
+}
+
+div.moduletable li a,
+div.moduletable_text li a,
+div.moduletable_menu li a {
+	display: block;
+	padding: 5px 2px 5px 15px;
+}
+
+ul.ja-bullettin li a {
+	display: inline;
+	padding: 0;
+}
+
+div.moduletable_newlight {
+background: url(../images/left-bg.gif) no-repeat;
+}
+
+#ja-col2 div.moduletable,
+#ja-col2 div.moduletable_text,
+#ja-col2 div.moduletable_menu {
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	margin: 0 0 15px;
+}
+
+#ja-col2 div.moduletable h3,
+#ja-col2 div.moduletable_text h3,
+#ja-col2 div.moduletable_menu h3 {
+	background: #413E3E;
+	color: #FFFFFF;
+	margin: 0 -1px;
+	padding: 10px;
+	border-bottom: 1px solid #222222;
+}
+
+#ja-col2 div.moduletable_highlight {
+	background: #F6F6F6;
+	border: 1px solid #DDDDDD;
+	margin: 0 0 15px;
+}
+
+#ja-col2 div.moduletable_highlight h3 {
+	background: #008852;
+	color: #FFFFFF;
+	margin: 0 -1px;
+	padding: 10px;
+}
+
+#ja-col2 div.ja-innerdiv {
+	border: none;
+	padding-left: 10px;
+}
+
+#ja-col2 div.moduletable div.ja-innerdiv img,
+#ja-col2 div.moduletable_highlight div.ja-innerdiv img,
+#ja-col2 div.moduletable_text div.ja-innerdiv img{
+	border: none;
+}
+
+#ja-col2 div.moduletable_menu {
+	padding-bottom: 0;
+}
+
+#ja-header {
+	height: 100px;
+	z-index:999;
+}
+
+#ja-header .main {
+	height: 100px;
+	position: relative;
+}
+
+h1.logo, h1.logo-text {
+	font-size: 300%;
+	left: 0;
+	letter-spacing: 1px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 15px;
+}
+
+h1.logo a {
+	background: url(../images/logo.png) no-repeat;
+	display: block;
+	height: 90px;
+	width: 355px;
+}
+
+h1.logo a:hover, h1.logo a:active, h1.logo a:focus {
+}
+
+* html h1.logo a:hover {
+	background: none;
+	cursor: pointer;
+}
+
+h1.logo a span {
+	position: absolute;
+	top: -1000px;
+}
+
+h1.logo-text a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+h1.logo-text a:hover, logo-text a:active, logo-text a:focus {
+	background: none;
+	color: #FFFFFF;
+}
+
+span.site-slogan {
+	color: #FFFFFF;
+	display: block;
+}
+
+#ja-headtools {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+#ja-headtools ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+
+#ja-headtools li {
+	background: none;
+	display: inline;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+
+#ja-headtools li a {
+	background: url(../images/arrow.png) no-repeat 10px center;
+	padding: 0 10px 0 20px;
+	line-height: 15px;
+	display: block;
+	float: left;
+}
+
+#ja-headtools li a:hover {
+	background: url(../images/arrow-hover-90cw.png) no-repeat 10px center;
+	text-decoration: none;
+}
+
+#ja-headtools li a.show {
+	color: #000;
+	background: url(../images/arrow-light-90cw.png) no-repeat 10px center  !important;
+}
+
+#ja-register, #ja-login {
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	display: none;
+	height: auto;
+	overflow: hidden;
+	padding: 5px 15px;
+	position: absolute;
+	right: -15px;
+	text-align: left;
+	top: 5px;
+	z-index: 999;
+}
+
+.ja-login-links {
+	margin-top: 5px;
+}
+
+#ja-mainnav {
+	z-index: 999;
+}
+
+#ja-mainnav .main {
+	background-image: url(../images/bgnav.gif);
+	padding: 0px;
+	position: relative;
+	height: 40px;
+}
+
+#ja-mainnav .main .inner {
+	position: relative;
+}
+
+#ja-subnav .main{
+	background: none;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+#ja-subnav ul {
+	margin: 0;
+}
+
+#ja-subnav ul li {
+	list-style: none;
+	display: inline;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+#ja-subnav ul li a {
+	color: #1D1A1A;
+	display: block;
+	padding: 5px 15px;
+	text-decoration: none;
+	background: #F6F6F6 url(../images/arrow.png) no-repeat 5px center;
+}
+
+#ja-subnav ul li.active a,
+#ja-subnav ul li a:hover,
+#ja-subnav ul li a:active,
+#ja-subnav ul li a:focus {
+	background: #F6F6F6 url(../images/arrow-hover.png) no-repeat 5px center;
+	color: #008852;
+}
+
+#ja-search {
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+
+#mod_search_searchword {
+	background: #666666;
+	border: 1px solid #666666;
+	color: #CCCCCC;
+	padding: 4px 5px;
+}
+
+#ja-pathway {
+	background: #F6F6F6;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	color: #666666;
+}
+
+#ja-pathway span {
+	padding: 0 5px;
+	line-height: 30px;
+}
+
+#ja-pathway .main {
+	position: relative;
+}
+
+#ja-pathway strong {
+	margin-right: 5px;
+}
+
+#ja-pathway a {
+	color: #666666;
+	text-decoration: none;
+	line-height: 30px;
+	display: inline;
+}
+
+#ja-pathway a:hover,
+#ja-pathway a:active,
+#ja-pathway a:focus {
+	color: #008852;
+	text-decoration: underline;
+}
+
+#ja-pathway img {
+	margin: 1px 5px;
+}
+
+#ja-pathway1 {
+	background: #F6F6F6;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	color: #666666;
+}
+
+#ja-pathway1 span {
+	padding: 0 5px;
+	line-height: 30px;
+}
+
+#ja-pathway1 .main {
+	position: relative;
+}
+
+#ja-pathway1 strong {
+	margin-right: 5px;
+}
+
+#ja-pathway1 a {
+	color: #666666;
+	text-decoration: none;
+	line-height: 30px;
+	display: inline;
+}
+
+#ja-pathway1 a:hover,
+#ja-pathway1 a:active,
+#ja-pathway1 a:focus {
+	color: #008852;
+	text-decoration: underline;
+}
+
+#ja-pathway1 img {
+	margin: 1px 5px;
+}
+
+ul.menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.menu li {}
+
+ul.menu li a {
+	display: block;
+	outline: none;
+	padding: 5px 5px 5px 20px;
+	text-decoration: none;
+	border-top: 1px solid #E5E5E5;
+	background: url(../images/arrow.png) no-repeat 12px center;
+	color: #666666;
+}
+
+ul.menu li a:hover,
+ul.menu li a:active,
+ul.menu li a:focus {
+	color: #666666;
+	background: #F6F6F6 url(../images/arrow.png) no-repeat 12px center;
+	text-decoration: none;
+}
+
+ul.menu li.active a {
+	font-weight: bold;
+	background: #E5E5E5 url(../images/arrow.png) no-repeat 12px center;
+}
+
+ul.menu li ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.menu li li {
+	border: none;
+}
+
+ul.menu li li a {
+	background: #FFD200 url(../images/bullet.gif) no-repeat 20px center !important;
+	border: none;
+	font-weight: normal !important;
+	padding-left: 30px !important;
+	width: 75%; 
+}
+
+ul.menu li li a:hover,
+ul.menu li li a:active,
+ul.menu li li a:focus {
+	background: none;
+	color: #666666;
+}
+
+.ja-box-full, .ja-box-left, .ja-box-center, .ja-box-right {
+	float: left;
+	overflow: hidden;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.ja-box-left div.moduletable {
+	padding-right: 15px;
+}
+
+.ja-box-center div.moduletable {
+	padding: 0 15px;
+}
+
+.ja-box-right div.moduletable {
+	padding-left: 15px;
+}
+
+#ja-content #ja-topsl .main {
+	padding-left: 0;
+	padding-top: 0;
+}
+
+#ja-botsl1 {
+	background: #E5E5E5;
+}
+
+#ja-botsl1 h3 {
+	border: none;
+}
+
+#ja-botsl1 div.moduletable {
+	border-right: 1px solid #D5D5D5;
+}
+
+#ja-botsl2 {
+	background: #F6F6F6;
+	color: #1D1A1A;
+}
+
+#ja-botsl2 .img_caption img {
+	border: 5px solid #CCCCCC;
+	margin: 0;
+	padding: 0;
+}
+
+#ja-botsl2 .img_caption {
+	float: none;
+}
+
+#ja-botsl2 div.ja-innerdiv,
+#ja-botsl1 div.ja-innerdiv {
+	border: none;
+}
+
+#ja-botsl2 div.moduletable,
+#ja-botsl1 div.moduletable {
+	margin-bottom: 0;
+}
+
+#ja-before-foooter {
+	background:#F6F6F6;
+	float: left;
+	padding-left: 10px;
+	padding-top: 5px;
+	width: 65%;
+}
+#ja-footer {
+	background: #8F8E8E;
+	border-bottom: 3px solid #111111;
+	text-align: center;
+}
+
+#ja-footer .sublogo {
+	float: left;
+	width: 32%;
+}
+
+#ja-footer .ja-info {
+	float: left;
+	padding-left: 10px;
+	padding-top: 15px;
+	width: 65%;
+}
+
+#ja-footer .main {
+	text-align: left;
+}
+
+#ja-footer small {
+	color: #666666;
+	font-size: 100%;
+	margin-top: 10px;
+}
+
+#ja-footer ul {
+	line-height: normal;
+	margin: 0;
+}
+
+#ja-footer li {
+	background: url(../images/vline.gif) no-repeat left;
+	display: inline;
+	margin: 0;
+	padding: 0 10px;
+}
+
+#ja-footer a {
+	background: none;
+	color: #000;
+	display: inline;
+	line-height: normal;
+}
+
+#ja-footer a:hover,
+#ja-footer a:active
+#ja-footer a:focus{
+	background: none;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+.ja-footurl {
+	clear: both;
+	float: none;
+}
+
+.clr {
+	clear: both;
+}
+
+.hasTip img {
+	border: none;
+	margin: 10px 5px 0 0;
+}
+
+div.ja-innerdiv {
+	border-bottom: 1px dotted #CCCCCC;
+	padding: 10px 0 15px;
+}
+
+div.ja-innerdiv img {
+	margin: 5px 10px 0 0;
+	padding: 3px;
+	border: 1px solid #DDDDDD;
+}
+
+div.ja-innerdiv span.date {
+	font-size: 80%;
+	font-weight: bold;
+}
+
+li.ja-firstitem,
+.firs-titem {
+	background: none !important;
+	padding-left: 0 !important;
+}
+
+.tool-tip {
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	float: left;
+	max-width: 600px;
+	padding: 5px;
+}
+
+.tool-title {
+	background: url(../../system/images/selector-arrow.png) no-repeat;
+	font-size: 100%;
+	font-weight: bold;
+	margin: 0;
+	margin-top: -15px;
+	padding: 0;
+	padding-bottom: 5px;
+	padding-top: 15px;
+}
+
+.tool-text {
+	font-size: 100%;
+	margin: 0;
+}
+
+#system-message {
+	margin: 10px;
+}
+
+#system-message a {
+	color: #1D1A1A;
+}
+
+#system-message dd {
+	text-indent: 0;
+}
+
+#system-message dt.notice,
+#system-message dt.error,
+#system-message dt.done,
+#system-message dt.message {
+	display: none;
+}
+
+#system-message dd.message ul,
+#system-message dd.error ul,
+#system-message dd.notice ul,
+#system-message dd.done ul {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+#system-message dd.message ul li,
+#system-message dd.error ul li,
+#system-message dd.notice ul li {
+	background: none;
+	margin: 0;
+	padding: 5px 5px 5px 30px;
+}
+
+#system-message dd.message ul{
+	background: url(../images/icon-info.gif) #FAFAFA no-repeat 10px;
+	color: #666666;
+}
+
+#system-message dd.done ul{
+	background: #FAFAFA;
+	color: #666666;
+}
+
+#system-message dd.error ul{
+	background: url(../images/icon-error.gif) #FAFAFA no-repeat 10px !important;
+	color: #008852 !important;
+}
+
+#system-message dd.fade ul{
+	background: url(../images/icon-info.gif) #FAFAFA no-repeat 10px;
+	color: #666666;
+}
+
+#system-message dd.notice ul{
+	background: url(../images/icon-info.gif) #FAFAFA no-repeat 10px;
+	color: #666666;
+}
+.ts-1 {
+	border: none;
+	height: 184px;
+	text-align: left;
+	width: 487px;
+}
+
+.ts-1-1 {
+	border: none;
+	clear: both;
+	display: inline;
+	float: left;
+	height: 104px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding-bottom: 1px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 75px;
+	width: 239px;
+}
+
+.gen-1 {
+	border: 0px;
+}
+
+.ts-1-2 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 104px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding-bottom: 1px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 75px;
+	width: 238px;
+}
+
+.gen-3 {
+	clear: both;
+}
+
+.ts-11 {
+	border: none;
+	height: 1067px;
+	text-align: left;
+	width: 487px;
+}
+
+.ts-11-1 {
+	border: none;
+	clear: both;
+	display: inline;
+	float: left;
+	height: 36px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding-bottom: 1px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 10px;
+	width: 481px;
+}
+
+.ts-11-2 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 302px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding: 1px;
+	width: 239px;
+}
+
+.rent-1 {
+	margin-top: 0px;
+	text-align: center;
+}
+
+.rent-2 {
+	text-align: center;
+}
+
+.rent-3 {
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.ts-11-3 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 302px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding: 1px;
+	width: 238px;
+}
+
+.ts-11-4 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 36px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding-bottom: 1px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 10px;
+	width: 481px;
+}
+
+.rent-19 {
+	clear: both;
+}
+
+.ts-12 {
+	border: none;
+	height: 212px;
+	text-align: left;
+	width: 205px;
+}
+
+.ts-12-1 {
+	border: none;
+	clear: both;
+	display: inline;
+	float: left;
+	height: 31px;
+	line-height: 31px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding: 1px;
+	width: 49px;
+}
+
+.ts-12-2 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 31px;
+	line-height: 31px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding: 1px;
+	width: 146px;
+}
+
+.ts-12-3 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 31px;
+	line-height: 31px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding: 1px;
+	width: 49px;
+}
+
+.ts-12-11 {
+	border: none;
+	display: inline;
+	float: left;
+	height: 31px;
+	line-height: 31px;
+	margin-left: 2px;
+	margin-top: 2px;
+	padding: 1px;
+	text-align: center;
+	width: 199px;
+}
+
+.quote-1 {
+	clear: both;
+}
+.textInput1
+{
+	border: 1px solid #00A566;
+	background: #fff;
+	color: #000;	
+	font-size: 1.1em;
+}
+
+.fieldHolder
+{
+	width: 182px;
+	height: 27px;
+	background: url(tfbg2.gif) no-repeat;
+	float: left;
+}
+
+ul.ja-bullettin {
+	margin-top:-5px !important;
+	color: #666666;
+}
+
+ul.ja-bullettin li {
+	padding: 5px 0;
+	background: none;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+ul.ja-bullettin li a {
+	font-weight: bold;
+	background: none;
+}
+
+#ja-current-content, 
+.form-button, .form-button-alt, input.input-text, select, textarea,#mod_search_searchword, 
+.error-msg, .success-msg, .notice-msg, .note-msg, 
+.ja-tab-panels-top,
+#ja-slideshow .maskDesc .ja-slide-desc,.ja-slide-thumbs-handles span.active,.ja-slide-buttons,.ja-slide-thumbs .active span,.ja-slide-thumbs-handles span.active, 
+#ja-mainnav .main,
+.article-content img, div.ja-innerdiv img,  
+a.readon, 
+#ja-login,#ja-register {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px; 
+}
+
+.nickel .ja-tabs-title-top ul.ja-tabs-title li h3,
+#ja-headtools li a.show {
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;  
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;  
+	-webkit-border-top-left-radius: 3px; 
+}
+
+#ja-subnav .main {
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;  
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;  
+	-webkit-border-bottom-left-radius: 3px; 
+}
+
+#ja-col2 .moduletable_highlight,
+#ja-col2 .moduletable,
+#ja-col2 .moduletable_text,
+#ja-col2 .moduletable_menu{
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px; 
+}
+
+#ja-col2 .moduletable_highlight h3,
+#ja-col2 .moduletable h3,
+#ja-col2 .moduletable_text h3,
+#ja-col2 .moduletable_menu h3{
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;  
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;  
+	-webkit-border-top-left-radius: 3px; 
+}
+
+.button,.inputbox {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px; 
+} 
+
+</style>
+
+  
+
+  <base >
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="Rental Projectors, Renting, Projector, Nationwide projector rentals, projector for rent, renting projectors,">
+  <meta name="title" content="Sanford Maine Projector Rentals, Rent a projector (888) 951-5060">
+  <meta name="author" content="Rental Projectors Corporation">
+  <meta name="description" content="Sanford ME projector rentals: pro AV rental delivery service. Easy setup, top support team, lowest projector rental rates in Maine! (888) 951-5060.">
+  <title>Sanford Maine Projector Rentals, Rent a projector (888) 951-5060</title>
+  
+  
+  
+  
+
+			
+			
+			
+
+<style type="text/css">
+
+</style>
+<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
+
+<body id="bd" class="  fs3">
+
+<a name="Top" id="Top"></a>
+
+<div id="ja-header" class="wrap">
+
+  <div class="main clearfix">
+
+  
+
+  	
+  	<h1 class="logo">
+
+  		<a  title="Rental Projectors"><span>Rental Projectors | (800) 574-0212</span></a>
+
+  	</h1>
+
+  	
+    	
+	<style type="text/css">
+div.AuthorizeNetSeal{text-align:center;margin:0;padding:0;width:90px;font:normal 9px arial,helvetica,san-serif;line-height:10px;}
+div.AuthorizeNetSeal a{text-decoration:none;color:black;}
+div.AuthorizeNetSeal a:visited{color:black;}
+div.AuthorizeNetSeal a:active{color:black;}
+div.AuthorizeNetSeal a:hover{text-decoration:underline;color:black;}
+div.AuthorizeNetSeal a img{border:0px;margin:0px;text-decoration:none;}
+</style>
+ <a  id="AuthorizeNetText" target="_blank"></a>
+
+    	<div id="ja-headtools" class="ja-headtool">
+	   <h2 style="font-size:22px">
+	   <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toll Free : (800) 574-0212</b></h2><h2 style="font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Email:</b> <a >quote@rentalprojectors.com</a></h2>
+
+	   
+  			
+
+  		
+
+		</div>
+
+  	
+  </div>
+
+</div>
+
+<div id="ja-mainnav" class="wrap">  	
+
+  <div class="main clearfix">
+
+  	<ul class="no-display">
+
+  		<li><a  title="Skip to content">Skip to content</a></li>
+
+  	</ul>
+
+  
+
+		<ul id="ja-cssmenu" class="clearfix">
+<li><a  class="menu-item0 first-item" id="menu1" title="Home"><span class="menu-title">Home</span></a></li> 
+<li><a  class="menu-item1" id="menu93" title="About Us"><span class="menu-title">About Us</span></a></li> 
+<li><a  class="menu-item2" id="menu427" title="Rental Locations"><span class="menu-title">Rental Locations</span></a></li> 
+<li><a  class="menu-item3" id="menu89" title="Rental Pricing"><span class="menu-title">Rental Pricing</span></a></li> 
+<li><a  class="menu-item4" id="menu87" title="Accessories"><span class="menu-title">Accessories</span></a></li> 
+<li><a  class="menu-item5" id="menu90" title="FAQs"><span class="menu-title">FAQs</span></a></li> 
+<li><a  class="menu-item6" id="menu1101" title="Site Map"><span class="menu-title">Site Map</span></a></li> 
+<li><a  class="menu-item7 last-item" id="menu91" title="Contact Us"><span class="menu-title">Contact Us</span></a></li> 
+</ul>
+		
+  </div>
+
+</div>
+
+<div id="ja-container" class="wrap">
+
+  <div class="main clearfix">
+
+  	
+  	
+
+  	<div id="ja-col1">
+
+        <div class="ja-innerpad">
+
+            		<div class="moduletable" id="Mod188">
+						<div class="ja-box-ct clearfix">
+			<form id="cse-search-box" action="https://www.google.com/cse">
+<div><input name="cx" type="hidden" value="001683043920053345435:6xihdfc4tis"> <input name="ie" type="hidden" value="UTF-8"> <input name="q" size="21" type="text" placeholder="" style="background: url(&quot;https://www.google.com/cse/static/images/1x/en/branding.png&quot;) left 9px top 50% no-repeat rgb(255, 255, 255);"> <input name="sa" type="submit" value="Search"></div>
+<input name="siteurl" value="www.rentalprojectors.com/sanford-projector-rentals-me" type="hidden"><input name="ref" value="" type="hidden"><input name="ss" value="" type="hidden"></form>
+			</div>
+    </div>
+			<div class="moduletable_newlight" id="Mod60">
+						<div class="ja-box-ct clearfix">
+						</div>
+    </div>
+			<div class="moduletable" id="Mod663">
+						<h3 class="clearfix">Press Release / News</h3>
+						<div class="ja-box-ct clearfix">
+			<a  target="_blank">Dell Projector Giveaway from RentalProjectors.com</a><br> <br>
+RentalProjectors.com Adds A Fleet Of Eiki LC-X800A 12K Lumen Rental Projectors			</div>
+    </div>
+			<div class="moduletable" id="Mod660">
+						<div class="ja-box-ct clearfix">
+			<center><a  target="_blank"><img src="rick.jpg" width="120" height="120"></a></center><br>
+<table width="100%" border="0">
+  <tbody><tr>
+    <td><img id="vikingcloudSealImage" src="rick.jpg" border="0" style="cursor:pointer;" onclick="javascript:window.open('https://sealserver.trustwave.com/cert.php?customerId=42fd7681def84d9eb942d8ce4c6526ed&amp;size=105x54&amp;style=', 'c_TW', 'location=no, toolbar=no, resizable=yes, scrollbars=yes, directories=no, status=no, width=615, height=720'); return false;" oncontextmenu="javascript:alert('Copying Prohibited by Law - Trusted Commerce is a Service Mark of Viking Cloud, Inc.'); return false;" alt="This site is protected by VikingCloud's Trusted Commerce program" title="This site is protected by VikingCloud's Trusted Commerce program"></td>
+    <td>	<div class="AuthorizeNetSeal">		<style type="text/css">
+div.AuthorizeNetSeal{text-align:center;margin:0;padding:0;width:90px;font:normal 9px arial,helvetica,san-serif;line-height:10px;}
+div.AuthorizeNetSeal a{text-decoration:none;color:black;}
+div.AuthorizeNetSeal a:visited{color:black;}
+div.AuthorizeNetSeal a:active{color:black;}
+div.AuthorizeNetSeal a:hover{text-decoration:underline;color:black;}
+div.AuthorizeNetSeal a img{border:0px;margin:0px;text-decoration:none;}
+</style>
+<a  onmouseover="window.status='http://www.authorize.net/'; return true;" onmouseout="window.status=''; return true;" onclick="window.open('https://verify.authorize.net/anetseal/?pid=986c3a54-551d-4200-9563-94b2d3dd951a&amp;rurl=https://www.rentalprojectors.com','AuthorizeNetVerification','width=600,height=430,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;" rel="noopener noreferrer" target="_blank">
+<img src="rick.jpg" width="90" height="72" border="0" alt="Authorize.Net Merchant - Click to Verify">
+</a>
+</div></td>
+  </tr>
+</tbody></table>
+<br>			</div>
+    </div>
+	
+
+        </div>
+
+    </div>
+
+  	
+
+  	
+  	  
+
+  	<div id="ja-content">
+
+    	<div class="main clearfix">
+
+            
+
+            
+            <div id="ja-current-content" class="clearfix">
+
+                
+
+<div class="article-content">
+<h1>Sanford Maine Projector Rentals</h1>
+
+Sanford, Maine is a small town situated on the Mousam River that features many lakes in wooded areas, making it a magnet for recreation lovers. Serious career and business professionals looking to bolster their professional images always secure get LCD or DLP portable projector rentals in Sanford, ME from Rental Projectors Corporation for their important business events. Our clients trust our veteran AV and projector rental firm, which has been providing elite presentation projector rentals in the area and across the country for over 20 years. We have intricately crafted our projector rental business to suit the needs of polished business and career professionals. We are the only online audio visual firm that focuses on offering the latest in DLP and LCD portable projector rental technology to our clients to give them the best chance of succeeding when presenting in Sanford or anywhere else in the US.
+<br><br>
+Our objective at Rental Projectors Corp. is to help strengthen and brighten your image by providing you with technologically advanced projector rentals and premium audio visual rental equipment to help you deliver memorable, engaging and informative presentations. Trust the first-rate rental projectors from our number one online AV firm to take your presentation from state to stellar in seconds!
+
+<h2>Focusing on Business Projector Rentals</h2>
+
+Being a singularly focused digital projector rental company allows us to dedicate all of our resources to finding the market’s most exceptional DLP and LCD presentation projectors and obtaining them at the lowest prices possible. This allows us to pass our savings on to our clients and potential new customers in Sanford; this is why we offer better quality presentation projectors than any of our online projector rental competitors while also offering the lowest prices found online. You will also only get the most premium projector rentals from our vast and diverse inventory. You can be certain that any digital projector rental in Sanford, ME that you choose will be powerful enough to completely illuminate any size or type of venue.
+
+<h2>Rental Experts on Hand</h2>
+
+With the unmatched team of projector rental experts at RentalProjectors.com, our clients always have a team of experts available to them during their entire rental period in Sanford, ME. They can count on our projector renting specialists to help with them with any questions or concerns they may have with their portable projector rentals, other AV equipment rentals or their overall experience.
+<br><br>
+You can rely on RentalProjectors.com to make the business projector rental process a smooth and hassle-free experience. To start taking your important PowerPoint presentations to new professional heights, call us at (888) 951-5060, or click here to secure a projector rental in Sanford, Maine now.
+
+</div>
+
+<span class="article_separator">&nbsp;</span>
+
+            </div>
+
+            
+            <div id="ja-col2">
+
+                		<div class="moduletable_blank" id="Mod70">
+						<div class="ja-box-ct clearfix">
+			<a  target="_self" title="Rent Online Now"><img src="rick.jpg" border="0" alt="Online Projector Rental" style="border: 0;"></a>			</div>
+    </div>
+			<div class="moduletable" id="Mod59">
+						<h3 class="clearfix">The Rental Process</h3>
+						<div class="ja-box-ct clearfix">
+			<div class="ja-innerdiv clearfix" style="padding-top: 0pt ! important"><a  title="Pick your rental dates"><strong><img src="rick.jpg" border="0" alt="Pick your rental dates" width="108" height="90" style="float: left;">Rent</strong></a><br> 
+Select your rental start/end dates and sign contract.</div>
+<div class="ja-innerdiv clearfix"><a  title="Using your Rental Projector"><img src="rick.jpg" border="0" alt="Using your Rental Projector" width="108" height="90" style="float: left;"><strong>Project</strong></a><br>
+Receive your projector and follow user friendly setup instructions.</div>
+<div class="ja-innerdiv clearfix"><a  title="Shipping your Rental Projector"><img src="rick.jpg" border="0" alt="Shipping your Rental Projector" width="108" height="90" style="float: left;"><strong>Return</strong></a><br> 
+Apply the provided shipping label to original box and submit to FedEx</div>			</div>
+    </div>
+	
+
+            </div>
+
+            
+        </div>
+
+  	
+
+  </div></div>
+
+</div>
+
+	
+	<div id="ja-before-footer">
+</div>
+
+<div id="ja-pathway" class="wrap">
+
+  <div class="main">
+
+  	<div class="ja-pathway-text">
+ 
+     <strong>You are here:</strong><span class="breadcrumbs pathway">
+<a  class="pathway">Home</a> <img src="rick.jpg" alt=""> Sanford, ME</span>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="ja-footer" class="wrap">
+
+<div class="main clearfix">
+
+	<div class="sublogo">
+
+    	<a  title="Rental Projectors | (800) 574-0212"><img src="rick.jpg" alt="Rental Projectors Corporation Logo"></a>
+
+	</div>
+
+    <div class="ja-info">
+
+        
+
+        <center><a  title="">Home</a> - <a  title="About Projector Rentals Corporation">About Us</a> - <a  title="Business Projector Rentals">Business Projector Rentals</a> - <a  title="Personal Projector Rentals">Personal Projector Rentals</a> - <a  title="Rent Projectors Online Now">Rental Pricing</a> - <a  title="Projector Renting Accessories">Accessories</a><br>
+<a  title="Projector Rentals FAQ">FAQs</a> - <a  title="Rental Projectors Privacy Policy">Privacy Policy</a> - <a  title="Rental Projectors Shipping Policy">Shipping Policy</a> - <a  title="Rental Projectors Rental Policy">Rental Policy</a> - <a  title="Rental Projectors Corporation Terms and Conditions">Terms and Conditions</a> - <a  title="Sitemap of RentalProjectors.com">Sitemap</a> - <a  title="Contact Rental Projectors Corporation">Contact Us</a><br>
+ <a >Mobile Version</a> - <a  title="Projector Rentals in Cities A-L">Rental Locations </a> - <a  title="Renting Projectors to States A-L">States A-L</a> - <a  title="Renting Projectors to States M-Z">States M-Z</a> - <font color="#000000">© 2023 RentalProjectors.com All Rights Reserved.</font>
+</center>
+
+    </div>
+
+</div>
+
+</div>
+
+						
+
+</body></html>
