@@ -64,15 +64,15 @@ with Image.open(image_path) as img:
     # Convert the image to RGB if it's not
     img = img.convert("RGB")
 
-    take_screenshot("./trial_dataset/diyi.html", "./syn_dataset/diyi.png")
-    take_screenshot("./trial_dataset/diyi_gpt4.html", "./syn_dataset/diyi_gpt4.png")
+    take_screenshot("./trial_dataset/diyi.html", "./syn_dataset/diyi.jpg")
+    take_screenshot("./trial_dataset/diyi_gpt4.html", "./syn_dataset/diyi_gpt4.jpg")
 
     turn_image_blue(image_path)
-    take_screenshot("./trial_dataset/diyi.html", "./syn_dataset/diyi_blue.png")
-    take_screenshot("./trial_dataset/diyi_gpt4.html", "./syn_dataset/diyi_gpt4_blue.png")
+    take_screenshot("./trial_dataset/diyi.html", "./syn_dataset/diyi_blue.jpg")
+    take_screenshot("./trial_dataset/diyi_gpt4.html", "./syn_dataset/diyi_gpt4_blue.jpg")
 
     turn_image_red(image_path)
-    take_screenshot("./trial_dataset/diyi.html", "./syn_dataset/diyi_red.png")
-    take_screenshot("./trial_dataset/diyi_gpt4.html", "./syn_dataset/diyi_gpt4_red.png")
+    take_screenshot("./trial_dataset/diyi.html", "./syn_dataset/diyi_red.jpg")
+    take_screenshot("./trial_dataset/diyi_gpt4.html", "./syn_dataset/diyi_gpt4_red.jpg")
 
     img.save(image_path)
