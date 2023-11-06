@@ -1,6 +1,8 @@
-<!DOCTYPE html><html lang="en" itemscope="" itemtype="https://schema.org/BlogPosting" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-<style>
-@font-face {
+<!DOCTYPE html>
+<html itemscope itemtype="https://schema.org/BlogPosting" lang="en" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
+ <head>
+  <style>
+   @font-face {
   font-family: "Crimson Pro";
   font-style: normal;
   font-weight: 200 900;
@@ -33,22 +35,23 @@
 }
 
 :root {
-    
+    /* Typographical scale (16, 18, 21, 24, 28, 32, 36, 42, 48)
+       Assumes the default size of 16px, but scales gracefully. */
     --font-size-small: calc(16rem / 16);
     --font-size-body: calc(21rem / 16);
     --font-size-subtitle: calc(28rem / 16);
     --font-size-title: calc(36rem / 16);
 
     --vertical-measure: calc(28rem / 16);
-    --page-max-width: 60rem; 
+    --page-max-width: 60rem; /* 16px * 60 = 960px */
 
     --color-background: hsl(60deg 7% 12%);
     --color-body-text: hsla(0deg 0% 100% / 0.77);
     --color-meta-text: hsla(0deg 0% 100% / 0.60);
     --color-link: white;
-    --color-primary-accent: hsl(47deg 74% 69%); 
-    --color-secondary-accent: hsl(13deg 67% 57%); 
-    --color-tertiary-accent: hsl(176deg 90% 35%); 
+    --color-primary-accent: hsl(47deg 74% 69%); /* dark yellow */
+    --color-secondary-accent: hsl(13deg 67% 57%); /* orange-red */
+    --color-tertiary-accent: hsl(176deg 90% 35%); /* green */
     --color-medium-gray: hsla(0deg 0% 100% / 0.3);
 
     --color-code-background: hsl(60deg 8% 20%);
@@ -110,18 +113,21 @@ strong {
     font-weight: var(--weight-bolder);
 }
 
-pre { 
-    
+/***********************************
+ Code blocks and markup
+ **********************************/
+pre { /* this would ideally state `pre:has(code)` but it's not supported in Firefox yet */
+    /* override the inline background color of the syntax highligher */
     background-color: var(--color-code-background) !important;
     padding: 0.5rem 1rem 1rem 1rem;
 }
-
+/* code blocks */
 code {
     font-family: monospace;
     font-size: var(--font-size-small);
     color: var(--color-code-text);
 }
-
+/* inline code */
 code:not(pre > code) {
     font-family: monospace;
     background-color: var(--color-inline-code-background);
@@ -130,6 +136,9 @@ code:not(pre > code) {
     border-radius: 0.2rem;
 }
 
+/***********************************
+ Main content section
+ **********************************/
 #main-content {
     max-width: var(--page-max-width);
     margin: 0 auto;
@@ -137,6 +146,9 @@ code:not(pre > code) {
     padding: 0 1rem var(--vertical-measure) 1rem;
 }
 
+/***********************************
+ Header
+ **********************************/
 header {
     max-width: var(--page-max-width);
     margin: 0 auto;
@@ -215,6 +227,9 @@ header {
     text-decoration: none;
 }
 
+/***********************************
+ Homepage
+ **********************************/
 #homepage-title {
     font-size: 3rem;
     line-height: 1;
@@ -243,9 +258,13 @@ header {
     margin-bottom: var(--vertical-measure);
 }
 
+/***********************************
+ Major reading blocks on the page
+ (blog posts, about me)
+ **********************************/
 .reading-block {
     margin: 0 auto;
-    max-width: 43rem; 
+    max-width: 43rem; /* 688px */
     hyphens: auto;
 }
 
@@ -256,11 +275,13 @@ header {
 .reading-block blockquote {
     margin-bottom: calc(var(--vertical-measure) * 0.5);
 }
-
+/* A hack for Hugo embeds and shortcodes where things like
+ * YouTube videos are generated without any class, and can't be
+ * specifically styled to distance it from surrounding text. */
 .reading-block div {
     margin-bottom: var(--vertical-measure);
 }
-
+/* Nullify the hack above on certain pages. */
 .reading-block.list-page div {
     margin-bottom: 0;
 }
@@ -313,6 +334,9 @@ header {
     margin-bottom: calc(var(--vertical-measure) * 0.5);
 }
 
+/***********************************
+ Two-column layouts
+ **********************************/
 .column-left {
     margin-bottom: var(--vertical-measure);
 }
@@ -321,6 +345,9 @@ header {
     margin-bottom: 0;
 }
 
+/***********************************
+ List pages
+ **********************************/
 .list-page h1 {
     margin-bottom: calc(var(--vertical-measure) * 0.5);
 }
@@ -335,6 +362,10 @@ header {
     display: inline-block;
     font-feature-settings: "tnum";
 }
+
+/***********************************
+ Book information
+ **********************************/
 
 .book-information {
     display: grid;
@@ -352,8 +383,12 @@ header {
     margin-bottom: 0;
 }
 
+
+/***********************************
+ Media queries
+ **********************************/
 @media only screen and (min-width: 29rem) {
-    
+    /* 29rem * 16px (default size) = 464px */
     header {
         margin-bottom: calc(2 * var(--vertical-measure));
     }
@@ -431,7 +466,7 @@ header {
 }
 
 @media only screen and (min-width: 39rem) {
-    
+    /* 39rem * 16px (default size) = 624px */
     #top-nav ul li a {
         padding: 1rem 1.5rem;
     }
@@ -442,7 +477,7 @@ header {
 }
 
 @media only screen and (min-width: 46rem) {
-    
+    /* 46rem * 16px (default size) = 736px */
     :root {
         --font-size-small: calc(18rem / 16);
         --font-size-body: calc(24rem / 16);
@@ -460,7 +495,10 @@ header {
             "intro   intro   intro   intro   intro"
             "lc      lc      .       rc      rc"
             "bc      bc      bc      bc      bc";
-            
+            /* lc: left content area
+             * rc: right content area
+             * bc: bottom content area
+             */
         row-gap: var(--vertical-measure);
         padding: 0 1rem;
     }
@@ -501,7 +539,7 @@ header {
 }
 
 @media only screen and (min-width: 50rem) {
-    
+    /* 50rem * 16px (default size) = 800px */
     .reading-block ul,
     .reading-block ol {
         margin-left: 0;
@@ -513,7 +551,7 @@ header {
 }
 
 @media only screen and (min-width: 60rem) {
-    
+    /* 60rem * 16px (default size) = 960px */
     .reading-block img.wide {
         max-width: 136%;
         margin-left: -18%;
@@ -521,13 +559,14 @@ header {
 }
 
 @media only screen and (min-width: 68rem) {
-    
+    /* The weird numbers are so that it extends
+     * the image to 1000px width with default values. */
     .reading-block img.wide {
         max-width: 143.679%;
         margin-left: -21.839%;
     }
 
-    
+    /* Move titles to the right of the page */
     .list-page h1 {
         text-align: right;
         position: relative;
@@ -541,7 +580,9 @@ header {
         margin-top: -1em;
     }
 
-    
+    /***********************************
+     Two-column layouts
+     **********************************/
     .column-container {
         display: flex;
         justify-content: center;
@@ -577,8 +618,8 @@ header {
         --color-body-text: hsla(0deg 0% 0% / 0.80);
         --color-meta-text: hsla(0deg 0% 0% / 0.70);
         --color-link: black;
-        --color-primary-accent: hsla(0deg 0% 0% / 0.80); 
-        --color-secondary-accent: hsl(13deg 74% 42%); 
+        --color-primary-accent: hsla(0deg 0% 0% / 0.80); /* dark gray */
+        --color-secondary-accent: hsl(13deg 74% 42%); /* darker orange-red  */
         --color-medium-gray: hsla(0deg 0% 0% / 0.3);
 
         --color-inline-code-background: hsla(0deg 0% 0% / 0.13);
@@ -604,200 +645,273 @@ header {
     }
 
 }
-
-</style>
+  </style>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#20201C">
-  
-  
-  <title>Three days to Sydney, part two · Merlin Rebrović</title>
-  
-
-  
-      
-<meta property="og:title" content="Three days to Sydney, part two">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://merlin.rebrovic.net/blog/three-days-to-sydney-part-two/">
-<meta property="article:published_time" content="2013-02-28">
-<meta property="article:section" content="Travel">
-<meta name="twitter:title" content="Three days to Sydney, part two">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="@merlinrebrovic">
-
-<meta property="og:image" content="https://merlin.rebrovic.net/img/social_share_default.jpg">
-
-  
-</head>
-<body>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="#20201C" name="theme-color">
+  <title>
+   Three days to Sydney, part two &middot; Merlin Rebrovi&cacute;
+  </title>
+  <meta content="Three days to Sydney, part two" property="og:title">
+  <meta content="article" property="og:type">
+  <meta content="https://merlin.rebrovic.net/blog/three-days-to-sydney-part-two/" property="og:url">
+  <meta content="2013-02-28" property="article:published_time">
+  <meta content="Travel" property="article:section">
+  <meta content="Three days to Sydney, part two" name="twitter:title">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@merlinrebrovic" name="twitter:creator">
+  <meta content="https://merlin.rebrovic.net/img/social_share_default.jpg" property="og:image">
+ </head>
+ <body>
   <header>
-    <div id="top">
-      <a >Menu ▼</a>
-    </div>
-    <nav id="top-nav">
-      <ul>
-  
-  
-  <li><a >Home</a></li>
-  <li class="active"><a >Blog</a></li>
-  <li><a >Essays</a></li>
-  <li><a >Talks</a></li>
-  <li><a >Books</a></li>
-  <li><a >About</a></li>
-</ul>
-
-    </nav>
+   <div id="top">
+    <a>
+     Menu ▼
+    </a>
+   </div>
+   <nav id="top-nav">
+    <ul>
+     <li>
+      <a>
+       Home
+      </a>
+     </li>
+     <li class="active">
+      <a>
+       Blog
+      </a>
+     </li>
+     <li>
+      <a>
+       Essays
+      </a>
+     </li>
+     <li>
+      <a>
+       Talks
+      </a>
+     </li>
+     <li>
+      <a>
+       Books
+      </a>
+     </li>
+     <li>
+      <a>
+       About
+      </a>
+     </li>
+    </ul>
+   </nav>
   </header>
   <div id="main-content">
-    
-<div class="reading-block">
-<article>
-
-<h1 itemprop="headline">Three days to Sydney, part two</h1>
-<p class="post-meta">
-    Published on <time datetime="2013-02-28">
-    2013-02-28
-    </time> · Travel
-</p>
-
-<div itemprop="articleBody">
-  <p><img src="rick.jpg" alt="A poster on the Sydney airport.">
-</p>
-<p><a >Deja vu</a>. Goodbyes, a security and passport check, a bus
+   <div class="reading-block">
+    <article>
+     <h1 itemprop="headline">
+      Three days to Sydney, part two
+     </h1>
+     <p class="post-meta">
+      Published on
+      <time datetime="2013-02-28">
+       2013-02-28
+      </time>
+      &middot; Travel
+     </p>
+     <div itemprop="articleBody">
+      <p>
+       <img alt="A poster on the Sydney airport." src="rick.jpg">
+      </p>
+      <p>
+       <a>
+        Deja vu
+       </a>
+       . Goodbyes, a security and passport check, a bus
 ride aaaaand no turboprop airplane :) Wow, this time we might
-even fly over Slovenia.</p>
-<h2 id="hour-0">Hour 0</h2>
-<p>Team Sydney, the three person cell of combined age of more
+even fly over Slovenia.
+      </p>
+      <h2 id="hour-0">
+       Hour 0
+      </h2>
+      <p>
+       Team Sydney, the three person cell of combined age of more
 than 150 years, prepared for take off. I was sitting next to
-an emergency exit which means I had 20cm of legroom more. For
-a tall guy like me, it’s a lifesaver. The flight was shaky,
-but uneventful.</p>
-<p>Frankfurt met us with cold and rain. We got out, drove on a
+an emergency exit which means I had 20cm of legroom more.
+      </p>
+      <p>
+       Frankfurt met us with cold and rain. We got out, drove on a
 train to another terminal and sat for a drink in front of our
-gate. Leo, the eldest team member, started talking about his
-early life and how his brother, one of eleven kids, emigrated
-to Australia. It was during 1950s while he was still very
-young. He traveled by ship for 35 days. 28 hours we were
-about to make seemed like a blink of an eye. We finished our
-drinks and headed for the gate.</p>
-<h2 id="hour-4-qantas">Hour 4, Qantas</h2>
-<p>Australian airline Qantas is the second oldest in the world,
+gate.
+      </p>
+      <h2 id="hour-4-qantas">
+       Hour 4, Qantas
+      </h2>
+      <p>
+       Australian airline Qantas is the second oldest in the world,
 dating from 1920s. During boarding their Boeing 747 I noticed
 most of the staff was 40 or older and almost of them were men.
-And not just any men - they looked like the whole James Bond
-lineup. Suits, well groomed, had class. Only a darker beach
-tan and an Aussie accent gave them away. When I think about it
-now, they probably have a storage on an airplane where they
-keep women’s underwear that’s thrown at them during a flight.</p>
-<p>I was sitting between two people, but when the pilot said that
+      </p>
+      <p>
+       I was sitting between two people, but when the pilot said that
 there were many free seats and we could relocate after the
-seatbelt sign turned off, I became a man with a mission.</p>
-<h2 id="hour-5">Hour 5</h2>
-<p>The taxi and the take-off took a while, but when the sign
+seatbelt sign turned off, I became a man with a mission.
+      </p>
+      <h2 id="hour-5">
+       Hour 5
+      </h2>
+      <p>
+       The taxi and the take-off took a while, but when the sign
 turned off, I was in a low start and ready. Fifteen seconds
 later I got myself a seat next to an aisle which allowed me to
-extend my legs. It was a time for a meal after which the
-lights were turned off and that was the cue for us to go to
-sleep. It was midnight local time and the sleep came easy.</p>
-<h2 id="hour-9">Hour 9</h2>
-<p>I’m wide awake after only three hours. This is not good; we
-still have seven hours to go. I started watching a few TED
-videos on my phone. Luckily for me, they weren’t very good
-(I’m complaining about that lately), so it was as fun as
-trying to memorize renaissance history in high school. In
-other words, I dropped dead like a log.</p>
-<p>Just a note for future flights. Foam ear plugs can isolate
-four extra powerful jet engines, but a baby’s cry will cut
-through them like a hot knife through butter. Babies are
-trolls; cute, but still trolls.</p>
-<h2 id="hour-15">Hour 15</h2>
-<p>I slowly woke up when the staff turned the lights on. I found
+extend my legs.
+      </p>
+      <h2 id="hour-9">
+       Hour 9
+      </h2>
+      <p>
+       I&rsquo;m wide awake after only three hours. This is not good; we
+still have seven hours to go.
+      </p>
+      <p>
+       Just a note for future flights. Foam ear plugs can isolate
+four extra powerful jet engines, but a baby&rsquo;s cry will cut
+through them like a hot knife through butter.
+      </p>
+      <h2 id="hour-15">
+       Hour 15
+      </h2>
+      <p>
+       I slowly woke up when the staff turned the lights on. I found
 myself pushed out of my seat by a granny who occupied three
-seats already. Her husband was stretched over the whole row
-behind us, so she wanted to follow his example. And I was in
-the way.</p>
-<p>A smell of the second in-flight meal spread through the cabin
+seats already.
+      </p>
+      <p>
+       A smell of the second in-flight meal spread through the cabin
 and the granny woke up with a smile. At least someone had a
-good and uninterrupted sleep. Meals were hot and tasty, and
-they kept me full during the flight. When the crew took away
-our dishes, the pilot announced a technical stop in Singapore
-for cleaning and refueling. I really needed it; more than
-twelve hours of sitting made some parts of my body numb.</p>
-<h2 id="hour-18-singapore">Hour 18, Singapore</h2>
-<p>I rushed through the gate and headed straight for the
-bathroom. I won’t go into any details, but beware of the
-toilets. They aren’t triggered by handles, but by proximity
-sensors. You have to sit very straight all the time to be
-close to the wall. If you bend forward even a little, it will
-flush. Guess how I found that out. On the other hand, I
-welcomed the surprising refreshment.</p>
-<p>A fresh shirt, wet wipes and a toothbrush can be a
+good and uninterrupted sleep.
+      </p>
+      <h2 id="hour-18-singapore">
+       Hour 18, Singapore
+      </h2>
+      <p>
+       I rushed through the gate and headed straight for the
+bathroom. I won&rsquo;t go into any details, but beware of the
+toilets.
+      </p>
+      <p>
+       A fresh shirt, wet wipes and a toothbrush can be a
 resurrection on such long flights so be sure to pack them with
-you.</p>
-<p>Two things caught my attention: free Internet, and kids in
+you.
+      </p>
+      <p>
+       Two things caught my attention: free Internet, and kids in
 military uniforms and bulletproof vests, holding machine guns.
-Other than that, just an ordinary airport.</p>
-<p>I went through the procedures and paperwork with Leo and Mary,
+Other than that, just an ordinary airport.
+      </p>
+      <p>
+       I went through the procedures and paperwork with Leo and Mary,
 and then helped them by translating on a security check. We
 boarded the plane again and were ready for the last leg of the
-trip.</p>
-<h2 id="hour-20-are-we-there-yet">Hour 20, Are we there yet?</h2>
-<p>I got the middle seat again, but this time the flight was
-full, so I was stuck. The fact that I wasn’t sleepy at all
-made it even worse. It was midday back home and while most of
-the passengers were sound asleep after a meal, I’ve managed to
-go through a 250 page book about Sydney, watched a few
-videos and then started another book. The seven and a half
-hour flight was slow. Really, really slow. S. L. O. W.
-Sssssllooooo … OK, you get the picture.</p>
-<h2 id="hour-28">Hour 28</h2>
-<p>I was so happy when I saw Sydney for the first time during
-descent. It marked the end of this too long voyage. From
-Sunday 17:35 in Zagreb (the first try) to Wednesday 6:55 in
-Sydney.</p>
-<p>I took Team Sydney through the passport and customs control,
+trip.
+      </p>
+      <h2 id="hour-20-are-we-there-yet">
+       Hour 20, Are we there yet?
+      </h2>
+      <p>
+       I got the middle seat again, but this time the flight was
+full, so I was stuck. The fact that I wasn&rsquo;t sleepy at all
+made it even worse.
+      </p>
+      <h2 id="hour-28">
+       Hour 28
+      </h2>
+      <p>
+       I was so happy when I saw Sydney for the first time during
+descent. It marked the end of this too long voyage.
+      </p>
+      <p>
+       I took Team Sydney through the passport and customs control,
 and then to baggage claim. I reported some stuff they thought
 could be suspicious, so a dog had to sniff me and my baggage.
-He looked at me, winked and reported (barked) nothing.</p>
-<p>Leo’s family was waiting for us outside. They were so happy to
+      </p>
+      <p>
+       Leo&rsquo;s family was waiting for us outside. They were so happy to
 see Team Sydney arrive safely and they thanked me through
-tears in a mix of Croatian and English. I wasn’t prepared for
-this much affection, but was very happy to help the people in
-need. We parted ways and I headed off for the train.</p>
-<p>Sydney, <a >here I come</a>.</p>
-
-</div>
-</article>
-
-<hr>
-
-<p>Previous blog post:<br>
-  <a >Three days to Sydney, part one</a>
-</p>
-
-<p>Stay up to date:<br>
-   <a >Email</a> ·
-   <a >RSS feed</a> ·
-   <a >LinkedIn</a> ·
-   <a >Mastodon</a>
-</p>
-
-</div>
-
+tears in a mix of Croatian and English.
+      </p>
+      <p>
+       Sydney,
+       <a>
+        here I come
+       </a>
+       .
+      </p>
+     </div>
+    </article>
+    <hr>
+    <p>
+     Previous blog post:
+     <br>
+     <a>
+      Three days to Sydney, part one
+     </a>
+    </p>
+    <p>
+     Stay up to date:
+     <br>
+     <a>
+      Email
+     </a>
+     &middot;
+     <a>
+      RSS feed
+     </a>
+     &middot;
+     <a>
+      LinkedIn
+     </a>
+     &middot;
+     <a>
+      Mastodon
+     </a>
+    </p>
+   </div>
   </div>
   <nav id="bottom-nav">
-    <ul>
-  
-  
-  <li><a >Home</a></li>
-  <li class="active"><a >Blog</a></li>
-  <li><a >Essays</a></li>
-  <li><a >Talks</a></li>
-  <li><a >Books</a></li>
-  <li><a >About</a></li>
-</ul>
-
+   <ul>
+    <li>
+     <a>
+      Home
+     </a>
+    </li>
+    <li class="active">
+     <a>
+      Blog
+     </a>
+    </li>
+    <li>
+     <a>
+      Essays
+     </a>
+    </li>
+    <li>
+     <a>
+      Talks
+     </a>
+    </li>
+    <li>
+     <a>
+      Books
+     </a>
+    </li>
+    <li>
+     <a>
+      About
+     </a>
+    </li>
+   </ul>
   </nav>
-  <a  class="back-to-top">Back to top ▲</a>
-
-</body></html>
+  <a class="back-to-top">
+   Back to top ▲
+  </a>
+ </body>
+</html>

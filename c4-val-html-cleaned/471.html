@@ -1,38 +1,71 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" class="yui3-js-enabled"><div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div><head>
-<style>
-@charset "UTF-8";
-
+<!DOCTYPE html>
+<html class="yui3-js-enabled" dir="ltr" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ <div class="" id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important">
+ </div>
+ <head>
+  <style>
+   @charset "UTF-8";
+/* Web font definitions for the Ubuntu font.
+ *
+ * Retrieved from https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700,700italic
+ *
+ * But served from launchpad.net for performance and security reasons.
+ */
 @font-face {
   font-family: "Ubuntu variable";
   font-stretch: 100%;
-  
+  /*  min and max value for the width axis, expressed as percentage */
   font-style: normal;
   font-weight: 100 800;
-  
+  /*  min and max value for the weight axis */
   src: url("fonts/f1ea362b-Ubuntu%5Bwdth,wght%5D-latin-v0.896a.woff2") format("woff2-variations");
 }
 @font-face {
   font-family: "Ubuntu variable";
   font-stretch: 100%;
-  
+  /*  min and max value for the width axis, expressed as percentage */
   font-style: italic;
   font-weight: 100 800;
-  
+  /*  min and max value for the weight axis */
   src: url("fonts/90b59210-Ubuntu-Italic%5Bwdth,wght%5D-latin-v0.896a.woff2") format("woff2-variations");
 }
 @font-face {
   font-family: "Ubuntu Mono variable";
   font-style: normal;
   font-weight: 100 800;
-  
+  /*  min and max value for the weight axis */
   src: url("fonts/d5fc1819-UbuntuMono%5Bwght%5D-latin-v0.869.woff2") format("woff2-variations");
 }
-
+/* = Launchpad style sheet = */
+/* == Contents == */
+/*
+ * Guidelines
+ * Things browsers should do but don't
+ * Overall presentation
+  - Fonts and colors
+  - Error, warning, and informational messages
+  - Forms
+  - Tables
+   - Listing tables
+   - Summary tables
+...
+ * Application-specific styles
+  - Overview
+  - Code
+  - Bugs
+  - Blueprints
+  - Translations
+  - Answers
+...
+*/
+/* Inline description editing.
+ * Override the lazr-js style for all uses.
+ */
 div#edit-description,
 div#edit-commit_message {
   font-family: "Ubuntu Mono variable", "Ubuntu Mono", Consolas, Monaco, Courier, monospace;
   font-size: 0.9375rem;
-  
+  /* 15px */
   line-height: 1.5;
   margin: 1em 0;
 }
@@ -47,6 +80,7 @@ div#edit-commit_message {
   -ms-user-select: none;
 }
 
+/* === Fonts and colors === */
 .unavailable {
   color: #999;
   background: none;
@@ -69,6 +103,7 @@ div#edit-commit_message {
   color: #666;
 }
 
+/* When shown as in a definition description, indent slightly. */
 dd .whiteboard {
   padding-left: 1em;
 }
@@ -132,6 +167,7 @@ form.primary.search.dynamic_bug_listing p {
   display: none;
 }
 
+/* === Official Bug Tag Management === */
 .official-tags-layout-table {
   width: 100%;
 }
@@ -222,8 +258,9 @@ form.primary.search.dynamic_bug_listing p {
   border: 0 !important;
 }
 
+/* Various custom link icons */
 a.bg-image {
-  
+  /* A background-image should be specified on the element. */
   background-repeat: no-repeat;
   background-position: center left;
   background-attachment: scroll;
@@ -233,6 +270,8 @@ a.bg-image {
   padding-left: 18px;
 }
 
+/* == Application-specific styles == */
+/* person/project/bug descriptions, bug comments */
 .report h2 {
   font-size: 24px;
 }
@@ -259,6 +298,7 @@ a.bg-image {
   width: 99%;
 }
 
+/* IE float bug */
 .boardCommentDetails {
   background-color: #f4f6f9;
   border-bottom: 1px solid #ddd;
@@ -319,7 +359,7 @@ a.bg-image {
   display: inline-block;
   margin-left: 1.5em;
   padding: 0.625rem;
-  
+  /* 10px */
 }
 
 .from-superseded {
@@ -330,6 +370,7 @@ a.bg-image {
   background-color: gray;
 }
 
+/* --- Overview --- */
 body.tab-overview #description, div#branch-description {
   width: 50em;
 }
@@ -348,6 +389,9 @@ div#branch-description {
   margin-top: 1.2em;
 }
 
+/* Soyuz-related styles (that don't have a facet, but generally are
+ * under Overview)
+ */
 ul.latest-ppa-updates li {
   padding: 3px;
   background-repeat: no-repeat;
@@ -359,7 +403,9 @@ table#packages_list tr.superseded, tr.blacklisted {
 }
 
 ul.latest-ppa-updates li:nth-child(odd) {
-  
+  /* The following could be generalised for use to the following selector:
+     .side .portlet li.nth-child(odd)
+     if needed. */
   border-top: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
   background-color: #eeeeff;
@@ -430,6 +476,7 @@ div#signing-key p {
   padding-left: 18px;
 }
 
+/* build status links should always be padded. */
 td.build_status a {
   margin: 0 0 0 0.4em;
 }
@@ -503,10 +550,11 @@ a.update-retry {
   padding-left: 1em;
 }
 
+/* PPA installation instructions slider.*/
 #ppa-install-slide-trigger {
   cursor: pointer;
   color: #0e8420;
-  
+  /* for the underline on hover */
 }
 
 #ppa-install-slide-trigger:hover {
@@ -527,12 +575,14 @@ a.update-retry {
   white-space: nowrap;
 }
 
+/* Brand the related PPA versions with the PPA icon (not currently
+   in the sprite image.) */
 div#slide-trigger {
   padding: 8px 0 8px 32px;
   background: url("/@@/ppa-large") 0 0 no-repeat;
   cursor: pointer;
   color: #0e8420;
-  
+  /* for the underline on hover */
 }
 
 div#slide-trigger:hover {
@@ -547,16 +597,20 @@ dl#ppa_packaging dd {
   margin-left: 2em;
 }
 
+/* Ensure that when we add the lazr-closed class via js that the
+ * slider body will not be visible. */
 #related-ppa-versions .widget-bd.lazr-closed {
   height: 0px;
   overflow: hidden;
   display: block;
 }
 
+/* Archive subscription confirmation should be transparent
+ * to users, hence the button styled as a link. */
 form.archive-subscription-activation button {
   border: none;
   float: left;
-  
+  /* Enables underline on hover below. See http://is.gd/1i7TB */
   color: #0033AA;
   background: transparent url(/@@/info) no-repeat scroll left center;
   padding: 0 0 0 15px;
@@ -568,6 +622,7 @@ form.archive-subscription-activation button:hover {
   text-decoration: underline;
 }
 
+/* Shaded logging area. */
 div.logtail {
   margin: 0.5em;
   background-color: #f6f6f6;
@@ -582,11 +637,14 @@ div.logtail p {
   max-width: 100%;
 }
 
+/* <pre> for presenting source changelog nicely. */
 pre.changelog {
   margin: 0.5em;
   padding: 5px;
 }
 
+/* Disabled PPAs when linkified (uploaders) should be gray and when not
+   linkified should be lined-through. */
 a.ppa-icon-inactive {
   color: gray;
 }
@@ -599,6 +657,9 @@ div.builds_list form {
   padding: 1em 1em 2em 0em;
 }
 
+/* XXX Michael Nelson 20090828 bug=420376
+ * Temporary style for actions on the ppa/+packages page until we move
+ * the copy/delete packages functionality into the page itself. */
 div.ppa-packaging-tmp-actions {
   float: right;
 }
@@ -607,6 +668,7 @@ div.ppa-packaging-tmp-actions .portlet {
   border-top: 0 none;
 }
 
+/* --- Code --- */
 code.command {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -698,7 +760,7 @@ div.diff .horizontal {
 #summary-row-merge-instruction-git td {
   font-family: "Ubuntu Mono variable", "Ubuntu Mono", Consolas, Monaco, Courier, monospace;
   font-size: 0.8125rem;
-  
+  /* 14px */
 }
 
 table#proposal-summary td,
@@ -706,7 +768,7 @@ table.diff tr:not(.inline-comments) {
   line-height: 1.5;
   font-weight: 440;
   padding-left: 0.625rem;
-  
+  /* 10px */
 }
 
 table.diff {
@@ -715,7 +777,7 @@ table.diff {
   background-color: white;
   margin-bottom: 0.5em;
   overflow-wrap: break-word;
-  
+  /* negative margin to break out of the parent `.yui-t4 .yui-main .yui-b` */
   margin-right: -25%;
 }
 
@@ -733,14 +795,14 @@ table.diff .nav-cursor:before {
 
 table.diff .text {
   padding-left: 0.625rem;
-  
+  /* 10px */
 }
 
 table.diff .line-no, table.diff .ss-line-no {
   text-align: right;
   background-color: #f6f6f6;
   padding-right: 0.625rem;
-  
+  /* 10px */
   color: #6e7781;
   border-right: 0;
   width: 4em;
@@ -784,7 +846,7 @@ table.diff .inline-comments .yui3-ieditor-multiline .yui3-ieditor-btns .bg-top-l
 table.diff .inline-comments .boardComment {
   margin: 0.5rem;
   max-width: 50rem;
-  
+  /* 800px */
 }
 
 table.diff .inline-comments .boardCommentBody {
@@ -855,6 +917,7 @@ p#personal-git-directions pre {
   max-width: 100%;
 }
 
+/* === Bugs === */
 tr.buglink-summary td {
   padding: 0px 6px;
 }
@@ -863,10 +926,12 @@ tr.buglink-summary td.first {
   padding-left: 0px;
 }
 
+/* In a bug report page, the current context is highlighted in yellow: */
 #affected-software tr.highlight {
   background-color: #ff9;
 }
 
+/* Bug report page subscribe/unsubscribe spinner */
 div#sub-unsub-spinner, div#mute-unmute-spinner {
   background: url(/@@/spinner) center left no-repeat;
   color: #999;
@@ -896,45 +961,67 @@ div#sub-unsub-spinner, div#mute-unmute-spinner {
   text-align: left;
 }
 
+/* Intended to be used as temporary replacement for a sprite class when the
+   associated link's action is in-progress. */
 .spinner {
   background: url(/@@/spinner) center left no-repeat;
 }
 
+/* Intended to be used as temporary replacement for a button class like
+   lazr-pos when the associated button's action is in-progress. */
 button.spinner {
   background-image: url(/@@/spinner) !important;
 }
 
+/* Gives us some room after the description of the user's subscription. */
 div#current_user_subscription {
   padding-bottom: 8px;
 }
 
+/* This lets us have a link that spans lines. */
 div#current_user_subscription a.sprite {
   display: inline;
 }
 
+/* === Translations === */
 .translation code {
   font-weight: bold;
 }
 
+/* an interpolation code, such as %i */
 .translation samp {
-  
+  /* a leading/trailing space */
   background: url(/@@/translation-space) center center no-repeat;
   padding: 0 4px;
-  
+  /* should be half the width of /@@/translation-space */
   white-space: pre;
-  
+  /* stops consecutive spaces from collapsing */
 }
 
+/* In translation forms, single-line text fields occupy nearly all of the
+available width, just like multi-line fields (see "textarea" above): */
 input.translate {
   width: 90%;
   max-width: 60em;
 }
 
+/* Templates listing.
+ *
+ * Examples:
+ *   https://translations.launchpad.test/ubuntu/hoary/+templates
+ *   https://translations.launchpad.test/evolution/trunk/+templates
+ */
 .inactive-template td {
   background-color: #fee;
   color: #855;
 }
 
+/* Translations statistics and legend.
+ *
+ * Examples:
+ *   https://translations.launchpad.test/ubuntu/hoary/+lang/es
+ *   https://translations.launchpad.test/evolution/trunk/+lang/es
+ */
 div.translations-legend {
   padding-top: 2em;
   padding-bottom: 1em;
@@ -967,6 +1054,14 @@ table.translation-stats tfoot td {
   text-align: center;
 }
 
+/* Translations help links.
+ *
+ * Examples:
+ *   https://translations.launchpad.test/ubuntu/hoary/+source/evolution/+pots/evolution-2.2/
+ *   https://translations.launchpad.test/ubuntu/hoary/+source/evolution/+translations
+ *   https://translations.launchpad.test/ubuntu/hoary/
+ *
+ */
 div.translation-help-links a {
   float: right;
 }
@@ -975,21 +1070,26 @@ div.translation-help-links div {
   clear: both;
 }
 
+/* Message boxes (especially error boxes) should be visible above other
+ * elments. */
 .yui3-activator-message-box {
   z-index: 9999;
 }
 
+/* === Webhooks === */
 table.listing tr.webhook-delivery:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
+/* ====== Content area styles ====== */
+/* -- Front pages -- */
 .central {
   clear: left;
-  
+  /* Bugs FP */
   margin: 0 auto 1em;
   padding: 0.5em 0;
-  
+  /* FP should fit in ~750px; Bugs FP */
   width: auto;
 }
 
@@ -1005,6 +1105,7 @@ table.listing tr.webhook-delivery:hover {
   padding-top: 1em;
 }
 
+/* -- Other pages -- */
 img.mugshot {
   float: right;
   margin-left: 20px;
@@ -1022,6 +1123,7 @@ img.mugshot {
   display: inline-table;
 }
 
+/* Work around float bug in MSIE for Windows, while hiding from MSIE for Mac \*/
 * html img.mugshot {
   height: 1%;
 }
@@ -1030,6 +1132,7 @@ img.mugshot {
   display: block;
 }
 
+/* End hiding from MSIE for Mac */
 #project-cloud-preview a {
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -1052,10 +1155,12 @@ div.popupTitle {
   display: none;
 }
 
+/* Hide the packageset picker widget on the Initialize series page */
 .yui3-packagesetpickerwidget-hidden {
   display: none;
 }
 
+/* Search results*/
 #search-results {
   margin-top: 1em;
 }
@@ -1114,11 +1219,31 @@ div.popupTitle {
   font-weight: bold;
 }
 
+/* Don't add styles here.
+A chronologically-ordered style sheet is hard to maintain and debug.
+
+First, see if you can solve your problem by correcting the HTML.
+If not, see if there is an existing class that does what you want.
+As a last resort, if you really do need extra CSS, add it to the appropriate
+section of the style sheet, as shown in the table of contents.
+
+Don't add styles here. Thanks. */
+/*
+	TODO will need to remove settings on HTML since we can't namespace it.
+	TODO with the prefix, should I group by selector or property for weight savings?
+*/
 html {
   color: #000;
   background: #FFF;
 }
 
+/*
+	TODO remove settings on BODY since we can't namespace it.
+*/
+/*
+	TODO test putting a class on HEAD.
+		- Fails on FF. 
+*/
 body,
 div,
 dl,
@@ -1158,6 +1283,9 @@ img {
   border: 0;
 }
 
+/*
+	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+*/
 address,
 caption,
 cite,
@@ -1202,6 +1330,7 @@ acronym {
   font-variant: normal;
 }
 
+/* to preserve line-height and selector appearance */
 sup {
   vertical-align: text-top;
 }
@@ -1218,16 +1347,19 @@ select {
   font-weight: inherit;
 }
 
+/*to enable resizing for IE*/
 input,
 textarea,
 select {
   *font-size: 100%;
 }
 
+/*because legend doesn't inherit in IE */
 legend {
   color: #000;
 }
 
+/* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssreset {
   display: none;
 }
@@ -1479,15 +1611,19 @@ legend {
 
 .yui3-g {
   letter-spacing: -0.31em;
-  
+  /* Webkit: collapse white-space between units */
   *letter-spacing: normal;
-  
+  /* reset IE < 8 */
   *word-spacing: -0.43em;
-  
+  /* IE < 8: collapse white-space between units */
   text-rendering: optimizespeed;
-  
+  /* Webkit: fixes text-rendering: optimizeLegibility */
 }
 
+/* Opera as of 12 on Windows needs word-spacing.
+   The ".opera-only" selector is used to prevent actual prefocus styling
+   and is not required in markup.
+*/
 .opera-only :-o-prefocus,
 .yui3-g {
   word-spacing: -0.43em;
@@ -1497,7 +1633,7 @@ legend {
   display: inline-block;
   zoom: 1;
   *display: inline;
-  
+  /* IE < 8: fake inline-block */
   letter-spacing: normal;
   word-spacing: normal;
   vertical-align: top;
@@ -1535,7 +1671,7 @@ legend {
   display: inline-block;
   zoom: 1;
   *display: inline;
-  
+  /* IE < 8: fake inline-block */
   letter-spacing: normal;
   word-spacing: normal;
   vertical-align: top;
@@ -1654,17 +1790,40 @@ legend {
   width: 95.8333%;
 }
 
+/* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssgrids {
   display: none;
 }
 
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 3.0.0
+build: 1549
+*/
+/*
+*
+* The YUI CSS Foundation uses the *property and _property CSS filter
+* techniques to shield a value from A-grade browsers [1] other than
+* IE6 & IE7 (*property) and IE6 (_property)
+*
+/
+Section: General Rules
+*/
 body {
-  
+  /* center the page */
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
+/*
+Section: Page Width Rules (#doc, #doc2, #doc3, #doc4)
+*/
+/*
+Subsection: General
+*/
 .yui-d0,
 .yui-d1,
 .yui-d1f,
@@ -1672,12 +1831,12 @@ body {
 .yui-d2f,
 .yui-d3,
 .yui-d3f {
-  
+  /* 974px fixed */
   margin: auto;
   text-align: left;
   width: 57.69em;
   *width: 56.25em;
-  
+  /* doc1*/
 }
 
 .yui-t1,
@@ -1691,8 +1850,14 @@ body {
   width: 100%;
 }
 
+/*
+Subsection: 100% (doc)
+*/
 .yui-d0 {
-  
+  /* Left and Right margins are not a structural part of Grids. Without them Grids
+  works fine, but content bleeds to the very edge of the document, which often
+  impairs readability and usability. They are
+  provided because they prevent the content from "bleeding" into the browser's chrome.*/
   margin: auto 10px;
   width: auto;
 }
@@ -1701,6 +1866,9 @@ body {
   width: 100%;
 }
 
+/*
+Subsection: 950 Centered (doc2)
+*/
 .yui-d2 {
   width: 73.076em;
   *width: 71.25em;
@@ -1710,6 +1878,9 @@ body {
   width: 950px;
 }
 
+/*
+Subsection: 974 Centered (doc3)
+*/
 .yui-d3 {
   width: 74.923em;
   *width: 73.05em;
@@ -1719,6 +1890,13 @@ body {
   width: 974px;
 }
 
+/*
+Section: Preset Template Rules (.yui-t[1-6])
+*/
+/*
+Subsection: General
+*/
+/* to preserve source-order independence for Gecko without breaking IE */
 .yui-b {
   position: relative;
 }
@@ -1739,7 +1917,7 @@ body {
 .yui-t2 .yui-main,
 .yui-t3 .yui-main {
   float: right;
-  
+  /* IE: preserve layout at narrow widths */
   margin-left: -25em;
 }
 
@@ -1747,10 +1925,18 @@ body {
 .yui-t5 .yui-main,
 .yui-t6 .yui-main {
   float: left;
-  
+  /* IE: preserve layout at narrow widths */
   margin-right: -25em;
 }
 
+/* Subsection: For Specific Template Presets */
+/**
+* Nudge down to get to 13px equivalent for these form elements
+*/
+/*
+TODO Create t1-6's that are based on fixed widths
+*/
+/* t1 narrow block = left, equivalent of 160px */
 .yui-t1 .yui-b {
   float: left;
   width: 12.30769em;
@@ -1762,6 +1948,7 @@ body {
   *margin-left: 12.975em;
 }
 
+/* t2 narrow block = left, equivalent of 180px */
 .yui-t2 .yui-b {
   float: left;
   width: 13.84615em;
@@ -1773,6 +1960,7 @@ body {
   *margin-left: 14.475em;
 }
 
+/* t3 narrow block = left, equivalent of 300px */
 .yui-t3 .yui-b {
   float: left;
   width: 23.0769em;
@@ -1784,6 +1972,7 @@ body {
   *margin-left: 23.475em;
 }
 
+/* t4 narrow block = right, equivalent of 180px */
 .yui-t4 .yui-b {
   float: right;
   width: 13.8456em;
@@ -1795,6 +1984,7 @@ body {
   *margin-right: 14.475em;
 }
 
+/* t5 narrow block = right, equivalent of 240px */
 .yui-t5 .yui-b {
   float: right;
   width: 18.4615em;
@@ -1806,6 +1996,7 @@ body {
   *margin-right: 18.975em;
 }
 
+/* t6 narrow block = equivalent of 300px */
 .yui-t6 .yui-b {
   float: right;
   width: 23.0769em;
@@ -1822,6 +2013,12 @@ body {
   width: auto;
 }
 
+/*
+Section: Grids and Nesting Grids
+*/
+/*
+Subsection: Children generally take half the available space
+*/
 .yui-gb .yui-u,
 .yui-g .yui-gb .yui-u,
 .yui-gb .yui-g,
@@ -1836,6 +2033,7 @@ body {
   float: left;
 }
 
+/*Float units (and sub grids) to the right */
 .yui-g .yui-u,
 .yui-g .yui-g,
 .yui-g .yui-gb,
@@ -1853,6 +2051,7 @@ body {
   float: right;
 }
 
+/*Float units (and sub grids) to the left */
 .yui-g div.first,
 .yui-gb div.first,
 .yui-gc div.first,
@@ -1890,6 +2089,7 @@ body {
   margin-left: 2%;
 }
 
+/* Give IE some extra breathing room for 1/3-based rounding issues */
 .yui-gb .yui-u {
   *width: 31.8%;
   *margin-left: 1.9%;
@@ -1925,6 +2125,9 @@ body {
   margin-left: 0;
 }
 
+/*
+Section: Deep Nesting
+*/
 .yui-g .yui-g .yui-u,
 .yui-gb .yui-g .yui-u,
 .yui-gc .yui-g .yui-u,
@@ -2038,18 +2241,21 @@ body {
   float: left;
 }
 
+/* Width Accommodation for Nested Contexts */
 .yui-gb .yui-ge .yui-u,
 .yui-gb .yui-gf div.first {
   *width: 24%;
   _width: 20%;
 }
 
+/* Width Accommodation for Nested Contexts */
 .yui-gb .yui-ge div.first,
 .yui-gb .yui-gf .yui-u {
   *width: 73.5%;
   _width: 65.5%;
 }
 
+/* Patch for GD within GE */
 .yui-ge div.first .yui-gd .yui-u {
   width: 65%;
 }
@@ -2058,6 +2264,9 @@ body {
   width: 32%;
 }
 
+/*
+Section: Clearing. zoom for IE, :after for others
+*/
 #bd:after,
 .yui-g:after,
 .yui-gb:after,
@@ -2094,6 +2303,7 @@ body {
   zoom: 1;
 }
 
+/* ui/assets/skins/sam/lazr.css */
 .yui3-skin-sam button.lazr-btn {
   background: transparent no-repeat scroll center center;
   overflow: hidden;
@@ -2139,6 +2349,7 @@ body {
   background-color: #f2f2f2;
 }
 
+/* ui/assets/skins/sam/banner.css */
 .yui3-banner {
   opacity: 1;
   -webkit-transition: opacity 0.3s ease-in;
@@ -2241,6 +2452,7 @@ body.beta.private .yui3-banner-content.private {
   background-repeat: no-repeat;
 }
 
+/* picker/assets/skins/sam/picker.css */
 .yui3-picker-hidden {
   display: none;
 }
@@ -2327,6 +2539,7 @@ ul.yui3-picker-results li {
   font-weight: bold;
 }
 
+/* overlay/assets/skins/sam/pretty-overlay.css */
 .blocking-div {
   z-index: 999;
   opacity: 0;
@@ -2459,6 +2672,7 @@ ul.yui3-picker-results li {
   margin-right: 1em;
 }
 
+/* ordering/assets/skins/sam/ordering.css */
 .yui3-orderbybar {
   border: 1px solid #EEE;
   float: left;
@@ -2500,6 +2714,7 @@ ul.yui3-picker-results li {
   min-height: 20px;
 }
 
+/* inlinehelp/assets/skins/sam/inlinehelp.css */
 .yui3-inlinehelp-overlay {
   width: 600px;
 }
@@ -2517,6 +2732,7 @@ ul.yui3-picker-results li {
   visibility: hidden;
 }
 
+/* inlineedit/assets/skins/sam/editor.css */
 .yui3-ieditor-hidden, .yui3-ieditor-errors-hidden, .yui3-editable_text-hidden, .yui3-editable_text-edit_mode .yui3-editable_text-trigger, .yui3-editable_text-edit_mode .yui3-editable_text-text {
   display: none;
 }
@@ -2731,6 +2947,7 @@ ul.yui3-picker-results li {
   padding: 2px 0 0 18px;
 }
 
+/* indicator/assets/skins/sam/indicator.css */
 .yui3-overlay-indicator {
   background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.6);
@@ -2750,6 +2967,7 @@ ul.yui3-picker-results li {
   visibility: hidden;
 }
 
+/* gallery-accordion/assets/skins/sam/gallery-accordion.css */
 .yui3-accordion {
   width: 100%;
   height: 100%;
@@ -2873,6 +3091,7 @@ ul.yui3-picker-results li {
   display: none;
 }
 
+/* formoverlay/assets/skins/sam/formoverlay.css */
 .yui3-lazr-formoverlay-hidden {
   visibility: hidden;
 }
@@ -2926,6 +3145,7 @@ ul.yui3-picker-results li {
   margin-top: 1em;
 }
 
+/* effects/assets/skins/sam/effects.css */
 .yui3-skin-sam .lazr-io-error {
   width: 30em;
   color: red;
@@ -2936,6 +3156,7 @@ ul.yui3-picker-results li {
   font-weight: normal;
 }
 
+/* confirmationoverlay/assets/skins/sam/confirmationoverlay.css */
 .yui3-lp-app-confirmationoverlay-hidden {
   visibility: hidden;
 }
@@ -2963,6 +3184,7 @@ ul.yui3-picker-results li {
   margin-top: 1em;
 }
 
+/* choiceedit/assets/skins/sam/choiceedit.css */
 .yui3-ichoicelist {
   min-width: 15%;
 }
@@ -3042,6 +3264,7 @@ ul.yui3-picker-results li {
   text-decoration: none;
 }
 
+/* activator/assets/skins/sam/activator.css */
 .yui3-activator-hidden {
   display: none;
 }
@@ -3109,555 +3332,568 @@ ul.yui3-picker-results li {
   background-color: #008000;
 }
 
+/* DO NOT EDIT THIS FILE BY HAND!!!    */
+/* It is autogenerated by spriteutils. */
+/* =========================
+   Universal presentation
+   Sprites
+
+   Sprites are generated by sprite-util. After it makes the images it
+   builds sprite.css using sprite.css.in as a template.
+
+   The `sprite-ref:` comment sets the name of the sprite image the icon
+   will be added to. No sprite image can exceed 10,000px because browsers
+   will fail to display the sprites.
+*/
 .add {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 0;
 }
 
 .edit {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -114px;
 }
 
 .remove {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -228px;
 }
 
 .config {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -342px;
 }
 
 .info {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -456px;
 }
 
 .question {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -570px;
 }
 
 .faq {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -684px;
 }
 
 .download, .download-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -798px;
 }
 
 .search-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -912px;
 }
 
 .no {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1026px;
 }
 
 .yes {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1140px;
 }
 
 .mute {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1254px;
 }
 
 .unmute {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1368px;
 }
 
 .person {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1482px;
 }
 
 .team {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1596px;
 }
 
 .arrowRight {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1710px;
 }
 
 .treeCollapsed {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1824px;
 }
 
 .treeExpanded {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -1938px;
 }
 
 .branch {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2052px;
 }
 
 .gitbranch {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2166px;
 }
 
 .distribution {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2280px;
 }
 
 .package-source {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2394px;
 }
 
 .package-sync {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2508px;
 }
 
 .language {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2622px;
 }
 
 .external-link {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2736px;
 }
 
 .new-window {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2850px;
 }
 
 .mail {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -2964px;
 }
 
 .notification-private {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3078px;
 }
 
 .notification-close {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3199px;
 }
 
 .order-ascending {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3308px;
 }
 
 .order-descending {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3422px;
 }
 
 .cve {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3536px;
 }
 
 .bug {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3650px;
 }
 
 .bug-critical {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3764px;
 }
 
 .bug-high {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3878px;
 }
 
 .bug-medium {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -3992px;
 }
 
 .bug-low {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4106px;
 }
 
 .bug-wishlist {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4220px;
 }
 
 .blueprint {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4334px;
 }
 
 .blueprint-essential {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4448px;
 }
 
 .blueprint-high {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4562px;
 }
 
 .blueprint-medium {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4676px;
 }
 
 .blueprint-low {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4790px;
 }
 
 .blueprint-undefined {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -4904px;
 }
 
 .blueprint-not {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5018px;
 }
 
 .ubuntu-logo {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5132px;
 }
 
 .person-inactive {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5248px;
 }
 
 .maybe, .undecided {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5362px;
 }
 
 .error-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5476px;
 }
 
 .cancel {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5590px;
 }
 
 .confirm {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5706px;
 }
 
 .flame {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5822px;
 }
 
 .bug-undecided {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -5936px;
 }
 
 .bug-remote {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6050px;
 }
 
 .bug-unknown {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6164px;
 }
 
 .bug-dupe {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6278px;
 }
 
 .bug-tracker {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6392px;
 }
 
 .package-binary {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6506px;
 }
 
 .retry {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6620px;
 }
 
 .distribution-badge {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6734px;
 }
 
 .project-badge {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6846px;
 }
 
 .project {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -6958px;
 }
 
 .product-badge {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7072px;
 }
 
 .product {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7184px;
 }
 
 .read-only {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7298px;
 }
 
 .warning-icon, .security {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7412px;
 }
 
 .private {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7526px;
 }
 
 .public {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7640px;
 }
 
 .meeting {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7754px;
 }
 
 .translate-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7868px;
 }
 
 .translation-file {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -7982px;
 }
 
 .translation-template {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8096px;
 }
 
 .trash-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8210px;
 }
 
 .stop {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8324px;
 }
 
 .architecture {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8438px;
 }
 
 .ppa-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8552px;
 }
 
 .ppa-icon-inactive {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8666px;
 }
 
 .source-package-recipe {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -8780px;
 }
 
 .merge-proposal {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   padding-left: 22px;
   background-position: 0 -8894px;
@@ -3665,202 +3901,230 @@ ul.yui3-picker-results li {
 
 .build-superseded {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9008px;
 }
 
 .build-success {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9122px;
 }
 
 .build-needed {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9236px;
 }
 
 .build-failure {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9350px;
 }
 
 .build-depwait {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9464px;
 }
 
 .favorite-yes {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9578px;
 }
 
 .haspatch-icon {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9692px;
 }
 
 .tour {
   background-image: url(../inline-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -9806px;
 }
 
+/* This file/image is full. Add sprites to icon-sprites.css.in */
+/* DO NOT EDIT THIS FILE BY HAND!!!    */
+/* It is autogenerated by spriteutils. */
+/* =========================
+   Universal presentation
+   Sprites
+
+   Sprites are generated by sprite-util. After it makes the images it
+   builds sprite.css using sprite.css.in as a template.
+
+   The `sprite-ref:` comment sets the name of the sprite image the icon
+   will be added to. No sprite image can exceed 10,000px because browsers
+   will fail to display the sprites.
+*/
 .list {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 0;
 }
 
 .bullet {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -114px;
 }
 
 .rss {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -228px;
 }
 
 .zoom-in {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -342px;
 }
 
 .zoom-out {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -456px;
 }
 
 .aging {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -570px;
 }
 
 .milestone {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -684px;
 }
 
 .milestone-inactive {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -798px;
 }
 
 .milestone-released, .release {
   background-image: url(../inline-sprites-2.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -912px;
 }
 
+/* DO NOT EDIT THIS FILE BY HAND!!!    */
+/* It is autogenerated by spriteutils. */
+/* =========================
+   Universal presentation
+   Sprites
+
+   Sprites are generated by sprite-util. After it makes the images it
+   builds sprite.css using sprite.css.in as a template.
+
+   The `sprite-ref:` comment sets the name of the sprite image the icon
+   will be added to. No sprite image can exceed 10,000px because browsers
+   will fail to display the sprites.
+*/
 .large-warning {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 0;
 }
 
 .large-error {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -332px;
 }
 
 .large-info {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   background-repeat: no-repeat;
   background-position: 0 -664px;
 }
 
+/* Add some wider 30px images for indicating a private artifact. */
 .blueprint.private {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   padding-left: 32px;
   background-position: 0 -996px;
 }
 
 .blueprint-undefined.private {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   padding-left: 32px;
   background-position: 0 -1310px;
 }
 
 .product.private {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   padding-left: 32px;
   background-position: 0 -1624px;
 }
 
 .project.private {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   padding-left: 32px;
   background-position: 0 -1938px;
 }
 
 .branch.private {
   background-image: url(../block-sprites-1.png);
-  
+  /* sprite-ref: icon-sprites */
   padding-left: 32px;
   background-position: 0 -2252px;
 }
 
 body {
-  
+  /* line-height is the same as the sprite height. */
   font-family: "Ubuntu variable", Ubuntu, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
   font-size: 0.8rem;
   line-height: 1.2rem;
   color: #000;
 }
 body.private, body.public {
-  
+  /* It must be obvious to the user that the context is private */
   background-image: none;
 }
 body.private .private-disallow {
-  
+  /* We want to disable/hide some actions on private artifacts */
   display: none;
 }
 
 .private-only {
-  
+  /* We want to only show some items on private artifacts */
   display: none;
 }
 
 body.private .private-only {
-  
+  /* We want to only show some items on private artifacts */
   display: block;
 }
 
@@ -3919,7 +4183,7 @@ ul.bug.remote, li.bug.remote {
 
 ul.language, li.language {
   list-style-image: url(/@@/language);
-  
+  /* Disable .language sprite. */
   background: inherit;
 }
 
@@ -3949,7 +4213,7 @@ ul.iconed {
   margin: 0 !important;
 }
 ul.buttons {
-  
+  /* without !important, gets overridden by the '#maincontent ol' rule */
   margin: 0.5em 0 0.5em 0 !important;
   padding: 0 !important;
 }
@@ -4022,12 +4286,12 @@ ol.subordinate {
 }
 
 .two-column-list dl.unseen, .two-column-list li.unseen {
-  
+  /* Keep the abilty to hide list entries. */
   display: none;
 }
 
 .three-column-list dl.unseen, .three-column-list li.unseen {
-  
+  /* Keep the abilty to hide list entries. */
   display: none;
 }
 
@@ -4101,7 +4365,7 @@ table.duplicate.listing * {
   margin: 1em 0 0 0;
 }
 .table-actions:nth-child(2) {
-  
+  /* text-align works because the <li> is also display:inline. */
   text-align: right;
 }
 .table-actions li {
@@ -4150,7 +4414,7 @@ th.descending {
 }
 
 .sortkey, .revsortkey {
-  
+  /* Used to indicate a value to be used to sort cells in a row */
   display: none;
 }
 
@@ -4161,7 +4425,7 @@ table.listing {
   border-bottom: 1px solid #d2d2d2;
 }
 table.listing form {
-  
+  /* Remove margin from forms when they are embedded within a table */
   margin-bottom: 0;
 }
 table.listing tbody, table.listing td.end-of-section {
@@ -4218,7 +4482,8 @@ table.listing th, table.listing td {
   padding-top: calc(0.5rem - 1px);
 }
 table.listing table th, table.listing table td {
-  
+  /* We don't want extra padding on nested tables,
+     like batch navigation. */
   padding: 0;
 }
 table.listing thead th, table.listing tr.thead th {
@@ -4258,11 +4523,11 @@ table.listing .section-heading {
   padding-top: 1.5em;
 }
 table.summary th, table.summary td {
-  
+  /* Summary tables havesubdued headers and a little row spacing. */
   padding: 0 0.5em 0.5em 0;
 }
 table.listing table.summary th, table.listing table.summary td {
-  
+  /* Summary tables havesubdued headers and a little row spacing. */
   padding: 0 0.5em 0.5em 0;
 }
 table.summary th {
@@ -4407,7 +4672,7 @@ h3 {
 p {
   width: auto;
   margin-bottom: 0.8em;
-  
+  /* Wrap the text before the eye gets lost. */
   max-width: 75em;
 }
 
@@ -4416,7 +4681,7 @@ div + p, ul + p, table + p {
 }
 
 li, dt, dd, blockquote, .narrow, .narrow-listing {
-  
+  /* Wrap the text before the eye gets lost. */
   max-width: 60em;
 }
 
@@ -4447,13 +4712,13 @@ pre, code, samp, tt, .console {
 }
 
 pre.wrap {
-  
+  /* From nice_pre in tales.py */
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 :link, :visited, a.js-action {
-  
+  /* Links are blue, brighter when clicked, and greyer once visited. */
   color: #03a;
   text-decoration: none;
 }
@@ -4470,36 +4735,36 @@ a.js-action:active {
   color: #36c;
 }
 a[onclick] {
-  
+  /* Links that don't open separate pages are green. */
   color: #0e8420;
   cursor: pointer;
 }
 
 .collapsible legend a {
-  
+  /* Links that don't open separate pages are green. */
   color: #0e8420;
   cursor: pointer;
 }
 
 a.js-action, a[onclick]:active {
-  
+  /* Links that don't open separate pages are green. */
   color: #0e8420;
   cursor: pointer;
 }
 
 .collapsible legend a:active {
-  
+  /* Links that don't open separate pages are green. */
   color: #0e8420;
   cursor: pointer;
 }
 
 a.js-action {
-  
+  /* Links that don't open separate pages are green. */
   color: #0e8420;
   cursor: pointer;
 }
 a.js-action:active {
-  
+  /* Links that don't open separate pages are green. */
   color: #0e8420;
   cursor: pointer;
 }
@@ -4528,7 +4793,7 @@ a.invalid-link:active, a.invalid-link:hover {
 }
 
 img, a img {
-  
+  /* No border on images that are links. */
   border: none;
 }
 
@@ -4568,12 +4833,12 @@ tt.command {
 }
 
 .questionstatusNEEDSINFO {
-  
+  /* brown */
   color: #930;
 }
 
 .questionstatusANSWERED {
-  
+  /* grey-green */
   color: #363;
 }
 
@@ -4886,14 +5151,14 @@ tt.command {
 }
 
 a.official-tag {
-  
+  /* Looks just like a normal link  */
 }
 a.unofficial-tag {
   color: #6699ee;
 }
 
 .vcsimportSUCCESS {
-  
+  /* inherited text color */
 }
 
 .vcsimportFAILURE {
@@ -5215,7 +5480,7 @@ input[type=input] + button, img[src$=spinner] + button {
 }
 
 .listbox {
-  
+  /* a scrolling list of checkboxes or radio buttons */
   border: 1px solid #8cacbb;
   display: inline-block;
   max-height: 12em;
@@ -5238,24 +5503,40 @@ input[type=input] + button, img[src$=spinner] + button {
 }
 
 .actions {
-  
+  /* Then in addition to the top/bottom margins of the actions container,
+     we give it a *negative* right margin, cancelling out that of the last
+     child. */
   margin: 1em -0.5em 1em 0;
 }
 .actions * {
-  
+  /*
+    Action links are those that begin the process of doing something.
+    For example, "Register a branch", "Edit profile", "Link to CVE".
+    When presented inline, they are rendered by launchpad-inline-link.pt.
+
+    Action buttons are those that submit a multi-row form.
+    Often an action button will have an "or _Cancel_" link next to it.
+
+    We want 0.5em horizontal gap between links and buttons in these
+    sections. Using margin-left would cause a bad gap to the left of a
+    leftmost item. Using margin-right would cause a bad gap to the right of
+    a rightmost item. We could fix these problems with :first-child/:last-
+    child, but not in IE. So we do something a little tricky. We go ahead
+    and give each child of the actions container a right margin:
+  */
   margin-right: 0.5em;
 }
 .actions * * {
-  
+  /* because ">" doesn't work in IE6 */
   margin-right: 0;
 }
 
 table.radio-button-widget tr td {
-  
+  /* Opera doesn't use the general tr above for the radio button table */
   vertical-align: top;
 }
 table.listing div.field > table {
-  
+  /* Hack to add breathing room to bug status forms: */
   margin-top: 0.5em;
 }
 table.listing div.field > label, table.listing div.field > div > label {
@@ -5267,8 +5548,8 @@ table.listing div.actions {
   margin-top: 1em;
 }
 table.form, table.extra-options {
-  
-  
+  /* Many forms are laid out using tables, with appropriate spacing: */
+  /* http://launchpad.test/firefox/+edit */
   margin: 1em 0 inherit inherit;
   width: 100%;
 }
@@ -5290,7 +5571,7 @@ table.form td td {
 }
 
 .long td {
-  
+  /* Long forms are composed of multiple tables and visible fieldsets */
   padding-right: 1em;
 }
 .long fieldset {
@@ -5302,14 +5583,16 @@ table.form td td {
 }
 
 .collapsible {
-  
+  /* Collapsible sections
+     Some page sections are hidden by default, expanded by clicking a link.
+     see lp.js:activate_collapsibles() */
   border: none;
   margin: 0;
 }
 
 fieldset.collapsible {
   padding: 16px 0 0;
-  
+  /* "Add a comment/attachment" form in bug reports */
 }
 
 .collapsible h2 {
@@ -5343,7 +5626,7 @@ img.collapseIcon {
 }
 
 .yui3-pretty-overlay #yui3-pretty-overlay-modal h1, .yui3-pretty-overlay #yui3-pretty-overlay-modal h2 {
-  
+  /* lazr is injecting presumptive markup. */
   color: #333;
   margin-right: 15px;
 }
@@ -5365,7 +5648,7 @@ h1 .yui3-ieditor-errors {
 }
 
 .steps h2 {
-  
+  /* lazr is injecting presumptive markup. */
   font-size: 12px;
   line-height: 30px;
 }
@@ -5385,13 +5668,14 @@ h1 .yui3-ieditor-errors {
   padding-right: 0;
 }
 .lazr-multiline-edit .clearfix h3 {
-  
+  /* Undo the damage done by lazr. */
   font-family: Ubuntu, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
   line-height: 12px;
 }
 
 .widget-hd.js-action {
-  
+  /* The js-action class is also used for non-links, for example, with
+     expand/collapse sections. */
   color: #0e8420;
   cursor: pointer;
 }
@@ -5445,13 +5729,13 @@ h1 .yui3-ieditor-errors {
 }
 
 .error.message::before, .warning.message::before, .informational.message::before {
-  
+  /* The alerts are preceded with an icon overlaying the top left corner: */
   display: block;
   margin: -15px 0 -6px -35px;
 }
 
 .error {
-  
+  /* Error messages are pink, with alerts having an error icon: */
   background: #ffe4e4;
 }
 .error.message::before {
@@ -5459,7 +5743,7 @@ h1 .yui3-ieditor-errors {
 }
 
 .warning {
-  
+  /* Warning messages are orange, with alerts having a warning icon: */
   background: #fff59c;
 }
 .warning.message::before {
@@ -5467,7 +5751,7 @@ h1 .yui3-ieditor-errors {
 }
 
 .informational {
-  
+  /* Informational messages are blue-to-grey, alerts have an info icon. */
   background: #d4e8ff url(/+icing/blue-fade-to-grey);
 }
 .informational.message::before {
@@ -5478,7 +5762,7 @@ h1 .yui3-ieditor-errors {
 }
 
 .debugging {
-  
+  /* Debugging messages are white on grey, alerts have an info icon. */
   background: #666;
   color: white;
 }
@@ -5487,19 +5771,20 @@ h1 .yui3-ieditor-errors {
 }
 
 .error .message {
-  
+  /* And inside, the error message itself uses a smaller icon. */
   background: url(/@@/error) center left no-repeat;
   margin-bottom: 0.25em;
   padding-left: 18px;
 }
 
 table.form .error {
-  
+  /* Form errors override this background color, because the lack of space
+     between the edge of fields and the edge of the color would look bad. */
   background: none;
 }
 
 .inline-warning {
-  
+  /* Warning messages inlined in the page. */
   color: red;
   font-weight: bold;
 }
@@ -5556,6 +5841,10 @@ table.form .error {
   text-decoration: underline;
 }
 
+/* ==================
+   Translations Forms
+*/
+/* ==== Translations hand-made forms ==== */
 form.translations div.fields {
   padding: 1em;
 }
@@ -5597,6 +5886,7 @@ form.translations div.alignment .secondary label {
   padding: 2px 1em 2px 2px;
 }
 
+/* This probably shouldn't be here, but I'm not sure where to put it yet */
 .yui-d0 {
   margin: 10px 20px;
 }
@@ -5614,6 +5904,9 @@ form.translations div.alignment .secondary label {
   margin-right: 25%;
 }
 
+/* =========================
+   Header
+*/
 .demo {
   background-color: #fee;
 }
@@ -5665,6 +5958,11 @@ form.translations div.alignment .secondary label {
   background-color: transparent;
 }
 
+/* The actions row of the watermark is reused by our mhonarc templates,
+ * which we can't easily change. So about half of this is overcomplex to
+ * support them too. Caution is also needed to avoid breaking
+ * Product:+index's inline title edit widget.
+ */
 div.watermark-apps-portlet {
   clear: both;
   margin-bottom: 0.8em;
@@ -5766,7 +6064,7 @@ div.watermark-apps-portlet > div > img, div.watermark-apps-portlet > div > a > i
 }
 
 .registering {
-  
+  /* Registered slot */
   margin: 0.5em 0 1em 0;
   font-size: 10px;
   color: #666;
@@ -5789,7 +6087,8 @@ div.watermark-apps-portlet > div > img, div.watermark-apps-portlet > div > a > i
   content: "Â» ";
 }
 .breadcrumbs li:last-child {
-  
+  /* The following leaves a small margin in chrome/webkit, but using none
+     doesn't hide the Â» in webkit either (both work for FF3.5). */
   font-weight: bold;
 }
 .breadcrumbs li:last-child:after {
@@ -5797,22 +6096,25 @@ div.watermark-apps-portlet > div > img, div.watermark-apps-portlet > div > a > i
 }
 
 #logincontrol {
-  
+  /* Top right of the page is a link to log in or a button to log out: */
   float: right;
 }
 #logincontrol img {
-  
+  /* align the image with the text */
   margin-bottom: -2px;
 }
 #logincontrol form {
   margin: 0;
 }
 #logincontrol input[type=submit] {
-  
+  /* The button lacks the right margin that buttons usually have: */
   font-size: 10px;
   margin-right: 0;
 }
 
+/* =========================
+   Footer
+*/
 .footer {
   clear: both;
   margin-top: 4em;
@@ -5915,7 +6217,7 @@ span.see-all {
 
 .top-portlet .summary {
   margin: 0 0 1em 0;
-  
+  /* Same as h3, this appears under a h1. */
   font-size: 16px;
 }
 
@@ -5928,7 +6230,7 @@ span.see-all {
 }
 
 .clearfix:after {
-  
+  /* use class="clearfix" whenever floats should be enclosed */
   content: ".";
   display: block;
   height: 0;
@@ -5937,7 +6239,7 @@ span.see-all {
 }
 
 * html .clearfix {
-  
+  /* Work around float bug in MSIE */
   height: 1%;
 }
 
@@ -6045,6 +6347,10 @@ table.diff td.line-no, table.diff td.ss-line-no, table.diff td.text {
   color: #b8b8ff;
 }
 
+/* =========================
+   Universal presentation
+   Sprites
+*/
 .sprite {
   padding: 0 0 6px 18px;
   line-height: 18px;
@@ -6056,7 +6362,7 @@ table.diff td.line-no, table.diff td.ss-line-no, table.diff td.text {
 }
 
 .action-icon {
-  
+  /* Textual browsers read the text, graphical browsers see the sprite. */
   display: inline-block;
   margin-left: 6px;
   width: 1px;
@@ -6089,25 +6395,36 @@ h3 a.sprite {
   top: 4px;
 }
 
+/* Hide the grey background for the Calendar content. */
 .yui3-skin-sam .yui3-pretty-overlay .yui3-calendar-content {
   background: none;
   border: none;
 }
 
+/* Center the Calendar within its overlay. */
 .yui3-calendarbase {
   margin: 0 auto;
 }
 
+/**
+  font-size overwrite for timeline graphs
+  to fit in fixed size containers
+**/
 .yui3-timelinegraph {
   font-size: 0.8rem;
   line-height: 1rem;
 }
 
+/* Hidden must be the last rule because it overides all other rules. */
 .inline {
   display: inline;
   margin: 0;
 }
 
+/* Use 'hidden' to hide elements unconditionally.
+ * Some things we want to hide by default only if javascript is enabled; for
+ * these cases use 'hide-on-load'.
+ */
 .hidden, .yui3-js-enabled .hide-on-load {
   display: none;
 }
@@ -6117,7 +6434,7 @@ h3 a.sprite {
 }
 
 .batch-navigation-links .next {
-  
+  /* Next links have icons: */
   background: center right no-repeat;
   padding-right: 14px;
 }
@@ -6136,7 +6453,7 @@ h3 a.sprite {
 
 .batch-navigation-links .previous, .batch-navigation-links .next,
 .batch-navigation-links .last {
-  
+  /* And all the links have spacing between them: */
   margin-left: 0.25em;
 }
 
@@ -6145,6 +6462,7 @@ h3 a.sprite {
   margin-right: 0.25em;
 }
 
+/* The bug picker buttons should be left aligned, not centred. */
 .yui3-bugpickerwidget .yui3-picker-footer-slot {
   margin-left: 0;
 }
@@ -6193,6 +6511,9 @@ div.hide_reveal_profiling {
   font-size: 10px;
 }
 
+/******************************************************************************
+   Side portlets
+*/
 .side {
   padding: 0.5em;
 }
@@ -6221,6 +6542,9 @@ div.hide_reveal_profiling {
   border-top: 1px solid #e3e3e3;
 }
 
+/******************************************************************************
+ Downloads portlet
+*/
 .downloads li {
   margin: 0;
   padding: 2px 0 0;
@@ -6257,6 +6581,9 @@ div.hide_reveal_profiling {
   padding: 0 0 0 1em;
 }
 
+/******************************************************************************
+ Involvement portlet
+*/
 .involvement li {
   border-top: 1px solid #d0d0d0;
   padding: 0;
@@ -6297,9 +6624,14 @@ div.hide_reveal_profiling {
   background-color: #eee;
 }
 
+/******************************************************************************
+ Announcements portlet
+*/
 .announcements li {
   margin-bottom: 0.5em;
-  
+  /* Some announcements have long strings of characters as section headers
+   * and such.  Since they don't have whitespace they can't wrap, so they
+   * would break out of their container if we didn't clip them here. */
   overflow: hidden;
 }
 
@@ -6319,6 +6651,9 @@ div.hide_reveal_profiling {
   margin-top: -2px;
 }
 
+/******************************************************************************
+ Data list portlet
+*/
 .side ul.data-list li {
   padding-bottom: 0;
 }
@@ -6330,6 +6665,9 @@ div.hide_reveal_profiling {
   padding-right: 0.25em;
 }
 
+/******************************************************************************
+ Attachments portlet
+*/
 .side .portlet .download-attachment {
   word-break: break-word;
 }
@@ -6408,10 +6746,10 @@ div#client-listing .field a {
 }
 
 .related {
-  
+  /* Lists that link to related content. */
   margin-top: 4em;
   border-top: 1px solid #cbcbcb;
-  
+  /* matches color of mainarea_* images */
   padding-top: 1em;
 }
 
@@ -6439,7 +6777,7 @@ div#client-listing .field a {
 }
 
 .gridflow {
-  
+  /* A list that positions the items in a grid (like a table). */
   margin: 0em;
   padding: 0em;
 }
@@ -6491,7 +6829,7 @@ div#client-listing .field a {
 }
 
 .full-page-width .full-page-width {
-  
+  /* The content is already full width. */
   width: 100%;
 }
 
@@ -6573,319 +6911,277 @@ table.sharing tr.spacebefore > td {
   padding-bottom: 1em;
 }
 
-</style>
-<base >
-
-    <meta charset="UTF-8">
-    <title>Comment #48 : Bug #1726519 : Bugs : linux package : Ubuntu</title>
-    
-    
-    
-    
-    
-    
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="/@@/browserconfig.xml?v=2022">
-    <meta name="theme-color" content="#ffffff">
-    
-    
-    
-
-    
-  
-  
-
-    
-
-    
-      <meta name="description" content="Hi Joseph,
+/*# sourceMappingURL=combo.css.map */
+  </style>
+  <base>
+  <meta charset="utf-8">
+  <title>
+   Comment #48 : Bug #1726519 : Bugs : linux package : Ubuntu
+  </title>
+  <meta content="#da532c" name="msapplication-TileColor">
+  <meta content="/@@/browserconfig.xml?v=2022" name="msapplication-config">
+  <meta content="#ffffff" name="theme-color">
+  <meta content="Hi Joseph,
 
 I know I'm new to this thread (took a while to find a match to the symptom), but I've been experiencing this issue as well (first on Manjaro, now on Xubuntu, both give problems with 4.13 but are fine in 4.9/4.10). Just installed your test kernel (lp1742630) to my Xubu16.04 installation. The panic is gone, but so is the offending SAS controller according to the dmesg output.
 
-Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just s...">
-      <meta property="og:description" content="Hi Joseph,
+Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just s..." name="description">
+  <meta content="Hi Joseph,
 
 I know I'm new to this thread (took a while to find a match to the symptom), but I've been experiencing this issue as well (first on Manjaro, now on Xubuntu, both give problems with 4.13 but are fine in 4.9/4.10). Just installed your test kernel (lp1742630) to my Xubu16.04 installation. The panic is gone, but so is the offending SAS controller according to the dmesg output.
 
-Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just s...">
-    
-
-    
-    
-      <meta property="og:title" content="Comment #48 : Bug #1726519 : Bugs : linux package : Ubuntu">
-      <meta property="og:type" content="website">
-      <meta property="og:image" content="/@@/launchpad-og-image.png">
-      <meta property="og:url" content="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1726519/comments/48/+index">
-      <meta property="og:site_name" content="Launchpad">
-    
-
-    
-
-    
-  
-
-  
-  
-  
-
-  
-
-  
-
-   
-   
-
-  
-
-    
-    
-
-    
-      
-    
-    
-  </head>
-
-  <body id="document" itemscope="" itemtype="http://schema.org/WebPage" class="tab-bugs
-      main_only
-      public
-      yui3-skin-sam">
-          
-          
-    <div class="yui-d0">
-      <div id="locationbar" class="login-logout">
-        
-
-<div id="logincontrol"><a >Log in / Register</a></div>
-
-      </div>
-
-      <div id="watermark" class="watermark-apps-portlet">
-        <div>
-          <a ><img alt="" width="64" height="64" src="rick.jpg"></a>
-        </div>
-        <div class="wide">
-          <h2 id="watermark-heading"><a >Ubuntu</a><br><a >linux package</a></h2>
-        </div>
-        
-  
-  <ul class="facetmenu">
-    
-      
-      <li class="overview"><a >Overview</a></li>
-      
-    
-    
-      
-      <li class="branches"><a >Code</a></li>
-      
-    
-    
-      <li class="bugs active"><a >Bugs</a></li>
-      
-      
-    
-    
-      
-      
-      <li class="specifications disabled-tab"><span>Blueprints</span></li>
-    
-    
-      
-      <li class="translations"><a >Translations</a></li>
-      
-    
-    
-      
-      <li class="answers"><a >Answers</a></li>
-      
-    
-  </ul>
-
-      </div>
-
-      
-        <div id="maincontent" class="yui-main">
-          <div class="yui-b" dir="ltr">
-            <div class="context-publication">
-              
-              <ol itemprop="breadcrumb" class="breadcrumbs">
-
-  <li>
-    <a >Bug #1726519</a>
-  </li>
-
-  <li>
-    Comment #48
-  </li>
-
-</ol>
-
-              <div id="registration" class="registering">
-                
-              </div>
-            </div>
-
-            
-            <div id="request-notifications">
-              
-            </div>
-
-            
-              <div itemprop="mainContentOfPage">
-      <h1>Comment 48 for bug 1726519</h1>
-      <div xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://schema.org/UserComments" class="boardComment editable-message
-                  " data-baseurl="/ubuntu/+source/linux/+bug/1726519/comments/48" data-i-can-edit="False">
-  <div class="boardCommentDetails">
-    <div class="message-revision-container">
-      <div class="message-revision-container-header">
-        <span>Revision history for this message</span>
-        <img src="rick.jpg" class="message-revision-close">
-      </div>
-      
-      <div class="message-revision-list"></div>
+Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just s..." property="og:description">
+  <meta content="Comment #48 : Bug #1726519 : Bugs : linux package : Ubuntu" property="og:title">
+  <meta content="website" property="og:type">
+  <meta content="/@@/launchpad-og-image.png" property="og:image">
+  <meta content="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1726519/comments/48/+index" property="og:url">
+  <meta content="Launchpad" property="og:site_name">
+ </head>
+ <body class="tab-bugs main_only public yui3-skin-sam" id="document" itemscope itemtype="http://schema.org/WebPage">
+  <div class="yui-d0">
+   <div class="login-logout" id="locationbar">
+    <div id="logincontrol">
+     <a>
+      Log in / Register
+     </a>
     </div>
-
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <a  class="sprite person">Jamie Baxter (himay)</a>
-            wrote
-            <time itemprop="commentTime" datetime="2018-01-14T03:53:33.967271+00:00" title="2018-01-14 03:53:33 UTC">on 2018-01-14</time><span class="editable-message-last-edit-date">:
-              </span>
-              
-          </td>
-          
-
-          <td>
-            
-          </td>
-          <td>
-            
-          </td>
-          <td class="bug-comment-index">
-          <a itemprop="url" > #48</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="boardCommentBody">
-    <ul style="margin-bottom: 1em">
-      <li class="download-attachment">
-        <a  class="sprite download-icon">4.10, 4.13, lp1742630 dmesg outputs and lspci dump</a>
-        <a class="sprite edit action-icon" >Edit</a>
-        
-        (62.6 KiB,
-        application/x-tar)
-        
-      </li>
+   </div>
+   <!--id="locationbar"-->
+   <div class="watermark-apps-portlet" id="watermark">
+    <div>
+     <a>
+      <img alt height="64" src="rick.jpg" width="64">
+     </a>
+    </div>
+    <div class="wide">
+     <h2 id="watermark-heading">
+      <a>
+       Ubuntu
+      </a>
+      <br>
+      <a>
+       linux package
+      </a>
+     </h2>
+    </div>
+    <!-- Application Menu -->
+    <ul class="facetmenu">
+     <li class="overview">
+      <a>
+       Overview
+      </a>
+     </li>
+     <li class="branches">
+      <a>
+       Code
+      </a>
+     </li>
+     <li class="bugs active">
+      <a>
+       Bugs
+      </a>
+     </li>
+     <li class="specifications disabled-tab">
+      <span>
+       Blueprints
+      </span>
+     </li>
+     <li class="translations">
+      <a>
+       Translations
+      </a>
+     </li>
+     <li class="answers">
+      <a>
+       Answers
+      </a>
+     </li>
     </ul>
-
-    
-
-    
-
-  
-  <div class="editable-message-body">
-    <div class="comment-text editable-message-text" itemprop="commentText"><p>Hi Joseph,</p>
-<p>I know I'm new to this thread (took a while to find a match to the symptom), but I've been experiencing this issue as well (first on Manjaro, now on Xubuntu, both give problems with 4.13 but are fine in 4.9/4.10). Just installed your test kernel (lp1742630) to my Xubu16.04 installation. The panic is gone, but so is the offending SAS controller according to the dmesg output.</p>
-<p>Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just say the word.</p></div>
-    
-    
-    
-  </div>
-
-  <div class="editable-message-form" style="display: none">
-     <textarea style="width: 100%" rows="10">Hi Joseph,
+   </div>
+   <div class="yui-main" id="maincontent">
+    <div class="yui-b" dir="ltr">
+     <div class="context-publication">
+      <ol class="breadcrumbs" itemprop="breadcrumb">
+       <li>
+        <a>
+         Bug #1726519
+        </a>
+       </li>
+       <li>
+        Comment #48
+       </li>
+      </ol>
+      <div class="registering" id="registration">
+      </div>
+     </div>
+     <div id="request-notifications">
+     </div>
+     <div itemprop="mainContentOfPage">
+      <h1>
+       Comment 48 for bug 1726519
+      </h1>
+      <div class="boardComment editable-message" data-baseurl="/ubuntu/+source/linux/+bug/1726519/comments/48" data-i-can-edit="False" itemscope itemtype="http://schema.org/UserComments" xmlns="http://www.w3.org/1999/xhtml">
+       <div class="boardCommentDetails">
+        <div class="message-revision-container">
+         <div class="message-revision-container-header">
+          <span>
+           Revision history for this message
+          </span>
+          <img class="message-revision-close" src="rick.jpg">
+         </div>
+         <div class="message-revision-list">
+         </div>
+        </div>
+        <table>
+         <tbody>
+          <tr>
+           <td>
+            <a class="sprite person">
+             Jamie Baxter (himay)
+            </a>
+            wrote
+            <time datetime="2018-01-14T03:53:33.967271+00:00" itemprop="commentTime" title="2018-01-14 03:53:33 UTC">
+             on 2018-01-14
+            </time>
+            <span class="editable-message-last-edit-date">
+             :
+            </span>
+           </td>
+           <td>
+           </td>
+           <td>
+           </td>
+           <td class="bug-comment-index">
+            <a itemprop="url">
+             #48
+            </a>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <div class="boardCommentBody">
+        <ul style="margin-bottom: 1em">
+         <li class="download-attachment">
+          <a class="sprite download-icon">
+           4.10, 4.13, lp1742630 dmesg outputs and lspci dump
+          </a>
+          <a class="sprite edit action-icon">
+           Edit
+          </a>
+          (62.6 KiB,
+        application/x-tar)
+         </li>
+        </ul>
+        <div class="editable-message-body">
+         <div class="comment-text editable-message-text" itemprop="commentText">
+          <p>
+           Hi Joseph,
+          </p>
+          <p>
+           I know I'm new to this thread (took a while to find a match to the symptom), but I've been experiencing this issue as well (first on Manjaro, now on Xubuntu, both give problems with 4.13 but are fine in 4.9/4.10). Just installed your test kernel (lp1742630) to my Xubu16.04 installation.
+          </p>
+          <p>
+           Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just say the word.
+          </p>
+         </div>
+        </div>
+        <div class="editable-message-form" style="display: none">
+         <textarea rows="10" style="width: 100%">Hi Joseph,
 
 I know I'm new to this thread (took a while to find a match to the symptom), but I've been experiencing this issue as well (first on Manjaro, now on Xubuntu, both give problems with 4.13 but are fine in 4.9/4.10). Just installed your test kernel (lp1742630) to my Xubu16.04 installation. The panic is gone, but so is the offending SAS controller according to the dmesg output.
 
 Attaching the dmesg (and some system info if needed) outputs, but if you need additional information just say the word.</textarea>
-     <input type="button" value="Update" class="editable-message-update-btn">
-     <input type="button" value="Cancel" class="editable-message-cancel-btn">
-  </div>
-
-  </div>
-
-  
-  
-</div>
-
-    </div>
-            
-            
-          </div>
+         <input class="editable-message-update-btn" type="button" value="Update">
+         <input class="editable-message-cancel-btn" type="button" value="Cancel">
         </div>
-
-        
-          
-        
-      
-
-      
-  <div id="footer" class="footer">
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- yui-b -->
+   </div>
+   <!-- yui-main -->
+   <!-- yui-b side -->
+   <!-- yui-t4 -->
+   <div class="footer" id="footer">
     <div class="lp-arcana">
-        <div class="lp-branding">
-          <a ><img src="rick.jpg" alt="Launchpad" width="65" height="18"></a>
-          &nbsp;•&nbsp;
-          <a >Take the tour</a>
-          &nbsp;•&nbsp;
-          <a >Read the guide</a>
-          &nbsp;
-          <form id="globalsearch" method="get" accept-charset="UTF-8" action="https://launchpad.net/+search">
-            <input type="search" id="search-text" name="field.text">
-            <input type="image" src="/@@/search" style="vertical-align:5%" alt="Search Launchpad">
-          </form>
-        </div>
-        
-  
-
+     <div class="lp-branding">
+      <a>
+       <img alt="Launchpad" height="18" src="rick.jpg" width="65">
+      </a>
+      &nbsp;&bull;&nbsp;
+      <a>
+       Take the tour
+      </a>
+      &nbsp;&bull;&nbsp;
+      <a>
+       Read the guide
+      </a>
+      &nbsp;
+      <form accept-charset="UTF-8" action="https://launchpad.net/+search" id="globalsearch" method="get">
+       <input id="search-text" name="field.text" type="search">
+       <input alt="Search Launchpad" src="/@@/search" style="vertical-align:5%" type="image">
+      </form>
+     </div>
     </div>
-
     <div class="colophon">
-      © 2004-2023
-      <a >Canonical&nbsp;Ltd.</a>
-      &nbsp;•&nbsp;
-      <a >Terms of use</a>
-      &nbsp;•&nbsp;
-      <a >Data privacy</a>
-      &nbsp;•&nbsp;
-      <a >Contact Launchpad Support</a>
-      
-      &nbsp;•&nbsp;
-      <a >Blog</a>
-      
-	&nbsp;•&nbsp;
-	<a >Careers</a>
-      
-      &nbsp;•&nbsp;
-      <a >System status</a>
-      <span id="lp-version">
-      &nbsp;•&nbsp;
+     &copy; 2004-2023
+     <a>
+      Canonical&nbsp;Ltd.
+     </a>
+     &nbsp;&bull;&nbsp;
+     <a>
+      Terms of use
+     </a>
+     &nbsp;&bull;&nbsp;
+     <a>
+      Data privacy
+     </a>
+     &nbsp;&bull;&nbsp;
+     <a>
+      Contact Launchpad Support
+     </a>
+     &nbsp;&bull;&nbsp;
+     <a>
+      Blog
+     </a>
+     &nbsp;&bull;&nbsp;
+     <a>
+      Careers
+     </a>
+     &nbsp;&bull;&nbsp;
+     <a>
+      System status
+     </a>
+     <span id="lp-version">
+      &nbsp;&bull;&nbsp;
         792da5a
         
         
-        (<a >Get the code!</a>)
-      </span>
+        (
+      <a>
+       Get the code!
+      </a>
+      )
+     </span>
     </div>
+   </div>
   </div>
+  <!-- yui-d0-->
+ </body>
+ <!--
+    Facet name: bugs
+    Page type: main_only
+    Has global search: True
+    Has application tabs: True
+    Has side portlets: False
 
-    </div>
+    At least 19 queries/external actions issued in 0.08 seconds
 
-    
-  
-  
-  
+    Features: {'profiling.enabled': None, 'hard_timeout': '9000', 'js.yui_version': None, 'app.mainsite_only.canonical_url': None, 'app.maintenance_message': None, 'baselayout.careers_link.disabled': None, 'visible_render_time': None}
 
-    
-  
+    r792da5a
 
-    
-  
-
-  
-
-</body></html>
+    -->
+</html>

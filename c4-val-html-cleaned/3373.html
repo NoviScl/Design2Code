@@ -1,6 +1,8 @@
-<!DOCTYPE html><html><head>
-<style>
-@font-face {
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   @font-face {
   font-family: 'PT Serif';
   font-style: italic;
   font-weight: 400;
@@ -30,6 +32,8 @@
   font-weight: 700;
   src: url(https://fonts.gstatic.com/s/sourcesanspro/v22/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdr.ttf) format('truetype');
 }
+
+
 
 .tree {
   margin: 0;
@@ -266,6 +270,7 @@
 	right: 10px;
 }
 
+
 .dropdown.dropdown-scroll .dropdown-menu,
 .dropdown.dropdown-scroll .dropdown-panel {
 	max-height: 358px;
@@ -303,6 +308,7 @@
 	margin: 5px 0;
 }
 
+/* Icon Examples - icons courtesy of http://p.yusukekamiyamane.com/ */
 .dropdown.has-icons LI > A {
 	padding-left: 30px;
 	background-position: 8px center;
@@ -316,7 +322,26 @@
 .dropdown .paste A { background-image: asset_url(/icons/clipboard.png); }
 .dropdown .delete A { background-image: asset_url(/icons/cross-script.png); }
 @charset "UTF-8";
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
 
+
+
+
+
+
+
+ */
+/* apply a natural box layout model to all elements */
+/* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -330,7 +355,12 @@
 
 @viewport {
   width: device-width; }
-
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
 article,
 aside,
 details,
@@ -345,6 +375,9 @@ section,
 summary {
   display: block; }
 
+/**
+ * some site-wide classes
+ */
 .hr {
   border: solid 1px #4b4b4b;
   border-width: 1px 0 0 0;
@@ -359,12 +392,13 @@ summary {
   text-align: left;
   width: 100%; }
 
+/* should refactor to .eda-btn but split for now */
 .eda-btn-light {
   font-family: 'Source Sans Pro';
   background: #e7cf98;
   border: solid 1px #333;
   color: #333;
-  
+  /*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F7E8C6), to(#EEDCB3));*/
   background: -webkit-gradient(linear, left top, left bottom, from(#F7E8C6), to(#EEDCB3));
   background: linear-gradient(#F7E8C6, #EEDCB3);
   border: 0;
@@ -398,6 +432,17 @@ summary {
       color: #e7cf98;
       text-decoration: none; }
 
+/**
+ * General page layout structure:
+ *
+ * html
+ *   body class="control-ler action"
+ *     header
+ *       h1
+ *     section class="view"
+ *       h1
+ *     footer
+ */
 html {
   color: #e7cf98;
   font-family: 'Source Sans Pro';
@@ -440,7 +485,7 @@ body {
   body .view:not(.three-panel) {
     padding: 1.4em 2em 4em;
     margin: 0em 7%;
-    
+    /*background: -webkit-gradient(linear, 0% 100%, 0% 0%, from($darkGray), to($highlightGray), color-stop(.4,$highlightGray));*/
     background: -webkit-gradient(linear, left top, left bottom, from(#383838), color-stop(40%, #383838), to(#333));
     background: linear-gradient(#383838, #383838 40%, #333);
     border-radius: 2px; }
@@ -769,7 +814,9 @@ li.work-list-item {
       font-size: 1em; }
     li.work-list-item a.work-link div.work-edition-name {
       font-size: .8em; }
-
+/*
+ * Table
+ */
 table.dataTable {
   margin: 0 auto;
   clear: both;
@@ -782,7 +829,7 @@ table.dataTable thead th {
   cursor: pointer;
   *cursor: hand;
   white-space: nowrap;
-   }
+  /* give the title some room */ }
   table.dataTable thead th:first-child {
     width: 12em; }
 
@@ -835,26 +882,42 @@ table.dataTable tr.even td.sorting_2 {
 table.dataTable tr.even td.sorting_3 {
   background-color: #606060; }
 
+/*
+ * Table wrapper
+ */
 .dataTables_wrapper {
   position: relative;
   clear: both;
   *zoom: 1; }
 
+/*
+ * Page length menu
+ */
 .dataTables_length {
   float: left; }
 
+/*
+ * Filter
+ */
 .dataTables_filter {
   float: right;
   text-align: right; }
 
+/*
+ * Table information
+ */
 .dataTables_info {
   clear: both;
   float: left; }
 
+/*
+ * Pagination
+ */
 .dataTables_paginate {
   float: right;
   text-align: right; }
 
+/* Two button pagination - previous / next */
 .paginate_disabled_previous,
 .paginate_enabled_previous,
 .paginate_disabled_next,
@@ -908,6 +971,7 @@ table.dataTable tr.even td.sorting_3 {
 .paginate_disabled_next {
   background: url(/assets/forward_disabled-ede9f1003cef25add5cc2b13f531a014ed9bea78154d4fba008b21f353030295.png) no-repeat top right; }
 
+/* Full number pagination */
 .paging_full_numbers {
   height: 22px;
   line-height: 22px; }
@@ -938,6 +1002,9 @@ table.dataTable tr.even td.sorting_3 {
 .paging_full_numbers a.paginate_active {
   background-color: #99B3FF; }
 
+/*
+ * Processing indicator
+ */
 .dataTables_processing {
   position: absolute;
   top: 50%;
@@ -953,6 +1020,9 @@ table.dataTable tr.even td.sorting_3 {
   font-size: 14px;
   background-color: white; }
 
+/*
+ * Sorting
+ */
 .sorting {
   background: url(/assets/sort_both-624f0a471a2535c4754e1f6974b0e64ee70d6907738346e2a11d0bff20258b8c.png) no-repeat center right; }
 
@@ -972,6 +1042,9 @@ table.dataTable thead th:active,
 table.dataTable thead td:active {
   outline: none; }
 
+/*
+ * Scrolling
+ */
 .dataTables_scroll {
   clear: both; }
 
@@ -994,9 +1067,15 @@ table.dataTable thead td:active {
   bottom: 2.4em;
   padding: 0;
   white-space: nowrap;
-  
-  
-   }
+  /**
+   * search-panel has search menu & all search-related sections:
+   * search, browse, lexicon
+   */
+  /**
+   * work-panel has work menu & all work-related sections:
+   * transcription, edition switcher, reading list
+   */
+  /* easier to test for CSS class in capybara */ }
   .view.three-panel .panel {
     bottom: 0;
     top: 0;
@@ -1016,7 +1095,7 @@ table.dataTable thead td:active {
     overflow: hidden;
     text-align: center;
     text-overflow: ellipsis;
-    
+    /* mostly to keep search from having horizontal scrollbar */
     word-spacing: -1px;
     margin-bottom: 0.3em; }
   .view.three-panel #search-panel {
@@ -1188,7 +1267,7 @@ table.dataTable thead td:active {
 
 .view.side-by-side {
   padding-top: 0;
-   }
+  /* actually contains .sbs-pages now */ }
   .view.side-by-side h2 {
     margin-top: 0;
     padding-top: .5em; }
@@ -1321,10 +1400,20 @@ i.preview {
 .bottom.drawer .credits {
   height: 100%;
   margin-top: 0; }
-
+/*
+ * SimpleModal Basic Modal Dialog
+ * http://simplemodal.com
+ *
+ * Copyright (c) 2013 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ */
+/* Overlay */
 #simplemodal-overlay {
   background-color: #000; }
 
+/* Container */
 #simplemodal-container {
   height: 360px;
   width: 600px;
@@ -1642,123 +1731,185 @@ a.m {
   font-size: 1.4em;
   width: 100%;
   display: inline-block; }
-
-</style>
+  </style>
   <meta charset="utf-8">
-  <meta name="google-site-verification" content="3W9-x9jjHm0H1pTASPlpI0qIXsn79t2cVMvdW56Ztho">
-
-   
-
-  <noscript></noscript>
-
-    <title>Emily Dickinson Archive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta name="description" content="The Emily Dickinson Archive makes high-resolution images of Dickinson's surviving manuscripts available in open access, and provides readers with a website through which they can view images of manuscripts held in multiple libraries and archives.">
-
-  <meta name="keywords" content="Dickinson, Emily Dickinson, Emily Dickinson Archive, poetry, poems, American, 19th century, digital, original, facsimile, fascicle, open access, manuscripts, transcripts, women, female, writer, author, poet, handwriting">
-
+  <meta content="3W9-x9jjHm0H1pTASPlpI0qIXsn79t2cVMvdW56Ztho" name="google-site-verification">
+  <!--[if lt IE 9]>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
   
-   
-  
-
-  
-  
-  <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="oW6jrgN4TxmiZdxSlIjgvp9ZKSM8xdFIiAD5GqvqrETfw1VDcsZYOBXnfF1awFUg8RNHb6M8X+CIuh7aGOlKiA==">
-  
-<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
-<body class="words show">
+  <![endif]-->
+  <noscript>
+  </noscript>
+  <title>
+   Emily Dickinson Archive
+  </title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="The Emily Dickinson Archive makes high-resolution images of Dickinson's surviving manuscripts available in open access, and provides readers with a website through which they can view images of manuscripts held in multiple libraries and archives." name="description">
+  <meta content="Dickinson, Emily Dickinson, Emily Dickinson Archive, poetry, poems, American, 19th century, digital, original, facsimile, fascicle, open access, manuscripts, transcripts, women, female, writer, author, poet, handwriting" name="keywords">
+  <meta content="authenticity_token" name="csrf-param">
+  <meta content="oW6jrgN4TxmiZdxSlIjgvp9ZKSM8xdFIiAD5GqvqrETfw1VDcsZYOBXnfF1awFUg8RNHb6M8X+CIuh7aGOlKiA==" name="csrf-token">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body class="words show">
   <header>
-    <h1></h1>
-
-    <div class="menu-container">
-        <nav class="main">
-  <ul>
-      <li><a class="" >Home</a></li>
-        <li>
-        <a id="manuscripts" class="" data-dropdown="#manuscript-dropdown" data-vertical-offset="12" >Manuscripts</a>
-        </li>
-        <li><a class="selected" >Lexicon</a></li>
-    <li><a class="" >About</a></li>
-  </ul>
-  
-  <div id="manuscript-dropdown" class="dropdown">
+   <h1>
+   </h1>
+   <div class="menu-container">
+    <nav class="main">
+     <ul>
+      <li>
+       <a class="">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="" data-dropdown="#manuscript-dropdown" data-vertical-offset="12" id="manuscripts">
+        Manuscripts
+       </a>
+      </li>
+      <li>
+       <a class="selected">
+        Lexicon
+       </a>
+      </li>
+      <li>
+       <a class="">
+        About
+       </a>
+      </li>
+     </ul>
+     <div class="dropdown" id="manuscript-dropdown">
       <ul class="dropdown-menu">
-          <li>
-          <a >By Image</a>
-          </li>
-          <li>
-          <a >By Work</a>
-          </li>
+       <li>
+        <a>
+         By Image
+        </a>
+       </li>
+       <li>
+        <a>
+         By Work
+        </a>
+       </li>
       </ul>
-  </div>
-</nav>
-
-        <nav class="user">
-    <ul>
-        <li>
-        <a class="" >Sign Up</a>
-        </li>
-        <li>
-        <a class="" data-dropdown="#signin-dropdown" data-vertical-offset="12" >Sign In</a>
-        </li>
-    </ul>
-    <div id="signin-dropdown" class="dropdown dropdown-anchor-right">
-        <div class="dropdown-panel">
-            <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="hidden" name="authenticity_token" value="oW6jrgN4TxmiZdxSlIjgvp9ZKSM8xdFIiAD5GqvqrETfw1VDcsZYOBXnfF1awFUg8RNHb6M8X+CIuh7aGOlKiA==" autocomplete="off">
-                <div><label for="user_email">Email</label><br>
-                    <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email"></div>
-
-                <div><label for="user_password">Password</label><br>
-                    <input type="password" name="user[password]" id="user_password"></div>
-
-                    <div><input name="user[remember_me]" type="hidden" value="0" autocomplete="off"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me"> <label for="user_remember_me">Remember me</label></div>
-
-                <div><input type="submit" name="commit" value="Sign in" class="eda-btn-light" data-disable-with="Sign in"></div>
-</form>            <a >Forgot your password?</a><br>
+     </div>
+    </nav>
+    <nav class="user">
+     <ul>
+      <li>
+       <a class="">
+        Sign Up
+       </a>
+      </li>
+      <li>
+       <a class="" data-dropdown="#signin-dropdown" data-vertical-offset="12">
+        Sign In
+       </a>
+      </li>
+     </ul>
+     <div class="dropdown dropdown-anchor-right" id="signin-dropdown">
+      <div class="dropdown-panel">
+       <form accept-charset="UTF-8" action="/users/sign_in" class="new_user" id="new_user" method="post">
+        <input autocomplete="off" name="utf8" type="hidden" value="&checkmark;">
+        <input autocomplete="off" name="authenticity_token" type="hidden" value="oW6jrgN4TxmiZdxSlIjgvp9ZKSM8xdFIiAD5GqvqrETfw1VDcsZYOBXnfF1awFUg8RNHb6M8X+CIuh7aGOlKiA==">
+        <div>
+         <label for="user_email">
+          Email
+         </label>
+         <br>
+         <input autofocus="autofocus" id="user_email" name="user[email]" type="email" value>
         </div>
-    </div>
-</nav>
-
-    </div>
-
-    <div class="hr"></div>
+        <div>
+         <label for="user_password">
+          Password
+         </label>
+         <br>
+         <input id="user_password" name="user[password]" type="password">
+        </div>
+        <div>
+         <input autocomplete="off" name="user[remember_me]" type="hidden" value="0">
+         <input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+         <label for="user_remember_me">
+          Remember me
+         </label>
+        </div>
+        <div>
+         <input class="eda-btn-light" data-disable-with="Sign in" name="commit" type="submit" value="Sign in">
+        </div>
+       </form>
+       <a>
+        Forgot your password?
+       </a>
+       <br>
+      </div>
+     </div>
+    </nav>
+   </div>
+   <div class="hr">
+   </div>
   </header>
-
-  <section class="view ">
-  <section class="word">
-    <h2>consciousness</h2>
-        <p>consciousness [consciousness'] <em>n</em></p>
-        <p>see <strong>conscious</strong>, adj.</p>
-        <ol>
-                <li>Cognizance; mental awareness; knowledge of what passes in one's one mind.</li>
-                <li>Conscience; awareness of good and evil; perception of right and wrong; knowledge of guilt or innocence; internal sense of truth and error.</li>
-                <li>Being; existence; life; [fig.] thought; memory.</li>
-        </ol>
+  <section class="view">
+   <section class="word">
+    <h2>
+     consciousness
+    </h2>
+    <p>
+     consciousness [consciousness']
+     <em>
+      n
+     </em>
+    </p>
+    <p>
+     see
+     <strong>
+      conscious
+     </strong>
+     , adj.
+    </p>
+    <ol>
+     <li>
+      Cognizance; mental awareness; knowledge of what passes in one's one mind.
+     </li>
+     <li>
+      Conscience; awareness of good and evil; perception of right and wrong; knowledge of guilt or innocence; internal sense of truth and error.
+     </li>
+     <li>
+      Being; existence; life; [fig.] thought; memory.
+     </li>
+    </ol>
     <ul class="occurrences">
     </ul>
-</section>
-
+   </section>
   </section>
-
   <footer>
-    <div class="hr"></div>
-    <nav class="footer">
-      <ul>
-        <li><a >Partners &amp; Credits</a></li>
-        <li><a >Copyright &amp; Terms of Use</a></li>
-        <li><a >Privacy</a></li>
-        <li><a >Contact Us</a></li>
-      </ul>
-    </nav>
-    
+   <div class="hr">
+   </div>
+   <nav class="footer">
+    <ul>
+     <li>
+      <a>
+       Partners &amp; Credits
+      </a>
+     </li>
+     <li>
+      <a>
+       Copyright &amp; Terms of Use
+      </a>
+     </li>
+     <li>
+      <a>
+       Privacy
+      </a>
+     </li>
+     <li>
+      <a>
+       Contact Us
+      </a>
+     </li>
+    </ul>
+   </nav>
   </footer>
-
-  
-
-  
-  
-  
-
-<div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div></body></html>
+  <!-- Google tag (gtag.js) -->
+  <div aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible" role="log">
+  </div>
+ </body>
+</html>

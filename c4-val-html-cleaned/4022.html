@@ -1,6 +1,8 @@
-<!DOCTYPE html><html lang="en"><head>
-<style>
-@import url("font-awesome.min.css");
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   @import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600");
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -416,6 +418,8 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
     background-color: #7eaeac
 }
 
+
+/* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
 .item_container {
     display: flex;
     flex-direction: row;
@@ -428,9 +432,9 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 .item {
     box-shadow: 0 0.05em 0.15em 0 rgba(0, 0, 0, 0.05);
     margin-bottom: 40px;
-    flex-grow: 0; 
-    flex-shrink: 1; 
-    flex-basis: 30%; 
+    flex-grow: 0; /* default 0 */
+    flex-shrink: 1; /* default 1 */
+    flex-basis: 30%; /* default auto */
 
 }
 
@@ -534,7 +538,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
     .item {
         margin-bottom: 15px;
-        flex-basis: 45%; 
+        flex-basis: 45%; /* default auto */
     }
 
     #header {
@@ -750,7 +754,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
     .item {
         margin-bottom: 15px;
-        flex-basis: 30%; 
+        flex-basis: 30%; /* default auto */
     }
 
     #header {
@@ -770,7 +774,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
     .item {
         margin-bottom: 15px;
-        flex-basis: 45%; 
+        flex-basis: 45%; /* default auto */
     }
 
     #main > section, #main article {
@@ -801,7 +805,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
     .item {
         margin-bottom: 20px;
-        flex-basis: 45%; 
+        flex-basis: 45%; /* default auto */
     }
 
     #header {
@@ -865,7 +869,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
     .item {
         margin-bottom: 15px;
-        flex-basis: 45%; 
+        flex-basis: 45%; /* default auto */
     }
 
     ul.icons a {
@@ -1035,7 +1039,7 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
 
     .item {
         margin-bottom: 15px;
-        flex-basis: 45%; 
+        flex-basis: 45%; /* default auto */
     }
 
     ul.icons a {
@@ -1067,160 +1071,281 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
         margin-top: 0
     }
 }
-
-</style>
-  <meta name="robots" content="index, follow"><title>Make it Fixable, Living with Risk | Patricia Aas</title>
-  <meta name="description" content="NDC London 2018">
-  <meta name="author" content="Patricia Aas">
-
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:creator" content="@pati_gallardo">
-  <meta name="twitter:title" content="Make it Fixable, Living with Risk | Patricia Aas">
-  <meta name="twitter:description" content="NDC London 2018">
-  <meta name="twitter:url" content="https://patricia.no/2018/01/19/living_with_risk.html">
-  <meta name="twitter:image" content="https://patricia.no/assets/images/street-2547633_640.jpg">
-  
-  
-  <meta property="og:title" content="Make it Fixable, Living with Risk | Patricia Aas">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://patricia.no/assets/images/street-2547633_640.jpg">
-  <meta property="og:url" content="https://patricia.no/2018/01/19/living_with_risk.html">
-  <meta property="og:site_name" content="Patricia Aas">
-  <meta property="og:description" content="NDC London 2018">
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
+  </style>
+  <!-- Robots -->
+  <meta content="index, follow" name="robots">
+  <!-- Title, description, author -->
+  <title>
+   Make it Fixable, Living with Risk | Patricia Aas
+  </title>
+  <meta content="NDC London 2018" name="description">
+  <meta content="Patricia Aas" name="author">
+  <!-- Twitter Card -->
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@pati_gallardo" name="twitter:creator">
+  <meta content="Make it Fixable, Living with Risk | Patricia Aas" name="twitter:title">
+  <meta content="NDC London 2018" name="twitter:description">
+  <meta content="https://patricia.no/2018/01/19/living_with_risk.html" name="twitter:url">
+  <meta content="https://patricia.no/assets/images/street-2547633_640.jpg" name="twitter:image">
+  <!-- Open Graph -->
+  <meta content="Make it Fixable, Living with Risk | Patricia Aas" property="og:title">
+  <meta content="website" property="og:type">
+  <meta content="https://patricia.no/assets/images/street-2547633_640.jpg" property="og:image">
+  <meta content="https://patricia.no/2018/01/19/living_with_risk.html" property="og:url">
+  <meta content="Patricia Aas" property="og:site_name">
+  <meta content="NDC London 2018" property="og:description">
+  <!-- Icons -->
+  <!-- Mastodon -->
+  <!-- Styles -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  <meta name="theme-color" content="#ffffff">
-</head>
-<body class="">
-<div id="header">
-  <div class="top">
-<div id="logo">
-  <a  id="home-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-    <span class="image avatar48"><img src="rick.jpg" alt="Avatar of Patricia Aas"></span>
-    <h1 id="title">Patricia Aas</h1>
-    <p>Programmer</p>
-  </a>
-</div>
-<nav id="nav">
-  <ul><li><a  id="redirect-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-link">redirect</span>
-          </a></li><li><a  id="home-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-home">Home</span>
-          </a></li><li><a  id="talks-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-film">Talks</span>
-          </a></li><li><a  id="appearances-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-microphone">Appearances</span>
-          </a></li><li><a  id="blog-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-pencil">Blog</span>
-          </a></li><li><a  id="architecture-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Architecture</span>
-          </a></li><li><a  id="devsecops-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">DevSecOps</span>
-          </a></li><li><a  id="diversity-and-inclusion-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Diversity and Inclusion</span>
-          </a></li><li><a  id="election-security-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Election Security</span>
-          </a></li><li><a  id="embedded-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Embedded</span>
-          </a></li><li><a  id="exploit-development-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Exploit Development</span>
-          </a></li><li><a  id="learning-c-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Learning C++</span>
-          </a></li><li><a  id="learning-c-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Learning C#</span>
-          </a></li><li><a  id="reading-code-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Reading Code</span>
-          </a></li><li><a  id="sandbox-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Sandbox</span>
-          </a></li><li><a  id="secure-programming-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Secure Programming</span>
-          </a></li><li><a  id="security-culture-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <span class="icon fa-book">Security Culture</span>
-          </a></li></ul>
-</nav></div>
-  <div class="bottom">
-<ul class="icons"><li>
-    <a  class="icon fa-twitter" aria-label="Twitter" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-      <span class="label">Twitter</span>
-    </a>
-  </li><li>
-    <a  class="icon fa-linkedin" aria-label="LinkedIn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-      <span class="label">LinkedIn</span>
-    </a>
-  </li><li>
-    <a  class="icon fa-github" aria-label="GitHub" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-      <span class="label">GitHub</span>
-    </a>
-  </li><li>
-    <a  class="icon fa-envelope" aria-label="Email" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-      <span class="label">Email</span>
-    </a>
-  </li></ul>
-</div>
-</div>
-
-<div id="main">
-	
-	<article class="shade-two">
-	  <div class="container">
-			<header>
-				<h2>Make it Fixable, Living with Risk</h2>
-				<h3>NDC London 2018</h3>
-				<p>Patricia Aas, 19 January 2018</p>
-			</header><h2>Make it Fixable, Living with Risk</h2>
-
-<p>
-Trying to prepare your project or organisation to be able to receive vulnerability reports is a daunting task. And often far more complex and cross disciplinary than one first expects. 
-This talk describes some of the most common challenges and how to counteract them.
-</p>
-
- <div style="margin-bottom:5px"> <strong> <a  title="Make It Fixable, Living with Risk (NDC London 2018)" target="_blank">Make It Fixable, Living with Risk (NDC London 2018)</a> </strong> from <strong><a  target="_blank">Patricia Aas</a></strong> </div>
-
-</div>
-	</article>
-</div>
-<div id="footer">
-  
-  
-  <ul class="copyright">
-    
-      <li>©Patricia Aas. All rights reserved.</li>
-    
-    <li>Design: <a >HTML5 UP</a></li>
-    <li>Jekyll integration: <a >Chris Bobbe</a></li>
-  </ul>
-  
-</div>
-<div id="headerToggle"><a  class="toggle"></a></div></body></html>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <!--[if lte IE 8]><![endif]-->
+  <!--[if lte IE 8]><![endif]-->
+  <!--[if lte IE 9]><![endif]-->
+  <!-- Scripts -->
+  <!--[if lte IE 8]><![endif]-->
+  <!-- PWA -->
+  <meta content="#ffffff" name="theme-color">
+ </head>
+ <body class="">
+  <!-- Header -->
+  <div id="header">
+   <div class="top">
+    <!-- Logo -->
+    <div id="logo">
+     <a id="home-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+      <span class="image avatar48">
+       <img alt="Avatar of Patricia Aas" src="rick.jpg">
+      </span>
+      <h1 id="title">
+       Patricia Aas
+      </h1>
+      <p>
+       Programmer
+      </p>
+     </a>
+    </div>
+    <!-- Nav -->
+    <nav id="nav">
+     <ul>
+      <li>
+       <a id="redirect-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-link">
+         redirect
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="home-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-home">
+         Home
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="talks-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-film">
+         Talks
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="appearances-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-microphone">
+         Appearances
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="blog-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-pencil">
+         Blog
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="architecture-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Architecture
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="devsecops-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         DevSecOps
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="diversity-and-inclusion-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Diversity and Inclusion
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="election-security-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Election Security
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="embedded-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Embedded
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="exploit-development-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Exploit Development
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="learning-c-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Learning C++
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="learning-c-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Learning C#
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="reading-code-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Reading Code
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="sandbox-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Sandbox
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="secure-programming-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Secure Programming
+        </span>
+       </a>
+      </li>
+      <li>
+       <a id="security-culture-link" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <span class="icon fa-book">
+         Security Culture
+        </span>
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+   <div class="bottom">
+    <!-- Social Icons -->
+    <ul class="icons">
+     <li>
+      <a aria-label="Twitter" class="icon fa-twitter" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+       <span class="label">
+        Twitter
+       </span>
+      </a>
+     </li>
+     <li>
+      <a aria-label="LinkedIn" class="icon fa-linkedin" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+       <span class="label">
+        LinkedIn
+       </span>
+      </a>
+     </li>
+     <li>
+      <a aria-label="GitHub" class="icon fa-github" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+       <span class="label">
+        GitHub
+       </span>
+      </a>
+     </li>
+     <li>
+      <a aria-label="Email" class="icon fa-envelope" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+       <span class="label">
+        Email
+       </span>
+      </a>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <!-- Main -->
+  <div id="main">
+   <!-- Post -->
+   <article class="shade-two">
+    <div class="container">
+     <header>
+      <h2>
+       Make it Fixable, Living with Risk
+      </h2>
+      <h3>
+       NDC London 2018
+      </h3>
+      <p>
+       Patricia Aas, 19 January 2018
+      </p>
+     </header>
+     <h2>
+      Make it Fixable, Living with Risk
+     </h2>
+     <p>
+      Trying to prepare your project or organisation to be able to receive vulnerability reports is a daunting task. And often far more complex and cross disciplinary than one first expects.
+     </p>
+     <div style="margin-bottom:5px">
+      <strong>
+       <a target="_blank" title="Make It Fixable, Living with Risk (NDC London 2018)">
+        Make It Fixable, Living with Risk (NDC London 2018)
+       </a>
+      </strong>
+      from
+      <strong>
+       <a target="_blank">
+        Patricia Aas
+       </a>
+      </strong>
+     </div>
+    </div>
+   </article>
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+   <!-- Copyright -->
+   <ul class="copyright">
+    <li>
+     &copy;Patricia Aas. All rights reserved.
+    </li>
+    <li>
+     Design:
+     <a>
+      HTML5 UP
+     </a>
+    </li>
+    <li>
+     Jekyll integration:
+     <a>
+      Chris Bobbe
+     </a>
+    </li>
+   </ul>
+  </div>
+  <div id="headerToggle">
+   <a class="toggle">
+   </a>
+  </div>
+ </body>
+</html>

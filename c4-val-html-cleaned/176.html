@@ -1,5 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <style>
+   /*------------------------------CSS RESET------------------------------*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126 
+   License: none (public domain)
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -21,7 +29,7 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
-
+/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
     display: block;
@@ -52,6 +60,9 @@ strong {
     font-weight: bold;
 }
 
+
+/*------------------------------TOP-LEVEL STYLE DEFAULTS------------------------------*/
+
 body {
     margin: 0;
     padding: 0;
@@ -60,6 +71,8 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
+
+/* sets the default gutters and limits for content stretch */
 .outer_wrap {
     width: 90%;
     min-width: 56em;
@@ -68,14 +81,18 @@ body {
     padding: 0;
 }
 
+/* sets the default gutters minimum */
 .inner_wrap {
     padding: 0 20px;
     position: relative;
 }
 
+
+/* ----------- Styles for flex pages ----------- */
+
 .columns_wrapper {
     position: relative;
-    margin: 0 0 20px -30px;     
+    margin: 0 0 20px -30px;     /* changed from 20px top margin */
     overflow: hidden;
 }
 
@@ -133,6 +150,10 @@ body {
         min-height: 1px;
     }
 
+/* ----------- End styles for flex pages ----------- */
+
+
+
 img {
     border: 0px none;
 }
@@ -154,6 +175,17 @@ a:not(a img) {
         border-bottom: 0px none;
     }
 
+/*  #main a[href^="http://"], 
+    #main a[href^="https://"] {
+        background: url("../../images/common/external-link-icon.png") no-repeat scroll right center transparent;
+        padding-right: 14px;
+    }
+    
+    #main a.no_linkout[href^="http://"], 
+    #main a.no_linkout[href^="https://"] {
+        background: none;
+        padding-right: 0;
+    }*/
     
     #main a[name] {
         border-bottom: 0px none;
@@ -164,7 +196,8 @@ a:not(a img) {
         border-bottom: 0px none;
     }
 
-    
+
+    /* Default paragraph and heading styles */
 
     p {
         margin: 1em 0;
@@ -200,6 +233,7 @@ a:not(a img) {
         .more_link a:focus {
             border: 0 none;
         }
+
 
     h1,
     h2,
@@ -245,7 +279,8 @@ a:not(a img) {
         font-size: 0.9em;
     }
 
-    
+
+    /* Default list styles */
 
     ul,
     ol {
@@ -300,7 +335,7 @@ a:not(a img) {
                 font-size: 100%;
             }
 
-    
+    /* STYLES FOR DEFINITION LISTS */
 
     dt {
         font-weight: bold;
@@ -320,7 +355,7 @@ a:not(a img) {
             font-size: 1em;
         }
 
-    
+    /* Default subscript and superscript styles */
 
     sup {
         font-size: 0.6em;
@@ -332,9 +367,10 @@ a:not(a img) {
         vertical-align: sub;
     }
 
+
 .clearer {
     clear: both;
-
+/*  height: 0px;*/
     line-height: 0px;
 }
 
@@ -342,6 +378,8 @@ a:not(a img) {
     clear: both;
 }
 
+
+/* ---------- CSS for revised skip navigation HTML ---------- */
 #navskip a, #navskip a:hover, #navskip a:visited {
     position: absolute;
     left: 0px;
@@ -364,6 +402,7 @@ a:not(a img) {
     z-index: 999;
  } 
  
+/*------------------------------PRIMARY CONTENT CONTAINERS------------------------------*/
 
 #header_content,
 .nav_content,
@@ -372,6 +411,9 @@ a:not(a img) {
 #footer_content {
     overflow: hidden;
 }
+
+
+/*------------------------------HEADER------------------------------*/
 
 #header {
     overflow: hidden;
@@ -384,6 +426,8 @@ a:not(a img) {
     #header_content #ucdavis_logo a {
         border-bottom: 0px none;
     }
+
+/*------------------------------SITE TITLE AREA------------------------------*/
 
 #site_title {
     position: relative;
@@ -415,9 +459,9 @@ a:not(a img) {
             display: block;
             margin: 0;
             color: #002855;
-            font-size: 2.6em;   
-            font-weight: normal;        
-            letter-spacing: -0.03em;    
+            font-size: 2.6em;   /* CHANGED FROM 2em ON 3/8/2012 */
+            font-weight: normal;        /* ADDED ON 3/8/2012 */
+            letter-spacing: -0.03em;    /* ADDED ON 3/8/2012 */
         }
         
         #site_title a {
@@ -476,7 +520,7 @@ a:not(a img) {
         }
         
         
-    
+    /* Title area search styles */
         #title_area_search_etc {
             bottom: 0;
             margin: 0;
@@ -512,6 +556,8 @@ a:not(a img) {
             vertical-align: bottom;
         }
         
+
+/*------------------------------PRIMARY NAVIGATION BAR------------------------------*/
 
 #nav {
     z-index: 2;
@@ -550,6 +596,14 @@ a:not(a img) {
             #nav ul li li a {
                 white-space: normal;
             }
+
+
+
+/* CDC: Edited dropdown style 09/2012 */
+
+
+
+/*-------------------------------DROPDOWN NAVIGATION------------------------------------------*/
 
 #_nav_dropdown .nav_background, #_nav_dropdown .nav_content { overflow:visible;  }
 
@@ -613,9 +667,13 @@ a:not(a img) {
     
     
 
+
+/*---------------------------------DOUBLEDOWN NAVIGATION --------------------------------------*/
+
 #_nav_doubledown .nav_background,#_nav_doubledown .nav_content { overflow:visible;  }
 
 #nav #_nav_doubledown ul li { float:none; }
+
 
 #_nav_doubledown ul li { position:relative;white-space:nowrap;display:-moz-inline-stack;
     display:inline-block;
@@ -623,11 +681,18 @@ a:not(a img) {
 
 #_nav_doubledown ul ul { display:none; }
 
+/*---------------------------------SLIDEDOWN NAVIGATION (homesite)-----------------------------*/
+
+
+/*------------------------------MAIN CONTENT------------------------------*/
+
 #main {
     overflow: hidden;
     position: relative;
     z-index: 0;
 }
+
+
 
     .social_media p {
         font-size: 0.85em;
@@ -660,6 +725,10 @@ a:not(a img) {
                 }
             
 
+/*------------------------CONTENT BOXES----------------------*/
+
+/* Root content box styles */
+
     .content_box {
         overflow: hidden;
         padding: 0;
@@ -682,7 +751,7 @@ a:not(a img) {
         
         
         
-    
+    /* Default content_box and column heading styles */
     
         .content_box h2,
         .content_box h3,
@@ -801,7 +870,8 @@ a:not(a img) {
             padding: 0.4em 10px;
         }
 
-    
+
+    /* Default content_box paragraph styles */
 
         .content_box p,
         .column p {
@@ -843,7 +913,9 @@ a:not(a img) {
                 padding: 0;
             }
 
-    
+
+
+    /* Default content_box list styles */
         
         .column ul,
         .column ol,
@@ -893,7 +965,7 @@ a:not(a img) {
             margin-right: 0;
         }
 
-            
+            /* Second-level lists */
 
             .content_box li,
             .column li {
@@ -986,6 +1058,7 @@ a:not(a img) {
             display: block;
         }
 
+
     .unbordered {
         border: 0 none;
     }
@@ -995,7 +1068,7 @@ a:not(a img) {
     }
     
     
-    
+    /* Appendices and overrides for right-column-contained content_boxes */
 
     #right_column .content_box {
         margin: 0 0 1.5em;
@@ -1020,10 +1093,11 @@ a:not(a img) {
         margin: 0.5em 0 0.3em;
     }
 
+
     #right_column .content_box p {
         margin: 0.3em 0;
         padding: 0;
-
+/*  font-size: 80%;*/
     }
 
     #right_column .content_box.cb_colored p {
@@ -1040,13 +1114,15 @@ a:not(a img) {
         margin: 0;
     }
 
+
     #right_column .content_box .right img,
     #right_column .content_box .left img {
         margin-top: 0.5em;
     }
     
 
-    
+
+    /* Style exceptions for feed content_boxes */
 
     .content_box.feed p {
         margin-top: 0;
@@ -1143,7 +1219,7 @@ a:not(a img) {
         width: 100%;
     }
 
-    
+    /* added max-width to all of these */
     .extra_wide {
         width: 420px;
         max-width: 50%;
@@ -1198,10 +1274,12 @@ a:not(a img) {
         margin-right: 0.6em;
     }
 
-    
+
+    /* to set width to auto when you want to float an img within a box and have it display at true size */
     .native_width {
         width: auto;
     }
+
 
     .content_box ul.featured_links {
         list-style-type: none;
@@ -1236,7 +1314,8 @@ a:not(a img) {
                     border-bottom: 1px solid #B2BECC;
                 }
 
-    
+
+    /* *** Multimedia styles *** */
 
     .mm_box {
         overflow: hidden;
@@ -1260,7 +1339,7 @@ a:not(a img) {
             border-bottom: 0px none;
         }
 
-    
+    /* Change path for play button below */
     .play_button {
         background: url("../../images/common/video_play_button.png") no-repeat scroll 0 0 transparent;
         display: block;
@@ -1280,7 +1359,7 @@ a:not(a img) {
             opacity: 0.7;
         }
 
-    
+    /* Change path for play button below */
     .slideshow_pb {
         background: url("../../images/common/slideshow_play_button-med.png") no-repeat scroll 0 0 transparent;
         display: block;
@@ -1309,7 +1388,7 @@ a:not(a img) {
 
     }
 
-    
+    /* For when slideshow_pb is in smaller column */
     .column_25 .slideshow_pb,
     .column_50 .column_50 .slideshow_pb {
         background: url("../../images/common/slideshow_play_button.png") no-repeat scroll 0 0 transparent;
@@ -1322,6 +1401,7 @@ a:not(a img) {
             opacity: 0.7;
         }
 
+
     .mm_info {
         font-weight: bold;
         font-size: 0.7em;
@@ -1331,6 +1411,9 @@ a:not(a img) {
     .mm_credit {
         font-size: 0.7em;
     }
+
+
+/*------------------------------FOOTER------------------------------*/
 
 #footer {
     overflow: hidden;
@@ -1369,7 +1452,7 @@ a:not(a img) {
         }
         
         
-    
+    /* Override styles for landing pages */
     
     #main .mm_wrapper {
         position: relative;
@@ -1392,9 +1475,17 @@ a:not(a img) {
     }
     
 
+
+/*------------------------------NAV AREA------------------------------*/
+
 #nav {
     position: relative;
 }
+
+
+/*------------------------------LOWER HALF OF PAGE------------------------------*/
+
+/*------------------------------BREADCRUMBS------------------------------*/
 
 #breadcrumbs_container {
     overflow: hidden;
@@ -1406,7 +1497,7 @@ a:not(a img) {
 }
 
     #breadcrumbs {
-        font-size: 0.625em; 
+        font-size: 0.625em; /*NEEDED TO ESTABLISH FONT SIZE WITHOUT CHANGING SIZE OF OUTER CONTAINER THAT IS SET IN EMS*/
         padding: 0 0 0.8em;
         overflow: hidden;
         width: 100%;
@@ -1422,13 +1513,13 @@ a:not(a img) {
         }
     
         #breadcrumbs ul li {
-
+/*        margin: 0;*/
             display: inline;
             font-size: 100%;
         }
 
         #breadcrumbs li a, #breadcrumbs li span {
-
+/*      float: left;*/
             margin: 0 1em 0 0.6em;
             padding: 2px 0 0;
         }
@@ -1445,6 +1536,8 @@ a:not(a img) {
             font-weight: bold;
             margin-right: 0;
         }
+
+/*------------------------------MAIN CONTENT------------------------------*/
 
 #main #page_title {
     margin: 0;
@@ -1473,6 +1566,9 @@ a:not(a img) {
         }
     
     
+/*#main h3 {
+    font-size: 1.875em;
+}*/
 
 #main a.no_border {
     border: 0 none;
@@ -1498,9 +1594,10 @@ a:not(a img) {
 }
 
     #main_sidebar_inner_wrap {
-
+/*    padding: 0 0 10em 0;*/
         padding: 4.25em 0 10em 0;
     }
+
 
 #main_section {
     float: left;
@@ -1528,6 +1625,7 @@ a:not(a img) {
         padding-top: 4.25em;
     }
 
+
 a.rss_feed {
     background: url("../../images/common/rss_small.png") no-repeat scroll 0 0 transparent;
     border: 0 none !important;
@@ -1548,7 +1646,8 @@ img.main_img {
     border: 0 none;
 }
 
-    
+
+    /*------------------------------LEFT COLUMN------------------------------*/
 
     #main_sidebar h2.semantic_column_header, #right_column h2.semantic_column_header {
         position: absolute;
@@ -1561,7 +1660,7 @@ img.main_img {
     
 
     #main .nav_second {
-
+/*    margin: 0 0 1.5em 0;*/
         margin: 0 -1px 1.5em 0;
         padding: 0;
     }
@@ -1609,7 +1708,10 @@ img.main_img {
                     border: 0 none !important;
                 }
                 
-
+/*          #main .nav_second ul li a[href^="http://"], 
+                #main .nav_second ul li a[href^="https://"] {
+                    background: transparent url("../../images/common/external-link-icon.png") no-repeat scroll 7px center;
+                }*/
                 
                 
     #main .quick_links {
@@ -1660,7 +1762,7 @@ img.main_img {
             line-height: 140%;
         }
 
-    
+    /*------------------------------CENTER COLUMN------------------------------*/
     
     #main_section * {
         line-height: 140%;
@@ -1671,7 +1773,7 @@ img.main_img {
     }
     
     
-    
+    /* TABLE STYLES */
     
     #main_section table {
         font-size: 0.85em;
@@ -1712,6 +1814,9 @@ img.main_img {
         padding-left: 1.65em;
     }
     
+
+
+/* For page of sections with subheads, images, blurbs, lists (e.g., the campus home site main sub-pages) */
 
     .repeating_content_block {
     }
@@ -1798,7 +1903,7 @@ img.main_img {
         
     
 
-    
+    /*------------------------------RIGHT COLUMN------------------------------*/
     
     #main_section .column .first {
         margin-top: 0;
@@ -1806,7 +1911,7 @@ img.main_img {
     
 
         
-    
+    /* STYLES FOR DEFINITION LISTS */
 
     #main_section .column dl {
         margin: 0.5em 0 0;
@@ -1827,9 +1932,81 @@ img.main_img {
             }
     
     
-
+/*  .feature {
+        margin: 0 0 1.5em 0;
+        border-bottom: 2px solid #DAAA00;
+    }
     
-  
+        .feature h3 {
+            color: #FFF !important;
+            background: #002855;
+            font-size: 0.9em !important;
+            font-weight: normal !important;
+            margin: 0;
+            padding: 0.4em 10px !important;
+            text-transform: none !important;
+            border-bottom: 2px solid #DAAA00;
+        }
+        
+        .feature p {
+            font-size: 0.8em;
+            line-height: 140%;
+        }
+
+        .feature img {
+            float: left;
+            margin: 1em 1em 0.5em 0;
+            width: 45%;
+        }*/
+    
+/*  .news_feed {
+        color: #333;
+        margin: 0 0 1.5em 0;
+        border-bottom: 2px solid #DAAA00;
+    }
+    
+        .featured {
+            margin: 0 0 0.5em 0;
+            border-bottom: 1px solid #B2B2B2;
+        }
+
+        .news_feed h3 {
+            color: #FFF !important;
+            background: #002855;
+            font-size: 0.875em !important;
+            font-weight: normal !important;
+            margin: 0;
+            padding: 0.4em 10px !important;
+            text-transform: none !important;
+            border-bottom: 2px solid #DAAA00;
+        }
+
+        .news_feed a.no_border {
+            border: 0 none !important;
+        }
+
+            .news_feed a.no_border:hover,
+            .news_feed a.no_border:focus {
+                border: 0 none !important;
+            }
+
+        .news_feed h4 {
+            font-size: 0.8em;
+            margin: 0;
+            padding: 0.2em 0 0.8em;
+        }
+
+            .news_feed h4.top_news {
+                font-size: 0.9em;
+                padding: 0.7em 0 0.4em;
+            }
+
+        .news_feed p {
+            font-size: 0.8em;
+            margin: 0;
+            padding: 0.2em 0 0.8em;
+        }
+*/  
     .link_list {
         margin: 0 0 1.5em 0;
         border: 1px solid #DAAA00;
@@ -1891,7 +2068,15 @@ img.main_img {
         margin-top: 0;
     }
 
+
 @media print {
+
+/*------------------------------CSS RESET------------------------------*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126 
+   License: none (public domain)
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -1913,7 +2098,7 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
-
+/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
     display: block;
@@ -1942,6 +2127,9 @@ strong {
     font-weight: bold;
 }
 
+
+/*------------------------------TOP-LEVEL STYLE DEFAULTS------------------------------*/
+
 body {
     margin: 0;
     padding: 0;
@@ -1949,7 +2137,7 @@ body {
     min-width: 56em;
     -webkit-text-size-adjust: 100%;
 }
-
+/* sets the default gutters and limits for content stretch */
 .outer_wrap {
     width: 90%;
     min-width: 56em;
@@ -1957,15 +2145,18 @@ body {
     margin: 0 auto;
     padding: 0;
 }
-
+/* sets the default gutters minimum */
 .inner_wrap {
     padding: 0 20px;
     position: relative;
 }
 
+
+/*------------------STYLES FOR FLEX PAGES---------------*/
+
 .columns_wrapper {
     position: relative;
-    margin: 0 0 20px -30px;     
+    margin: 0 0 20px -30px;     /* changed from 20px top margin */
     overflow: hidden;
 }
 .interior_row_wrapper {
@@ -1985,11 +2176,15 @@ body {
 .column_75 {width: 75%; min-height: 1px;}
 .column_100 {width: 100%; min-height: 1px;}
 
+/* ----------- End styles for flex pages ----------- */
+
+
+
 img {border: 0px none;}
 
 a {border-bottom: 1px dashed #aaa; text-decoration: none; padding-bottom: 0; margin-bottom: 0; color: #000;}
 
-            
+    /*------------------DEFAULT PARAGRAPH STYLES---------------*/        
 
 p {margin: 1em 0; font-size: 0.8em; line-height: 1.5;}
 p.intro {margin-top: 0; font-size: 0.8em;}
@@ -2031,6 +2226,9 @@ h4 {font-size: 1.1em;}
 h5 {font-size: 1em;}
 h6 {font-size: 0.9em;}
 
+
+/*------------------DEFAULT LIST STYLES---------------*/
+
 ul, ol {margin-top: 0.5em;}
 ul ul {margin-left: 2.5em;}
 ol ul {margin-left: 2em;}
@@ -2048,23 +2246,29 @@ li {margin: 0.4em 0; font-size: 0.8em; line-height: 1.5;}
 li li {margin: 0.2em 0; font-size: 0.95em; line-height: 1.5;}
 li li li {margin: 0.2em 0; font-size: 1em; line-height: 1.5;}
 
+/*------------------DEFINITION LIST STYLES---------------*/
+
 dt {font-weight: bold; Font-style: italic;}
 dd {margin: 0.6em 0; font-size: 0.8em;}
 dd ul {font-size: 1em;}
 dd p {font-size: 1em;}
 
+/*------------------SUBSCRIPT AND SUPERSCRIPT STYLES---------------*/
+
 sup {font-size: 0.6em; vertical-align: super;}
 sub {font-size: 0.6em; vertical-align: sub;}
 
+/*------------------CLEAR CLASSES---------------*/
 .clearer {
 clear: both;
-
+/*  height: 0px;*/
 line-height: 0px;
 }
 .clear_both {
 clear: both;
 }
 
+/*------------------PRIMARY CONTENT CONTAINERS---------------*/
 #header_content,
 .nav_content,
 #breadcrumbs_content,
@@ -2073,12 +2277,20 @@ clear: both;
     overflow: hidden;
 }
 
+
+/*------------------DROPDOWN NAVIGATION---------------*/
+
 #_nav_dropdown {display: none;}
+
+/*------------------DOUBLEDOWN NAVIGATION---------------*/
 
 #_nav_doubledown {display: none;}
 
+/*------------------MAIN CONTENT---------------*/
+
 #main {overflow: hidden; position: relative; z-index: 0;}
 
+/*------------------SOCIAL MEDIA CLASS---------------*/
 .social_media p {font-size: 0.85em; margin: 0; padding: 0.8em 10px 0.2em;}
 .social_media ul {list-style-type: none; margin: 0; padding: 0.4em 2px 0 2px;   overflow: hidden;}
 .social_media ul li {float: left; padding: 0;}    
@@ -2086,13 +2298,14 @@ clear: both;
 .social_media ul li a img {border: 0 none; width: 38px;}
             
 
+/*------------------CONTENT BOXES---------------*/
 .content_box {overflow: hidden; padding: 0; margin-top: 1em; margin-bottom: .75em;}
 .column_content *:first-child {margin-top: 0;}
 .content_box.top_item {margin-top: 0;}
 .content_box img {width: 100%;}
         
 
-               
+/*------------------DEFAULT CONTENT BOX STYLES---------------*/               
 .content_box h2,
 .content_box h3,
 .content_box h4,
@@ -2139,7 +2352,8 @@ clear: both;
         padding: 0.4em 10px;
 }
 
-        
+
+/*------------------DEFAULT CONTENT BOX PARAGRAPH STYLES---------------*/        
 
 .content_box p, .column p {padding: 0; line-height: 140%;   font-size: 0.8em;}
 .content_box li p, .column li p {font-size: 100%;}
@@ -2157,7 +2371,8 @@ clear: both;
             padding: 0;
     }
 
-            
+
+    /*------------------DEFAULT CONTENT BOX LIST STYLES---------------*/        
         
 .column ul,
 .column ol,
@@ -2172,7 +2387,7 @@ clear: both;
 .column .content_box ol {margin-left: 3em;}
 .column ul, .content_box.unbordered ul {margin-left: 1.4em; margin-right: 0;}
 .column ol, .content_box.unbordered ol {margin-left: 2.2em; margin-right: 0;}
-
+/* Second-level lists */
 .content_box li, .column li {line-height: 120%; font-size: 0.8em;}
 .content_box li {margin-right: 10px;}
 .content_box.unbordered li {margin-right: 0;}
@@ -2189,10 +2404,10 @@ clear: both;
     
     
 
-        
+/*------------------WIDTH SIZING CLASSES---------------*/        
 
 .widest {width: 100%;}
-
+/* added max-width to all of these */
 .extra_wide {width: 420px;max-width: 50%;}
 .wide {width: 360px; max-width: 40%;}
 .medium_wide {width: 300px; max-width: 40%;}
@@ -2203,10 +2418,13 @@ clear: both;
 .left {float: left; clear: left; margin: 0 1em 1em 0;}
 .column .content_box .right, #right_column .content_box .right {margin-left: 0.6em;}
 .column .content_box .left, #right_column .content_box .left {margin-right: 0.6em;}
-
+/* to set width to auto when you want to float an img within a box and have it display at true size */
 .native_width {width: auto;}
 
-            
+
+
+
+    /*------------------MULTIMEDIA STYLES---------------*/        
 
 .mm_box {overflow: hidden;}
 .mm_activate {position: relative;}
@@ -2214,7 +2432,7 @@ clear: both;
 #main_section .mm_activate a:hover,
 #main_section .mm_activate a:focus,
 #main_section .mm_activate a:visited:hover {border-bottom: 0px none;}
-
+/* Change path for play button below */
 .play_button {
         background: url("../../images/common/video_play_button.png") no-repeat scroll 0 0 transparent;
         display: block;
@@ -2232,7 +2450,7 @@ clear: both;
 .content_box a.image_link:focus .play_button {opacity: 1.0;}
 .mm_info {font-weight: bold; font-size: 0.7em; margin-bottom: 0.5em;}
 .mm_credit {font-size: 0.7em;}
-
+/* Override styles for landing pages */
 #main .mm_wrapper {position: relative; height: 0; overflow: hidden;}
 #main .mm_wrapper iframe, 
 #main .mm_wrapper object, 
@@ -2245,13 +2463,21 @@ clear: both;
 }
 .fancybox-wrap a {border-bottom: 0 none;}
 
+
+/*------------------NAVSKIP---------------*/
 #navskip {display: none;}
+
+
+/*------------------HEADER---------------*/
 
 #header {display: none;}
 #header .outer_wrap {display: none;}
 #header .inner_wrap {display: none;}
 #header #header_content {display: none;}
 #header #ucdavis_logo {display: none;}
+
+
+/*------------------SITE TITLE AREA---------------*/
 
 #site_title {}
 #site_title .outer_wrap {}
@@ -2261,28 +2487,43 @@ clear: both;
 #title_area_search_etc {display: none;}
 ._search-block {display: none;}
 
+
+/*------------------PRIMARY NAVIGATION---------------*/
 #nav {display: none;}
 
+
+/*------------------BREADCRUMB NAVIGATION---------------*/
 #breadcrumbs_container {display: none;}
 
+
+/*------------------MAIN CONTENT---------------*/
 #main {}
 #main .outer_wrap {}
 #main .inner_wrap {}
 #main #main_content {}
                 
-
+/*------------------MAIN SIDEBAR---------------*/
 #main_sidebar {display: none;}
 
+/*------------------MAIN CONTENT SECTION---------------*/
 #main_section {}
 #main_section #center_column {}
 #main_section #center_column_inner_wrap {}
 
+
+
+
+/*------------------BLOCK HANDLING---------------*/
+
 ._slideshow-block {display: none;}
 #social_media_container_drop {display: none;}
 
+
+/*------------------FLEX PAGE STYLING---------------*/
+
 .columns_wrapper {
     position: relative;
-    margin: 0 0 20px -10px;     
+    margin: 0 0 20px -10px;     /* changed from 20px top margin , left margin changed from -30px*/
     overflow: hidden;
 }
 .interior_row_wrapper {
@@ -2298,7 +2539,7 @@ clear: both;
         float: left;
 }
 .column_content {
-        margin-left: 10px; 
+        margin-left: 10px; /* was 30px */
 }           
 .column_content.fp_top_margin {
         margin-top: 20px;
@@ -2309,6 +2550,11 @@ clear: both;
 .column_66 {width: 66.66666%; min-height: 1px;}
 .column_75 {width: 75%; min-height: 1px;}
 .column_100 {width: 100%; min-height: 1px;}
+
+/* ----------- End styles for flex pages ----------- */
+
+
+/*------------------RIGHT COLUMN---------------*/
 
 #right_column .content_box .headline_top,
 #right_column .content_box .headline_button {background-color: #002855; border-bottom: 2px solid #DAAA00;}
@@ -2334,6 +2580,9 @@ clear: both;
 #right_column .content_box p.more_link {margin: 0;}
 #right_column .content_box .right img, #right_column .content_box .left img {margin-top: 0.5em;}
 #right_column .content_box .border_box, .unbordered .border_box {border: 0px none;}
+
+
+/*------------------------CENTER COLUMN----------------------*/
 
 #main_section #center_column_inner_wrap ul {margin-left: 5px; padding-left: 0;}
 #main_section #center_column_inner_wrap ul li {margin-left: 10px; padding-left: 3px;}
@@ -2369,6 +2618,10 @@ clear: both;
 #center_column table th {border: 1px solid #CCC;}
 #center_column table td {border: 1px solid #CCC;}
 #center_column caption {color: #002855;} 
+
+/*------------------------CONTENT BOX COLORS----------------------*/
+
+/* *** Root content box color styles *** */
 
 .content_box .border_box {border: 1px solid #E5C44D;}
 .content_box .headline {color: #002855; border-bottom: 1px solid #F8EECC;}
@@ -2415,6 +2668,8 @@ clear: both;
 .content_box.cb_colored.cb_gold a {color: #000; border-bottom: 1px solid #000;}
 .content_box.cb_colored.cb_gold a:hover,
 .content_box.cb_colored.cb_gold a:focus {border-bottom: 1px solid #E5C44D;}
+
+/*------------------------CONTENT BOXES----------------------*/
 
 .content_box {
         overflow: hidden;
@@ -2471,7 +2726,7 @@ clear: both;
         padding: 0;
 }
 .content_box p.caption.button a {display: block; padding: 0.4em 10px;}
-
+/* Default content_box paragraph styles */
 .content_box p,
 .column p {padding: 0; line-height: 140%; font-size: 0.8em;}
 .content_box li p,
@@ -2485,6 +2740,8 @@ clear: both;
 .content_box p.more_link,
 .column p.more_link {clear: both; margin: 0.5em 0 0; padding: 0;}
 
+
+/* Default content_box list styles */
         
 .column ul,
 .column ol,
@@ -2500,6 +2757,7 @@ clear: both;
 .column ul, .content_box.unbordered ul {margin-left: .4em; margin-right: 0;}
 .column ol, .content_box.unbordered ol {margin-left: 1em; margin-right: 0;}
 
+/* Second-level lists */
 .content_box li,
 .column li {line-height: 1.5; font-size: 0.8em;}    
 .content_box li {margin-right: 10px;}   
@@ -2539,6 +2797,12 @@ clear: both;
 .unbordered {border: 0 none;}    
 .last_item {margin-bottom: 0;}
 
+
+
+
+/*------------------------FAQ BLOCK----------------------*/
+
+
 ._faq1, 
 ._faq-block .border-box,
 ._faq1 dd, 
@@ -2553,6 +2817,9 @@ clear: both;
     border: 0 none !important;
 }
 
+
+
+/*   Footer */
 #footer {display: none;}
 #footer .outer_wrap {display: none;}
 #footer .inner_wrap {display: none;}
@@ -2560,7 +2827,12 @@ clear: both;
 #footer #standard_footer {display: none;}
 #footer .footer-logo {display: none;}
 
+
 } 
+/* ends @media print*/
+
+
+/*------------------------------TOP-LEVEL COLOR STYLE DEFAULTS------------------------------*/
 
 body {
     background: #FFF;
@@ -2588,10 +2860,12 @@ a:visited:hover {
     border-bottom: 0px none;
 }
 
+
 p sup,
 p sub {
     color: #000;
 }
+
 
 h2, h3, h4, h5, h6 {
     color: #002855;
@@ -2600,6 +2874,9 @@ h2, h3, h4, h5, h6 {
 dt {
     color: #002855;
 }
+
+
+/*------------------------------SITE TITLE AREA------------------------------*/
 
 #site_title {
     background-color: #FFF;
@@ -2614,7 +2891,7 @@ dt {
 }
 
 #site_title #title_area_links ul li a {
-
+/*  border-bottom: 1px solid #FFF;*/
 }
 
 #site_title #title_area_links ul li a:hover,
@@ -2622,9 +2899,14 @@ dt {
     border-bottom: 1px solid #002855;
 }
 
+
 #site_title #title_area_links ul li span.here {
     color: #002855;
 }
+
+
+
+/*------------------------------PRIMARY NAVIGATION BAR------------------------------*/
 
 .bar_1 {
     background-color: #002855;
@@ -2678,6 +2960,11 @@ dt {
     border-left: 1px solid #B38600;
 }
 
+
+
+
+/*------------------------------BREADCRUMBS------------------------------*/
+
     #breadcrumbs {
         color: #333;
     }
@@ -2699,6 +2986,11 @@ dt {
             border-bottom: 1px solid #FFF;
         }
 
+
+/*------------------------------MAIN CONTENT------------------------------*/
+
+/* FOR SECOND LEVEL PAGES */
+
 #main_section {
     border-top: 1px solid #002855;
 }
@@ -2713,6 +3005,7 @@ dt {
     }
     
     
+/*------------------------------LEFT COLUMN------------------------------*/
 
 .nav_second {
     background: #FFF;
@@ -2765,6 +3058,9 @@ dt {
         color: #002855;
     }
 
+
+/*------------------------------MAIN------------------------------*/
+
 #main .more_link a,
 #main .more_link a:visited {
     background: #E6E6E6 url('../../images/common/arrow_small_right_333.gif') scroll no-repeat 95% 50%;
@@ -2777,13 +3073,41 @@ dt {
     color: #FFF;
 }
 
-    
 
+
+/*------------------------------CENTER COLUMN------------------------------*/
+    
+/*  #center_column_inner_wrap a:hover,
+    #center_column_inner_wrap a:focus {
+        border-bottom: 1px solid #FFF;
+    }*/
     
     #main_section .section_left a {
         border-bottom: 0px none;
     }
 
+/*    #main_section a:hover,
+    #main_section a:focus,
+    #main_section a:visited:hover {    border-bottom: 1px solid #FFF;
+        border-bottom: 0px none;
+    }
+    
+    #main_section a:visited {
+        color: #77160B;
+        border-bottom: 1px solid #77160B;
+    }
+    
+    #main_section h3 a:visited,
+    #main_section h4 a:visited {
+        color: #667D9D;
+        border-bottom: 1px solid #667D9D;
+    }
+    
+    #main_section h5 a:visited,
+    #main_section h6 a:visited {
+        color: #4D688C;
+        border-bottom: 1px solid #4D688C;
+    }*/
     
     #main_content a:visited {
         color: #77160B;
@@ -2816,6 +3140,7 @@ dt {
             background: #E6E9F0;
         }
 
+
     #center_column .spotlight {
         border: 1px solid #E5C44D;
     }
@@ -2843,6 +3168,10 @@ dt {
         color: #002855;
     }
     
+
+/*------------------------CONTENT BOX COLORS----------------------*/
+
+/* *** Root content box color styles *** */
 
 .content_box .border_box {
     border: 1px solid #E5C44D;
@@ -2960,6 +3289,7 @@ dt {
     border-bottom: 1px solid #FBF6E5;
 }
 
+
 .content_box.cb_colored {
     background-color: #E5E9EF;
     color: #002855;
@@ -3030,10 +3360,17 @@ dt {
     border-bottom: 1px solid #E5C44D;
 }
 
+
+
+
+/* Multimedia colors */
+
 .mm_box {
     color: #002855;
     background-color: #FBF6E5;
 }
+
+/* Right column */
 
 #right_column .content_box .headline_top,
 #right_column .content_box .headline_button {
@@ -3077,6 +3414,9 @@ dt {
     color: #002855;
 }
 
+
+/*------------------------------FOOTER------------------------------*/
+
 #footer #footer_links ul li a {
     color: #333;
 }
@@ -3089,16 +3429,25 @@ dt {
     color: #333;
 }
 
+
+/*------------------------------MISCELLANEOUS------------------------------*/
+
 .warning {
     color: #F00;
 }
+
+
+/*------------------------------BACKGROUND COLOR BELOW FOOTER------------------------------*/
 
 body {
     background-color: #FFF;
 }
 
-#header {
 
+/*------------------------------PRIMARY SECTION GUTTER BACKGROUNDS------------------------------*/
+
+#header {
+/*  background-color: #C99700;*/
     background: #C99700 url('../../images/common/header_gradient_gold.gif') scroll repeat-x left top;
 }
 
@@ -3126,8 +3475,11 @@ body {
     background-color: #FFF;
 }
 
-#header_content {
 
+/*------------------------------PRIMARY SECTION CONTENT SETTINGS------------------------------*/
+
+#header_content {
+/*  background-color: #C99700;*/
 }
 
 #title_area_content {
@@ -3147,9 +3499,16 @@ body {
     background-color: #FFF;
 }
 
-#site_title #title_area_content #title h1 {
 
+/*------------------------------HEADER------------------------------*/
+
+#site_title #title_area_content #title h1 {
+/*  text-transform: uppercase;*/
+/*  font-weight: normal;*/
 }
+
+
+/*------------------------------NAVIGATION BAR------------------------------*/
 
 #nav {
     border-bottom: 3px solid #DAAA00;
@@ -3163,6 +3522,10 @@ body {
     background-color: #D4AC33;
 }
 
+
+
+
+/*! fancyBox v2.1.4 fancyapps.com | fancyapps.com/fancybox/#license */
 .fancybox-wrap,
 .fancybox-skin,
 .fancybox-outer,
@@ -3279,7 +3642,7 @@ body {
 	height: 100%;
 	cursor: pointer;
 	text-decoration: none;
-	background: transparent url('blank.gif'); 
+	background: transparent url('blank.gif'); /* helps IE */
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	z-index: 8040;
 }
@@ -3327,6 +3690,8 @@ body {
 	overflow: visible !important;
 }
 
+/* Overlay helper */
+
 .fancybox-lock {
 	overflow: hidden;
 }
@@ -3351,6 +3716,8 @@ body {
 	overflow: auto;
 	overflow-y: scroll;
 }
+
+/* Title helper */
 
 .fancybox-title {
 	visibility: hidden;
@@ -3377,7 +3744,7 @@ body {
 	display: inline-block;
 	margin-right: -100%;
 	padding: 2px 20px;
-	background: transparent; 
+	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
 	background: rgba(0, 0, 0, 0.8);
 	-webkit-border-radius: 15px;
 	   -moz-border-radius: 15px;
@@ -3408,6 +3775,7 @@ body {
 	background: #000;
 	background: rgba(0, 0, 0, .8);
 }
+
 
 #fancybox-buttons {
 	position: fixed;
@@ -3506,6 +3874,7 @@ body {
 	cursor: default;
 }
 
+
 #fancybox-thumbs {
 	position: fixed;
 	left: 0;
@@ -3561,7 +3930,12 @@ body {
 	padding: 0;
 }
 
+
 @charset "UTF-8";
+/* CSS Document */
+
+/*----------------------------------Common CSS-----------------------------------------*/
+
 
 #site_title {
     position: relative;
@@ -3636,6 +4010,7 @@ body {
     color: #d4a800;
     text-decoration:none;
 }
+
 
 #site_title #title_area_links ul li span.here {
     display: block;
@@ -3715,33 +4090,42 @@ body {
 border-bottom: 1px solid #cccdcf;
 }
 
+
 .nav_second {
 background-color: #d7dce1;
 border-left: 4px solid #848e9b;
 }
 
+
 .nav_second a{
 background-color: #d7dce1;
-
+/*border-left: 8px solid #848e9b;*/
 }
+
 
 .nav_second a:hover current{
 background-color: #bdcada;
 border-left: 4px solid #848e9b;
 }
 
+
 #main_sidebar_inner_wrap {
 padding: 0em 0 10em 0;
 }
+
 
 #main_section {
 border-top: 1px solid #cccdcf;
 }
 
+
 #main_section a:hover{
 color: #77160B;
 background-color:#;
 }
+
+/******************Footer css*************************/
+
 
 #footer {
 clear:both;
@@ -3751,24 +4135,33 @@ margin-top:-.8em;
 min-width: 1024px;
 height:200px;
 text-align:center;
+/*background-image:url(images/bgrepeat.gif);
+background-repeat:repeat-x;*/
+/*background-color:#ededeb;*/
 
-background: rgb(237,237,235); 
+background: rgb(237,237,235); /* Old browsers */
 
-background: -moz-linear-gradient(top,  rgba(237,237,235,1) 0%, rgba(234,234,235,1) 50%, rgba(203,203,203,1) 100%); 
+background: -moz-linear-gradient(top,  rgba(237,237,235,1) 0%, rgba(234,234,235,1) 50%, rgba(203,203,203,1) 100%); /* FF3.6+ */
 
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,235,1)), color-stop(50%,rgba(234,234,235,1)), color-stop(100%,rgba(203,203,203,1))); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,235,1)), color-stop(50%,rgba(234,234,235,1)), color-stop(100%,rgba(203,203,203,1))); /* Chrome,Safari4+ */
 
-background: -webkit-linear-gradient(top,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); 
+background: -webkit-linear-gradient(top,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); /* Chrome10+,Safari5.1+ */
 
-background: -o-linear-gradient(top,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); 
+background: -o-linear-gradient(top,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); /* Opera 11.10+ */
 
-background: -ms-linear-gradient(top,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); 
+background: -ms-linear-gradient(top,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); /* IE10+ */
 
-background: linear-gradient(to bottom,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); 
+background: linear-gradient(to bottom,  rgba(237,237,235,1) 0%,rgba(234,234,235,1) 50%,rgba(203,203,203,1) 100%); /* W3C */
 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededeb', endColorstr='#cbcbcb',GradientType=0 ); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededeb', endColorstr='#cbcbcb',GradientType=0 ); /* IE6-9 */
 
+
+
+/*border-top:1px solid #003366;
+border-bottom:1px solid #003366;*/
 } 
+
+
 
 #footer p{
 font-family:Geneva, Arial, Helvetica, sans-serif;
@@ -3784,12 +4177,61 @@ font-family:Georgia, "Times New Roman", Times, serif;
 font-size:90%;
 font-weight:200;
 display:block;
-
+/*background-color:#eeeeec;*/
 padding:2em 0em .25em 0em;
 margin:0;
 width:100%;
-
+/*border-bottom:1px solid silver;*/
 }
+
+
+/*#footer {
+    clear: both;
+    overflow: hidden;
+    text-align: center;
+}
+#footer #footer_links {
+    font-size: 0.8em;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 1em 0;
+}
+#footer #footer_links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#footer #footer_links ul li {
+    display: inline-block;
+    margin: 0;
+    padding: 0 1.25em 0.5em;
+}
+#footer #standard_footer {
+    margin: 0;
+    padding: 1em 0 0;
+}
+#footer #standard_footer p {
+    font-size: 0.7em;
+    margin: 1em 0;
+}*/
+
+/***************************End Footer css********************************/
+/*----------------------------------End Common CSS-----------------------------------------*/
+
+
+/*------------------------------------level_2.css------------------------------------------------*/
+
+
+/*------------------------------------End level_2.css------------------------------------------------*/
+
+
+
+
+
+
+/*----------------------------------Color CSS-----------------------------------------*/
+
+/*------------------------------PRIMARY NAVIGATION BAR------------------------------*/
 
 .bar_1 {
     background-color: #0d1e67;
@@ -3843,11 +4285,14 @@ width:100%;
     border-left: 1px solid #5f77a0;
 }
 
+
+/*------------------------------LEFT COLUMN------------------------------*/
+
 .nav_second {
     background: #FFF;
     border-top: 1px solid #cccdcf;
-    
-   
+    /*border-left: 1px solid #335379;*/
+   /* border-bottom: 1px solid #335379;*/
 }
     
     #main .nav_second h3 {
@@ -3882,10 +4327,15 @@ width:100%;
         }
     
         #main .nav_second ul li.here {
-           
+           /* background: #bdcada url('../../images/common/arrow_subnav_gold.png') no-repeat scroll -25px 50%;*/
         }
         
-
+/*    .nav_second ul li a:hover[href^="http://"], 
+        .nav_second ul li a:hover[href^="https://"],
+        .nav_second ul li a:focus[href^="http://"], 
+        .nav_second ul li a:focus[href^="https://"] {
+            background: #F0DD99 url("../../images/common/external-link-icon.png") no-repeat scroll 7px center !important;
+        }*/
         
         
     .quick_links h3 {
@@ -3896,9 +4346,15 @@ width:100%;
         color: #002855;
     }
 
+
 #main_sidebar_inner_wrap {
 border-right: 1px solid #CCCDCF;
 }
+
+
+/*------------------------CONTENT BOX COLORS----------------------*/
+
+/* *** Root content box color styles *** */
 
 .content_box .border_box {
     border: 1px solid #E5C44D;
@@ -3949,11 +4405,17 @@ border-right: 1px solid #CCCDCF;
     border-bottom: 0 none;
 }
 
+
+
 .content_box .headline_strong.headline_button a {
     background-color: #5e7d9d;
     color: white;
     border-bottom: 3px solid #0A2455;
 }
+
+
+
+
 
 .content_box .headline_strong.headline_button a:hover,
 .content_box .headline_strong.headline_button a:focus {
@@ -3986,6 +4448,7 @@ border-right: 1px solid #CCCDCF;
 .content_box p.caption a:focus {
     border-bottom: 1px solid #FBF6E5;
 }
+
 
 .content_box.cb_colored {
     background-color: #E5E9EF;
@@ -4057,6 +4520,7 @@ border-right: 1px solid #CCCDCF;
     border-bottom: 1px solid #E5C44D;
 }
 
+
 .content_box ul.featured_links {
         list-style-type: none;
         margin: 0;
@@ -4090,6 +4554,12 @@ border-right: 1px solid #CCCDCF;
                     border-bottom: 1px solid #B2BECC;
                 }
 
+
+/*----------------------------------End Color CSS-----------------------------------------*/
+
+
+/*-----------------------GUNROCK GOLD TOP NAV STYLES FROM UC DAVIS-----------------------*/
+
 body {
     background-color: #FFFFFF;
 }
@@ -4097,12 +4567,20 @@ body {
     background: url("../../images/common/header_gradient_gold.gifsss") repeat-x scroll left top #003366;
     display:none;
 }
+/*#site_title {
+    background-color: #FFFFFF;
+}*/
 
 #site_title {
     background-color: #002855;
     height: 2em;
     margin-bottom: 4.6em;
 }
+
+
+/*#nav .bar_1 {
+    background-color: #335379;
+}*/
 
 #nav .bar_1 {
     background-color: #002855;
@@ -4112,6 +4590,12 @@ body {
 #nav .bar_2 {
     background-color: #5c7697;
 }
+
+
+/*#nav .bar_2 {
+    background-color: #E5C44D;
+}*/
+
 
 #breadcrumbs_container {
     background-color: #FFFFFF;
@@ -4149,20 +4633,31 @@ body {
     background-color: #5c7697;
 }
 
-         
+
+
+/*.bar_2 .nav_content {
+    background-color: #D4AC33;
+}*/
+
+
+/*-----------------------END GUNROCK GOLD TOP NAV STYLES FROM UC DAVIS-----------------------*/
+
+
+
+/*------------------------------TABLE CSS------------------------------ */         
             
             
-    
+    /* Rates Styles - Designed: May 2010, Revised: February 2012 */
     #center_column table.u_tables_gold {
     font-size: .75em;
     font-family: Arial, Helvetica, sans-serif;
     }
-    
-    
+    /* TH Default */
+    /* All TH Cells have the following attributes unless overridden by a variant, below */
     #center_column table.u_tables_gold th {
     height: 4em;
     vertical-align: middle;
-    text-align: center; 
+    text-align: center; /* change alignment - left, center, right, justified */
     background-color: #51668b;
     color: #2F4D69;
     font-size: 1.1em;
@@ -4170,40 +4665,40 @@ body {
     border-right: thin solid #2F4D69;
     border-bottom: thin solid #2F4D69;
     }   
-    
+    /* TD Default */
     #center_column table.u_tables_gold td {
     vertical-align: middle;
-    text-align: center; 
+    text-align: center; /* change alignment - left, center, right, justified */
     font-size: .95em;
     border-right: thin solid #2F4D69;
     border-bottom: thin solid #2F4D69;
     font-weight: normal;
     }   
-    
-    
+    /* TD Variant */
+    /* Font Color: Red */
     #center_column td.u_td_redtext {
     color:#990000;
     }   
-    
-    
+    /* TH Default */
+    /* All TH Cells have the following attributes unless overridden by a variant, below */
     #center_column table.u_tables_gold th {
     height: 4em;
     vertical-align: middle;
-    text-align: left; 
+    text-align: left; /* change alignment - left, center, right, justified */
     background-color: #e8e8e8;
-    color: #fff; 
+    color: #fff; /* change font color for top row */
     font-weight: normal;
     border-right: thin solid #2F4D69;
     border-bottom: thin solid #2F4D69;
     padding: 0 0 0 1em;
     border-left: thin solid #2F4D69;
     }   
-    
+    /* TH Exceptions: Top Row Headers */
     #center_column table.u_tables_gold .u_th_second_column {
     border-bottom-width: thin;
     width: 10em;
     height: 1em;
-    text-align: center; 
+    text-align: center; /* change alignment - left, center, right, justified */
     font-weight: bold;
     border-top: thin solid #2F4D69;
     padding: 0em 0em 0em .4em;
@@ -4212,7 +4707,7 @@ body {
     border-bottom-width: thin;
     width: 20em;
     height: 1em;
-    text-align: center; 
+    text-align: center; /* change alignment - left, center, right, justified */
     font-weight: bold;
     border-top: thin solid #2F4D69;
     border-left-width: 0px;
@@ -4221,15 +4716,15 @@ body {
     #center_column table.u_tables_gold {
     height: 1em;
     border-bottom-width: thin;
-    text-align: center; 
+    text-align: center; /* change alignment - left, center, right, justified */
     font-weight: bold;
     border-top: thin solid #2F4D69;
     border-left-width: 0px;
     padding: 0.5em 0em;
     }   
-    
+    /* TD Default */
     #center_column table.u_tables_gold td {
-    text-align: left; 
+    text-align: left; /* change alignment - left, center, right, justified */
     vertical-align: top;
     font-size: 0.95em;
     border-right: thin solid #2F4D69;
@@ -4238,8 +4733,8 @@ body {
     }
     #center_column table.u_tables_gold {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    
-    width: 100%; 
+    /*border: #2F4D69 2px solid;*/
+    width: 100%; /* controls the overall table width */
     }
     #center_column table.u_tables_gold th {
     padding: .75em;
@@ -4247,45 +4742,45 @@ body {
     border: thin solid #2F4D69;
     }
     #center_column table.u_tables_gold th[scope="col"] {
-    background-color: #51668b; 
+    background-color: #51668b; /* background color for top title header row */
     font-size: 1.1em;
     font-weight: bold;
-    text-align: left; 
+    text-align: left; /* change alignment - left, center, right, justified */
     vertical-align: middle;
     }
     #center_column table.u_tables_gold th[scope="row"] {
-    background-color: #F8EECC; 
+    background-color: #F8EECC; /* change background color of left-most column */
     font-size: 1em;
     font-weight: bold;
-    text-align: left; 
+    text-align: left; /* change alignment - left, center, right, justified */
     height: 3em;
-    color: #2F4D69; 
+    color: #2F4D69; /* font color for far left column, excluding the top left cell */
     }
     #center_column table.u_tables_gold th[scope="row"] {
     font-weight: normal;
     }
     #center_column table.u_tables_gold td {
     font-size: 0.9em;
-    text-align: left; 
+    text-align: left; /* change alignment - left, center, right, justified */
     vertical-align: top;
     border: thin solid #2F4D69;
     padding: 0.25em 0.5em;
     }
     #center_column table.u_tables_gold .u_th_first_column {
     height: 2em;
-    width: 30%; 
+    width: 30%; /*Change the width of the first column here */
     }
     #center_column table.u_tables_gold .u_th_second_column {
     height: 2em;
-    width: 15%;  
+    width: 15%;  /*Change the width of the second column here */
     }
     #center_column table.u_tables_gold .u_th_third_column {
     height: 2em;
-         
+    /* width: 10%; */     /* Change the width of the third column here. The width of all columns must equal 100%. By default, the last column will take up the remainder of the space not designated by the first two columns */
     }
     
     
-    
+    /*--------------------VET MED TABLE STYLES---------------------*/
     .inline_bold_blue{font-size:100%;
 font-weight:700;
 color:#fff;
@@ -4300,8 +4795,13 @@ font-weight:700;
 color:#669999;
 }
 
+
             
- 
+/*---------------------- END TABLE CSS---------------------------- */ 
+
+/*-------------------Social Media Images----------------------------*/
+
+
 
 #social{height:38px; text-align:center;}
           
@@ -4313,7 +4813,7 @@ color:#669999;
     float:left;
     text-decoration:none;
     opacity:0.7;
-    filter:alpha(opacity=70); 
+    filter:alpha(opacity=70); /* For IE8 and earlier */
 }
 
 #social img a{
@@ -4329,10 +4829,16 @@ color:#669999;
     margin-bottom:0;
     padding-bottom:0;
     opacity:1.0;
-    filter:alpha(opacity=100); 
+    filter:alpha(opacity=100); /* For IE8 and earlier */
 }
 
-    
+
+
+
+
+    /*-------------------End Social Media Images----------------------------*/
+
+
 
  p.more_link {
         margin-top: 1em;
@@ -4355,7 +4861,7 @@ color:#669999;
         }
         
         
-        
+        /*----------------------------ACCORDIAN EFFECT----------------------------*/
                 
 #wrapper {
     width: 100%;
@@ -4364,7 +4870,7 @@ color:#669999;
 .accordionButton {  
     width: 90%;
     float: left;
-    _float: none;  
+    _float: none;  /* Float works in all browsers but IE6 */
     background: #d6dce1;
     border-bottom: 1px solid #FFFFFF;
     padding:6px 0px 6px 20px;
@@ -4377,10 +4883,13 @@ color:#669999;
     line-height:21px;
     padding:5px;
     float: left;
-    _float: none; 
+    _float: none; /* Float works in all browsers but IE6 */
     margin-left:1em;
    
     
+/***********************************************************************************************************************
+ EXTRA STYLES ADDED FOR MOUSEOVER / ACTIVE EVENTS
+************************************************************************************************************************/
 
 .on {
     background: #990000;
@@ -4400,406 +4909,630 @@ color:#669999;
     #map { width:450px; height: 300px; border: 1px solid #8D8D8D; font-size:80%; }
 #map_large { width:100%; height: 600px; border: 1px solid #8D8D8D; }
 
-.inline_header{font-size:120%; font-weight:600; color:#639AC9;}
 
-</style>
+
+.inline_header{font-size:120%; font-weight:600; color:#639AC9;}
+  </style>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta content="text/css" http-equiv="Content-Style-Type">
   <meta content="text/javascript" http-equiv="Content-Script-Type">
-
-  
-  <title>Students | UC Davis Networks Lab</title>
-  
-  
-  
-  
-  
-  
-   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-     
-   
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</head>
-
-<body>
-  
+  <!-- ******************** Page title ******************** -->
+  <title>
+   Students | UC Davis Networks Lab
+  </title>
+  <!-- ******************** End page title ******************** -->
+  <!-- Colors -->
+  <!-- standard jQuery library -->
+  <!-- Custom stylesheets -->
+  <!--Block associations-->
+  <!--Site-specific CSS, JavaScript and/or code-->
+  <!--[if IE 7]><![endif]-->
+  <!--[if lte IE 7]><![endif]-->
+  <!--[if IE 6]><![endif]-->
+ </head>
+ <body>
+  <!--
+      This will show only in text-only browsers and allows the user
+      to skip the primary navigation and go directly to the main content of the page
+  -->
   <div id="navskip">
-      <a >Skip to page content</a>
+   <a>
+    Skip to page content
+   </a>
   </div>
-
-  
+  <!-- ******************** Header ******************** -->
   <div id="header">
-    <div class="outer_wrap">
-      <div class="inner_wrap">
-        <div id="header_content">
-          <div id="ucdavis_logo"><a  target="_blank"><img alt="UC Davis home page" src="rick.jpg"></a>
-          </div>
-        </div>
+   <div class="outer_wrap">
+    <div class="inner_wrap">
+     <div id="header_content">
+      <div id="ucdavis_logo">
+       <a target="_blank">
+        <img alt="UC Davis home page" src="rick.jpg">
+       </a>
       </div>
+     </div>
     </div>
+   </div>
   </div>
-  
-  
-  
+  <!-- ******************** End header ******************** -->
+  <!-- ******************** Site identification ******************** -->
   <div id="site_title">
-    <div class="outer_wrap">
-      <div class="inner_wrap">
-        <div id="title_area_content" role="banner">
-          <div class="logo" id="title">
-            <h1><a ><img alt="UC Davis Networks Research Lab" src="rick.jpg"></a></h1>
-          </div>
-          <div id="title_area_links">
-            <div id="title_area_links_inner_wrap">
-              <ul class="noindent">
-                <li id="Friday Group Meeting" title="Friday Group Meeting" alt="Friday Group Meeting"><a >Friday Group Meeting</a></li>
-                <li id="Maps" title="Maps" alt="Maps"><a >Maps</a></li>
-                <li id="Contact Us" title="Contact Us" alt="Contact Us"><a >Contact Us</a></li>
-                <li id="Links" title="Links" alt="Links"><a >Links</a></li>
-                <li id="News" title="News" alt="News"><a >News</a></li>
-                <li><a  target="_blank"><img alt="UC Davis Logo" src="rick.jpg"></a></li>
-              </ul>
-            </div>
-          </div>
-          <div id="title_area_search_etc">
-            <div id="search_wrapper_home">
-              <form action="search_results.html" id="cse-search-box">
-                <input name="cof" type="hidden" value="FORID:11">
-                <input name="ie" type="hidden" value="UTF-8">
-                <input name="q" size="16" type="text">
-                <input name="sa" type="submit" value="Search"> 
-                <input value="015123209407590859216:i7ouia1-gv4" type="hidden" name="cx" id="netlab">
-              </form>
-              
-            </div>
-          </div>
-        </div>
-        <div class="clearer"></div>
+   <div class="outer_wrap">
+    <div class="inner_wrap">
+     <div id="title_area_content" role="banner">
+      <div class="logo" id="title">
+       <h1>
+        <a>
+         <img alt="UC Davis Networks Research Lab" src="rick.jpg">
+        </a>
+       </h1>
       </div>
+      <div id="title_area_links">
+       <div id="title_area_links_inner_wrap">
+        <ul class="noindent">
+         <li alt="Friday Group Meeting" id="Friday Group Meeting" title="Friday Group Meeting">
+          <a>
+           Friday Group Meeting
+          </a>
+         </li>
+         <li alt="Maps" id="Maps" title="Maps">
+          <a>
+           Maps
+          </a>
+         </li>
+         <li alt="Contact Us" id="Contact Us" title="Contact Us">
+          <a>
+           Contact Us
+          </a>
+         </li>
+         <li alt="Links" id="Links" title="Links">
+          <a>
+           Links
+          </a>
+         </li>
+         <li alt="News" id="News" title="News">
+          <a>
+           News
+          </a>
+         </li>
+         <li>
+          <a target="_blank">
+           <img alt="UC Davis Logo" src="rick.jpg">
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div id="title_area_search_etc">
+       <div id="search_wrapper_home">
+        <form action="search_results.html" id="cse-search-box">
+         <input name="cof" type="hidden" value="FORID:11">
+         <input name="ie" type="hidden" value="UTF-8">
+         <input name="q" size="16" type="text">
+         <input name="sa" type="submit" value="Search">
+         <input id="netlab" name="cx" type="hidden" value="015123209407590859216:i7ouia1-gv4">
+        </form>
+       </div>
+      </div>
+     </div>
+     <div class="clearer">
+      <!-- Needs to be here to prevent title area collapsing -->
+     </div>
     </div>
+   </div>
   </div>
-
-  
-  
-  
+  <!-- ******************** End site identification ******************** -->
+  <!-- ******************** Primary navigation ******************** -->
   <div id="nav" role="navigation">
-    <div id="_nav_doubledown">
-      <div class="nav_background bar_1">
-        <div class="outer_wrap">
-          <div class="inner_wrap">
-            <div class="nav_content">
-              <ul class="primary_nav">
-                <li><a >Home</a></li><li><a >News &amp; Events</a></li><li><a >Faculty</a></li><li><a class="here" >Students</a></li><li><a >Visiting Researchers</a></li><li><a >Alumni</a></li><li><a >Sponsors</a></li><li><a >Pictures</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+   <div id="_nav_doubledown">
+    <div class="nav_background bar_1">
+     <div class="outer_wrap">
+      <div class="inner_wrap">
+       <div class="nav_content">
+        <ul class="primary_nav">
+         <li>
+          <a>
+           Home
+          </a>
+         </li>
+         <li>
+          <a>
+           News &amp; Events
+          </a>
+         </li>
+         <li>
+          <a>
+           Faculty
+          </a>
+         </li>
+         <li>
+          <a class="here">
+           Students
+          </a>
+         </li>
+         <li>
+          <a>
+           Visiting Researchers
+          </a>
+         </li>
+         <li>
+          <a>
+           Alumni
+          </a>
+         </li>
+         <li>
+          <a>
+           Sponsors
+          </a>
+         </li>
+         <li>
+          <a>
+           Pictures
+          </a>
+         </li>
+        </ul>
+       </div>
       </div>
-      <div class="nav_background bar_2">
-        <div class="outer_wrap">
-          <div class="inner_wrap">
-            <div class="nav_content">
-              <ul class="primary_nav">
-                <li><a >About Us</a></li><li><a >Projects</a></li><li><a >Publications</a></li><li><a >Presentations</a></li><li><a >Seminars</a></li><li><a >Workshops</a></li><li><a >Reviews</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+     </div>
     </div>
+    <div class="nav_background bar_2">
+     <div class="outer_wrap">
+      <div class="inner_wrap">
+       <div class="nav_content">
+        <ul class="primary_nav">
+         <li>
+          <a>
+           About Us
+          </a>
+         </li>
+         <li>
+          <a>
+           Projects
+          </a>
+         </li>
+         <li>
+          <a>
+           Publications
+          </a>
+         </li>
+         <li>
+          <a>
+           Presentations
+          </a>
+         </li>
+         <li>
+          <a>
+           Seminars
+          </a>
+         </li>
+         <li>
+          <a>
+           Workshops
+          </a>
+         </li>
+         <li>
+          <a>
+           Reviews
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
   </div>
-  
-  
-  
+  <!-- ******************** End primary navigation ******************** -->
+  <!-- ******************** Breadcrumb navigation ******************** -->
   <div id="breadcrumbs_container">
-    <div class="outer_wrap">
-      <div class="inner_wrap">
-        <div id="breadcrumbs_content">
-          <div id="breadcrumbs" role="navigation">
-              <ul><li><a >Home</a></li><li><a >People</a></li><li><span class="here">Students</span></li></ul>
-          </div>
-        </div>
+   <div class="outer_wrap">
+    <div class="inner_wrap">
+     <div id="breadcrumbs_content">
+      <div id="breadcrumbs" role="navigation">
+       <ul>
+        <li>
+         <a>
+          Home
+         </a>
+        </li>
+        <li>
+         <a>
+          People
+         </a>
+        </li>
+        <li>
+         <span class="here">
+          Students
+         </span>
+        </li>
+       </ul>
       </div>
+     </div>
     </div>
+   </div>
   </div>
-  
-
-  
-  
-  
-
-  
+  <!-- ******************** End breadcrumb navigation ******************** -->
+  <!-- ******************** Pre-main-columns region ******************** -->
+  <!-- ******************** End pre-main-columns region ******************** -->
+  <!-- ******************** Main page columns ******************** -->
   <div id="main">
-    <div class="outer_wrap">
-      <div class="inner_wrap">
-        <div id="main_content">
-
-          
-          <div id="main_sidebar">
-            <div id="main_sidebar_inner_wrap">
-              <h2 class="semantic_column_header">Secondary navigation and site ownership</h2>
-                  
-              <div class="nav_second" role="navigation">
-                <h3 class="here">People</h3>
-                <ul>
-                  <li><a >Faculty</a></li>
-                  <li><a style="background-color:#9DB6E2" >Students</a></li>
-                  <li><a >Visiting Scholars</a></li>
-                  <li><a >Alumni</a></li>
-                </ul>
-              </div>      
-            </div>
-          </div>
-          
-  
-          
-          <div id="main_section" role="main">
-            
-            <div id="center_column">
-              <div id="center_column_inner_wrap">
-                
-                <div id="page_title">
-                  <h2>People</h2>
-                </div>
-                
-                
-                <div class="repeating_content_block">
-                  
-                  <h3>STUDENTS</h3>
-                  <hr>
-                  
-                  <h3><a id="phd" name="phd"></a>Ph.D. Students</h3>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="partha" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Partha Bhaumik</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: architectures, protocols and algorithms for hybrid optical access networks, subscriber traffic modeling for video-based applications, and Software-Defined Networking (SDN).</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="divya" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Divya Chitimalla</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Optical access networks, Statistical modeling, and Data Center Networking.</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="sifat" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Sifat Ferdousi</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: MLR networks, Wavebanding, Cloud Networks, Disaster-resilient network modeling and optimization, Data center and content placement schemes, and Virtual machine migration.<br>&nbsp;</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="gupta" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Abhishek Gupta</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Cloud Networks, Energy-Efficienct Networks, Network Function Virtualization, Virtual Machine Migration, and Green Computing.</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><img alt="rafael" height="108" width="220" src="rick.jpg">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Rafael Braz Reboucas Lourenco</a></h4>
-                  
-                  <p><em>Ph.D. Student</em></p>
-                  <p>Research interests: Interdependent Networks,  Disaster-resilient Network Modeling and Optimization, Software Defined Networking, and Space Division Multiplexing (SDM).</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="carlos" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Carlos Colman Meixner</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Network virtualization robustness and measurement, software defined networks design and optimization over optical networks, nature-inspired metaheuristics, multi-objective optimization, and next generation Internet design and optimization.</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><img alt="roy" height="103" width="220" src="rick.jpg">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4>Abhishek Roy</h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Mathematical Modeling, Interdependent Networks, Disaster Resiliency in Networks.</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="sedef" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Saadet Sedef Savas</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Adaptability and survivability of communication networks against disasters, QoS-aware service provisioning schemes, and Software-Defined Networking (SDN).<br>&nbsp;</p>
-                  
-                  <hr>
-                  
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="xinbo" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Xinbo Wang</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Elastic optical networks, Software-Defined Networking(SDN), and Data center Networking.</p>
- 
-                <hr>
- 
-                  <div class="content_box narrow left top_item _feature-block">
-                    <div class="border_box">
-                      <div style="margin: 0; padding: 0;">
-                        <div><a  target="_blank"><img alt="xinbo" height="103" width="220" src="rick.jpg"></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h4><a  target="_blank">Sabidur Rahman</a></h4>
-                  
-                  <p><em>Ph.D. Candidate</em></p>
-                  <p>Research interests: Network Virtualization and Automation, Machine Learning and Data-driven Solutions for Cost-Efficienct Networking. <a  target="_blank">Details at Google Scholar profile</a> and <a  target="_blank">LinkedIn profile.</a></p>
- 
-                </div>
-                              
-              </div>
-            </div>
-            
-
-            
-                      
-          
-          </div>
-          
+   <div class="outer_wrap">
+    <div class="inner_wrap">
+     <div id="main_content">
+      <!-- ********** Main sidebar ********** -->
+      <div id="main_sidebar">
+       <div id="main_sidebar_inner_wrap">
+        <h2 class="semantic_column_header">
+         Secondary navigation and site ownership
+        </h2>
+        <div class="nav_second" role="navigation">
+         <h3 class="here">
+          People
+         </h3>
+         <ul>
+          <li>
+           <a>
+            Faculty
+           </a>
+          </li>
+          <li>
+           <a style="background-color:#9DB6E2">
+            Students
+           </a>
+          </li>
+          <li>
+           <a>
+            Visiting Scholars
+           </a>
+          </li>
+          <li>
+           <a>
+            Alumni
+           </a>
+          </li>
+         </ul>
         </div>
+       </div>
       </div>
+      <!-- ********** End main sidebar ********** -->
+      <!-- ********** Main content section ********** -->
+      <div id="main_section" role="main">
+       <!-- Center column (primary content) -->
+       <div id="center_column">
+        <div id="center_column_inner_wrap">
+         <!-- ********** Page title ********** -->
+         <div id="page_title">
+          <h2>
+           People
+          </h2>
+         </div>
+         <!-- ********** End page title ********** -->
+         <div class="repeating_content_block">
+          <h3>
+           STUDENTS
+          </h3>
+          <hr>
+          <h3>
+           <a id="phd" name="phd">
+           </a>
+           Ph.D. Students
+          </h3>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="partha" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Partha Bhaumik
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: architectures, protocols and algorithms for hybrid optical access networks, subscriber traffic modeling for video-based applications, and Software-Defined Networking (SDN).
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="divya" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Divya Chitimalla
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Optical access networks, Statistical modeling, and Data Center Networking.
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="sifat" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Sifat Ferdousi
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: MLR networks, Wavebanding, Cloud Networks, Disaster-resilient network modeling and optimization, Data center and content placement schemes, and Virtual machine migration.
+           <br>
+           &nbsp;
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="gupta" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Abhishek Gupta
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Cloud Networks, Energy-Efficienct Networks, Network Function Virtualization, Virtual Machine Migration, and Green Computing.
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <img alt="rafael" height="108" src="rick.jpg" width="220">
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Rafael Braz Reboucas Lourenco
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Student
+           </em>
+          </p>
+          <p>
+           Research interests: Interdependent Networks,  Disaster-resilient Network Modeling and Optimization, Software Defined Networking, and Space Division Multiplexing (SDM).
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="carlos" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Carlos Colman Meixner
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Network virtualization robustness and measurement, software defined networks design and optimization over optical networks, nature-inspired metaheuristics, multi-objective optimization, and next generation Internet design and optimization.
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <img alt="roy" height="103" src="rick.jpg" width="220">
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           Abhishek Roy
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Mathematical Modeling, Interdependent Networks, Disaster Resiliency in Networks.
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="sedef" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Saadet Sedef Savas
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Adaptability and survivability of communication networks against disasters, QoS-aware service provisioning schemes, and Software-Defined Networking (SDN).
+           <br>
+           &nbsp;
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="xinbo" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Xinbo Wang
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Elastic optical networks, Software-Defined Networking(SDN), and Data center Networking.
+          </p>
+          <hr>
+          <div class="content_box narrow left top_item _feature-block">
+           <div class="border_box">
+            <div style="margin: 0; padding: 0;">
+             <!-- include Cycle plugin -->
+             <div>
+              <a target="_blank">
+               <img alt="xinbo" height="103" src="rick.jpg" width="220">
+              </a>
+             </div>
+            </div>
+           </div>
+          </div>
+          <h4>
+           <a target="_blank">
+            Sabidur Rahman
+           </a>
+          </h4>
+          <p>
+           <em>
+            Ph.D. Candidate
+           </em>
+          </p>
+          <p>
+           Research interests: Network Virtualization and Automation, Machine Learning and Data-driven Solutions for Cost-Efficienct Networking.
+           <a target="_blank">
+            Details at Google Scholar profile
+           </a>
+           and
+           <a target="_blank">
+            LinkedIn profile.
+           </a>
+          </p>
+         </div>
+        </div>
+       </div>
+       <!-- End center column -->
+       <!-- Optional right column -->
+       <!-- End optional right column -->
+      </div>
+      <!-- ********** End main content ********** -->
+     </div>
     </div>
+   </div>
   </div>
-  
-  
-  
+  <!-- ******************** End main page columns ******************** -->
+  <!-- ******************** Footer ******************** -->
   <div id="footer">
-    <div class="outer_wrap">
-      <div class="inner_wrap">
-        <div id="footer_content">
-          
-          
-          
-
-          
-          
-          
-
-          
-          <div id="standard_footer" role="contentinfo">
-                
-            <p><a >Contact us</a> | <a  target="_blank">UC Davis</a> | <a  target="_blank">UC Davis Computer Science</a> | <a  target="_blank">UC Davis Electrical and Computer Engineering</a><br>
-            UC Davis Networks Research Lab • 2243 Kemper Hall • One Shields Avenue • Davis, CA 95616 • Phone: +1-530-752-5129 • Fax: +1-530-752-4767<br>
-            Copyright © 2015 The Regents of the University of California, Davis campus. All Rights Reserved.</p>
-          </div>
-          
-        </div>
+   <div class="outer_wrap">
+    <div class="inner_wrap">
+     <div id="footer_content">
+      <!-- ********** Optional footer links ********** -->
+      <!-- ********** End optional footer links ********** -->
+      <!-- ********** Optional footer extras ********** -->
+      <!-- ********** End optional footer extras ********** -->
+      <!-- ********** Standard footer content ********** -->
+      <div id="standard_footer" role="contentinfo">
+       <p>
+        <a>
+         Contact us
+        </a>
+        |
+        <a target="_blank">
+         UC Davis
+        </a>
+        |
+        <a target="_blank">
+         UC Davis Computer Science
+        </a>
+        |
+        <a target="_blank">
+         UC Davis Electrical and Computer Engineering
+        </a>
+        <br>
+        UC Davis Networks Research Lab &bull; 2243 Kemper Hall &bull; One Shields Avenue &bull; Davis, CA 95616 &bull; Phone: +1-530-752-5129 &bull; Fax: +1-530-752-4767
+        <br>
+        Copyright &copy; 2015 The Regents of the University of California, Davis campus. All Rights Reserved.
+       </p>
       </div>
+      <!-- ********** End standard footer content ********** -->
+     </div>
     </div>
+   </div>
   </div>
-  
-    
-
-</body></html>
+  <!-- ******************** End footer ******************** -->
+ </body>
+</html>

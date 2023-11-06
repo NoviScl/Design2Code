@@ -1,10 +1,13 @@
-<html><head>
-<style></style>
-<title>SAS VIEWTABLE Custom Command Manager</title>
-<meta name="keywords" content="SAS/AF, SAS/AF Samples, SAS/AF Sample, SAS/AF Examples, SAS/AF Example">
-<style type="text/css">
-
-BODY { font-family:Arial,Helvetica,sans-serif; background-color:#F1F1F1 }
+<html>
+ <head>
+  <style>
+  </style>
+  <title>
+   SAS VIEWTABLE Custom Command Manager
+  </title>
+  <meta content="SAS/AF, SAS/AF Samples, SAS/AF Sample, SAS/AF Examples, SAS/AF Example" name="keywords">
+  <style type="text/css">
+   BODY { font-family:Arial,Helvetica,sans-serif; background-color:#F1F1F1 }
 H1, H2, H3, H4 {  color: #002288; padding:4px }
 H2 { background-color: #99CCFF; border:1px solid #77AAFF }
 H3 { background-color: #BBDDFF; border:1px solid #99BBFF }
@@ -29,7 +32,7 @@ DIV.NAVL A { text-decoration:none }
  PRE { margin-top:0;background:#FBF5D9;padding:4pt;border:1px solid #DDD }
 .PRE { margin-top:0;background:#FBF5D9;padding:4pt;border:1px solid #DDD }
 .PREF{ margin-top:0;background:#FBF5D9;padding:4pt;border:1px solid #DDD;font-family:monospace }
-FORM#pff { display:inline;float:right } 
+FORM#pff { display:inline;float:right } /* print friendly button */
 
 table#annoform { border:2px #999 solid; background: #CCC; font-family:sans-serif; font-weight:700; font-size:80% }
 table#annoform td { text-align:left; padding-top:0.5em }
@@ -44,224 +47,643 @@ td.anno_who { padding:12px 5px 2px 10px; text-align:left; font-weight:700; color
 td.anno_when{ padding:12px 10px 2px 5px; text-align:right }
 td.anno_msg { padding: 2px 2px 2px 12px; border: 1px #888 solid; text-align:left; background-color: #DDD}
 td.anno_msg div.rad { padding:6px 6px 6px 6px; margin-bottom:.8em; margin-top:0.8em;margin-right:1em;border: 1px #888 solid; text-align:left; background-color: #9C9}
-</style>
-<style type="text/css">table.nav {width:100%;border-collapse:collapse;font-family:sans-serif;font-size:9pt}table.nav td {text-align:center;border-right:1px solid black;border-bottom:1px solid black;border-left:1px solid black;padding:1px}</style></head>
-
-<body><table class="nav">
-<tbody><tr>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/index.html')" onmouseout="return transitions.out (this)" onclick="top.location.href='/index.html'">Home
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/downloads/sas/macros/index.php')" onmouseout="return transitions.out (this)" onclick="top.location.href='/downloads/sas/macros/index.php'">Macros
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/downloads/sas/samples/')" onmouseout="return transitions.out (this)" onclick="top.location.href='/downloads/sas/samples/'">Samples
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/downloads/sas/sascbtbl/')" onmouseout="return transitions.out (this)" onclick="top.location.href='/downloads/sas/sascbtbl/'">SASCBTBL
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #DDDDDD">SAS/AF
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/docs/SAS/sas-colors.html')" onmouseout="return transitions.out (this)" onclick="top.location.href='/docs/SAS/sas-colors.html'">Miscellaneous
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/papers/')" onmouseout="return transitions.out (this)" onclick="top.location.href='/papers/'">Papers
-</td>
-<td style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top" onmouseover="return transitions.over(this,'/downloads/sas/actions/')" onmouseout="return transitions.out (this)" onclick="top.location.href='/downloads/sas/actions/'">Actions
-</td>
-</tr>
-</tbody></table>
-<table border="0" cellpadding="0" cellspacing="0">
-
-<tbody><tr>
-  <td colspan="2" id="TOP" class="TOP">
-  <a >Richard A. DeVenezia</a>   <form id="pff">
-  <input type="BUTTON" value="Printer friendly window" onclick="window.open('/downloads/sas/af/index.php?topic=18&amp;pf=1','PrinterFriendly','left=20,top=20,width=640,height=600,resizable=1,scrollbars=1,toolbar=0,menubar=1')">
-  </form><br>
-  <a >Home</a> &gt;
-  <a >SAS/AF Utilities, Components, Frames and Examples</a></td></tr><tr>
-  <td id="LEFT" valign="TOP" width="155px" nowrap="" class="LEFT">
-  <div style="padding-right:10px">
-  <br>
-<div class="NAVH"><img src="rick.jpg" border="0"></div>
-<div class="NAVL">
-<a >&nbsp;Column Properties&nbsp;</a>
-<a >&nbsp;Item Cost (modelscl)&nbsp;</a>
-</div>
-<br>
-<div class="NAVH">General Tips</div>
-<div class="NAVL">
-<a >&nbsp;Enhanced Editor(AF)&nbsp;</a>
-<a >&nbsp;SAS Explorer&nbsp;</a>
-</div>
-<br>
-<div class="NAVH">ViewTable</div>
-<div class="NAVL">
-<a  id="active">&nbsp;Custom Command Manager&nbsp;</a>
-<a >&nbsp;Copy Selection&nbsp;</a>
-<a >&nbsp;BuildDF - Dataform&nbsp;</a>
-<a >&nbsp;SaveDF - Dataform&nbsp;</a>
-</div>
-<br>
-<div class="NAVH">SAS Explorer</div>
-<div class="NAVL">
-<a >&nbsp;Column Properties&nbsp;<img src="rick.jpg" border="0"></a>
-<a >&nbsp;Export Catalog Sources&nbsp;</a>
-</div>
-<br>
-<div class="NAVH">Common</div>
-<div class="NAVL">
-<a >&nbsp;Complex List Editor&nbsp;</a>
-<a >&nbsp;Simple List Editor&nbsp;</a>
-<a >&nbsp;Green Bars&nbsp;</a>
-<a >&nbsp;Enter Value&nbsp;</a>
-<a >&nbsp;List of Values&nbsp;</a>
-<a >&nbsp;Navigate Dataset Hierarchy&nbsp;</a>
-<a >&nbsp;SCL List Class Extension<br>&nbsp;&nbsp;&nbsp;with SubList sorting&nbsp;</a>
-<a >&nbsp;Checklist Class&nbsp;</a>
-<a >&nbsp;SCL List Model Extension<br>&nbsp;&nbsp;&nbsp;for Viewing SCL Lists&nbsp;</a>
-<a >&nbsp;Filtered SCL List&nbsp;</a>
-</div>
-<br>
-<div class="NAVH">Examples</div>
-<div class="NAVL">
-<a >&nbsp;Item Cost (modelscl)&nbsp;<img src="rick.jpg" border="0"></a>
-<a >&nbsp;Timer Class&nbsp;</a>
-<a >&nbsp;Export Catalog Sources&nbsp;</a>
-<a >&nbsp;Tetris&nbsp;</a>
-<a >&nbsp;Model / Viewer&nbsp;</a>
-<a >&nbsp;Dialog Functions&nbsp;</a>
-<a >&nbsp;Tree View Control&nbsp;</a>
-<a >&nbsp;List View Control&nbsp;</a>
-<a >&nbsp;SAS Registry Browser&nbsp;</a>
-<a >&nbsp;Metaselector...&nbsp;</a>
-<a >&nbsp;Maintaining Aspect&nbsp;</a>
-<a >&nbsp;Singletons&nbsp;</a>
-<a >&nbsp;Textpad Control&nbsp;</a>
-<a >&nbsp;Pie Control&nbsp;</a>
-<a >&nbsp;Collections&nbsp;</a>
-<a >&nbsp;Word Tables&nbsp;</a>
-</div>
-<br><div class="NAVH">Contact</div><div class="NAVL" style="width:145px"><a >Richard A. DeVenezia</a></div><br>    <div class="NAVH"><a >Reader Comments</a></div>    <div class="NAVL"><br>SAS and SAS/AF are registered trademarks or trademarks of SAS Institute Inc., in the USA and other countries.  ® indicates USA registration.</div>
-  </div>
-  </td>
-  
-  <td id="RIGHT" valign="TOP" width="640px" nowrap="" class="RIGHT">
-  <div class="content">
-	 <p>This topic has no sources yet.</p>
-	 <h2><a ><img align="right" border="0" title="Submit a comment" alt="Submit a comment" src="rick.jpg"></a>SAS VIEWTABLE Custom Command Manager</h2><p class="NAVH" style="margin-top:-1.45em;float:right"><a >Reader Comments</a></p>
-	 
-	 <p> The EXECCMD argument of the VIEWTABLE command installs an SCL method that processes custom commands issued to the VIEWTABLE window. This argument is beneficial, however there are limitations
-		when a user desires several independently developed custom command parsers be active.</p>
-	 <p> EXECCMD is only available at VIEWTABLE invocation, there is no VIEWTABLE EXECCMD command. (Ingenious SCL coders can mimic EXECCMD at run-time by using the MODELSCL command to run code that
-		installs method overrides from the DFINIT: section of an SCL entry)</p>
-	 <p>Custom commands can be issued from the command window, menu choices or programmed keys.</p>
-	 <h2>Goal</h2>
-	 <p>Develop a custom command processing environment which an end user can easily install and configure. Advance coding practices that prefer self-relative or self-evident structure. Reliance on
-		hardcoded paths or class names is to be minimized or entirely eliminated. Implementation of custom commands is not considered end-user territory and should be attempted by those with SAS/AF
-		experience.</p>
-	 <h2>Overall scheme</h2>
-	 <ul>
-		<li> top level manager
-		  <ul>
-			 <li>registers custom command classes</li>
-			 <li>dispatches control to custom command classes</li>
-		  </ul></li>
-		<li>class based custom command processing
-		  <ul>
-			 <li>classes must implement a command processing method with signature (CNC)V</li>
-			 <li>develop a sample custom command class to guide development of new custom command classes</li>
-		  </ul></li>
-	 </ul>
-	 <p>The manager is installed at VIEWTABLE start-up by using the EXECCMD argument. The manager can not be installed after a VIEWTABLE window has started. Each VIEWTABLE window is independent,
-		custom commands installed for one window are not available to another. </p>
-	 <p>Future versions could address the desire for class registration to be permanent (aka persistent) or session global and in affect for all VIEWTABLE windows.</p>
-	 <h2>Top level manager</h2>
-	 <p>In this project, the manager will be Common.Viewtable.CustomCommand.scl, method Manager. It will be installed using VIEWTABLE argument
-		<b>EXECCMD=Common.Viewtable.CustomCommand.scl:Manager</b>. In reality, the manager can be any method of any scl entry.</p>
-	 <p>The manager reserves two custom commands for itself:</p>
-	 <ul style="font-family: monospace">
-		<li>ccRegister &lt;/u&gt; <i>class &lt;class&gt; ... &lt;class&gt;</i></li>
-		<li>ccUnload</li>
-	 </ul>
-	 <h3>ccRegister</h3>
-	 <p>This custom command is used to register a method of a SAS/AF class for dispatching. An instance of the class is added to a dispatch list.</p>
-	 <p> The <code><i>class</i></code> value is of the form <code><i>[catalog.]class[:method]</i></code></p>
-	 <p><code><i>catalog</i></code>&nbsp;&nbsp;is of the form <code><i>libname.memname</i></code>. If <code><i>[catalog.]</i></code> is not present, it will default to the same catalog that the custom command manager was loaded from. If <code><i>[:method]</i></code> is not present, it will default to <code>commandParser</code>.</p>
-	 <p>Thus, for this project, the default is <code>Common.Viewtable.<i>class</i>:commandParser</code></p>
-	 <p>The method must be of signature <code>(CNC)V</code> (<a >see below</a> for more details). If the method sets the return code argument to 1, then the command will <u>not</u> be dispatched to any additional classes. This prevents
-		collisions between two classes designed to process the same custom command.</p>
-	 <p>Different methods of the same class can be registered.</p>
-	 <h3>ccRegister /u</h3>
-	 <p>This custom command is used to remove a class method from the dispatch list. If only a class is indicated, <u>all</u> methods of that class are removed.</p>
-	 <h3>ccUnload</h3>
-	 <p>This custom command unregisters all methods and uninstalls the Manager.</p>
-	 <h3>Dispatcher main loop</h3>
-	 <ul>
-		<li> test for manager reserved commands
-		  <ul>
-			 <li>ccRegister
-				<ul>
-				  <li>parse for /u and class arguments</li>
-				  <li>instantiate class and check method signature</li>
-				  <li>/u remove matching items from dispatch list, _term() classes with no remaining methods registered</li>
-				</ul></li>
-			 <li>ccUnload
-				<ul>
-				  <li>unregister all classes</li>
-				  <li>remove _self_ override of _execCommand</li>
-				</ul></li>
-		  </ul></li>
-		<li>loop through dispatch list
-		  <ul>
-			 <li>invoke command processing method of class</li>
-		  </ul></li>
-	 </ul>
-	 <h2><a name="classes"></a>Custom command classes</h2>
-	 <p>At a minimum, a custom command class should be a subclass of <code>sashelp.fsp.object</code> and contain one method of signature (CNC)V. Example:</p>
-	 <p><code>commandParser: Public Method inCmd:I:Char retCode:U:Num outCmd:I:Char ;</code></p>
-	 <p>You may want to develop a class hierarchy to make common command processing tasks easily reusable.</p>
-	 <h3>Parsing the command line</h3>
-	 <p>The default scheme provided by _execCommand override is simple. The documentation does not discuss processing multi word commands, however empirical study shows these facts:</p>
-	 <ul>
-		<li>First token of the command line is in <code>inCmd</code></li>
-		<li>Second token of the command line is in <code>outCmd</code></li>
-		<li>Third and subsequent tokens of the command line are obtained by this pattern:<br>
-		  <pre style="bbackground-color: #CCFFCC;width:17em; padding-left:1em;margin-top:1em">token = word(1);
+  </style>
+  <style type="text/css">
+   table.nav {width:100%;border-collapse:collapse;font-family:sans-serif;font-size:9pt}table.nav td {text-align:center;border-right:1px solid black;border-bottom:1px solid black;border-left:1px solid black;padding:1px}
+  </style>
+ </head>
+ <body>
+  <table class="nav">
+   <tbody>
+    <tr>
+     <td onclick="top.location.href='/index.html'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/index.html')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      Home
+     </td>
+     <td onclick="top.location.href='/downloads/sas/macros/index.php'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/downloads/sas/macros/index.php')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      Macros
+     </td>
+     <td onclick="top.location.href='/downloads/sas/samples/'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/downloads/sas/samples/')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      Samples
+     </td>
+     <td onclick="top.location.href='/downloads/sas/sascbtbl/'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/downloads/sas/sascbtbl/')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      SASCBTBL
+     </td>
+     <td style="width:12.5%;border-top:1px solid black;background-color: #DDDDDD">
+      SAS/AF
+     </td>
+     <td onclick="top.location.href='/docs/SAS/sas-colors.html'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/docs/SAS/sas-colors.html')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      Miscellaneous
+     </td>
+     <td onclick="top.location.href='/papers/'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/papers/')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      Papers
+     </td>
+     <td onclick="top.location.href='/downloads/sas/actions/'" onmouseout="return transitions.out (this)" onmouseover="return transitions.over(this,'/downloads/sas/actions/')" style="width:12.5%;border-top:1px solid black;background-color: #FFFFFF" target="_top">
+      Actions
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td class="TOP" colspan="2" id="TOP">
+      <a>
+       Richard A. DeVenezia
+      </a>
+      <form id="pff">
+       <input onclick="window.open('/downloads/sas/af/index.php?topic=18&amp;pf=1','PrinterFriendly','left=20,top=20,width=640,height=600,resizable=1,scrollbars=1,toolbar=0,menubar=1')" type="BUTTON" value="Printer friendly window">
+      </form>
+      <br>
+      <a>
+       Home
+      </a>
+      &gt;
+      <a>
+       SAS/AF Utilities, Components, Frames and Examples
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td class="LEFT" id="LEFT" nowrap valign="TOP" width="155px">
+      <div style="padding-right:10px">
+       <br>
+       <div class="NAVH">
+        <img border="0" src="rick.jpg">
+       </div>
+       <div class="NAVL">
+        <a>
+         &nbsp;Column Properties&nbsp;
+        </a>
+        <a>
+         &nbsp;Item Cost (modelscl)&nbsp;
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        General Tips
+       </div>
+       <div class="NAVL">
+        <a>
+         &nbsp;Enhanced Editor(AF)&nbsp;
+        </a>
+        <a>
+         &nbsp;SAS Explorer&nbsp;
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        ViewTable
+       </div>
+       <div class="NAVL">
+        <a id="active">
+         &nbsp;Custom Command Manager&nbsp;
+        </a>
+        <a>
+         &nbsp;Copy Selection&nbsp;
+        </a>
+        <a>
+         &nbsp;BuildDF - Dataform&nbsp;
+        </a>
+        <a>
+         &nbsp;SaveDF - Dataform&nbsp;
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        SAS Explorer
+       </div>
+       <div class="NAVL">
+        <a>
+         &nbsp;Column Properties&nbsp;
+         <img border="0" src="rick.jpg">
+        </a>
+        <a>
+         &nbsp;Export Catalog Sources&nbsp;
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        Common
+       </div>
+       <div class="NAVL">
+        <a>
+         &nbsp;Complex List Editor&nbsp;
+        </a>
+        <a>
+         &nbsp;Simple List Editor&nbsp;
+        </a>
+        <a>
+         &nbsp;Green Bars&nbsp;
+        </a>
+        <a>
+         &nbsp;Enter Value&nbsp;
+        </a>
+        <a>
+         &nbsp;List of Values&nbsp;
+        </a>
+        <a>
+         &nbsp;Navigate Dataset Hierarchy&nbsp;
+        </a>
+        <a>
+         &nbsp;SCL List Class Extension
+         <br>
+         &nbsp;&nbsp;&nbsp;with SubList sorting&nbsp;
+        </a>
+        <a>
+         &nbsp;Checklist Class&nbsp;
+        </a>
+        <a>
+         &nbsp;SCL List Model Extension
+         <br>
+         &nbsp;&nbsp;&nbsp;for Viewing SCL Lists&nbsp;
+        </a>
+        <a>
+         &nbsp;Filtered SCL List&nbsp;
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        Examples
+       </div>
+       <div class="NAVL">
+        <a>
+         &nbsp;Item Cost (modelscl)&nbsp;
+         <img border="0" src="rick.jpg">
+        </a>
+        <a>
+         &nbsp;Timer Class&nbsp;
+        </a>
+        <a>
+         &nbsp;Export Catalog Sources&nbsp;
+        </a>
+        <a>
+         &nbsp;Tetris&nbsp;
+        </a>
+        <a>
+         &nbsp;Model / Viewer&nbsp;
+        </a>
+        <a>
+         &nbsp;Dialog Functions&nbsp;
+        </a>
+        <a>
+         &nbsp;Tree View Control&nbsp;
+        </a>
+        <a>
+         &nbsp;List View Control&nbsp;
+        </a>
+        <a>
+         &nbsp;SAS Registry Browser&nbsp;
+        </a>
+        <a>
+         &nbsp;Metaselector...&nbsp;
+        </a>
+        <a>
+         &nbsp;Maintaining Aspect&nbsp;
+        </a>
+        <a>
+         &nbsp;Singletons&nbsp;
+        </a>
+        <a>
+         &nbsp;Textpad Control&nbsp;
+        </a>
+        <a>
+         &nbsp;Pie Control&nbsp;
+        </a>
+        <a>
+         &nbsp;Collections&nbsp;
+        </a>
+        <a>
+         &nbsp;Word Tables&nbsp;
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        Contact
+       </div>
+       <div class="NAVL" style="width:145px">
+        <a>
+         Richard A. DeVenezia
+        </a>
+       </div>
+       <br>
+       <div class="NAVH">
+        <a>
+         Reader Comments
+        </a>
+       </div>
+       <div class="NAVL">
+        <br>
+        SAS and SAS/AF are registered trademarks or trademarks of SAS Institute Inc., in the USA and other countries.  &reg; indicates USA registration.
+       </div>
+      </div>
+     </td>
+     <td class="RIGHT" id="RIGHT" nowrap valign="TOP" width="640px">
+      <div class="content">
+       <p>
+        This topic has no sources yet.
+       </p>
+       <h2>
+        <a>
+         <img align="right" alt="Submit a comment" border="0" src="rick.jpg" title="Submit a comment">
+        </a>
+        SAS VIEWTABLE Custom Command Manager
+       </h2>
+       <p class="NAVH" style="margin-top:-1.45em;float:right">
+        <a>
+         Reader Comments
+        </a>
+       </p>
+       <address>
+        Richard A. DeVenezia
+        <br>
+        <a>
+         http://www.devenezia.com
+        </a>
+       </address>
+       <p>
+        The EXECCMD argument of the VIEWTABLE command installs an SCL method that processes custom commands issued to the VIEWTABLE window. This argument is beneficial, however there are limitations
+		when a user desires several independently developed custom command parsers be active.
+       </p>
+       <p>
+        EXECCMD is only available at VIEWTABLE invocation, there is no VIEWTABLE EXECCMD command. (Ingenious SCL coders can mimic EXECCMD at run-time by using the MODELSCL command to run code that
+		installs method overrides from the DFINIT: section of an SCL entry)
+       </p>
+       <p>
+        Custom commands can be issued from the command window, menu choices or programmed keys.
+       </p>
+       <h2>
+        Goal
+       </h2>
+       <p>
+        Develop a custom command processing environment which an end user can easily install and configure. Advance coding practices that prefer self-relative or self-evident structure.
+       </p>
+       <h2>
+        Overall scheme
+       </h2>
+       <ul>
+        <li>
+         top level manager
+         <ul>
+          <li>
+           registers custom command classes
+          </li>
+          <li>
+           dispatches control to custom command classes
+          </li>
+         </ul>
+        </li>
+        <li>
+         class based custom command processing
+         <ul>
+          <li>
+           classes must implement a command processing method with signature (CNC)V
+          </li>
+          <li>
+           develop a sample custom command class to guide development of new custom command classes
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <p>
+        The manager is installed at VIEWTABLE start-up by using the EXECCMD argument. The manager can not be installed after a VIEWTABLE window has started.
+       </p>
+       <p>
+        Future versions could address the desire for class registration to be permanent (aka persistent) or session global and in affect for all VIEWTABLE windows.
+       </p>
+       <h2>
+        Top level manager
+       </h2>
+       <p>
+        In this project, the manager will be Common.Viewtable.CustomCommand.scl, method Manager. It will be installed using VIEWTABLE argument
+        <b>
+         EXECCMD=Common.Viewtable.CustomCommand.scl:Manager
+        </b>
+        . In reality, the manager can be any method of any scl entry.
+       </p>
+       <p>
+        The manager reserves two custom commands for itself:
+       </p>
+       <ul style="font-family: monospace">
+        <li>
+         ccRegister &lt;/u&gt;
+         <i>
+          class &lt;class&gt; ... &lt;class&gt;
+         </i>
+        </li>
+        <li>
+         ccUnload
+        </li>
+       </ul>
+       <h3>
+        ccRegister
+       </h3>
+       <p>
+        This custom command is used to register a method of a SAS/AF class for dispatching. An instance of the class is added to a dispatch list.
+       </p>
+       <p>
+        The
+        <code>
+         <i>
+          class
+         </i>
+        </code>
+        value is of the form
+        <code>
+         <i>
+          [catalog.]class[:method]
+         </i>
+        </code>
+       </p>
+       <p>
+        <code>
+         <i>
+          catalog
+         </i>
+        </code>
+        &nbsp;&nbsp;is of the form
+        <code>
+         <i>
+          libname.memname
+         </i>
+        </code>
+        . If
+        <code>
+         <i>
+          [catalog.]
+         </i>
+        </code>
+        is not present, it will default to the same catalog that the custom command manager was loaded from. If
+        <code>
+         <i>
+          [:method]
+         </i>
+        </code>
+        is not present, it will default to
+        <code>
+         commandParser
+        </code>
+        .
+       </p>
+       <p>
+        Thus, for this project, the default is
+        <code>
+         Common.Viewtable.
+         <i>
+          class
+         </i>
+         :commandParser
+        </code>
+       </p>
+       <p>
+        The method must be of signature
+        <code>
+         (CNC)V
+        </code>
+        (
+        <a>
+         see below
+        </a>
+        for more details). If the method sets the return code argument to 1, then the command will
+        <u>
+         not
+        </u>
+        be dispatched to any additional classes. This prevents
+		collisions between two classes designed to process the same custom command.
+       </p>
+       <p>
+        Different methods of the same class can be registered.
+       </p>
+       <h3>
+        ccRegister /u
+       </h3>
+       <p>
+        This custom command is used to remove a class method from the dispatch list. If only a class is indicated,
+        <u>
+         all
+        </u>
+        methods of that class are removed.
+       </p>
+       <h3>
+        ccUnload
+       </h3>
+       <p>
+        This custom command unregisters all methods and uninstalls the Manager.
+       </p>
+       <h3>
+        Dispatcher main loop
+       </h3>
+       <ul>
+        <li>
+         test for manager reserved commands
+         <ul>
+          <li>
+           ccRegister
+           <ul>
+            <li>
+             parse for /u and class arguments
+            </li>
+            <li>
+             instantiate class and check method signature
+            </li>
+            <li>
+             /u remove matching items from dispatch list, _term() classes with no remaining methods registered
+            </li>
+           </ul>
+          </li>
+          <li>
+           ccUnload
+           <ul>
+            <li>
+             unregister all classes
+            </li>
+            <li>
+             remove _self_ override of _execCommand
+            </li>
+           </ul>
+          </li>
+         </ul>
+        </li>
+        <li>
+         loop through dispatch list
+         <ul>
+          <li>
+           invoke command processing method of class
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <h2>
+        <a name="classes">
+        </a>
+        Custom command classes
+       </h2>
+       <p>
+        At a minimum, a custom command class should be a subclass of
+        <code>
+         sashelp.fsp.object
+        </code>
+        and contain one method of signature (CNC)V. Example:
+       </p>
+       <p>
+        <code>
+         commandParser: Public Method inCmd:I:Char retCode:U:Num outCmd:I:Char ;
+        </code>
+       </p>
+       <p>
+        You may want to develop a class hierarchy to make common command processing tasks easily reusable.
+       </p>
+       <h3>
+        Parsing the command line
+       </h3>
+       <p>
+        The default scheme provided by _execCommand override is simple. The documentation does not discuss processing multi word commands, however empirical study shows these facts:
+       </p>
+       <ul>
+        <li>
+         First token of the command line is in
+         <code>
+          inCmd
+         </code>
+        </li>
+        <li>
+         Second token of the command line is in
+         <code>
+          outCmd
+         </code>
+        </li>
+        <li>
+         Third and subsequent tokens of the command line are obtained by this pattern:
+         <br>
+         <pre style="bbackground-color: #CCFFCC;width:17em; padding-left:1em;margin-top:1em">token = word(1);
 do while (token ne '');
   call nextword();
   token = word(1);
-end;</pre></li>
-		<li><code>call nextword()</code> works on a tokenizing level that is too fine for word-based command line parsing. Single non-alphabetic characters are tokens (or words), even when directly adjacent to other non-tokenized
-		  characters, e.g. <code style="background-color:tan">A.B.C.D</code> is tokenized into <code style="background-color:tan">A</code> <code style="background-color:tan">.</code> <code style="background-color:tan">B</code> <code style="background-color:tan">.</code> <code style="background-color:tan">C</code> <code style="background-color:tan">.</code> <code style="background-color:tan">D</code> <br><br>Double or single quoting is the only way to ensure complexly valued arguments of a command line are processed as a single word by nextword(), e.g. <code style="background-color:tan">"A.B.C.D"</code> is tokenized into <code style="background-color:tan">A.B.C.D</code><br><br>SCL code to infer user intuited arguments of a command line from highly tokenized unquoted arguments is possible and encouraged to reduce frustration on the users part. (E.g. Why the
-		  heck to I have to quote everything all the time?) The source of the manager will demonstrate the technique.</li>
-	 </ul>
-	 <p><a name="bottom"></a></p>
-	 
-	  </div><br>Comments
-<div id="annoinfo"><a name="Remarks"></a>
-<table id="Remarks" width="100%"></table></div><br>
-<a name="comments"></a>
-<form method="POST" action="?topic=18&amp;action=annotate">
-<table id="annoform">
-<tbody><tr><td class="col1">Name</td>
-    <td class="col2"><input name="anno_name" id="anno_name" type="text" size="55"></td>
-</tr>
-<tr><td class="col1">E-Mail</td>
-    <td class="col2"><input name="anno_mail" id="anno_mail" type="text" size="55">
-                     <input name="anno_mail_private" id="anno_mail_private" type="Checkbox" checked="ON"> Hide from spambots</td>
-</tr>
-<tr><td class="col1">City</td>
-    <td class="col2"><input name="anno_city" id="anno_city" type="text" size="55"></td>
-</tr>
-<tr><td class="col1" valign="TOP"><br>Comment</td>
-    <td class="col2"><textarea name="anno_msg" id="anno_msg" rows="6" cols="65" wrap="virtual"></textarea></td>
-</tr>
-<tr><td class="col1"></td>
-    <td class="col2" style="padding-top:10px;padding-bottom:10px"><input name="submit" type="submit" value="Submit the comment"></td>
-</tr>
-</tbody></table>
-</form>
-  </td>
-</tr>
-<tr><td colspan="2" id="BOTTOM"></td></tr>
-
-</tbody></table>
-
-</body></html>
+end;</pre>
+        </li>
+        <li>
+         <code>
+          call nextword()
+         </code>
+         works on a tokenizing level that is too fine for word-based command line parsing. Single non-alphabetic characters are tokens (or words), even when directly adjacent to other non-tokenized
+		  characters, e.g.
+         <code style="background-color:tan">
+          A.B.C.D
+         </code>
+         is tokenized into
+         <code style="background-color:tan">
+          A
+         </code>
+         <code style="background-color:tan">
+          .
+         </code>
+         <code style="background-color:tan">
+          B
+         </code>
+         <code style="background-color:tan">
+          .
+         </code>
+         <code style="background-color:tan">
+          C
+         </code>
+         <code style="background-color:tan">
+          .
+         </code>
+         <code style="background-color:tan">
+          D
+         </code>
+         <br>
+         <br>
+         Double or single quoting is the only way to ensure complexly valued arguments of a command line are processed as a single word by nextword(), e.g.
+         <code style="background-color:tan">
+          "A.B.C.D"
+         </code>
+         is tokenized into
+         <code style="background-color:tan">
+          A.B.C.D
+         </code>
+         <br>
+         <br>
+         SCL code to infer user intuited arguments of a command line from highly tokenized unquoted arguments is possible and encouraged to reduce frustration on the users part. (E.g. Why the
+		  heck to I have to quote everything all the time?) The source of the manager will demonstrate the technique.
+        </li>
+       </ul>
+       <p>
+        <a name="bottom">
+        </a>
+       </p>
+       <address>
+        Copyright 2000 Richard A. DeVenezia
+       </address>
+       <address>
+        This page was last updated 22 May 2002.
+       </address>
+      </div>
+      <br>
+      Comments
+      <div id="annoinfo">
+       <a name="Remarks">
+       </a>
+       <table id="Remarks" width="100%">
+       </table>
+      </div>
+      <br>
+      <a name="comments">
+      </a>
+      <form action="?topic=18&amp;action=annotate" method="POST">
+       <table id="annoform">
+        <tbody>
+         <tr>
+          <td class="col1">
+           Name
+          </td>
+          <td class="col2">
+           <input id="anno_name" name="anno_name" size="55" type="text">
+          </td>
+         </tr>
+         <tr>
+          <td class="col1">
+           E-Mail
+          </td>
+          <td class="col2">
+           <input id="anno_mail" name="anno_mail" size="55" type="text">
+           <input checked="ON" id="anno_mail_private" name="anno_mail_private" type="Checkbox">
+           Hide from spambots
+          </td>
+         </tr>
+         <tr>
+          <td class="col1">
+           City
+          </td>
+          <td class="col2">
+           <input id="anno_city" name="anno_city" size="55" type="text">
+          </td>
+         </tr>
+         <tr>
+          <td class="col1" valign="TOP">
+           <br>
+           Comment
+          </td>
+          <td class="col2">
+           <textarea cols="65" id="anno_msg" name="anno_msg" rows="6" wrap="virtual"></textarea>
+          </td>
+         </tr>
+         <tr>
+          <td class="col1">
+          </td>
+          <td class="col2" style="padding-top:10px;padding-bottom:10px">
+           <input name="submit" type="submit" value="Submit the comment">
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </form>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="2" id="BOTTOM">
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

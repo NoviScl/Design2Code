@@ -1,235 +1,543 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head>
-<style>
-<STYLE TYPE="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <!--%@ OutputCache Duration=60 VaryByParam="flora_id;taxon_id"  %-->
+ <head>
+  <style>
+   <STYLE TYPE="text/css">
+<!--
+.all_text 	{font-family:Arial; font-size:9pt}
+.form_textarea   {background: #EFF3FF; font-size:8pt; width: 100%;}
+.form_input      {background: #EFF3FF; font-size:8pt; }
+.form_input100   {background: #EFF3FF; font-size:8pt; width: 100%;}
+.form_input500   {background: #EFF3FF; font-size:8pt; width: 500;}
+.form_file       {background: #EFF3FF; font-size:8pt;}
 
-</STYLE>
+.group    	{font-family:Arial; font-size:10pt; color:#004400; font-weight:bold}
+.header1  	{font-family:Arial; font-size:16pt; font-weight:bold}
+.header2  	{font-family:Arial; font-size:14pt; font-weight:bold}
+.header3  	{font-family:Arial; font-size:12pt; font-weight:bold}
+.header4  	{font-family:Arial; font-size:10pt; font-weight:bold}
+.header5  	{font-family:Arial; font-size:9pt;  font-weight:bold}
 
-</style>
+.header16pt  	{font-family:Arial; font-size:16pt; font-weight:bold}
+.header14pt  	{font-family:Arial; font-size:14pt; font-weight:bold}
+.header12pt  	{font-family:Arial; font-size:12pt; font-weight:bold}
+.header10pt  	{font-family:Arial; font-size:10pt; font-weight:bold}
+.header9pt   	{font-family:Arial; font-size:9pt;  font-weight:bold}
+.title    	{font-family:Arial; font-size:11pt; font-weight:bold; color:DarkBrown}
+.subject  	{font-family:Arial; font-size:9pt;  font-weight:bold}
+.small    	{font-family:Arial; font-size:8pt}
+.divInfo   	{font-family:Arial; font-size:8pt; color:GREY}
+.email    	{font-family:Arial; font-size:9pt}
+.date     	{font-family:Arial; font-size:9pt}
+.id       	{font-family:Arial; font-size:8pt}
+.content  	{font-family:Arial; font-size:9pt}
+.button   	{font-family:Arial; font-size:8pt}
+.size1pt  	{font-family:Arial; font-size:1pt}
+.size2pt  	{font-family:Arial; font-size:2pt}
+.size3pt  	{font-family:Arial; font-size:3pt}
+.chinese  	{font-family:"ËÎÌå"; font-size:9pt}
+.courier8  	{font-family:"Courier New"; font-size:8pt}
+.courier9  	{font-family:"Courier New"; font-size:9pt}
+	
+body      	{font-family:Arial; font-size:9pt; margin-top: 0px; background-color:#ffffff}
+th        	{font-family:Arial; font-size:9pt}
+td        	{font-family:Arial; font-size:9pt}
+td.bold    	{font-family:Arial; font-size:9pt; font-weight:bold}
+td.header  	{font-family:Arial; font-size:9pt; font-weight:bold}
+td.LeftColumn  	{font-family:Arial; font-size:8pt; font-weight:bold}
+td.8pt      {font-family:Arial; font-size:8pt}
+td.edit   	{font-family:Arial; font-size:8pt}
+td.reverse   	{font-family:Arial; font-size:9pt; color:white;}
+TR.underline TD  {BORDER-BOTTOM: #c9c9c9 1px solid}
 
-<title>Decumaria barbara in Flora of North America @ efloras.org</title>
+a:link    	{font-family:Arial; font-size:9pt; color:GREEN; text-decoration:none}
+a:active  	{font-family:Arial; font-size:9pt; color:GREEN; text-decoration:none}
+a:visited 	{font-family:Arial; font-size:9pt; color:GREEN; text-decoration:none}
+a:link.10pt    	{font-family:Arial; font-size:10pt; color:GREEN; text-decoration:none}
+a:link.11pt    	{font-family:Arial; font-size:11pt; color:GREEN; text-decoration:none}
+a:link.small    {font-family:Arial; font-size:8pt; color:GREEN; text-decoration:none}
+a:active.small    {font-family:Arial; font-size:8pt; color:GREEN; text-decoration:none}
+a:visited.small    {font-family:Arial; font-size:8pt; color:GREEN; text-decoration:none}
 
-<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
+ul      { margin-left: 20px; margin-top: 3px; margin-bottom: 3px;}
+p       { margin-top: 8px; margin-bottom: 1px;}
+li      { margin-top: 2px; margin-bottom: 2px;}
+dl      { margin-left: 1px; margin-top: 1px; margin-bottom: 1px;}
 
-  
-  <body>
 
-<noscript></noscript>
+hr      { margin-left: 0px; border: 0; height: 1px; margin-top: 0px; margin-bottom: 0px;}
 
-    <table id="TableMain" cellspacing="1" cellpadding="1" width="640" border="0">
-      <tbody><tr>
-        <td>
+FORM   { margin: 0px; margin-top: 0px;}
 
-<table id="ucEfloraHeader_tableHeaderWrapper" cellspacing="0" cellpadding="0" width="100%" border="0">
-	<tbody><tr>
-		<td style="WIDTH: 479px"><a id="ucEfloraHeader_linkFloraHome" title="Flora Homepage" ><img src="rick.jpg" id="ucEfloraHeader_imageLogo" border="0" alt="Link to Flora of North America home"><br>
-        </a></td>
-		<td valign="bottom" align="right">
-      <div id="ucEfloraHeader_panelSearchBox">
-			 
-        <form name="formSearchBox" action="browse.aspx" method="get">
-          <table bordercolor="#ccffcc" cellspacing="0" cellpadding="2" width="200" border="1">
-            <tbody><tr>
-              <td>
-                <span id="ucEfloraHeader_lblSearchBox"><input type="Hidden" name="flora_id" '="" id="flora_id" value="1">
-&nbsp;<input id="name_str" name="name_str" &nbsp;="" value="" class="small" title="Use % as the wildcard
-(e.g. pinus % or pinus a%)" onfocus="jsClearTextBox(this);" accesskey="s" size="15"> <input class="small" type="submit" value="Search" name="btnSearch"><br>
- <input name="chkAllFloras" type="checkbox"> <span class="small">All Floras &nbsp; &nbsp; &nbsp;<a  target="_top" class="a.link.small">Advanced Search</a></span>
-</span></td>
-            </tr>
-          </tbody></table>
-        </form> 
-      
-		</div>
-    </td>
-	</tr>
-</tbody></table>
 
-</td>
-      </tr>
-      <tr>
-        <td id="tdSubHeader">
-<table id="FooterTableOut" width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tbody><tr>
-    <td bgcolor="#999999"><img src="rick.jpg" alt="" width="100%" height="1"></td>
-  </tr>
-  <tr>
-    <td>
-      <table bgcolor="#ffffcc" id="footerTable" width="100%" border="0" cellpadding="2" cellspacing="0">
-        <tbody><tr>
-          <td style="WIDTH: 291px">FNA Vol. 12</td>
-          <td align="right">
-            <span id="ucEfloraSubHeader_lblLinks"><a target="_top" >Login</a>
- | <a  target="_top">eFloras Home</a> | <a  target="_top">Help</a></span></td>
+-->
+  </style>
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <title>
+   Decumaria barbara in Flora of North America @ efloras.org
+  </title>
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <!-- body onload="formMOMap.submit()" -->
+ <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <table border="0" cellpadding="1" cellspacing="1" id="TableMain" width="640">
+   <tbody>
+    <tr>
+     <td>
+      <!--%@ Register TagPrefix="ucFlora" TagName="TaxonSearchBox" Src="TaxonSearchBox.ascx" %-->
+      <table border="0" cellpadding="0" cellspacing="0" id="ucEfloraHeader_tableHeaderWrapper" width="100%">
+       <tbody>
+        <tr>
+         <td style="WIDTH: 479px">
+          <a id="ucEfloraHeader_linkFloraHome" title="Flora Homepage">
+           <img alt="Link to Flora of North America home" border="0" id="ucEfloraHeader_imageLogo" src="rick.jpg">
+           <br>
+          </a>
+         </td>
+         <td align="right" valign="bottom">
+          <div id="ucEfloraHeader_panelSearchBox">
+           <!-- begin of search box -->
+           <form action="browse.aspx" method="get" name="formSearchBox">
+            <table border="1" bordercolor="#ccffcc" cellpadding="2" cellspacing="0" width="200">
+             <tbody>
+              <tr>
+               <td>
+                <span id="ucEfloraHeader_lblSearchBox">
+                 <input ' id="flora_id" name="flora_id" type="Hidden" value="1">
+                 &nbsp;
+                 <input &nbsp; accesskey="s" class="small" id="name_str" name="name_str" onfocus="jsClearTextBox(this);" size="15" title="Use % as the wildcard
+(e.g. pinus % or pinus a%)" value>
+                 <input class="small" name="btnSearch" type="submit" value="Search">
+                 <br>
+                 <input name="chkAllFloras" type="checkbox">
+                 <span class="small">
+                  All Floras &nbsp; &nbsp; &nbsp;
+                  <a class="a.link.small" target="_top">
+                   Advanced Search
+                  </a>
+                 </span>
+                </span>
+               </td>
+              </tr>
+             </tbody>
+            </table>
+           </form>
+           <!-- end of search box -->
+          </div>
+         </td>
         </tr>
-      </tbody></table>
-    </td>
-  </tr>
-  <tr>
-    <td bgcolor="#999999"><img src="rick.jpg" alt="" width="100%" height="1"></td>
-  </tr>
-</tbody></table>
-</td>
-      </tr>
-      <tr>
-        <td id="tdBody">
-          <table id="tableBody" cellspacing="0" cellpadding="0" width="100%" border="0">
-            <tbody><tr>
-              <td id="tdLeftBar" valign="top" width="0"></td>
-
-              <td id="tdContent" valign="top" width="1930">
-                <table width="100%" border="0">
-                  <tbody><tr>
-                    <td valign="top">
-                      <table id="tableTaxonChain" cellspacing="0" cellpadding="1" width="100%" border="0">
-	<tbody><tr>
-		<td><span id="lblTaxonChain" style="font-size:9pt;"><a  target="_top" title="Flora homepage">FNA</a> | <a  target="_top">Family List</a> | <a  target="_top">FNA Vol. 12</a> | <a  target="_top">Hydrangeaceae</a> <a  target="_top" title="lower taxa"><img border="0" src="rick.jpg"></a></span></td>
-	</tr>
-</tbody></table>
-
-                      <p></p>
-                      <div id="panelTaxonTreatment">
-	
-                        <span id="lblTaxonDesc">
-1. <b>Decumaria barbara</b> Linnaeus, Sp. Pl. Ed. 2,.  2: 1663.  1763.  
-<br><small>[E F]</small>
- 
-<p>
-
-</p><p>
-
-</p><p>
-</p><p>
-</p><p>
-
-<b>Stems</b> to 100 dm; adventitious roots usually present. <b>Twigs</b> glabrous. <b>Leaves:</b> petiole slightly winged proximally, 10–30 mm, glabrous or short-pubescent; blade 10–12 × 6–8 cm, base cuneate, truncate, cordate, or rounded, apex acute, obtuse, rounded, or mucronate, abaxial surface light green, finely pubescent along veins, adaxial dark green, glabrous. <b>Inflorescences</b> compact, congested to open, 3–8 × 4–10 cm; peduncle 2–6 cm, glabrous. <b>Pedicels</b> 1–6 mm, glabrous. <b>Flowers</b> faintly fragrant; hypanthium 1.5–2.2 × 0.5–2 mm; sepals 0.2–1.3 × 0.2–0.5 mm, margins entire, apex acute to acuminate, surfaces glabrous abaxially; petals 2.8–3.2 × 1.2–1.7 mm; filaments 3–5 × 0.2–0.3 mm; anthers 0.7–1 mm; style stout, broad at base, 0–2 mm; stigmatic lines 7–12, radiating. <b>Capsules</b> 3.2–5.5 × 3–5 mm. <b>Seeds</b> 1.5–3 mm. <b>2<i>n</i></b> = 28.</p><p>
-</p><p>
-
-</p><p>
-</p><p>
-Flowering Apr–Jun; fruiting Jul–Oct. Very moist to wet woodlands and swamps mostly on Coastal Plain, rich woodlands; 0–400 m; Ala., Ark., Del., Fla., Ga., La., Miss., N.Y., N.C., S.C., Tenn., Va. </p><p>
-
-<i>Decumaria barbara</i> is a rare escape from cultivation in New York.</p><p></p><p><i>Decumaria sinensis</i> Oliver, of central China, differs from <i>D. barbara</i> in being a low-climbing vine with semipersistent or persistent leaves, stigmas almost completely sessile, and in plants growing at elevations of 600–1300 meters.</p><p>
-</p><p>
-</p><p>
-</p><p>
-
-                        </p><p>
-                        </p> 
-                        <p>
-                          <span id="lblLowerTaxonList"></span></p>
-                        <br clear="all">
-                        <p>&nbsp;</p>
-                        <table id="tableObjectList" cellspacing="0" cellpadding="4" width="100%" border="1">
-		<tbody><tr bgcolor="#ffffcc">
-			<td>
-                              <table cellspacing="0" cellpadding="0" width="100%" border="0">
-                                <tbody><tr>
-                                  <td>
-                                    <span id="Label1" style="font-size:9pt;">
-                                      <b>Related Objects</b>
-                                    </span></td>
-                                  <td align="right">
-                                    <span id="lblGalleryLink" style="font-size:8pt;"><a  target="_top">Image Gallery</a></span>&nbsp;</td>
-                                </tr>
-                              </tbody></table>
-                            </td>
-		</tr>
-		<tr>
-			<td>
-                              <span id="lblObjectList"><table width="100%" border="0" cellspacing="0">
-<tbody><tr>
-  <td width="400"><li><a  title="Map">Distribution Map</a></li></td>
-  <td class="small">Map</td>
-</tr>
-<tr>
-  <td width="400"><li><a  title="Illustration">Illustration</a></li></td>
-  <td class="small">Illustration</td>
-</tr>
-</tbody></table>
-</span></td>
-		</tr>
-	</tbody></table>
-	
-                        <p></p>
-                      
-</span></div>
-                      <p></p><div id="panelTaxonLinks">
-	&nbsp;<p></p>
-                      <p>
-                        <table id="tableLinkList" cellspacing="0" cellpadding="4" width="100%" border="1">
-		<tbody><tr bgcolor="#ffffcc">
-			<td><span id="lblLinkTitle" style="font-size:9pt;"><b>Related Links</b> (opens in a new window)</span></td>
-		</tr>
-		<tr>
-			<td>
-                              <p><span id="lblLinkList"></span></p><p>
-<b>Other Databases</b>
-</p><ul>
-
-<li><a  target="FLORA_LINK" title="W3TROPICOS">W<sup>3</sup>TROPICOS</a>
-</li><li><a  target="FLORA_LINK" title="IPNI">IPNI</a></li></ul>
-<p></p>
-                            </td>
-		</tr>
-	</tbody></table>
-	
-                        
-</p></div><p></p>
-                    </td>
+       </tbody>
+      </table>
+     </td>
+    </tr>
+    <tr>
+     <td id="tdSubHeader">
+      <table border="0" cellpadding="0" cellspacing="0" id="FooterTableOut" width="100%">
+       <tbody>
+        <tr>
+         <td bgcolor="#999999">
+          <img alt height="1" src="rick.jpg" width="100%">
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <table bgcolor="#ffffcc" border="0" cellpadding="2" cellspacing="0" id="footerTable" width="100%">
+           <tbody>
+            <tr>
+             <td style="WIDTH: 291px">
+              FNA Vol. 12
+             </td>
+             <td align="right">
+              <span id="ucEfloraSubHeader_lblLinks">
+               <a target="_top">
+                Login
+               </a>
+               |
+               <a target="_top">
+                eFloras Home
+               </a>
+               |
+               <a target="_top">
+                Help
+               </a>
+              </span>
+             </td>
+            </tr>
+           </tbody>
+          </table>
+         </td>
+        </tr>
+        <tr>
+         <td bgcolor="#999999">
+          <img alt height="1" src="rick.jpg" width="100%">
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </td>
+    </tr>
+    <tr>
+     <td id="tdBody">
+      <table border="0" cellpadding="0" cellspacing="0" id="tableBody" width="100%">
+       <tbody>
+        <tr>
+         <td id="tdLeftBar" valign="top" width="0">
+         </td>
+         <td id="tdContent" valign="top" width="1930">
+          <table border="0" width="100%">
+           <tbody>
+            <tr>
+             <td valign="top">
+              <table border="0" cellpadding="1" cellspacing="0" id="tableTaxonChain" width="100%">
+               <tbody>
+                <tr>
+                 <td>
+                  <span id="lblTaxonChain" style="font-size:9pt;">
+                   <a target="_top" title="Flora homepage">
+                    FNA
+                   </a>
+                   |
+                   <a target="_top">
+                    Family List
+                   </a>
+                   |
+                   <a target="_top">
+                    FNA Vol. 12
+                   </a>
+                   |
+                   <a target="_top">
+                    Hydrangeaceae
+                   </a>
+                   <a target="_top" title="lower taxa">
+                    <img border="0" src="rick.jpg">
+                   </a>
+                  </span>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+              <p>
+              </p>
+              <div id="panelTaxonTreatment">
+               <span id="lblTaxonDesc">
+                <!-- FNA Template -->
+                1.
+                <b>
+                 Decumaria barbara
+                </b>
+                Linnaeus, Sp. Pl. Ed. 2,.  2: 1663.  1763.
+                <br>
+                <small>
+                 [E F]
+                </small>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                 <b>
+                  Stems
+                 </b>
+                 to 100 dm; adventitious roots usually present.
+                 <b>
+                  Twigs
+                 </b>
+                 glabrous.
+                 <b>
+                  Leaves:
+                 </b>
+                 petiole slightly winged proximally, 10&ndash;30 mm, glabrous or short-pubescent; blade 10&ndash;12 &times; 6&ndash;8 cm, base cuneate, truncate, cordate, or rounded, apex acute, obtuse, rounded, or mucronate, abaxial surface light green, finely pubescent along veins, adaxial dark green, glabrous.
+                 <b>
+                  Inflorescences
+                 </b>
+                 compact, congested to open, 3&ndash;8 &times; 4&ndash;10 cm; peduncle 2&ndash;6 cm, glabrous.
+                 <b>
+                  Pedicels
+                 </b>
+                 1&ndash;6 mm, glabrous.
+                 <b>
+                  Flowers
+                 </b>
+                 faintly fragrant; hypanthium 1.5&ndash;2.2 &times; 0.5&ndash;2 mm; sepals 0.2&ndash;1.3 &times; 0.2&ndash;0.5 mm, margins entire, apex acute to acuminate, surfaces glabrous abaxially; petals 2.8&ndash;3.2 &times; 1.2&ndash;1.7 mm; filaments 3&ndash;5 &times; 0.2&ndash;0.3 mm; anthers 0.7&ndash;1 mm; style stout, broad at base, 0&ndash;2 mm; stigmatic lines 7&ndash;12, radiating.
+                 <b>
+                  Capsules
+                 </b>
+                 3.2&ndash;5.5 &times; 3&ndash;5 mm.
+                 <b>
+                  Seeds
+                 </b>
+                 1.5&ndash;3 mm.
+                 <b>
+                  2
+                  <i>
+                   n
+                  </i>
+                 </b>
+                 = 28.
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                 Flowering Apr&ndash;Jun; fruiting Jul&ndash;Oct. Very moist to wet woodlands and swamps mostly on Coastal Plain, rich woodlands; 0&ndash;400 m; Ala., Ark., Del., Fla., Ga., La., Miss., N.Y., N.C., S.C., Tenn., Va.
+                </p>
+                <p>
+                 <i>
+                  Decumaria barbara
+                 </i>
+                 is a rare escape from cultivation in New York.
+                </p>
+                <p>
+                </p>
+                <p>
+                 <i>
+                  Decumaria sinensis
+                 </i>
+                 Oliver, of central China, differs from
+                 <i>
+                  D. barbara
+                 </i>
+                 in being a low-climbing vine with semipersistent or persistent leaves, stigmas almost completely sessile, and in plants growing at elevations of 600&ndash;1300 meters.
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                </p>
+                <p>
+                 <!-- Key -->
+                </p>
+                <p>
+                 <span id="lblLowerTaxonList">
+                 </span>
+                </p>
+                <br clear="all">
+                <p>
+                 &nbsp;
+                </p>
+                <table border="1" cellpadding="4" cellspacing="0" id="tableObjectList" width="100%">
+                 <tbody>
+                  <tr bgcolor="#ffffcc">
+                   <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                     <tbody>
+                      <tr>
+                       <td>
+                        <span id="Label1" style="font-size:9pt;">
+                         <b>
+                          Related Objects
+                         </b>
+                        </span>
+                       </td>
+                       <td align="right">
+                        <span id="lblGalleryLink" style="font-size:8pt;">
+                         <a target="_top">
+                          Image Gallery
+                         </a>
+                        </span>
+                        &nbsp;
+                       </td>
+                      </tr>
+                     </tbody>
+                    </table>
+                   </td>
                   </tr>
                   <tr>
-                    <td>
-                      
-                      <p></p>
-                      <p><span id="lblEditLinks" style="font-size:9pt;"></span></p>
-                      <p>
-                        </p>
-                    </td>
+                   <td>
+                    <span id="lblObjectList">
+                     <table border="0" cellspacing="0" width="100%">
+                      <tbody>
+                       <tr>
+                        <td width="400">
+                         <li>
+                          <a title="Map">
+                           Distribution Map
+                          </a>
+                         </li>
+                        </td>
+                        <td class="small">
+                         Map
+                        </td>
+                       </tr>
+                       <tr>
+                        <td width="400">
+                         <li>
+                          <a title="Illustration">
+                           Illustration
+                          </a>
+                         </li>
+                        </td>
+                        <td class="small">
+                         Illustration
+                        </td>
+                       </tr>
+                      </tbody>
+                     </table>
+                    </span>
+                   </td>
                   </tr>
-                </tbody></table>
-              </td>
-              <td id="tdRightBar" valign="top"></td>
-
+                 </tbody>
+                </table>
+                <p>
+                </p>
+               </span>
+              </div>
+              <p>
+              </p>
+              <div id="panelTaxonLinks">
+               &nbsp;
+               <p>
+               </p>
+               <p>
+                <table border="1" cellpadding="4" cellspacing="0" id="tableLinkList" width="100%">
+                 <tbody>
+                  <tr bgcolor="#ffffcc">
+                   <td>
+                    <span id="lblLinkTitle" style="font-size:9pt;">
+                     <b>
+                      Related Links
+                     </b>
+                     (opens in a new window)
+                    </span>
+                   </td>
+                  </tr>
+                  <tr>
+                   <td>
+                    <p>
+                     <span id="lblLinkList">
+                     </span>
+                    </p>
+                    <p>
+                     <b>
+                      Other Databases
+                     </b>
+                    </p>
+                    <ul>
+                     <li>
+                      <a target="FLORA_LINK" title="W3TROPICOS">
+                       W
+                       <sup>
+                        3
+                       </sup>
+                       TROPICOS
+                      </a>
+                     </li>
+                     <li>
+                      <a target="FLORA_LINK" title="IPNI">
+                       IPNI
+                      </a>
+                     </li>
+                    </ul>
+                    <p>
+                    </p>
+                   </td>
+                  </tr>
+                 </tbody>
+                </table>
+               </p>
+              </div>
+              <p>
+              </p>
+             </td>
             </tr>
-          </tbody></table>
-        </td>
-      </tr><tr>
-        <td>
-<table id="SubHeaderTableOut" width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tbody><tr>
-    <td bgcolor="#999999"><img src="rick.jpg" alt="" width="100%" height="1"></td>
-  </tr>
-  <tr>
-    <td>
-      <table bgcolor="#99cc99" id="SubHeaderTable" width="100%" border="0" cellpadding="2" cellspacing="0">
-        <tbody><tr>
-          <td align="center" bgcolor="#ffffcc">
-            &nbsp;|&nbsp;
-            <a id="ucEfloraFooter_linkHome"  target="_top">eFlora Home</a>&nbsp;|&nbsp;
-            <a id="ucEfloraFooter_linkPeopleSearch"  target="_top">People Search</a>
-            &nbsp;|&nbsp;
-            <a id="ucEfloraFooter_linkHelp"  target="_top">Help</a>
-            &nbsp;|&nbsp;
-            <a id="ucEfloraFooter_linkActKey"  target="_top">ActKey</a>
-            &nbsp;|&nbsp;
-            <a id="ucEfloraFooter_Hyperlink2"  target="_top">Hu Cards</a>
-            &nbsp;|&nbsp;
-            <a id="ucEfloraFooter_Hyperlink1"  target="_top">Glossary</a>
-            &nbsp;|&nbsp;
-          </td>
+            <tr>
+             <td>
+              <!-- Links -->
+              <p>
+              </p>
+              <p>
+               <span id="lblEditLinks" style="font-size:9pt;">
+               </span>
+              </p>
+              <p>
+               <!-- Comment List -->
+              </p>
+             </td>
+            </tr>
+           </tbody>
+          </table>
+         </td>
+         <td id="tdRightBar" valign="top">
+         </td>
         </tr>
-      </tbody></table>
-    </td>
-  </tr>
-  <tr>
-    <td bgcolor="#999999"><img src="rick.jpg" alt="" width="100%" height="1"></td>
-  </tr>
-</tbody></table>
-<p></p>
-
-</td>
-      </tr>
-    </tbody></table>
-  
-
-</body></html>
+       </tbody>
+      </table>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <table border="0" cellpadding="0" cellspacing="0" id="SubHeaderTableOut" width="100%">
+       <tbody>
+        <tr>
+         <td bgcolor="#999999">
+          <img alt height="1" src="rick.jpg" width="100%">
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <table bgcolor="#99cc99" border="0" cellpadding="2" cellspacing="0" id="SubHeaderTable" width="100%">
+           <tbody>
+            <tr>
+             <td align="center" bgcolor="#ffffcc">
+              &nbsp;|&nbsp;
+              <a id="ucEfloraFooter_linkHome" target="_top">
+               eFlora Home
+              </a>
+              &nbsp;|&nbsp;
+              <a id="ucEfloraFooter_linkPeopleSearch" target="_top">
+               People Search
+              </a>
+              &nbsp;|&nbsp;
+              <a id="ucEfloraFooter_linkHelp" target="_top">
+               Help
+              </a>
+              &nbsp;|&nbsp;
+              <a id="ucEfloraFooter_linkActKey" target="_top">
+               ActKey
+              </a>
+              &nbsp;|&nbsp;
+              <a id="ucEfloraFooter_Hyperlink2" target="_top">
+               Hu Cards
+              </a>
+              &nbsp;|&nbsp;
+              <a id="ucEfloraFooter_Hyperlink1" target="_top">
+               Glossary
+              </a>
+              &nbsp;|&nbsp;
+             </td>
+            </tr>
+           </tbody>
+          </table>
+         </td>
+        </tr>
+        <tr>
+         <td bgcolor="#999999">
+          <img alt height="1" src="rick.jpg" width="100%">
+         </td>
+        </tr>
+       </tbody>
+      </table>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

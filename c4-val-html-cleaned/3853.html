@@ -1,5 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html><head>
-<style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <style>
+   /*  common.css - Sycamore Default Styles */
+
+/* content styles */
 
 html {
 	height: 100%;
@@ -113,6 +118,7 @@ padding-right: 2px;
         list-style: none;
 }
 
+/* eye catchers */
 .warning 
 {
     color: #000000;
@@ -134,14 +140,24 @@ strong.highlight
     padding: 1pt;
 }
 
+
+
+/*  Layout.css
+ *  This file controls the margins, paddings, and positionings of the various elements of your wiki.
+ *  Changes here are a bit more complex and for the most general changes (colors and fonts) please
+ *  refer to the style.css file.
+ *  */
+/*****************t********************      Top of page *************/
+/***** Logo & Banner    *************/
+/* banner */
 #banner {
   margin: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
   background-position: 15px -17px;
-  _background-position: 15px -85px; 
+  _background-position: 15px -85px; /*IE Hack, draws from bottom rather than top */
 }
-
+/* Logo container */
 .logo {
   float: left;
   margin: 0;
@@ -149,7 +165,7 @@ strong.highlight
   border: 0;
 }
 *[dir="rtl"] #logo { float: right; }
-
+/* Logo  */
 td.logo_banner {
   padding: 0;
   vertical-align: middle;
@@ -159,14 +175,17 @@ td.logo_banner {
   padding-bottom: 0;
   margin: 0;
 }
-
+/* Logo Text (used if no image */
 #logo_text {
   padding-left: 8pt;
 }
-
+/***** User Name, Password Area *****/
+/* User name and settings */
 td.user_banner { height: 70px; }
 td.user_banner table { margin: 5px !important; }
 
+
+/* If Logged in Username & Welcome */
 .user_area {
   padding: 0;
   padding: 8px;
@@ -186,7 +205,8 @@ td.user_banner table { margin: 5px !important; }
   margin-bottom: 10px;
   display: inline;
 }
-
+/* If not logged in */
+/* See Et Cetera for input forms */
 .login_area {
   height: 75px; 
   padding: 0;
@@ -203,7 +223,8 @@ td.user_banner table { margin: 5px !important; }
 }
 .login_area a { 
 }
-
+/*********** Navigation Tab Area ****/
+/* Primary navigational tabs */
 a.tab { margin-left: .4em;}
 a.tab.tab, a.tab:visited {
   padding: 2px 1em 0px 1em;
@@ -212,17 +233,19 @@ a.tab:hover {
 }
 a.tab.notice {
 }
-
+/* The tab for the current page, foremost tab */
 a.tab.activeTab, a.tab.activeTab:hover, a.tab.activeTab:visited {
   padding-top: 4px;
   z-index:4;
 }
-
+/* Area which contains the tabs */
 div.tabArea {
   width:100%;
   padding-top:1em;
 }
 
+/*********** Switching button-icons **********/
+/* Row that contains page icons (e.g. "Edit", "Info") */
 #iconRow .pageIcon { padding-right: 10px; }
 #iconRow .pageIconSelected { padding-right: 10px; }
 .pageIcon {
@@ -233,13 +256,16 @@ div.tabArea {
   text-align: center;
   vertical-align: bottom;
 }
-
+/* This is the action text, e.g. "Edit", "Info" */
 .pageIcon span span, .pageIconSelected span span {
   display: block;
   text-align: center;
-  padding-left: 2px; 
+  padding-left: 2px; /* we pad here because our
+    icon's visible weight is more toward the right.
+    For your own icons you may need to change this
+    to obtain maximum prettiness.*/
 }
-
+/* The search box */
 #search_form { 
   margin: 5pt 2pt 4pt 13pt;
   vertical-align: middle;
@@ -249,7 +275,9 @@ div.tabArea {
 #search_form form {
   padding-left: 10px;
 }
+/*************************************      Page content    *************/
 
+/* Page Title */
 #title {
   min-height: 51px; 
   padding-top: 0pt;
@@ -257,7 +285,7 @@ div.tabArea {
   vertical-align: middle;
   width: 100%;
 }
-
+/* Title Text */
 #title_text { vertical-align: middle; } 
 #title_text td { vertical-align: middle; }
 #title_area_table { width: 100%; }
@@ -268,16 +296,19 @@ div.tabArea {
 }
 #title td { padding: 3pt 0 3pt 0; } 
 
+/* Sub-title */
 .minorTitle {
   text-align: center;
   margin-top: .4em;
 }
 
+/************* Page Body *************/
 body {
   margin:0;
   padding:0;
 }
 
+/* Page Content */
 .content {
   margin-top: 10px;
   margin-left: 10px;
@@ -285,11 +316,13 @@ body {
   margin-bottom: 20px;
 }
 
+/* Standard Text */
 pre {
   padding: .5em;
   overflow: auto;
 }
 
+/* Table Of Contents */
 .tableOfContents
 {
     padding:.3em;
@@ -311,6 +344,7 @@ pre {
   margin-left: 15px;
 }
 
+/* Link Formatting */
 a:link {
 }
 a:visited {
@@ -323,12 +357,13 @@ a.nonexistent:hover {
 }
 a.nonexistent:visited { 
 }
-a.tinyNonexistent  {
+a.tinyNonexistent /* used for things like "Talk" links when they don't exist */ {
 }
 a.tinyNonexistent:hover {
   cursor: pointer;
 }
 
+/* Tables */
 .wikitable td { padding: 2pt; }
 .wikitable {
   padding-top: 3pt;
@@ -336,11 +371,11 @@ a.tinyNonexistent:hover {
   padding-right: 2pt;
   padding-left: 2pt;
 }
-
+/* Header of a table */
 .tablehead {
   background-color: #e0e0ff;
 }
-
+/* Lists */
 .wikipage ul {
   line-height: 1.5em;
   margin: 0.5em 0em 1.5em 50px;
@@ -348,10 +383,11 @@ a.tinyNonexistent:hover {
 }
 .wikipage li { margin-bottom: 0.25em; }
 
+/*indented headings*/
 .wikipage ul h2, h3,h4,h5,h6{
   line-height: 1em;
 }
-
+/* Headings */
 h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
   clear:both;
@@ -375,6 +411,7 @@ h5 {
 h6 {
 }
 
+/* Editable Subsections */
 table.sectionEdit h2 
 { 
   margin: -0.1em; 
@@ -389,18 +426,22 @@ table.sectionEdit h2 a {
 }
 table.sectionEdit td { vertical-align: bottom; }
 
+
+/* Horizontal Rule */
 hr {
     text-align: left;
     margin: 0;
     padding: 0;
 }
-
+/* Footnotes */
 .footnotes div {
   margin-top: 2em;
   width: 10em;
   clear: both;
 }
 
+/*************************************      Bottom of Page  *************/
+/* The footer, which contains things like "Edit", "Bookmark" and text/icons. */
 #footer {
   clear: both;
   margin-left: 10px;
@@ -419,16 +460,20 @@ hr {
 #footer .license { 
  }
 
+
+/*************************************      Edit Page   *************/
+/* This is the page editing area (textarea, in our case) */
 #savetext { 
  line-height: inherit;
  width: 100%;
 }
-
+/* Input button used for some actions (e.g. "Rename" page) */
 .formbutton {
 }
-
+/* The comment area for making a page edit */
 #editComment { margin-top: 2px; }
 
+/* The editor markup buttons */
 #editButtonRow {
   padding: 0;
   margin-top: .8em;
@@ -439,13 +484,16 @@ hr {
   margin-left: 1em;
 }
 
+
+/*************************************      History Page    *************/
+/* Content of the tab area */
 #tabPage {
   position: relative;
   z-index: 0;
   padding: 4pt 5pt 4pt 5pt;
 }
 #tabPage h3 { margin-top: 9pt;}
-
+/* The tabs themselves */
 #tabmenu {
      margin: 12pt 0px 0px 0px;
      padding: 0;
@@ -464,17 +512,20 @@ hr {
 #tabmenu li.active {
      padding-top: 2pt;
      top: -2px;
-     _top: -1px; 
+     _top: -1px; /*ie hack*/
 }
 #tabmenu li.active a {
      padding-top: 2.5pt;
-     _padding-top: 0; 
-     _top: -1px; 
+     _padding-top: 0; /*ie hack*/
+     _top: -1px; /*ie hack*/
 }
 
+/* Info area history */
 #pageHistory td { padding: 0 .3em; }
 div.editInfo { margin-top: 10pt; }
 
+
+/* The 'differences' view */
 .diff {
   width:100%;
   margin-bottom: 6px;
@@ -483,39 +534,48 @@ div.editInfo { margin-top: 10pt; }
 .diff td {
   padding: 4px 2px 4px 2px;
 }
-
+/* One side of the differences */
 .diff-item { width:50%; }
-
+/* Area that marks the line numbers where things change */
 .diff-title {
 }
-
+/* Added area */
 .diff-added span { 
  }
-
+/* Removed area */
 .diff-removed span { 
  }
 
+/*************************************  Recent Changes Page *************/
+
+/* Editor's name */
 .rceditor {
   margin-left: .2em;
 }
-
+/* Editor's comment */
 .rccomment {
   text-indent: 6em;
   margin-bottom: .3em;
 }
 
+/* Recent Changes / Bookmarks change display */
+
+/* Entry and Line Formatting */
 .rcEntry { margin-bottom: 1em; }
 .rcpageline { margin-bottom: .5em; }
 
+/* Link to Page */
 .rcpagelink {
 }
 .rcpagelink span { vertical-align: top; }
 .rcpagelink span * { vertical-align: top; }
 
+/* Recent changes modified time */
 .rctime {
   margin-left: .8em;
 }
-
+/***** Recent Changes Tag Stuff *****/
+/* General Tag Formatting */
 .rcTag {
   text-align: left;
   white-space: nowrap;
@@ -524,40 +584,46 @@ div.editInfo { margin-top: 10pt; }
   float: left;
 }
 .rcTag a { text-decoration: none; }
-
+/* "New" tag */
 .rcTagNew {
   padding: 2px;
   text-align: center;
 }
-
+/* "Changes" tag */
 .rcTagChanges {
   padding: 2px;
   text-align: center;
 }
-
+/* "Deleted" tag */
 .rcTagDeleted {
   padding: 2px;
   text-align: center;
 }
-
+/* General page stuff*/
 .recentchanges {
   padding-bottom: 1em;
 }
 
+/*************************************  User's Stuff    *************/
+/* User Link area, "logout/settings/watch" */
 .user_area .user_items {
   margin-top: 4px;
   margin-left: 5px;
 }
 
+/***** Bookmarks display (user's bookmarks) *****/
+/* Edit time */
 .favtime {
 }
-
+/* Page editor */
 .faveditor {
 } 
-
+/* Edit comment */
 .favcomment {
 }
 
+
+/* Bookmarks Display */
 .bookmarks {
   padding-bottom: 1em;
 }
@@ -566,27 +632,32 @@ div.editInfo { margin-top: 10pt; }
   padding-bottom: .3em;
 }
 
+/* Formatting for [[Userstats()]] */
 #useredits table { width: 100%; }
 #useredits table td {
   width: 15%;
   padding: .3em .3em .3em .3em;
 }
+/*************************************      Map Stuff   *************/
 
+/* Contains the map */
 #mapContainer {
   margin-top: -5px;
 }
-
+/* Contains just the map */
 #map {
   top: 12px;
   left: 10px
 }
 
+/*************************************      Et cetera   *************/
 .inlineEditHighlight {
   margin-bottom: 0px !important;
   padding-bottom: 0px!important;
   overflow: hidden;
 }
 
+/* The warning / notification message box */
 #message {
   margin-left: 10px;
   margin-right: 10px;
@@ -595,6 +666,7 @@ div.editInfo { margin-top: 10pt; }
   padding-left: 5px;
 }
 
+/* Non-warning/alert style dialog.  Such as used for search results. */
 .dialogBox {
   clear: both;
   margin-left: 10pt;
@@ -603,6 +675,7 @@ div.editInfo { margin-top: 10pt; }
 }
 .dialogBox td { padding: 10px; }
 
+/* actionBoxes, similar to buttons, used to show users, hide users, etc. */
 .actionBoxes { padding-bottom: 15pt; }
 td .actionBoxes {
   margin: .7em 0 0 0 !important;
@@ -620,6 +693,7 @@ span.actionBoxSelected {
 .actionBoxes a { 
 } 
 
+/* "optional" or minor points are made using minorText. */
 .minorText {
   margin-left: .5em;
 }
@@ -628,19 +702,29 @@ span.actionBoxSelected {
 .minorText a:hover {
 }
 
+/* used for [action here] boxes with brackets around them */
 .minorActionBox { 
 }
 
+/* Input field for forms (e.g. username/password fields) */
 .formfields {
 }
 
+/* Icon used when linking to other wikis using interwiki-style links.
+ *  * also used when displaying certain links to other wikis, such as search results
+ *   * */
 img.interwiki_icon {
   margin-right: .25em;
   padding: 0;
 }
-
+/* more wikispot stuff */
 .wikiSpotFrontPage td { padding-right: 1em; }
 
+
+
+/*  screen.css - Sycamore Default Styles */
+
+/* content styles */
 #toolbar {
    margin-right: 15pt;
    text-align: right;
@@ -724,6 +808,7 @@ span.thumb img {
   border: 1px solid #CBCBCB;
 }
 
+
 span.thumb img.borderless {
   border: 0px;
 }
@@ -731,6 +816,7 @@ span.thumb img.borderless {
 span.thumb.noborder img {
   border: 0px;
 }
+
 
 span.thumb.noborder {
   border: 0px;
@@ -836,7 +922,8 @@ font-size: 7pt;
 a.tab.tab, a.tab:visited {
   background: #ccddee;
   color: #336699;
- 
+ /* border-top: 1px solid #555555;
+  border-left: 1px solid #555555;*/
   border-top: 1px solid #555555;
   border-left: 1px solid #555555;
   border-right: 1px solid #555555;
@@ -912,6 +999,7 @@ a.smalltab.smallactiveTab, a.smalltab.smallactiveTab:hover, a.smalltab.smallacti
         font-size: 11px;
 }
 
+
 .formfields {
         background-color: #FFFFFF;
         border: 1px solid #999999;
@@ -933,7 +1021,7 @@ body {
     font-weight: normal;
     color: black;
     background-color: white;
-    min-width: 525px;  
+    min-width: 525px;  /* added 2009/08/25 by rtucker to give toolbar room to breathe */
 }
 
 h2, h3, h4, h5, h6 {
@@ -1027,6 +1115,7 @@ table.inlinepage {
 	margin-bottom: .4em;
 }
 
+
 table.inlinepage a { text-decoration: none;}
 
 a:link {
@@ -1051,6 +1140,7 @@ a.nonexistent, a.badinterwiki {
         text-decoration: none;
         border-bottom: 1px dashed #336699;
 }
+
 
 a.nonexistent:hover {
         border-bottom: 0px;
@@ -1157,6 +1247,7 @@ hr {
         clear: both;
 }
 
+/* user interface styles */
 div.userFavoritesList
 {
   padding: 2px;
@@ -1186,7 +1277,7 @@ a.nostyle { text-decoration: none !important; }
 }
 
 #title {
-        
+        /* height: 45px; (commenting out 2009/08/25 -rtucker #TANG) */
         background: #ddeeff;
         border-bottom: 1px solid #AAAAAA;
         padding-top: 0pt;
@@ -1204,7 +1295,7 @@ table#title_area_table { margin-top:6px; }
 }
 #title td { padding: 0pt 0 0pt 0; } 
 
-#title_text { vertical-align: middle; } 
+#title_text { vertical-align: middle; /* height: 30pt; (commenting out 2009/08/25 -rtucker #TANG) */} 
 #title_text td { vertical-align: middle; }
 td.user_banner { height: 70px; width:350px; }
 
@@ -1324,6 +1415,7 @@ td.logo_banner { margin: 0px; padding: 0; vertical-align: middle; text-align:lef
 
 .login_area td { padding: 1px !important; margin: 0 !important;}
 
+
 .user a {
         margin-top: 10px;
         text-align: center;
@@ -1413,6 +1505,7 @@ margin-bottom: 0.25em;
 
 .dialogBox td { padding: 10px; }
 
+
 .progbar {
         border-left: 1px solid #bbbbbb;
         border-top: 1px solid #bbbbbb;
@@ -1451,6 +1544,7 @@ div.preview {
         width: 100%;
 }
 
+
 #pageinfo td {
         padding: 0 .3em;
 }
@@ -1458,6 +1552,7 @@ div.preview {
 .recentchanges td {
         padding: 0 .1em .35em .3em;
 }
+
 
 #editArea {
 }
@@ -1556,56 +1651,76 @@ div.editInfo { margin-top: 10pt; }
         font-weight: bold;
 }
 
+
+/*************************************  Recent Changes Page *************/
+
 .recentchanges { }
 
+/* Editor's name */
 .rceditor {
   color: #000088;
 }
-
+/* Editor's comment */
 .rccomment {
   color: #4d4d4d;
 }
 
+/* Recent Changes / Bookmarks change display */
+
+/* Entry and Line Formatting */
 .rcEntry {
  }
 .rcpageline {
 }
 
+/* Link to Page */
 .rcpagelink { font-size: 14px; }
 .rcpagelink span {
 }
 
+/* Recent changes modified time */
 .rctime {
   font-size: 14px;
   color: #4d4d4d;
 }
-
+/***** Recent Changes Tag Stuff *****/
+/* General Tag Formatting */
 .rcTag {
   font-size: 80%;
   background-color: none;
 }
 .rcTag a { text-decoration: none; }
-
+/* "New" tag */
 .rcTagNew {
   background-color: #ffff77;
 }
-
+/* "Changes" tag */
 .rcTagChanges {
   background-color: #dfdfdd;
 }
-
+/* "Deleted" tag */
 .rcTagDeleted {
   background-color: #ff9999;
 }
 
+
+
+/*  Layout.css
+ *  This file controls the margins, paddings, and positionings of the various elements of your wiki.
+ *  Changes here are a bit more complex and for the most general changes (colors and fonts) please
+ *  refer to the style.css file.
+ *  */
+/*****************t********************      Top of page *************/
+/***** Logo & Banner    *************/
+/* banner */
 #banner {
   margin: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
   background-position: 15px -17px;
-  _background-position: 15px -85px; 
+  _background-position: 15px -85px; /*IE Hack, draws from bottom rather than top */
 }
-
+/* Logo container */
 .logo {
   float: left;
   margin: 0;
@@ -1613,7 +1728,7 @@ div.editInfo { margin-top: 10pt; }
   border: 0;
 }
 *[dir="rtl"] #logo { float: right; }
-
+/* Logo  */
 td.logo_banner {
   padding: 0;
   vertical-align: middle;
@@ -1623,14 +1738,17 @@ td.logo_banner {
   padding-bottom: 0;
   margin: 0;
 }
-
+/* Logo Text (used if no image */
 #logo_text {
   padding-left: 8pt;
 }
-
+/***** User Name, Password Area *****/
+/* User name and settings */
 td.user_banner { height: 70px; }
 td.user_banner table { margin: 5px !important; }
 
+
+/* If Logged in Username & Welcome */
 .user_area {
   padding: 0;
   padding: 8px;
@@ -1650,7 +1768,8 @@ td.user_banner table { margin: 5px !important; }
   margin-bottom: 10px;
   display: inline;
 }
-
+/* If not logged in */
+/* See Et Cetera for input forms */
 .login_area {
   height: 75px; 
   padding: 0;
@@ -1667,7 +1786,8 @@ td.user_banner table { margin: 5px !important; }
 }
 .login_area a { 
 }
-
+/*********** Navigation Tab Area ****/
+/* Primary navigational tabs */
 a.tab { margin-left: .4em;}
 a.tab.tab, a.tab:visited {
   padding: 2px 1em 0px 1em;
@@ -1676,17 +1796,19 @@ a.tab:hover {
 }
 a.tab.notice {
 }
-
+/* The tab for the current page, foremost tab */
 a.tab.activeTab, a.tab.activeTab:hover, a.tab.activeTab:visited {
   padding-top: 4px;
   z-index:4;
 }
-
+/* Area which contains the tabs */
 div.tabArea {
   width:100%;
   padding-top:1em;
 }
 
+/*********** Switching button-icons **********/
+/* Row that contains page icons (e.g. "Edit", "Info") */
 #iconRow .pageIcon { padding-right: 10px; }
 #iconRow .pageIconSelected { padding-right: 10px; }
 .pageIcon {
@@ -1697,13 +1819,16 @@ div.tabArea {
   text-align: center;
   vertical-align: bottom;
 }
-
+/* This is the action text, e.g. "Edit", "Info" */
 .pageIcon span span, .pageIconSelected span span {
   display: block;
   text-align: center;
-  padding-left: 2px; 
+  padding-left: 2px; /* we pad here because our
+    icon's visible weight is more toward the right.
+    For your own icons you may need to change this
+    to obtain maximum prettiness.*/
 }
-
+/* The search box */
 #search_form { 
   margin: 5pt 2pt 4pt 13pt;
   vertical-align: middle;
@@ -1713,7 +1838,9 @@ div.tabArea {
 #search_form form {
   padding-left: 10px;
 }
+/*************************************      Page content    *************/
 
+/* Page Title */
 #title {
   min-height: 51px; 
   padding-top: 0pt;
@@ -1721,7 +1848,7 @@ div.tabArea {
   vertical-align: middle;
   width: 100%;
 }
-
+/* Title Text */
 #title_text { vertical-align: middle; } 
 #title_text td { vertical-align: middle; }
 #title_area_table { width: 100%; }
@@ -1732,16 +1859,19 @@ div.tabArea {
 }
 #title td { padding: 3pt 0 3pt 0; } 
 
+/* Sub-title */
 .minorTitle {
   text-align: center;
   margin-top: .4em;
 }
 
+/************* Page Body *************/
 body {
   margin:0;
   padding:0;
 }
 
+/* Page Content */
 .content {
   margin-top: 10px;
   margin-left: 10px;
@@ -1749,11 +1879,13 @@ body {
   margin-bottom: 20px;
 }
 
+/* Standard Text */
 pre {
   padding: .5em;
   overflow: auto;
 }
 
+/* Table Of Contents */
 .tableOfContents
 {
     padding:.3em;
@@ -1775,6 +1907,7 @@ pre {
   margin-left: 15px;
 }
 
+/* Link Formatting */
 a:link {
 }
 a:visited {
@@ -1787,12 +1920,13 @@ a.nonexistent:hover {
 }
 a.nonexistent:visited { 
 }
-a.tinyNonexistent  {
+a.tinyNonexistent /* used for things like "Talk" links when they don't exist */ {
 }
 a.tinyNonexistent:hover {
   cursor: pointer;
 }
 
+/* Tables */
 .wikitable td { padding: 2pt; }
 .wikitable {
   padding-top: 3pt;
@@ -1800,11 +1934,11 @@ a.tinyNonexistent:hover {
   padding-right: 2pt;
   padding-left: 2pt;
 }
-
+/* Header of a table */
 .tablehead {
   background-color: #e0e0ff;
 }
-
+/* Lists */
 .wikipage ul {
   line-height: 1.5em;
   margin: 0.5em 0em 1.5em 50px;
@@ -1812,10 +1946,11 @@ a.tinyNonexistent:hover {
 }
 .wikipage li { margin-bottom: 0.25em; }
 
+/*indented headings*/
 .wikipage ul h2, h3,h4,h5,h6{
   line-height: 1em;
 }
-
+/* Headings */
 h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
   clear:both;
@@ -1839,6 +1974,7 @@ h5 {
 h6 {
 }
 
+/* Editable Subsections */
 table.sectionEdit h2 
 { 
   margin: -0.1em; 
@@ -1853,18 +1989,22 @@ table.sectionEdit h2 a {
 }
 table.sectionEdit td { vertical-align: bottom; }
 
+
+/* Horizontal Rule */
 hr {
     text-align: left;
     margin: 0;
     padding: 0;
 }
-
+/* Footnotes */
 .footnotes div {
   margin-top: 2em;
   width: 10em;
   clear: both;
 }
 
+/*************************************      Bottom of Page  *************/
+/* The footer, which contains things like "Edit", "Bookmark" and text/icons. */
 #footer {
   clear: both;
   margin-left: 10px;
@@ -1883,16 +2023,20 @@ hr {
 #footer .license { 
  }
 
+
+/*************************************      Edit Page   *************/
+/* This is the page editing area (textarea, in our case) */
 #savetext { 
  line-height: inherit;
  width: 100%;
 }
-
+/* Input button used for some actions (e.g. "Rename" page) */
 .formbutton {
 }
-
+/* The comment area for making a page edit */
 #editComment { margin-top: 2px; }
 
+/* The editor markup buttons */
 #editButtonRow {
   padding: 0;
   margin-top: .8em;
@@ -1903,13 +2047,16 @@ hr {
   margin-left: 1em;
 }
 
+
+/*************************************      History Page    *************/
+/* Content of the tab area */
 #tabPage {
   position: relative;
   z-index: 0;
   padding: 4pt 5pt 4pt 5pt;
 }
 #tabPage h3 { margin-top: 9pt;}
-
+/* The tabs themselves */
 #tabmenu {
      margin: 12pt 0px 0px 0px;
      padding: 0;
@@ -1928,17 +2075,20 @@ hr {
 #tabmenu li.active {
      padding-top: 2pt;
      top: -2px;
-     _top: -1px; 
+     _top: -1px; /*ie hack*/
 }
 #tabmenu li.active a {
      padding-top: 2.5pt;
-     _padding-top: 0; 
-     _top: -1px; 
+     _padding-top: 0; /*ie hack*/
+     _top: -1px; /*ie hack*/
 }
 
+/* Info area history */
 #pageHistory td { padding: 0 .3em; }
 div.editInfo { margin-top: 10pt; }
 
+
+/* The 'differences' view */
 .diff {
   width:100%;
   margin-bottom: 6px;
@@ -1947,39 +2097,48 @@ div.editInfo { margin-top: 10pt; }
 .diff td {
   padding: 4px 2px 4px 2px;
 }
-
+/* One side of the differences */
 .diff-item { width:50%; }
-
+/* Area that marks the line numbers where things change */
 .diff-title {
 }
-
+/* Added area */
 .diff-added span { 
  }
-
+/* Removed area */
 .diff-removed span { 
  }
 
+/*************************************  Recent Changes Page *************/
+
+/* Editor's name */
 .rceditor {
   margin-left: .2em;
 }
-
+/* Editor's comment */
 .rccomment {
   text-indent: 6em;
   margin-bottom: .3em;
 }
 
+/* Recent Changes / Bookmarks change display */
+
+/* Entry and Line Formatting */
 .rcEntry { margin-bottom: 1em; }
 .rcpageline { margin-bottom: .5em; }
 
+/* Link to Page */
 .rcpagelink {
 }
 .rcpagelink span { vertical-align: top; }
 .rcpagelink span * { vertical-align: top; }
 
+/* Recent changes modified time */
 .rctime {
   margin-left: .8em;
 }
-
+/***** Recent Changes Tag Stuff *****/
+/* General Tag Formatting */
 .rcTag {
   text-align: left;
   white-space: nowrap;
@@ -1988,40 +2147,46 @@ div.editInfo { margin-top: 10pt; }
   float: left;
 }
 .rcTag a { text-decoration: none; }
-
+/* "New" tag */
 .rcTagNew {
   padding: 2px;
   text-align: center;
 }
-
+/* "Changes" tag */
 .rcTagChanges {
   padding: 2px;
   text-align: center;
 }
-
+/* "Deleted" tag */
 .rcTagDeleted {
   padding: 2px;
   text-align: center;
 }
-
+/* General page stuff*/
 .recentchanges {
   padding-bottom: 1em;
 }
 
+/*************************************  User's Stuff    *************/
+/* User Link area, "logout/settings/watch" */
 .user_area .user_items {
   margin-top: 4px;
   margin-left: 5px;
 }
 
+/***** Bookmarks display (user's bookmarks) *****/
+/* Edit time */
 .favtime {
 }
-
+/* Page editor */
 .faveditor {
 } 
-
+/* Edit comment */
 .favcomment {
 }
 
+
+/* Bookmarks Display */
 .bookmarks {
   padding-bottom: 1em;
 }
@@ -2030,27 +2195,32 @@ div.editInfo { margin-top: 10pt; }
   padding-bottom: .3em;
 }
 
+/* Formatting for [[Userstats()]] */
 #useredits table { width: 100%; }
 #useredits table td {
   width: 15%;
   padding: .3em .3em .3em .3em;
 }
+/*************************************      Map Stuff   *************/
 
+/* Contains the map */
 #mapContainer {
   margin-top: -5px;
 }
-
+/* Contains just the map */
 #map {
   top: 12px;
   left: 10px
 }
 
+/*************************************      Et cetera   *************/
 .inlineEditHighlight {
   margin-bottom: 0px !important;
   padding-bottom: 0px!important;
   overflow: hidden;
 }
 
+/* The warning / notification message box */
 #message {
   margin-left: 10px;
   margin-right: 10px;
@@ -2059,6 +2229,7 @@ div.editInfo { margin-top: 10pt; }
   padding-left: 5px;
 }
 
+/* Non-warning/alert style dialog.  Such as used for search results. */
 .dialogBox {
   clear: both;
   margin-left: 10pt;
@@ -2067,6 +2238,7 @@ div.editInfo { margin-top: 10pt; }
 }
 .dialogBox td { padding: 10px; }
 
+/* actionBoxes, similar to buttons, used to show users, hide users, etc. */
 .actionBoxes { padding-bottom: 15pt; }
 td .actionBoxes {
   margin: .7em 0 0 0 !important;
@@ -2084,6 +2256,7 @@ span.actionBoxSelected {
 .actionBoxes a { 
 } 
 
+/* "optional" or minor points are made using minorText. */
 .minorText {
   margin-left: .5em;
 }
@@ -2092,19 +2265,29 @@ span.actionBoxSelected {
 .minorText a:hover {
 }
 
+/* used for [action here] boxes with brackets around them */
 .minorActionBox { 
 }
 
+/* Input field for forms (e.g. username/password fields) */
 .formfields {
 }
 
+/* Icon used when linking to other wikis using interwiki-style links.
+ *  * also used when displaying certain links to other wikis, such as search results
+ *   * */
 img.interwiki_icon {
   margin-right: .25em;
   padding: 0;
 }
-
+/* more wikispot stuff */
 .wikiSpotFrontPage td { padding-right: 1em; }
 
+
+
+/*  screen.css - Sycamore Default Styles */
+
+/* content styles */
 #toolbar {
    margin-right: 15pt;
    text-align: right;
@@ -2188,6 +2371,7 @@ span.thumb img {
   border: 1px solid #CBCBCB;
 }
 
+
 span.thumb img.borderless {
   border: 0px;
 }
@@ -2195,6 +2379,7 @@ span.thumb img.borderless {
 span.thumb.noborder img {
   border: 0px;
 }
+
 
 span.thumb.noborder {
   border: 0px;
@@ -2300,7 +2485,8 @@ font-size: 7pt;
 a.tab.tab, a.tab:visited {
   background: #ccddee;
   color: #336699;
- 
+ /* border-top: 1px solid #555555;
+  border-left: 1px solid #555555;*/
   border-top: 1px solid #555555;
   border-left: 1px solid #555555;
   border-right: 1px solid #555555;
@@ -2376,6 +2562,7 @@ a.smalltab.smallactiveTab, a.smalltab.smallactiveTab:hover, a.smalltab.smallacti
         font-size: 11px;
 }
 
+
 .formfields {
         background-color: #FFFFFF;
         border: 1px solid #999999;
@@ -2397,7 +2584,7 @@ body {
     font-weight: normal;
     color: black;
     background-color: white;
-    min-width: 525px;  
+    min-width: 525px;  /* added 2009/08/25 by rtucker to give toolbar room to breathe */
 }
 
 h2, h3, h4, h5, h6 {
@@ -2491,6 +2678,7 @@ table.inlinepage {
 	margin-bottom: .4em;
 }
 
+
 table.inlinepage a { text-decoration: none;}
 
 a:link {
@@ -2515,6 +2703,7 @@ a.nonexistent, a.badinterwiki {
         text-decoration: none;
         border-bottom: 1px dashed #336699;
 }
+
 
 a.nonexistent:hover {
         border-bottom: 0px;
@@ -2621,6 +2810,7 @@ hr {
         clear: both;
 }
 
+/* user interface styles */
 div.userFavoritesList
 {
   padding: 2px;
@@ -2650,7 +2840,7 @@ a.nostyle { text-decoration: none !important; }
 }
 
 #title {
-        
+        /* height: 45px; (commenting out 2009/08/25 -rtucker #TANG) */
         background: #ddeeff;
         border-bottom: 1px solid #AAAAAA;
         padding-top: 0pt;
@@ -2668,7 +2858,7 @@ table#title_area_table { margin-top:6px; }
 }
 #title td { padding: 0pt 0 0pt 0; } 
 
-#title_text { vertical-align: middle; } 
+#title_text { vertical-align: middle; /* height: 30pt; (commenting out 2009/08/25 -rtucker #TANG) */} 
 #title_text td { vertical-align: middle; }
 td.user_banner { height: 70px; width:350px; }
 
@@ -2788,6 +2978,7 @@ td.logo_banner { margin: 0px; padding: 0; vertical-align: middle; text-align:lef
 
 .login_area td { padding: 1px !important; margin: 0 !important;}
 
+
 .user a {
         margin-top: 10px;
         text-align: center;
@@ -2877,6 +3068,7 @@ margin-bottom: 0.25em;
 
 .dialogBox td { padding: 10px; }
 
+
 .progbar {
         border-left: 1px solid #bbbbbb;
         border-top: 1px solid #bbbbbb;
@@ -2915,6 +3107,7 @@ div.preview {
         width: 100%;
 }
 
+
 #pageinfo td {
         padding: 0 .3em;
 }
@@ -2922,6 +3115,7 @@ div.preview {
 .recentchanges td {
         padding: 0 .1em .35em .3em;
 }
+
 
 #editArea {
 }
@@ -3020,47 +3214,59 @@ div.editInfo { margin-top: 10pt; }
         font-weight: bold;
 }
 
+
+/*************************************  Recent Changes Page *************/
+
 .recentchanges { }
 
+/* Editor's name */
 .rceditor {
   color: #000088;
 }
-
+/* Editor's comment */
 .rccomment {
   color: #4d4d4d;
 }
 
+/* Recent Changes / Bookmarks change display */
+
+/* Entry and Line Formatting */
 .rcEntry {
  }
 .rcpageline {
 }
 
+/* Link to Page */
 .rcpagelink { font-size: 14px; }
 .rcpagelink span {
 }
 
+/* Recent changes modified time */
 .rctime {
   font-size: 14px;
   color: #4d4d4d;
 }
-
+/***** Recent Changes Tag Stuff *****/
+/* General Tag Formatting */
 .rcTag {
   font-size: 80%;
   background-color: none;
 }
 .rcTag a { text-decoration: none; }
-
+/* "New" tag */
 .rcTagNew {
   background-color: #ffff77;
 }
-
+/* "Changes" tag */
 .rcTagChanges {
   background-color: #dfdfdd;
 }
-
+/* "Deleted" tag */
 .rcTagDeleted {
   background-color: #ff9999;
 }
+
+
 
 #searchField {
 	width: 200px;
@@ -3089,117 +3295,299 @@ div.editInfo { margin-top: 10pt; }
 	background-color: #fff;
 	color: #666;
 }
-
-</style>
-
-<title>It's All Love Family Restaurant - Rochester Wiki</title>
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="robots" content="index,follow">
-
-</head>
-
-<body lang="en" dir="ltr" onload="doOnLoadStuff();">
-
-<div id="banner">
-<table class="logo">
-<tbody><tr>
-<td class="logo_banner">
-<a class="nostyle" ><img align="middle" src="rick.jpg" alt="wiki logo" style="behavior: url('/wiki/pngbehavior.htc');" height="64" width="239"></a>
-</td>
-<td class="user_banner" align="right" valign="top">
-<form action="https://rocwiki.org/User_Settings" method="POST" onsubmit="if (!canSetCookies()) { alert('You need cookies enabled to log in.'); return false;}"><input type="hidden" name="action" value="userform"><div class="login_area"><table><tbody><tr><td width="50%" align="right" nowrap="">User name:</td><td colspan="2" align="left" nowrap=""><input class="formfields" size="22" name="username" type="text"></td> </tr> <tr><td align="right">Password:</td><td colspan="2" align="left" nowrap=""> <input class="formfields" size="22" type="password" name="password"> <input type="hidden" name="login" value="Login"></td></tr><tr><td></td><td align="left" nowrap="">(<a >new user</a>)</td><td align="right"><input type="submit" name="login" value="Login" alt="login"></td></tr></tbody></table></div></form>
-</td>
-</tr>
-</tbody></table>
-<div class="tabArea"><a  class="tab">Front Page</a><a  class="tab">People</a><a  class="tab">Recent Changes</a><a  class="tab activeTab">It's All Love Family Restaurant</a></div>
-</div>
-<div id="title">
-<table id="title_area_table">
-<tbody><tr>
-<td>
-<table id="title_table">
-<tbody><tr id="iconRow">
-<td id="title_text"><h1><a title="It's All Love Family Restaurant" class="currentChild" >It's All Love Family Restaurant</a></h1></td>
-<td class="pageIcon"><span id="infoIcon"><a style="text-decoration: none;" ><img class="borderless" src="rick.jpg" alt="Info" style="behavior: url('/wiki/pngbehavior.htc');" height="24" width="24"><span>Info</span></a></span></td>
-
-</tr></tbody></table>
-</td>
-<td id="search_form">
-<form name="searchbox" method="GET" action="https://rocwiki.org/It%27s_All_Love_Family_Restaurant">
-<input type="hidden" name="action" value="search">
-Search: <input id="inline_string" type="text" name="inline_string" value="" size="20" maxlength="95" placeholder="Rochester Wiki" tabindex="1" autocomplete="off" accesskey="f" title="Search RocWiki [ctrl-alt-f]">&nbsp;<input type="image" src="/wiki/eggheadbeta/img/search.png" alt="[?]">&nbsp;&nbsp;
-</form>
-</td>
-</tr></tbody></table></div>
-
-<div id="content" class="content wikipage" lang="en" dir="ltr">
-
-<div class="wikitable">
-<table>
-<tbody><tr id="l1">
-<td class="tablehead">
-<strong>Location</strong></td>
-</tr>
-<tr id="l2">
-<td>
-366 <a title="Thurston Road" >Thurston Road</a>, Rochester, NY 14619</td>
-</tr>
-<tr id="l3">
-<td class="tablehead">
-<strong>Hours</strong> (as of October 2015)</td>
-</tr>
-<tr id="l4">
-<td>
-Monday - Sunday: 6:00AM to 8:00PM</td>
-</tr>
-<tr id="l5">
-<td class="tablehead">
-<strong>Phone</strong></td>
-</tr>
-<tr id="l6">
-<td>
-585 235 5683</td>
-</tr>
-<tr id="l7">
-<td class="tablehead">
-<strong>Wheelchair Accessible</strong></td>
-</tr>
-<tr id="l8">
-<td>
-No</td>
-</tr>
-<tr id="l9">
-<td class="tablehead">
-<strong>Alcohol</strong></td>
-</tr>
-<tr id="l10">
-<td>
-No</td>
-</tr>
-<tr id="l13">
-<td class="tablehead">
-<strong>Reviews</strong></td>
-</tr>
-<tr id="l14">
-<td>
-<a class="external" ><img class="borderless" src="rick.jpg" alt="[WWW]" height="7" width="13">Youtube video</a></td>
-</tr>
-</tbody></table>
-</div>
-<p id="l16">
-<strong>It's All Love</strong> is an <a title="Cheap Meals" >affordable</a> <a title="Family Restaurants" >family restaurant</a> in <a title="Thurston Village" >Thurston Village</a> serving conventional <a title="Diners" >diner</a> food. From 6-700AM there are Early Bird specials where all <a title="Breakfast" >breakfast</a> sandwiches are $2. 
-</p>
-<p id="l18">
-They opened in October <a title="2015" >2015</a>. 
-</p>
-<p id="l20">
-</p><h3>Comments:</h3>
-<p><strong>Note: You must be logged in to add comments</strong></p>
- 
-<p></p>
-<div style="clear: both;"></div></div>
-
-<div id="footer"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td align="left" width="20%"></td><td align="center" valign="middle"><div class="license">Except where otherwise noted, this content is licensed under a <a rel="license" >Creative Commons License</a>.  See <a >Copyrights</a>.</div></td><td align="right" valign="middle" width="200px" style="padding-right: 5px;"><a ><img alt="Creative Commons License" border="0" src="rick.jpg"></a> <a ><img name="rollover" src="rick.jpg" border="0" alt="donate"></a></td></tr></tbody></table></div><div class="wikiGlobalFooter" align="center"></div>
-
-<div id="results" style="position: absolute; left: 1003px; top: 124px; width: 169px;"></div></body></html>
+  </style>
+  <title>
+   It's All Love Family Restaurant - Rochester Wiki
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="index,follow" name="robots">
+ </head>
+ <body dir="ltr" lang="en" onload="doOnLoadStuff();">
+  <div id="banner">
+   <table class="logo">
+    <tbody>
+     <tr>
+      <td class="logo_banner">
+       <a class="nostyle">
+        <img align="middle" alt="wiki logo" height="64" src="rick.jpg" style="behavior: url('/wiki/pngbehavior.htc');" width="239">
+       </a>
+      </td>
+      <td align="right" class="user_banner" valign="top">
+       <form action="https://rocwiki.org/User_Settings" method="POST" onsubmit="if (!canSetCookies()) { alert('You need cookies enabled to log in.'); return false;}">
+        <input name="action" type="hidden" value="userform">
+        <div class="login_area">
+         <table>
+          <tbody>
+           <tr>
+            <td align="right" nowrap width="50%">
+             User name:
+            </td>
+            <td align="left" colspan="2" nowrap>
+             <input class="formfields" name="username" size="22" type="text">
+            </td>
+           </tr>
+           <tr>
+            <td align="right">
+             Password:
+            </td>
+            <td align="left" colspan="2" nowrap>
+             <input class="formfields" name="password" size="22" type="password">
+             <input name="login" type="hidden" value="Login">
+            </td>
+           </tr>
+           <tr>
+            <td>
+            </td>
+            <td align="left" nowrap>
+             (
+             <a>
+              new user
+             </a>
+             )
+            </td>
+            <td align="right">
+             <input alt="login" name="login" type="submit" value="Login">
+            </td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+       </form>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <div class="tabArea">
+    <a class="tab">
+     Front Page
+    </a>
+    <a class="tab">
+     People
+    </a>
+    <a class="tab">
+     Recent Changes
+    </a>
+    <a class="tab activeTab">
+     It's All Love Family Restaurant
+    </a>
+   </div>
+  </div>
+  <div id="title">
+   <table id="title_area_table">
+    <tbody>
+     <tr>
+      <td>
+       <table id="title_table">
+        <tbody>
+         <tr id="iconRow">
+          <td id="title_text">
+           <h1>
+            <a class="currentChild" title="It's All Love Family Restaurant">
+             It's All Love Family Restaurant
+            </a>
+           </h1>
+          </td>
+          <td class="pageIcon">
+           <span id="infoIcon">
+            <a style="text-decoration: none;">
+             <img alt="Info" class="borderless" height="24" src="rick.jpg" style="behavior: url('/wiki/pngbehavior.htc');" width="24">
+             <span>
+              Info
+             </span>
+            </a>
+           </span>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </td>
+      <td id="search_form">
+       <form action="https://rocwiki.org/It%27s_All_Love_Family_Restaurant" method="GET" name="searchbox">
+        <input name="action" type="hidden" value="search">
+        Search:
+        <input accesskey="f" autocomplete="off" id="inline_string" maxlength="95" name="inline_string" placeholder="Rochester Wiki" size="20" tabindex="1" title="Search RocWiki [ctrl-alt-f]" type="text" value>
+        &nbsp;
+        <input alt="[?]" src="/wiki/eggheadbeta/img/search.png" type="image">
+        &nbsp;&nbsp;
+       </form>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="content wikipage" dir="ltr" id="content" lang="en">
+   <!-- SSL translation mode -->
+   <!-- BEGIN CONTENT -->
+   <div class="wikitable">
+    <table>
+     <tbody>
+      <tr id="l1">
+       <td class="tablehead">
+        <strong>
+         Location
+        </strong>
+       </td>
+      </tr>
+      <tr id="l2">
+       <td>
+        366
+        <a title="Thurston Road">
+         Thurston Road
+        </a>
+        , Rochester, NY 14619
+       </td>
+      </tr>
+      <tr id="l3">
+       <td class="tablehead">
+        <strong>
+         Hours
+        </strong>
+        (as of October 2015)
+       </td>
+      </tr>
+      <tr id="l4">
+       <td>
+        Monday - Sunday: 6:00AM to 8:00PM
+       </td>
+      </tr>
+      <tr id="l5">
+       <td class="tablehead">
+        <strong>
+         Phone
+        </strong>
+       </td>
+      </tr>
+      <tr id="l6">
+       <td>
+        585 235 5683
+       </td>
+      </tr>
+      <tr id="l7">
+       <td class="tablehead">
+        <strong>
+         Wheelchair Accessible
+        </strong>
+       </td>
+      </tr>
+      <tr id="l8">
+       <td>
+        No
+       </td>
+      </tr>
+      <tr id="l9">
+       <td class="tablehead">
+        <strong>
+         Alcohol
+        </strong>
+       </td>
+      </tr>
+      <tr id="l10">
+       <td>
+        No
+       </td>
+      </tr>
+      <tr id="l13">
+       <td class="tablehead">
+        <strong>
+         Reviews
+        </strong>
+       </td>
+      </tr>
+      <tr id="l14">
+       <td>
+        <a class="external">
+         <img alt="[WWW]" class="borderless" height="7" src="rick.jpg" width="13">
+         Youtube video
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+   <p id="l16">
+    <strong>
+     It's All Love
+    </strong>
+    is an
+    <a title="Cheap Meals">
+     affordable
+    </a>
+    <a title="Family Restaurants">
+     family restaurant
+    </a>
+    in
+    <a title="Thurston Village">
+     Thurston Village
+    </a>
+    serving conventional
+    <a title="Diners">
+     diner
+    </a>
+    food. From 6-700AM there are Early Bird specials where all
+    <a title="Breakfast">
+     breakfast
+    </a>
+    sandwiches are $2.
+   </p>
+   <p id="l18">
+    They opened in October
+    <a title="2015">
+     2015
+    </a>
+    .
+   </p>
+   <p id="l20">
+   </p>
+   <h3>
+    Comments:
+   </h3>
+   <p>
+    <strong>
+     Note: You must be logged in to add comments
+    </strong>
+   </p>
+   <p>
+   </p>
+   <!-- END CONTENT -->
+   <div style="clear: both;">
+   </div>
+  </div>
+  <div id="footer">
+   <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+     <tr>
+      <td align="left" width="20%">
+      </td>
+      <td align="center" valign="middle">
+       <div class="license">
+        <!-- Creative Commons Licence -->
+        Except where otherwise noted, this content is licensed under a
+        <a rel="license">
+         Creative Commons License
+        </a>
+        .  See
+        <a>
+         Copyrights
+        </a>
+        .
+        <!-- /Creative Commons License -->
+       </div>
+      </td>
+      <td align="right" style="padding-right: 5px;" valign="middle" width="200px">
+       <a>
+        <img alt="Creative Commons License" border="0" src="rick.jpg">
+       </a>
+       <a>
+        <img alt="donate" border="0" name="rollover" src="rick.jpg">
+       </a>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <div align="center" class="wikiGlobalFooter">
+  </div>
+  <div id="results" style="position: absolute; left: 1003px; top: 124px; width: 169px;">
+  </div>
+ </body>
+</html>

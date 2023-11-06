@@ -1,647 +1,878 @@
-<!DOCTYPE html><html lang="en"><head>
-<style>
-@charset "UTF-8";
-:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#0061d5;--secondary:rgba(0,97,213,0.05);--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:rgba(0,97,213,0.025);--dark:#343a40;--border:rgba(0,97,213,0.1);--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}*,:after,:before{box-sizing:border-box}html{-webkit-tap-highlight-color:rgba(0,0,0,0);font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%}article,footer,nav{display:block}body{background-color:#fff;color:#212529;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1.25rem;font-weight:300;line-height:1.5;margin:0;text-align:left}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2,h3,h4{margin-bottom:.5rem;margin-top:0}dl,ol,p,ul{margin-bottom:1rem;margin-top:0}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}b{font-weight:bolder}a{background-color:transparent;color:#0061d5;text-decoration:none}a:hover{color:theme-color("primary");text-decoration:underline}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}img{border-style:none;vertical-align:middle}table{border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}label{display:inline-block;margin-bottom:.5rem}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit;margin:0}button,input{overflow:visible}button,select{text-transform:none}select{word-wrap:normal}[type=button],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}input[type=checkbox]{box-sizing:border-box;padding:0}textarea{overflow:auto;resize:vertical}template{display:none}[hidden]{display:none!important}.h1,.h2,.h3,.h4,h1,h2,h3,h4{font-weight:700;line-height:1.2;margin-bottom:.5rem}.h1,h1{font-size:2.25rem}.h2,h2{font-size:1.75rem}.h3,h3{font-size:1.5rem}.h4,h4{font-size:1.875rem}hr{border:0;border-top:1px solid rgba(0,97,213,.1);margin-bottom:1rem;margin-top:1rem}.list-unstyled{list-style:none;padding-left:0}.img-fluid,.img-thumbnail{height:auto;max-width:100%}.img-thumbnail{background-color:#fff;border:1px solid #dee2e6;border-radius:.125rem;padding:.25rem}code{word-wrap:break-word;color:#e83e8c;font-size:87.5%}a>code{color:inherit}.container,.container-fluid{margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;width:100%}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-left:-15px;margin-right:-15px}.col,.col-12,.col-lg-4,.col-lg-8,.col-md-3,.col-md-6,.col-md-9{padding-left:15px;padding-right:15px;position:relative;width:100%}.col{flex-basis:0;flex-grow:1}.col,.col-12{max-width:100%}.col-12{flex:0 0 100%}@media (min-width:768px){.col-md-3{flex:0 0 25%;max-width:25%}.col-md-6{flex:0 0 50%;max-width:50%}.col-md-9{flex:0 0 75%;max-width:75%}}@media (min-width:992px){.col-lg-4{flex:0 0 33.3333333333%;max-width:33.3333333333%}.col-lg-8{flex:0 0 66.6666666667%;max-width:66.6666666667%}}.table{color:#212529;margin-bottom:1rem;width:100%}.table td,.table th{border-top:1px solid #dee2e6;padding:.75rem;vertical-align:top}.table thead th{border-bottom:2px solid #dee2e6;vertical-align:bottom}.table tbody+tbody{border-top:2px solid #dee2e6}.form-control{background-clip:padding-box;background-color:#fff;border:1px solid rgba(0,97,213,.1);border-radius:.125rem;color:#495057;display:block;font-size:1.25rem;font-weight:300;height:calc(1.5em + .75rem + 2px);line-height:1.5;padding:.375rem .75rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;width:100%}@media (prefers-reduced-motion:reduce){.form-control{transition:none}}.form-control::-ms-expand{background-color:transparent;border:0}.form-control:-moz-focusring{color:transparent;text-shadow:0 0 0 #495057}.form-control:focus{background-color:#fff;border-color:rgba(0,97,213,.1);box-shadow:none;color:#495057;outline:0}.form-control::-moz-placeholder{color:#6c757d;opacity:1}.form-control:-ms-input-placeholder{color:#6c757d;opacity:1}.form-control::placeholder{color:#6c757d;opacity:1}.form-control:disabled{background-color:#e9ecef;opacity:1}select.form-control:focus::-ms-value{background-color:#fff;color:#495057}textarea.form-control{height:auto}.form-group{margin-bottom:1rem}.form-row{display:flex;flex-wrap:wrap;margin-left:-5px;margin-right:-5px}.form-row>.col,.form-row>[class*=col-]{padding-left:5px;padding-right:5px}.form-check{display:block;padding-left:1.25rem;position:relative}.form-check-input{margin-left:-1.25rem;margin-top:.3rem;position:absolute}.form-check-input:disabled~.form-check-label{color:#6c757d}.form-check-label{margin-bottom:0}.btn{background-color:transparent;border:1px solid transparent;border-radius:.125rem;color:#212529;display:inline-block;font-size:1.25rem;font-weight:400;line-height:1.5;padding:.75rem 1.5rem;text-align:center;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle}@media (prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{box-shadow:0 0 0 .2rem rgba(0,97,213,.25);outline:0}.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn-primary{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-primary:focus,.btn-primary:hover{background-color:#0050af;border-color:#004aa2;color:#fff}.btn-primary:focus{box-shadow:0 0 0 .2rem rgba(38,121,219,.5)}.btn-primary:disabled{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active{background-color:#004aa2;border-color:#004495;color:#fff}.btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem rgba(38,121,219,.5)}.btn-outline-primary{border-color:#0061d5;color:#0061d5}.btn-outline-primary:hover{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-outline-primary:focus{box-shadow:0 0 0 .2rem rgba(0,97,213,.5)}.btn-outline-primary:disabled{background-color:transparent;color:#0061d5}.btn-outline-primary:not(:disabled):not(.disabled).active,.btn-outline-primary:not(:disabled):not(.disabled):active{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-outline-primary:not(:disabled):not(.disabled).active:focus,.btn-outline-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem rgba(0,97,213,.5)}.fade{transition:opacity .15s linear}@media (prefers-reduced-motion:reduce){.fade{transition:none}}.fade:not(.show){opacity:0}.collapse:not(.show){display:none}.collapsing{height:0;overflow:hidden;position:relative;transition:height .35s ease}@media (prefers-reduced-motion:reduce){.collapsing{transition:none}}.dropdown-menu{background-clip:padding-box;background-color:#fff;border:1px solid rgba(0,0,0,.15);border-radius:.125rem;color:#212529;display:none;float:left;font-size:1.25rem;left:0;list-style:none;margin:.125rem 0 0;min-width:10rem;padding:.5rem 0;position:absolute;text-align:left;top:100%;z-index:1000}.dropdown-menu.show{display:block}.btn-group{display:inline-flex;position:relative;vertical-align:middle}.btn-group>.btn{flex:1 1 auto;position:relative}.btn-group>.btn.active,.btn-group>.btn:active,.btn-group>.btn:focus,.btn-group>.btn:hover{z-index:1}.btn-group>.btn-group:not(:first-child),.btn-group>.btn:not(:first-child){margin-left:-1px}.btn-group>.btn-group:not(:last-child)>.btn,.btn-group>.btn:not(:last-child):not(.dropdown-toggle){border-bottom-right-radius:0;border-top-right-radius:0}.btn-group>.btn-group:not(:first-child)>.btn,.btn-group>.btn:not(:first-child){border-bottom-left-radius:0;border-top-left-radius:0}.custom-file{display:inline-block;margin-bottom:0}.custom-file,.custom-file-input{height:calc(1.5em + .75rem + 2px);position:relative;width:100%}.custom-file-input{margin:0;opacity:0;overflow:hidden;z-index:2}.custom-file-input:focus~.custom-file-label{border-color:rgba(0,97,213,.1);box-shadow:none}.custom-file-input:disabled~.custom-file-label{background-color:#e9ecef}.custom-file-input:lang(en)~.custom-file-label:after{content:"Browse"}.custom-file-label{background-color:#fff;border:1px solid rgba(0,97,213,.1);border-radius:.125rem;font-weight:300;height:calc(1.5em + .75rem + 2px);left:0;overflow:hidden;z-index:1}.custom-file-label,.custom-file-label:after{color:#495057;line-height:1.5;padding:.375rem .75rem;position:absolute;right:0;top:0}.custom-file-label:after{background-color:#e9ecef;border-left:inherit;border-radius:0 .125rem .125rem 0;bottom:0;content:"Browse";display:block;height:calc(1.5em + .75rem);z-index:3}.custom-file-label{transition:background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.custom-file-label{transition:none}}.nav{display:flex;flex-wrap:wrap;list-style:none;margin-bottom:0;padding-left:0}.nav-link{display:block;padding:.5rem 1rem}.nav-link:focus,.nav-link:hover{text-decoration:none}.navbar{padding:.5rem 1rem;position:relative}.navbar,.navbar .container,.navbar .container-fluid{align-items:center;display:flex;flex-wrap:wrap;justify-content:space-between}.navbar-brand{display:inline-block;font-size:1.5625rem;line-height:inherit;margin-right:1rem;padding-bottom:.265625rem;padding-top:.265625rem;white-space:nowrap}.navbar-brand:focus,.navbar-brand:hover{text-decoration:none}.navbar-nav{display:flex;flex-direction:column;list-style:none;margin-bottom:0;padding-left:0}.navbar-nav .nav-link{padding-left:0;padding-right:0}.navbar-nav .dropdown-menu{float:none;position:static}.navbar-text{display:inline-block;padding-bottom:.5rem;padding-top:.5rem}.navbar-collapse{align-items:center;flex-basis:100%;flex-grow:1}.navbar-toggler{background-color:transparent;border:1px solid transparent;border-radius:.125rem;font-size:1.5625rem;line-height:1;padding:.25rem .75rem}.navbar-toggler:focus,.navbar-toggler:hover{text-decoration:none}.navbar-toggler-icon{background:50%/100% 100% no-repeat;content:"";display:inline-block;height:1.5em;vertical-align:middle;width:1.5em}@media (max-width:991.98px){.navbar-expand-lg>.container,.navbar-expand-lg>.container-fluid{padding-left:0;padding-right:0}}@media (min-width:992px){.navbar-expand-lg{flex-flow:row nowrap;justify-content:flex-start}.navbar-expand-lg .navbar-nav{flex-direction:row}.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-lg .navbar-nav .nav-link{padding-left:.5rem;padding-right:.5rem}.navbar-expand-lg>.container,.navbar-expand-lg>.container-fluid{flex-wrap:nowrap}.navbar-expand-lg .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}.navbar-dark .navbar-brand,.navbar-dark .navbar-brand:focus,.navbar-dark .navbar-brand:hover{color:#fff}.navbar-dark .navbar-nav .nav-link{color:hsla(0,0%,100%,.5)}.navbar-dark .navbar-nav .nav-link:focus,.navbar-dark .navbar-nav .nav-link:hover{color:hsla(0,0%,100%,.75)}.navbar-dark .navbar-nav .active>.nav-link,.navbar-dark .navbar-nav .nav-link.active,.navbar-dark .navbar-nav .nav-link.show,.navbar-dark .navbar-nav .show>.nav-link{color:#fff}.navbar-dark .navbar-toggler{border-color:hsla(0,0%,100%,.1);color:hsla(0,0%,100%,.5)}.navbar-dark .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")}.navbar-dark .navbar-text{color:hsla(0,0%,100%,.5)}.navbar-dark .navbar-text a,.navbar-dark .navbar-text a:focus,.navbar-dark .navbar-text a:hover{color:#fff}.card{word-wrap:break-word;background-clip:border-box;background-color:#fff;border:1px solid theme-color("border");border-radius:.125rem;display:flex;flex-direction:column;min-width:0;position:relative}.card>hr{margin-left:0;margin-right:0}.card-body{flex:1 1 auto;min-height:1px;padding:1.25rem}.card-text:last-child{margin-bottom:0}.card-link:hover{text-decoration:none}.card-link+.card-link{margin-left:1.25rem}.card-img-top{border-top-left-radius:calc(.125rem - 1px);border-top-right-radius:calc(.125rem - 1px);flex-shrink:0;width:100%}.breadcrumb{background-color:#fff;border-radius:.125rem;display:flex;flex-wrap:wrap;list-style:none;margin-bottom:1rem;padding:.75rem 1rem}.breadcrumb-item+.breadcrumb-item{padding-left:.5rem}.breadcrumb-item+.breadcrumb-item:before{color:#6c757d;content:"»";float:left;padding-right:.5rem}.breadcrumb-item+.breadcrumb-item:hover:before{text-decoration:underline;text-decoration:none}.breadcrumb-item.active{color:#6c757d}@-webkit-keyframes progress-bar-stripes{0%{background-position:1rem 0}to{background-position:0 0}}@keyframes progress-bar-stripes{0%{background-position:1rem 0}to{background-position:0 0}}.media{align-items:flex-start;display:flex}.modal-open{overflow:hidden}.modal-open .modal{overflow-x:hidden;overflow-y:auto}.modal{display:none;height:100%;outline:0;overflow:hidden;width:100%;z-index:1050}.modal,.modal-backdrop{left:0;position:fixed;top:0}.modal-backdrop{background-color:#000;height:100vh;width:100vw;z-index:1040}.modal-backdrop.fade{opacity:0}.modal-backdrop.show{opacity:.5}.modal-header{align-items:flex-start;border-bottom:1px solid #dee2e6;border-top-left-radius:calc(.3rem - 1px);border-top-right-radius:calc(.3rem - 1px);display:flex;justify-content:space-between;padding:1rem}.modal-title{line-height:1.5;margin-bottom:0}.modal-body{flex:1 1 auto;padding:1rem;position:relative}.modal-footer{align-items:center;border-bottom-left-radius:calc(.3rem - 1px);border-bottom-right-radius:calc(.3rem - 1px);border-top:1px solid #dee2e6;display:flex;flex-wrap:wrap;justify-content:flex-end;padding:.75rem}.modal-footer>*{margin:.25rem}.tooltip{word-wrap:break-word;display:block;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1.09375rem;font-style:normal;font-weight:400;letter-spacing:normal;line-break:auto;line-height:1.5;margin:0;opacity:0;position:absolute;text-align:left;text-align:start;text-decoration:none;text-shadow:none;text-transform:none;white-space:normal;word-break:normal;word-spacing:normal;z-index:1070}.tooltip.show{opacity:.9}.tooltip .arrow{display:block;height:.4rem;position:absolute;width:.8rem}.tooltip .arrow:before{border-color:transparent;border-style:solid;content:"";position:absolute}.bs-tooltip-top{padding:.4rem 0}.bs-tooltip-top .arrow{bottom:0}.bs-tooltip-top .arrow:before{border-top-color:#000;border-width:.4rem .4rem 0;top:0}.bs-tooltip-right{padding:0 .4rem}.bs-tooltip-right .arrow{height:.8rem;left:0;width:.4rem}.bs-tooltip-right .arrow:before{border-right-color:#000;border-width:.4rem .4rem .4rem 0;right:0}.bs-tooltip-bottom{padding:.4rem 0}.bs-tooltip-bottom .arrow{top:0}.bs-tooltip-bottom .arrow:before{border-bottom-color:#000;border-width:0 .4rem .4rem;bottom:0}.bs-tooltip-left{padding:0 .4rem}.bs-tooltip-left .arrow{height:.8rem;right:0;width:.4rem}.bs-tooltip-left .arrow:before{border-left-color:#000;border-width:.4rem 0 .4rem .4rem;left:0}.tooltip-inner{background-color:#000;border-radius:.125rem;color:#fff;max-width:200px;padding:.25rem .5rem;text-align:center}@-webkit-keyframes spinner-border{to{transform:rotate(1turn)}}@keyframes spinner-border{to{transform:rotate(1turn)}}@-webkit-keyframes spinner-grow{0%{transform:scale(0)}50%{opacity:1;transform:none}}@keyframes spinner-grow{0%{transform:scale(0)}50%{opacity:1;transform:none}}.align-bottom{vertical-align:bottom!important}.bg-primary{background-color:#0061d5!important}a.bg-primary:focus,a.bg-primary:hover,button.bg-primary:focus,button.bg-primary:hover{background-color:#004aa2!important}.rounded-circle{border-radius:50%!important}.d-inline-block{display:inline-block!important}.d-flex{display:flex!important}.embed-responsive{display:block;overflow:hidden;padding:0;position:relative;width:100%}.embed-responsive:before{content:"";display:block}.embed-responsive .embed-responsive-item,.embed-responsive iframe{border:0;bottom:0;height:100%;left:0;position:absolute;top:0;width:100%}.embed-responsive-4by3:before{padding-top:75%}.flex-column{flex-direction:column!important}.flex-fill{flex:1 1 auto!important}.float-right{float:right!important}@supports (position:sticky){.sticky-top{position:sticky;top:0;z-index:1020}}.shadow-sm{box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important}.m-2{margin:.5rem!important}.mb-2{margin-bottom:.5rem!important}.mt-4{margin-top:1.5rem!important}.mb-4{margin-bottom:1.5rem!important}.my-5{margin-top:3rem!important}.mb-5,.my-5{margin-bottom:3rem!important}.p-0{padding:0!important}.pb-2{padding-bottom:.5rem!important}.py-3{padding-bottom:1rem!important;padding-top:1rem!important}.p-4{padding:1.5rem!important}.py-4{padding-top:1.5rem!important}.px-4{padding-right:1.5rem!important}.pb-4,.py-4{padding-bottom:1.5rem!important}.px-4{padding-left:1.5rem!important}.p-5{padding:3rem!important}.pt-5,.py-5{padding-top:3rem!important}.pb-5,.py-5{padding-bottom:3rem!important}.mr-auto{margin-right:auto!important}.ml-auto{margin-left:auto!important}@media (min-width:992px){.px-lg-5{padding-left:3rem!important;padding-right:3rem!important}}.text-center{text-align:center!important}.text-dark{color:#343a40!important}a.text-dark:focus,a.text-dark:hover{color:#121416!important}.text-white-50{color:hsla(0,0%,100%,.5)!important}.visible{visibility:visible!important}.invisible{visibility:hidden!important}@media print{*,:after,:before{box-shadow:none!important;text-shadow:none!important}a:not(.btn){text-decoration:underline}thead{display:table-header-group}img,tr{page-break-inside:avoid}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3}.container,body{min-width:992px!important}.navbar{display:none}.table{border-collapse:collapse!important}.table td,.table th{background-color:#fff!important}}body{min-height:100vh}.navbar-brand{text-transform:uppercase}.breadcrumb{font-size:.75rem}.comments{background-color:rgba(0,97,213,.05)}.comments h3{color:#007bff}.sidebar{background-color:rgba(0,97,213,.0125);border:1px solid rgba(0,97,213,.1)}.btn{font-size:1rem;font-weight:500;text-transform:uppercase}.btn-primary:hover{background-color:#fff;border-color:#007bff;color:#007bff}a:hover .card{box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important}.index .title h2{-webkit-text-decoration:underline #0061d5;text-decoration:underline #0061d5}.grid-item{width:100%}@media (min-width:768px){.grid-item{width:50%}}
-
-</style>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>Pirate Tips</title>
-<meta property="og:title" content="Pirate Tips">
-<meta property="og:url" content="">
-<meta property="og:site_name" content="Pirate Tips">
-<meta property="fb:app_id" content="261949877811396">
-
-<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><style type="text/css" data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:'lucida grande', tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   @charset "UTF-8";
+/*!
+ * Bootstrap v4.6.0 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#0061d5;--secondary:rgba(0,97,213,0.05);--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:rgba(0,97,213,0.025);--dark:#343a40;--border:rgba(0,97,213,0.1);--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}*,:after,:before{box-sizing:border-box}html{-webkit-tap-highlight-color:rgba(0,0,0,0);font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%}article,footer,nav{display:block}body{background-color:#fff;color:#212529;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1.25rem;font-weight:300;line-height:1.5;margin:0;text-align:left}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2,h3,h4{margin-bottom:.5rem;margin-top:0}dl,ol,p,ul{margin-bottom:1rem;margin-top:0}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}b{font-weight:bolder}a{background-color:transparent;color:#0061d5;text-decoration:none}a:hover{color:theme-color("primary");text-decoration:underline}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}img{border-style:none;vertical-align:middle}table{border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}label{display:inline-block;margin-bottom:.5rem}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit;margin:0}button,input{overflow:visible}button,select{text-transform:none}select{word-wrap:normal}[type=button],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}input[type=checkbox]{box-sizing:border-box;padding:0}textarea{overflow:auto;resize:vertical}template{display:none}[hidden]{display:none!important}.h1,.h2,.h3,.h4,h1,h2,h3,h4{font-weight:700;line-height:1.2;margin-bottom:.5rem}.h1,h1{font-size:2.25rem}.h2,h2{font-size:1.75rem}.h3,h3{font-size:1.5rem}.h4,h4{font-size:1.875rem}hr{border:0;border-top:1px solid rgba(0,97,213,.1);margin-bottom:1rem;margin-top:1rem}.list-unstyled{list-style:none;padding-left:0}.img-fluid,.img-thumbnail{height:auto;max-width:100%}.img-thumbnail{background-color:#fff;border:1px solid #dee2e6;border-radius:.125rem;padding:.25rem}code{word-wrap:break-word;color:#e83e8c;font-size:87.5%}a>code{color:inherit}.container,.container-fluid{margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;width:100%}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-left:-15px;margin-right:-15px}.col,.col-12,.col-lg-4,.col-lg-8,.col-md-3,.col-md-6,.col-md-9{padding-left:15px;padding-right:15px;position:relative;width:100%}.col{flex-basis:0;flex-grow:1}.col,.col-12{max-width:100%}.col-12{flex:0 0 100%}@media (min-width:768px){.col-md-3{flex:0 0 25%;max-width:25%}.col-md-6{flex:0 0 50%;max-width:50%}.col-md-9{flex:0 0 75%;max-width:75%}}@media (min-width:992px){.col-lg-4{flex:0 0 33.3333333333%;max-width:33.3333333333%}.col-lg-8{flex:0 0 66.6666666667%;max-width:66.6666666667%}}.table{color:#212529;margin-bottom:1rem;width:100%}.table td,.table th{border-top:1px solid #dee2e6;padding:.75rem;vertical-align:top}.table thead th{border-bottom:2px solid #dee2e6;vertical-align:bottom}.table tbody+tbody{border-top:2px solid #dee2e6}.form-control{background-clip:padding-box;background-color:#fff;border:1px solid rgba(0,97,213,.1);border-radius:.125rem;color:#495057;display:block;font-size:1.25rem;font-weight:300;height:calc(1.5em + .75rem + 2px);line-height:1.5;padding:.375rem .75rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;width:100%}@media (prefers-reduced-motion:reduce){.form-control{transition:none}}.form-control::-ms-expand{background-color:transparent;border:0}.form-control:-moz-focusring{color:transparent;text-shadow:0 0 0 #495057}.form-control:focus{background-color:#fff;border-color:rgba(0,97,213,.1);box-shadow:none;color:#495057;outline:0}.form-control::-moz-placeholder{color:#6c757d;opacity:1}.form-control:-ms-input-placeholder{color:#6c757d;opacity:1}.form-control::placeholder{color:#6c757d;opacity:1}.form-control:disabled{background-color:#e9ecef;opacity:1}select.form-control:focus::-ms-value{background-color:#fff;color:#495057}textarea.form-control{height:auto}.form-group{margin-bottom:1rem}.form-row{display:flex;flex-wrap:wrap;margin-left:-5px;margin-right:-5px}.form-row>.col,.form-row>[class*=col-]{padding-left:5px;padding-right:5px}.form-check{display:block;padding-left:1.25rem;position:relative}.form-check-input{margin-left:-1.25rem;margin-top:.3rem;position:absolute}.form-check-input:disabled~.form-check-label{color:#6c757d}.form-check-label{margin-bottom:0}.btn{background-color:transparent;border:1px solid transparent;border-radius:.125rem;color:#212529;display:inline-block;font-size:1.25rem;font-weight:400;line-height:1.5;padding:.75rem 1.5rem;text-align:center;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle}@media (prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{box-shadow:0 0 0 .2rem rgba(0,97,213,.25);outline:0}.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn-primary{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-primary:focus,.btn-primary:hover{background-color:#0050af;border-color:#004aa2;color:#fff}.btn-primary:focus{box-shadow:0 0 0 .2rem rgba(38,121,219,.5)}.btn-primary:disabled{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active{background-color:#004aa2;border-color:#004495;color:#fff}.btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem rgba(38,121,219,.5)}.btn-outline-primary{border-color:#0061d5;color:#0061d5}.btn-outline-primary:hover{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-outline-primary:focus{box-shadow:0 0 0 .2rem rgba(0,97,213,.5)}.btn-outline-primary:disabled{background-color:transparent;color:#0061d5}.btn-outline-primary:not(:disabled):not(.disabled).active,.btn-outline-primary:not(:disabled):not(.disabled):active{background-color:#0061d5;border-color:#0061d5;color:#fff}.btn-outline-primary:not(:disabled):not(.disabled).active:focus,.btn-outline-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem rgba(0,97,213,.5)}.fade{transition:opacity .15s linear}@media (prefers-reduced-motion:reduce){.fade{transition:none}}.fade:not(.show){opacity:0}.collapse:not(.show){display:none}.collapsing{height:0;overflow:hidden;position:relative;transition:height .35s ease}@media (prefers-reduced-motion:reduce){.collapsing{transition:none}}.dropdown-menu{background-clip:padding-box;background-color:#fff;border:1px solid rgba(0,0,0,.15);border-radius:.125rem;color:#212529;display:none;float:left;font-size:1.25rem;left:0;list-style:none;margin:.125rem 0 0;min-width:10rem;padding:.5rem 0;position:absolute;text-align:left;top:100%;z-index:1000}.dropdown-menu.show{display:block}.btn-group{display:inline-flex;position:relative;vertical-align:middle}.btn-group>.btn{flex:1 1 auto;position:relative}.btn-group>.btn.active,.btn-group>.btn:active,.btn-group>.btn:focus,.btn-group>.btn:hover{z-index:1}.btn-group>.btn-group:not(:first-child),.btn-group>.btn:not(:first-child){margin-left:-1px}.btn-group>.btn-group:not(:last-child)>.btn,.btn-group>.btn:not(:last-child):not(.dropdown-toggle){border-bottom-right-radius:0;border-top-right-radius:0}.btn-group>.btn-group:not(:first-child)>.btn,.btn-group>.btn:not(:first-child){border-bottom-left-radius:0;border-top-left-radius:0}.custom-file{display:inline-block;margin-bottom:0}.custom-file,.custom-file-input{height:calc(1.5em + .75rem + 2px);position:relative;width:100%}.custom-file-input{margin:0;opacity:0;overflow:hidden;z-index:2}.custom-file-input:focus~.custom-file-label{border-color:rgba(0,97,213,.1);box-shadow:none}.custom-file-input:disabled~.custom-file-label{background-color:#e9ecef}.custom-file-input:lang(en)~.custom-file-label:after{content:"Browse"}.custom-file-label{background-color:#fff;border:1px solid rgba(0,97,213,.1);border-radius:.125rem;font-weight:300;height:calc(1.5em + .75rem + 2px);left:0;overflow:hidden;z-index:1}.custom-file-label,.custom-file-label:after{color:#495057;line-height:1.5;padding:.375rem .75rem;position:absolute;right:0;top:0}.custom-file-label:after{background-color:#e9ecef;border-left:inherit;border-radius:0 .125rem .125rem 0;bottom:0;content:"Browse";display:block;height:calc(1.5em + .75rem);z-index:3}.custom-file-label{transition:background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.custom-file-label{transition:none}}.nav{display:flex;flex-wrap:wrap;list-style:none;margin-bottom:0;padding-left:0}.nav-link{display:block;padding:.5rem 1rem}.nav-link:focus,.nav-link:hover{text-decoration:none}.navbar{padding:.5rem 1rem;position:relative}.navbar,.navbar .container,.navbar .container-fluid{align-items:center;display:flex;flex-wrap:wrap;justify-content:space-between}.navbar-brand{display:inline-block;font-size:1.5625rem;line-height:inherit;margin-right:1rem;padding-bottom:.265625rem;padding-top:.265625rem;white-space:nowrap}.navbar-brand:focus,.navbar-brand:hover{text-decoration:none}.navbar-nav{display:flex;flex-direction:column;list-style:none;margin-bottom:0;padding-left:0}.navbar-nav .nav-link{padding-left:0;padding-right:0}.navbar-nav .dropdown-menu{float:none;position:static}.navbar-text{display:inline-block;padding-bottom:.5rem;padding-top:.5rem}.navbar-collapse{align-items:center;flex-basis:100%;flex-grow:1}.navbar-toggler{background-color:transparent;border:1px solid transparent;border-radius:.125rem;font-size:1.5625rem;line-height:1;padding:.25rem .75rem}.navbar-toggler:focus,.navbar-toggler:hover{text-decoration:none}.navbar-toggler-icon{background:50%/100% 100% no-repeat;content:"";display:inline-block;height:1.5em;vertical-align:middle;width:1.5em}@media (max-width:991.98px){.navbar-expand-lg>.container,.navbar-expand-lg>.container-fluid{padding-left:0;padding-right:0}}@media (min-width:992px){.navbar-expand-lg{flex-flow:row nowrap;justify-content:flex-start}.navbar-expand-lg .navbar-nav{flex-direction:row}.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-lg .navbar-nav .nav-link{padding-left:.5rem;padding-right:.5rem}.navbar-expand-lg>.container,.navbar-expand-lg>.container-fluid{flex-wrap:nowrap}.navbar-expand-lg .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}.navbar-dark .navbar-brand,.navbar-dark .navbar-brand:focus,.navbar-dark .navbar-brand:hover{color:#fff}.navbar-dark .navbar-nav .nav-link{color:hsla(0,0%,100%,.5)}.navbar-dark .navbar-nav .nav-link:focus,.navbar-dark .navbar-nav .nav-link:hover{color:hsla(0,0%,100%,.75)}.navbar-dark .navbar-nav .active>.nav-link,.navbar-dark .navbar-nav .nav-link.active,.navbar-dark .navbar-nav .nav-link.show,.navbar-dark .navbar-nav .show>.nav-link{color:#fff}.navbar-dark .navbar-toggler{border-color:hsla(0,0%,100%,.1);color:hsla(0,0%,100%,.5)}.navbar-dark .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")}.navbar-dark .navbar-text{color:hsla(0,0%,100%,.5)}.navbar-dark .navbar-text a,.navbar-dark .navbar-text a:focus,.navbar-dark .navbar-text a:hover{color:#fff}.card{word-wrap:break-word;background-clip:border-box;background-color:#fff;border:1px solid theme-color("border");border-radius:.125rem;display:flex;flex-direction:column;min-width:0;position:relative}.card>hr{margin-left:0;margin-right:0}.card-body{flex:1 1 auto;min-height:1px;padding:1.25rem}.card-text:last-child{margin-bottom:0}.card-link:hover{text-decoration:none}.card-link+.card-link{margin-left:1.25rem}.card-img-top{border-top-left-radius:calc(.125rem - 1px);border-top-right-radius:calc(.125rem - 1px);flex-shrink:0;width:100%}.breadcrumb{background-color:#fff;border-radius:.125rem;display:flex;flex-wrap:wrap;list-style:none;margin-bottom:1rem;padding:.75rem 1rem}.breadcrumb-item+.breadcrumb-item{padding-left:.5rem}.breadcrumb-item+.breadcrumb-item:before{color:#6c757d;content:"»";float:left;padding-right:.5rem}.breadcrumb-item+.breadcrumb-item:hover:before{text-decoration:underline;text-decoration:none}.breadcrumb-item.active{color:#6c757d}@-webkit-keyframes progress-bar-stripes{0%{background-position:1rem 0}to{background-position:0 0}}@keyframes progress-bar-stripes{0%{background-position:1rem 0}to{background-position:0 0}}.media{align-items:flex-start;display:flex}.modal-open{overflow:hidden}.modal-open .modal{overflow-x:hidden;overflow-y:auto}.modal{display:none;height:100%;outline:0;overflow:hidden;width:100%;z-index:1050}.modal,.modal-backdrop{left:0;position:fixed;top:0}.modal-backdrop{background-color:#000;height:100vh;width:100vw;z-index:1040}.modal-backdrop.fade{opacity:0}.modal-backdrop.show{opacity:.5}.modal-header{align-items:flex-start;border-bottom:1px solid #dee2e6;border-top-left-radius:calc(.3rem - 1px);border-top-right-radius:calc(.3rem - 1px);display:flex;justify-content:space-between;padding:1rem}.modal-title{line-height:1.5;margin-bottom:0}.modal-body{flex:1 1 auto;padding:1rem;position:relative}.modal-footer{align-items:center;border-bottom-left-radius:calc(.3rem - 1px);border-bottom-right-radius:calc(.3rem - 1px);border-top:1px solid #dee2e6;display:flex;flex-wrap:wrap;justify-content:flex-end;padding:.75rem}.modal-footer>*{margin:.25rem}.tooltip{word-wrap:break-word;display:block;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1.09375rem;font-style:normal;font-weight:400;letter-spacing:normal;line-break:auto;line-height:1.5;margin:0;opacity:0;position:absolute;text-align:left;text-align:start;text-decoration:none;text-shadow:none;text-transform:none;white-space:normal;word-break:normal;word-spacing:normal;z-index:1070}.tooltip.show{opacity:.9}.tooltip .arrow{display:block;height:.4rem;position:absolute;width:.8rem}.tooltip .arrow:before{border-color:transparent;border-style:solid;content:"";position:absolute}.bs-tooltip-top{padding:.4rem 0}.bs-tooltip-top .arrow{bottom:0}.bs-tooltip-top .arrow:before{border-top-color:#000;border-width:.4rem .4rem 0;top:0}.bs-tooltip-right{padding:0 .4rem}.bs-tooltip-right .arrow{height:.8rem;left:0;width:.4rem}.bs-tooltip-right .arrow:before{border-right-color:#000;border-width:.4rem .4rem .4rem 0;right:0}.bs-tooltip-bottom{padding:.4rem 0}.bs-tooltip-bottom .arrow{top:0}.bs-tooltip-bottom .arrow:before{border-bottom-color:#000;border-width:0 .4rem .4rem;bottom:0}.bs-tooltip-left{padding:0 .4rem}.bs-tooltip-left .arrow{height:.8rem;right:0;width:.4rem}.bs-tooltip-left .arrow:before{border-left-color:#000;border-width:.4rem 0 .4rem .4rem;left:0}.tooltip-inner{background-color:#000;border-radius:.125rem;color:#fff;max-width:200px;padding:.25rem .5rem;text-align:center}@-webkit-keyframes spinner-border{to{transform:rotate(1turn)}}@keyframes spinner-border{to{transform:rotate(1turn)}}@-webkit-keyframes spinner-grow{0%{transform:scale(0)}50%{opacity:1;transform:none}}@keyframes spinner-grow{0%{transform:scale(0)}50%{opacity:1;transform:none}}.align-bottom{vertical-align:bottom!important}.bg-primary{background-color:#0061d5!important}a.bg-primary:focus,a.bg-primary:hover,button.bg-primary:focus,button.bg-primary:hover{background-color:#004aa2!important}.rounded-circle{border-radius:50%!important}.d-inline-block{display:inline-block!important}.d-flex{display:flex!important}.embed-responsive{display:block;overflow:hidden;padding:0;position:relative;width:100%}.embed-responsive:before{content:"";display:block}.embed-responsive .embed-responsive-item,.embed-responsive iframe{border:0;bottom:0;height:100%;left:0;position:absolute;top:0;width:100%}.embed-responsive-4by3:before{padding-top:75%}.flex-column{flex-direction:column!important}.flex-fill{flex:1 1 auto!important}.float-right{float:right!important}@supports (position:sticky){.sticky-top{position:sticky;top:0;z-index:1020}}.shadow-sm{box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important}.m-2{margin:.5rem!important}.mb-2{margin-bottom:.5rem!important}.mt-4{margin-top:1.5rem!important}.mb-4{margin-bottom:1.5rem!important}.my-5{margin-top:3rem!important}.mb-5,.my-5{margin-bottom:3rem!important}.p-0{padding:0!important}.pb-2{padding-bottom:.5rem!important}.py-3{padding-bottom:1rem!important;padding-top:1rem!important}.p-4{padding:1.5rem!important}.py-4{padding-top:1.5rem!important}.px-4{padding-right:1.5rem!important}.pb-4,.py-4{padding-bottom:1.5rem!important}.px-4{padding-left:1.5rem!important}.p-5{padding:3rem!important}.pt-5,.py-5{padding-top:3rem!important}.pb-5,.py-5{padding-bottom:3rem!important}.mr-auto{margin-right:auto!important}.ml-auto{margin-left:auto!important}@media (min-width:992px){.px-lg-5{padding-left:3rem!important;padding-right:3rem!important}}.text-center{text-align:center!important}.text-dark{color:#343a40!important}a.text-dark:focus,a.text-dark:hover{color:#121416!important}.text-white-50{color:hsla(0,0%,100%,.5)!important}.visible{visibility:visible!important}.invisible{visibility:hidden!important}@media print{*,:after,:before{box-shadow:none!important;text-shadow:none!important}a:not(.btn){text-decoration:underline}thead{display:table-header-group}img,tr{page-break-inside:avoid}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3}.container,body{min-width:992px!important}.navbar{display:none}.table{border-collapse:collapse!important}.table td,.table th{background-color:#fff!important}}body{min-height:100vh}.navbar-brand{text-transform:uppercase}.breadcrumb{font-size:.75rem}.comments{background-color:rgba(0,97,213,.05)}.comments h3{color:#007bff}.sidebar{background-color:rgba(0,97,213,.0125);border:1px solid rgba(0,97,213,.1)}.btn{font-size:1rem;font-weight:500;text-transform:uppercase}.btn-primary:hover{background-color:#fff;border-color:#007bff;color:#007bff}a:hover .card{box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important}.index .title h2{-webkit-text-decoration:underline #0061d5;text-decoration:underline #0061d5}.grid-item{width:100%}@media (min-width:768px){.grid-item{width:50%}}
+/*# sourceMappingURL=style.min.css.map */
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <title>
+   Pirate Tips
+  </title>
+  <meta content="Pirate Tips" property="og:title">
+  <meta content property="og:url">
+  <meta content="Pirate Tips" property="og:site_name">
+  <meta content="261949877811396" property="fb:app_id">
+  <link href rel="canonical">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+  <style data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe" type="text/css">
+   .fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:'lucida grande', tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
 .fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:'lucida grande', tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
 .fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://connect.facebook.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://connect.facebook.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://connect.facebook.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://connect.facebook.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://connect.facebook.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://connect.facebook.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://connect.facebook.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 .fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
-.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}</style></head>
-<body class="d-flex flex-column">
-<noscript>
-  
-</noscript>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-<div class="container">
-<a class="navbar-brand mr-auto" >
-<img src="rick.jpg" width="35" height="35" class="d-inline-block align-bottom rounded-circle">
-Pirate Tips</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-<ul class="navbar-nav ml-auto">
-<li class="nav-item">
-<a class="nav-link" >Beard Oil</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" >Printer Reviews</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" >VPN Tips</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" >Live Cams</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class="flex-fill">
-<div class="container py-5 index">
-<div class="row">
-<div class="text-center col-12 mb-5 title">
-<h1>Pirate Tips</h1>
-<h2>Young Technology Professionals</h2>
-</div>
-</div>
-<div class="row">
-<div class="col">
-<div class="grid" data-masonry="{&quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;percentPosition&quot;: true}" style="position: relative; height: 15928.6px;">
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 0px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Crafting a DIY BDSM Rope Flogger: A Comprehensive Guide" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Crafting a DIY BDSM Rope Flogger: A Comprehensive Guide</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 0px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Creating a DIY BDSM Clothespin Zipper" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Creating a DIY BDSM Clothespin Zipper</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 493.188px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="DIY - Create your own ball gag" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">DIY - Create your own ball gag</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 526.781px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="The Versatility and Uses of PVA Glue: From Crafts to 3D Printing" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">The Versatility and Uses of PVA Glue: From Crafts to 3D Printing</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 986.376px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Live Camgirls" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Live Camgirls</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 1053.56px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="PornHub Downloader">
-<div class="card-body">
-<h2 class="card-text">Easiest way to download PornHub videos</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 1445.97px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Xerox WorkCentre 6655 Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Xerox WorkCentre 6655 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 1453.69px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Xerox WorkCentre 3615: Black and White Multifunction Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Xerox WorkCentre 3615: Black and White Multifunction Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 1939.16px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Xerox VersaLink C7020 Colour Multifunction Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Xerox VersaLink C7020 Colour Multifunction Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 1980.47px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Successor to Epson's WF-5620 gets ink bags" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Successor to Epson's WF-5620 gets ink bags</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 2465.94px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Smallest Laser Printer from HP" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Smallest Laser Printer from HP</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 2473.66px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Seven new Kyocera color printers of the upper middle class" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Seven new Kyocera color printers of the upper middle class</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 2959.13px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Samsung Xpress M2675FN Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Samsung Xpress M2675FN Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 3000.44px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Samsung Proxpress C4010nd and C4060fx in review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Samsung Proxpress C4010nd and C4060fx in review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 3452.32px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Samsung ProXpress C2680FX Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Samsung ProXpress C2680FX Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 3493.62px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="OKI MC760dnfax Multifunction Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">OKI MC760dnfax Multifunction Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 3945.5px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="New Kyocera MFP in review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">New Kyocera MFP in review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 3986.81px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP replaces Epson in space" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP replaces Epson in space</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 4405.1px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP Officejet Pro 8610 Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP Officejet Pro 8610 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 4446.41px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP OfficeJet Pro 6960 All-in-One Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP OfficeJet Pro 6960 All-in-One Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 4898.28px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP OfficeJet 3831 All-in-One Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP OfficeJet 3831 All-in-One Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 4939.6px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP LaserJet Pro 200 Color MFP M275 Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP LaserJet Pro 200 Color MFP M275 Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 5391.47px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP Envy Photo 7130 All-in-One Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP Envy Photo 7130 All-in-One Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 5432.78px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP Deskjet 3636 Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP Deskjet 3636 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 5884.66px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="HP DeskJet 2622 All-in-One Printer">
-<div class="card-body">
-<h2 class="card-text">HP DeskJet 2622 All-in-One Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 5925.97px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="HP Deskjet Ink Advantage 2545 AllinOne Wireless Printer">
-<div class="card-body">
-<h2 class="card-text">HP Deskjet 2545 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 6546.85px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="HP Color LaserJet Pro MFP M477fdn" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">HP Color LaserJet Pro MFP M477fdn</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 6588.16px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Flsun 3D Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Flsun 3D Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 7040.04px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Epson L360 Multifunction Inkjet Printer">
-<div class="card-body">
-<h2 class="card-text">Epson L360 Multifunction Inkjet Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 7047.75px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Ecotank version with color pigment inks based on the WF-C5710 available to purchase" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Ecotank version with color pigment inks based on the WF-C5710 available to purchase</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 7496.38px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Canon Pixma MX925 Printer">
-<div class="card-body">
-<h2 class="card-text">Canon Pixma MX925 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 7608.13px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Canon Pixma MG4250 Printer">
-<div class="card-body">
-<h2 class="card-text">Canon Pixma MG4250 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 8009.16px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Brother MFC-L9550CDWT Professional 4-in-1 Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Brother MFC-L9550CDWT Professional 4-in-1 Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 8132.74px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Brother DCP-1510 Mono Laser Printer Review">
-<div class="card-body">
-<h2 class="card-text">Brother DCP-1510 Mono Laser Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 8535.94px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Anet A8 3D Printer Review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Anet A8 3D Printer Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 8748.27px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="8 Color Laser Printers for Less" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">8 Color Laser Printers for Less</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 8995.54px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Beard Oil Benefits">
-<div class="card-body">
-<h2 class="card-text">Top 11 Beard Oil Benefits</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 9241.46px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Beard Oil Substitutes: What Are the Best?">
-<div class="card-body">
-<h2 class="card-text">Beard Oil Substitutes: What Are the Best?</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 9396.64px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Beard Oil vs Conditioner: What’s Better for Your Beard?">
-<div class="card-body">
-<h2 class="card-text">Beard Oil vs Conditioner: What’s Better for Your Beard?</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 9454.3px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Beard Oil vs Beard Balm">
-<div class="card-body">
-<h2 class="card-text">Beard Oil vs Beard Balm: What's the Difference?</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 9923.58px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Beard Oil Before Bed: Should You Do It?">
-<div class="card-body">
-<h2 class="card-text">Beard Oil Before Bed: Should You Do It?</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 9947.65px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="beard-blue-sky-casual">
-<div class="card-body">
-<h2 class="card-text">2019 Best Beard Oil Buyer's Guide</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 10416.9px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Monat Beard Oil ">
-<div class="card-body">
-<h2 class="card-text">Monat Beard Oil Product Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 10441px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="KC Beard Co">
-<div class="card-body">
-<h2 class="card-text">KC Beard Co. The Handcrafted Beard Oil for Men</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 11136.8px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Gnarly Beard">
-<div class="card-body">
-<h2 class="card-text">Gnarly Beard Co. Sheen Refining Beard Oil Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 11248.4px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="doTERRA Beard Oil">
-<div class="card-body">
-<h2 class="card-text">doTERRA Beard Oil Product Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 11799px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="The prolific appearance and role of Sweet_ary! The world through the eyes of a cam model!" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">The prolific appearance and role of Sweet_ary! The world through the eyes of a cam model!</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 11910.6px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Experience the Erotic Fun by Watching Nicola_lyn's Show" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Experience the Erotic Fun by Watching Nicola_lyn's Show</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 12359.3px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Daddysgirl222 - The Best Cam Model with Great Shows" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Daddysgirl222 - The Best Cam Model with Great Shows</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 12403.8px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Cutecamgirl review" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Cutecamgirl review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 12852.5px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Perfect the art of being the best cam model with Christinasage1996" width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Perfect the art of being the best cam model with Christinasage1996</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 12863.4px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top img-fluid" src="rick.jpg" alt="Alizeepo is the Most Promising Live Webcam Model " width="474" height="316">
-<div class="card-body">
-<h2 class="card-text">Alizeepo is the Most Promising Live Webcam Model </h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 13379.3px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="misslusciousxox">
-<div class="card-body">
-<h2 class="card-text">Why Misslusciousxox is considered one of the best web cam models</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 13390.2px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Black Friday">
-<div class="card-body">
-<h2 class="card-text">74 VPN Deals for Black Friday and Cyber Monday 2019 - Updating post</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 13579px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Ivacy VPN">
-<div class="card-body">
-<h2 class="card-text">Ivacy VPN Review (2019)</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 14038.6px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Game of Thrones">
-<div class="card-body">
-<h2 class="card-text">How to stream season 8 of Game of Thrones from anywhere</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 14075.1px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="U.N. Cams Review">
-<div class="card-body">
-<h2 class="card-text">U.N. Cams Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 14512.5px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Superchillin">
-<div class="card-body">
-<h2 class="card-text">Superchillin Alternatives</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 14534.7px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Surfshark VPN on Windows">
-<div class="card-body">
-<h2 class="card-text">Surfshark VPN Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 14908.8px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Turbo VPN review">
-<div class="card-body">
-<h2 class="card-text">Turbo VPN - Undervalued or Overpriced? (5 Pros &amp; 5 Cons)</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 15120.7px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="Avast SecureLine VPN Review">
-<div class="card-body">
-<h2 class="card-text">Avast SecureLine VPN Review</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 50%; top: 15275.9px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="The Complete Guide to Watching TV Shows and Movies with a VPN">
-<div class="card-body">
-<h2 class="card-text">The Complete Guide to Watching TV Shows and Movies with a VPN</h2>
-</div>
-</div>
-</a> </div>
-<div class="grid-item p-4" style="position: absolute; left: 0%; top: 15435.5px;">
-<a  class="card-link text-dark">
-<div class="card shadow-sm">
-<img class="card-img-top" src="rick.jpg" alt="The Complete Guide to Watching Netflix with a VPN">
-<div class="card-body">
-<h2 class="card-text">The Complete Guide to Watching Netflix with a VPN</h2>
-</div>
-</div>
-</a> </div>
-</div> </div>
-</div>
-</div>
-</div>
-<footer class="navbar navbar-dark bg-primary pt-5 pb-5">
-<div class="container">
-<div class="text-white-50" style="font-size:.75rem">piratetips.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.com.</div>
-<span class="navbar-text">© 2018 - 2023 piratetips.com</span>
-<ul class="navbar-nav">
-<li class="nav-item">
-<a class="nav-link" >Contact</a>
-</li>
-</ul>
-<span class="navbar-text">Follow us on <a  target="_blank">Facebook</a></span>
-</div>
-</footer>
-
-<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div></body></html>
+.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}
+  </style>
+ </head>
+ <body class="d-flex flex-column">
+  <noscript>
+  </noscript>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+   <div class="container">
+    <a class="navbar-brand mr-auto">
+     <img class="d-inline-block align-bottom rounded-circle" height="35" src="rick.jpg" width="35">
+     Pirate Tips
+    </a>
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+       <a class="nav-link">
+        Beard Oil
+       </a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link">
+        Printer Reviews
+       </a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link">
+        VPN Tips
+       </a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link">
+        Live Cams
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="flex-fill">
+   <div class="container py-5 index">
+    <div class="row">
+     <div class="text-center col-12 mb-5 title">
+      <h1>
+       Pirate Tips
+      </h1>
+      <h2>
+       Young Technology Professionals
+      </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col">
+      <div class="grid" data-masonry='{"itemSelector": ".grid-item", "percentPosition": true}' style="position: relative; height: 15928.6px;">
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 0px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Crafting a DIY BDSM Rope Flogger: A Comprehensive Guide" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Crafting a DIY BDSM Rope Flogger: A Comprehensive Guide
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 0px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Creating a DIY BDSM Clothespin Zipper" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Creating a DIY BDSM Clothespin Zipper
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 493.188px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="DIY - Create your own ball gag" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            DIY - Create your own ball gag
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 526.781px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="The Versatility and Uses of PVA Glue: From Crafts to 3D Printing" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            The Versatility and Uses of PVA Glue: From Crafts to 3D Printing
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 986.376px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Live Camgirls" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Live Camgirls
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 1053.56px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="PornHub Downloader" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Easiest way to download PornHub videos
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 1445.97px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Xerox WorkCentre 6655 Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Xerox WorkCentre 6655 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 1453.69px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Xerox WorkCentre 3615: Black and White Multifunction Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Xerox WorkCentre 3615: Black and White Multifunction Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 1939.16px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Xerox VersaLink C7020 Colour Multifunction Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Xerox VersaLink C7020 Colour Multifunction Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 1980.47px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Successor to Epson's WF-5620 gets ink bags" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Successor to Epson's WF-5620 gets ink bags
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 2465.94px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Smallest Laser Printer from HP" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Smallest Laser Printer from HP
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 2473.66px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Seven new Kyocera color printers of the upper middle class" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Seven new Kyocera color printers of the upper middle class
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 2959.13px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Samsung Xpress M2675FN Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Samsung Xpress M2675FN Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 3000.44px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Samsung Proxpress C4010nd and C4060fx in review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Samsung Proxpress C4010nd and C4060fx in review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 3452.32px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Samsung ProXpress C2680FX Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Samsung ProXpress C2680FX Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 3493.62px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="OKI MC760dnfax Multifunction Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            OKI MC760dnfax Multifunction Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 3945.5px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="New Kyocera MFP in review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            New Kyocera MFP in review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 3986.81px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP replaces Epson in space" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP replaces Epson in space
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 4405.1px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP Officejet Pro 8610 Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP Officejet Pro 8610 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 4446.41px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP OfficeJet Pro 6960 All-in-One Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP OfficeJet Pro 6960 All-in-One Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 4898.28px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP OfficeJet 3831 All-in-One Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP OfficeJet 3831 All-in-One Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 4939.6px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP LaserJet Pro 200 Color MFP M275 Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP LaserJet Pro 200 Color MFP M275 Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 5391.47px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP Envy Photo 7130 All-in-One Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP Envy Photo 7130 All-in-One Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 5432.78px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP Deskjet 3636 Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP Deskjet 3636 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 5884.66px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP DeskJet 2622 All-in-One Printer" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP DeskJet 2622 All-in-One Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 5925.97px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP Deskjet Ink Advantage 2545 AllinOne Wireless Printer" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP Deskjet 2545 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 6546.85px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="HP Color LaserJet Pro MFP M477fdn" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            HP Color LaserJet Pro MFP M477fdn
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 6588.16px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Flsun 3D Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Flsun 3D Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 7040.04px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Epson L360 Multifunction Inkjet Printer" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Epson L360 Multifunction Inkjet Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 7047.75px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Ecotank version with color pigment inks based on the WF-C5710 available to purchase" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Ecotank version with color pigment inks based on the WF-C5710 available to purchase
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 7496.38px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Canon Pixma MX925 Printer" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Canon Pixma MX925 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 7608.13px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Canon Pixma MG4250 Printer" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Canon Pixma MG4250 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 8009.16px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Brother MFC-L9550CDWT Professional 4-in-1 Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Brother MFC-L9550CDWT Professional 4-in-1 Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 8132.74px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Brother DCP-1510 Mono Laser Printer Review" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Brother DCP-1510 Mono Laser Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 8535.94px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Anet A8 3D Printer Review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Anet A8 3D Printer Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 8748.27px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="8 Color Laser Printers for Less" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            8 Color Laser Printers for Less
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 8995.54px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Beard Oil Benefits" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Top 11 Beard Oil Benefits
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 9241.46px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Beard Oil Substitutes: What Are the Best?" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Beard Oil Substitutes: What Are the Best?
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 9396.64px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Beard Oil vs Conditioner: What&rsquo;s Better for Your Beard?" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Beard Oil vs Conditioner: What&rsquo;s Better for Your Beard?
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 9454.3px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Beard Oil vs Beard Balm" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Beard Oil vs Beard Balm: What's the Difference?
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 9923.58px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Beard Oil Before Bed: Should You Do It?" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Beard Oil Before Bed: Should You Do It?
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 9947.65px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="beard-blue-sky-casual" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            2019 Best Beard Oil Buyer's Guide
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 10416.9px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Monat Beard Oil " class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Monat Beard Oil Product Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 10441px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="KC Beard Co" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            KC Beard Co. The Handcrafted Beard Oil for Men
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 11136.8px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Gnarly Beard" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Gnarly Beard Co. Sheen Refining Beard Oil Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 11248.4px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="doTERRA Beard Oil" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            doTERRA Beard Oil Product Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 11799px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="The prolific appearance and role of Sweet_ary! The world through the eyes of a cam model!" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            The prolific appearance and role of Sweet_ary! The world through the eyes of a cam model!
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 11910.6px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Experience the Erotic Fun by Watching Nicola_lyn's Show" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Experience the Erotic Fun by Watching Nicola_lyn's Show
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 12359.3px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Daddysgirl222 - The Best Cam Model with Great Shows" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Daddysgirl222 - The Best Cam Model with Great Shows
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 12403.8px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Cutecamgirl review" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Cutecamgirl review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 12852.5px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Perfect the art of being the best cam model with Christinasage1996" class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Perfect the art of being the best cam model with Christinasage1996
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 12863.4px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Alizeepo is the Most Promising Live Webcam Model " class="card-img-top img-fluid" height="316" src="rick.jpg" width="474">
+          <div class="card-body">
+           <h2 class="card-text">
+            Alizeepo is the Most Promising Live Webcam Model
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 13379.3px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="misslusciousxox" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Why Misslusciousxox is considered one of the best web cam models
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 13390.2px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Black Friday" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            74 VPN Deals for Black Friday and Cyber Monday 2019 - Updating post
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 13579px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Ivacy VPN" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Ivacy VPN Review (2019)
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 14038.6px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Game of Thrones" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            How to stream season 8 of Game of Thrones from anywhere
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 14075.1px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="U.N. Cams Review" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            U.N. Cams Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 14512.5px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Superchillin" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Superchillin Alternatives
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 14534.7px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Surfshark VPN on Windows" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Surfshark VPN Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 14908.8px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Turbo VPN review" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Turbo VPN - Undervalued or Overpriced? (5 Pros &amp; 5 Cons)
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 15120.7px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="Avast SecureLine VPN Review" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            Avast SecureLine VPN Review
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 50%; top: 15275.9px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="The Complete Guide to Watching TV Shows and Movies with a VPN" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            The Complete Guide to Watching TV Shows and Movies with a VPN
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+       <div class="grid-item p-4" style="position: absolute; left: 0%; top: 15435.5px;">
+        <a class="card-link text-dark">
+         <div class="card shadow-sm">
+          <img alt="The Complete Guide to Watching Netflix with a VPN" class="card-img-top" src="rick.jpg">
+          <div class="card-body">
+           <h2 class="card-text">
+            The Complete Guide to Watching Netflix with a VPN
+           </h2>
+          </div>
+         </div>
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <footer class="navbar navbar-dark bg-primary pt-5 pb-5">
+   <div class="container">
+    <div class="text-white-50" style="font-size:.75rem">
+     piratetips.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.com.
+    </div>
+    <span class="navbar-text">
+     &copy; 2018 - 2023 piratetips.com
+    </span>
+    <ul class="navbar-nav">
+     <li class="nav-item">
+      <a class="nav-link">
+       Contact
+      </a>
+     </li>
+    </ul>
+    <span class="navbar-text">
+     Follow us on
+     <a target="_blank">
+      Facebook
+     </a>
+    </span>
+   </div>
+  </footer>
+  <div class="fb_reset" id="fb-root">
+   <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+    <div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

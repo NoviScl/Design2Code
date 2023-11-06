@@ -1,6 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<style>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <style>
+   /* Start of stylesheet */
 * {}
 
 BODY {               
@@ -106,6 +108,10 @@ IMG.feedbackimage {
     padding:		3pt;
 }
 
+/* background image is specified in the BODY tag so that HTML Help compiler
+ * will automatically include the referenced file. However, these attributes
+ * don't work in the BODY tag.
+ */
 BODY.homepage {               
     font-family:	sans-serif;
     color:		black;
@@ -117,6 +123,7 @@ BODY.homepage {
     overflow:		auto;
 }
 
+/* homepage H1 font bigger  */
 td.homepage H1 {              
     font-size:		160%;
     text-align:		left;
@@ -124,6 +131,7 @@ td.homepage H1 {
     margin-top:		0pt;
     margin-bottom:	0pt;
 }
+
 
 H1,H2,H3,H4,H5,H6 {                
     font-weight:	bold;
@@ -156,10 +164,14 @@ H5 {
     font-size:		120%;
 }
 
+/* H6.title is used by Sybase Pubs docs as a regular heading level */
+
 H6.title {               
     margin-top:		0pt;
     font-size:		120%;
 }
+
+/* Sidebars */
 
 H6 {               
     margin-top:		12pt;
@@ -185,12 +197,18 @@ IMG.inline {
     border:		0;
     padding:		0;
 }
-
+/* Inline images that need to align nicely with the following 
+ * text
+ */
 .inlinemediaobject {
     vertical-align: middle;
 	margin-right:  4pt;
 }
 
+/* Images that are not inside a paragraph (between paras at page level)
+ * are pushed right to match paragraph indent.
+ * Images inside lists are not pushed right.
+ */
 DIV.mediaobject {
     margin-left:	12pt;
 }
@@ -199,18 +217,28 @@ LI DIV.mediaobject {
     margin-left:	0;
 }
 
+/* Definition lists use a smaller indentation than normal
+ */
 DD {
     margin-left:	12pt;
 }
 
-to align with other paras
+/* Definition lists on front pages use no indentation at all
+ */to align with other paras
 
 DD.cover {
     margin-left:	0;
 }
 
 PRE {               
-    
+    /* This odd-looking font-family setting arises because of odd behaviour in Firefox and Safari (as of Nov, 2011)
+       recorded in this article: http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/
+       If only "monospace" is specified, then Firefox will shrink the monospace font to 13/16 of regular font size.
+       (Look at Tools/Options/Content/Advanced to see why.)
+       By listing a specific font, the font size is maintained. If Courier New is not available, the font will
+       still fall back to Monospace. In Safari, it doesn't work without the "sans-serif" too.
+       Of course, this could stop working with some revision. Safari seems particularly picky in this area.
+    */
     font-family:	monospace, sans-serif;
     text-align:		left;
     color:		navy;
@@ -221,7 +249,7 @@ PRE {
 
 PRE.synopsis {
     font-family:	sans-serif;
-    font-size:		100%;	
+    font-size:		100%;	/* Required, to override IE behaviour where PRE font is smaller */
     padding:		0;
     margin:		1ex 12pt;
     margin-left:	24pt;
@@ -232,7 +260,7 @@ PRE.synopsis {
 
 PRE.monospace {
     margin-left:	12pt;
-    font-size:		100%;	
+    font-size:		100%;	/* Required, to override IE behaviour where PRE font is smaller */
     background:		0;
 }
 
@@ -240,11 +268,15 @@ PRE.monospace {
     background:		#FFFFAA;
 }
 
+/* Reduce gap above and below lists.
+ */
 UL, OL {
     margin-top:		1ex; 
     margin-bottom:	1ex;
 }
 
+/* Nested lists get empty circle icon instead filled out.
+ */
 UL UL {
     list-style-type:	circle; 
 }
@@ -256,21 +288,29 @@ UL.nobullet {
     margin-left:	12pt;
 }
 
+/* Ensure that simplelists always have the filled out circle,
+/* even in nested lists
+ */
 .simplelist {
     list-style-type:	disc;
 }
 
+/* Steps in procedures are now indented slightly */
 .step {
     margin-left:    12pt;
     vertical-align:   top;
 }	
     
-
+/* Increase leading slightly between nobullet listitems,
+/* restrict to varlistentry to avoid leading of simplelists 
+ */
 UL.nobullet LI.varlistentry {
     margin-top:		9pt; 
     margin-bottom:	9pt;	
 }
 
+/* Paragraph within list: increased gap between list items, eliminate paragraph indent
+ */
 LI P {
     margin-left:	0pt;
     margin-right:	0pt;
@@ -337,6 +377,9 @@ TD.homepage {
     background:		transparent;
 }
 
+/* In tables, many cells do not have <p> tags, some do.
+ * Force those with <p> tags to align to left edge, like the others.
+ */
 TD P {
     margin-left:	0;
     margin-right:	0;
@@ -357,7 +400,7 @@ TD.copytoclipboard {
     padding-left:	0;
     padding-right:	0;
     padding-top:	0;
-    padding-bottom:	3pt;	    
+    padding-bottom:	3pt;	    /* matches PRE padding */
 }
 
 TH {               
@@ -419,6 +462,8 @@ HR {
     font-weight:	bold;
 }
 
+/* procedure headings
+ */
 .proc {               
     font-weight:	bold;
     margin-top:		12pt;
@@ -430,6 +475,8 @@ HR {
     background:		#EEEEEE;
 }
 
+/* procedure body
+ */
 .procbody {
     padding:		0;
     margin-top:		0;
@@ -520,17 +567,19 @@ HR {
     
 }
 
-</style>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   
-      <title>DAYS function [Date and time]</title>
-      
-      <meta name="generator" content="DocBook XSL Stylesheets V1.75.0">
-      </head>
-   <body onresize="resizePage()" onload="loadPage();GetDCXCommentCount('sa160/PageInfo?lang=en&amp;book=uladmin&amp;page=days-function.html')" style="overflow: hidden;">
-      <div id="nsr">	
-<style type="text/css">
-.pagefooter .feedback, .pagefooter .feedbackimage {
+
+/* end of stylesheet */
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   DAYS function [Date and time]
+  </title>
+  <meta content="DocBook XSL Stylesheets V1.75.0" name="generator">
+ </head>
+ <body onload="loadPage();GetDCXCommentCount('sa160/PageInfo?lang=en&amp;book=uladmin&amp;page=days-function.html')" onresize="resizePage()" style="overflow: hidden;">
+  <div id="nsr">
+   <style type="text/css">
+    .pagefooter .feedback, .pagefooter .feedbackimage {
     display:none;
 }
 
@@ -543,175 +592,394 @@ HR {
 .sybase_dcx_icon:hover {
     background:Transparent;
 }
-</style>
-<div id="to_dcx">
+   </style>
+   <div id="to_dcx">
     <table style="margin:0 0 12px 0; border:0; padding:0; background-color:transparent;">
-        <tbody><tr>
-            <td style="margin:0 0 12px 0; border:0; padding:0; background-color:transparent; vertical-align:middle;">
-                <a class="sybase_dcx_icon"  onclick="if(rem.checked) document.cookie=&quot;jdcx=jump; path=/&quot;"><img src="rick.jpg"></a>
-            </td>
-            <td style="margin:0 0 12px 0; border:0; padding:0; background-color:transparent; vertical-align:middle;">
-                <p style="font-size: 9pt; margin: 0pt;"><a  onclick="var exdate=new Date();exdate.setDate(exdate.getDate()+365);document.cookie=&quot;jdcx=1;expires=&quot;+exdate.toUTCString()+&quot;;path=/&quot;">Click here to view and discuss this page in DocCommentXchange. In the future, you will be sent there automatically.</a></p>
-            </td>
-        </tr>
-    </tbody></table>
-</div>
-<nobr><a >SAP Sybase SQL Anywhere 16.0</a></nobr>
-<nobr><b>» </b><a >UltraLite - Database Management and Reference</a></nobr>
-<nobr><b>» </b><a >UltraLite SQL reference</a></nobr>
-<nobr><b>» </b><a >UltraLite SQL functions</a></nobr>
-<nobr><b>» </b><a >Functions</a></nobr>
-         <p class="buttonbar"><a accesskey="p" ><img class="navbar" src="rick.jpg" id="prev_button" alt="Icon for Previous Page button" title="Go to previous page of this book"></a>&nbsp;<a accesskey="n" ><img class="navbar" src="rick.jpg" id="next_button" alt="Icon for Next Page button" title="Go to next page of this book"></a></p>
+     <tbody>
+      <tr>
+       <td style="margin:0 0 12px 0; border:0; padding:0; background-color:transparent; vertical-align:middle;">
+        <a class="sybase_dcx_icon" onclick='if(rem.checked) document.cookie="jdcx=jump; path=/"'>
+         <img src="rick.jpg">
+        </a>
+       </td>
+       <td style="margin:0 0 12px 0; border:0; padding:0; background-color:transparent; vertical-align:middle;">
+        <p style="font-size: 9pt; margin: 0pt;">
+         <a onclick='var exdate=new Date();exdate.setDate(exdate.getDate()+365);document.cookie="jdcx=1;expires="+exdate.toUTCString()+";path=/"'>
+          Click here to view and discuss this page in DocCommentXchange. In the future, you will be sent there automatically.
+         </a>
+        </p>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+   <nobr>
+    <a>
+     SAP Sybase SQL Anywhere 16.0
+    </a>
+   </nobr>
+   <nobr>
+    <b>
+     &raquo;
+    </b>
+    <a>
+     UltraLite - Database Management and Reference
+    </a>
+   </nobr>
+   <nobr>
+    <b>
+     &raquo;
+    </b>
+    <a>
+     UltraLite SQL reference
+    </a>
+   </nobr>
+   <nobr>
+    <b>
+     &raquo;
+    </b>
+    <a>
+     UltraLite SQL functions
+    </a>
+   </nobr>
+   <nobr>
+    <b>
+     &raquo;
+    </b>
+    <a>
+     Functions
+    </a>
+   </nobr>
+   <p class="buttonbar">
+    <a accesskey="p">
+     <img alt="Icon for Previous Page button" class="navbar" id="prev_button" src="rick.jpg" title="Go to previous page of this book">
+    </a>
+    &nbsp;
+    <a accesskey="n">
+     <img alt="Icon for Next Page button" class="navbar" id="next_button" src="rick.jpg" title="Go to next page of this book">
+    </a>
+   </p>
+  </div>
+  <div id="sr" style="height: 659px; overflow: auto;">
+   <div class="section">
+    <div class="titlepage">
+     <div>
+      <div>
+       <h4 class="title">
+        <a name="days-function">
+        </a>
+        DAYS function [Date and time]
+       </h4>
       </div>
-      <div id="sr" style="height: 659px; overflow: auto;">
-         <div class="section">
-            <div class="titlepage">
-               <div>
-                  <div>
-                     <h4 class="title"><a name="days-function"></a>DAYS function [Date and time]
-                     </h4>
-                  </div>
-               </div>
-            </div><a class="indexterm" name="d5e22440"></a><a class="indexterm" name="d5e22443"></a><p>Manipulates a TIMESTAMP or returns the number of days between two TIMESTAMP values. For specific details, see the Remarks
+     </div>
+    </div>
+    <a class="indexterm" name="d5e22440">
+    </a>
+    <a class="indexterm" name="d5e22443">
+    </a>
+    <p>
+     Manipulates a TIMESTAMP or returns the number of days between two TIMESTAMP values. For specific details, see the Remarks
                section below.
-            </p>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div1',  'arrow1' )" ><img class="inline" title="Collapse/expand section" id="arrow1" src="rick.jpg">&nbsp;Syntax 1</a></h6>
-            <div class="sidebar" id="div1"><pre class="synopsis"><span class="literal"><strong>DAYS(</strong></span> <em class="replaceable">timestamp-expression</em> <span class="literal"><strong>)</strong></span></pre></div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div2',  'arrow2' )" ><img class="inline" title="Collapse/expand section" id="arrow2" src="rick.jpg">&nbsp;Syntax 2</a></h6>
-            <div class="sidebar" id="div2"><pre class="synopsis"><span class="literal"><strong>DAYS(</strong></span> <em class="replaceable">timestamp-expression</em>, <em class="replaceable">timestamp-expression</em> <span class="literal"><strong>)</strong></span></pre></div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div3',  'arrow3' )" ><img class="inline" title="Collapse/expand section" id="arrow3" src="rick.jpg">&nbsp;Syntax 3</a></h6>
-            <div class="sidebar" id="div3"><pre class="synopsis"><span class="literal"><strong>DAYS(</strong></span> <em class="replaceable">timestamp-expression</em>, <em class="replaceable">integer-expression</em> <span class="literal"><strong>)</strong></span></pre></div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div4',  'arrow4' )" ><img class="inline" title="Collapse/expand section" id="arrow4" src="rick.jpg">&nbsp;Parameters</a></h6>
-            <div class="sidebar" id="div4">
-               <div class="variablelist">
-                  <ul class="variablelist">
-                     <li class="varlistentry">
-                        <p class="list"><strong class="term"><em class="replaceable">timestamp-expression</em>&nbsp;&nbsp; </strong>
-                                A TIMESTAMP value. 
-                               
-                        </p>
-                     </li>
-                     <li class="varlistentry">
-                        <p class="list"><strong class="term"><em class="replaceable">integer-expression</em>&nbsp;&nbsp; </strong>
-                                The number of days to be added to the <em class="replaceable">timestamp-expression</em>. If the <em class="replaceable">integer-expression</em> is negative, the appropriate number of days is subtracted from <em class="replaceable">timestamp-expression</em>. If you supply an integer expression, the <em class="replaceable">timestamp-expression</em> must be explicitly cast as a TIME, DATE or TIMESTAMP. If <em class="replaceable">timestamp-expression</em> is a TIME value, the current date is assumed.
-                                
-                                
-                           </p><p>For information about casting data types, see <a  class="olink">CAST function [Data type conversion]</a>.
-                           </p>
-                               
-                        <p></p>
-                     </li>
-                  </ul>
-               </div>
-            </div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div5',  'arrow5' )" ><img class="inline" title="Collapse/expand section" id="arrow5" src="rick.jpg">&nbsp;Returns</a></h6>
-            <div class="sidebar" id="div5">
-               <p>INTEGER with Syntax 1 or Syntax 2.</p>
-               <p>TIMESTAMP with Syntax 3.</p>
-            </div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div6',  'arrow6' )" ><img class="inline" title="Collapse/expand section" id="arrow6" src="rick.jpg">&nbsp;Remarks</a></h6>
-            <div class="sidebar" id="div6">
-               <p>The result of the DAYS function depends on its arguments. The DAYS function ignores hours, minutes, and seconds in its arguments.</p>
-               <div class="variablelist">
-                  <ul class="variablelist">
-                     <li class="varlistentry">
-                        <p class="list"><strong class="term">Syntax 1&nbsp;&nbsp; </strong>
-                                If you pass a single <em class="replaceable">timestamp-expression</em> to the DAYS function, it will return the number of days between 0000-02-29 and <em class="replaceable">timestamp-expression</em> as an INTEGER.
-                                
-                           </p><div class="aside">
-                              <h6 class="notetitle">Note</h6>
-                                    
-                                    
-                              <p>0000-02-29 is not meant to imply an actual date; it is the default date used by the DAYS function.</p>
-                                   
-                           </div>
-                               
-                        <p></p>
-                     </li>
-                     <li class="varlistentry">
-                        <p class="list"><strong class="term">Syntax 2&nbsp;&nbsp; </strong>
-                                If you pass two TIMESTAMP values to the DAYS function, the function returns the integer number of days between them.
-                           
-                               
-                        </p>
-                     </li>
-                     <li class="varlistentry">
-                        <p class="list"><strong class="term">Syntax 3&nbsp;&nbsp; </strong>
-                                If you pass a TIMESTAMP value and an integer to the DAYS function, the function returns the TIMESTAMP result of adding
-                           the integer number of days to the <em class="replaceable">timestamp-expression</em> argument.
-                               
-                        </p>
-                     </li>
-                  </ul>
-               </div>
-               <p>Instead of Syntax 2, use the DATEDIFF function. Instead of Syntax 3, use the DATEADD function.</p>
-            </div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div7',  'arrow7' )" ><img class="inline" title="Collapse/expand section" id="arrow7" src="rick.jpg">&nbsp;See also</a></h6>
-            <div class="sidebar" id="div7">
-               <ul class="simplelist">
-                     
-                  <li class="member"><a  class="olink">DATEDIFF function [Date and time]</a></li>
-                     
-                  <li class="member"><a  class="olink">DATEADD function [Date and time]</a></li>
-                    
-               </ul>
-            </div>
-            <h6><a class="linkexpand" onclick="toggleDiv( 'div8',  'arrow8' )" ><img class="inline" title="Collapse/expand section" id="arrow8" src="rick.jpg">&nbsp;Example</a></h6>
-            <div class="sidebar" id="div8">
-               <p>The following statement returns the integer 729889:</p>
-               <table class="programlisting">
-                  <tbody><tr>
-                     <td class="copytoclipboard"><input type="image" onmouseover="setCopyExampleText(this)" onclick="copyTextToClipboard( 'preA' )" src="gif/copytoclipboard.gif" align="left"></td>
-                     <td class="programlisting"><pre id="preA">SELECT DAYS( '1998-07-13 06:07:12' );</pre></td>
-                  </tr>
-               </tbody></table>
-               <p>The following statements return the integer value -366, indicating that the second DATE value is 366 days before the first.
+    </p>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div1',  'arrow1' )">
+      <img class="inline" id="arrow1" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Syntax 1
+     </a>
+    </h6>
+    <div class="sidebar" id="div1">
+     <pre class="synopsis"><span class="literal"><strong>DAYS(</strong></span> <em class="replaceable">timestamp-expression</em> <span class="literal"><strong>)</strong></span></pre>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div2',  'arrow2' )">
+      <img class="inline" id="arrow2" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Syntax 2
+     </a>
+    </h6>
+    <div class="sidebar" id="div2">
+     <pre class="synopsis"><span class="literal"><strong>DAYS(</strong></span> <em class="replaceable">timestamp-expression</em>, <em class="replaceable">timestamp-expression</em> <span class="literal"><strong>)</strong></span></pre>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div3',  'arrow3' )">
+      <img class="inline" id="arrow3" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Syntax 3
+     </a>
+    </h6>
+    <div class="sidebar" id="div3">
+     <pre class="synopsis"><span class="literal"><strong>DAYS(</strong></span> <em class="replaceable">timestamp-expression</em>, <em class="replaceable">integer-expression</em> <span class="literal"><strong>)</strong></span></pre>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div4',  'arrow4' )">
+      <img class="inline" id="arrow4" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Parameters
+     </a>
+    </h6>
+    <div class="sidebar" id="div4">
+     <div class="variablelist">
+      <ul class="variablelist">
+       <li class="varlistentry">
+        <p class="list">
+         <strong class="term">
+          <em class="replaceable">
+           timestamp-expression
+          </em>
+          &nbsp;&nbsp;
+         </strong>
+         A TIMESTAMP value.
+        </p>
+       </li>
+       <li class="varlistentry">
+        <p class="list">
+         <strong class="term">
+          <em class="replaceable">
+           integer-expression
+          </em>
+          &nbsp;&nbsp;
+         </strong>
+         The number of days to be added to the
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         . If the
+         <em class="replaceable">
+          integer-expression
+         </em>
+         is negative, the appropriate number of days is subtracted from
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         . If you supply an integer expression, the
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         must be explicitly cast as a TIME, DATE or TIMESTAMP. If
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         is a TIME value, the current date is assumed.
+        </p>
+        <p>
+         For information about casting data types, see
+         <a class="olink">
+          CAST function [Data type conversion]
+         </a>
+         .
+        </p>
+        <p>
+        </p>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div5',  'arrow5' )">
+      <img class="inline" id="arrow5" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Returns
+     </a>
+    </h6>
+    <div class="sidebar" id="div5">
+     <p>
+      INTEGER with Syntax 1 or Syntax 2.
+     </p>
+     <p>
+      TIMESTAMP with Syntax 3.
+     </p>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div6',  'arrow6' )">
+      <img class="inline" id="arrow6" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Remarks
+     </a>
+    </h6>
+    <div class="sidebar" id="div6">
+     <p>
+      The result of the DAYS function depends on its arguments. The DAYS function ignores hours, minutes, and seconds in its arguments.
+     </p>
+     <div class="variablelist">
+      <ul class="variablelist">
+       <li class="varlistentry">
+        <p class="list">
+         <strong class="term">
+          Syntax 1&nbsp;&nbsp;
+         </strong>
+         If you pass a single
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         to the DAYS function, it will return the number of days between 0000-02-29 and
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         as an INTEGER.
+        </p>
+        <div class="aside">
+         <h6 class="notetitle">
+          Note
+         </h6>
+         <p>
+          0000-02-29 is not meant to imply an actual date; it is the default date used by the DAYS function.
+         </p>
+        </div>
+        <p>
+        </p>
+       </li>
+       <li class="varlistentry">
+        <p class="list">
+         <strong class="term">
+          Syntax 2&nbsp;&nbsp;
+         </strong>
+         If you pass two TIMESTAMP values to the DAYS function, the function returns the integer number of days between them.
+        </p>
+       </li>
+       <li class="varlistentry">
+        <p class="list">
+         <strong class="term">
+          Syntax 3&nbsp;&nbsp;
+         </strong>
+         If you pass a TIMESTAMP value and an integer to the DAYS function, the function returns the TIMESTAMP result of adding
+                           the integer number of days to the
+         <em class="replaceable">
+          timestamp-expression
+         </em>
+         argument.
+        </p>
+       </li>
+      </ul>
+     </div>
+     <p>
+      Instead of Syntax 2, use the DATEDIFF function. Instead of Syntax 3, use the DATEADD function.
+     </p>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div7',  'arrow7' )">
+      <img class="inline" id="arrow7" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;See also
+     </a>
+    </h6>
+    <div class="sidebar" id="div7">
+     <ul class="simplelist">
+      <li class="member">
+       <a class="olink">
+        DATEDIFF function [Date and time]
+       </a>
+      </li>
+      <li class="member">
+       <a class="olink">
+        DATEADD function [Date and time]
+       </a>
+      </li>
+     </ul>
+    </div>
+    <h6>
+     <a class="linkexpand" onclick="toggleDiv( 'div8',  'arrow8' )">
+      <img class="inline" id="arrow8" src="rick.jpg" title="Collapse/expand section">
+      &nbsp;Example
+     </a>
+    </h6>
+    <div class="sidebar" id="div8">
+     <p>
+      The following statement returns the integer 729889:
+     </p>
+     <table class="programlisting">
+      <tbody>
+       <tr>
+        <td class="copytoclipboard">
+         <input align="left" onclick="copyTextToClipboard( 'preA' )" onmouseover="setCopyExampleText(this)" src="gif/copytoclipboard.gif" type="image">
+        </td>
+        <td class="programlisting">
+         <pre id="preA">SELECT DAYS( '1998-07-13 06:07:12' );</pre>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <p>
+      The following statements return the integer value -366, indicating that the second DATE value is 366 days before the first.
                   It is recommended that you use the second example (DATEDIFF):
-               </p>
-               <table class="programlisting">
-                  <tbody><tr>
-                     <td class="copytoclipboard"><input type="image" onmouseover="setCopyExampleText(this)" onclick="copyTextToClipboard( 'preB' )" src="gif/copytoclipboard.gif" align="left"></td>
-                     <td class="programlisting"><pre id="preB">SELECT DAYS( '1998-07-13 06:07:12',
-             '1997-07-12 10:07:12' );</pre></td>
-                  </tr>
-               </tbody></table>
-               <table class="programlisting">
-                  <tbody><tr>
-                     <td class="copytoclipboard"><input type="image" onmouseover="setCopyExampleText(this)" onclick="copyTextToClipboard( 'preC' )" src="gif/copytoclipboard.gif" align="left"></td>
-                     <td class="programlisting"><pre id="preC">SELECT DATEDIFF( day,
+     </p>
+     <table class="programlisting">
+      <tbody>
+       <tr>
+        <td class="copytoclipboard">
+         <input align="left" onclick="copyTextToClipboard( 'preB' )" onmouseover="setCopyExampleText(this)" src="gif/copytoclipboard.gif" type="image">
+        </td>
+        <td class="programlisting">
+         <pre id="preB">SELECT DAYS( '1998-07-13 06:07:12',
+             '1997-07-12 10:07:12' );</pre>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <table class="programlisting">
+      <tbody>
+       <tr>
+        <td class="copytoclipboard">
+         <input align="left" onclick="copyTextToClipboard( 'preC' )" onmouseover="setCopyExampleText(this)" src="gif/copytoclipboard.gif" type="image">
+        </td>
+        <td class="programlisting">
+         <pre id="preC">SELECT DATEDIFF( day,
    '1998-07-13 06:07:12',
-   '1997-07-12 10:07:12' );</pre></td>
-                  </tr>
-               </tbody></table>
-               <p>The following statements return the TIMESTAMP value 1999-07-14 00:00:00.000. It is recommended that you use the second example
+   '1997-07-12 10:07:12' );</pre>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <p>
+      The following statements return the TIMESTAMP value 1999-07-14 00:00:00.000. It is recommended that you use the second example
                   (DATEADD):
-               </p>
-               <table class="programlisting">
-                  <tbody><tr>
-                     <td class="copytoclipboard"><input type="image" onmouseover="setCopyExampleText(this)" onclick="copyTextToClipboard( 'preD' )" src="gif/copytoclipboard.gif" align="left"></td>
-                     <td class="programlisting"><pre id="preD">SELECT DAYS( CAST('1998-07-13' AS DATE ), 366 );</pre></td>
-                  </tr>
-               </tbody></table>
-               <table class="programlisting">
-                  <tbody><tr>
-                     <td class="copytoclipboard"><input type="image" onmouseover="setCopyExampleText(this)" onclick="copyTextToClipboard( 'preE' )" src="gif/copytoclipboard.gif" align="left"></td>
-                     <td class="programlisting"><pre id="preE">SELECT DATEADD( day, 366, '1998-07-13' );</pre></td>
-                  </tr>
-               </tbody></table>
-            </div>
-         </div>
-         <hr size="1">
-         <table class="pagefooter">
-            <tbody><tr>
-               <td class="feedbackimage"><a  onclick="gotoDCX( 'sa160/en/uladmin/days-function.html' )"><img src="rick.jpg" class="feedbackimage"></a></td>
-               <td class="feedback">
-                  <div id="DCXLink">Discuss this page in <a  onclick="gotoDCX( 'sa160/en/uladmin/days-function.html' )">DocCommentXchange</a>.
-                  </div>
-               </td>
-               <td class="copyright"><a >Copyright</a>&nbsp;©&nbsp;2014,  SAP AG or an SAP affiliate company. - SAP Sybase SQL Anywhere 16.0
-               </td>
-            </tr>
-         </tbody></table>
-      </div>
-   
-</body></html>
+     </p>
+     <table class="programlisting">
+      <tbody>
+       <tr>
+        <td class="copytoclipboard">
+         <input align="left" onclick="copyTextToClipboard( 'preD' )" onmouseover="setCopyExampleText(this)" src="gif/copytoclipboard.gif" type="image">
+        </td>
+        <td class="programlisting">
+         <pre id="preD">SELECT DAYS( CAST('1998-07-13' AS DATE ), 366 );</pre>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <table class="programlisting">
+      <tbody>
+       <tr>
+        <td class="copytoclipboard">
+         <input align="left" onclick="copyTextToClipboard( 'preE' )" onmouseover="setCopyExampleText(this)" src="gif/copytoclipboard.gif" type="image">
+        </td>
+        <td class="programlisting">
+         <pre id="preE">SELECT DATEADD( day, 366, '1998-07-13' );</pre>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+   <hr size="1">
+   <table class="pagefooter">
+    <tbody>
+     <tr>
+      <td class="feedbackimage">
+       <a onclick="gotoDCX( 'sa160/en/uladmin/days-function.html' )">
+        <img class="feedbackimage" src="rick.jpg">
+       </a>
+      </td>
+      <td class="feedback">
+       <div id="DCXLink">
+        Discuss this page in
+        <a onclick="gotoDCX( 'sa160/en/uladmin/days-function.html' )">
+         DocCommentXchange
+        </a>
+        .
+       </div>
+      </td>
+      <td class="copyright">
+       <a>
+        Copyright
+       </a>
+       &nbsp;&copy;&nbsp;2014,  SAP AG or an SAP affiliate company. - SAP Sybase SQL Anywhere 16.0
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </body>
+</html>

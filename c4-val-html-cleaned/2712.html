@@ -1,6 +1,14 @@
-<!DOCTYPE html><html dir="ltr" lang="en-gb"><head>
-<style>
+<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+ <head>
+  <style>
+   /* Print Style Sheet
+---------------------------------------- */
 
+
+/* Lots still TODO here! */
+
+/* General markup styles */
 * {
 	padding: 0;
 	margin: 0;
@@ -16,11 +24,12 @@ a:visited	{ color: #000000; text-decoration: none; }
 a:active	{ color: #000000; text-decoration: none; }
 
 img, .noprint, .navbar, .box1, .divider, .signature { display: none; }
-
+/* Display smilies (Bug #47265) */
 .content img {
 	display: inline;
 }
 
+/* Container for the main body */
 .wrap {
 	margin: 0 2em;
 }
@@ -49,6 +58,7 @@ h3 { font-size: 14pt; margin-top: 1em; }
 	overflow: hidden;
 }
 
+/* CSS2 Print tip from: http://www.alistapart.com/articles/goingtoprint/ */
 .postbody a:link, .postbody a:visited, .postbody a:hover, .postbody a:active {
 	text-decoration: underline;
 	padding: 0.1em 0.2em;
@@ -84,6 +94,7 @@ hr {
 	font-size: 75%;
 }
 
+/* Don't want to print url for names or titles in content area */
 .postbody .author a:link, .postbody .author a:visited,
 html>body .postbody .author a:link:after,
 html>body .postbody .author a:visited:after,
@@ -95,9 +106,11 @@ html>body .postbody h1 a:link:after, html>body .postbody h2 a:link:after {
 	content: "";
 }
 
+/* Poster profile */
 .postprofile { display: none; }
 .grip-show { display:none; }
 
+/* Quote */
 .postquote, blockquote {
 	font-size: 85%;
 	margin: 1em 18% 1em 4%;
@@ -116,25 +129,38 @@ html>body .postbody h1 a:link:after, html>body .postbody h2 a:link:after {
 	font-weight: bold;
 }
 
+/* List */
 ol, ul {
 	margin-left: 15pt;
 }
 
+/* Misc page elements */
 div.spacer { clear: both; }
 
 code { display: block; }
 
+/* Accessibility tweaks: Mozilla.org */
 .skip_link { display: none; }
 
 .codebox p { display: none; }
 
+/* stylelint-disable declaration-property-unit-whitelist */
 .emoji {
 	min-height: 18px;
 	min-width: 18px;
 	height: 1em;
 	width: 1em;
 }
+/* stylelint-enable declaration-property-unit-whitelist */
 
+
+
+/* RTL definitions
+---------------------------------------- */
+
+/**
+* common.css
+*/
 .rtl h1 {
 	margin-right: 0;
 	margin-left: 200px;
@@ -153,6 +179,8 @@ code { display: block; }
 	margin-right: 20px;
 }
 
+/* Main blocks
+---------------------------------------- */
 .rtl .icon {
 	padding-right: 0;
 	padding-left: 2px;
@@ -163,6 +191,8 @@ code { display: block; }
 	padding: 10px 10px 0 13px;
 }
 
+/* Site Description
+--------------------------------------------- */
 .rtl .site-description {
 	float: right;
 }
@@ -171,10 +201,14 @@ code { display: block; }
 	margin-left: 0;
 }
 
+/* Round cornered boxes and backgrounds
+---------------------------------------- */
 .rtl .post {
 	background-position: 0 0;
 }
 
+/* Horizontal lists
+----------------------------------------*/
 .rtl ul.linklist > li {
 	float: right;
 	margin-right: 0;
@@ -206,11 +240,15 @@ code { display: block; }
 	text-align: left;
 }
 
+/* Bulletin icons for list items
+----------------------------------------*/
 .rtl ul.linklist.bulletin > li:before {
 	padding-left: 4px;
 	padding-right: 0;
 }
 
+/* Dropdown menu
+---------------------------------------- */
 .rtl .dropdown-container.topic-tools, .rtl .dropdown-container-left {
 	float: right;
 }
@@ -246,6 +284,8 @@ code { display: block; }
 	margin-left: 20px;
 }
 
+/* Notifications
+-----------------------------------------*/
 .rtl .notification_list ul li img {
 	float: right;
 	margin-left: 5px;
@@ -266,10 +306,14 @@ code { display: block; }
 	text-align: left;
 }
 
+/* Responsive breadcrumbs
+----------------------------------------*/
 .rtl .breadcrumbs .crumb {
 	float: right;
 }
 
+/* Table styles
+----------------------------------------*/
 .rtl table.table1 thead th {
 	padding: 0 3px 4px 0;
 }
@@ -283,6 +327,7 @@ code { display: block; }
 	text-align: right;
 }
 
+/* Specific column styles */
 .rtl table.table1 .name		{ text-align: right; }
 .rtl table.table1 .joined	{ text-align: right; }
 .rtl table.table1 .active	{ text-align: right; }
@@ -301,6 +346,9 @@ code { display: block; }
 	margin: 0 -1px -1px -2px;
 }
 
+/* Misc layout styles
+---------------------------------------- */
+/* column[1-2] styles are containers for two column layouts */
 .rtl .column1 {
 	float: right;
 	clear: right;
@@ -311,6 +359,7 @@ code { display: block; }
 	clear: left;
 }
 
+/* General classes for placing floating blocks */
 .rtl .left-box {
 	float: right;
 	text-align: right;
@@ -345,6 +394,8 @@ code { display: block; }
 	float: none;
 }
 
+/* Pagination
+---------------------------------------- */
 .rtl .page-number {
 	float: left;
 }
@@ -359,6 +410,7 @@ code { display: block; }
 	margin-right: 5px;
 }
 
+/* Pagination in viewforum for multipage topics */
 .rtl .row .pagination {
 	background-position: 100% 50%;
 	float: left;
@@ -379,6 +431,8 @@ code { display: block; }
 	margin-right: 0;
 }
 
+/* Action Bar styles
+---------------------------------------- */
 .rtl .action-bar .button {
 	margin-right: 0;
 	float: right;
@@ -393,6 +447,9 @@ code { display: block; }
 	margin-left: 5px;
 }
 
+
+/* Miscellaneous styles
+---------------------------------------- */
 .rtl .quick-links {
 	margin-left: 7px;
 	margin-right: 0;
@@ -408,6 +465,11 @@ code { display: block; }
 	float: right;
 }
 
+/**
+* links.css
+*/
+
+/* Links adjustment to correctly display an order of rtl/ltr mixed content */
 .rtl a {
 	direction: rtl;
 	unicode-bidi: embed;
@@ -417,6 +479,7 @@ li.breadcrumbs span:first-child > a {
 	padding-left: 0;
 }
 
+/* Notification mark read link */
 .rtl .dropdown-extended a.mark_read {
 	border-radius: 0 3px 3px 0;
 	left: 0;
@@ -429,7 +492,7 @@ li.breadcrumbs span:first-child > a {
 }
 
 .rtl .skiplink {
-	
+	/* invisible skip link, used for accessibility  */
 	left: 0;
 	right: -999px;
 }
@@ -438,6 +501,9 @@ li.breadcrumbs span:first-child > a {
 	float: left;
 }
 
+/**
+* content.css
+*/
 .rtl ul.topiclist dt, .rtl li.header dt {
 	float: right;
 	margin-right: 0;
@@ -517,21 +583,21 @@ li.breadcrumbs span:first-child > a {
 }
 
 .rtl li.header dl.row-item dt .list-inner {
-	
+	/* Tweak for headers alignment when folder icon used */
 	padding-right: 0;
 	padding-left: 50px;
 }
 
 .rtl dl.row-item dt {
-	background-position: 99.5% 95%;			
+	background-position: 99.5% 95%;			/* Position of topic icon */
 }
 
 .rtl dl.row-item dt .list-inner {
 	padding-left: 5px;
-	padding-right: 45px;					
+	padding-right: 45px;					/* Space for folder icon */
 }
 
-.rtl dl a.row-item-link {						
+.rtl dl a.row-item-link {						/* topic row icon links */
 	display: inline-block;
 	left: auto;
 	right: 0;
@@ -544,6 +610,8 @@ li.breadcrumbs span:first-child > a {
 	padding-right: 5px;
 }
 
+/* Post body styles
+----------------------------------------*/
 .rtl .date {
 	float: left;
 }
@@ -566,11 +634,15 @@ li.breadcrumbs span:first-child > a {
 	right: 0;
 }
 
+/* Topic review panel
+----------------------------------------*/
 .rtl .topicreview {
 	padding-right: 0;
 	padding-left: 5px;
 }
 
+/* Content container styles
+----------------------------------------*/
 .rtl .content ul, .rtl .content ol {
 	margin-right: 3em;
 	margin-left: 0;
@@ -584,21 +656,25 @@ li.breadcrumbs span:first-child > a {
 	clear: right;
 }
 
+/* Jump to post link for now */
 .rtl ul.searchresults {
 	text-align: left;
 }
 
+/* BB Code styles
+----------------------------------------*/
+/* Quote block */
 .rtl blockquote {
 	margin: 0.5em 25px 0 1px;
 }
 
 .rtl blockquote blockquote {
-	
+	/* Nested quotes */
 	margin: 0.5em 15px 0 1px;
 }
 
 .rtl blockquote cite {
-	
+	/* Username/source of quoter */
 	margin-left: 0;
 }
 
@@ -614,6 +690,8 @@ li.breadcrumbs span:first-child > a {
 	direction: ltr;
 }
 
+/* Attachments
+----------------------------------------*/
 .rtl .attachbox {
 	float: right;
 	margin: 5px 0 5px 5px;
@@ -632,6 +710,8 @@ li.breadcrumbs span:first-child > a {
 	clear: right;
 }
 
+/* Post poll styles
+----------------------------------------*/
 .rtl fieldset.polls dt {
 	text-align: right;
 	float: right;
@@ -654,6 +734,8 @@ li.breadcrumbs span:first-child > a {
 	border-right: none;
 }
 
+/* Poster profile block
+----------------------------------------*/
 .rtl .postprofile {
 	border-width: 0 1px 0 0;
 	float: left;
@@ -683,6 +765,10 @@ li.breadcrumbs span:first-child > a {
 	margin-left: 0 !important;
 }
 
+/**
+* buttons.css
+*/
+
 .rtl .caret {
 	border-right: 1px solid;
 	border-right-color: inherit;
@@ -690,6 +776,8 @@ li.breadcrumbs span:first-child > a {
 	right: 6px;
 }
 
+/* Post control buttons
+--------------------------------------------- */
 .rtl .post-buttons {
 	float: left;
 }
@@ -703,6 +791,8 @@ li.breadcrumbs span:first-child > a {
 	float: right;
 }
 
+/* Poster contact icons
+ ----------------------------------------*/
 .rtl .contact-icons a {
 	border-left-width: 1px;
 	border-left-style: dotted;
@@ -714,6 +804,15 @@ li.breadcrumbs span:first-child > a {
 	border-left: none;
 }
 
+/**
+* cp.css
+*/
+/* Control Panel Styles
+---------------------------------------- */
+
+
+/* Main CP box
+----------------------------------------*/
 .rtl .cp-menu {
 	float: right;
 }
@@ -736,6 +835,8 @@ li.breadcrumbs span:first-child > a {
 	float: right;
 }
 
+/* CP tabbed menu
+----------------------------------------*/
 .rtl .tabs {
 	margin-left: 0;
 	margin-right: 7px;
@@ -750,6 +851,8 @@ li.breadcrumbs span:first-child > a {
 	margin-right: 0;
 }
 
+/* Mini tabbed menu used in MCP
+----------------------------------------*/
 .rtl .minitabs {
 	float: left;
 	margin-right: 0;
@@ -765,6 +868,8 @@ li.breadcrumbs span:first-child > a {
 	margin-left: 0;
 }
 
+/* Responsive tabs
+----------------------------------------*/
 .rtl .tabs .dropdown {
 	margin-left: -2px;
 }
@@ -781,6 +886,8 @@ li.breadcrumbs span:first-child > a {
 	text-align: right;
 }
 
+/* Responsive *CP navigation
+----------------------------------------*/
 @media only screen and (max-width: 900px), only screen and (max-device-width: 900px)
 {
 	.rtl .cp-menu, .rtl .navigation, .rtl .cp-main {
@@ -788,15 +895,25 @@ li.breadcrumbs span:first-child > a {
 	}
 }
 
+/* UCP navigation menu
+----------------------------------------*/
+
+/* Preferences pane layout
+----------------------------------------*/
 .rtl .cp-main h2 {
 	margin-left: 0;
 	margin-right: 10px;
 }
 
+/* Friends list */
 .rtl .cp-mini {
 	margin: 10px 5px 10px 15px;
 }
 
+/* PM Styles
+----------------------------------------*/
+
+/* PM panel adjustments */
 .rtl .reply-all a.right {
 	background-position: 5% 60%;
 }
@@ -809,10 +926,12 @@ li.breadcrumbs span:first-child > a {
 	padding-left: 5px;
 }
 
+/* Defined rules list for PM options */
 .rtl ol.def-rules {
 	padding-right: 0;
 }
 
+/* PM marking colours */
 .rtl .pm-legend {
 	border-right-width: 10px;
 	border-right-style: solid;
@@ -821,16 +940,26 @@ li.breadcrumbs span:first-child > a {
 	padding-right: 3px;
 }
 
+/* Avatar gallery */
 .rtl .gallery label {
 	float: right;
 }
 
+/* Responsive *CP navigation
+----------------------------------------*/
 @media only screen and (max-width: 900px), only screen and (max-device-width: 900px)
 {
 	.rtl .cp-menu, .rtl .navigation, .rtl .cp-main {
 		float: none;
 	}
 }
+
+/**
+* forms.css
+*/
+
+/* General form styles
+----------------------------------------*/
 
 .rtl option {
 	padding-right: 0;
@@ -842,6 +971,8 @@ li.breadcrumbs span:first-child > a {
 	padding-left: 5px;
 }
 
+/* Definition list layout for forms
+---------------------------------------- */
 .rtl fieldset dt {
 	float: right;
 	text-align: right;
@@ -852,6 +983,7 @@ li.breadcrumbs span:first-child > a {
 	margin-right: 41%;
 }
 
+/* Specific layout 1 */
 .rtl fieldset.fields1 dt {
 	border-left-width: 0;
 	border-right-width: 1px;
@@ -864,6 +996,7 @@ li.breadcrumbs span:first-child > a {
 	border-left-width: 1px;
 }
 
+/* Specific layout 2 */
 .rtl fieldset.fields2 dt {
 	border-right-width: 1px;
 	border-left-width: 0;
@@ -876,6 +1009,7 @@ li.breadcrumbs span:first-child > a {
 	border-right-width: 0;
 }
 
+/* Form elements */
 .rtl dt label {
 	text-align: right;
 }
@@ -885,6 +1019,7 @@ li.breadcrumbs span:first-child > a {
 	margin-right: 0;
 }
 
+/* Quick-login on index page */
 .rtl fieldset.quick-login input.inputbox {
 	margin-left: 5px;
 	margin-right: 0;
@@ -895,6 +1030,7 @@ li.breadcrumbs span:first-child > a {
 	padding-right: 0;
 }
 
+/* Display options on viewtopic/viewforum pages  */
 .rtl fieldset.display-options label {
 	padding-left: 2px;
 	padding-right: 0;
@@ -904,6 +1040,7 @@ li.breadcrumbs span:first-child > a {
 	text-align: left;
 }
 
+/* Display actions for ucp and mcp pages */
 .rtl fieldset.display-actions {
 	text-align: left;
 	padding-left: 1em;
@@ -915,6 +1052,7 @@ li.breadcrumbs span:first-child > a {
 	padding-right: 0;
 }
 
+/* MCP forum selection*/
 .rtl fieldset.forum-selection {
 	float: left;
 }
@@ -923,10 +1061,18 @@ li.breadcrumbs span:first-child > a {
 	float: left;
 }
 
+/* Posting page styles
+----------------------------------------*/
+
+/* Emoticons panel */
 .rtl .smiley-box {
 	float: left;
 }
 
+/* Search box
+---------------------------------------- */
+
+/* Topic and forum Search */
 .rtl .search-box {
 	float: right;
 }
@@ -961,17 +1107,29 @@ li.breadcrumbs span:first-child > a {
 	margin-left: 5px;
 }
 
+/* Form button styles
+---------------------------------------- */
+
+/** Reference: Bug #27155 */
 .rtl .wrap, .rtl .headerbar, .rtl .site-description, .rtl .navbar {
 	position: relative;
 }
+
+/**
+* plupload.css
+*/
 
 .rtl .attach-controls {
 	float: left;
 }
 
+/**
+* responsive.css
+*/
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px)
 {
-	
+	/* .topiclist lists
+	----------------------------------------*/
 	.rtl ul.topiclist li.header dt, .rtl ul.topiclist li.header dt .list-inner {
 		margin-left: 0 !important;
 		padding-left: 0;
@@ -988,7 +1146,8 @@ li.breadcrumbs span:first-child > a {
 		padding-left: 34px;
 	}
 
-	
+	/* Forums and topics lists
+	----------------------------------------*/
 	.rtl ul.topiclist.forums dt {
 		margin-left: -250px;
 	}
@@ -1010,12 +1169,14 @@ li.breadcrumbs span:first-child > a {
 		text-align: right !important;
 	}
 
-	
+	/* User profile
+	----------------------------------------*/
 	.rtl .column1, .rtl .column2, .rtl .left-box.profile-details {
 		float: none;
 	}
 
-	
+	/* Post
+	----------------------------------------*/
 	.rtl .postprofile, .rtl .postbody, .rtl .search .postbody {
 		float: none;
 	}
@@ -1037,7 +1198,8 @@ li.breadcrumbs span:first-child > a {
 		left: 20px;
 	}
 
-	
+	/* Forms
+	----------------------------------------*/
 	.rtl fieldset dt, .rtl fieldset.fields1 dt, .rtl fieldset.fields2 dt {
 		float: none;
 	}
@@ -1049,7 +1211,8 @@ li.breadcrumbs span:first-child > a {
 
 @media only screen and (max-width: 550px), only screen and (max-device-width: 550px)
 {
-	
+	/* .topiclist lists
+	----------------------------------------*/
 	.rtl ul.topiclist.forums dt {
 		margin-left: 0;
 	}
@@ -1088,49 +1251,103 @@ li.breadcrumbs span:first-child > a {
 		margin-left: 16px;
 	}
 }
-
-</style>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="robots" content="noindex">
-
-<title>Philosophy Now Forum • Measuring Reality as 1 Dimensional Neccessitates Connectivity</title>
-
-</head>
-<body id="phpbb" class="ltr">
-<div id="wrap" class="wrap">
-	<a id="top" class="top-anchor" accesskey="t"></a>
-
-	<div id="page-header">
-		<h1>Philosophy Now Forum</h1>
-		<p>For the discussion of all things philosophical, especially articles in the magazine Philosophy Now.<br><a >https://forum.philosophynow.org/</a></p>
-
-		<h2>Measuring Reality as 1 Dimensional Neccessitates Connectivity</h2>
-		<p><a >https://forum.philosophynow.org/viewtopic.php?t=25176</a></p>
-	</div>
-
-	<div id="page-body" class="page-body">
-		<div class="page-number">Page <strong>1</strong> of <strong>1</strong></div>
-					<div class="post">
-				<h3>Measuring Reality as 1 Dimensional Neccessitates Connectivity</h3>
-				<div class="date">Posted: <strong>Sat Sep 29, 2018 8:54 pm</strong></div>
-				<div class="author">by <strong>Eodnhoj7</strong></div>
-				<div class="content">1)  The question of Reality, its various natures and questions of meaning, can be observed through the quantification of it as 1 and the qualification of it as Unity.<br>
-<br>
-2)  The measurement of reality by quantified it as 1 and qualifying it as unity, observes both quantity and quality through 1 and unity as extensions of it the vary same reality being measured; hence quantity and quality stem from the limit of "The All".<br>
-<br>
-3)  This measurement of the all through the all, observing the fundamental acts of measuring in both quantity and quality as connected through eachother under "The All", reflects the all as measurement through measurement as measurement where 1 and Unity exist through a reflective process as the foundation of all being; hence all phenomena are connected through a mirroring process.</div>
-			</div>
-			<hr>
-			</div>
-
-	<div id="page-footer" class="page-footer">
-		<div class="page-number">All times are <span title="UTC+1">UTC+01:00</span><br>Page <strong>1</strong> of <strong>1</strong></div>
-			<div class="copyright">
-				<p>Powered by <a >phpBB</a>® Forum Software © phpBB Limited
-				</p>
-							</div>
-	</div>
-</div>
-
-</body></html>
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="noindex" name="robots">
+  <title>
+   Philosophy Now Forum &bull; Measuring Reality as 1 Dimensional Neccessitates Connectivity
+  </title>
+ </head>
+ <body class="ltr" id="phpbb">
+  <div class="wrap" id="wrap">
+   <a accesskey="t" class="top-anchor" id="top">
+   </a>
+   <div id="page-header">
+    <h1>
+     Philosophy Now Forum
+    </h1>
+    <p>
+     For the discussion of all things philosophical, especially articles in the magazine Philosophy Now.
+     <br>
+     <a>
+      https://forum.philosophynow.org/
+     </a>
+    </p>
+    <h2>
+     Measuring Reality as 1 Dimensional Neccessitates Connectivity
+    </h2>
+    <p>
+     <a>
+      https://forum.philosophynow.org/viewtopic.php?t=25176
+     </a>
+    </p>
+   </div>
+   <div class="page-body" id="page-body">
+    <div class="page-number">
+     Page
+     <strong>
+      1
+     </strong>
+     of
+     <strong>
+      1
+     </strong>
+    </div>
+    <div class="post">
+     <h3>
+      Measuring Reality as 1 Dimensional Neccessitates Connectivity
+     </h3>
+     <div class="date">
+      Posted:
+      <strong>
+       Sat Sep 29, 2018 8:54 pm
+      </strong>
+     </div>
+     <div class="author">
+      by
+      <strong>
+       Eodnhoj7
+      </strong>
+     </div>
+     <div class="content">
+      1)  The question of Reality, its various natures and questions of meaning, can be observed through the quantification of it as 1 and the qualification of it as Unity.
+      <br>
+      <br>
+      2)  The measurement of reality by quantified it as 1 and qualifying it as unity, observes both quantity and quality through 1 and unity as extensions of it the vary same reality being measured; hence quantity and quality stem from the limit of "The All".
+      <br>
+      <br>
+      3)  This measurement of the all through the all, observing the fundamental acts of measuring in both quantity and quality as connected through eachother under "The All", reflects the all as measurement through measurement as measurement where 1 and Unity exist through a reflective process as the foundation of all being; hence all phenomena are connected through a mirroring process.
+     </div>
+    </div>
+    <hr>
+   </div>
+   <div class="page-footer" id="page-footer">
+    <div class="page-number">
+     All times are
+     <span title="UTC+1">
+      UTC+01:00
+     </span>
+     <br>
+     Page
+     <strong>
+      1
+     </strong>
+     of
+     <strong>
+      1
+     </strong>
+    </div>
+    <div class="copyright">
+     <p>
+      Powered by
+      <a>
+       phpBB
+      </a>
+      &reg; Forum Software &copy; phpBB Limited
+     </p>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

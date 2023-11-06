@@ -1,30 +1,32 @@
-<!DOCTYPE html><html><head>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
   <title>
-    casadi-bindings: mid-level bindings to CasADi
+   casadi-bindings: mid-level bindings to CasADi
   </title>
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@hackage">
-  <meta property="og:url" content="//hackage.haskell.org/package/casadi-bindings">
-  <meta property="og:site_name" content="Hackage">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="casadi-bindings">
-  <meta property="og:description" content="mid-level bindings to CasADi">
-  
-  
-  
-  <style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+  <meta content="summary" name="twitter:card">
+  <meta content="@hackage" name="twitter:site">
+  <meta content="//hackage.haskell.org/package/casadi-bindings" property="og:url">
+  <meta content="Hackage" property="og:site_name">
+  <meta content="website" property="og:type">
+  <meta content="casadi-bindings" property="og:title">
+  <meta content="mid-level bindings to CasADi" property="og:description">
+  <style type="text/css">
+   .CtxtMenu_InfoClose {  top:.2em; right:.2em;}
 .CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
 .CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
-.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                       -webkit-border-radius:15px;                 -moz-border-radius:15px;                    -khtml-border-radius:15px;                  box-shadow:0px 10px 20px #808080;           -webkit-box-shadow:0px 10px 20px #808080;   -moz-box-shadow:0px 10px 20px #808080;      -khtml-box-shadow:0px 10px 20px #808080;    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); }
-</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;               -moz-border-radius: 18px;                  -khtml-border-radius: 18px;                font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
-.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;               -moz-border-radius: 18px;                  -khtml-border-radius: 18px;                line-height:0;  padding:8px 0 6px     }
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+  </style>
+  <style type="text/css">
+   .CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
 .CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
 .CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
 .CtxtMenu_MenuClose:hover:focus {  outline:none}
-</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                       -webkit-border-radius: 5px;               -moz-border-radius: 5px;                  -khtml-border-radius: 5px;                box-shadow:0px 10px 20px #808080;           -webkit-box-shadow:0px 10px 20px #808080;   -moz-box-shadow:0px 10px 20px #808080;      -khtml-box-shadow:0px 10px 20px #808080;  }
+  </style>
+  <style type="text/css">
+   .CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
 .CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
 .CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
 .CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
@@ -53,10 +55,10 @@
 .CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
 .CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
 .CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
-</style>
-  <base >
-<style id="MJX-CHTML-styles">
-mjx-container[jax="CHTML"] {
+  </style>
+  <base>
+  <style id="MJX-CHTML-styles">
+   mjx-container[jax="CHTML"] {
   line-height: 0;
 }
 
@@ -297,333 +299,850 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
 }
 
-@font-face  {
+@font-face /* 0 */ {
   font-family: MJXZERO;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 1 */ {
   font-family: MJXTEX;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 2 */ {
   font-family: MJXTEX-B;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 3 */ {
   font-family: MJXTEX-I;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 4 */ {
   font-family: MJXTEX-MI;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 5 */ {
   font-family: MJXTEX-BI;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 6 */ {
   font-family: MJXTEX-S1;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 7 */ {
   font-family: MJXTEX-S2;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 8 */ {
   font-family: MJXTEX-S3;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 9 */ {
   font-family: MJXTEX-S4;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 10 */ {
   font-family: MJXTEX-A;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 11 */ {
   font-family: MJXTEX-C;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 12 */ {
   font-family: MJXTEX-CB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 13 */ {
   font-family: MJXTEX-FR;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 14 */ {
   font-family: MJXTEX-FRB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 15 */ {
   font-family: MJXTEX-SS;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 16 */ {
   font-family: MJXTEX-SSB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 17 */ {
   font-family: MJXTEX-SSI;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 18 */ {
   font-family: MJXTEX-SC;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 19 */ {
   font-family: MJXTEX-T;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 20 */ {
   font-family: MJXTEX-V;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
 }
 
-@font-face  {
+@font-face /* 21 */ {
   font-family: MJXTEX-VB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
-</style></head>
-
-<body>
+  </style>
+ </head>
+ <body>
   <div id="page-header">
-
-  <a class="caption" >Hackage :: [Package]</a>
-
-<ul class="links" id="page-menu">
-
+   <a class="caption">
+    Hackage :: [Package]
+   </a>
+   <ul class="links" id="page-menu">
     <li>
-      <form action="/packages/search" method="get" class="search">
-        <button type="submit">Search&nbsp;</button>
-        <input type="text" name="terms">
-      </form>
+     <form action="/packages/search" class="search" method="get">
+      <button type="submit">
+       Search&nbsp;
+      </button>
+      <input name="terms" type="text">
+     </form>
     </li>
-
-    <li><a >Browse</a></li>
-
-    <li><a >What's new</a></li>
-
-    <li><a >Upload</a></li>
-
-    <li><a >User accounts</a></li>
-    
-
-</ul>
-
-</div>
-
+    <li>
+     <a>
+      Browse
+     </a>
+    </li>
+    <li>
+     <a>
+      What's new
+     </a>
+    </li>
+    <li>
+     <a>
+      Upload
+     </a>
+    </li>
+    <li>
+     <a>
+      User accounts
+     </a>
+    </li>
+   </ul>
+  </div>
   <div id="content">
-    <h1><a >casadi-bindings</a>: <small>mid-level bindings to CasADi</small></h1>
-    <div style="font-size: small">
-      [ <a >lgpl</a>, <a >library</a>, <a >math</a>, <a >numerical</a> ]
-      [ <a >Propose Tags</a> ]
-    </div>
-
-          
-    
-
-    <div id="flex-container">
-      <div id="left-pane">
-
-        <div id="description">
-                    <p>Haskell bindings to the CasADi algorithmic differentiation and optimal control library.
-VERSION POLICY VIOLATION: version number x.y.z.w corresponds to the CasADi C++ library version x.y.z; the w referse to binding changes and may be completely breaking.</p><p>This package is a mid-level interface to the autogenerated low-level bindings `casadi-bindings-core`.</p><p>The module `casadi-bindings-core` is autogenerated
+   <h1>
+    <a>
+     casadi-bindings
+    </a>
+    :
+    <small>
+     mid-level bindings to CasADi
+    </small>
+   </h1>
+   <div style="font-size: small">
+    [
+    <a>
+     lgpl
+    </a>
+    ,
+    <a>
+     library
+    </a>
+    ,
+    <a>
+     math
+    </a>
+    ,
+    <a>
+     numerical
+    </a>
+    ]
+      [
+    <a>
+     Propose Tags
+    </a>
+    ]
+   </div>
+   <div id="flex-container">
+    <div id="left-pane">
+     <div id="description">
+      <p>
+       Haskell bindings to the CasADi algorithmic differentiation and optimal control library.
+VERSION POLICY VIOLATION: version number x.y.z.w corresponds to the CasADi C++ library version x.y.z; the w referse to binding changes and may be completely breaking.
+      </p>
+      <p>
+       This package is a mid-level interface to the autogenerated low-level bindings `casadi-bindings-core`.
+      </p>
+      <p>
+       The module `casadi-bindings-core` is autogenerated
 from casadi's swig interface and corresponds to the casadi C++ API
-(though some functions will be missing).</p><p>The `casadi-bindings-internal` package is handwritten and provides some casadi memory management
-wrappers, C++ standard type marsahalling, and some hand-written wrapper code.</p><p>For high-level bindings, see my <a >dynobud</a> project</p><p>To install this, first install casadi using instructions from <a >www.casadi.org</a>. MAKE SURE pkg-config CAN FIND THE CASADI INSTALLATION, AS THIS IS HOW CABAL FINDS CASADI!!</p><p>Then cabal install this package:</p><pre>&gt; cabal update &amp;&amp; cabal install casadi-bindings</pre><p>If you are upgrading this package and see linker errors, you may need to first manually `ghc-pkg unregister casadi-bindings-internal`.</p><p>Temporary note: there is something wrong with casadi and ipopt related to <a >http://list.coin-or.org/pipermail/ipopt/2014-April/003670.html</a>, and <a >https://github.com/casadi/casadi/issues/1075</a>. Either update IPOPT or use a different linear solver than MUMPS.</p>
-          
-          
-        </div>
-
-        <div id="badges" style="margin-top: 20px;">
-                          <a >
-                <img src="rick.jpg">
-              </a>
-            
-            
-            
-                          <img src="rick.jpg">
-            
-        </div>
-
-        <div id="modules">
-          <h2>Modules</h2><div id="module-list"><ul class="modules"><li><i>Casadi</i><ul class="modules"><li><span class="module">Casadi.Callback</span></li><li><span class="module">Casadi.DM</span></li><li><span class="module">Casadi.Function</span></li><li><span class="module">Casadi.GenericType</span></li><li><span class="module">Casadi.Interpolant</span></li><li><span class="module">Casadi.MX</span></li><li><span class="module">Casadi.Matrix</span></li><li><span class="module">Casadi.Overloading</span></li><li><span class="module">Casadi.SX</span></li><li><span class="module">Casadi.Slice</span></li><li><span class="module">Casadi.Sparsity</span></li><li><span class="module">Casadi.Viewable</span></li></ul></li></ul></div>
-        </div>
-
-        
-
-        <div id="downloads">
-          <h2>Downloads</h2><ul><li><a >casadi-bindings-3.4.5.0.tar.gz</a> [<a >browse</a>] (Cabal source package)</li><li><a >Package description</a> (as included in the package)</li></ul>
-        </div>
-
-        <div id="maintainer-corner">
-          <h4>Maintainer's Corner</h4>
-          <p><a >Package maintainers</a></p>
-          <ul>
-            <li>
-              <a >GregHorn</a>
-            </li>
-          </ul>
-          <p>For package maintainers and hackage trustees</p>
-          <ul>
-            <li>
-              <a >
-                edit package information
-              </a>
-            </li>
-          </ul>
-          <p>Candidates</p>
-          <ul>
-            <li>
-              No Candidates
-            </li>
-          </ul>
-        </div>
-
+(though some functions will be missing).
+      </p>
+      <p>
+       The `casadi-bindings-internal` package is handwritten and provides some casadi memory management
+wrappers, C++ standard type marsahalling, and some hand-written wrapper code.
+      </p>
+      <p>
+       For high-level bindings, see my
+       <a>
+        dynobud
+       </a>
+       project
+      </p>
+      <p>
+       To install this, first install casadi using instructions from
+       <a>
+        www.casadi.org
+       </a>
+       . MAKE SURE pkg-config CAN FIND THE CASADI INSTALLATION, AS THIS IS HOW CABAL FINDS CASADI!!
+      </p>
+      <p>
+       Then cabal install this package:
+      </p>
+      <pre>&gt; cabal update &amp;&amp; cabal install casadi-bindings</pre>
+      <p>
+       If you are upgrading this package and see linker errors, you may need to first manually `ghc-pkg unregister casadi-bindings-internal`.
+      </p>
+      <p>
+       Temporary note: there is something wrong with casadi and ipopt related to
+       <a>
+        http://list.coin-or.org/pipermail/ipopt/2014-April/003670.html
+       </a>
+       , and
+       <a>
+        https://github.com/casadi/casadi/issues/1075
+       </a>
+       . Either update IPOPT or use a different linear solver than MUMPS.
+      </p>
+     </div>
+     <div id="badges" style="margin-top: 20px;">
+      <a>
+       <img src="rick.jpg">
+      </a>
+      <img src="rick.jpg">
+     </div>
+     <div id="modules">
+      <h2>
+       Modules
+      </h2>
+      <div id="module-list">
+       <ul class="modules">
+        <li>
+         <i>
+          Casadi
+         </i>
+         <ul class="modules">
+          <li>
+           <span class="module">
+            Casadi.Callback
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.DM
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Function
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.GenericType
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Interpolant
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.MX
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Matrix
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Overloading
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.SX
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Slice
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Sparsity
+           </span>
+          </li>
+          <li>
+           <span class="module">
+            Casadi.Viewable
+           </span>
+          </li>
+         </ul>
+        </li>
+       </ul>
       </div>
-
-      <div id="properties">
-        <table class="properties">
-          <tbody>
-
-            <tr>
-              <th>Versions <span style="font-weight:normal;font-size: small;">[<a >RSS</a>]</span></th>
-              <td><a >1.8.0.0</a>, <a >1.8.2.1</a>, <a >1.9.0.0</a>, <a >1.9.0.1</a>, <a >1.9.0.2</a>, <a >1.9.0.3</a>, <a >1.9.0.4</a>, <a >1.9.0.5</a>, <a >2.0.0</a>, <a >2.0.0.1</a>, <a >2.1.0.0</a>, <a >2.1.0.1</a>, <a >2.1.3.0</a>, <a >2.1.3.1</a>, <a >2.1.3.2</a>, <a >2.2.0.0</a>, <a >2.2.0.1</a>, <a >2.2.0.2</a>, <a >2.2.0.3</a>, <a >2.2.0.4</a>, <a >2.2.0.5</a>, <a >2.2.0.6</a>, <a >2.2.0.7</a>, <a >2.2.0.8</a>, <a >2.3.0.0</a>, <a >2.3.0.1</a>, <a >2.4.1.0</a>, <a >2.4.1.1</a>, <a >2.4.1.2</a>, <a >2.4.1.3</a>, <a >2.4.1.4</a>, <a >2.4.1.5</a>, <a >2.4.1.6</a>, <a >2.4.1.7</a>, <a >2.4.1.8</a>, <a >2.4.1.9</a>, <a >3.0.0.0</a>, <a >3.0.0.1</a>, <a >3.0.0.2</a>, <a >3.0.0.3</a>, <a >3.0.0.4</a>, <a >3.0.0.5</a>, <a >3.1.0.0</a>, <a >3.1.0.1</a>, <a >3.1.0.2</a>, <a >3.1.0.3</a>, <strong>3.4.5.0</strong></td>
-            </tr>
-
-            
-
-            <tr>
-              <th>Dependencies</th>
-              <td><span style="white-space: nowrap"><a >base</a> (&gt;=4.6 &amp;&amp; &lt;5)</span>, <span style="white-space: nowrap"><a >binary</a></span>, <span style="white-space: nowrap"><a >casadi-bindings-core</a> (==3.4.5.0)</span>, <span style="white-space: nowrap"><a >casadi-bindings-internal</a> (==0.1.6.1)</span>, <span style="white-space: nowrap"><a >cereal</a></span>, <span style="white-space: nowrap"><a >containers</a></span>, <span style="white-space: nowrap"><a >linear</a></span>, <span style="white-space: nowrap"><a >spatial-math</a> (&gt;=0.2.6.0)</span>, <span style="white-space: nowrap"><a >vector</a></span>, <span style="white-space: nowrap"><a >vector-binary-instances</a></span><span style="font-size: small"> [<a >details</a>]</span></td>
-            </tr>
-
-            <tr>
-              <th>License</th>
-              <td class="word-wrap"><a >LGPL-3.0-only</a></td>
-            </tr>
-
-                        <tr>
-              <th>Copyright</th>
-              <td class="word-wrap">(c) Greg Horn 2013-2018</td>
-            </tr>
-            
-
-            <tr>
-              <th>Author</th>
-              <td class="word-wrap">Greg Horn</td>
-            </tr>
-            <tr>
-              <th>Maintainer</th>
-              <td class="word-wrap">gregmainland@gmail.com</td>
-            </tr>
-
-            
-
-            
-
-                        <tr>
-              <th>Category</th>
-              <td><a >Numerical</a>, <a >Math</a></td>
-            </tr>
-            
-
-                        <tr>
-              <th>Home page</th>
-              <td class="word-wrap">
-                <a >http://github.com/ghorn/casadi-bindings</a>
-              </td>
-            </tr>
-            
-
-            
-
-                        <tr>
-              <th>Source&nbsp;repo</th>
-              <td class="word-wrap">head: git clone <a >git://github.com/ghorn/casadi-bindings.git</a></td>
-            </tr>
-            
-
-            <tr>
-              <th>Uploaded</th>
-              <td>by <a >GregHorn</a> at <span title="Sat Dec 15 23:49:08 UTC 2018">2018-12-15T23:49:08Z</span></td>
-            </tr>
-
-                        <tr>
-              <th>Distributions</th>
-              <td></td>
-            </tr>
-            
-
-                        <tr>
-              <th>Reverse Dependencies</th>
-              <td>2 direct, 0 indirect <span style="font-size: small" class="revdepdetails"> [<a >details</a>]</span></td>
-            </tr>
-            
-            
-
-            
-
-            <tr>
-              <th>Downloads</th>
-              <td>33379 total (2 in the last 30 days)</td>
-            </tr>
-
-            <tr>
-              <th> Rating</th>
-              <td>(no votes yet)
-              <span style="font-size: small">[estimated by <a >Bayesian average</a>]</span></td>
-            </tr>
-
-            <tr>
-              <th>Your&nbsp;Rating</th>
-              <td>
-                <ul class="star-rating">
-                  <li class="star uncool" id="1">λ</li>
-                  <li class="star uncool" id="2">λ</li>
-                  <li class="star uncool" id="3">λ</li>
-                </ul>
-              
-              </td>
-            </tr>
-            <tr>
-              <th>Status</th>
-              <td>Docs not available <span style="font-size: small">[<a >build log</a>]</span><br>All reported builds failed as of 2018-12-16 <span style="font-size: small">[<a >all 3 reports</a>]</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div> 
+     </div>
+     <div id="downloads">
+      <h2>
+       Downloads
+      </h2>
+      <ul>
+       <li>
+        <a>
+         casadi-bindings-3.4.5.0.tar.gz
+        </a>
+        [
+        <a>
+         browse
+        </a>
+        ] (Cabal source package)
+       </li>
+       <li>
+        <a>
+         Package description
+        </a>
+        (as included in the package)
+       </li>
+      </ul>
+     </div>
+     <div id="maintainer-corner">
+      <h4>
+       Maintainer's Corner
+      </h4>
+      <p>
+       <a>
+        Package maintainers
+       </a>
+      </p>
+      <ul>
+       <li>
+        <a>
+         GregHorn
+        </a>
+       </li>
+      </ul>
+      <p>
+       For package maintainers and hackage trustees
+      </p>
+      <ul>
+       <li>
+        <a>
+         edit package information
+        </a>
+       </li>
+      </ul>
+      <p>
+       Candidates
+      </p>
+      <ul>
+       <li>
+        No Candidates
+       </li>
+      </ul>
+     </div>
     </div>
-
-    
-  </div> 
-
+    <!-- /left-pane -->
+    <div id="properties">
+     <table class="properties">
+      <tbody>
+       <tr>
+        <th>
+         Versions
+         <span style="font-weight:normal;font-size: small;">
+          [
+          <a>
+           RSS
+          </a>
+          ]
+         </span>
+        </th>
+        <td>
+         <a>
+          1.8.0.0
+         </a>
+         ,
+         <a>
+          1.8.2.1
+         </a>
+         ,
+         <a>
+          1.9.0.0
+         </a>
+         ,
+         <a>
+          1.9.0.1
+         </a>
+         ,
+         <a>
+          1.9.0.2
+         </a>
+         ,
+         <a>
+          1.9.0.3
+         </a>
+         ,
+         <a>
+          1.9.0.4
+         </a>
+         ,
+         <a>
+          1.9.0.5
+         </a>
+         ,
+         <a>
+          2.0.0
+         </a>
+         ,
+         <a>
+          2.0.0.1
+         </a>
+         ,
+         <a>
+          2.1.0.0
+         </a>
+         ,
+         <a>
+          2.1.0.1
+         </a>
+         ,
+         <a>
+          2.1.3.0
+         </a>
+         ,
+         <a>
+          2.1.3.1
+         </a>
+         ,
+         <a>
+          2.1.3.2
+         </a>
+         ,
+         <a>
+          2.2.0.0
+         </a>
+         ,
+         <a>
+          2.2.0.1
+         </a>
+         ,
+         <a>
+          2.2.0.2
+         </a>
+         ,
+         <a>
+          2.2.0.3
+         </a>
+         ,
+         <a>
+          2.2.0.4
+         </a>
+         ,
+         <a>
+          2.2.0.5
+         </a>
+         ,
+         <a>
+          2.2.0.6
+         </a>
+         ,
+         <a>
+          2.2.0.7
+         </a>
+         ,
+         <a>
+          2.2.0.8
+         </a>
+         ,
+         <a>
+          2.3.0.0
+         </a>
+         ,
+         <a>
+          2.3.0.1
+         </a>
+         ,
+         <a>
+          2.4.1.0
+         </a>
+         ,
+         <a>
+          2.4.1.1
+         </a>
+         ,
+         <a>
+          2.4.1.2
+         </a>
+         ,
+         <a>
+          2.4.1.3
+         </a>
+         ,
+         <a>
+          2.4.1.4
+         </a>
+         ,
+         <a>
+          2.4.1.5
+         </a>
+         ,
+         <a>
+          2.4.1.6
+         </a>
+         ,
+         <a>
+          2.4.1.7
+         </a>
+         ,
+         <a>
+          2.4.1.8
+         </a>
+         ,
+         <a>
+          2.4.1.9
+         </a>
+         ,
+         <a>
+          3.0.0.0
+         </a>
+         ,
+         <a>
+          3.0.0.1
+         </a>
+         ,
+         <a>
+          3.0.0.2
+         </a>
+         ,
+         <a>
+          3.0.0.3
+         </a>
+         ,
+         <a>
+          3.0.0.4
+         </a>
+         ,
+         <a>
+          3.0.0.5
+         </a>
+         ,
+         <a>
+          3.1.0.0
+         </a>
+         ,
+         <a>
+          3.1.0.1
+         </a>
+         ,
+         <a>
+          3.1.0.2
+         </a>
+         ,
+         <a>
+          3.1.0.3
+         </a>
+         ,
+         <strong>
+          3.4.5.0
+         </strong>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Dependencies
+        </th>
+        <td>
+         <span style="white-space: nowrap">
+          <a>
+           base
+          </a>
+          (&gt;=4.6 &amp;&amp; &lt;5)
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           binary
+          </a>
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           casadi-bindings-core
+          </a>
+          (==3.4.5.0)
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           casadi-bindings-internal
+          </a>
+          (==0.1.6.1)
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           cereal
+          </a>
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           containers
+          </a>
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           linear
+          </a>
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           spatial-math
+          </a>
+          (&gt;=0.2.6.0)
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           vector
+          </a>
+         </span>
+         ,
+         <span style="white-space: nowrap">
+          <a>
+           vector-binary-instances
+          </a>
+         </span>
+         <span style="font-size: small">
+          [
+          <a>
+           details
+          </a>
+          ]
+         </span>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         License
+        </th>
+        <td class="word-wrap">
+         <a>
+          LGPL-3.0-only
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Copyright
+        </th>
+        <td class="word-wrap">
+         (c) Greg Horn 2013-2018
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Author
+        </th>
+        <td class="word-wrap">
+         Greg Horn
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Maintainer
+        </th>
+        <td class="word-wrap">
+         gregmainland@gmail.com
+        </td>
+       </tr>
+       <!-- Obsolete/deprecated 'Stability' field hidden
+                 c.f. http://stackoverflow.com/questions/3841218/conventions-for-stability-field-of-cabal-packages
+            <tr>
+              <th>Stability</th>
+              <td>Unknown</td>
+            </tr>
+            -->
+       <tr>
+        <th>
+         Category
+        </th>
+        <td>
+         <a>
+          Numerical
+         </a>
+         ,
+         <a>
+          Math
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Home page
+        </th>
+        <td class="word-wrap">
+         <a>
+          http://github.com/ghorn/casadi-bindings
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Source&nbsp;repo
+        </th>
+        <td class="word-wrap">
+         head: git clone
+         <a>
+          git://github.com/ghorn/casadi-bindings.git
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Uploaded
+        </th>
+        <td>
+         by
+         <a>
+          GregHorn
+         </a>
+         at
+         <span title="Sat Dec 15 23:49:08 UTC 2018">
+          2018-12-15T23:49:08Z
+         </span>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Distributions
+        </th>
+        <td>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Reverse Dependencies
+        </th>
+        <td>
+         2 direct, 0 indirect
+         <span class="revdepdetails" style="font-size: small">
+          [
+          <a href>
+           details
+          </a>
+          ]
+         </span>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Downloads
+        </th>
+        <td>
+         33379 total (2 in the last 30 days)
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Rating
+        </th>
+        <td>
+         (no votes yet)
+         <span style="font-size: small">
+          [estimated by
+          <a>
+           Bayesian average
+          </a>
+          ]
+         </span>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Your&nbsp;Rating
+        </th>
+        <td>
+         <ul class="star-rating">
+          <li class="star uncool" id="1">
+           &lambda;
+          </li>
+          <li class="star uncool" id="2">
+           &lambda;
+          </li>
+          <li class="star uncool" id="3">
+           &lambda;
+          </li>
+         </ul>
+        </td>
+       </tr>
+       <tr>
+        <th>
+         Status
+        </th>
+        <td>
+         Docs not available
+         <span style="font-size: small">
+          [
+          <a>
+           build log
+          </a>
+          ]
+         </span>
+         <br>
+         All reported builds failed as of 2018-12-16
+         <span style="font-size: small">
+          [
+          <a>
+           all 3 reports
+          </a>
+          ]
+         </span>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <!-- /properties -->
+   </div>
+   <!-- /flex-container -->
+  </div>
+  <!-- /content -->
   <style>
-
-@font-face {
+   @font-face {
   font-family: 'PT Sans';
   font-style: italic;
   font-weight: 400;
@@ -642,8 +1161,13 @@ wrappers, C++ standard type marsahalling, and some hand-written wrapper code.</p
   src: url(https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh0O6tKA.ttf) format('truetype');
 }
 
+
+
+/* @group Fundamentals */
+
 * { margin: 0; padding: 0 }
 
+/* Is this portable? */
 html {
   width: 100%;
   height: 100%;
@@ -717,8 +1241,8 @@ dd {
 a { text-decoration: none; }
 
 @media (prefers-color-scheme: dark) {
-  a[href]:link { color: #EB82DC; }    
-  a[href]:visited { color: #D5C5FF; } 
+  a[href]:link { color: #EB82DC; }    /* 30% brighter */
+  a[href]:visited { color: #D5C5FF; } /* 40% brighter */
 }
 @media (prefers-color-scheme: light) {
   a[href]:link { color: #9E358F; }
@@ -727,9 +1251,18 @@ a { text-decoration: none; }
 
 a[href]:hover { text-decoration:underline; }
 
+/* @end */
+
+/* @group Fonts & Sizes */
+
+/* Basic technique & IE workarounds from YUI 3
+   For reasons, see:
+      http://yui.yahooapis.com/3.1.1/build/cssfonts/fonts.css
+ */
+
 body, button {
   font: 400 17px/1.43 'PT Sans',
-    
+    /* Fallback Font Stack */
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -738,16 +1271,16 @@ body, button {
     Cantarell,
     'Helvetica Neue',
     sans-serif;
-  *font-size: medium; 
-  *font:x-small; 
+  *font-size: medium; /* for IE */
+  *font:x-small; /* for IE in quirks mode */
 }
 
-h1 { font-size: 153.9%;  }
-h2 { font-size: 131%;    }
-h3 { font-size: 116%;    }
-h4 { font-size: 100%;    }
-h5 { font-size: 100%;    }
-h6 { font-size: 100%;    }
+h1 { font-size: 153.9%; /* 20px */ }
+h2 { font-size: 131%;   /* 17px */ }
+h3 { font-size: 116%;   /* 15px */ }
+h4 { font-size: 100%;   /* 13px */ }
+h5 { font-size: 100%;   /* 13px */ }
+h6 { font-size: 100%;   /* 13px */ }
 
 select, input, button, textarea {
   font-size: 1rem;
@@ -766,15 +1299,15 @@ pre, code, kbd, samp, .src {
 }
 
 .links, .link {
-  font-size: 85%; 
+  font-size: 85%; /* 11pt */
 }
 
 #module-header .caption {
-  font-size: 182%; 
+  font-size: 182%; /* 24pt */
 }
 
 .info  {
-  font-size: 85%; 
+  font-size: 85%; /* 11pt */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -808,6 +1341,10 @@ pre, code, kbd, samp, .src {
     margin-bottom: 8px;
   }
 }
+
+/* @end */
+
+/* @group Common */
 
 @media (prefers-color-scheme: dark) {
   .caption, h1, h2, h3, h4, h5, h6 {
@@ -873,7 +1410,7 @@ ul.links li a, ul.links li form {
 
 @media (prefers-color-scheme: dark) {
   pre {
-      background-color: #474747; 
+      background-color: #474747; /* 20% brighter than background */
   }
 }
 @media (prefers-color-scheme: light) {
@@ -910,6 +1447,11 @@ blockquote {
 .keyword { font-weight: normal; }
 .def { font-weight: bold; }
 
+
+/* @end */
+
+/* @group properties */
+
 #properties table.properties {
   table-layout: fixed;
   width: 100%;
@@ -941,6 +1483,8 @@ div#properties table.properties .star-rating {
   overflow: hidden;
   padding: 2px 0;
 }
+
+
 
 div #description img {
     max-width:55%;
@@ -975,25 +1519,35 @@ table.properties td, table.properties th {
 }
 
 .word-wrap {
-     
+     /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
     -ms-word-break: break-all;
     word-break: break-all;
-    
+    /* Non standard for webkit */
     word-break: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
 }
+/* @end */
+
+/* @group responsive */
 
 @media only screen and (min-width: 1920px) {
   #content {
-    
+    /* keep this in sync with #left-pane children */
     width: 60vw;
   }
 
   #left-pane > * {
-      
+      /*   (100% - (width of properties)) * (width of #content) - gap
+       * = (100% - 40%                  ) * 60vw                - 2em
+       * = 60%                            * 60vw                - 2em
+       * = 36vw - 2em
+       *
+       * The 36vw only applies if the #content max-width of 1450px isn't hit.
+       * So we use min(...) for this special case.
+       */
       width: calc(min(36vw, .6 * 1450px) - 2em);
   }
 }
@@ -1004,7 +1558,11 @@ table.properties td, table.properties th {
   }
 
   #left-pane > * {
-      
+      /*   (100% - (width of properties)) * (width of #content) - gap
+       * = (100% - 40%                  ) * 65vw                - 2em
+       * = 60%                            * 65vw                - 2em
+       * = 39vw - 2em
+       */
       width: calc(39vw - 2em);
   }
 }
@@ -1018,7 +1576,7 @@ table.properties td, table.properties th {
   }
 
   #content {
-    
+    /* keep this in sync with the calculation above */
     max-width: 1450px;
   }
 }
@@ -1034,7 +1592,11 @@ table.properties td, table.properties th {
   }
 
   #left-pane > * {
-      
+      /*   (100% - (width of properties)) * (width of #content) - gap
+       * = (100% - 40%                  ) * 75vw                - 2em
+       * = 60%                            * 75vw                - 2em
+       * = 45vw - 2em
+       */
       width: calc(45vw - 2em);
   }
 }
@@ -1071,7 +1633,7 @@ table.properties td, table.properties th {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 2em; 
+      gap: 2em; /* keep this in sync with calculation above */
   }
 }
 
@@ -1095,7 +1657,7 @@ table.properties td, table.properties th {
     text-align: center;
     margin: 0;
 
-    
+    /* Hide scrollbar but allow scrolling menu links horizontally */
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -1112,7 +1674,10 @@ table.properties td, table.properties th {
   }
 
   #page-header ul.links li:last-of-type {
-    
+    /*
+    The last link of the menu should offer the same distance to the right
+    as the #page-header enforces at the left.
+    */
     padding-right: 1em;
   }
 
@@ -1131,8 +1696,16 @@ table.properties td, table.properties th {
 
 }
 
+
+/* @end */
+
+/* @group Page Structure */
+
 #left-pane > #modules {
-    
+    /* This overrides the width in width-dependent blocks. We want a long
+     * module name to make the left-pane wide, so that it will push down
+     * #properties.
+     */
     width: fit-content;
 }
 
@@ -1254,6 +1827,10 @@ div#style-menu-holder {
   clear: both;
 }
 
+/* @end */
+
+/* @search box */
+
 ul.links li form {
   display: inline-block;
 }
@@ -1274,6 +1851,10 @@ ul.links li form button {
   color: white;
   background-color: transparent;
 }
+
+/* @end */
+
+/* @group Front Matter */
 
 @media (prefers-color-scheme: dark) {
   #table-of-contents {
@@ -1354,6 +1935,9 @@ ul.links li form button {
   margin-left: 0;
 }
 
+/* @end */
+
+/* @group Main Content */
 #interface div.top + div.top {
   margin-top: 3em;
 }
@@ -1420,6 +2004,7 @@ ul.links li form button {
   margin: 0;
 }
 
+
 .subs .subs .caption {
   margin-top: 16px !important;
   margin-bottom: 0px !important;
@@ -1441,7 +2026,7 @@ ul.links li form button {
 }
 
 .subs, .doc {
-  
+  /* use this selector for one level of indent */
   padding-left: 2em;
 }
 
@@ -1458,25 +2043,36 @@ ul.links li form button {
 
 .fields p { margin: 0 0; }
 
+/* this seems bulky to me
+.methods, .constructors {
+  background: #f8f8f8;
+  border: 1px solid #eee;
+}
+*/
+
+/* @end */
+
+/* @group Auxillary Pages */
+
 #mini {
   margin: 0 auto;
   padding: 0 1em 1em;
 }
 
 #mini > * {
-  font-size: 93%; 
+  font-size: 93%; /* 12pt */
 }
 
 #mini #module-list .caption,
 #mini #module-header .caption {
-  font-size: 125%; 
+  font-size: 125%; /* 15pt */
 }
 
 #mini #interface h1,
 #mini #interface h2,
 #mini #interface h3,
 #mini #interface h4 {
-  font-size: 109%; 
+  font-size: 109%; /* 13pt */
   margin: 1em 0 0;
 }
 
@@ -1507,7 +2103,7 @@ ul.links li form button {
 }
 
 #index .caption,
-#module-list .caption { font-size: 131%;  }
+#module-list .caption { font-size: 131%; /* 17pt */ }
 
 #index table {
   margin-left: 2em;
@@ -1517,7 +2113,7 @@ ul.links li form button {
   font-weight: bold;
 }
 #index .alt {
-  font-size: 77%; 
+  font-size: 77%; /* 10pt */
   font-style: italic;
   padding-left: 2em;
 }
@@ -1531,6 +2127,7 @@ ul.links li form button {
   margin: 0 0 0 20px;
 }
 
+/* Disable identation for the top level modules */
 #modules #module-list > ul.modules {
   margin-left: 0px;
 }
@@ -1557,6 +2154,12 @@ ul.links li form button {
 strong.warning { color: #f44336; }
 
 small.info { color: #888; }
+
+/* @end */
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Flags table */
 
 .flags-table td {
   padding-right: 1em;
@@ -1594,6 +2197,8 @@ p.tip {
   max-width: 100%;
 }
 
+/* Misc admin forms */
+
 @media (prefers-color-scheme: dark) {
     .box {
         padding: 0.5em 1em;
@@ -1614,6 +2219,7 @@ p.tip {
 table.simpletable th, table.simpletable td {
   padding: 0.2em 1em;
 }
+
 
 table.fancy {
   border: 1px solid #ddd;
@@ -1682,6 +2288,8 @@ ul.directory-list {
   text-decoration: underline;
 }
 
+/* Package versions */
+
 a.unpreferred[href]:link {
     color: #ECBA13;
 }
@@ -1704,6 +2312,7 @@ a.deprecated[href]:visited {
     color: #61B01E;
 }
 
+/* Paginator */
 #paginatorContainer {
   display: flex;
   align-items: center;
@@ -1719,6 +2328,8 @@ a.deprecated[href]:visited {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* Styles Next/Prev when they have no href */
 
 @media (prefers-color-scheme: dark) {
       .paginator a {
@@ -1747,6 +2358,7 @@ a.deprecated[href]:visited {
   color: #333;
   padding: 0.5em 1em;
 }
+
 
 @media (prefers-color-scheme: dark) {
       .paginator a:link:hover, .paginator a:visited:hover {
@@ -1825,6 +2437,8 @@ p.registration-email {
   }
 }
 
+
+
   div#overlay {
     position: fixed;
     top: 0;
@@ -1894,18 +2508,30 @@ p.registration-email {
   .clear-rating {
     font-size: small;
   }
-
-</style>
-
-  <div style="clear:both"></div>
+  </style>
+  <div style="clear:both">
+  </div>
   <div id="footer">
-  <p>
-    Produced by <a >hackage</a> and <a >Cabal</a> 3.10.1.0.
-  </p>
-</div>
-
-  
-
-  
-
-<div id="overlay" style="display: none;"></div><div id="modal" style="display: none;"><div id="content"></div><a id="close" >close</a></div></body></html>
+   <p>
+    Produced by
+    <a>
+     hackage
+    </a>
+    and
+    <a>
+     Cabal
+    </a>
+    3.10.1.0.
+   </p>
+  </div>
+  <div id="overlay" style="display: none;">
+  </div>
+  <div id="modal" style="display: none;">
+   <div id="content">
+   </div>
+   <a id="close">
+    close
+   </a>
+  </div>
+ </body>
+</html>

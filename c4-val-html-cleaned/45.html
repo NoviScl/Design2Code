@@ -1,52 +1,100 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en"><head>
-<style></style>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>Berg Poker Simulator 1.4.5</title>
-
-</head>
-<body style="text-align:left;font-size:14.0pt;font-family:&quot;Times New Roman&quot;;background-color:white;color:black">
-<h1 style="text-align:center"><a >Code Throwdown: Berg Poker Simulator</a></h1>
-<p style="text-align:center;font-style:italic">
-<img src="rick.jpg" alt="Four-high flush">
-<br>A four-high flush, one of three winning flush hands that are only seen in poker games played
-<br>with multiple decks of cards, regardless of what wildcards are used.</p>
-<p>It all started with what seemed like a simple question.  In a poker game with eight players,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+ <!-- www.codethrowdown.com -->
+ <head>
+  <style>
+  </style>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>
+   Berg Poker Simulator 1.4.5
+  </title>
+ </head>
+ <body style='text-align:left;font-size:14.0pt;font-family:"Times New Roman";background-color:white;color:black'>
+  <h1 style="text-align:center">
+   <a>
+    Code Throwdown: Berg Poker Simulator
+   </a>
+  </h1>
+  <p style="text-align:center;font-style:italic">
+   <img alt="Four-high flush" src="rick.jpg">
+   <br>
+   A four-high flush, one of three winning flush hands that are only seen in poker games played
+   <br>
+   with multiple decks of cards, regardless of what wildcards are used.
+  </p>
+  <p>
+   It all started with what seemed like a simple question. In a poker game with eight players,
 using two decks of cards, with five card hands and fives wild, what are the odds for each type of hand?
-What about seven card hands with sevens wild?  What hands should you play and what should you fold?</p>
-<p>There are a number of ways to calculate the odds in poker games.  For most traditional games,
-they have been computed manually long ago.  You can also enumerate all possible hands.  But adding in
-wildcards and multiple decks makes the calculation harder.  The most practical approach is just to
-simulate the game and play a number of hands, the odds are easily determined if you play a few million hands.</p>
-<p>If you allow for multiple decks and wildcards, there are 380,204,032 permutations possible with 5 cards.
-<a >There are 12,051 distiguishable hands</a>.
-With a single deck there are only <a >7,462 distinct 5-card hands</a>.
+  </p>
+  <p>
+   There are a number of ways to calculate the odds in poker games. For most traditional games,
+they have been computed manually long ago.
+  </p>
+  <p>
+   If you allow for multiple decks and wildcards, there are 380,204,032 permutations possible with 5 cards.
+   <a>
+    There are 12,051 distiguishable hands
+   </a>
+   .
+With a single deck there are only
+   <a>
+    7,462 distinct 5-card hands
+   </a>
+   .
 Here are similar lists for
-<a >5-card single deck deuces wild</a>,
-<a >7-card single deck</a> and 
-<a >7-card single deck deuces wild</a>.</p>
-<p>The core of any poker simulation program is the poker hand evaluator function.  Given a hand,
+   <a>
+    5-card single deck deuces wild
+   </a>
+   ,
+   <a>
+    7-card single deck
+   </a>
+   and
+   <a>
+    7-card single deck deuces wild
+   </a>
+   .
+  </p>
+  <p>
+   The core of any poker simulation program is the poker hand evaluator function.  Given a hand,
 it produces a number representing the evaluation of the hand, with higher numbers denoting better hands.
 There are a number of poker hand evaluators out there, see
-<a >The Great Poker Hand Evaluator Roundup</a>,
-<a >Moritz Hammer's evaluator</a>,
-<a >PokerAI's 7-card evaluator contest</a>,
-<a >Cactus Kev’s 5-Card Evaluator</a>,
-and <a >SpecialK's 7-card evaluator</a>.
+   <a>
+    The Great Poker Hand Evaluator Roundup
+   </a>
+   ,
+   <a>
+    Moritz Hammer's evaluator
+   </a>
+   ,
+   <a>
+    PokerAI's 7-card evaluator contest
+   </a>
+   ,
+   <a>
+    Cactus Kev&rsquo;s 5-Card Evaluator
+   </a>
+   ,
+and
+   <a>
+    SpecialK's 7-card evaluator
+   </a>
+   .
 I decided to see if I could write a poker hand evaluator that could handle multiple decks and wildcards.  The
 current version of the simulator can shuffle, deal and evaluate more than 22 million seven card hands per second on my
 six-year-old PC, this was measured by testing the seven card game below for a billion hands.  The evaluator can evaluate
-hands of any size, the interface supports up to twenty cards in a hand.</p>
-<p>Most poker hand evaluators use large lookup tables.  The layered cache architecture of modern CPUs means that
+hands of any size, the interface supports up to twenty cards in a hand.
+  </p>
+  <p>
+   Most poker hand evaluators use large lookup tables. The layered cache architecture of modern CPUs means that
 doing any lookup in a big table will thrash your cache and with wildcards or multiple decks, the lookup tables quickly
-become too large.  I wrote a poker hand evaluator that does not sort the hand or use large tables. Maintaining code and
-data locality produced amazing speed gains. My goal was to write an evaluator that could run without requiring the
-enormous memory footprint that some of the really fast lookup methods have. More importantly, the evaluator supports
-arbitrary wild cards, multiple decks of cards, jokers, the addition or removal of arbitrary cards, and hands of any size.
-This means you can simulate games that single-deck no-wilds evaluators cannot handle. The resulting simulator runs so
-fast that it can be used in real time while using less than a megabyte of memory.</p>
-<p>I added a user interface and called it the Berg Poker Simulator.  The simulator runs from the command line of any
-Windows PC.  Here is how we use it to answer the question that started all of this:</p>
-<pre style="font-size:12.0pt;font-family:&quot;Courier&quot;">Berg Poker Simulator v1.4.5 (Copyright (C) 2013 Henry Berg, non-commercial use only)
+become too large.
+  </p>
+  <p>
+   I added a user interface and called it the Berg Poker Simulator. The simulator runs from the command line of any
+Windows PC.
+  </p>
+  <pre style='font-size:12.0pt;font-family:"Courier"'>Berg Poker Simulator v1.4.5 (Copyright (C) 2013 Henry Berg, non-commercial use only)
 
 bpsim&gt;players 8
 Using 8 players.
@@ -78,17 +126,14 @@ Four of a Kind   95%   99%   98%   98%   97%   96%   95%   94%   93%   93%    0%
 Straight Flush   99%   99%   99%   99%   99%   99%    0%   99%   99%   99%   99%    0%    0%    0%
 Five of a Kind   99%  100%  100%   99%   99%  100%   99%   99%   99%   99%    0%   99%   99%   99%
 </pre>
-
-<p>This test was run on a Windows XP machine with an Intel Q6600 @ 2.4GHz.  Note that it shuffled, dealt and
-evaluated hands for eight players playing 5 million hands each, which was overkill.  Simulation of all
-40 million hands required 1.234 seconds – more than 32 million hands per second.  The output shows the probability of
-victory for each type of hand and each specific high card variant of that hand. The "break" hand for this
-game, where you have more than a 50% chance of winning, is three queens, which wins 54% of the time if
-everybody stays in.</p>
-
-<p>What about the seven card question?</p>
-
-<pre style="font-size:12.0pt;font-family:&quot;Courier&quot;">Berg Poker Simulator v1.4.5 (Copyright (C) 2013 Henry Berg, non-commercial use only)
+  <p>
+   This test was run on a Windows XP machine with an Intel Q6600 @ 2.4GHz. Note that it shuffled, dealt and
+evaluated hands for eight players playing 5 million hands each, which was overkill.
+  </p>
+  <p>
+   What about the seven card question?
+  </p>
+  <pre style='font-size:12.0pt;font-family:"Courier"'>Berg Poker Simulator v1.4.5 (Copyright (C) 2013 Henry Berg, non-commercial use only)
 
 bpsim&gt;players 8
 Using 8 players.
@@ -120,16 +165,15 @@ Four of a Kind   71%   89%   84%   81%   77%   74%   71%   67%    0%   65%   62%
 Straight Flush   94%   96%   95%   94%    0%   94%   93%   93%   92%   91%   91%    0%    0%    0%
 Five of a Kind   98%  100%   99%   99%   99%   99%   98%   98%    0%   98%   97%   97%   97%   96%
 </pre>
-
-<p>This time we shuffled, dealt, and evaluated 40 million seven card hands in 1.796 seconds –
-more than 22 million hands per second.  Now we see that the odds have shifted, so three queens now has 2% chance.
-The break hand for this game is four twos, which has a 54% shot.</p>
-
-<p>The evaluator used by the simulator can evaluate any size poker hand.  Just for fun, let's ask it
-something harder.  Four of you sit down and deal out an entire deck of cards, so each person has 13
-cards in their hand.  Assuming you can even figure out what you have, what the heck is a good hand?</p>
-
-<pre style="font-size:12.0pt;font-family:&quot;Courier&quot;">Berg Poker Simulator v1.4.5 (Copyright (C) 2013 Henry Berg, non-commercial use only)
+  <p>
+   This time we shuffled, dealt, and evaluated 40 million seven card hands in 1.796 seconds &ndash;
+more than 22 million hands per second. Now we see that the odds have shifted, so three queens now has 2% chance.
+  </p>
+  <p>
+   The evaluator used by the simulator can evaluate any size poker hand. Just for fun, let's ask it
+something harder.
+  </p>
+  <pre style='font-size:12.0pt;font-family:"Courier"'>Berg Poker Simulator v1.4.5 (Copyright (C) 2013 Henry Berg, non-commercial use only)
 
 bpsim&gt;players 4
 Using 4 players.
@@ -159,29 +203,54 @@ Four of a Kind   89%   94%   93%   93%   93%   92%   91%   90%   89%   88%   87%
 Straight Flush   97%  100%   99%   99%   98%   98%   97%   96%   95%   94%   94%    0%    0%    0%
 Five of a Kind    0%    0%    0%    0%    0%    0%    0%    0%    0%    0%    0%    0%    0%    0%
 </pre>
-
-<p>This time we shuffled, dealt, and evaluated 20 million thirteen card hands in 1.766 seconds –
+  <p>
+   This time we shuffled, dealt, and evaluated 20 million thirteen card hands in 1.766 seconds &ndash;
 more than 11 million hands per second, even with thirteen cards to consider!  If you play this game, don't go in
-with less than a jacks-over full house (wins 53% of the time) unless you are bluffing.</p>
-
-<p>The tool supports adding and removing cards, selecting wildcards or adding jokers, and handles
-hand sizes from one to twenty cards.  Hands with fewer than five cards ignore flushes and straights.  It has
-been tested on Windows XP and Windows 7, and it is a standard 32-bit application written in C++ that should
-run fine on almost any Windows PC.  It is free to try for non-commercial use, i.e. determining the odds
-for that poker game you play with your golf buddies:</p>
-
-<h3><a >Download Berg Poker Simulator (version 1.4.5)</a> (<a >zip file</a>)</h3>
-
-<p>If you find this tool useful, please consider making a donation of what you think it is worth.</p>
-<p>Bitcoin donations accepted at address bc1qynhyk0kl50vjcl8fxsn0uaesq2vdc940tkyx62:</p>
-<p><img src="rick.jpg" alt="bc1qynhyk0kl50vjcl8fxsn0uaesq2vdc940tkyx62"></p>
-<p>If you have questions or are interested in licensing the source code for commercial use, please contact me at
-<a >henry.berg@codethrowdown.com</a>.</p>
-<p>Thanks,
-<br>Henry Berg
-<br>April 29, 2022</p>
-<p>P.S. This site is called Code Throwdown because the very early versions of the simulator came from a programming duel
-with a friend.</p>
-<p style="text-align:center;font-style:italic">Berg Poker Simulator and this web page Copyright (C) 2022 Henry Berg</p>
-
-</body></html>
+with less than a jacks-over full house (wins 53% of the time) unless you are bluffing.
+  </p>
+  <p>
+   The tool supports adding and removing cards, selecting wildcards or adding jokers, and handles
+hand sizes from one to twenty cards. Hands with fewer than five cards ignore flushes and straights.
+  </p>
+  <h3>
+   <a>
+    Download Berg Poker Simulator (version 1.4.5)
+   </a>
+   (
+   <a>
+    zip file
+   </a>
+   )
+  </h3>
+  <p>
+   If you find this tool useful, please consider making a donation of what you think it is worth.
+  </p>
+  <p>
+   Bitcoin donations accepted at address bc1qynhyk0kl50vjcl8fxsn0uaesq2vdc940tkyx62:
+  </p>
+  <p>
+   <img alt="bc1qynhyk0kl50vjcl8fxsn0uaesq2vdc940tkyx62" src="rick.jpg">
+  </p>
+  <p>
+   If you have questions or are interested in licensing the source code for commercial use, please contact me at
+   <a>
+    henry.berg@codethrowdown.com
+   </a>
+   .
+  </p>
+  <p>
+   Thanks,
+   <br>
+   Henry Berg
+   <br>
+   April 29, 2022
+  </p>
+  <p>
+   P.S. This site is called Code Throwdown because the very early versions of the simulator came from a programming duel
+with a friend.
+  </p>
+  <p style="text-align:center;font-style:italic">
+   Berg Poker Simulator and this web page Copyright (C) 2022 Henry Berg
+  </p>
+ </body>
+</html>

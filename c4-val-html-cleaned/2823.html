@@ -1,5 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
-<style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <style>
+   /************************************************************************
+-) BASIC CONTAINERS
+*************************************************************************/
 
 body {
 	font-size:13px;
@@ -33,6 +38,9 @@ a {
 	z-index: 9999;
 }
 
+
+/*** LOGO ***/
+
 .logo, .logo a {
 	display:block;
 	height:46px;
@@ -53,18 +61,24 @@ a {
 	border: none;
 }
 
+
+
+/************************************************************************
+-) NAVIGATION
+*************************************************************************/
+
 .sf-menu, .sf-menu * { margin: 6px 0 0 0; padding:0; list-style: none; z-index: 9999;}
 .sf-menu {	line-height: 35px; height: 35px; }
-.sf-menu ul { position: absolute; top: -9999px; width: 180px;  }
+.sf-menu ul { position: absolute; top: -9999px; width: 180px; /* left offset of submenus need to match (see below) */ }
 .sf-menu ul li { width:	100%; }
-.sf-menu li:hover { visibility: inherit;  }
+.sf-menu li:hover { visibility: inherit; /* fixes IE7 'sticky bug' */ }
 .sf-menu li { float: left; position: relative; }
 .sf-menu a { display: block; position: relative; text-decoration: none; font-size: 14px; color: #6d6d6d; padding: 0 5px 0 5px;}
-.sf-menu li:hover ul, .sf-menu li.sfHover ul { left: 0; top: 35px;  z-index: 9999; }
+.sf-menu li:hover ul, .sf-menu li.sfHover ul { left: 0; top: 35px; /* match top ul list item height */ z-index: 9999; }
 ul.sf-menu li:hover li ul, ul.sf-menu li.sfHover li ul { top: -9999px; }
-ul.sf-menu li li:hover ul, ul.sf-menu li li.sfHover ul { left: 195px;  top: -10px; }
+ul.sf-menu li li:hover ul, ul.sf-menu li li.sfHover ul { left: 195px; /* match ul width */ top: -10px; }
 ul.sf-menu li li:hover li ul, ul.sf-menu li li.sfHover li ul { top: -9999px; }
-ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top: 0; }
+ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px; /* match ul width */ top: 0; }
 .sf-menu { float: left; }
 .sf-menu li:hover, .sf-menu li.sfHover, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active { outline: 0; }
 
@@ -94,6 +108,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 .sf-menu .current ul li a {
 	color: #fff;
 }
+
+
+/*** SOCIAL BUTTONS ***/
 
 .social_bookmarks {
 	float: right;
@@ -133,6 +150,12 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	background: transparent url(../images/twitter.png) 0 0  no-repeat;
 }
 
+
+
+/************************************************************************
+-) TEASER
+*************************************************************************/
+
 .teaser, .content {
 
 }
@@ -146,9 +169,18 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	color: #6d6d6d;
 }
 
+/************************************************************************
+-) BUTTONS
+*************************************************************************/
+
 #call_to_action {
 	margin-top: 23px;
 }
+
+
+/************************************************************************
+-) NIVO SLIDER
+*************************************************************************/
 
 #slider {
 	width:445px;
@@ -160,6 +192,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	z-index:1;
 }
 
+/* The Nivo Slider styles */
 .nivoSlider {
 	position:relative;
 }
@@ -168,7 +201,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	top:0px;
 	left:0px;
 }
-
+/* If an image is wrapped in a link */
 .nivoSlider a.nivo-imageLink {
 	position:absolute;
 	top:0px;
@@ -181,21 +214,21 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	z-index:60;
 	display:none;
 }
-
+/* The slices in the Slider */
 .nivo-slice {
 	display:block;
 	position:absolute;
 	z-index:50;
 	height:100%;
 }
-
+/* Caption styles */
 .nivo-caption {
 	position:absolute;
 	left:0px;
 	bottom:0px;
 	background:#333333;
 	color:#fff;
-	opacity:0.9; 
+	opacity:0.9; /* Overridden by captionOpacity setting */
 	width:100%;
 	z-index:89;
 }
@@ -209,7 +242,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 .nivo-html-caption {
     display:none;
 }
-
+/* Direction nav styles (e.g. Next & Prev) */
 .nivo-directionNav a {
 	position:absolute;
 	top:45%;
@@ -237,6 +270,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	background: url(../images/btn_next_hover.png) no-repeat;
 }
 
+/* Control nav styles (e.g. 1,2,3...) */
 .nivo-controlNav a {
 	position:relative;
 	z-index:99;
@@ -245,6 +279,11 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 .nivo-controlNav a.active {
 	font-weight:bold;
 }
+
+
+/************************************************************************
+-) COIN SLIDER
+*************************************************************************/
 
 .coin-slider {
 
@@ -284,9 +323,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	background: url(../images/btn_next_hover.png) no-repeat;
 }
 
+/************************************************************************
+-) BOXES
+*************************************************************************/
+
 .box h2 {
 	margin-top: 10px;
 }
+
 
 .box h3 {
 	margin-top: 2px;
@@ -305,6 +349,13 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	padding-bottom: 20px;
 }
 
+
+
+/************************************************************************
+-) MAIN
+*************************************************************************/
+
+
 #main_content {
 	margin-top: 30px;
 }
@@ -316,6 +367,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 .static h1 {
 	padding: 0 50px 0 50px;
 }
+
 
 .middle {
 	height: 62px;
@@ -336,6 +388,12 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 	background: url(../images/testimonial.png) 30px 2px no-repeat;
 	display:block;
 }
+
+
+
+/************************************************************************
+-) PORTFOLIO
+*************************************************************************/
 
 .portfolio-item {
 	background: #ebebeb;
@@ -359,6 +417,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul { left: 200px;  top
 .portfolio-item h3 {
 	border: none;
 }
+
+
+/*** PORTFOLIO LISTING FILTER ***/
 
 #portfolio-filter {
 	margin-bottom: 50px;
@@ -407,11 +468,15 @@ ul#portfolio-filter a:hover {
 	border-top:1px solid #d5d5d5; 
 }
 
+
 ul#portfolio-filter a.current {
 	padding-top:6px; 
 	padding-bottom:5px; 
 	background:#ffffff; 
 }
+
+
+/*** DISPLAY PORTFOLIO ITEMS ***/
 
 ul#portfolio-list { 
 	margin: 65px 0 0 0; 
@@ -461,6 +526,9 @@ ul#portfolio-list-with-sidebar .portfolio-item {
 	margin-right:3px;
 }
 
+
+/*** PORTFOLIO ITEMS ***/
+
 .portfolio-item img.pthumb { 
 	position: absolute; 
 	left: 4px; 
@@ -503,7 +571,7 @@ ul#portfolio-list-with-sidebar .portfolio-item {
 	font-weight:bold; 
 	margin-bottom:8px; 
 	margin-top:0px; 
-	padding-top:0px;  
+	padding-top:0px; /* height:38px;  overflow:hidden; */ 
 }
 
 .portfolio-item .text h4 a { 
@@ -554,6 +622,10 @@ a.work_btn_two, a:hover.work_btn_two {
 	text-decoration: none;
 }
 
+/************************************************************************
+-) BLOG
+*************************************************************************/
+
 .blog {
 	margin-top: 15px;
 }
@@ -575,6 +647,8 @@ a.work_btn_two, a:hover.work_btn_two {
 	padding-right: 20px;
 	border-right: 1px #dedede solid;
 }
+
+/*** AUTHOR BOX ***/
 
 .author_box {
 	display: block;
@@ -612,6 +686,8 @@ a.work_btn_two, a:hover.work_btn_two {
 	top: -20px;
 }
 
+/*** COMMENTS BUBBLE ***/
+
 .post-comments { 
 	float: right;	
 	padding: 3px 0 7px 7px; 
@@ -625,6 +701,9 @@ a.work_btn_two, a:hover.work_btn_two {
 .post-comments a:hover { 
 	color: #000000; 
 }
+
+
+/*** COMMENTS ***/
 
 #comments { 
 	padding-left:0px; 
@@ -724,9 +803,9 @@ a.work_btn_two, a:hover.work_btn_two {
 	font-size: 100%; 
 	padding: 10px; 
 	border:1px solid #cdcdcd; 
-	
+	/* Firefox */
 	background: -moz-linear-gradient(left, #ffffff, #e2e2e2);
-	
+	/* Safari */
 }
 
 #comments a, #comment-form a { 
@@ -736,6 +815,8 @@ a.work_btn_two, a:hover.work_btn_two {
 #comments a:hover, #comment-form a:hover { 
 	text-decoration:none; 
 }
+
+/*** FORM BUTTON ***/
 
 .form-button-right {  
 	width:143px;
@@ -750,6 +831,9 @@ a.work_btn_two, a:hover.work_btn_two {
 	-webkit-border-radius:5px;
 	border-radius:5px;
 }
+
+
+/*** PAGEBAR ***/
 
 #pagebar { 
 	font: normal 14px; 
@@ -837,6 +921,14 @@ a.work_btn_two, a:hover.work_btn_two {
 	border-radius:5px;	
  }
 
+
+/************************************************************************
+-) SERVICES
+*************************************************************************/
+
+
+/* INDEX SERVICES BOXES */
+
 .service_item {
 	margin-bottom: 20px;
 }
@@ -846,6 +938,9 @@ a.work_btn_two, a:hover.work_btn_two {
 	padding-bottom: 5px;
 }
 
+
+/* SERVICE PAGE */
+
 .service h3 a {
 	color: #333;
 }
@@ -853,6 +948,11 @@ a.work_btn_two, a:hover.work_btn_two {
 .service h3 {
 	margin-bottom: 0px;
 }
+
+
+/************************************************************************
+-) SIDEBAR
+*************************************************************************/
 
 .widget {
 	margin-bottom: 35px;
@@ -897,6 +997,8 @@ a.work_btn_two, a:hover.work_btn_two {
 	padding-bottom: 20px;
 }
 
+/*** LIST ***/
+
 .sidebar ul li {
 	list-style: none;
 	margin-left: -20px;
@@ -921,6 +1023,9 @@ a.work_btn_two, a:hover.work_btn_two {
 .sidebar .first {
 	border-top: 1px solid #d0d0d0;
 }
+
+
+/*** SEARCHFORM HEAD ***/
 
 .search {
 	margin-bottom: 30px;
@@ -952,6 +1057,7 @@ a.work_btn_two, a:hover.work_btn_two {
 	background:#2396d9;
 }
 
+
 #s {
 	border: 1px solid #c0c0c0;
 	width:208px;
@@ -960,6 +1066,11 @@ a.work_btn_two, a:hover.work_btn_two {
 	background: #fff;
 	color:#888888;
 }
+
+
+/************************************************************************
+-) CONTACT FORM
+*************************************************************************/
 
 #contact h1 { 
 	margin: 10px 0 10px; 
@@ -983,6 +1094,8 @@ a.work_btn_two, a:hover.work_btn_two {
 	background-color: #f9f9f9; 
 	-webkit-border-radius:5px;  
 }
+
+/*** FORM STYLE ***/
 
 #contact label { 
 	display: inline-block; 
@@ -1050,7 +1163,7 @@ a.work_btn_two, a:hover.work_btn_two {
 
 #contact span.required { 
 	font-size: 13px; 
-	color: #ff0000; 
+	color: #ff0000; /* Select the colour of the * if the field is required. */
 } 
 
 #message { 
@@ -1081,6 +1194,11 @@ a.work_btn_two, a:hover.work_btn_two {
 acronym { 
 	border-bottom:1px dotted #ccc; 
 }
+
+
+/************************************************************************
+-) FOOTER
+*************************************************************************/
 
 #fullwidth_footer_border {
 	width: 100%;
@@ -1149,9 +1267,14 @@ ul.footer_widget_list {
 	margin-top: 30px;
 }
 
+/*** FOOTER LINKS ***/
+
 .footer_text a, .copyright a {
 	color: #cbcbcb;
 }
+
+
+/*** SOCIAL BUTTONS ***/
 
 .social_bookmarks_footer {
 	float: left;
@@ -1212,6 +1335,10 @@ ul.footer_widget_list {
 	background: transparent url(../images/social/deviantart.png) 0 0  no-repeat;
 }
 
+
+
+
+
 .content p {
 	line-height: 21px;
 	margin-bottom: 25px;
@@ -1269,6 +1396,13 @@ body .alignright_icon {
 	display:block;
 } 
 
+
+/************************************************************************
+-) TEXT STYLES AND IMAGES
+*************************************************************************/
+
+/*** CHECKLIST ***/
+
 ul.checklist { 
 	list-style:none !important; 
 	margin-left:0px;
@@ -1280,6 +1414,8 @@ ul.checklist li {
 	background-position:0px 3px; 
 	padding-left:24px; 
 }
+
+/*** WRONGLIST ***/
 
 ul.wronglist { 
 	list-style:none !important; 
@@ -1293,6 +1429,8 @@ ul.wronglist li {
 	padding-left:24px; 
 }
 
+/*** ARROWLIST ***/
+
 ul.arrowlist { 
 	list-style:none !important; 
 	margin-left:0px; 
@@ -1305,6 +1443,8 @@ ul.arrowlist li {
 	padding-left:24px; 
 }
 
+/*** COMMENTLIST ***/
+
 ul.commentlist { 
 	list-style:none !important; 
 	margin-left:0px; 
@@ -1316,6 +1456,8 @@ ul.commentlist li {
 	background-position:0px 3px; 
 	padding-left:24px; 
 }
+
+/*** BLOCKQUOTE ***/
 
 .details {
 	background: #ebebeb;
@@ -1337,6 +1479,7 @@ ul.commentlist li {
 	margin-top: 10px;
 	color: #333333;
 }
+
 
 .image_border {
 	background: transparent url(../images/bg_image.png) bottom center no-repeat;
@@ -1373,21 +1516,23 @@ ul.commentlist li {
 .hor-minimalist-b td{border-bottom:1px solid #ccc;color:#2396df;padding:6px 8px;}
 .hor-minimalist-b tbody tr:hover td{color:#009;}
 
+/* DEMO 1 */
+
 .wrapper-dropdown-1 {
-    
-    position: relative; 
+    /* Size and position */
+    position: relative; /* Enable absolute positionning for children and pseudo elements */
     width: 133px;
     padding: 5px;
     margin: 20px 0 0 0;
 	z-index:100;
 
-    
+    /* Styles */
     background: #9bc7de;
     color: #fff;
     outline: none;
     cursor: pointer;
 
-    
+    /* Font settings */
     font-weight: bold;
 }
 
@@ -1405,7 +1550,7 @@ ul.commentlist li {
 }
 
 .wrapper-dropdown-1 .dropdown {
-    
+    /* Size & position */
     position: absolute;
     top: 100%;
     left: 0;
@@ -1413,12 +1558,12 @@ ul.commentlist li {
 	width: 142px;
 	margin-left:0;	
 	
-    
+    /* Styles */
     background: #fff;
     list-style: none;
-    font-weight: normal; 
+    font-weight: normal; /* Cancels previous font-weight: bold; */
 
-    
+    /* Hiding */
     opacity: 0;
 }
 
@@ -1430,10 +1575,12 @@ ul.commentlist li {
 	padding-left:10px;	
 }
 
+/* Hover state */
 .wrapper-dropdown-1 .dropdown li:hover a {
     background: #f3f8f8;
 }
 
+/* Active state */
 .wrapper-dropdown-1.active .dropdown {
     opacity: 1;
 }
@@ -1454,16 +1601,25 @@ ul.commentlist li {
   background: linear-gradient(to right,  #9bc7de 0%,#9bc7de 78%,#ffffff 78%,#ffffff 100%);
 }
 
+/* No CSS3 support */
+
 .no-opacity       .wrapper-dropdown-1 .dropdown,
 .no-pointerevents .wrapper-dropdown-1 .dropdown {
     display: none;
-    opacity: 1; 
+    opacity: 1; /* If opacity support but no pointer-events support */
 }
 
 .no-opacity       .wrapper-dropdown-1.active .dropdown,
 .no-pointerevents .wrapper-dropdown-1.active .dropdown {
     display: block;
 }
+
+
+
+
+/************************************************************************
+-) LINK COLOR
+*************************************************************************/
 
 a, .sf-menu a:hover, .service h3 a:hover, .blog h2 a:hover, .sidebar ul li a:hover, .sidebar .current a, ul#portfolio-filter a.current  {
 	color: #2396d9;
@@ -1473,6 +1629,7 @@ a:hover, .sf-menu a:hover, .sf-menu .current a, .footer_text a:hover, .copyright
 	color: #50bfff;
 }
 
+
 a.work_btn_two, .form-button-right, #contact input.submit {
 	background:#2396d9;
 }
@@ -1481,9 +1638,22 @@ a:hover.work_btn_two, .form-button-right:hover, #contact input.submit:hover {
 	background:#50bfff;
 }
 
+
+/************************************************************************
+-) LOGO
+*************************************************************************/
+
+
 .logo a {
 	background: transparent url('images/logo.png') no-repeat top left;
 }
+
+
+/************************************************************************
+-) BUTTONS
+*************************************************************************/
+
+/*** BUTTON BIG ***/
 
 a.btn-big { 
 	background: transparent url(images/btn-big-right.jpg) no-repeat scroll top right; 
@@ -1519,6 +1689,8 @@ a.btn-big:hover span {
 	text-align:center; 
 }
 
+/*** BUTTON SMALL ***/
+
 a.btn { 
 	background: transparent url(images/btn-right.jpg) no-repeat scroll top right; 
 	display: block;  
@@ -1552,12 +1724,27 @@ a.btn:hover span {
 	text-align:center; 
 }
 
+
+
+/*
+	960 Grid System ~ Core CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* `Containers
+----------------------------------------------------------------------------------------------------*/
+
 .container_12,
 .container_16 {
 	margin-left: auto;
 	margin-right: auto;
 	width: 960px;
 }
+
+/* `Grid >> Global
+----------------------------------------------------------------------------------------------------*/
 
 .grid_1,
 .grid_2,
@@ -1619,6 +1806,9 @@ a.btn:hover span {
 	width: 940px;
 }
 
+/* `Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
 .alpha {
 	margin-left: 0;
 }
@@ -1626,6 +1816,9 @@ a.btn:hover span {
 .omega {
 	margin-right: 0;
 }
+
+/* `Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_12 .grid_1 {
 	width: 60px;
@@ -1658,6 +1851,9 @@ a.btn:hover span {
 .container_12 .grid_11 {
 	width: 860px;
 }
+
+/* `Grid >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_16 .grid_1 {
 	width: 40px;
@@ -1707,6 +1903,9 @@ a.btn:hover span {
 	width: 880px;
 }
 
+/* `Prefix Extra Space >> Global
+----------------------------------------------------------------------------------------------------*/
+
 .container_12 .prefix_3,
 .container_16 .prefix_4 {
 	padding-left: 240px;
@@ -1721,6 +1920,9 @@ a.btn:hover span {
 .container_16 .prefix_12 {
 	padding-left: 720px;
 }
+
+/* `Prefix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_12 .prefix_1 {
 	padding-left: 80px;
@@ -1753,6 +1955,9 @@ a.btn:hover span {
 .container_12 .prefix_11 {
 	padding-left: 880px;
 }
+
+/* `Prefix Extra Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_16 .prefix_1 {
 	padding-left: 60px;
@@ -1802,6 +2007,9 @@ a.btn:hover span {
 	padding-left: 900px;
 }
 
+/* `Suffix Extra Space >> Global
+----------------------------------------------------------------------------------------------------*/
+
 .container_12 .suffix_3,
 .container_16 .suffix_4 {
 	padding-right: 240px;
@@ -1816,6 +2024,9 @@ a.btn:hover span {
 .container_16 .suffix_12 {
 	padding-right: 720px;
 }
+
+/* `Suffix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_12 .suffix_1 {
 	padding-right: 80px;
@@ -1848,6 +2059,9 @@ a.btn:hover span {
 .container_12 .suffix_11 {
 	padding-right: 880px;
 }
+
+/* `Suffix Extra Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_16 .suffix_1 {
 	padding-right: 60px;
@@ -1897,6 +2111,9 @@ a.btn:hover span {
 	padding-right: 900px;
 }
 
+/* `Push Space >> Global
+----------------------------------------------------------------------------------------------------*/
+
 .container_12 .push_3,
 .container_16 .push_4 {
 	left: 240px;
@@ -1911,6 +2128,9 @@ a.btn:hover span {
 .container_16 .push_12 {
 	left: 720px;
 }
+
+/* `Push Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_12 .push_1 {
 	left: 80px;
@@ -1943,6 +2163,9 @@ a.btn:hover span {
 .container_12 .push_11 {
 	left: 880px;
 }
+
+/* `Push Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_16 .push_1 {
 	left: 60px;
@@ -1992,6 +2215,9 @@ a.btn:hover span {
 	left: 900px;
 }
 
+/* `Pull Space >> Global
+----------------------------------------------------------------------------------------------------*/
+
 .container_12 .pull_3,
 .container_16 .pull_4 {
 	left: -240px;
@@ -2006,6 +2232,9 @@ a.btn:hover span {
 .container_16 .pull_12 {
 	left: -720px;
 }
+
+/* `Pull Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_12 .pull_1 {
 	left: -80px;
@@ -2038,6 +2267,9 @@ a.btn:hover span {
 .container_12 .pull_11 {
 	left: -880px;
 }
+
+/* `Pull Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
 
 .container_16 .pull_1 {
 	left: -60px;
@@ -2087,6 +2319,11 @@ a.btn:hover span {
 	left: -900px;
 }
 
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
 .clear {
 	clear: both;
 	display: block;
@@ -2095,6 +2332,8 @@ a.btn:hover span {
 	width: 0;
 	height: 0;
 }
+
+/* http://perishablepress.com/press/2009/12/06/new-clearfix-hack */
 
 .clearfix:after {
 	clear: both;
@@ -2107,10 +2346,18 @@ a.btn:hover span {
 	height: 0;
 }
 
+/*
+	The following zoom:1 rule is specifically for IE6 + IE7.
+	Move to separate stylesheet if invalid CSS is a problem.
+*/
 * html .clearfix,
 *:first-child+html .clearfix {
 
 }
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -2145,10 +2392,12 @@ q:before, q:after {
 	content: none;
 }
 
+/* remember to define focus styles! */
 :focus {
 	outline: 0;
 }
 
+/* remember to highlight inserts somehow! */
 ins {
 	text-decoration: none;
 }
@@ -2156,10 +2405,22 @@ del {
 	text-decoration: line-through;
 }
 
+/* tables still need 'cellspacing="0"' in the markup */
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+/*
+	960 Grid System ~ Text CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
 
 body {
 	font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
@@ -2177,6 +2438,9 @@ hr {
 	clear: both;
 	height: 0;
 }
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
 
 h1 {
 	font-size: 32px;
@@ -2216,6 +2480,9 @@ h6 {
 	color: #2396d9;
 }
 
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
 ol {
 	list-style: decimal;
 }
@@ -2243,248 +2510,640 @@ address,
 fieldset {
 	margin-bottom: 20px;
 }
-
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>.RP | RP file extension | HTOFE</title>
-	<meta name="description" content="On this site you will find all the information you need to open the .RP file (Axure RP Project). Browse through the list of programs that support the .RP file extension and download a software that is appropriate for your needs.In order to submit a request, fill in all the fields of the application form.">
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   .RP | RP file extension | HTOFE
+  </title>
+  <meta content="On this site you will find all the information you need to open the .RP file (Axure RP Project). Browse through the list of programs that support the .RP file extension and download a software that is appropriate for your needs.In order to submit a request, fill in all the fields of the application form." name="description">
+  <!--[if IE 7]>
 	
+ 	<![endif]-->
+  <!--[if lt IE 8]>
 	
+	<![endif]-->
+  <!--[if gte IE 9]>
 	
-	
-	
-	
-		
-	
-		
-	
-	
-		
-	
-		
-    
-		
-			
-	
-	
- 	
- 	
-	
-		
-<meta http-equiv="origin-trial" content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
-<body id="top">
-		<div class="container_12 head">
-			<h1 class="grid_4 logo" style="width:216px"><a  class="ie6fix">How To Open File Extension</a></h1>
-			<div class="grid_7">
-				<ul class="sf-menu">
-					<li><a  title="#"><b>#</b></a></li>
-					<li><a  title="A"><b>A</b></a></li>
-					<li><a  title="B"><b>B</b></a></li>
-					<li><a  title="C"><b>C</b></a></li>
-					<li><a  title="D"><b>D</b></a></li>
-					<li><a  title="E"><b>E</b></a></li>
-					<li><a  title="F"><b>F</b></a></li>
-					<li><a  title="G"><b>G</b></a></li>
-					<li><a  title="H"><b>H</b></a></li>
-					<li><a  title="I"><b>I</b></a></li>
-					<li><a  title="J"><b>J</b></a></li>
-					<li><a  title="K"><b>K</b></a></li>
-					<li><a  title="L"><b>L</b></a></li>
-					<li><a  title="M"><b>M</b></a></li>
-					<li><a  title="N"><b>N</b></a></li>
-					<li><a  title="O"><b>O</b></a></li>
-					<li><a  title="P"><b>P</b></a></li>
-					<li><a  title="Q"><b>Q</b></a></li>
-					<li><a  title="R"><b>R</b></a></li>
-					<li><a  title="S"><b>S</b></a></li>
-					<li><a  title="T"><b>T</b></a></li>
-					<li><a  title="U"><b>U</b></a></li>
-					<li><a  title="V"><b>V</b></a></li>
-					<li><a  title="W"><b>W</b></a></li>
-					<li><a  title="X"><b>X</b></a></li>
-					<li><a  title="Y"><b>Y</b></a></li>
-					<li><a  title="Z"><b>Z</b></a></li>
-	
-				</ul>
-			</div>
-			<div class="grid_1">
-					<div id="dd" class="wrapper-dropdown-1">
-						<span>Language</span>
-					    <ul class="dropdown">
-									
-							<li><a >.RP file extension</a></li>
-							<li><a >Extensión .RP</a></li>
-							<li><a >Dateiendung .RP </a></li>
-							<li><a >.RP ファイル拡張子</a></li>
-							<li><a >Estensione .RP</a></li>
-							<li><a >Fichier .RP </a></li>
-							<li><a >Plik .RP</a></li>							
-
-					</ul>
-					</div>
-			</div>
-		</div>
-		
-		<div class="clear"></div>
-		<div class="container_12 head_break">
-			<hr class="grid_12">
-		</div>
-		<div class="clear"></div>		
-		<div class="container_12 content">
-			<div class="grid_8">
-				<h1>How to open .RP file extension?</h1>			
-				<hr class="grid_8 alpha hr_margin">
-				<h2 style="margin-left:210px;">.rp file extension</h2>	
-				<div style="float:left;margin-right:10px;">
-					
-					<ins class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9437218255104925" data-ad-height="200" data-ad-slot="9728908811" data-ad-width="200" data-adsbygoogle-status="done" style="display: inline-block; width: 200px; height: 200px;"><div id="aswift_0_host" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 200px; width: 200px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"></div></ins>				
-				</div>
-				<p style="text-align:justify">Specially dedicated programs are responsible for launching a .rp file saved in a specific format (which we can recognize on the basis of the extension of a given file). The most common problems with .rp files downloaded or received via e-mail are: their incorrect association with programs in the registry, or simply the lack of an appropriate program to open them. <b> To solve the problem with the .rp file it is usually sufficient just to download the appropriate software that supports .rp file format, which can be found in the table below. </b> The most common file format with the .rp extension belongs to the category Various Files. Axure Software Solutions, Inc. is responsible for creating .rp extension file.</p>
-				
-				
-				<div class="details"><p style="background: url(/images/1.png) 20px 20px no-repeat;"><span style="color: #2396d9;font-size:18px;font-weight:bold;text-decoration:none;font-style:normal;">Axure RP Project</span><br>Category: <b>Various Files</b><br>Developer/Producer: <b>Axure Software Solutions, Inc.</b><br>
-											</p></div>				
-					<table class="hor-minimalist-b">
-						<thead>
-							<tr>
-								<th scope="col">Advertising</th>								<th scope="col">Programs that support <strong>.RP</strong> file</th>
-							</tr>
-						</thead>
-						<tbody>
-						
-							<tr>
-								<td rowspan="7">
-<ins class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9437218255104925" data-ad-height="280" data-ad-slot="4938782416" data-ad-width="336" data-adsbygoogle-status="done" style="display: inline-block; width: 336px; height: 280px;"><div id="aswift_1_host" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 280px; width: 336px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"></div></ins></td>								<td style="vertical-align:top;"><b>WINDOWS</b><br>
-  <ul style="list-style-type:decimal;">
-		
-            <li>Axure RP </li>
-          </ul>
-								</td>
-							</tr>
-		
- 
- 
- 
-  				
-					</tbody>
-					</table>					
-				
-				<div class="details"><p style="background: url(/images/2.png) 20px 20px no-repeat;"><span style="color: #2396d9;font-size:18px;font-weight:bold;text-decoration:none;font-style:normal;">Rainbow Painter Image</span><br>Category: <b>Graphic Files</b><br>
-											</p></div>				
-					<table class="hor-minimalist-b">
-						<thead>
-							<tr>
-																<th scope="col">Programs that support <strong>.RP</strong> file</th>
-							</tr>
-						</thead>
-						<tbody>
-						
-							<tr>
-																<td style="vertical-align:top;"><b>WINDOWS</b><br>
-  <ul style="list-style-type:decimal;">
-		
-            <li>XnView </li>
-            <li>Rainbow Painter </li>
-          </ul>
-								</td>
-							</tr>
-		
- 
- 
- 
-  				
-					</tbody>
-					</table>					
-				
-				<div class="details"><p style="background: url(/images/3.png) 20px 20px no-repeat;"><span style="color: #2396d9;font-size:18px;font-weight:bold;text-decoration:none;font-style:normal;">RealPix Image</span><br>Category: <b>Graphic Files</b><br>Developer/Producer: <b>RealNetworks, Inc.</b><br>
-											</p></div>				
-					<table class="hor-minimalist-b">
-						<thead>
-							<tr>
-																<th scope="col">Programs that support <strong>.RP</strong> file</th>
-							</tr>
-						</thead>
-						<tbody>
-						
-							<tr>
-																<td style="vertical-align:top;"><b>WINDOWS</b><br>
-  <ul style="list-style-type:decimal;">
-		
-            <li>RealPlayer </li>
-          </ul>
-								</td>
-							</tr>
-		
- 
- 
- 
-  				
-					</tbody>
-					</table>					
-						
-				<p style="text-align:justify">In HTOFE.com you will find not only extremely useful and professional information on file extensions and programs to run them, but also links to sites from where you can download software dedicated to open a particular file format.</p>
-				<p style="text-align:justify">Our ultimate goal is to provide professional support in solving problems concerning</p>
-					<ul>
-						<li>opening .rp files</li>
-						<li>editing .rp files</li>
-						<li>saving a .rp file</li>
-						<li>conversion of a .rp file</li>
-						<li>corruption of a .rp file</li>					
-					</ul>
-				<p style="text-align:justify">Anyone can still add to our constantly updated database valuable links and information about the .rp file extension. To do this, please, fill out this form <a >here</a> and share your knowledge with the users of  HTOFE.com</p>				
-				<hr class="grid_8 alpha">
-			</div>
-			<div class="grid_1 sb_gradient"></div>
-			<div class="grid_3 sidebar">
-				<div class="search widget">
-					<form action="" id="searchform" method="post">
-						<div>
-							<input type="submit" value="." id="searchsubmit" class="button ">
-							<input type="text" class="searchinput rounded" id="s" name="search" value="">
-						</div>
-					</form>
-									</div>
-				<div class="widget">
-				<h3>Categories</h3>
-					<ul>
-					<li class="first"><a  title="3D&amp;CAD Files">3D&amp;CAD Files</a></li>
-					<li><a  title="Archive Files">Archive Files</a></li>
-					<li><a  title="Audio Files">Audio Files</a></li>
-					<li><a  title="Binary Files">Binary Files</a></li>
-					<li><a  title="Database Files">Database Files</a></li>
-					<li><a  title="Developer Files">Developer Files</a></li>
-					<li><a  title="Digital Video Files">Digital Video Files</a></li>
-					<li><a  title="Disk Image Files">Disk Image Files</a></li>
-					<li><a  title="Document Files">Document Files</a></li>
-					<li><a  title="Encoded&amp;Encrypted Files">Encoded&amp;Encrypted Files</a></li>
-					<li><a  title="Executable Files">Executable Files</a></li>
-					<li><a  title="Font Files">Font Files</a></li>
-					<li><a  title="Game Files">Game Files</a></li>
-					<li><a  title="GPS&amp;GIS Files">GPS&amp;GIS Files</a></li>
-					<li><a  title="Graphic Files">Graphic Files</a></li>
-					<li><a  title="Internet Files">Internet Files</a></li>
-					<li><a  title="RAW Image Files">RAW Image Files</a></li>
-					<li><a  title="Settings Files">Settings Files</a></li>
-					<li><a  title="SpreadSheet Files">SpreadSheet Files</a></li>
-					<li><a  title="System Files">System Files</a></li>
-					<li><a  title="Various Files">Various Files</a></li>
-					</ul>
-				</div>
-	</div>
-	<div class="clear"></div>
-	</div><div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9437218255104925" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 90px;"><div id="aswift_3_host" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 90px; width: 1200px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"></div></ins></div>	<div id="fullwidth_footer_border"></div>
-	
-	<div id="fullwidth_footer_bottom">
-		<div class="container_12">
-			<div class="grid_8 copyright">                   
-				<p class="rights"><a ><img src="rick.jpg" alt="htofe.com"></a> © 2013 - 2023 All rights reserved | 	<a >Contact</a>    </p>           
-			</div>
-			<div class="grid_4 footer_text" style="margin-top:20px">   
-				<a ><img style="border:0;width:88px;height:31px" src="rick.jpg" alt="Valid CSS!"></a>
-				<a ><img src="rick.jpg" alt="Valid XHTML 1.0 Strict" height="31" width="88"></a>	
-			</div>      
-		</div>   
-	<div class="clear"></div>
-	</div>
-
-<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><div id="aswift_2_host" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"></div></ins></body></html>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<![endif]-->
+  <meta content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <meta content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body id="top">
+  <div class="container_12 head">
+   <h1 class="grid_4 logo" style="width:216px">
+    <a class="ie6fix">
+     How To Open File Extension
+    </a>
+   </h1>
+   <div class="grid_7">
+    <ul class="sf-menu">
+     <li>
+      <a title="#">
+       <b>
+        #
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="A">
+       <b>
+        A
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="B">
+       <b>
+        B
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="C">
+       <b>
+        C
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="D">
+       <b>
+        D
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="E">
+       <b>
+        E
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="F">
+       <b>
+        F
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="G">
+       <b>
+        G
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="H">
+       <b>
+        H
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="I">
+       <b>
+        I
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="J">
+       <b>
+        J
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="K">
+       <b>
+        K
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="L">
+       <b>
+        L
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="M">
+       <b>
+        M
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="N">
+       <b>
+        N
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="O">
+       <b>
+        O
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="P">
+       <b>
+        P
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="Q">
+       <b>
+        Q
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="R">
+       <b>
+        R
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="S">
+       <b>
+        S
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="T">
+       <b>
+        T
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="U">
+       <b>
+        U
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="V">
+       <b>
+        V
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="W">
+       <b>
+        W
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="X">
+       <b>
+        X
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="Y">
+       <b>
+        Y
+       </b>
+      </a>
+     </li>
+     <li>
+      <a title="Z">
+       <b>
+        Z
+       </b>
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="grid_1">
+    <div class="wrapper-dropdown-1" id="dd">
+     <span>
+      Language
+     </span>
+     <ul class="dropdown">
+      <li>
+       <a>
+        .RP file extension
+       </a>
+      </li>
+      <li>
+       <a>
+        Extensi&oacute;n .RP
+       </a>
+      </li>
+      <li>
+       <a>
+        Dateiendung .RP
+       </a>
+      </li>
+      <li>
+       <a>
+        .RP ファイル拡張子
+       </a>
+      </li>
+      <li>
+       <a>
+        Estensione .RP
+       </a>
+      </li>
+      <li>
+       <a>
+        Fichier .RP
+       </a>
+      </li>
+      <li>
+       <a>
+        Plik .RP
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <div class="clear">
+  </div>
+  <div class="container_12 head_break">
+   <hr class="grid_12">
+  </div>
+  <div class="clear">
+  </div>
+  <div class="container_12 content">
+   <div class="grid_8">
+    <h1>
+     How to open .RP file extension?
+    </h1>
+    <hr class="grid_8 alpha hr_margin">
+    <h2 style="margin-left:210px;">
+     .rp file extension
+    </h2>
+    <div style="float:left;margin-right:10px;">
+     <ins class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9437218255104925" data-ad-height="200" data-ad-slot="9728908811" data-ad-width="200" data-adsbygoogle-status="done" style="display: inline-block; width: 200px; height: 200px;">
+      <div aria-label="Advertisement" id="aswift_0_host" style="border: none; height: 200px; width: 200px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+      </div>
+     </ins>
+    </div>
+    <p style="text-align:justify">
+     Specially dedicated programs are responsible for launching a .rp file saved in a specific format (which we can recognize on the basis of the extension of a given file). The most common problems with .rp files downloaded or received via e-mail are: their incorrect association with programs in the registry, or simply the lack of an appropriate program to open them.
+     <b>
+      To solve the problem with the .rp file it is usually sufficient just to download the appropriate software that supports .rp file format, which can be found in the table below.
+     </b>
+     The most common file format with the .rp extension belongs to the category Various Files. Axure Software Solutions, Inc. is responsible for creating .rp extension file.
+    </p>
+    <div class="details">
+     <p style="background: url(/images/1.png) 20px 20px no-repeat;">
+      <span style="color: #2396d9;font-size:18px;font-weight:bold;text-decoration:none;font-style:normal;">
+       Axure RP Project
+      </span>
+      <br>
+      Category:
+      <b>
+       Various Files
+      </b>
+      <br>
+      Developer/Producer:
+      <b>
+       Axure Software Solutions, Inc.
+      </b>
+      <br>
+     </p>
+    </div>
+    <table class="hor-minimalist-b">
+     <thead>
+      <tr>
+       <th scope="col">
+        Advertising
+       </th>
+       <th scope="col">
+        Programs that support
+        <strong>
+         .RP
+        </strong>
+        file
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td rowspan="7">
+        <ins class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9437218255104925" data-ad-height="280" data-ad-slot="4938782416" data-ad-width="336" data-adsbygoogle-status="done" style="display: inline-block; width: 336px; height: 280px;">
+         <div aria-label="Advertisement" id="aswift_1_host" style="border: none; height: 280px; width: 336px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+         </div>
+        </ins>
+       </td>
+       <td style="vertical-align:top;">
+        <b>
+         WINDOWS
+        </b>
+        <br>
+        <ul style="list-style-type:decimal;">
+         <li>
+          Axure RP
+         </li>
+        </ul>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <div class="details">
+     <p style="background: url(/images/2.png) 20px 20px no-repeat;">
+      <span style="color: #2396d9;font-size:18px;font-weight:bold;text-decoration:none;font-style:normal;">
+       Rainbow Painter Image
+      </span>
+      <br>
+      Category:
+      <b>
+       Graphic Files
+      </b>
+      <br>
+     </p>
+    </div>
+    <table class="hor-minimalist-b">
+     <thead>
+      <tr>
+       <th scope="col">
+        Programs that support
+        <strong>
+         .RP
+        </strong>
+        file
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td style="vertical-align:top;">
+        <b>
+         WINDOWS
+        </b>
+        <br>
+        <ul style="list-style-type:decimal;">
+         <li>
+          XnView
+         </li>
+         <li>
+          Rainbow Painter
+         </li>
+        </ul>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <div class="details">
+     <p style="background: url(/images/3.png) 20px 20px no-repeat;">
+      <span style="color: #2396d9;font-size:18px;font-weight:bold;text-decoration:none;font-style:normal;">
+       RealPix Image
+      </span>
+      <br>
+      Category:
+      <b>
+       Graphic Files
+      </b>
+      <br>
+      Developer/Producer:
+      <b>
+       RealNetworks, Inc.
+      </b>
+      <br>
+     </p>
+    </div>
+    <table class="hor-minimalist-b">
+     <thead>
+      <tr>
+       <th scope="col">
+        Programs that support
+        <strong>
+         .RP
+        </strong>
+        file
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td style="vertical-align:top;">
+        <b>
+         WINDOWS
+        </b>
+        <br>
+        <ul style="list-style-type:decimal;">
+         <li>
+          RealPlayer
+         </li>
+        </ul>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p style="text-align:justify">
+     In HTOFE.com you will find not only extremely useful and professional information on file extensions and programs to run them, but also links to sites from where you can download software dedicated to open a particular file format.
+    </p>
+    <p style="text-align:justify">
+     Our ultimate goal is to provide professional support in solving problems concerning
+    </p>
+    <ul>
+     <li>
+      opening .rp files
+     </li>
+     <li>
+      editing .rp files
+     </li>
+     <li>
+      saving a .rp file
+     </li>
+     <li>
+      conversion of a .rp file
+     </li>
+     <li>
+      corruption of a .rp file
+     </li>
+    </ul>
+    <p style="text-align:justify">
+     Anyone can still add to our constantly updated database valuable links and information about the .rp file extension. To do this, please, fill out this form
+     <a>
+      here
+     </a>
+     and share your knowledge with the users of  HTOFE.com
+    </p>
+    <hr class="grid_8 alpha">
+   </div>
+   <div class="grid_1 sb_gradient">
+   </div>
+   <div class="grid_3 sidebar">
+    <div class="search widget">
+     <form action id="searchform" method="post">
+      <div>
+       <input class="button" id="searchsubmit" type="submit" value=".">
+       <input class="searchinput rounded" id="s" name="search" type="text" value>
+      </div>
+     </form>
+    </div>
+    <div class="widget">
+     <h3>
+      Categories
+     </h3>
+     <ul>
+      <li class="first">
+       <a title="3D&amp;CAD Files">
+        3D&amp;CAD Files
+       </a>
+      </li>
+      <li>
+       <a title="Archive Files">
+        Archive Files
+       </a>
+      </li>
+      <li>
+       <a title="Audio Files">
+        Audio Files
+       </a>
+      </li>
+      <li>
+       <a title="Binary Files">
+        Binary Files
+       </a>
+      </li>
+      <li>
+       <a title="Database Files">
+        Database Files
+       </a>
+      </li>
+      <li>
+       <a title="Developer Files">
+        Developer Files
+       </a>
+      </li>
+      <li>
+       <a title="Digital Video Files">
+        Digital Video Files
+       </a>
+      </li>
+      <li>
+       <a title="Disk Image Files">
+        Disk Image Files
+       </a>
+      </li>
+      <li>
+       <a title="Document Files">
+        Document Files
+       </a>
+      </li>
+      <li>
+       <a title="Encoded&amp;Encrypted Files">
+        Encoded&amp;Encrypted Files
+       </a>
+      </li>
+      <li>
+       <a title="Executable Files">
+        Executable Files
+       </a>
+      </li>
+      <li>
+       <a title="Font Files">
+        Font Files
+       </a>
+      </li>
+      <li>
+       <a title="Game Files">
+        Game Files
+       </a>
+      </li>
+      <li>
+       <a title="GPS&amp;GIS Files">
+        GPS&amp;GIS Files
+       </a>
+      </li>
+      <li>
+       <a title="Graphic Files">
+        Graphic Files
+       </a>
+      </li>
+      <li>
+       <a title="Internet Files">
+        Internet Files
+       </a>
+      </li>
+      <li>
+       <a title="RAW Image Files">
+        RAW Image Files
+       </a>
+      </li>
+      <li>
+       <a title="Settings Files">
+        Settings Files
+       </a>
+      </li>
+      <li>
+       <a title="SpreadSheet Files">
+        SpreadSheet Files
+       </a>
+      </li>
+      <li>
+       <a title="System Files">
+        System Files
+       </a>
+      </li>
+      <li>
+       <a title="Various Files">
+        Various Files
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="clear">
+   </div>
+  </div>
+  <div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;">
+   <ins class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9437218255104925" data-ad-format="auto" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 90px;">
+    <div aria-label="Advertisement" id="aswift_3_host" style="border: none; height: 90px; width: 1200px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;" tabindex="0" title="Advertisement">
+    </div>
+   </ins>
+  </div>
+  <div id="fullwidth_footer_border">
+  </div>
+  <div id="fullwidth_footer_bottom">
+   <div class="container_12">
+    <div class="grid_8 copyright">
+     <p class="rights">
+      <a>
+       <img alt="htofe.com" src="rick.jpg">
+      </a>
+      &copy; 2013 - 2023 All rights reserved |
+      <a>
+       Contact
+      </a>
+     </p>
+    </div>
+    <div class="grid_4 footer_text" style="margin-top:20px">
+     <a>
+      <img alt="Valid CSS!" src="rick.jpg" style="border:0;width:88px;height:31px">
+     </a>
+     <a>
+      <img alt="Valid XHTML 1.0 Strict" height="31" src="rick.jpg" width="88">
+     </a>
+    </div>
+   </div>
+   <div class="clear">
+   </div>
+  </div>
+  <ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;">
+   <div aria-label="Advertisement" id="aswift_2_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+   </div>
+  </ins>
+ </body>
+</html>

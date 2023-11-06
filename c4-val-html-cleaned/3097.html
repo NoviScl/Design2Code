@@ -1,5 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-<style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <style>
+   /* 
+   css Copyright (c) 2006-2007 by Karelia Software. All rights reserved.
+   css released under Creative Commons License 
+        - http://creativecommons.org/licenses/by-sa/2.5/ 
+   All associated graphics belong to their respective owners 
+        and are licensed separately. 
+*/
+
+
+/*
+GLOBAL
+
+Try to define style properties as globally as possible. E.g. the basic font setting should be right there for the body element
+*/
 
 * { 
 	margin:0px;
@@ -9,7 +25,7 @@
 
 body {
 	font-family:  Georgia, Times, "Times New Roman", serif;
-	font-size: 76%; 
+	font-size: 76%; /* as recommended in CSS guide */
 	background:#fff;
 	color:#111;
 	word-wrap:break-word;
@@ -32,6 +48,7 @@ a:hover {
 a:active {
 	color:#b11;
 }
+
 
 h2 {
 	font-size: 150%;
@@ -73,6 +90,11 @@ ul {
 	list-style-type:square;
 }
 
+
+/*
+SITEMENU
+*/
+
 #sitemenu {
 	clear:right;
 	color: #666;
@@ -106,6 +128,11 @@ ul {
 	color:#300 !important;
 }
 
+
+/* 
+MAIN PART 
+*/
+
 .article, #index {
 	margin:8px;
 }
@@ -120,6 +147,11 @@ ul {
 	color: #666;
 	font-style: italic;
 }
+
+/*
+SIDEBAR & CALLOUTS
+*/
+
 
 #page-content {
 	width:776px;
@@ -166,11 +198,15 @@ body.allow-sidebar #main {
 	padding: 12px;
 }
 
+/* 
+PHOTO GRID PAGE
+*/
+
 .photogrid-index {
     text-align: center;
     margin: auto;
-    overflow: hidden; 
-	height:1%; 
+    overflow: hidden; /* for IE 5 Mac */
+	height:1%; /* for IE 5, 6 Win */
 }
 
 .photogrid-index a {
@@ -185,7 +221,7 @@ body.allow-sidebar #main {
     float: left;
     position:relative;
     width:142px;
-    height:180px;	
+    height:180px;	/* room for caption */
 	margin:5px 4px;
     padding-top: 10px;
     color:inherit;
@@ -204,7 +240,7 @@ body.allow-sidebar .gridItem {
     margin: 4px 7px 0px 5px;
 	padding: 0px 2px;
     position:absolute;
-	top: 140px; 
+	top: 140px; /* needs to leave 38px from the bottom of the gridItemÂ */
 	width: 128px;
 }
 
@@ -223,6 +259,11 @@ body.allow-sidebar .gridItem h3 {
     right: 0;
     left: 0;
 }
+
+
+/*
+PHOTO NAVIGATION
+*/
 
 .photo-navigation {
 	position:relative;
@@ -269,6 +310,9 @@ body.allow-sidebar .gridItem h3 {
     background: url(photo-list.gif)		no-repeat;
 }
 
+
+/* IE 6 Hack */
+/* Hides from IE5-mac \*/
 * html .gridItem img {
 	position: relative;
 	top:0px;
@@ -278,7 +322,14 @@ body.allow-sidebar .gridItem h3 {
 	position: relative;
 	top: 0px;
 }
+/* End hide from IE5-mac */
 
+
+
+
+/* 
+PAGE BOTTOM
+*/
 #page-bottom {
 	margin:2em 0px 0px 0px;
 	padding-bottom: 2px;
@@ -287,6 +338,9 @@ body.allow-sidebar .gridItem h3 {
 	text-align: center;	
 }
 
+/*
+OTHER
+*/
 .article-thumbnail {
 	padding: 3px 8px 0px 0px;
 	float:left;
@@ -295,6 +349,13 @@ body.allow-sidebar .gridItem h3 {
 	clear:left;
 }
 
+/* 
+SANDVOX INTERNALS
+	
+these should be present in every style sheeto ensure that certain classes used by Sandvox to hide and clear elements are respected.
+Don't change them unless you have very good reason to do so.
+*/
+
 .clear {clear: both; height: 0;}
 #main .clear {clear:left;}
 .hidden {display:none;}
@@ -302,8 +363,15 @@ img.narrow {float: right;}
 img.wide {display: block;}
 .ImageElement, .VideoElement { text-align:center;}
 
+
+/* IE 5/5.5 Hackery */
 @media tty {
-i{content:"\";}} @import 'ie.css'; 
+i{content:"\";/*" "*/}} @import 'ie.css'; /*";}
+}/* */
+
+
+
+/* IE7 hacks */
 
 *:first-child+html .gridItem img {
 	position:relative;
@@ -314,6 +382,9 @@ i{content:"\";}} @import 'ie.css';
 	position:relative;
 	top:0px;
 }
+
+
+/* Contact Element (standard and customized HTML) */
 
 form.contactElement textarea,
 form.contactElement input,
@@ -334,89 +405,207 @@ form.contactElement th {
 	width:25%;
 }
 
+/* Contact Element For IE 7 */
 *:first-child+html form.contactElement input.submit {
 	padding:0px 10%;
 	min-width: auto;
 }
 
 td.dli1 { text-align:center;}
-
-</style>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<title>
-			Albuquerque | I've Seen It All - And I Don't Mean Maybe | Kevin Jolly
-		</title>
-		<meta name="author" content="Kevin Jolly">
-		<meta name="robots" content="all">
-		<meta name="generator" content="Sandvox Pro 1.2.7">
-		<meta name="viewport" content="width=769">
-
-	</head>
-	<body class="sandvox no-sidebar" id="www_kevinjolly_com">
-		<div id="page-container" class="photo-page">
-			<div id="page">
-				<div id="page-top" class="no-logo">
-					<div id="title">
-						<h1 id="k-Root-siteTitleHTMLInherited-D8F6325541614872BFE6-h1"><a ><span class="in">I've Seen It All - And I Don't Mean Maybe</span></a></h1>
-						<p id="k-Page-siteSubtitleHTMLInherited-263-st"><span class="in"><span style="font-size: 14px;">Coast to Coast by Motorcycle in 1924</span></span></p>
-					</div>
-					<div id="sitemenu-container">
-						<div id="sitemenu">
-							<h2 class="hidden">Site Navigation<a >[Skip]</a></h2>
-							<div id="sitemenu-content">
-								<ul>
-									<li class="i1 o"><a  title=""><span id="k-Page_sitemenu-titleHTML-101-m" class="in">I've&nbsp;Seen&nbsp;It&nbsp;All</span></a></li>
-									<li class="i2 e"><a  title="Motored to the Pacific"><span id="k-Page_sitemenu-titleHTML-141-m" class="in">Motored&nbsp;to&nbsp;the&nbsp;Pacific</span></a></li>
-									<li class="i3 o"><a  title="Phil's Journal"><span id="k-Page_sitemenu-titleHTML-373-m" class="in">Phils'&nbsp;Journal</span></a></li>
-									<li class="i4 e"><a  title="Postcards and Photos"><span id="k-Page_sitemenu-titleHTML-194-m" class="in">Postcards&nbsp;and&nbsp;Photos</span></a></li>
-									<li class="i5 o last-item"><a  title=""><span id="k-Page_sitemenu-titleHTML-319-m" class="in">Buy&nbsp;The&nbsp;Book</span></a></li>
-								</ul>
-							</div> 
-						</div> 
-					</div> 
-				</div> 
-				<div class="clear"></div>
-				<div id="page-content">
-					<div id="main">
-						<div id="main-top"></div>
-						<div id="main-content">
-							<h2 id="k-Page-titleHTML-263-h2"><span class="in">Albuquerque</span></h2>
-
-<div class="photo-navigation">
-	<div id="previous-photo"><a class="imageLink" >Previous</a></div>
-	<div id="next-photo"><a class="imageLink" >Next</a></div>
-	<div id="photo-list"><a class="imageLink" >List</a></div>
-</div>
-
-<div id="k-Element-image-262" class="ImageElement">
-	<div class="photo">
-		<img src="rick.jpg" alt="Journal_final-3" width="640" height="524">
-	</div>
-	<div id="k-Element-captionHTML-262" class="caption"><p>July 16, 1924 - Albuquerque, New Mexico</p>
-<p>"I left Datil, New Mexico early and had a hard gravel road clear to Albuquerque except for a few sandy places. Most of the road followed the Rio Grande River. I arrived in Albuquerque at noon and worked on my motor cycle a couple of hours tightening it up."&nbsp;</p>
-</div>
-</div>
-
-<div class="clear"></div>
-<div class="article-info">
-</div> 
-
-						</div> 
-						<div id="main-bottom"></div>
-					</div> 
-				</div> 
-				<div class="clear"></div>
-				<div id="page-bottom">
-					<div id="k-Page-copyrightHTMLInherited-263"><p><br>
-</p>
-<hr>
-<p>Copyright 2007, Kevin Jolly</p>
-</div>
-					<div class="hidden"> <a >[Back To Top]</a></div>
-				</div> 
-			</div> 
-			<div id="extraDiv1"><span></span></div><div id="extraDiv2"><span></span></div><div id="extraDiv3"><span></span></div><div id="extraDiv4"><span></span></div><div id="extraDiv5"><span></span></div><div id="extraDiv6"><span></span></div>
-		</div> 
-	
-
-</body></html>
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <title>
+   Albuquerque | I've Seen It All - And I Don't Mean Maybe | Kevin Jolly
+  </title>
+  <meta content="Kevin Jolly" name="author">
+  <meta content="all" name="robots">
+  <meta content="Sandvox Pro 1.2.7" name="generator">
+  <meta content="width=769" name="viewport">
+  <!--
+Photo credits for this website's design: <http://www.kevin-jolly.com/sandvox_CleanSheets/Credits.rtf>
+Licensing for this website's design:     <http://www.kevin-jolly.com/sandvox_CleanSheets/License.rtf>
+-->
+ </head>
+ <body class="sandvox no-sidebar" id="www_kevinjolly_com">
+  <div class="photo-page" id="page-container">
+   <div id="page">
+    <div class="no-logo" id="page-top">
+     <div id="title">
+      <h1 id="k-Root-siteTitleHTMLInherited-D8F6325541614872BFE6-h1">
+       <a>
+        <span class="in">
+         I've Seen It All - And I Don't Mean Maybe
+        </span>
+       </a>
+      </h1>
+      <p id="k-Page-siteSubtitleHTMLInherited-263-st">
+       <span class="in">
+        <span style="font-size: 14px;">
+         Coast to Coast by Motorcycle in 1924
+        </span>
+       </span>
+      </p>
+     </div>
+     <!-- title -->
+     <div id="sitemenu-container">
+      <div id="sitemenu">
+       <h2 class="hidden">
+        Site Navigation
+        <a>
+         [Skip]
+        </a>
+       </h2>
+       <div id="sitemenu-content">
+        <ul>
+         <li class="i1 o">
+          <a title>
+           <span class="in" id="k-Page_sitemenu-titleHTML-101-m">
+            I've&nbsp;Seen&nbsp;It&nbsp;All
+           </span>
+          </a>
+         </li>
+         <li class="i2 e">
+          <a title="Motored to the Pacific">
+           <span class="in" id="k-Page_sitemenu-titleHTML-141-m">
+            Motored&nbsp;to&nbsp;the&nbsp;Pacific
+           </span>
+          </a>
+         </li>
+         <li class="i3 o">
+          <a title="Phil's Journal">
+           <span class="in" id="k-Page_sitemenu-titleHTML-373-m">
+            Phils'&nbsp;Journal
+           </span>
+          </a>
+         </li>
+         <li class="i4 e">
+          <a title="Postcards and Photos">
+           <span class="in" id="k-Page_sitemenu-titleHTML-194-m">
+            Postcards&nbsp;and&nbsp;Photos
+           </span>
+          </a>
+         </li>
+         <li class="i5 o last-item">
+          <a title>
+           <span class="in" id="k-Page_sitemenu-titleHTML-319-m">
+            Buy&nbsp;The&nbsp;Book
+           </span>
+          </a>
+         </li>
+        </ul>
+       </div>
+       <!-- sitemenu-content -->
+      </div>
+      <!-- sitemenu -->
+     </div>
+     <!-- sitemenu-container -->
+    </div>
+    <!-- page-top -->
+    <div class="clear">
+    </div>
+    <div id="page-content">
+     <div id="main">
+      <div id="main-top">
+      </div>
+      <div id="main-content">
+       <h2 id="k-Page-titleHTML-263-h2">
+        <span class="in">
+         Albuquerque
+        </span>
+       </h2>
+       <!-- Photo Page Contents -->
+       <div class="photo-navigation">
+        <div id="previous-photo">
+         <a class="imageLink">
+          Previous
+         </a>
+        </div>
+        <div id="next-photo">
+         <a class="imageLink">
+          Next
+         </a>
+        </div>
+        <div id="photo-list">
+         <a class="imageLink">
+          List
+         </a>
+        </div>
+       </div>
+       <!-- Image Element -->
+       <div class="ImageElement" id="k-Element-image-262">
+        <div class="photo">
+         <img alt="Journal_final-3" height="524" src="rick.jpg" width="640">
+        </div>
+        <div class="caption" id="k-Element-captionHTML-262">
+         <p>
+          July 16, 1924 - Albuquerque, New Mexico
+         </p>
+         <p>
+          "I left Datil, New Mexico early and had a hard gravel road clear to Albuquerque except for a few sandy places. Most of the road followed the Rio Grande River.
+         </p>
+        </div>
+       </div>
+       <!-- /Image Element -->
+       <div class="clear">
+       </div>
+       <div class="article-info">
+       </div>
+       <!-- article-info -->
+       <!-- /Photo Page Contents -->
+      </div>
+      <!-- main-content -->
+      <div id="main-bottom">
+      </div>
+     </div>
+     <!-- main -->
+    </div>
+    <!-- content -->
+    <div class="clear">
+    </div>
+    <div id="page-bottom">
+     <div id="k-Page-copyrightHTMLInherited-263">
+      <p>
+       <br>
+      </p>
+      <hr>
+      <p>
+       Copyright 2007, Kevin Jolly
+      </p>
+     </div>
+     <div class="hidden">
+      <a>
+       [Back To Top]
+      </a>
+     </div>
+    </div>
+    <!-- page-bottom -->
+   </div>
+   <!-- container -->
+   <div id="extraDiv1">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv2">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv3">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv4">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv5">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv6">
+    <span>
+    </span>
+   </div>
+  </div>
+  <!-- specific body type -->
+ </body>
+</html>

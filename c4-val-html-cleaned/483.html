@@ -1,17 +1,22 @@
-<!DOCTYPE html><html><head>
-<style>
-@charset "utf-8";
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   @charset "utf-8";
+/* CSS Document */
 
+
+/** MAIN CONTENT FORMATTING (body/inner content div/links) **/
 body{
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 12px;
 	background-color: #909090;
 }
 
-body a:link {color: #0000ff;}      
-body a:visited {color: #0000ff;}  
-body a:hover {color: #0000ff;}  
-body a:active {color: #ff0000;}  
+body a:link {color: #0000ff;}      /* unvisited link */
+body a:visited {color: #0000ff;}  /* visited link */
+body a:hover {color: #0000ff;}  /* mouse over link */
+body a:active {color: #ff0000;}  /* selected link */
 
 div.footer{
 	font-size: 12px;
@@ -27,10 +32,10 @@ div.footer{
 	font-family:"Times New Roman", Times, serif;
 }			
 
-.footer	a:link {color:#ffffff;}      
-.footer	a:visited {color:#ffffff;}  
-.footer	a:hover {color:#ffffff;}  
-.footer	a:active {color:#ffffff;}  
+.footer	a:link {color:#ffffff;}      /* unvisited link */
+.footer	a:visited {color:#ffffff;}  /* visited link */
+.footer	a:hover {color:#ffffff;}  /* mouse over link */
+.footer	a:active {color:#ffffff;}  /* selected link */
 
 a.linkNoStyle{
 	text-decoration: none;
@@ -88,12 +93,12 @@ a img{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: solid 1px #c3c3c3;
-	background-color: #FFFFFF; 	
+	background-color: #FFFFFF; /*for browsers that cant have cool things (*cough* IE)*/	
 	z-index: 1;		
 }
 
 .pageContainer{
-	background-color: rgba(255,255,255,0.93); 		
+	background-color: rgba(255,255,255,0.93); /*for real browsers*/		
 }	
 
 input{
@@ -111,6 +116,9 @@ input{
 .checkbox{
 	cursor: pointer;	
 }
+
+
+/*** BASIC FORMATTING ***/
 
 .greenFont{
 	color: #009000;
@@ -188,6 +196,8 @@ input{
 	margin: 5px;
 }
 
+/*** ERROR DIV/HELP ICON ***/
+
 .divError{
 	display: none;
 	margin-top: 0px;
@@ -200,6 +210,9 @@ input{
 	height: 12px;
 	width: 12px;
 }
+
+
+/*** POP-UP BOXES STYLES ***/
 
 .divPopupHeaderContainer{
 	float: left;
@@ -279,15 +292,15 @@ input{
 }
 
 #divMsgPopup{
-	z-index:98; 
+	z-index:98; /* Message/Error popup has highest priority after alerts */
 }
 
 #divConfirmMsgPopup{
-	z-index:97; 	
+	z-index:97; /* Confirm popup has 2nd highest priority */	
 }
 
 #divInputMsgPopup{
-	z-index:96; 	
+	z-index:96; /* Input popup has 3rd highest priority */	
 }
 
 #divInputMsgPopup_Input{
@@ -319,6 +332,9 @@ input{
 	clear: both;
 }
 
+
+/*MAIN-PAGE/CONTENT-PAGES FORMATTING*/
+
 .mainContent_heading{
 	text-align: center;
 }
@@ -329,9 +345,10 @@ input{
 }
 
 .mainContent_content{
-	margin-left: 35px; 
+	margin-left: 35px; /*indent*/
 }
 
+/* HELP/SUPPORT PAGE */
 .help_faq_a{
 	font-size: 12px;
 	margin-left: 35px;
@@ -342,12 +359,17 @@ input{
 	font-size: 13px;
 }
 
-@charset "utf-8";
 
-div.mainMenu a:link, div.guidesLinks a:link {line-height: 25px;}      
-div.mainMenu a:visited, div.guidesLinks a:link {line-height: 25px;}  
-div.mainMenu a:hover, div.guidesLinks a:link {line-height: 25px;}  
-div.mainMenu a:active, div.guidesLinks a:link {line-height: 25px;}  
+@charset "utf-8";
+/* CSS Document */
+
+
+/** Guides formatting **/
+
+div.mainMenu a:link, div.guidesLinks a:link {line-height: 25px;}      /* unvisited link */
+div.mainMenu a:visited, div.guidesLinks a:link {line-height: 25px;}  /* visited link */
+div.mainMenu a:hover, div.guidesLinks a:link {line-height: 25px;}  /* mouse over link */
+div.mainMenu a:active, div.guidesLinks a:link {line-height: 25px;}  /* selected link */
 
 #divBackground{
 	position: fixed;
@@ -369,6 +391,7 @@ div.mainMenu a:active, div.guidesLinks a:link {line-height: 25px;}
 div.questInfo {
 	width: 200px;
 }
+
 
 div.itemContainer {
 	margin: 5px;
@@ -404,390 +427,890 @@ h3{
 .guidesLinksList {
 	margin-left: 35px;
 }
-
-</style>
-		<title>
-        Guiderz - Ragnarok Treasure Hunter Quests
-		</title>
-		<meta name="description" content="A walkthrough of all of the Treasure Hunter quests (also known as THQs or Token Quests) in Ragnarok Online.">
-		<meta name="keywords" content="guiderz, ragnarok online, ro, guide, quest, treasure hunter, thq, token quest">
-		
-        <meta charset="UTF-8">
-        
-           
-        
-		
-              
-        
-          
-	<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
-	<body style="">
-    <div id="divBackground">    
-    </div>	   
-		    
-    <div id="divPage">
-        <div class="innerContentContainerWide">
-            <div class="float-left mainMenu pageContainer">
-				<br><a  title="Guiderz MVP Tracker Home" class="linkNoStyle"><img src="rick.jpg" id="img_menuGuiderzHome" width="155" height="37" alt="Guiderz MVP Tracker Home" class="btnAnimateGraphics" tabindex="1"></a><br><br><a  title="Create an MVP Tracker" class="linkNoStyle"><img src="rick.jpg" id="img_menuCreateMVPTracker" width="155" height="37" alt="Create an MVP Tracker" class="btnAnimateGraphics" tabindex="1"></a><br><br><a  title="Support" class="linkNoStyle"><img src="rick.jpg" id="img_menuSupport" width="155" height="37" alt="Support" class="btnAnimateGraphics" tabindex="2"></a><br><br><a  title="Ragnarok Online Guides" class="linkNoStyle"><img src="rick.jpg" id="img_menuROguides" width="155" height="37" alt="Ragnarok Online Guides" class="btnAnimateGraphics" tabindex="3"></a><br><br>     
-                <img src="rick.jpg" id="img_menuTableOfContents" width="155" height="37" alt="Table of Contents">
-                <br>
-                <a  title="Treasure Hunter Quest Requirements">THQ Requirements</a>
-                <br>
-                <a  title="Treasure Hunter Quest Description">THQ Description</a>
-                <br>	
-                <a  title="Treasure Hunter Quest Lists">Quest Lists</a>
-                <br>	
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 1">Quest List 1</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 2">Quest List 2</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 3">Quest List 3</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 4">Quest List 4</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 5">Quest List 5</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 6">Quest List 6</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 7">Quest List 7</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 8">Quest List 8</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 9">Quest List 9</a>											
-                <br>		
-                &nbsp;&nbsp;&nbsp;<a  title="Treasure Hunter Quest List 10">Quest List 10</a>											
-                <br><br>            
-            </div>  
-            <div class="pageContainer float-right" style="padding: 20px; width: 773px;">
-            <span id="spanGuiderzLogoHeader" class="guiderzLogoHeader"><a  title="Guiderz for Gamerz" class="linkNoStyle"><img src="rick.jpg" id="imgGuiderzLogoHeader" width="238" height="49" alt="Guiderz for Gamerz" class="btnAnimateGraphics"></a></span>         
-            <img src="rick.jpg" width="443" height="73" alt="Guiderz Ragnarok Online Guides">
-            <br>
-            <br>
-            <a name="requirements"></a>
-            <div class="pageContainer float-right questInfo itemContainer">
-                <h3>Treasure Hunter Quest (THQ)</h3>
-                <br>
-                <b><u>Requirements:</u></b>
-                <br>
-                25,000 zeny
-                <br>
-                <br>
-                <b><u>Rewards:</u></b>
-                <br>
-                Allows you to complete Treasure Hunter quests
-            </div>            
-            <img src="rick.jpg" alt="Treasure Hunter Quest (THQ) Guide" width="490" height="44">
-            <br>
-            <br>
-            <br>
-            <div id="divBody">
-                <a name="treasure_hunter"></a>
-                <h2>Treasure Hunter Quest Description</h2>
-                <br>
-                <b>NOTE: Treasure Hunter quests may not be enabled on your server. Some Ragnarok Online private servers choose to disable or customize the THQ quests.</b>
-                <br><br>
-                Treasure Hunter quests (sometimes known as THQs or Token Quests) are repeatable quests that when completed yeild tokens as rewards.
-                 <div class="pageContainer float-left itemContainer">
-                	<img src="rick.jpg" alt="Treasure Hunter Guild locaton" width="132" height="129">
-				</div>               
-                These tokens can be exchanged for rewards such as weapons and cards at the Token Shop. Your tokens are shared among all of the characters on your account.
-                <br>
-                <br>
-                To become a Treasure Hunter and start earning tokens you must enroll on the second floor of the Treasure Hunter Guild in Yuno. The building is in the lower left corner of Yuno (the first NPCs you will see once inside will be a Kafra and a 'Pub Master'). Go up the stairs to the second floor and talk to the Guild Master at the end of the hallway. Pay him 25,000z to enroll as a Treasure Hunter and start completing Treasure Hunter Quests.
-                You can only complete 1 quest every hour, and a quests' availability resets each server hour. This means that if you complete a quest at 1:57, you can do another one at 2:00. So time your quests carefully so you can do 2 quests right after each other.
-                <br>
-                <br>
-                <hr>
-                <a name="questlist"></a>
-                <h2>Treasure Hunter Quests List</h2>
-                <br>
-                <b>NOTE:</b> Easy quests are in <font color="#0000ff">Blue</font> and hard quests are in <font color="#ff0000">Red</font>. Harder quests give more tokens as a reward.<br>
-                <br>
-                <br>
-                <hr>
-                <a name="questlist1"></a>
-                <h2>Treasure Hunter Quest List 1</h2>
-                <br>
-                <font color="#0000ff"><b>Lost Old Man</b></font><br>
-                Map: mjolnir_09 (187,189)<br>
-                NPC Name: Old Man<br>
-                Req: Talk to the NPC<br>
-                Rewards: 1 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Master Needs His Bow</b></font><br>
-                Map: pay_arche (86,129)<br>
-                NPC Name: Archer<br>
-                Req: Give NPC a Letter (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#0000ff"><b>The Hit List</b></font><br>
-                Map: prt_fild06 (37,192)<br>
-                NPC Name: Farmer<br>
-                Req: 20 Worm Peelings, 20 Jellopy, 20 Fluff and 20 Clover (dropped by mobs)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>The Sad Widow</b></font><br>
-                Map: prontera (264,353)<br>
-                NPC Name: Old Lady<br>
-                Req: 15 Memento (dropped by mobs)<br>
-                Rewards: 3 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist2"></a>
-                <h2>Treasure Hunter Quest List 2</h2>
-                <br>
-                <font color="#0000ff"><b>The Strange Letter</b></font><br>
-                Map: morocc (59,109)<br>
-                NPC Name: Erika<br>
-                Req: Give NPC a Letter (provided by quest manager)<br>
-                Rewards: 1 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Jur for Jeramiah</b></font><br>
-                Map: moc_fild16 (inside Assassin Guild)(15,30)<br>
-                NPC Name: Jeramiah<br>
-                Req: Give NPC Jeremiah's Jur (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#0000ff"><b>Bee Keepers Hunny</b></font><br>
-                Map: prt_fild07 (316,263)<br>
-                NPC Name: Marsh Man<br>
-                Req: 20 Honey (dropped by mobs)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>The Wander Man</b></font><br>
-                Map: payon (161,72)<br>
-                NPC Name: Molly<br>
-                Req: 1 Skull (dropped by Alarm/Wanderer/Flame Skull/Wind Ghost/etc..)<br>
-                Rewards: 3 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist3"></a>
-                <h2>Treasure Hunter Quest List 3</h2>
-                <br>
-                <font color="#0000ff"><b>Damn Pixies!</b></font><br>
-                Map: moc_fild04 (208,322)<br>
-                NPC Name: Clark<br>
-                Req: 30 Elder Pixie's Moustache (dropped by Giearth/Knocker)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Package Delivery</b></font><br>
-                Map: yuno_fild01 (186,162)<br>
-                NPC Name: Flank<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>Prontera Culvert</b></font><br>
-                Map: prt_sewb1 (120,245)<br>
-                NPC Name: Sewer Management Knight<br>
-                Req: 150 Worm Peelings (dropped by Thief Bugs, Andres)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>Trouble at the Coal Mine</b></font><br>
-                Map: mjolnir_02 (87,357)<br>
-                NPC Name: Man<br>
-                Req: 50 Lantern (dropped by Skeleton Worker, Pitman)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist4"></a>
-                <h2>Treasure Hunter Quest List 4</h2>
-                <br>
-                <font color="#0000ff"><b>Zombie Attack</b></font><br>
-                Map: pay_arche (45,138)<br>
-                NPC Name: Flora<br>
-                Req: 50 Decayed Nail (dropped by Zombie/zombie-like mobs)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Mystic Wizard</b></font><br>
-                Map: yuno (on top of a house)(45,138)<br>
-                NPC Name: Zed<br>
-                Req: Give NPC Zed's Staff (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#0000ff"><b>Aww Shoot!</b></font><br>
-                Map: prontera (176,204) <br>
-                NPC Name: Dassy<br>
-                Req: 20 Shoot (dropped by Plants/Les/Mandragora)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>Emperium</b></font><br>
-                Map: prt_gld (157,99)<br>
-                NPC Name: Czhore<br>
-                Req: 1 Emperium (dropped by Shining Plant/Orc Zombie/Requiem/Mineral/etc..)<br>
-                Rewards: 2 Tokens (and a Treasure Chest)<br>
-                <br>
-                <hr>
-                <a name="questlist5"></a>
-                <h2>Treasure Hunter Quest List 5</h2>
-                <br>
-                <font color="#0000ff"><b>Savage Land</b></font><br>
-                Map: prt_maze01 (18,184)<br>
-                NPC Name: Lithin<br>
-                Req: 15 Mane (dropped by Savage)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Pyramids Part 1</b></font><br>
-                Map: moc_ruins (inside Thief Guild)(75,167)<br>
-                NPC Name: Lithin<br>
-                Req: 30 Skel-Bone (dropped by Skeleton-like mobs)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Thinking First</b></font><br>
-                Map: geffen (57,130)<br>
-                NPC Name: Blonde Girl<br>
-                Req: 1 Bouquet (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>The not-so-friendly Ghost</b></font><br>
-                Map: gef_tower (49,27)<br>
-                NPC Name: Wizard<br>
-                Req: 50 Fabric (dropped by Wraith/Whisper/Lude/etc..)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist6"></a>
-                <h2>Treasure Hunter Quest List 6</h2>
-                <br>     
-                <font color="#0000ff"><b>Package for Thieves</b></font><br>
-                Map: moc_prydb1 (47,132)<br>
-                NPC Name: Thief<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#0000ff"><b>Pyramids Part 2</b></font><br>
-                Map: moc_ruins (inside Thief Guild)(75,167)<br>
-                NPC Name: Lithin<br>
-                Req: 30 Rotten Bandages (dropped by Mummy/Zombie Prisoner/Verit)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Special Delivery</b></font><br>
-                Map: xmas (144,136)<br>
-                NPC Name: Chirach<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>Geffenia</b></font><br>
-                Map: gef_tower (52,87)<br>
-                NPC Name: Wizard<br>
-                Req: 20 Horse Shoe (dropped by Nightmare)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist7"></a>
-                <h2>Treasure Hunter Quest List 7</h2>
-                <br>
-                <font color="#0000ff"><b>Apple Juice</b></font><br>
-                Map: prontera (123,208)<br>
-                NPC Name: Little Girl<br>
-                Req: 5 Apple Juice (dropped by Mastering/made from Juice Quest)<br>
-                Rewards: 1 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Delivery</b></font><br>
-                Map: alberta (101,84)<br>
-                NPC Name: Charles<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>Golden Thief Bug</b></font><br>
-                Map: prt_sewb1 (120,245)<br>
-                NPC Name: Sewer Management Knight<br>
-                Req: 1 Gold (dropped by Golden Thief Bug/Mi Gao/Dokebi/Mineral/etc..)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>Evil Pirates</b></font><br>
-                Map: alb2trea (94,102)<br>
-                NPC Name: Scarlet<br>
-                Req: 1 Saber[3] (dropped by Drake/Khalitzburg)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist8"></a>
-                <h2>Treasure Hunter Quest List 8</h2>
-                <br>
-                <font color="#0000ff"><b>Banana Juice</b></font><br>
-                Map: prontera (123,208)<br>
-                NPC Name: Little Girl<br>
-                Req: 5 Banana Juice (dropped by Choco/made from Juice Quest)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#0000ff"><b>Another Delivery</b></font><br>
-                Map: morocc (165,55)<br>
-                NPC Name: Klye<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#0000ff"><b>My Lost Beads</b></font><br>
-                Map: payon (136,129)<br>
-                NPC Name: Flower<br>
-                Req: 10 Glass Beads (purchased from Gift Merchants in Lighthalzen/Lutie/Prontera, dropped by mobs)<br>
-                Rewards: 2 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>Baphomet!</b></font><br>
-                Map: prt_maze02 (103,86)<br>
-                NPC Name: Zack<br>
-                Req: 1 Evil Horn (dropped by Bahomet Jr./Baphomet)<br>
-                Rewards: 5 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist9"></a>
-                <h2>Treasure Hunter Quest List 9</h2>
-                <br>
-                <font color="#0000ff"><b>Smelly Box</b></font><br>
-                Map: geffen_in (inside Mage Guild)(168,124)<br>
-                NPC Name: Mage<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>Sohee's Everywhere!</b></font><br>
-                Map: pay_arche (98,74)<br>
-                NPC Name: School Girl<br>
-                Req: 20 Black Hair (dropped by Sohee)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>Moonlight Flower</b></font><br>
-                Map: payon_in02 (19,33)<br>
-                NPC Name: Jack<br>
-                Req: 1 Nine Tail (dropped by Nine Tails)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <font color="#0000ff"><b>Payon Cave</b></font><br>
-                Map: payon_in02 (19,33)<br>
-                NPC Name: Jack<br>
-                Req: 40 Daenggie (dropped by Munak)<br>
-                Rewards: 3 Tokens<br>
-                <br>
-                <hr>
-                <a name="questlist10"></a>
-                <h2>Treasure Hunter Quest List 10</h2>
-                <br>
-                <font color="#0000ff"><b>The Blank Box</b></font><br>
-                Map: morocc (193,51)<br>
-                NPC Name: Kreg<br>
-                Req: Give NPC a Box (provided by quest manager)<br>
-                Rewards: 1 Token<br>
-                <br>
-                <font color="#ff0000"><b>Eddga</b></font><br>
-                Map: pay_fild10 (145,252)<br>
-                NPC Name: Man<br>
-                Req: 1 Tiger's Footskin (dropped by Eddga)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>Phreeoni</b></font><br>
-                Map: moc_fild04 (193,51)<br>
-                NPC Name: Caral<br>
-                Req: 1 Tongue (dropped by Phreeoni)<br>
-                Rewards: 4 Tokens<br>
-                <br>
-                <font color="#ff0000"><b>Maya</b></font><br>
-                Map: moc_fild15 (250,251)<br>
-                NPC Name: Jeni<br>
-                Req: 1 Mother's Nightmare (or 1 Round Shell) (dropped by Maya)<br>
-                Rewards: 3 Tokens<br>        
-            </div>   
-            </div>
-            <div id="divFooter" class="footer">Copyright © Guiderz Application Services 2023.<br>All rights reserved.<br><a  title="Home">Home</a> | <a  title="Terms of Service" class="footerLink">Terms of Service</a> | <a  title="Privacy Policy" class="footerLink">Privacy Policy</a> | <a  title="Report Issue" class="footerLink">Report an Issue</a> | <a  title="Request a New Feature" class="footerLink">Request a New Feature</a></div>   
-        </div>
+  </style>
+  <title>
+   Guiderz - Ragnarok Treasure Hunter Quests
+  </title>
+  <meta content="A walkthrough of all of the Treasure Hunter quests (also known as THQs or Token Quests) in Ragnarok Online." name="description">
+  <meta content="guiderz, ragnarok online, ro, guide, quest, treasure hunter, thq, token quest" name="keywords">
+  <meta charset="utf-8">
+  <!-- latest jQuery direct from google's CDN -->
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body style>
+  <div id="divBackground">
+  </div>
+  <!-- ANALYTICS TRACKING CODE -->
+  <!-- END ANALYTICS TRACKING CODE -->
+  <div id="divPage">
+   <div class="innerContentContainerWide">
+    <div class="float-left mainMenu pageContainer">
+     <br>
+     <a class="linkNoStyle" title="Guiderz MVP Tracker Home">
+      <img alt="Guiderz MVP Tracker Home" class="btnAnimateGraphics" height="37" id="img_menuGuiderzHome" src="rick.jpg" tabindex="1" width="155">
+     </a>
+     <br>
+     <br>
+     <a class="linkNoStyle" title="Create an MVP Tracker">
+      <img alt="Create an MVP Tracker" class="btnAnimateGraphics" height="37" id="img_menuCreateMVPTracker" src="rick.jpg" tabindex="1" width="155">
+     </a>
+     <br>
+     <br>
+     <a class="linkNoStyle" title="Support">
+      <img alt="Support" class="btnAnimateGraphics" height="37" id="img_menuSupport" src="rick.jpg" tabindex="2" width="155">
+     </a>
+     <br>
+     <br>
+     <a class="linkNoStyle" title="Ragnarok Online Guides">
+      <img alt="Ragnarok Online Guides" class="btnAnimateGraphics" height="37" id="img_menuROguides" src="rick.jpg" tabindex="3" width="155">
+     </a>
+     <br>
+     <br>
+     <img alt="Table of Contents" height="37" id="img_menuTableOfContents" src="rick.jpg" width="155">
+     <br>
+     <a title="Treasure Hunter Quest Requirements">
+      THQ Requirements
+     </a>
+     <br>
+     <a title="Treasure Hunter Quest Description">
+      THQ Description
+     </a>
+     <br>
+     <a title="Treasure Hunter Quest Lists">
+      Quest Lists
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 1">
+      Quest List 1
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 2">
+      Quest List 2
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 3">
+      Quest List 3
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 4">
+      Quest List 4
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 5">
+      Quest List 5
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 6">
+      Quest List 6
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 7">
+      Quest List 7
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 8">
+      Quest List 8
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 9">
+      Quest List 9
+     </a>
+     <br>
+     &nbsp;&nbsp;&nbsp;
+     <a title="Treasure Hunter Quest List 10">
+      Quest List 10
+     </a>
+     <br>
+     <br>
     </div>
-    
-
-</body></html>
+    <div class="pageContainer float-right" style="padding: 20px; width: 773px;">
+     <span class="guiderzLogoHeader" id="spanGuiderzLogoHeader">
+      <a class="linkNoStyle" title="Guiderz for Gamerz">
+       <img alt="Guiderz for Gamerz" class="btnAnimateGraphics" height="49" id="imgGuiderzLogoHeader" src="rick.jpg" width="238">
+      </a>
+     </span>
+     <img alt="Guiderz Ragnarok Online Guides" height="73" src="rick.jpg" width="443">
+     <br>
+     <br>
+     <a name="requirements">
+     </a>
+     <div class="pageContainer float-right questInfo itemContainer">
+      <h3>
+       Treasure Hunter Quest (THQ)
+      </h3>
+      <br>
+      <b>
+       <u>
+        Requirements:
+       </u>
+      </b>
+      <br>
+      25,000 zeny
+      <br>
+      <br>
+      <b>
+       <u>
+        Rewards:
+       </u>
+      </b>
+      <br>
+      Allows you to complete Treasure Hunter quests
+     </div>
+     <img alt="Treasure Hunter Quest (THQ) Guide" height="44" src="rick.jpg" width="490">
+     <br>
+     <br>
+     <br>
+     <div id="divBody">
+      <a name="treasure_hunter">
+      </a>
+      <h2>
+       Treasure Hunter Quest Description
+      </h2>
+      <br>
+      <b>
+       NOTE: Treasure Hunter quests may not be enabled on your server. Some Ragnarok Online private servers choose to disable or customize the THQ quests.
+      </b>
+      <br>
+      <br>
+      Treasure Hunter quests (sometimes known as THQs or Token Quests) are repeatable quests that when completed yeild tokens as rewards.
+      <div class="pageContainer float-left itemContainer">
+       <img alt="Treasure Hunter Guild locaton" height="129" src="rick.jpg" width="132">
+      </div>
+      These tokens can be exchanged for rewards such as weapons and cards at the Token Shop. Your tokens are shared among all of the characters on your account.
+      <br>
+      <br>
+      To become a Treasure Hunter and start earning tokens you must enroll on the second floor of the Treasure Hunter Guild in Yuno. The building is in the lower left corner of Yuno (the first NPCs you will see once inside will be a Kafra and a 'Pub Master'). Go up the stairs to the second floor and talk to the Guild Master at the end of the hallway. Pay him 25,000z to enroll as a Treasure Hunter and start completing Treasure Hunter Quests.
+                You can only complete 1 quest every hour, and a quests' availability resets each server hour. This means that if you complete a quest at 1:57, you can do another one at 2:00. So time your quests carefully so you can do 2 quests right after each other.
+      <br>
+      <br>
+      <hr>
+      <a name="questlist">
+      </a>
+      <h2>
+       Treasure Hunter Quests List
+      </h2>
+      <br>
+      <b>
+       NOTE:
+      </b>
+      Easy quests are in
+      <font color="#0000ff">
+       Blue
+      </font>
+      and hard quests are in
+      <font color="#ff0000">
+       Red
+      </font>
+      . Harder quests give more tokens as a reward.
+      <br>
+      <br>
+      <br>
+      <hr>
+      <a name="questlist1">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 1
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Lost Old Man
+       </b>
+      </font>
+      <br>
+      Map: mjolnir_09 (187,189)
+      <br>
+      NPC Name: Old Man
+      <br>
+      Req: Talk to the NPC
+      <br>
+      Rewards: 1 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Master Needs His Bow
+       </b>
+      </font>
+      <br>
+      Map: pay_arche (86,129)
+      <br>
+      NPC Name: Archer
+      <br>
+      Req: Give NPC a Letter (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        The Hit List
+       </b>
+      </font>
+      <br>
+      Map: prt_fild06 (37,192)
+      <br>
+      NPC Name: Farmer
+      <br>
+      Req: 20 Worm Peelings, 20 Jellopy, 20 Fluff and 20 Clover (dropped by mobs)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        The Sad Widow
+       </b>
+      </font>
+      <br>
+      Map: prontera (264,353)
+      <br>
+      NPC Name: Old Lady
+      <br>
+      Req: 15 Memento (dropped by mobs)
+      <br>
+      Rewards: 3 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist2">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 2
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        The Strange Letter
+       </b>
+      </font>
+      <br>
+      Map: morocc (59,109)
+      <br>
+      NPC Name: Erika
+      <br>
+      Req: Give NPC a Letter (provided by quest manager)
+      <br>
+      Rewards: 1 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Jur for Jeramiah
+       </b>
+      </font>
+      <br>
+      Map: moc_fild16 (inside Assassin Guild)(15,30)
+      <br>
+      NPC Name: Jeramiah
+      <br>
+      Req: Give NPC Jeremiah's Jur (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Bee Keepers Hunny
+       </b>
+      </font>
+      <br>
+      Map: prt_fild07 (316,263)
+      <br>
+      NPC Name: Marsh Man
+      <br>
+      Req: 20 Honey (dropped by mobs)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        The Wander Man
+       </b>
+      </font>
+      <br>
+      Map: payon (161,72)
+      <br>
+      NPC Name: Molly
+      <br>
+      Req: 1 Skull (dropped by Alarm/Wanderer/Flame Skull/Wind Ghost/etc..)
+      <br>
+      Rewards: 3 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist3">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 3
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Damn Pixies!
+       </b>
+      </font>
+      <br>
+      Map: moc_fild04 (208,322)
+      <br>
+      NPC Name: Clark
+      <br>
+      Req: 30 Elder Pixie's Moustache (dropped by Giearth/Knocker)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Package Delivery
+       </b>
+      </font>
+      <br>
+      Map: yuno_fild01 (186,162)
+      <br>
+      NPC Name: Flank
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Prontera Culvert
+       </b>
+      </font>
+      <br>
+      Map: prt_sewb1 (120,245)
+      <br>
+      NPC Name: Sewer Management Knight
+      <br>
+      Req: 150 Worm Peelings (dropped by Thief Bugs, Andres)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Trouble at the Coal Mine
+       </b>
+      </font>
+      <br>
+      Map: mjolnir_02 (87,357)
+      <br>
+      NPC Name: Man
+      <br>
+      Req: 50 Lantern (dropped by Skeleton Worker, Pitman)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist4">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 4
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Zombie Attack
+       </b>
+      </font>
+      <br>
+      Map: pay_arche (45,138)
+      <br>
+      NPC Name: Flora
+      <br>
+      Req: 50 Decayed Nail (dropped by Zombie/zombie-like mobs)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Mystic Wizard
+       </b>
+      </font>
+      <br>
+      Map: yuno (on top of a house)(45,138)
+      <br>
+      NPC Name: Zed
+      <br>
+      Req: Give NPC Zed's Staff (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Aww Shoot!
+       </b>
+      </font>
+      <br>
+      Map: prontera (176,204)
+      <br>
+      NPC Name: Dassy
+      <br>
+      Req: 20 Shoot (dropped by Plants/Les/Mandragora)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Emperium
+       </b>
+      </font>
+      <br>
+      Map: prt_gld (157,99)
+      <br>
+      NPC Name: Czhore
+      <br>
+      Req: 1 Emperium (dropped by Shining Plant/Orc Zombie/Requiem/Mineral/etc..)
+      <br>
+      Rewards: 2 Tokens (and a Treasure Chest)
+      <br>
+      <br>
+      <hr>
+      <a name="questlist5">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 5
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Savage Land
+       </b>
+      </font>
+      <br>
+      Map: prt_maze01 (18,184)
+      <br>
+      NPC Name: Lithin
+      <br>
+      Req: 15 Mane (dropped by Savage)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Pyramids Part 1
+       </b>
+      </font>
+      <br>
+      Map: moc_ruins (inside Thief Guild)(75,167)
+      <br>
+      NPC Name: Lithin
+      <br>
+      Req: 30 Skel-Bone (dropped by Skeleton-like mobs)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Thinking First
+       </b>
+      </font>
+      <br>
+      Map: geffen (57,130)
+      <br>
+      NPC Name: Blonde Girl
+      <br>
+      Req: 1 Bouquet (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        The not-so-friendly Ghost
+       </b>
+      </font>
+      <br>
+      Map: gef_tower (49,27)
+      <br>
+      NPC Name: Wizard
+      <br>
+      Req: 50 Fabric (dropped by Wraith/Whisper/Lude/etc..)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist6">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 6
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Package for Thieves
+       </b>
+      </font>
+      <br>
+      Map: moc_prydb1 (47,132)
+      <br>
+      NPC Name: Thief
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Pyramids Part 2
+       </b>
+      </font>
+      <br>
+      Map: moc_ruins (inside Thief Guild)(75,167)
+      <br>
+      NPC Name: Lithin
+      <br>
+      Req: 30 Rotten Bandages (dropped by Mummy/Zombie Prisoner/Verit)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Special Delivery
+       </b>
+      </font>
+      <br>
+      Map: xmas (144,136)
+      <br>
+      NPC Name: Chirach
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Geffenia
+       </b>
+      </font>
+      <br>
+      Map: gef_tower (52,87)
+      <br>
+      NPC Name: Wizard
+      <br>
+      Req: 20 Horse Shoe (dropped by Nightmare)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist7">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 7
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Apple Juice
+       </b>
+      </font>
+      <br>
+      Map: prontera (123,208)
+      <br>
+      NPC Name: Little Girl
+      <br>
+      Req: 5 Apple Juice (dropped by Mastering/made from Juice Quest)
+      <br>
+      Rewards: 1 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Delivery
+       </b>
+      </font>
+      <br>
+      Map: alberta (101,84)
+      <br>
+      NPC Name: Charles
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Golden Thief Bug
+       </b>
+      </font>
+      <br>
+      Map: prt_sewb1 (120,245)
+      <br>
+      NPC Name: Sewer Management Knight
+      <br>
+      Req: 1 Gold (dropped by Golden Thief Bug/Mi Gao/Dokebi/Mineral/etc..)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Evil Pirates
+       </b>
+      </font>
+      <br>
+      Map: alb2trea (94,102)
+      <br>
+      NPC Name: Scarlet
+      <br>
+      Req: 1 Saber[3] (dropped by Drake/Khalitzburg)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist8">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 8
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Banana Juice
+       </b>
+      </font>
+      <br>
+      Map: prontera (123,208)
+      <br>
+      NPC Name: Little Girl
+      <br>
+      Req: 5 Banana Juice (dropped by Choco/made from Juice Quest)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Another Delivery
+       </b>
+      </font>
+      <br>
+      Map: morocc (165,55)
+      <br>
+      NPC Name: Klye
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        My Lost Beads
+       </b>
+      </font>
+      <br>
+      Map: payon (136,129)
+      <br>
+      NPC Name: Flower
+      <br>
+      Req: 10 Glass Beads (purchased from Gift Merchants in Lighthalzen/Lutie/Prontera, dropped by mobs)
+      <br>
+      Rewards: 2 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Baphomet!
+       </b>
+      </font>
+      <br>
+      Map: prt_maze02 (103,86)
+      <br>
+      NPC Name: Zack
+      <br>
+      Req: 1 Evil Horn (dropped by Bahomet Jr./Baphomet)
+      <br>
+      Rewards: 5 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist9">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 9
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Smelly Box
+       </b>
+      </font>
+      <br>
+      Map: geffen_in (inside Mage Guild)(168,124)
+      <br>
+      NPC Name: Mage
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Sohee's Everywhere!
+       </b>
+      </font>
+      <br>
+      Map: pay_arche (98,74)
+      <br>
+      NPC Name: School Girl
+      <br>
+      Req: 20 Black Hair (dropped by Sohee)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Moonlight Flower
+       </b>
+      </font>
+      <br>
+      Map: payon_in02 (19,33)
+      <br>
+      NPC Name: Jack
+      <br>
+      Req: 1 Nine Tail (dropped by Nine Tails)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <font color="#0000ff">
+       <b>
+        Payon Cave
+       </b>
+      </font>
+      <br>
+      Map: payon_in02 (19,33)
+      <br>
+      NPC Name: Jack
+      <br>
+      Req: 40 Daenggie (dropped by Munak)
+      <br>
+      Rewards: 3 Tokens
+      <br>
+      <br>
+      <hr>
+      <a name="questlist10">
+      </a>
+      <h2>
+       Treasure Hunter Quest List 10
+      </h2>
+      <br>
+      <font color="#0000ff">
+       <b>
+        The Blank Box
+       </b>
+      </font>
+      <br>
+      Map: morocc (193,51)
+      <br>
+      NPC Name: Kreg
+      <br>
+      Req: Give NPC a Box (provided by quest manager)
+      <br>
+      Rewards: 1 Token
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Eddga
+       </b>
+      </font>
+      <br>
+      Map: pay_fild10 (145,252)
+      <br>
+      NPC Name: Man
+      <br>
+      Req: 1 Tiger's Footskin (dropped by Eddga)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Phreeoni
+       </b>
+      </font>
+      <br>
+      Map: moc_fild04 (193,51)
+      <br>
+      NPC Name: Caral
+      <br>
+      Req: 1 Tongue (dropped by Phreeoni)
+      <br>
+      Rewards: 4 Tokens
+      <br>
+      <br>
+      <font color="#ff0000">
+       <b>
+        Maya
+       </b>
+      </font>
+      <br>
+      Map: moc_fild15 (250,251)
+      <br>
+      NPC Name: Jeni
+      <br>
+      Req: 1 Mother's Nightmare (or 1 Round Shell) (dropped by Maya)
+      <br>
+      Rewards: 3 Tokens
+      <br>
+     </div>
+    </div>
+    <div class="footer" id="divFooter">
+     Copyright &copy; Guiderz Application Services 2023.
+     <br>
+     All rights reserved.
+     <br>
+     <a title="Home">
+      Home
+     </a>
+     |
+     <a class="footerLink" title="Terms of Service">
+      Terms of Service
+     </a>
+     |
+     <a class="footerLink" title="Privacy Policy">
+      Privacy Policy
+     </a>
+     |
+     <a class="footerLink" title="Report Issue">
+      Report an Issue
+     </a>
+     |
+     <a class="footerLink" title="Request a New Feature">
+      Request a New Feature
+     </a>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

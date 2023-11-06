@@ -1,50 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-<style></style>
-   <title> [FFmpeg-devel] patch for x32 for libpostproc
-   </title>
-   
-   
-   <meta name="robots" content="index,nofollow">
-   <style type="text/css">
-       pre {
-           white-space: pre-wrap;       
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <style>
+  </style>
+  <title>
+   [FFmpeg-devel] patch for x32 for libpostproc
+  </title>
+  <meta content="index,nofollow" name="robots">
+  <style type="text/css">
+   pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
            }
-   </style>
-   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-   
-   
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
  </head>
  <body bgcolor="#ffffff">
-   <h1>[FFmpeg-devel] patch for x32 for libpostproc</h1>
-    <b>Michael Niedermayer</b> 
-    <a  title="[FFmpeg-devel] patch for x32 for libpostproc">michaelni at gmx.at
-       </a><br>
-    <i>Thu Sep  4 13:27:23 CEST 2014</i>
-    <p></p><ul>
-        <li>Previous message: <a >[FFmpeg-devel] patch for x32 for libpostproc
-</a></li>
-        <li>Next message: <a >[FFmpeg-devel] patch for x32 for libpostproc
-</a></li>
-         <li> <b>Messages sorted by:</b> 
-              <a >[ date ]</a>
-              <a >[ thread ]</a>
-              <a >[ subject ]</a>
-              <a >[ author ]</a>
-         </li>
-       </ul>
-    <hr>  
-
-<pre>Hi Reinhard
+  <h1>
+   [FFmpeg-devel] patch for x32 for libpostproc
+  </h1>
+  <b>
+   Michael Niedermayer
+  </b>
+  <a title="[FFmpeg-devel] patch for x32 for libpostproc">
+   michaelni at gmx.at
+  </a>
+  <br>
+  <i>
+   Thu Sep  4 13:27:23 CEST 2014
+  </i>
+  <p>
+  </p>
+  <ul>
+   <li>
+    Previous message:
+    <a>
+     [FFmpeg-devel] patch for x32 for libpostproc
+    </a>
+   </li>
+   <li>
+    Next message:
+    <a>
+     [FFmpeg-devel] patch for x32 for libpostproc
+    </a>
+   </li>
+   <li>
+    <b>
+     Messages sorted by:
+    </b>
+    <a>
+     [ date ]
+    </a>
+    <a>
+     [ thread ]
+    </a>
+    <a>
+     [ subject ]
+    </a>
+    <a>
+     [ author ]
+    </a>
+   </li>
+  </ul>
+  <hr>
+  <!--beginarticle-->
+  <pre>Hi Reinhard
 
 On Wed, Sep 03, 2014 at 11:33:48PM -0400, Reinhard Tartler wrote:
-&gt;<i> On Wed, Sep 3, 2014 at 9:34 PM, Michael Niedermayer &lt;<a >michaelni at gmx.at</a>&gt; wrote:
+&gt;<i> On Wed, Sep 3, 2014 at 9:34 PM, Michael Niedermayer &lt;<a>michaelni at gmx.at</a>&gt; wrote:
 </i>&gt;<i> &gt; On Wed, Sep 03, 2014 at 08:22:43PM -0400, Reinhard Tartler wrote:
-</i>&gt;<i> &gt;&gt; On Wed, Sep 3, 2014 at 9:39 AM, Michael Niedermayer &lt;<a >michaelni at gmx.at</a>&gt; wrote:
+</i>&gt;<i> &gt;&gt; On Wed, Sep 3, 2014 at 9:39 AM, Michael Niedermayer &lt;<a>michaelni at gmx.at</a>&gt; wrote:
 </i>&gt;<i> &gt;&gt; &gt; On Tue, Sep 02, 2014 at 10:06:10PM +0000, Thorsten Glaser wrote:
 </i>&gt;<i> &gt;&gt; &gt;&gt; Hi,
 </i>&gt;<i> &gt;&gt; &gt;&gt;
 </i>&gt;<i> &gt;&gt; &gt;&gt; as discussed in IRC, I was trying to minimal-invasively port
-</i>&gt;<i> &gt;&gt; &gt;&gt; libpostproc (the Debian source package) to x32¹. I could not
+</i>&gt;<i> &gt;&gt; &gt;&gt; libpostproc (the Debian source package) to x32&sup1;. I could not
 </i>&gt;<i> &gt;&gt; &gt;&gt; test it (for lack of a stand-alone test program) yet, but at
 </i>&gt;<i> &gt;&gt; &gt;&gt; least I got it to build.
 </i>&gt;<i> &gt;&gt; &gt;
@@ -52,7 +81,7 @@ On Wed, Sep 03, 2014 at 11:33:48PM -0400, Reinhard Tartler wrote:
 </i>&gt;<i> &gt;&gt; &gt; everywhere except libpostproc
 </i>&gt;<i> &gt;&gt; &gt; that might allow "easy" testing though fate or ffmpeg with libavfilter
 </i>&gt;<i> &gt;&gt;
-</i>&gt;<i> &gt;&gt; Is <a >http://git.videolan.org/?p=libpostproc.git</a> still maintained?
+</i>&gt;<i> &gt;&gt; Is <a>http://git.videolan.org/?p=libpostproc.git</a> still maintained?
 </i>&gt;<i> &gt;
 </i>&gt;<i> &gt; AFAIK, no, it seems the last commit is 2 years ago
 </i>&gt;<i> &gt;
@@ -62,14 +91,15 @@ On Wed, Sep 03, 2014 at 11:33:48PM -0400, Reinhard Tartler wrote:
 </i>&gt;<i> &gt;&gt; collect the postproc patches there.
 </i>&gt;<i> &gt;
 </i>&gt;<i> &gt; libpostproc was and is maintained in
-</i>&gt;<i> &gt; <a >git://source.ffmpeg.org/ffmpeg.git</a>
+</i>&gt;<i> &gt; <a>git://source.ffmpeg.org/ffmpeg.git</a>
 </i>&gt;<i> 
 </i>&gt;<i> So the promise given in
-</i>&gt;<i> <a >https://lists.libav.org/pipermail/libav-devel/2012-February/020712.html</a>
+</i>&gt;<i> <a>https://lists.libav.org/pipermail/libav-devel/2012-February/020712.html</a>
 </i>&gt;<i> doesn't hold anymore?
 </i>
 Can you be a bit more specific ? what "promise" by whom exactly do
 you speak of ?
+
 
 &gt;<i> 
 </i>&gt;<i> Any chance to make you reconsider reviving the standalone libpostproc.git?
@@ -108,12 +138,14 @@ other than libpostproc removed anyway.
 
 Would this help you ?
 
+
 &gt;<i> 
 </i>&gt;<i> &gt; please use that for the debian package
 </i>&gt;<i> 
 </i>&gt;<i> I fear that's not feasible at this point.
 </i>
 Why ?
+
 
 [...]
 -- 
@@ -128,26 +160,49 @@ Name: not available
 Type: application/pgp-signature
 Size: 181 bytes
 Desc: Digital signature
-URL: &lt;<a >https://ffmpeg.org/pipermail/ffmpeg-devel/attachments/20140904/9493c23c/attachment.asc</a>&gt;
+URL: &lt;<a>https://ffmpeg.org/pipermail/ffmpeg-devel/attachments/20140904/9493c23c/attachment.asc</a>&gt;
 </pre>
-
-    <hr>
-    <p></p><ul>
-        
-	<li>Previous message: <a >[FFmpeg-devel] patch for x32 for libpostproc
-</a></li>
-	<li>Next message: <a >[FFmpeg-devel] patch for x32 for libpostproc
-</a></li>
-         <li> <b>Messages sorted by:</b> 
-              <a >[ date ]</a>
-              <a >[ thread ]</a>
-              <a >[ subject ]</a>
-              <a >[ author ]</a>
-         </li>
-       </ul>
-
-<hr>
-<a >More information about the ffmpeg-devel
-mailing list</a><br>
-
-</body></html>
+  <!--endarticle-->
+  <hr>
+  <p>
+  </p>
+  <ul>
+   <!--threads-->
+   <li>
+    Previous message:
+    <a>
+     [FFmpeg-devel] patch for x32 for libpostproc
+    </a>
+   </li>
+   <li>
+    Next message:
+    <a>
+     [FFmpeg-devel] patch for x32 for libpostproc
+    </a>
+   </li>
+   <li>
+    <b>
+     Messages sorted by:
+    </b>
+    <a>
+     [ date ]
+    </a>
+    <a>
+     [ thread ]
+    </a>
+    <a>
+     [ subject ]
+    </a>
+    <a>
+     [ author ]
+    </a>
+   </li>
+  </ul>
+  <hr>
+  <a>
+   More information about the ffmpeg-devel
+mailing list
+  </a>
+  <br>
+ </body>
+</html>

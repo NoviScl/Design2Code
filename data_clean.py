@@ -3,10 +3,13 @@ from transformers import GPT2TokenizerFast
 from bs4 import BeautifulSoup, NavigableString, Tag
 from nltk.tokenize import sent_tokenize
 import os
+import logging
 import re
 import cssutils
 import random 
 random.seed(2023)
+
+cssutils.log.setLevel(logging.CRITICAL)
 
 tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
 
@@ -23,6 +26,24 @@ def remove_tags(html_content, tag="script"):
         html_content = html_content[:start_index] + html_content[end_index:]
 
     return html_content 
+
+def remove_useless_meta_tags(html_content):
+    # A regular expression to match all meta tags
+    meta_tags = re.findall(r'<meta[^>]+>', html_content, re.I)
+
+    for tag in meta_tags:
+        # Check for useful meta tag attributes
+        if 'charset=' in tag.lower():
+            continue  # Keep the charset meta tag
+        if 'http-equiv=' in tag.lower():
+            continue  # Keep the http-equiv meta tag
+        if 'name="viewport"' in tag.lower():
+            continue  # Keep the viewport meta tag
+
+        # If none of the useful attributes are found, remove the tag
+        html_content = html_content.replace(tag, '')
+
+    return html_content
 
 def remove_html_comments(html_content):
     while "<!--" in html_content:
@@ -54,20 +75,20 @@ def remove_css_js_comments(html_content):
 
 def remove_extra_linebreaks(html_content):
     split_lines = html_content.split("\n")
-    split_lines = [line for line in split_lines if line]
+    split_lines = [line.replace("\n", "") for line in split_lines if (line is not None) and (line.replace(' ', '') != '')]
     cleaned_string = "\n".join(split_lines)
     return cleaned_string
 
-def length_filter(html_content):
+def length_filter(html_content, max_token=40000):
     ## filter too short pages
     html_len = len(tokenizer(html_content)["input_ids"])
-    if html_len <= 100 or html_len >= 80000:
+    if html_len <= 100 or html_len >= max_token:
         return None
     
-    return html_content
+    return html_content, html_len
 
 def html_validator(html_content):
-    skip_words = ["404", "wordpress", "you have been blocked", "buy this domain", "403 "]
+    skip_words = ["404", "wordpress", "you have been blocked", "buy this domain", "403 ", "page not found", "squarespace "]
     for w in skip_words:
         if w.lower() in html_content.lower():
             return None
@@ -87,6 +108,27 @@ def remove_href_links(html_content):
             break
 
         end_index = html_content.find('"', start_index + 6)  # +6 to skip past 'href="'
+
+        if end_index != -1:
+            html_content = html_content[:start_index] + html_content[end_index + 1:]
+        else:
+            break
+
+    return html_content
+
+def remove_srcset_links(html_content):
+    """
+    Remove href attributes from <a> elements in the HTML that point to a web address.
+    """
+
+    href_pattern = 'srcset="'
+
+    while href_pattern in html_content:
+        start_index = html_content.find(href_pattern)
+        if start_index == -1:
+            break
+
+        end_index = html_content.find('"', start_index + len('srcset="'))  
 
         if end_index != -1:
             html_content = html_content[:start_index] + html_content[end_index + 1:]
@@ -133,7 +175,29 @@ def remove_object_dependency(html_content):
             obj.decompose()
 
     # Return the modified HTML content as a string
-    return str(soup)
+    return soup.prettify(formatter="html5")
+
+def remove_embed_dependency(html_content):
+    # List of picture file extensions
+    picture_extensions = {'.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg'}
+
+    # Parse the HTML content
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Find all object tags
+    object_tags = soup.find_all('embed')
+
+    for obj in object_tags:
+        data_attr = obj.get('src', '').lower()
+        # If the data attribute is an image, replace it with 'rick.jpg'
+        if any(data_attr.endswith(ext) for ext in picture_extensions):
+            obj['data'] = 'rick.jpg'
+        else:
+            # If the data is not a picture, remove the object element
+            obj.decompose()
+
+    # Return the modified HTML content as a string
+    return soup.prettify(formatter="html5")
 
 def list_truncation(html_content, max_item=2):
     # Parse the HTML
@@ -151,7 +215,7 @@ def list_truncation(html_content, max_item=2):
                 item.decompose()  # Remove excess list items
     
     # Return the modified HTML as a string
-    return str(soup)
+    return soup.prettify(formatter="html5")
 
 def text_truncation(html_content, max_sent=2):
     ## avoid leaf nodes that are too long
@@ -180,7 +244,7 @@ def text_truncation(html_content, max_sent=2):
                     element.append(truncated_text)
     
     # Return the modified HTML as a string
-    return str(soup)
+    return soup.prettify(formatter="html5")
 
 def remove_unused_css(html_content):
     # Parse the HTML content
@@ -193,43 +257,57 @@ def remove_unused_css(html_content):
         # Parse the CSS
         try:
             css = cssutils.parseString(style_tag.string)
-
-            # To keep track of the rules that are used
-            used_rules = cssutils.css.CSSStyleSheet()
+            new_css_rules = []
 
             for rule in css:
                 if isinstance(rule, cssutils.css.CSSStyleRule):
+                    selector_is_used = False
                     for selector in rule.selectorList:
                         try:
                             # If the CSS selector matches any elements in the HTML, it is used
                             if soup.select(selector.selectorText):
-                                used_rules.add(rule)
+                                selector_is_used = True
                                 break
                         except:
-                            # Log an error or warning if needed
-                            # print(f"A selector was ignored due to lack of implementation: {e}")
-                            # You can choose to keep the rule just in case it's actually used
-                            used_rules.add(rule)
+                            # An error occurred while trying to match the selector
+                            # print(f"A selector caused an error and was ignored: {e}")
+                            # Consider selector as used to avoid removing potentially valid CSS
+                            selector_is_used = True
                             break
+                    
+                    if selector_is_used:
+                        # Keep the rule since the selector is used
+                        new_css_rules.append(rule.cssText)
+                else:
+                    # Keep non-style rules (like @media, @keyframes, etc.) as they might be in use
+                    new_css_rules.append(rule.cssText)
 
             # Replace the old CSS with only the used rules
-            style_tag.string = used_rules.cssText.decode('utf-8') if used_rules.cssText else ''
-        except: 
+            if new_css_rules:
+                style_tag.string = '\n'.join(new_css_rules)
+            else:
+                # If no CSS rules are used, remove the style tag altogether
+                style_tag.decompose()
+
+        except:
+            # print(f"An error occurred while parsing CSS: {e}")
+            # In case of an error, leave the original CSS unchanged
             continue
 
     # Return the modified HTML content
-    return str(soup)
+    return soup.prettify(formatter="html5")
 
-def all_filters(html_content):
+def all_filters_train(html_content):
     html_content = html_validator(html_content)
     if not html_content:
         return None
-    html_content = remove_extra_linebreaks(html_content)
-    if len(html_content.split("\n")) <= 40 or len(html_content.split("\n")) >= 50000:
+    # html_content = remove_extra_linebreaks(html_content)
+    if len(html_content.split("\n")) <= 40 or len(html_content.split("\n")) >= 10000:
         return None
-    html_content = remove_html_comments(html_content)
-    html_content = remove_css_js_comments(html_content)
-    html_content = remove_unused_css(html_content)
+    # html_content = remove_html_comments(html_content)
+    # html_content = remove_css_js_comments(html_content)
+    # html_content = remove_unused_css(html_content)
+    # html_content = remove_useless_meta_tags(html_content)
     html_content = remove_tags(html_content, tag="script")
     html_content = remove_tags(html_content, tag="audio")
     html_content = remove_tags(html_content, tag="video")
@@ -237,9 +315,9 @@ def all_filters(html_content):
     html_content = remove_tags(html_content, tag="map")
     html_content = remove_tags(html_content, tag="svg")
     html_content = remove_object_dependency(html_content)
+    html_content = remove_embed_dependency(html_content)
     html_content = remove_link_tags(html_content)
     html_content = remove_href_links(html_content)
-    html_content = list_truncation(html_content)
     html_content = text_truncation(html_content)
     html_content = remove_extra_linebreaks(html_content)
     html_content = length_filter(html_content)
@@ -248,41 +326,53 @@ def all_filters(html_content):
     
     return html_content
 
+def all_filters_test(html_content):
+    global total_len
+    html_content = html_validator(html_content)
+    if not html_content:
+        return None
+    if len(html_content.split("\n")) <= 40 or len(html_content.split("\n")) >= 10000:
+        return None
+    try:
+        html_content = remove_tags(html_content, tag="script")
+        html_content = remove_tags(html_content, tag="audio")
+        html_content = remove_tags(html_content, tag="video")
+        html_content = remove_tags(html_content, tag="iframe")
+        html_content = remove_tags(html_content, tag="map")
+        html_content = remove_tags(html_content, tag="svg")
+        html_content = remove_object_dependency(html_content)
+        html_content = remove_embed_dependency(html_content)
+        html_content = remove_link_tags(html_content)
+        html_content = remove_href_links(html_content)
+        html_content = remove_srcset_links(html_content)
+        html_content = text_truncation(html_content)
+        html_content, html_len = length_filter(html_content, max_token=64000)
+        if not html_content:
+            return None
+    except:
+        return None
+    
+    total_len += html_len
+    return html_content
+
+global total_len 
+total_len = 0
 counter = 0
-# # for file in tqdm(os.listdir("c4-val-html")):
-# for idx in tqdm(range(5034, 5035)):
-#     full_path = os.path.join("c4-val-html", str(idx)+".html")
-#     if os.path.isfile(full_path):
-#         with open(full_path, "r", encoding="utf-8") as f:
-#             html_content = f.read() 
-#             html_content = all_filters(html_content)
-#             if html_content:
-#                 counter += 1
-#                 with open("c4-val-html-cleaned/{}.html".format(idx), "w+", encoding="utf-8") as f:
-#                     f.write(html_content)
+# for file in tqdm(os.listdir("c4-val-html")):
+for idx in tqdm(range(5000)):
+    full_path = os.path.join("c4-val-html", str(idx)+".html")
+    if os.path.isfile(full_path):
+        with open(full_path, "r", encoding="utf-8") as f:
+            html_content = f.read() 
+            html_content = all_filters_test(html_content)
+            if html_content:
+                counter += 1
+                with open("c4-val-html-cleaned/{}.html".format(idx), "w+", encoding="utf-8") as f:
+                    f.write(html_content)
             
-# print (counter)
+print (counter)
+print (total_len / counter)
 
 # with open("c4-val-html/4970-cleaned.html", "w", encoding="utf-8") as f:
 #     f.write(html_content)
-
-
-# Example usage:
-html_content = """
-<div>
-  <ul>
-    <li>List item 1</li>
-    <li>List item 2</li>
-    <li>List item 3</li>
-    <li>List item 4</li>
-  </ul>
-  <ol>
-    <li>Ordered item 1</li>
-    <li>Ordered item 2</li>
-    <li>Ordered item 3</li>
-  </ol>
-</div>
-"""
-
-print(list_truncation(html_content))
 
