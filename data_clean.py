@@ -5,6 +5,7 @@ from nltk.tokenize import sent_tokenize
 import os
 import logging
 import re
+import json
 import cssutils
 import random 
 random.seed(2023)
@@ -118,7 +119,7 @@ def remove_href_links(html_content):
 
 def remove_srcset_links(html_content):
     """
-    Remove href attributes from <a> elements in the HTML that point to a web address.
+    Remove srcset links to external sources
     """
 
     href_pattern = 'srcset="'
@@ -304,10 +305,10 @@ def all_filters_train(html_content):
     # html_content = remove_extra_linebreaks(html_content)
     if len(html_content.split("\n")) <= 40 or len(html_content.split("\n")) >= 10000:
         return None
-    # html_content = remove_html_comments(html_content)
-    # html_content = remove_css_js_comments(html_content)
-    # html_content = remove_unused_css(html_content)
-    # html_content = remove_useless_meta_tags(html_content)
+    html_content = remove_html_comments(html_content)
+    html_content = remove_css_js_comments(html_content)
+    html_content = remove_unused_css(html_content)
+    html_content = remove_useless_meta_tags(html_content)
     html_content = remove_tags(html_content, tag="script")
     html_content = remove_tags(html_content, tag="audio")
     html_content = remove_tags(html_content, tag="video")
@@ -318,6 +319,7 @@ def all_filters_train(html_content):
     html_content = remove_embed_dependency(html_content)
     html_content = remove_link_tags(html_content)
     html_content = remove_href_links(html_content)
+    html_content = remove_srcset_links(html_content)
     html_content = text_truncation(html_content)
     html_content = remove_extra_linebreaks(html_content)
     html_content = length_filter(html_content)
@@ -344,9 +346,7 @@ def all_filters_test(html_content):
         html_content = remove_embed_dependency(html_content)
         html_content = remove_link_tags(html_content)
         html_content = remove_href_links(html_content)
-        html_content = remove_srcset_links(html_content)
-        html_content = text_truncation(html_content)
-        html_content, html_len = length_filter(html_content, max_token=64000)
+        html_content, html_len = length_filter(html_content, max_token=100000)
         if not html_content:
             return None
     except:
@@ -358,21 +358,28 @@ def all_filters_test(html_content):
 global total_len 
 total_len = 0
 counter = 0
-# for file in tqdm(os.listdir("c4-val-html")):
-for idx in tqdm(range(5000)):
-    full_path = os.path.join("c4-val-html", str(idx)+".html")
-    if os.path.isfile(full_path):
-        with open(full_path, "r", encoding="utf-8") as f:
-            html_content = f.read() 
-            html_content = all_filters_test(html_content)
-            if html_content:
-                counter += 1
-                with open("c4-val-html-cleaned/{}.html".format(idx), "w+", encoding="utf-8") as f:
-                    f.write(html_content)
-            
-print (counter)
-print (total_len / counter)
+all_url_dict = {}
 
-# with open("c4-val-html/4970-cleaned.html", "w", encoding="utf-8") as f:
-#     f.write(html_content)
+for idx in range(8):
+    print ("now processing: ", "/nlp/scr/clsi/c4-val-html-part{}".format(idx))
+    with open("/nlp/scr/clsi/Pix2Code/url_dict_part{}.json".format(idx), "r") as f:
+        url_dict = json.load(f)
+    for file in tqdm(os.listdir("/nlp/scr/clsi/c4-val-html-part{}".format(idx))):
+        full_path = os.path.join("/nlp/scr/clsi/c4-val-html-part{}".format(idx), file)
+        if os.path.isfile(full_path):
+            with open(full_path, "r", encoding="utf-8") as f:
+                url = url_dict[file]
+                html_content = f.read() 
+                html_content = all_filters_test(html_content)
+                if html_content:
+                    counter += 1
+                    with open("/juice2/scr2/nlp/pix2code/testset_filter_round1/{}.html".format(counter), "w+", encoding="utf-8") as f:
+                        f.write(html_content)
+                    all_url_dict["{}.html".format(counter)] = url
+                
+print ("total number of webpages: ", counter)
+print ("avg number of tokens: ", total_len / counter)
+
+with open("/juice2/scr2/nlp/pix2code/testset_filter_round1_url_dict.json", "w+") as f:
+    json.dump(all_url_dict, f, indent=4)
 

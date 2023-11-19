@@ -2,12 +2,16 @@ from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 import requests
 import re
+import os
 import json
+import argparse
 from tqdm import tqdm
 import random 
 random.seed(2023)
 
 placeholder_image = "rick.jpg"
+
+url_dict = {}
 
 def replace_img_src(content):
     pattern = r'(<img[^>]*src=")[^"]*("[^>]*>)'
@@ -46,23 +50,37 @@ def fetch_and_embed_css(url, navigation_timeout=2000, request_timeout=10):
             return content
     except:
         return None
-        
-urls = []
-for i in range(2):
-    c4 = "../c4/c4-validation.0000{}-of-00008.json".format(str(i))
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--partition', type=str, required=True, help='data partition')
+    args = parser.parse_args()
+
+    urls = []
+    partition = args.partition.strip()
+    c4 = "../c4/c4-validation.0000{}-of-00008.json".format(str(partition))
     with open(c4, 'r') as f:
         for line in f:
             d = json.loads(line)
             urls.append(d["url"])
 
-urls = list(set(urls))
-print ("total #urls: ", len(urls))
+    urls = list(set(urls))
+    print ("total #urls: ", len(urls))
 
-counter = 1
-for i, url in tqdm(enumerate(urls)):
-    html_content = fetch_and_embed_css(url)
-    if html_content:
-        with open("../c4-val-html/{}.html".format(counter), "w", encoding="utf-8") as f:
-            f.write(html_content)
-        counter += 1
-    
+    if not os.path.exists("../c4-val-html-part{}".format(partition)):
+        os.makedirs("../c4-val-html-part{}".format(partition))
+
+    counter = 1
+    for i, url in tqdm(enumerate(urls)):
+        html_content = fetch_and_embed_css(url)
+        if html_content:
+            try:
+                with open("../c4-val-html-part{}/{}.html".format(partition, counter), "w") as f:
+                    f.write(html_content)
+                url_dict["{}.html".format(counter)] = url
+                counter += 1
+            except:
+                continue
+
+    with open("url_dict_part{}.json".format(partition), "w+") as f:
+        json.dump(url_dict, f, indent=4)
