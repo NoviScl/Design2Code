@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <style>
+   @charset "UTF-8";
+/*
+	ddsmoothmenu styles adapted for Sandvox 2
+
+		* Our menu is always inside #sitemenu-content, so address it that way rather than using the .ddsmoothmenu classes.
+			This allows us to interact with the Sandvox designs more easily.
+
+		* Includes CSS for both horizontal and vertical menus.
+*/
+
+
+/*
+	CSS for shadow added to sub menus.
+	Not used in Sandvox setup.
+*/
+
+.ddshadow{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	background: silver;
+}
+
+.toplevelshadow{ /*shadow opacity. Doesn't work in IE*/
+	opacity: 0.8;
+}
+
+
+
+
+/*
+	GENERAL SETUP AND HORIZONTAL MENUS
+	adapted from ddsmooothmenu.css
+*/
+
+#sitemenu-content ul {
+	z-index: 5000;
+}
+
+#sitemenu-content ul ul {
+	z-index: auto;
+}
+
+/* Top level list items */
+#sitemenu-content ul li {
+	position: relative;
+	display: inline;
+}
+
+#sitemenu-content ul ul {
+	text-align: left; /* prevent centred submenu items */
+	height: auto;
+}
+
+/* IE6 hack to get sub menu links to behave correctly */
+* html #sitemenu-content ul li a {
+	display: inline-block;
+}
+
+/* CSS class that's dynamically added to the currently active menu items' LI A element */
+#sitemenu-content ul li a.selected { }
+
+
+/* Submenus */
+#sitemenu-content ul li ul {
+	position: absolute;
+	right: 0;
+	margin: 0em;
+	margin-bottom: 15px;
+	padding: 0em;
+	display: none; /*collapse all sub menus to begin with*/
+	visibility: hidden;
+	list-style-type: none;
+	width: 200px; /* or rather auto? */
+	background: #fff;
+	border: 1px #666 solid;
+	box-shadow: 3px 2px 4px #999;
+	-webkit-box-shadow: 3px 2px 4px #999;
+	-moz-box-shadow: 3px 2px 4px #999;
+}
+
+/* Submenu items (undo style from Top level List Items) */
+#sitemenu-content ul li ul li {
+	display: list-item;
+	float: none;
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* All subsequent sub menu levels vertical offset after 1st level sub menu */
+#sitemenu-content ul li ul li ul {
+	top: 0;
+}
+
+/* Sub level menu links style */
+#sitemenu-content ul li ul li span.in {
+	width: auto; /* width of sub menus ******************* */
+	padding: 5px 15px 5px 5px;
+	margin: 0;
+	border-top-width: 0;
+	border-bottom: 1px solid #ddd;
+}
+
+#sitemenu-content ul li ul li.last>span.in {
+	border-bottom: 0px none;
+}
+
+#sitemenu-content ul li ul li span.in,
+#sitemenu-content ul li ul li a {
+	display: block;
+	position: relative;
+}
+
+#sitemenu-content ul li ul li a:hover {
+	text-decoration: underline;
+}
+
+/* Holly Hack for IE \*/
+* html #sitemenu-content {
+	height: 1%;
+}
+/*Holly Hack for IE7 and below*/
+
+
+
+
+
+/*
+	VERTICAL MENUS
+	adapted from ddsmoothmenu-v.css
+*/
+
+#sitemenu-content.ddsmoothmenu-v ul li {
+	display: list-item;
+	position: relative;
+}
+
+/* Sub level menu items */
+#sitemenu-content.ddsmoothmenu-v ul li ul {
+	top: 0;
+	right: auto;
+}
+
+/* Holly Hack for IE \*/
+* html #sitemenu-content.ddsmoothmenu-v ul li a {
+	height: 1%;
+}
+/*Holly Hack for IE7 and below*/
+
+
+
+
+
+/*
+	SUBMENU INDICATORS
+	Elementary styling for the .submenu-indicator class which is appended to menu items that have submenus.
+	Default styling uses triangle images pointing to the right and bottom.
+	Designs may need to adjust the spacing and/or images to suit their look.
+*/
+
+#sitemenu-content ul .submenu-indicator {
+	display: inline-block;
+	background: url(down.gif) center center no-repeat;
+	width: 11px;
+	height: 8px;
+	padding: 0 0 0 3px;
+	position: relative; /* IE6/7 love to make sure the arrow doesn't occasionally vanish */
+}
+
+#sitemenu-content.ddsmoothmenu-v ul .submenu-indicator,
+#sitemenu-content ul ul .submenu-indicator {
+	display: block;
+	background: url(right.gif) center center no-repeat;
+	width: 8px;
+	height: 11px;
+	position: absolute;
+	top: 8px;
+	right: 5px;
+}
+
+#sitemenu-content.ddsmoothmenu-v ul .submenu-indicator {
+	top:3px;
+}
+
+
+
+@charset "UTF-8";
+
+/*
+   css Copyright Â© 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License  - http://creativecommons.org/licenses/by-sa/2.5/
+   All associated graphics belong to their respective owners and are licensed separately.
+*/
+
+/* IE7 hacks */
+
+*:first-child+html .gridItem img {
+	position:relative;
+	top:0px;
+}
+
+*:first-child+html .gridItem h3 {
+	position:relative;
+	top:0px;
+}
+
+/* Navigation arrows */
+div.text-navigation { text-align:center; margin-bottom:1em;}
+div.text-navigation div { display:inline; margin:0px 0.5em; }
+.collection-navigation .disabled-navigation { text-indent:-5000px; }
+
+/* 2.0 wrap compatibility. 2.0-compatible designs can further adjust these if they need */
+.wide { display:block; }
+
+.narrow.left {   /* Some designs won't respect without !important */
+    float:left!important;
+    clear:left!important;
+}
+.narrow.right {
+    float:right!important;
+    clear:right!important;
+}
+
+.wide.left   .graphic, img.wide.left,   .wide.left video,   .wide.left audio   { display:block; margin-left:0px; margin-right:auto; }
+.wide.center .graphic, img.wide.center, .wide.center video, .wide.center audio { display:block; margin-left:auto; margin-right:auto; }
+.wide.right  .graphic, img.wide.right,  .wide.right video,  .wide.right audio  { display:block; margin-left:auto; margin-right:0px; }
+
+
+.ImageElement.left, .AudioElement.left { text-align:left; }
+.ImageElement.center, .AudioElement.center { text-align:center; }
+.ImageElement.right, .AudioElement.right { text-align:right; }
+
+/* Captions should align themselves with the graphic */
+.graphic-container.left .caption { text-align:left; }
+.graphic-container.center .caption { text-align:center; }
+.graphic-container.right .caption { text-align:right; }
+
+/* Inline iframes need to display as a block to layout right */
+.graphic iframe { display:block; }
+
+/* Pagelet photo grids should be generally be auto width (some 1.x designs hardcoded an exact width) */
+.pagelet .photogrid-index { width:auto; }
+
+/* For content like amazon which forces white background. Design SHOULD set color for A tag and text color. */
+.whiteBackground
+{
+	background-color:white;
+}
+
+.article-info
+{
+	margin-bottom:1em;
+}
+
+/* Firefox reduce dotted lines on links */
+.photo-navigation a:focus, .replaced a:focus {overflow:hidden;}
+
+/* Disqus correction to prevent overflow scroll bars in some designs */
+#dsq-content { overflow:hidden; }
+#dsq-content .dsq-auth-header { width: auto!important; }
+#dsq-content .dsq-by { margin: 4px 6px 0px 0px; }
+#dsq-content .dsq-by a, #dsq-content .dsq-by a:hover { border: 0px none; }
+#dsq-content h3 { margin:0px; }
+
+/* Site menus. Don't wrap the top level items, and wrap sub-menu items normaly. */
+#sitemenu-content ul li span.in { white-space:nowrap;}
+* html #sitemenu-content ul li span.in {white-space: normal}
+*:first-child+html #sitemenu-content ul li span.in {white-space: normal}
+#sitemenu-content ul ul li span.in {white-space: normal}
+#sitemenu-content span.in { position: relative; }
+
+body { word-wrap:break-word; }
+
+/* Make sure scaled-down images look good in IE */
+img { -ms-interpolation-mode: bicubic; }
+
+.HTMLElement { overflow:hidden; }
+
+/* MODIFIED, BASED ON THE FOLLOWING BASE CSS AND DEFAULT THEME
+*/
+/*
+ * jQuery Nivo Slider v3.2
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2012, Dev7studios
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+ 
+/* The Nivo Slider styles */
+.nivoSlider {
+	position:relative;
+	width:100%;
+	height:auto;
+	overflow: hidden;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	max-width: none;
+}
+.nivo-main-image {
+	display: block !important;
+	position: relative !important; 
+	width: 100% !important;
+}
+
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0;
+	margin:0;
+	z-index:6;
+	display:none;
+	background:white; 
+	filter:alpha(opacity=0); 
+	opacity:0;
+}
+/* The slices and boxes in the Slider */
+.nivo-slice {
+	display:block;
+	position:absolute;
+	z-index:5;
+	height:100%;
+	top:0;
+}
+.nivo-box {
+	display:block;
+	position:absolute;
+	z-index:5;
+	overflow:hidden;
+}
+.nivo-box img { display:block; }
+
+/* Caption styles */
+.nivo-caption {
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	background:#000;
+	color:#fff;
+	width:100%;
+	z-index:8;
+	padding: 5px 10px;
+	opacity: 0.8;
+	overflow: hidden;
+	display: none;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=8);
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.nivo-caption p {
+	padding:5px;
+	margin:0;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+	position:absolute;
+	top:45%;
+	z-index:9;
+	cursor:pointer;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
+}
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav {
+	text-align:center;
+}
+.nivo-controlNav a {
+	cursor:pointer;
+}
+.nivo-controlNav a.active {
+	font-weight:bold;
+}
+
+/*
+Skin Name: Nivo Slider Default Theme
+Skin URI: http://nivo.dev7studios.com
+Description: The default skin for the Nivo Slider.
+Version: 1.3
+Author: Gilbert Pellegrom
+Author URI: http://dev7studios.com
+Supports Thumbs: true
+*/
+
+.nivoSlider {
+	position:relative;
+	background:#fff url(nivo-images/loading.gif) no-repeat 50% 50%;
+    margin-bottom:10px;
+	-webkit-box-shadow: 0px 1px 5px 0px rgb(128,128,128);
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 1px 5px 0px rgb(128,128,128);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 0px 1px 5px 0px rgb(128,128,128);
+	box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+	margin:0 !important;
+	border:none !important;
+	padding:0 !important;
+}
+.nivoSlider a {
+	border:0;
+	display:block;
+}
+
+.nivo-controlNav a {
+	margin:0 4px;
+}
+
+.nivo-dots .nivo-controlNav a {
+	display:inline-block;
+	width:16px;
+	height:16px;
+	background:url(nivo-images/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin: 0 2px;
+}
+
+.nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(nivo-images/arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	opacity: 0;
+	-webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+
+.nivoSlider:hover .nivo-directionNav a { opacity: 1; }
+
+a.nivo-nextNav {
+	background-position:-30px 0;
+	right:15px;
+}
+a.nivo-prevNav {
+	left:15px;
+}
+
+.nivo-dots .nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+.nivo-caption {
+    font-family: Helvetica, Arial, sans-serif;
+}
+.nivo-caption a {
+    color:#fff;
+    border-bottom:1px dotted #fff;
+}
+.nivo-caption a:hover {
+    color:#fff;
+}
+
+.nivo-thumbs-enabled {
+	width: 100%;
+}
+.nivo-thumbs-enabled a {
+	width: auto;
+	height: auto;
+	background: none;
+	margin-bottom: 5px;
+}
+.nivo-thumbs-enabled img {
+	padding:0 !important; margin:0; background:none !important; border:none;
+}
+
+.photogrid-index-bottom { clear:left; }
+
+/* 
+   css Copyright Â© 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License 
+        - http://creativecommons.org/licenses/by-sa/2.5/ 
+   All associated graphics belong to their respective owners 
+        and are licensed separately. 
+*/
+
+
+h2,h3,h4,h5,h6{ color:#666;}
+a img { border: none; }
+
+ /* General styles  */
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+.hidden  {
+    display:none;
+}
+
+/* Images embedded in text.  "narrow" are 200 pixels wide or smaller. */
+.narrow {
+	display: block;
+	clear: right;
+    float:right;
+	padding:0;
+}
+img.wide {
+	display:block;
+	clear: both;
+}
+.narrow.left{
+	margin:5px 10px 0 0;
+}
+.narrow.right {
+	margin:5px 0 4px 10px;
+}
+
+/* Block Level formatting, more or less in descending order */
+
+body {
+	font-size: 76%;
+	margin: 0;
+	font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+#page {
+    margin: auto;
+    width: 771px;
+}
+
+
+
+h4, h5, h6 {
+	font-size: 100%;
+	text-transform: uppercase
+}
+
+
+#page-top {
+    margin:0;
+}
+
+#title {
+    padding: 20px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    margin: 0;
+    overflow: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.9em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px;
+    margin-top: 22px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html h1 {
+    height: 1%;
+}
+/* End hide from IE5-mac */
+
+
+#title a {
+    text-decoration:none;
+    color: black;
+    border: none !important;
+}
+
+#title a:hover, a:focus, a:active {
+    border: none !important;
+}
+
+#title img {
+    margin: 3px;
+    padding: 5px;
+    background: white;
+    border: 1px solid rgb(200,200,200);
+    margin-bottom: -8px;
+}
+
+#title p {
+    background: url(title_separator.gif) top center no-repeat;
+    font-size: 1.3em;
+    text-align: center;
+    margin: 10px;
+    margin-top: -5px;
+    margin-bottom: 14px;
+    padding-top: 18px;
+}
+
+/* IE Hack */
+/* Hides from IE5-mac \*/
+* html #title p {
+    height: 1%;
+}
+/* End hide from IE5-mac */
+
+
+
+/* BANNER HANDLING */
+
+/*body.has-custom-banner #page-top {
+	background-position: center -15px;	
+}*/
+
+body.has-custom-banner #title {
+	background:center top no-repeat;
+	min-height:160px;	
+}
+
+/*body.has-custom-banner #title p {
+	text-shadow: #eee 1px 1px 1.5px;
+	background:transparent;
+}*/
+
+
+/* SITEMENU */
+
+#sitemenu-container {
+    clear:both;
+    position:relative;
+}
+
+#sitemenu {
+    min-height: 35px;
+ 	margin:0px 0px 0px;
+    padding:1px 0px;
+    font-size: 1.1em;
+}
+
+*:first-child+html #sitemenu {
+	padding-top:13px;
+	min-height:21px;
+}
+
+/* Hides from IE5-mac \*/
+* html #sitemenu {
+    margin-top: -15px;
+    margin-bottom: -2px;
+}
+/* End hide from IE5-mac */
+
+#sitemenu-content {
+    padding:0px 0px 1px 0px;
+    margin:-4px 0px -1px 0px;
+}
+
+*:first-child+html #sitemenu-content ul {
+	margin-bottom:8px;
+}
+
+#sitemenu-content ul {
+    text-align: center;
+    padding: 0px 20px;
+    margin:13px 0px 11px;
+}
+
+#sitemenu-content li {
+    margin: 1px 0px 0px 0px;
+    padding: 0px 5px;
+    display: inline;
+    line-height: 1.3em;
+}
+
+#sitemenu-content a{
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+#sitemenu-content a:hover,
+#sitemenu-content a:focus, 
+#sitemenu-content a:active {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+#sitemenu-content ul ul a:hover,
+#sitemenu-content ul ul a:focus, 
+#sitemenu-content ul ul a:active,
+#sitemenu-content ul ul .selected {
+	text-decoration: underline;
+	border-bottom-color: rgb(200,200,200);
+}
+
+#sitemenu-content li.currentPage span.in, 
+#sitemenu-content li.currentParent > a > span.in {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+#sitemenu-content ul ul li.currentPage span.in {
+	text-decoration: underline;
+}
+
+#sitemenu-content ul ul li.currentPage li a span.in {
+	text-decoration: none;
+	background: transparent;
+}
+
+*:first-child+html #sitemenu-content > ul > li > a > span.in > .submenu-indicator,
+*:first-child+html #sitemenu-content > ul > li > span.in > .submenu-indicator {
+	top: -3px;
+}
+
+
+
+#page-content {
+    width: 771px;
+    margin: auto;
+    clear: both;
+    overflow: hidden;
+}
+
+/* Hides from IE5-mac \*/
+* html #page-content {
+    overflow: visible;
+    margin-top: -15px;
+}
+/* End hide from IE5-mac */
+
+body.no-sidebar #page-content {
+    width: 771px;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html .body.allow-sidebar #sidebar {
+    margin-left: 10px;
+}
+/* End hide from IE5-mac */
+
+#sidebar {
+    float: left;
+    width: 210px;
+    font-size: 0.8em;
+    /*text-align: center;*/
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#sidebar p {
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: left;
+}
+
+#sidebar ul, #sidebar ol, #sidebar dl, #sidebar table {
+	text-align:left;
+}
+
+
+.pagelet {
+    width:210px;
+    overflow:hidden;
+}
+
+.pagelet h4 {
+    font-weight: normal;
+    font-size: 1.4em;
+    text-align: center;
+    display: block;
+    border-bottom: 1px solid black;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    margin-top: 5px;
+}
+#sidebar .pagelet h4{ text-align:left;}
+#sidebar ul, #sidebar ol{ margin:0; padding:0 0 0 15px;}
+
+.blockquote-container>.pagelet-body, .blockquote-container>.graphic {
+	position: relative;
+	background: -45px 3px no-repeat;
+	background-image: url(QuotationMarks-NeoNews.png);
+}
+
+.blockquote-container .pagelet-body:after, .blockquote-container .graphic:after {
+	display: block;
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	bottom: 0px;
+	right: 0px;
+	content: "";
+	background: transparent 38px 38px no-repeat;
+	background-image: url(QuotationMarks-NeoNews.png);
+} 
+
+.blockquote-container blockquote {
+	margin: 0px;
+	padding: 1px 18px 5px 27px;
+	z-index: 100;
+	position: relative;
+	font-style: italic;
+}
+
+#sidebar blockquote {
+	padding-left: 22px;
+}
+
+#sidebar .blockquote-container .pagelet-body {
+	background-position-y: -2px;
+}
+
+
+#main {
+    min-height: 190px;
+    margin-top: 0;
+    padding-bottom:24px;
+}
+
+/* photo-page, html-page (in some cases), iframe-page don't have sidebar */
+body.no-sidebar #main {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+/* Most other pages have sidebars */
+body.allow-sidebar #main {
+    margin-right: 20px;
+    float: right;
+    width: 508px;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html .body.allow-sidebar #main {
+    margin:0;
+    padding:0;
+    margin-right: 10px;
+    width: 508px;
+}
+/* End hide from IE5-mac */
+
+h2 {
+    font-weight: normal;
+    border-bottom: 1px solid black;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.7em;
+    margin-top: 2px;
+    margin-bottom:0px;
+    padding-bottom: 5px;
+    min-height:25px;
+}
+
+/* Hides from IE5-mac \*/
+* html h2 {
+    margin-top: 7px;
+}
+/* End hide from IE5-mac */
+
+.has-photo-navigation h2 {
+	padding-right: 104px;
+}
+
+.no-sidebar .has-photo-navigation h2 {
+	padding-left: 104px;
+}
+
+
+.article, .no-callouts {
+	margin:0px 10px 10px 10px!important;
+	clear: right;
+}
+
+.article h3 {
+     border-bottom: 1px solid black;
+     padding: 5px;
+     color: black;
+     font-weight: normal;
+     font-size: 1.3em;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(200,200,200);
+}
+
+a:hover, a:focus, a:active {
+    border-bottom: 1px solid black;
+    color: black;
+}
+
+a.imageLink {
+	border: 0px none;
+}
+
+.article img {
+    border: none;
+}
+
+.article img.narrow{
+    float: left; 
+	margin-right: 10px;
+    margin-bottom: 4px;  
+}
+
+.article-info {
+	clear: right;
+}
+
+.article-thumbnail {
+    float: left;
+    margin: 5px 10px 0 0;
+	clear:left;
+}
+
+.callout {
+    float: right;
+    margin: 10px;
+    margin-right: 0px;
+    padding-left: 10px;
+    margin-top: 0px;
+    border-left: 1px solid rgb(200,200,200);
+}
+
+.callout h4 {
+    font-weight: normal !important;
+    font-size: 1.1em !important;
+}
+#page-bottom {
+    height: 35px;
+    line-height:1.6em;
+    font-size: 1em;
+    padding:14px 23px 0px 23px;
+    color: rgb(61, 61, 61);
+    text-align: center;
+    text-transform: uppercase;
+	overflow:hidden;
+}
+
+#page-bottom div {
+	height:20px;
+	overflow:hidden;
+}
+
+#page-bottom p {
+	display:inline;
+}
+
+#page-bottom p+p:before {
+	content: ' ~ ';
+}
+
+div.photo-viewer-summary .article {
+    margin: auto;
+}
+
+.HTMLElement {
+    margin-bottom: 10px;
+}
+
+.ImageElement, .VideoElement {
+    text-align: center;
+    margin-top:20px;
+}
+
+.caption {
+    padding: 10px;
+}
+
+/* Used on Photo Grid Pages ... */
+.photogrid-index {
+    background: rgb(230, 230, 230);
+    text-align: center;
+    margin: 10px auto;
+    padding: 5px;
+    border: 1px solid black;
+    overflow: auto;
+    width: 480px;
+}
+
+body.no-sidebar .photogrid-index {
+	width:640px;
+}
+
+* html body.no-sidebar .photogrid-index {
+	width:646px;
+}
+
+.photogrid-index a {
+	color:#000;
+	text-decoration:none;
+	border:none;
+}
+
+.photogrid-index a:hover  {
+	text-decoration:underline;
+	border:none;
+}
+
+
+.gridItem {
+    float: left;
+    position:relative;
+    width:152px;
+    height:192px;	/* room for caption */
+    overflow: hidden;
+    margin: 3px;
+    padding-top: 10px;
+    background: white;
+    border: 1px solid rgb(200,200,200);
+}
+
+.gridItem h3 {
+    font-size:12px;
+    font-weight:normal;
+    margin-top: 2px;
+    margin-left: 7px;
+    margin-right: 7px;
+    text-shadow: 0px 1px 1px white;
+    height: 45px;
+    overflow: hidden;
+    position:absolute;
+	top: 147px; /* needs to leave 38px from the bottom of the gridItem */
+	width: 136px;
+}
+.article .gridItem h3 {height: 42px; margin:0 0 0 2px; border:0;}
+
+.gridItem img {
+    border: 1px solid rgb(80, 80, 80);
+    margin: auto;
+    display:block;
+    position: absolute;
+    top: 0;
+    bottom: 40px;
+    right: 0;
+    left: 0;
+}
+
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html .photogrid-index {
+	overflow:visible;
+}
+* html .gridItem img {
+	position: relative;
+	top:6px;
+}
+
+* html .gridItem h3 {
+	position: relative;
+	top: 8px;
+}
+
+#sidebar .photogrid-index{
+	width:auto;
+	margin-left:20px;
+	margin-right:17px;
+}
+
+
+
+/* End hide from IE5-mac */
+
+
+
+
+
+/* Used on index summary pages */
+.listing-index li h3 a {
+    text-decoration:none;
+    font-size:1em;
+    font-weight:normal;
+}
+
+/* Individual Photo Pages */
+
+.photo-navigation {
+    position: relative;
+    z-index: 100;
+    height:0px;
+}
+
+/* Hides from IE5-mac \*/
+* html .photo-navigation {
+    margin-top: 1px;
+}
+/* End hide from IE5-mac */
+
+.photo-navigation div {
+	text-indent: -5000em;
+    width: 25px;
+    height: 30px;
+    position: absolute;
+    margin-top: -35px;
+}
+
+.photo-navigation a{
+    display: block;
+    width:100%;
+    height:100%;
+}
+
+.photo-navigation a:active {
+    border: none !important;
+}
+
+#previous-photo	{
+    background: url(photo-buttons-disabled.png)		no-repeat;
+    left: 632px;
+}
+.allow-sidebar #previous-photo {
+	left:408px;
+}
+#previous-photo a {
+    background: url(photo-buttons.png)		no-repeat;
+}
+
+#next-photo {
+    background: url(photo-buttons-disabled-03.png)		no-repeat;
+    left: 705px;
+}
+.allow-sidebar #next-photo {
+	left:480px;
+}
+#next-photo a {
+    background: url(photo-buttons-03.png)		no-repeat;
+}
+
+#photo-list {
+    width: 38px;
+    background: url(photo-buttons-disabled-02.png)		no-repeat;
+    left: 662px;
+}
+.allow-sidebar #photo-list {
+	left:438px;
+}
+#photo-list a {
+    background: url(photo-buttons-02.png)		no-repeat;
+}
+
+
+.text-navigation {
+	margin-top:6px;
+}
+.text-navigation #previous-photo, .text-navigation #next-photo, .text-navigation  #photo-list, .text-navigation a, .text-navigation a:hover{
+	background:none!important;
+}
+
+.article-info .timestamp, h3.index-title{ clear:left;}
+
+/* IE:Mac Hackery */
+
+/*\*//*/
+
+body.allow-sidebar #main {
+    float: right;
+    width: 511px;
+    font: 1em Georgia, Times, serif;
+}
+
+.article {
+    margin:0;
+    margin-top: -30px;
+    background: none;
+    border: none;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.article p {
+    clear: none;
+}
+
+.article a {
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+.article a:hover, a:focus, a:active {
+    border-bottom: none;
+    color: blue;
+}
+
+.article-summary {
+    padding: 0;
+    margin: 0;
+    clear: none;
+}
+
+#page-bottom p {
+    margin-top: 0;
+}
+
+/**/
+.no-page-title .photo-navigation {margin-top:33px;}
+
+body {
+	background: rgb(63, 153, 214) url(green/stripes.png);
+}
+#page {
+    background: #FFF url(green/bkgd.png) repeat-y;
+}
+body.no-sidebar #page {
+    background: #FFF url(green/bkgd_no_sidebar.png) repeat-y;
+}
+#page-bottom {
+    background: url(green/footer.png);  
+}
+#title {
+    background: url(green/header_bottom.png) bottom center no-repeat; 
+}
+#sitemenu-content ul ul li.currentPage span.in,
+#sitemenu-content ul ul li.currentParent > a > span.in {
+	background: url(green/header_top.png) 20% 20% no-repeat;
+}
+#page-top {
+    background: url(green/header_top.png) no-repeat;
+}
+#sitemenu-content {
+    background: url(green/link_bottom.png) bottom no-repeat;
+}
+#sitemenu {
+    background: url(green/link_top.png) top no-repeat;  
+}
+#page-content {
+    background: url(green/page_top.png) top no-repeat;
+}
+* html #page-content {
+    background: url(green/page_top.png) top left no-repeat;
+}
+
+.callout-container, .graphic-container { clear:both; }
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <title>
+   Organic Garden | Pioneer Cabins and Guest Farm | Pioneer Cabins
+  </title>
+  <meta content="Pioneer Cabins" name="author">
+  <meta content="Organic Gardens at Pioneer Cabins and Guest Farm in Townsend TN near Cades Cove" name="description">
+  <meta content="all" name="robots">
+  <meta content="Sandvox 2.10.12" name="generator">
+  <meta content="width=772" name="viewport">
+ </head>
+ <body class="sandvox has-page-title allow-sidebar no-custom-banner no-navigation no-IR" id="www_pioneercabins_com">
+  http://www.pioneercabins.com/sitemap.xml.gz
+  <!--[if lt IE 6]>
+		<![endif]-->
+  <!--
+		Photo credits for this website's design: <http://www.pioneercabins.com/sandvox_NeoNews_green/Credits.rtf>
+		Licensing for this website's design:     <http://www.pioneercabins.com/sandvox_NeoNews_green/License.rtf>
+		-->
+  <div id="page-container">
+   <div id="page">
+    <div class="no-logo has-title has-tagline" id="page-top">
+     <div id="title">
+      <h1 class="title in">
+       <a>
+        <span class="in">
+         <span style="font-size: 24px; font-family: 'Copperplate Gothic Bold'; color: rgb(0, 71, 5);">
+          Pioneer Cabins and Guest Farm
+         </span>
+        </span>
+       </a>
+      </h1>
+      <p id="tagline">
+       <span class="in">
+        <span style="color: rgb(23, 83, 38); font-family: Helvetica;">
+         &nbsp;
+         <strong>
+          288 Boat Gunnel Rd, Townsend TN, 37882 &nbsp; &nbsp; &nbsp;Reservation Phone: 888-448-9054
+         </strong>
+        </span>
+       </span>
+      </p>
+     </div>
+     <!-- title -->
+     <div id="sitemenu-container">
+      <div id="sitemenu">
+       <h2 class="hidden">
+        Site Navigation
+        <a rel="nofollow">
+         [Skip]
+        </a>
+       </h2>
+       <div class="ddsmoothmenu" id="sitemenu-content">
+        <ul>
+         <li class="i1 o">
+          <a title="Home">
+           <span class="in">
+            Home
+           </span>
+          </a>
+         </li>
+         <li class="i2 e hasSubmenu" style="z-index: 6000;">
+          <a title="Our Cabins">
+           <span class="in">
+            Our Cabins
+            <span class="submenu-indicator">
+            </span>
+           </span>
+          </a>
+          <ul style="display: none; visibility: visible;">
+           <li class="i1 o">
+            <a title="Bunk House Cabin (Max. 6) - Handicapped Accessible - 1 Bedroom, 1.5 Bath">
+             <span class="in">
+              Bunk House Cabin (Max. 6) - Handicapped Accessible - 1 Bedroom, 1.5 Bath
+             </span>
+            </a>
+           </li>
+           <li class="i2 e">
+            <a title="Rooster's Perch Cabin (Max. 6) - Most Secluded Cabin - 2 Bedroom, 1.5 Bath">
+             <span class="in">
+              Rooster's Perch Cabin (Max. 6) - Most Secluded Cabin - 2 Bedroom, 1.5 Bath
+             </span>
+            </a>
+           </li>
+           <li class="i3 o">
+            <a title="Wrangler's Den Cabin (Max. 12) - 4 Bedroom, 2 Bath, Washer/Dryer">
+             <span class="in">
+              Wrangler's Den Cabin (Max. 12) - 4 Bedroom, 2 Bath, Washer/Dryer
+             </span>
+            </a>
+           </li>
+           <li class="i4 e">
+            <a title="Hide Out Cabin (For 2-4) - 1 Bedroom, 1 Bath">
+             <span class="in">
+              Hide Out Cabin (For 2-4) - 1 Bedroom, 1 Bath
+             </span>
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li class="i3 o">
+          <a title="Terms and Conditions">
+           <span class="in">
+            Terms and Conditions
+           </span>
+          </a>
+         </li>
+         <li class="i4 e">
+          <a title="Guest Farm Activities">
+           <span class="in">
+            Guest Farm Activities
+           </span>
+          </a>
+         </li>
+        </ul>
+       </div>
+       <!-- /sitemenu-content -->
+      </div>
+      <!-- /sitemenu -->
+     </div>
+     <!-- sitemenu-container -->
+    </div>
+    <!-- page-top -->
+    <div class="clear below-page-top">
+    </div>
+    <div class="no-navigation" id="page-content">
+     <div id="sidebar-container">
+      <div id="sidebar">
+       <div id="sidebar-top">
+       </div>
+       <div id="sidebar-content">
+        <h3 class="hidden">
+         Sidebar
+         <a rel="nofollow">
+          [Skip]
+         </a>
+        </h3>
+        <div class="pagelet untitled i1 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0667 506" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i2 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0240" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i3 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="Pioneer Cabins Entrance Sign" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i4 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0254" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i5 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0277" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i6 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0306" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i7 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0342" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i8 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC 0265" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i9 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="Red Blackberrys" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i10 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="DSC_0322" height="132" src="rick.jpg" width="200">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i11 o last-item">
+         <div class="pagelet-body">
+          <div class="HTMLElement" style>
+          </div>
+         </div>
+        </div>
+       </div>
+       <!-- sidebar-content -->
+       <div id="sidebar-bottom">
+       </div>
+      </div>
+      <!-- sidebar -->
+     </div>
+     <!-- sidebar-container -->
+     <div id="main">
+      <div id="main-top">
+      </div>
+      <div id="main-content">
+       <h2 class="title">
+        <span class="in">
+         Organic Garden
+        </span>
+       </h2>
+       <div class="article">
+        <div class="article-content">
+         <div class="RichTextElement">
+          <div>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             <strong>
+              Organic Garden
+             </strong>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We have organic gardens around drive way, office and next to the pasture.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We use compost and natural fertilizers as our plant foods, and we grow natural pest repellants (scented flowers and herbs) around fruits and vegetables to minimize the damages from bugs and birds, and make a spray mixture of herbs and water to spray on the plants as another natural pest repellent. However, we wouldn&rsquo;t mind to share some of our fruits and vegetables with birds, butterflies, bees and cute baby rabbits.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Our growing seasons start in late April through early October. &nbsp;Here are some of the vegetables and herbs you can find in our gardens:
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We built a greenhouse in February, 2018, so might have longer growing seasons. We use this to allow seeds to be started during cold weather months, and to provide a safe space for tropical plants in winter.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             <strong>
+              Vegetables
+             </strong>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Asparagus &ndash; We grow Jersey Giant and Sweet Purple. They can be harvested from late April to June.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Corn &ndash; We grow Black and Gold sweet corns. The best harvest time is from Late June to July.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Cucumber &ndash; They can be harvested from June to August. They are great for salad.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Greens &ndash; We grow all kinds of salad greens and cabbages. They are our energy booster.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Peas and Beans &ndash; peas start really early in the season, they don&rsquo;t like heat much, so they will die down when summer starts. It starts from April and last till late May.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Pepper &ndash; We like the color of all sweet peppers, so we plant one of each every year. Of course, we will add some hot peppers to spice it up.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Potato &ndash; we mainly grow Purple Peruvian and Yukon Gold because they are healthier and we think they taste better than Idaho potato. We try some new verities from time to time, too.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Summer Squash and Zucchini &ndash; They grow fast but have a short season, they can be harvested from June to July. Add some olive oil/butter, salt and pepper, they are wonderful on the grill.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Sweet Potato &ndash; We grow Japanese Yam and Purple sweet potatoes. They have the taste of sweet potatoes, but texture of potato.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Tomato &ndash;we have seven to eight kinds of tomato every year, it starts to ripe from late May to early September. They are great for salad or soup.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Turnips and Carrots &ndash; Turnips are pretty easy to grow. They can be harvested from April to June and from September to October.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             <strong>
+              Herbs
+             </strong>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Basil &ndash; Basil is a great companion plant with Tomato. They grow well together and they taste great together.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Bee Balm &ndash; They are available from late April to early October. Some people like to use the leaves to make tea, we like them for the pretty flowers.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Chives and Garlic Chives &ndash; Chives are for all seasons, they grow from very cold winter and die down some during hot summer. Their leaves are great addition for soup and salad.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Garlic &ndash; We grow a few kinds of garlic plants around roses, fruits and greens. Some customers really like our garlic, especially the native mountain garlic and the elephant garlic.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             German Chamomile &ndash; The flowers are great for tea or cosmetic. They bloom from May to July.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Lavender &ndash; They are almost available for all seasons. Some people use them in tea, we only use them to make soaps or dry flowers.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Lemon Balm &ndash; They are available from late April to early October. They are great to be added in tea.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Mint and Pepper Mint &ndash; They are available from late April to early October. &nbsp;Spear Mint is great to be added to ice tea or water, Pepper Mint tea is wonderful to drink after a heavy meal.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Onion &ndash; We grow Siskiyou Sweet Onion and Red Onion. We also have the Egypian Walking Onion so you can harvest them easier (on top of plants).
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Rosemary &ndash; They are almost available for all seasons. They are great with potato or chicken.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Sage - They are almost available for all seasons. &nbsp; They are great with chicken or turkey.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Thyme - We use Thyme as ground cover around the gardens, they are also a great addition to many of my home cooking receipes.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We also grow Bay Leave, Lemon, and Lemon grass around the office porch. &nbsp;They are not winter hardy, so we have to put them indoor for the winter season.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             <strong>
+              Fruits
+             </strong>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Generally, Blue Berries, Straw Berries, Gooseberries and Blackberries are ready between May and June. Melons, Jojobe are ready between August and September.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             If the weather permitted (sometime, we have late frost that kill most of the flowers or young fruits), we will have Plums, Apples and Pears available starting from late July to Mid October. &nbsp;
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We also have Persimmons, Musadines, Mayhow fruits, Goji Berries, Green, Peach and Nectarine.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             <strong>
+              Flowers
+             </strong>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We like to grow flowers around vegetables to attract lady bugs, bees, butterflies and birds. Our favorite ones are Cleome, Cosmos, Four O&rsquo;Clock, Dahlia, Holly Hock, Lamb&rsquo;s Ear, Marigold, Sun flowers, Mexican Sun flowers, and Zinnia.
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             <strong>
+              Sources of our fruit trees and vegetable seeds:
+             </strong>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             In addtion to our local nurseries, our favorite suppliers are,
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Edible Landscaping at
+             <a>
+              http://ediblelandscaping.com
+             </a>
+             <br>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Territorial Seed Company at&nbsp;
+             <a>
+              http://www.territorialseed.com
+             </a>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Seeds of Change at&nbsp;
+             <a>
+              http://www.seedsofchange.com
+             </a>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Baker Creek Heirloom Seeds at&nbsp;http://www.rareseeds.com
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             Renee&rsquo;s Garden Seeds at http://www.reneesgarden.com
+            </span>
+           </p>
+           <p>
+            <strong style="font-family: Optima; font-size: 14px;">
+             Bee Hives
+            </strong>
+            <span style="font-size: 14px; font-family: Optima;">
+             <br>
+            </span>
+           </p>
+           <p>
+            <span style="font-size: 14px; font-family: Optima;">
+             We have bee hives in the front portion of the property. These are maintained by a local beekeeper.
+            </span>
+           </p>
+          </div>
+         </div>
+        </div>
+        <!-- /article-content -->
+        <div class="article-info">
+         <div class="timestamp in">
+          <span class="in">
+           Dec 4, 2020
+          </span>
+         </div>
+        </div>
+        <!-- /article-info -->
+       </div>
+       <!-- /article -->
+      </div>
+      <!-- main-content -->
+      <div id="main-bottom">
+      </div>
+     </div>
+     <!-- main -->
+    </div>
+    <!-- content -->
+    <div class="clear below-content">
+    </div>
+    <div id="page-bottom">
+     <div id="page-bottom-contents">
+      <div>
+       &copy; Pioneer cABINS &amp; GUEST FARM 2020 &nbsp;www.pioneercabins.com
+      </div>
+      <div class="hidden">
+       <a rel="nofollow">
+        [Back To Top]
+       </a>
+      </div>
+     </div>
+    </div>
+    <!-- page-bottom -->
+   </div>
+   <!-- container -->
+   <div id="extraDiv1">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv2">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv3">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv4">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv5">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv6">
+    <span>
+    </span>
+   </div>
+  </div>
+  <!-- specific body type -->
+ </body>
+</html>

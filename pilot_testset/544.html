@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   @font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
+}
+
+
+
+html{scroll-behavior:smooth}body{font-family:Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:16px;color:#111;background:#728ca3;margin:0;padding:0}p{font-family:Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:22px;color:#111;font-weight:400;font-style:normal;margin:3px;padding:3px;text-align:justify}a{color:inherit;text-decoration:inherit}h1{font-size:16px;line-height:22px;color:#111;font-weight:700;color:#3a5ba0;text-align:center;border-bottom:1px solid #e9e5dc}.titleblock{background-color:#3b78ad;height:80px;margin:0;padding:0;border-bottom:1px solid #bcb9b9}.topcontainer{width:1190px;margin:0 auto;padding:0}.logo{float:left;height:52px;padding:3px;margin-top:12px;margin-left:-6px}.uploadbutton{float:right;height:30px;margin-left:8px;margin-top:25px;width:150px;cursor:pointer;background-color:#c43c35;border:1px solid #a9b2ff;color:#fff;font-size:14px;font-weight:700;line-height:30px;text-align:center;text-decoration:none}.randombutton,.randombuttonmain{float:right;height:30px;margin-left:8px;margin-top:25px;width:150px;cursor:pointer;background-color:#57a957;margin-right:6px;border:1px solid #a9b2ff;color:#fff;font-size:14px;font-weight:700;line-height:30px;text-align:center;text-decoration:none}.randombuttonmain{margin-right:0}.uploadbutton:hover{background-color:#c94e47;cursor:pointer;color:#fff;text-decoration:none}.randombutton:hover,.randombuttonmain:hover{background-color:#71b471;cursor:pointer;color:#fff;text-decoration:none}.container{width:1170px;margin:0 auto;padding:10px;background-image:url(data:image/gif;base64,R0lGODlhBAAEAIAAAP////Dw8CH5BAAAAAAALAAAAAAEAAQAAAIFjHEZaAUAOw==)}.sp_fb,.sp_pin,.sp_tw,.sp_photo-marker,.sp_address,.sp_altitude,.sp_lens,.sp_brand,.sp_city,.sp_colorspace,.sp_coordinates,.sp_country,.sp_date,.sp_direction,.sp_directionref,.sp_filesize,.sp_flash,.sp_focallength,.sp_fstop,.sp_gpsref,.sp_imagesize,.sp_iso,.sp_latitude-longitude,.sp_mime,.sp_model,.sp_photo,.sp_pixels,.sp_pointing,.sp_shutterspeed,.sp_state,.sp_time,.sp_timezone,.sp_xresolution,.sp_yresolution,.sp_random,.sp_selectfile,.sp_upload,.tooltip,.sp_delete,.sp_more,.sp_warning,.sp_address_small,.sp_aperture_small,.sp_city_small,.sp_country_small,.sp_fstop_small,.sp_iso_small,.sp_model_small,.sp_shutterspeed_small,.sp_latitude-longitude_small,.sp_time_small{display:inline-block;background:url(https://www.pic2map.com/graphics/sprites.png) no-repeat;background-size:52px 1019px;overflow:hidden;text-align:left}.sp_fb{background-position:-2px 0;width:48px;height:48px;margin-right:15px}.sp_pin{background-position:-2px -100px;width:48px;height:48px;margin-right:15px}.sp_tw{background-position:-2px -150px;width:48px;height:48px;margin-right:15px}.sp_photo-marker{background-position:-2px -200px;width:32px;height:37px}.sp_address{background-position:-2px -239px;width:24px;height:24px;float:left;margin-top:-2px;margin-right:4px}.sp_altitude{background-position:-2px -265px;width:24px;height:24px;float:left;margin-right:4px}.sp_lens{background-position:-2px -291px;width:24px;height:24px;float:left;margin-right:4px}.sp_brand{background-position:-2px -317px;width:24px;height:24px;float:left;margin-right:4px}.sp_city{background-position:-2px -343px;width:24px;height:24px;float:left;margin-right:4px}.sp_colorspace{background-position:-2px -369px;width:24px;height:24px;float:left;margin-right:4px}.sp_coordinates{background-position:-2px -395px;width:24px;height:24px;float:left;margin-right:4px}.sp_country{background-position:-2px -421px;width:24px;height:24px;float:left;margin-right:4px}.sp_date{background-position:-2px -447px;width:24px;height:24px;float:left;margin-right:4px}.sp_direction{background-position:-2px -473px;width:24px;height:24px;float:left;margin-right:4px}.sp_directionref{background-position:-2px -499px;width:24px;height:24px;float:left;margin-right:4px}.sp_filesize{background-position:-2px -525px;width:24px;height:24px;float:left;margin-right:4px}.sp_flash{background-position:-2px -551px;width:24px;height:24px;float:left;margin-right:4px}.sp_focallength{background-position:-2px -577px;width:24px;height:24px;float:left;margin-right:4px}.sp_fstop{background-position:-2px -603px;width:24px;height:24px;float:left;margin-right:4px}.sp_gpsref{background-position:-2px -629px;width:24px;height:24px;float:left;margin-right:4px}.sp_imagesize{background-position:-2px -655px;width:24px;height:24px;float:left;margin-right:4px}.sp_iso{background-position:-2px -681px;width:24px;height:24px;float:left;margin-right:4px}.sp_latitude-longitude{background-position:-2px -707px;width:24px;height:24px;float:left;margin-right:4px}.sp_mime{background-position:-2px -733px;width:24px;height:24px;float:left;margin-right:4px}.sp_model{background-position:-2px -759px;width:24px;height:24px;float:left;margin-right:4px}.sp_photo{background-position:-2px -785px;width:24px;height:24px;float:left;margin-right:4px}.sp_pixels{background-position:-2px -811px;width:24px;height:24px;float:left;margin-right:4px}.sp_pointing{background-position:-2px -837px;width:24px;height:24px;float:left;margin-right:4px}.sp_shutterspeed{background-position:-2px -863px;width:24px;height:24px;float:left;margin-right:4px}.sp_state{background-position:-2px -889px;width:24px;height:24px;float:left;margin-right:4px}.sp_time{background-position:-2px -915px;width:24px;height:24px;float:left;margin-right:4px}.sp_timezone{background-position:-2px -941px;width:24px;height:24px;float:left;margin-right:4px}.sp_xresolution{background-position:-2px -967px;width:24px;height:24px;float:left;margin-right:4px}.sp_yresolution{background-position:-2px -993px;width:24px;height:24px;float:left;margin-right:4px}.tooltip{background-position:-28px -299px;width:16px;height:16px;float:right}.sp_delete{background-position:-31px -336px;width:16px;height:16px;margin-left:20px;margin-right:2px}.sp_more{background-position:-31px -354px;width:16px;height:16px;margin-right:2px;margin-left:-1px}.sp_warning{background-position:-28px -315px;width:14px;height:14px;float:left;margin-left:1px;margin-right:3px}.sp_address_small{background-position:-31px -760px;width:16px;height:16px;float:left;margin-right:3px}.sp_aperture_small{background-position:-31px -785px;width:16px;height:16px;float:left;margin-right:3px}.sp_city_small{background-position:-31px -812px;width:16px;height:16px;float:left;margin-right:3px}.sp_country_small{background-position:-31px -837px;width:16px;height:16px;float:left;margin-right:3px}.sp_fstop_small{background-position:-31px -863px;width:16px;height:16px;float:left;margin-right:3px}.sp_iso_small{background-position:-31px -889px;width:16px;height:16px;float:left;margin-right:3px}.sp_model_small{background-position:-31px -915px;width:16px;height:16px;float:left;margin-right:3px;margin-top:-1px}.sp_shutterspeed_small{background-position:-31px -941px;width:16px;height:16px;float:left;margin-right:3px}.sp_latitude-longitude_small{background-position:-31px -967px;width:16px;height:16px;float:left;margin-right:3px}.sp_time_small{background-position:-31px -993px;width:16px;height:16px;float:left;margin-right:3px}.sp_random{background-position:-28px -239px;width:18px;height:18px;float:left;margin:6px 0 5px 5px}.sp_upload{background-position:-28px -279px;width:18px;height:18px;float:left;margin:6px 0 5px 5px}.sp_selectfile{background-position:-28px -259px;width:18px;height:18px;float:left;margin:6px 0 5px 5px}#checkbox{margin-left:10px;margin-right:3px}.public_desc{width:180px;text-align:center;margin:0 auto;margin-top:5px}.public_tip{float:right;margin-top:4px;margin-right:8px}.smalltext{font-size:12px;line-height:12px}.agree{font-size:11px;text-align:center;margin-top:6px}.dragtext{text-align:center;font-weight:700;font-color:#222}.or{width:10px;margin-left:45%;margin-top:-10px;font-color:#222}#selectbutton{width:180px;height:28px;margin:2px auto;cursor:pointer;background-color:#286090;border:1px solid #a9b2ff;color:#fff;font-size:14px;font-weight:700;line-height:28px;text-align:center;text-decoration:none}#selectbutton:hover{background-color:#337ab7}#wrapper{position:relative;width:1190px;margin:0 auto}#over_map{position:absolute;left:10px;top:8px;z-index:2000;width:302px;height:424px;border:1px solid #8a8a9d;padding:5px;background-color:#fff;filter:alpha(opacity=95);-moz-opacity:.95;-khtml-opacity:.95;opacity:.95}#over_map_auto{position:absolute;left:10px;top:8px;z-index:2000;width:302px;height:auto;border:1px solid #8a8a9d;padding:5px;background-color:#fff;filter:alpha(opacity=95);-moz-opacity:.95;-khtml-opacity:.95;opacity:.95}#credits{padding-left:4px;padding-right:6px;height:16px;font-size:10px;color:#444;background-color:#c3c5c5;filter:alpha(opacity=85);-moz-opacity:.85;-khtml-opacity:.85;opacity:.85}#upload_box,#upload_box_wide{position:absolute;left:50%;top:55%;-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:99;width:450px;height:282px;border:1px solid #8a8a9d;padding:5px;background-color:#fff;filter:alpha(opacity=90);-moz-opacity:.9;-khtml-opacity:.9;opacity:.9}#upload_box:hover{border:1px dashed #8a8a9d}#upload_box_wide{width:600px}.noexif{width:500px;text-align:center;margin:0 auto;margin-bottom:10px}#earth-map{background-image:url(https://www.pic2map.com/graphics/earth-map.jpg);height:450px;width:1190px;margin:0 auto;padding:0;border-bottom:1px solid #8a8a9d;background-color:#f0ede5}#photo-map,#photo-map-default{height:450px;width:1190px;margin:0 auto;padding:0;border-bottom:1px solid #8a8a9d;background-color:#f0ede5}#photo-map-default{background-image:url(https://www.pic2map.com/graphics/earth-map.jpg)}.thumb_background{background-image:url(data:image/gif;base64,R0lGODlhBAAEAIAAAP////Dw8CH5BAAAAAAALAAAAAAEAAQAAAIFjHEZaAUAOw==)}.thumbnail,.thumbnail_similar{height:200px;display:block;margin-left:auto;margin-right:auto;border:1px solid #fff;border-radius:4px 4px 4px 4px;-moz-border-radius:3px;-webkit-border-radius:3px}.thumbnail:hover{cursor:pointer}.tabletr{font-size:13.5px;background-image:url(data:image/gif;base64,R0lGODlhBAAEAIAAAP////Dw8CH5BAAAAAAALAAAAAAEAAQAAAIFjHEZaAUAOw==);background-color:#f0f0f0;-moz-border-radius:6px;-webkit-border-radius:6px;-khtml-border-radius:6px;border-radius:6px;margin:1px;padding:5px 0 1px 4px}.tabletrsimple{font-size:13.5px;-moz-border-radius:6px;-webkit-border-radius:6px;-khtml-border-radius:6px;border-radius:6px;margin:1px;padding:5px 0 1px 4px}.tab,.tabsmall{vertical-align:middle;display:table-cell;width:85px;font-size:13.5px;font-weight:700;height:22px;color:#444}#markerdiv{max-height:394px;overflow-y:auto}.photoscroll{clear:both;float:left;height:40px;margin-right:8px;margin-bottom:4px;position:relative}.imround{width:16px;height:16px;font-size:11px;color:#fff;line-height:16px;font-weight:700;text-align:center;background:#0063c8;position:absolute;top:0;left:0}.infoscroll{min-height:44px}.lefticon{cursor:pointer}.value,.valuesmall{vertical-align:middle;display:table-cell}.valuesmall{font-size:11px}.tabsmall{width:80px}.underthumbtext{font-size:14px;text-align:center;vertical-align:middle;margin-top:-6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.undertitletext{font-size:11px;text-align:center;vertical-align:middle;margin-top:-10px;line-height:13px;color:#444;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.photo_details,.photo_delete,.album_delete{cursor:pointer;font-weight:700;color:#444;display:inline-block;vertical-align:top}.centbut{text-align:center}.photo_details:hover,.photo_delete:hover,.album_delete:hover{color:#ba2e15}#removed{background-color:#fff;border:1px solid #8a8a9d;padding:25px}.nogps{margin-left:6px;margin-top:2px;color:#c9151c;font-weight:700}.right{width:830px;margin:0;padding:1px}.left{width:304px;margin-top:-4px;margin-left:-10px;margin-right:6px;padding:0}.socialbuttons{width:100%;margin:0 auto;text-align:center}.box{width:100%;margin:0 auto;box-sizing:border-box;padding:15px;margin-bottom:5px;margin-top:5px;background-color:#fff;line-height:26px;border:1px solid #8a8a9d}.address_box{padding:0;margin-left:-6px;overflow:auto}.title{width:100%;margin:0 auto;font-size:18px;font-weight:700;color:#3a5ba0;text-align:center;border-top:1px solid #e9e5dc;padding-top:15px;padding-bottom:8px}.details{width:1237px;margin:0 auto;padding:0}ul.details{overflow:hidden;margin-left:-4px}.details li{background-color:#fff;line-height:26px;float:left;width:30%;list-style-type:none;margin:5px;padding:5px;border:1px solid #8a8a9d}.dvalue,.dvaluex{float:left;font-size:14px;vertical-align:middle;display:table-cell;margin-top:-1px;height:22px;width:214px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.dvaluex{width:200px}.dvaluenormal{float:left;font-size:14px;vertical-align:middle;display:table-cell}.mvalue{float:left;font-size:14px;line-height:22px;vertical-align:middle;display:table-cell}.dbox{margin:1px;padding:5px 0 1px 2px}.dtab,.dtabx{font-size:14px;float:left;vertical-align:middle;display:table-cell;width:86px;font-weight:700;height:22px;color:#444}.dtabx{width:90px}.addressnote{margin-left:0;font-size:12px}.forminput{outline:none;margin:4px;margin-top:4px;padding:2px;border:1px solid #ccc;width:100%;height:20px;background-color:#f0f0f0}.formsubmit{cursor:pointer;background-color:#57a957;border:1px solid #a9b2ff;color:#fff;font-size:14px;font-weight:700;height:30px;margin:8px}.footer{background-color:#505050;color:#f1f1f1;height:85px;margin:0;padding:0;border:0}.bottomcontainer{width:1190px;margin:0 auto;padding:0}.fright{text-align:right;float:right;margin:2px;padding-top:15px;color:#f0f0f0;font-size:12px;line-height:13px;font-weight:400}.footertext{clear:both;float:left;font-size:12px;line-height:13px;color:#f0f0f0;font-weight:400;font-style:normal}a.bottom:link,a.bottom:visited,a.bottom:hover{color:#fff;text-decoration:none;font-weight:400}.blur{-webkit-filter:blur(1px)}.scrollup{width:33px;height:33px;background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhBAMAAAClyt9cAAAAMFBMVEWdpcG/0vDu8fu5yufh5vn3+fvp7vrb4viestPy9fv7/Pzf6fnl6vq8zOrI1/CiuNmmqaUvAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAIpJREFUKBW9yK0NwmAQBuA3/ED4eQMz1DepxXcFLPLCBlgUO1R0ARSDVFzqGIA9OL4LJZciauCRD/qW1+iXM91H3Rwe3SyqRFm599TALk4BMEwNc/fBKDMFzhuMsxefHFQq2s/c0CpzrHxmInKkKGV7EeNjbNy3WTeJsnHDZlImytINm/kp+u/0PAFO0N8KuVDUCQAAAABJRU5ErkJggg==) no-repeat;position:fixed;bottom:10px;right:10px;opacity:.9;cursor:pointer;display:none;text-indent:-9999px}.dropzone,.dropzone *{box-sizing:border-box}.dropzone{position:relative}.dropzone .dz-preview{width:240px;margin:0 auto}.dropzone .dz-preview .dz-image{left:30%;border-radius:5px;height:180px}.dropzone .dz-preview .dz-progress{display:block;height:15px;border:1px solid #aaa;border-radius:5px}.dropzone .dz-preview .dz-progress .dz-upload{display:block;height:100%;width:0;background:green}.dropzone .dz-preview .dz-error-message{color:red;display:none}.dz-error-message{color:red;display:none}.dropzone .dz-preview.dz-error .dz-error-message,.dropzone .dz-preview.dz-error .dz-error-mark{display:block}.dropzone .dz-preview.dz-success .dz-success-mark{display:block}.dropzone .dz-preview .dz-error-mark,.dropzone .dz-preview .dz-success-mark{position:absolute;display:none;left:30px;top:30px;width:54px;height:58px;left:50%;margin-left:-27px;margin-top:20px}.dropzone .dz-preview .dz-details{font-size:11px;text-align:center}.dropzone .dz-preview .dz-error-message{font-size:11px;text-align:center}#slideshow{margin:0 auto;position:relative;width:240px;height:180px;display:none}#slideshow>div{position:absolute;top:10px;left:10px;right:10px;bottom:10px}.basicLightbox{position:fixed;display:flex;justify-content:center;align-items:center;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.7);opacity:.01;transition:opacity .4s ease;z-index:3000;will-change:opacity}.basicLightbox--visible{opacity:1}.basicLightbox__placeholder{max-width:100%;transform:scale(.9);transition:transform .4s ease;z-index:1;will-change:transform}.basicLightbox__placeholder>iframe:first-child:last-child,.basicLightbox__placeholder>img:first-child:last-child,.basicLightbox__placeholder>video:first-child:last-child{display:block;position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;max-width:95%;max-height:95%}.basicLightbox__placeholder>iframe:first-child:last-child,.basicLightbox__placeholder>video:first-child:last-child{pointer-events:auto}.basicLightbox__placeholder>img:first-child:last-child,.basicLightbox__placeholder>video:first-child:last-child{width:auto;height:auto}.basicLightbox--iframe .basicLightbox__placeholder,.basicLightbox--img .basicLightbox__placeholder,.basicLightbox--video .basicLightbox__placeholder{width:100%;height:100%;pointer-events:none}.basicLightbox--visible .basicLightbox__placeholder{transform:scale(1)}.lbclose{float:right;height:17px;font-size:16px;line-height:16px;vertical-align:middle;font-weight:700;cursor:pointer;margin-top:-3px;color:#555}.gmaptitle{width:100%;margin:0 auto;font-size:12px;font-weight:700;color:#3a5ba0;text-align:center;border-bottom:1px solid #e9e5dc;padding-top:2px;margin-bottom:-2px}.gmapimage{width:195px;height:130px}.gm-style-iw{line-height:1.35;overflow:hidden;white-space:nowrap}.gmapwindow{width:195px;overflow:hidden}.gmapdate{font-size:11px;color:#555;width:100%;margin:0 auto;text-align:center;margin-top:3px}@media only screen and (max-width:820px){body,.container,#wrapper,.topcontainer,.bottomcontainer{width:100%;margin:0;padding:0;overflow-x:hidden}.noexif,.tooltip{display:none}.container{width:100%;margin:0;padding:10px 0;background-image:none;background:#fff}.box{margin:5px;width:calc(100% - 10px)}.nbm{border:0;background-color:FFF;width:100%;margin:0;padding:0}.nbmd{border:0;background-color:FFF;padding:1px}.title,#photo-map,#photo-map-default,#earth-map,.details,.details li{width:100%}#upload_box,#upload_box_wide{width:90%}.titleblock{height:72px}.randombutton,.randombuttonmain,.uploadbutton{margin-top:20px}.title{margin:0;padding-right:0;padding-left:0}.dvalue,.dvaluex{width:auto}ul.details{width:100%;margin:0 auto;padding:0}.right{width:100%;margin:0}.details li{padding-right:0;padding-left:5px;width:calc(100% - 16px)}.logo{margin-left:4px;margin-top:12px;width:180px;margin-right:-10px;overflow:hidden}.logoimage{width:180px;height:40px}.randombutton,.left,.insideleft,#geotag,.textextra,.extra{display:none}.centbut{text-align:left}#over_map{height:134px;width:166px;margin-top:1px;left:10px}#over_map_auto{width:166px;margin-top:2px;left:10px}.thumbnail{width:auto;height:108px}.uploadbutton,.randombuttonmain{width:120px;margin-left:0;margin-right:5px;font-size:11px}.footer{height:125px}.footertext{font-size:11px}}
+
+
+.building{float:left}.drooltipLoaderWrapper{float:left;width:15px;height:15px;padding:2px;left:50%;position:relative;transform:translateX(-50%)}.drooltipLoader{border-radius:100%;display:block;width:100%;height:100%;animation-name:drooltipPreloader;animation-duration:.4s;animation-fill-mode:forwards;animation-iteration-count:infinite;-webkit-transition:.4s cubic-bezier(.19,1,.22,1);-moz-transition:.4s cubic-bezier(.19,1,.22,1);-o-transition:.4s cubic-bezier(.19,1,.22,1);transition:.4s cubic-bezier(.19,1,.22,1)}.drooltipLoader.stop{animation:none;transform:scale(0)}.drooltip{position:absolute;padding:10px 20px;font-size:13px;color:#fff;z-index:99999;max-width:280px;transform-origin:center 100%;opacity:0}.drooltip .bg{position:absolute;top:0;left:0;bottom:0;width:100%;height:100%;z-index:0;box-shadow:0 1px 42px -3px rgba(0,0,0,.3);border-radius:4px;transform-origin:inherit}.drooltip .content{position:relative;float:left;width:100%;z-index:1;transform-origin:inherit;-webkit-transition:.4s cubic-bezier(.19,1,.22,1);-moz-transition:.4s cubic-bezier(.19,1,.22,1);-o-transition:.4s cubic-bezier(.19,1,.22,1);transition:.4s cubic-bezier(.19,1,.22,1)}.drooltip .content.showDynamic{opacity:0}.drooltip.drooltipMaterial{transform-origin:center center}.drooltip.drooltipMaterial .bg{height:0;-webkit-transition:.4s cubic-bezier(.19,1,.22,1);-moz-transition:.4s cubic-bezier(.19,1,.22,1);-o-transition:.4s cubic-bezier(.19,1,.22,1);transition:.4s cubic-bezier(.19,1,.22,1);box-shadow:none;transform:scale(0)}.drooltip.drooltipMaterial .content{-webkit-transition:.4s cubic-bezier(.19,1,.22,1);-moz-transition:.4s cubic-bezier(.19,1,.22,1);-o-transition:.4s cubic-bezier(.19,1,.22,1);transition:.4s cubic-bezier(.19,1,.22,1);transform:scale(0) translateY(20px);opacity:0}.drooltip.drooltipMaterial.animate .bg{height:100%;box-shadow:0 1px 42px -3px rgba(0,0,0,.3);transform:scale(1)}.drooltip.drooltipMaterial.animate .content{transform:scale(1) translateY(0);opacity:1}.drooltip.loaded{-webkit-transition:.4s cubic-bezier(.19,1,.22,1);-moz-transition:.4s cubic-bezier(.19,1,.22,1);-o-transition:.4s cubic-bezier(.19,1,.22,1);transition:.4s cubic-bezier(.19,1,.22,1);opacity:1}.drooltip.hideTooltip{display:none;opacity:0;cursor-pointer:none;pointer-events:none}.drooltip.hideTooltip.fake{display:block;opacity:0;pointer-events:none;cursor:none;transition:none}.drooltip.drooltipBounce{animation-name:drooltipBounce;animation-duration:.2s;animation-fill-mode:forwards}.drooltip.drooltipBounce.out{animation-name:drooltipBounceOut}.drooltip.drooltipFloat{animation-name:drooltipFloatVertical;animation-duration:2s;animation-iteration-count:infinite}.drooltip.drooltipFloat.right,.drooltip.drooltipFloat.left{animation-name:drooltipFloatHorizontal}.drooltip.drooltipFade{animation-name:drooltipFade;animation-duration:.2s;animation-fill-mode:forwards}.drooltip.drooltipFade.out{animation-name:drooltipFadeOut}.drooltip:after{content:' ';height:0;position:absolute;width:0;border:6px solid transparent;border-top-color:inherit;z-index:2;bottom:0;left:50%;transform:translateX(-50%);opacity:0;transition:.2s ease-in-out}.drooltip.showArrow:after{bottom:-11px;opacity:1}.drooltip.bottom{transform-origin:center 0}.drooltip.bottom:after{bottom:auto;top:0;border-top-color:transparent;border-bottom-color:inherit}.drooltip.bottom.showArrow:after{top:-11px}.drooltip.right{transform-origin:0 center}.drooltip.right:after{bottom:auto;left:0;border-top-color:transparent;border-right-color:inherit;top:50%;transform:translateY(-50%)}.drooltip.right.showArrow:after{left:-11px}.drooltip.left{transform-origin:100% center}.drooltip.left:after{left:auto;bottom:auto;border-top-color:transparent;border-left-color:inherit;top:50%;transform:translateY(-50%);right:0}.drooltip.left.showArrow:after{right:-11px}@keyframes drooltipPreloader{0%{transform:scale(0)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes drooltipBounce{0%{transform:scale(0)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes drooltipBounceOut{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(0)}}@keyframes drooltipFade{0%{opacity:0}100%{opacity:1}}@keyframes drooltipFadeOut{0%{opacity:1}100%{opacity:0}}@keyframes drooltipFloatVertical{0%{transform:translateY(0px)}50%{transform:translateY(5px)}100%{transform:translateY(0px)}}@keyframes drooltipFloatHorizontal{0%{transform:translateX(0px)}50%{transform:translateX(5px)}100%{transform:translateX(0px)}}
+
+
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg,.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-tile{will-change:opacity}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;-o-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}.leaflet-zoom-anim .leaflet-zoom-animated{will-change:transform;-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);-o-transition:-o-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-zoom-anim .leaflet-tile,.leaflet-pan-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;-o-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-popup-pane,.leaflet-control{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline:0}.leaflet-container a{color:#444}.leaflet-container a.leaflet-active{outline:2px solid orange}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font:12px/1.5 "Helvetica Neue",Arial,Helvetica,sans-serif}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a,.leaflet-bar a:hover{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:700 18px lucida console,Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in,.leaflet-touch .leaflet-control-zoom-out{font-size:22px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:url(images/layers.png);width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:url(images/layers-2x.png);background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:url(images/marker-icon.png)}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.7);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333}.leaflet-control-attribution a{text-decoration:none;color:#333}.leaflet-control-attribution a:hover{text-decoration:none;font-weight:400}.leaflet-container .leaflet-control-attribution,.leaflet-container .leaflet-control-scale{font-size:10px}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:1px solid #777;border-top:none;line-height:.8;padding:2px 5px 1px;font-size:10px;white-space:nowrap;overflow:hidden;-moz-box-sizing:border-box;box-sizing:border-box;background:#fff;background:rgba(255,255,255,.5)}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{box-shadow:none}.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{border:2px solid rgba(0,0,0,.2);background-clip:padding-box;transform:scale(.85,.85)}.leaflet-popup{position:absolute;text-align:center;margin-bottom:32px;margin-left:10px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:2px}.leaflet-popup-content{margin:10px 16px;line-height:1.4}.leaflet-popup-content p{margin:18px 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 12px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;padding:4px 4px 0 0;border:none;text-align:center;width:18px;height:14px;font:16px/14px Tahoma,Verdana,sans-serif;color:#c3c3c3;text-decoration:none;font-weight:700;background:0 0}.leaflet-container a.leaflet-popup-close-button:hover{color:#999}.leaflet-popup-scrolled{overflow:auto;border-bottom:1px solid #ddd;border-top:1px solid #ddd}.leaflet-oldie .leaflet-popup-content-wrapper{zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto;-ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678,M12=0.70710678,M21=-0.70710678,M22=0.70710678)";filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678,M12=0.70710678,M21=-0.70710678,M22=0.70710678)}.leaflet-oldie .leaflet-popup-tip-container{margin-top:-1px}.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:0 0!important;border:0}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-clickable{cursor:pointer;pointer-events:auto}.leaflet-tooltip-top:before,.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{position:absolute;pointer-events:none;border:6px solid transparent;background:0 0;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}.leaflet-tooltip.state-labels{font-weight:700;font-size:12px;color:#333;background-color:transparent;border:transparent;box-shadow:none}.marker-cluster-small{background-color:rgba(181,226,140,.6)}.marker-cluster-small div{width:20px;height:20px;background-color:rgba(110,204,57,.6)}.marker-cluster-medium{background-color:rgba(241,211,87,.6)}.marker-cluster-medium div{background-color:rgba(240,194,12,.6)}.marker-cluster-large{background-color:rgba(253,156,115,.6)}.marker-cluster-large div{background-color:rgba(241,128,23,.6)}.leaflet-oldie .marker-cluster-small{background-color:#b5e28c}.leaflet-oldie .marker-cluster-small div{background-color:#6ecc39}.leaflet-oldie .marker-cluster-medium{background-color:#f1d357}.leaflet-oldie .marker-cluster-medium div{background-color:#f0c20c}.leaflet-oldie .marker-cluster-large{background-color:#fd9c73}.leaflet-oldie .marker-cluster-large div{background-color:#f18017}.marker-cluster{background-clip:padding-box;border-radius:20px}.marker-cluster div{width:30px;height:30px;margin-left:4px;margin-top:4px;text-align:center;border:1px solid #777;border-radius:15px;font:12px Arial,Helvetica,sans-serif;font-weight:700}.marker-cluster span{line-height:30px}.leaflet-cluster-anim .leaflet-marker-icon,.leaflet-cluster-anim .leaflet-marker-shadow{-webkit-transition:-webkit-transform .3s ease-out,opacity .3s ease-in;-moz-transition:-moz-transform .3s ease-out,opacity .3s ease-in;-o-transition:-o-transform .3s ease-out,opacity .3s ease-in;transition:transform .3s ease-out,opacity .3s ease-in}.leaflet-cluster-spider-leg{-webkit-transition:-webkit-stroke-dashoffset .3s ease-out,-webkit-stroke-opacity .3s ease-in;-moz-transition:-moz-stroke-dashoffset .3s ease-out,-moz-stroke-opacity .3s ease-in;-o-transition:-o-stroke-dashoffset .3s ease-out,-o-stroke-opacity .3s ease-in;transition:stroke-dashoffset .3s ease-out,stroke-opacity .3s ease-in}
+  </style>
+  <title>
+   Photo taken at 21 Waikarekare Lane, Karekare 0772, New Zealand with Panasonic DMC-G1
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="The photo was taken using a Panasonic DMC-G1 camera at 21 Waikarekare Lane, Karekare 0772, New Zealand." name="Description">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <noscript>
+  </noscript>
+  <meta content="https://www.pic2map.com/gbbgq.html" property="og:url">
+  <meta content="website" property="og:type">
+  <meta content="Waikarekare Lane, Karekare, Auckland, New Zealand" property="og:title">
+  <meta content="The photo was taken using a Panasonic DMC-G1 camera at 21 Waikarekare Lane, Karekare 0772, New Zealand." property="og:description">
+  <meta content="https://www.pic2map.com/photos/gbbgq.jpg" property="og:image">
+  <meta content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <meta content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div class="titleblock">
+   <div class="topcontainer">
+    <div class="logo">
+     <a>
+      <img alt="Pic2Map" class="logoimage" height="52" src="rick.jpg" width="235">
+     </a>
+    </div>
+    <div class="uploadbutton">
+     <a>
+      <span class="sp_upload">
+      </span>
+      Upload Photos
+     </a>
+    </div>
+    <div class="randombutton">
+     <a>
+      <span class="sp_random">
+      </span>
+      Random Location
+     </a>
+    </div>
+   </div>
+  </div>
+  <div id="wrapper">
+   <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="photo-map" style="position: relative;" tabindex="0">
+    <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+     <div class="leaflet-pane leaflet-tile-pane">
+      <div class="leaflet-layer" style="z-index: 1; opacity: 1;">
+       <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(362px, 57px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(618px, 57px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(362px, -199px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(618px, -199px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(362px, 313px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(618px, 313px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(106px, 57px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(874px, 57px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(106px, -199px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(874px, -199px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(106px, 313px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(874px, 313px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(-150px, 57px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(1130px, 57px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(-150px, -199px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(1130px, -199px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(-150px, 313px, 0px); opacity: 1;">
+        <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(1130px, 313px, 0px); opacity: 1;">
+       </div>
+      </div>
+     </div>
+     <div class="leaflet-pane leaflet-shadow-pane">
+     </div>
+     <div class="leaflet-pane leaflet-overlay-pane">
+     </div>
+     <div class="leaflet-pane leaflet-marker-pane">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -24px; margin-top: -48px; width: 48px; height: 48px; transform: translate3d(595px, 225px, 0px); z-index: 225;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(34px, -608px, 0px); z-index: -608;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(184px, -1212px, 0px); z-index: -1212;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(1939px, 2051px, 0px); z-index: 2051;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(13590px, -9505px, 0px); z-index: -9505;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(15258px, -10451px, 0px); z-index: -10451;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(15879px, -10451px, 0px); z-index: -10451;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(20120px, -11887px, 0px); z-index: -11887;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(19365px, -23936px, 0px); z-index: -23936;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(48729px, 1313px, 0px); z-index: 1313;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(49037px, 3342px, 0px); z-index: 3342;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(47034px, -15755px, 0px); z-index: -15755;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(47036px, -15757px, 0px); z-index: -15757;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(5664px, -53649px, 0px); z-index: -53649;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(1664px, -56612px, 0px); z-index: -56612;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(61455px, -10320px, 0px); z-index: -10320;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(62074px, -9616px, 0px); z-index: -9616;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(62982px, -6971px, 0px); z-index: -6971;" tabindex="0">
+      <img alt class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" src="rick.jpg" style="margin-left: -12px; margin-top: -24px; width: 24px; height: 24px; transform: translate3d(64771px, 21px, 0px); z-index: 21;" tabindex="0">
+     </div>
+     <div class="leaflet-pane leaflet-tooltip-pane">
+     </div>
+     <div class="leaflet-pane leaflet-popup-pane">
+     </div>
+     <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1.65202e+07px, 1.02476e+07px, 0px) scale(32768);">
+     </div>
+    </div>
+    <div class="leaflet-control-container">
+     <div class="leaflet-top leaflet-left">
+     </div>
+     <div class="leaflet-top leaflet-right">
+      <div class="leaflet-control-minimap leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom leaflet-control" style="width: 120px; height: 90px; position: relative;" tabindex="0">
+       <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+        <div class="leaflet-pane leaflet-tile-pane">
+         <div class="leaflet-layer" style="z-index: 1; opacity: 1;">
+          <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 14; transform: translate3d(0px, 0px, 0px) scale(1);">
+           <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(-99px, -192px, 0px); opacity: 1;">
+           <img alt class="leaflet-tile leaflet-tile-loaded" role="presentation" src="rick.jpg" style="width: 256px; height: 256px; transform: translate3d(-99px, 64px, 0px); opacity: 1;">
+          </div>
+         </div>
+        </div>
+        <div class="leaflet-pane leaflet-shadow-pane">
+        </div>
+        <div class="leaflet-pane leaflet-overlay-pane">
+        </div>
+        <div class="leaflet-pane leaflet-marker-pane">
+        </div>
+        <div class="leaflet-pane leaflet-tooltip-pane">
+        </div>
+        <div class="leaflet-pane leaflet-popup-pane">
+        </div>
+       </div>
+       <div class="leaflet-control-container">
+        <div class="leaflet-top leaflet-left">
+        </div>
+        <div class="leaflet-top leaflet-right">
+        </div>
+        <div class="leaflet-bottom leaflet-left">
+        </div>
+        <div class="leaflet-bottom leaflet-right">
+        </div>
+       </div>
+       <a class="leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-topright" style="width: 19px; height: 19px;" title="Hide MiniMap">
+       </a>
+      </div>
+     </div>
+     <div class="leaflet-bottom leaflet-left">
+     </div>
+     <div class="leaflet-bottom leaflet-right">
+      <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+       <a aria-label="Zoom in" class="leaflet-control-zoom-in" role="button" title="Zoom in">
+        +
+       </a>
+       <a aria-label="Zoom out" class="leaflet-control-zoom-out" role="button" title="Zoom out">
+        &minus;
+       </a>
+      </div>
+      <div class="leaflet-control-attribution leaflet-control">
+       <a title="A JS library for interactive maps">
+        Leaflet
+       </a>
+       | Photo Credit:
+       <a rel="noopener" target="_blank">
+        rytc
+       </a>
+       | Map Tiles: &copy;
+       <a rel="noopener" target="_blank">
+        OpenStreetMap
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="over_map">
+    <div class="thumb_background">
+     <a>
+      <img alt="Photo taken at 21 Waikarekare Lane, Karekare 0772, New Zealand with Panasonic DMC-G1" class="thumbnail" data-desc="21 Waikarekare Lane, Karekare 0772, New Zealand" data-id="photos/gbbgq" height="200" id="show_photo" src="rick.jpg" width="300">
+     </a>
+    </div>
+    <div id="geotag">
+     <div class="tabletr">
+      <span class="tab">
+       <span class="sp_model_small">
+       </span>
+       Camera:
+      </span>
+      <span class="value">
+       Panasonic DMC-G1
+      </span>
+     </div>
+     <div class="tabletrsimple">
+      <span class="tab">
+       <span class="sp_time_small">
+       </span>
+       Date:
+      </span>
+      <span class="value">
+       Sat 5th of October 2013
+      </span>
+     </div>
+     <div class="tabletr">
+      <span class="tab">
+       <span class="sp_address_small">
+       </span>
+       Address:
+      </span>
+      <span class="value">
+       21 Waikarekare Lane, Karekare 0772, New Zealand
+      </span>
+     </div>
+     <div class="tabletrsimple">
+      <span class="tab">
+       <span class="sp_city_small">
+       </span>
+       City:
+      </span>
+      <span class="value">
+       Karekare / Auckland
+      </span>
+     </div>
+     <div class="tabletr">
+      <span class="tab">
+       <span class="sp_country_small">
+       </span>
+       Country:
+      </span>
+      <span class="value">
+       New Zealand
+      </span>
+     </div>
+     <div class="tabletrsimple">
+      <span class="tab">
+       <span class="sp_latitude-longitude_small">
+       </span>
+       Location:
+      </span>
+      <span class="value">
+       37&deg; 0' 35.33" S, 174&deg; 29' 3.75" E
+      </span>
+     </div>
+    </div>
+    <div class="tabletr centbut">
+     <span class="sp_more">
+     </span>
+     <span class="photo_details" id="photo_details">
+      <span class="extra">
+       View
+      </span>
+      More Info
+     </span>
+    </div>
+   </div>
+  </div>
+  <div class="container" style="height: auto !important;">
+   <div class="box nbm" style="display: flex; height: auto !important;">
+    <div class="left">
+     <div>
+      <div class="tabletr" style="padding:0 0 1px 4px;">
+       <span class="tab">
+        Share URL:
+       </span>
+      </div>
+      <div class="tabletrsimple" style="padding:0 0 1px 4px;">
+       <span class="valuesmall">
+        https://www.pic2map.com/gbbgq.html
+       </span>
+      </div>
+      <div class="tabletr" style="padding:0 0 1px 4px;font-weight:700;color:#444;">
+       Share at Social Media:
+      </div>
+      <div class="socialbuttons">
+       <a class="socialshare">
+        <span class="sp_fb" title="Facebook">
+        </span>
+       </a>
+       <a class="socialshare">
+        <span class="sp_tw" title="Twitter">
+        </span>
+       </a>
+       <a class="socialshare">
+        <span class="sp_pin" title="Pinterest">
+        </span>
+       </a>
+      </div>
+     </div>
+    </div>
+    <div class="right">
+     <ins class="adsbygoogle" data-ad-client="ca-pub-4290178335331426" data-ad-format="auto" data-ad-slot="6477057368" data-adsbygoogle-status="done" data-full-width-responsive="true" style="display: block; height: 280px;">
+      <div aria-label="Advertisement" id="aswift_1_host" style="border: none; height: 280px; width: 830px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;" tabindex="0" title="Advertisement">
+      </div>
+     </ins>
+    </div>
+   </div>
+   <div class="title" id="title">
+    PHOTO EXIF DATA
+   </div>
+   <div class="box nbmd">
+    <span class="sp_photo">
+    </span>
+    <p>
+     The photo was shot using a Panasonic DMC-G1 camera at an aperture of f/5.6, 1/1000 sec. shutter speed and ISO 400.
+    </p>
+    <span class="sp_time">
+    </span>
+    <p>
+     According to the image metadata, the photo was shot on Saturday 5th of October 2013. The local time was 13:51:52.
+    </p>
+    <span class="sp_gpsref">
+    </span>
+    <p>
+     Panasonic DMC-G1 camera has a built-in GPS receiver and allows geotagging on image files. The coordinates and location where the photo was taken is stored in the EXIF.
+    </p>
+   </div>
+   <div class="box nbm" id="midpage" style="height: auto !important;">
+    <ins class="adsbygoogle" data-ad-client="ca-pub-4290178335331426" data-ad-format="auto" data-ad-slot="4513239005" data-adsbygoogle-status="done" data-full-width-responsive="true" style="display: block; height: 0px;">
+     <div aria-label="Advertisement" id="aswift_2_host" style="border: none; height: 0px; width: 1138px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: hidden; opacity: 0;" tabindex="0" title="Advertisement">
+     </div>
+    </ins>
+   </div>
+   <div class="title" id="photoinformation">
+    CAMERA INFORMATION
+   </div>
+   <ul class="details">
+    <li>
+     <div class="dbox">
+      <span class="sp_brand">
+      </span>
+      <span class="dtab">
+       Brand:
+      </span>
+      <span class="dvalue">
+       Panasonic
+      </span>
+      <span class="tooltip" data-id="0">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_model">
+      </span>
+      <span class="dtab">
+       Model:
+      </span>
+      <span class="dvalue">
+       DMC-G1
+      </span>
+      <span class="tooltip" data-id="1">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_lens">
+      </span>
+      <span class="dtab">
+       Lens Info:
+      </span>
+      <span class="dvalue">
+       LUMIX G 20/F1.7
+      </span>
+      <span class="tooltip" data-id="2">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_shutterspeed">
+      </span>
+      <span class="dtab">
+       Shutter:
+      </span>
+      <span class="dvalue">
+       1/1000 (0.001 seconds)
+      </span>
+      <span class="tooltip" data-id="3">
+      </span>
+     </div>
+    </li>
+   </ul>
+   <div class="title" id="fileinformation">
+    FILE INFORMATION
+   </div>
+   <ul class="details">
+    <li>
+     <div class="dbox">
+      <span class="sp_mime">
+      </span>
+      <span class="dtab">
+       File Name:
+      </span>
+      <span class="dvalue">
+       Karekare
+      </span>
+      <span class="tooltip" data-id="9">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_imagesize">
+      </span>
+      <span class="dtab">
+       Image Size:
+      </span>
+      <span class="dvalue">
+       4000 x 2672 pixels
+      </span>
+      <span class="tooltip" data-id="10">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_pixels">
+      </span>
+      <span class="dtab">
+       Resolution:
+      </span>
+      <span class="dvalue">
+       10.7 megapixels
+      </span>
+      <span class="tooltip" data-id="11">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_filesize">
+      </span>
+      <span class="dtab">
+       Unique ID:
+      </span>
+      <span class="dvalue">
+      </span>
+      <span class="tooltip" data-id="12">
+      </span>
+     </div>
+    </li>
+   </ul>
+   <div class="title" id="datetime">
+    DATE &amp; TIME
+   </div>
+   <ul class="details">
+    <li>
+     <div class="dbox">
+      <span class="sp_date">
+      </span>
+      <span class="dtab">
+       Date:
+      </span>
+      <span class="dvalue">
+       2013-10-05
+      </span>
+      <span class="tooltip" data-id="15">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_time">
+      </span>
+      <span class="dtab">
+       Time:
+      </span>
+      <span class="dvalue">
+       13:51:52 (GMT +12:00)
+      </span>
+      <span class="tooltip" data-id="16">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_timezone">
+      </span>
+      <span class="dtab">
+       Time Zone:
+      </span>
+      <span class="dvalue">
+       Pacific / Auckland
+      </span>
+      <span class="tooltip" data-id="17">
+      </span>
+     </div>
+    </li>
+   </ul>
+   <div class="title" id="gpsinformation">
+    GPS INFORMATION
+   </div>
+   <ul class="details">
+    <li>
+     <div class="dbox">
+      <span class="sp_latitude-longitude">
+      </span>
+      <span class="dtab">
+       Latitude:
+      </span>
+      <span class="dvalue">
+       -37.009814
+      </span>
+      <span class="tooltip" data-id="18">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_latitude-longitude">
+      </span>
+      <span class="dtab">
+       Longitude:
+      </span>
+      <span class="dvalue">
+       174.484375
+      </span>
+      <span class="tooltip" data-id="19">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_gpsref">
+      </span>
+      <span class="dtab">
+       Lat Ref:
+      </span>
+      <span class="dvalue">
+       South
+      </span>
+      <span class="tooltip" data-id="20">
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_gpsref">
+      </span>
+      <span class="dtab">
+       Long Ref:
+      </span>
+      <span class="dvalue">
+       East
+      </span>
+      <span class="tooltip" data-id="21">
+      </span>
+     </div>
+    </li>
+   </ul>
+   <div class="title" id="locationinformation">
+    LOCATION INFORMATION
+   </div>
+   <ul class="details">
+    <li>
+     <div class="dbox">
+      <span class="sp_city">
+      </span>
+      <span class="dtab">
+       City:
+      </span>
+      <span class="dvalue">
+       Karekare
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_state">
+      </span>
+      <span class="dtab">
+       State:
+      </span>
+      <span class="dvalue">
+       Auckland
+      </span>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <span class="sp_country">
+      </span>
+      <span class="dtab">
+       Country:
+      </span>
+      <span class="dvalue">
+       New Zealand
+      </span>
+     </div>
+    </li>
+   </ul>
+   <div class="box">
+    <div class="address_box">
+     <span class="sp_address">
+     </span>
+     <span class="dtab">
+      Address:
+     </span>
+     <span class="dvaluenormal">
+      21 Waikarekare Lane, Karekare 0772, New Zealand
+      <br>
+      <span class="addressnote">
+       (Location was guessed from coordinates and may not be accurate.)
+      </span>
+     </span>
+    </div>
+   </div>
+   <div class="title" id="featured">
+    PHOTOS NEAR THIS LOCATION
+   </div>
+   <ul class="details">
+    <li>
+     <div class="dbox">
+      <a>
+       <img alt="34 Watchmans Road, Karekare 0772, New Zealand" class="thumbnail_similar" height="200" loading="lazy" src="rick.jpg" width="300">
+      </a>
+      <p class="underthumbtext">
+       <a>
+        Watchmans Road, Karekare, Auckland, New Zealand
+       </a>
+      </p>
+      <p class="undertitletext">
+       1.91 km / 1.19 miles away
+      </p>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <a>
+       <img alt="32 Watchmans Road, Karekare 0772, New Zealand" class="thumbnail_similar" height="200" loading="lazy" src="rick.jpg" width="300">
+      </a>
+      <p class="underthumbtext">
+       <a>
+        Watchmans Road, Karekare, Auckland, New Zealand
+       </a>
+      </p>
+      <p class="undertitletext">
+       2.84 km / 1.77 miles away
+      </p>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <a>
+       <img alt="Whatipu Road, Huia, Auckland 0604, New Zealand" class="thumbnail_similar" height="200" loading="lazy" src="rick.jpg" width="300">
+      </a>
+      <p class="underthumbtext">
+       <a>
+        Whatipu Road, Auckland, Auckland, New Zealand
+       </a>
+      </p>
+      <p class="undertitletext">
+       4.31 km / 2.68 miles away
+      </p>
+     </div>
+    </li>
+    <li>
+     <div class="dbox">
+      <a>
+       <img alt="Viaduct Marina, Waitemat&amacr; Plaza, Viaduct Harbour, Wynyard Quarter, Auckland, Waitemat&amacr;, Auckland, 1001, New Zealand" class="thumbnail_similar" height="200" loading="lazy" src="rick.jpg" width="300">
+      </a>
+      <p class="underthumbtext">
+       <a>
+        Waitemat&amacr; Plaza, Auckland, Auckland, New Zealand
+       </a>
+      </p>
+      <p class="undertitletext">
+       30.92 km / 19.2 miles away
+      </p>
+     </div>
+    </li>
+   </ul>
+  </div>
+  <div class="footer">
+   <div class="bottomcontainer">
+    <p class="fright">
+     Pic2Map.com |
+     <a class="bottom" rel="nofollow">
+      About Us
+     </a>
+     |
+     <a class="bottom" rel="nofollow">
+      Terms of Use
+     </a>
+     |
+     <a class="bottom" rel="nofollow">
+      Privacy Policy
+     </a>
+     |
+     <a class="bottom" rel="nofollow">
+      Contact
+     </a>
+    </p>
+    <p class="footertext">
+     &copy; Pic2Map.com is an online photo location viewer that utilizes EXIF GPS coordinate data to create a map view of your photos. EXIF is a standard that defines specific information related to an image captured by a digital camera, smartphone or a tablet.
+    </p>
+   </div>
+  </div>
+  <div class="scrolldiv">
+   <a class="scrollup" id="scrollup">
+    Scroll
+   </a>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_0" style="color: rgb(88, 88, 88); left: 264.094px; top: 1180px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The manufacturer of the recording equipment. This is the manufacturer of the DSC, scanner, video digitizer or other equipment that generated the image.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_1" style="color: rgb(88, 88, 88); left: 657.188px; top: 1180px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The model name or model number of the equipment. This is the model name or number of the DSC, scanner, video digitizer or other equipment that generated the image.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_2" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1132px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Contains information about the lens that captured the image. This tag notes minimum focal length, maximum focal length, minimum F number in the minimum focal length, and minimum F number in the maximum focal length, which are specification information for the lens that was used in photography.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_3" style="color: rgb(88, 88, 88); left: 264.094px; top: 1232px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The amount of time that a camera's shutter remains open. Shutter speed controls the duration of an exposure - the faster the Shutter speed, the shorter the exposure time.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_4" style="color: rgb(88, 88, 88); left: 657.188px; top: 1200px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    A number that expresses a lens' light-transmitting ability - i.e. the size of the lens opening - its aperture size.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_5" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1152px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    ISO sensitivity expresses the speed of photographic negative materials (formerly expressed as ASA). Since digital cameras do not use film but use image sensors instead, the ISO equivalent is usually given.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_6" style="color: rgb(88, 88, 88); left: 264.094px; top: 1300px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates the status of flash when the image was shot. For this photo; flash did not fire, compulsory flash mode.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_7" style="color: rgb(88, 88, 88); left: 657.188px; top: 1268px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Focal length is the distance between the focal point of a lens and the film plane when the lens is focused at infinity. It is used to designate the relative size and angle of view of a lens, expressed in millimeters (mm).
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_8" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1252px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The color space information tag is always recorded as the color space specifier. Normally sRGB is used to define the color space based on the PC monitor conditions and environment.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_9" style="color: rgb(88, 88, 88); left: 264.094px; top: 1360px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The original name of the file. Many digital cameras, P&amp;S and DSLR's use the DSC prefix on their image file naming.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_10" style="color: rgb(88, 88, 88); left: 657.188px; top: 1408px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The width and height of uploaded image expressed in pixels.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_11" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1392px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Refers to a million pixels, and is used in describing the number of pixels that a digital device's image sensor has.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_12" style="color: rgb(88, 88, 88); left: 264.094px; top: 1460px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    This tag indicates an identifier assigned uniquely to each image.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_13" style="color: rgb(88, 88, 88); left: 657.188px; top: 1444px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    This header indicates the Internet media type of the message content, consisting of a type and subtype.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_14" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1444px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The number of pixels per ResolutionUnit in the X and Y directions. When the image resolution is unknown, 72 dpi is designated.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_15" style="color: rgb(88, 88, 88); left: 264.094px; top: 1552px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The date of image creation. In Exif standard, it is the date and time the file was changed.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_16" style="color: rgb(88, 88, 88); left: 657.188px; top: 1552px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The time of image creation. In Exif standard, it is the date and time the file was changed.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_17" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1536px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    A Time Zone refers to any of 24 regions loosely divided by longitude, where the same standard time is kept.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_18" style="color: rgb(88, 88, 88); left: 264.094px; top: 1628px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Latitude is a geographic coordinate that specifies the north-south position of a point on the Earth's surface.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_19" style="color: rgb(88, 88, 88); left: 657.188px; top: 1628px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Longitude is a geographic coordinate that specifies the east-west position of a point on the Earth's surface.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_20" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1628px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates whether the latitude is north or south latitude. The ASCII value 'N' indicates north latitude, and 'S' is south latitude.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_21" style="color: rgb(88, 88, 88); left: 264.094px; top: 1680px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates whether the longitude is east or west longitude. ASCII 'E' indicates east longitude, and 'W' is west longitude.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_22" style="color: rgb(88, 88, 88); left: 657.188px; top: 1664px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates the geographic coordinate system. The coordinates are expressed as three rational values giving the degrees, minutes, and seconds, respectively.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_23" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1680px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    The GPS altitude determined by trilateration with four or more satellites. The reference unit is meters.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_24" style="color: rgb(88, 88, 88); left: 264.094px; top: 1732px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates the reference for giving the direction of the image when it is captured. 'T' denotes true direction and 'M' is magnetic direction.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_25" style="color: rgb(88, 88, 88); left: 657.188px; top: 1732px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates the direction of the image when it was captured. The range of values is from 0.00 to 359.99.
+   </div>
+  </div>
+  <div class="drooltip loaded hideTooltip top" data-identifiers=".tooltip_26" style="color: rgb(88, 88, 88); left: 1050.28px; top: 1748px;">
+   <div class="bg" style="background:#585858">
+   </div>
+   <div class="content" style="color:#fff">
+    Indicates the direction the camera is pointing when the photo was was captured.
+   </div>
+  </div>
+  <ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;">
+   <div aria-label="Advertisement" id="aswift_0_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+   </div>
+  </ins>
+ </body>
+</html>

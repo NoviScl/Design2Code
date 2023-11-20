@@ -1,0 +1,1278 @@
+<html lang="en">
+ <head>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;500;700&display=swap');
+@font-face {
+  font-family: "CocoGothicSmallCaps-Bold";
+  src: url('/shared/styles/webFonts/CocoGothicSmallCapsBold/font.woff2') format('woff2'), url('webFonts/CocoGothicSmallCapsBold/font.woff') format('woff');
+}
+
+body { margin: 0; font-family: 'Mulish', sans-serif; font-size: 16px; line-height: 28px; color: #000; }
+a { color: #0B306B; }
+a:hover, a:active { color: #333333; }
+.clear { clear: both; }
+hr { margin-block-start: 20px; margin-block-end: 20px; border: 0px; border-top: 1px solid #CCC !important; }
+a.button { background: #5CA6CC; display: inline-block; padding: 6px 16px; border-radius: 5px; color: #FFF; text-decoration: none; color: #FFF; font-weight: 700; }
+a.buttonRed { background: #C6542D; display: inline-block; padding: 6px 16px; border-radius: 5px; color: #FFF; text-decoration: none; color: #FFF; font-weight: 700; }
+a.button:hover {  }
+.content { min-height: calc(100vh - 319px); }
+.content.noMinimum { min-height: 0; }
+a[id] {  scroll-margin-top: 120px; }
+
+/* Header */
+.alert { background: #7E0000; color: #FFF; padding: 15px 10px; text-align: center; font-size: 18px; font-weight: 700; }
+.alert a { color: #FFF; text-decoration: none; }
+.alertButton { background: rgba(255,255,255,.2); padding: 0 10px; margin-left: 10px; display: inline-block; }
+
+.headerTopContainer { width: 100%; background: #0B306B; }
+#headerTop { width: calc(100% - 40px); font-size: 14px; line-height: 32px; max-width: 1440px; margin: 0 auto; color: #FFF; }
+#headerTop a { color: #FFF; text-decoration: none; display: inline-block; padding: 0 10px; font-weight: 500; }
+#headerTop a:hover, #headerTop a:active { color: rgba(255, 255, 255, .8); }
+.headerWeather { float: left; font-weight: 700; }
+.headerLinks { float: right; text-align: right; }
+
+.headerContainer { width: 100%; background: #FFF; transition: all 250ms ease-out; height: 90px; }
+#header { width: calc(100% - 40px); padding: 5px 0; max-width: 1440px; margin: 0 auto; }
+.headerLogo { float: left; }
+.headerLogo img { width: auto; height: 110px; transition: all 250ms ease-out; }
+
+.sticky { position: fixed; top: 0; width: 100%; z-index: 10; border-top: 3px solid #0B306B; }
+.sticky { height: 70px; }
+.sticky img { height: 80px !important; }
+.sticky + .content { padding-top: 90px; }
+.sticky .topnav { margin-top: 10px; transition: all 250ms ease-out; }
+
+/* Navigation */
+.topnav { overflow: hidden; float: right; margin-top: 20px; }
+/* Style the links inside the navigation bar */
+.topnav a { float: left; display: block; color: #0B306B; text-align: center; padding: 6px 12px; text-decoration: none; text-transform: uppercase; }
+.topnav a:hover { color: #FFF; }
+.topIcon { display: none; }
+.dropdown { float: left; overflow: hidden; }
+.dropdown .dropbtn { font-size: 16px; border: none; outline: none; color: #0B306B; font-weight: 700; padding: 6px 12px; background-color: transparent; line-height: inherit; font-family: inherit; margin: 0; text-transform: uppercase; }
+.topnav a.standard { font-weight: 700; border-radius: 5px; }
+.topnav a.standard i { line-height: inherit; }
+.dropdown .dropbtn a { padding: 0; float: none; display: inline; }
+.dropdown .dropbtn i { margin-left: 5px; }
+.dropdown-content { display: none; position: absolute; background-color: #5CA6CC; min-width: 160px; max-width: 250px; z-index: 10; border-radius: 0 5px 5px 5px; overflow: hidden; }
+.dropdown-content.dropdown-dept { width: 370px; max-width: 370px; flex-direction: column; flex-wrap: wrap; height: 369px; margin-left: -208px; border-radius: 5px 0 5px 5px; }
+.dropdown-content.dropdown-eo { width: 193px; border-radius: 0 0 5px 5px; }
+.dropdown-content a { float: none; color: #FFF; padding: 6px 12px; text-decoration: none; display: block; text-align: left; border-bottom: 1px solid #4182A3; text-transform: none !important; font-size: 14px; line-height: 26px; }
+.dropdown-content a.last { border-bottom: 0; }
+.dropdown-content.dropdown-dept a { padding: 5px 8px; width: 169px; float: left; }
+.topnav a:hover, .dropdown:hover .dropbtn, .dropdown:hover .dropbtn a { background-color: #5CA6CC; color: #FFF; }
+.dropdown:hover { border-radius: 5px 5px 0 0; }
+.dropdown .dropbtn a:hover { color: #FFF; }
+.dropdown-content a:hover { background-color: #0B306B; }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown:hover .dropdown-content.dropdown-dept { display: flex; }
+
+/* Homepage */
+
+#rotator.rotator { position: relative; padding: 0; width: 100%; height: 0; padding-bottom: 39%; max-width: 100%; }
+#rotator.rotator > .rotator__video { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
+#rotator.rotator > .rotator__video-overlay { position: absolute; width: 100%; height: 100%; z-index: 2; background: linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,.0)); color: #FFF; text-align: center; font-weight: 700; font-size: 20px; text-shadow: 0 0 5px #000; letter-spacing: 1px; }
+#rotator.rotator > .rotator__video-overlay h1 { margin: 10px 0 0; letter-spacing: 2px; line-height: 1em; }
+#rotator.rotator > .rotator__video-overlay > .rotator__video-text { position: absolute; bottom: 80px; left: 0; text-align: center; width: 100%; }
+
+@media screen and (max-width: 600px) {
+  #rotator.rotator { height: 40vh; }
+  #rotator.rotator > .rotator__video-overlay { font-size: 18px; }
+}
+
+.trendingIcons { position: relative; z-index: 3;max-width: 1440px; width: 100%; display: flex; margin: 0 auto; padding-top: 0; transform: translateY(-42%); }
+.trendingIcons .icon { width: 16.6%; text-align: center; }
+.trendingIcons .icon a { text-decoration: none; color: #666; font-weight: 700; }
+.trendingIcons .icon a i { font-size: 45px; margin: 0 auto 5px; line-height: 90px; width: 90px; height: 90px; border-radius: 50%; color: #FFF !important; display: block; border: 2px solid #FFF; box-shadow: 0 0 5px rgba(0, 0, 0, .4); }
+.trendingIcons .icon.qlColor1 a i { background: #0B306B; }
+.trendingIcons .icon.qlColor2 a i { background: #6f9332; }
+.trendingIcons .icon.qlColor0 a i { background: #5ca6cc; }
+.trendingIcons .icon.qlColor3 a i { background: #C6542D; }
+
+.homeTopContainer .glide__track { width: 100%; }
+.news .homeFeature.thirds { height: 195px; padding-bottom: 0; overflow: hidden; }
+.news .homeFeature.thirds a { border-bottom: none; }
+.news .homeFeature.thirds img { width: auto; min-width: 100%; height: 100%; transition: transform 275ms ease-out; position: absolute; }
+.news .homeFeature.thirds:hover img { transform: scale(1.12); }
+.news .homeFeature.thirds a span { width: 100%; white-space: normal; }
+.homeEvent .homeEventText a.nameLink { white-space: normal; }
+.headerContainer .headerLogo { position: fixed; z-index: 10; }
+
+h2.homeHeader { font-family: CocoGothicSmallCaps-Bold, Mulish, sans-serif; text-transform: uppercase; text-align: center; }
+
+.homeSearch { margin: 40px auto 0; width: calc(100% - 40px); max-width: 1440px; padding: 0 0 20px; }
+.homeSearch input[type="text"]:not(.homeSearchInput) { width: 800px; display: block; margin: -5px auto 10px; font-size: 18px; font-family: 'Mulish'; border: 2px solid #0B306B; border-radius: 5px; padding: 5px 8px; }
+.homeSearch nl-autocomplete, .homeSearch nl-autocomplete .awesomplete { height: auto; }
+.homeSearch .homeSearchInput { box-shadow: none; width: 100%; display: block; border-radius: 0.25em; padding: 0.5rem 0.75rem; font-size: 1rem; line-height: 1.5rem; border: 2px solid #0B306B; }
+
+.homeNews, .homeMeetings { margin: 0 auto; padding: 20px 0; width: calc(100% - 40px); max-width: 1440px; }
+.homeMeetings { padding-bottom: 40px; }
+
+#homeFeature { width: calc(100% - 40px); max-width: 1440px; margin: 0 auto; }
+#homeFeature.events { display: flex; flex-wrap: wrap; }
+#homeFeature.news { display: flex; flex-wrap: wrap; }
+
+.homeEvent { width: calc(25% - 24px); float: left; margin: 12px; background: #F2EBE1; border-bottom: 3px solid #59A9DC; font-size: 16px; line-height: 24px; }
+.homeEventDate { background: #59A9DC; color: #FFF; padding: 4px 8px; display: inline-block; margin: 0 8px; font-weight: 700; }
+.homeEventImage a { padding-bottom: 60%; display: block; width: 100%; }
+.homeEventText { padding: 10px 15px 20px; white-space: normal; }
+.homeEventText a.nameLink { color: #333; font-size: 20px; font-weight: 700; line-height: 30px; display: block; margin: 10px 0 20px; text-decoration: none; }
+
+.homeFeature.thirds { width: calc(33.3% - 24px); padding-bottom: 20%; float: left; margin: 12px; background-size: 100% !important; background-position: center center !important; position: relative; border-bottom: 3px solid #59A9DC; transition: all 300ms ease-out;}
+.homeFeature.thirds:hover { background-size: 110% !important; }
+.homeFeature.thirds a { color: #FFF; display: block; font-size: 18px; line-height: 30px; font-weight: 900; position: absolute; text-decoration: none; border-bottom: 5px solid rgba(0,0,0,0); width: 100%; height: 100%; }
+.homeFeature.thirds a span { background: rgba(0,0,0,.4); padding: 10px 10px 5px; position: absolute; bottom: 0; left: 0; width: calc(100% - 20px); }
+.homeFeature.thirds a span span.label { position: relative !important; background: #59A9DC; color: #FFF; font-size: 14px; line-height: 18px; padding: 2px 5px; border-bottom: none; text-transform: uppercase; margin-bottom: 2px; display: inline-block; width: auto; }
+
+.homeButtons { width: 100%; margin: 15px 0 0; text-align: center; }
+.homeButtons.events a { display: inline-block; background: #C6542D; color: #FFF; padding: 6px 10px 4px; text-decoration: none; font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; }
+
+.homeFeature.tourism { width: 100%; display: flex; }
+.homeFeature.tourism h2, .homeFeatureRight.bigNumber h2 { font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; margin-bottom: 35px; }
+.homeFeatureLeft { width: calc(33.3% - 80px); padding: 80px 40px 90px; background: #F2EBE1; }
+.homeFeatureLeft a, .homeHighlight a, .homeFeatureRight.bigNumber a { display: inline-block; background: #C6542D; color: #FFF; padding: 6px 10px 4px; text-decoration: none; font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; margin-top: 25px; }
+.homeFeatureRight { width: 66.7%; }
+.homeFeature.numbers { width: 100%; display: flex; align-items: center; background: #5CA6CC; }
+.homeFeatureLeft.bigNumber { width: 33.3%; text-align: center; padding: 0; background: #5CA6CC; color: #FFF; font-weight: 700; }
+.homeFeatureLeft.bigNumber h3 { font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; font-size: 60px; line-height: 70px; margin: 5px 0 0; }
+.homeFeatureRight.bigNumber { width: calc(66.7% - 80px); padding: 70px 40px 90px; background: #F2EBE1; }
+
+.homeSubscribeContainer { background-size: cover !important; background-position: center center !important; }
+.homeSubscribe { margin: 0 auto; padding: 70px 0; width: calc(100% - 40px); max-width: 1440px; text-align: center; color: #FFF; }
+.homeSubscribe a { display: inline-block; background: #C6542D; color: #FFF; padding: 6px 10px 4px; text-decoration: none; font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; margin-top: 25px; }
+
+.homeHighlight { background: #5CA6CC; width: calc(100% - 80px); padding: 40px; display: flex; color: #FFF; }
+.homeHighlight h2 { font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; margin-bottom: 35px; }
+.homeHighlightInfo { width: 60%; }
+.homeHighlightNumber { width: 40%; }
+
+/* Page Headers */
+.pageHeaderContainer { width: 100%; padding: 15% 0 20px; background-position: center center; background-size: cover; }
+.pageHeaderContainer.slim { padding: 20px 0; background: #EDDEC7; }
+#sectionHeader { width: calc(100% - 40px); max-width: 1400px; margin: 30px auto 0; }
+.sectionParent a { display: inline-block; background: rgba(92, 166, 204, .7); color: #FFF; padding: 2px 6px 0; font-family: CocoGothicSmallCaps-Bold; text-transform: uppercase; color: #FFF; text-decoration: none; margin-bottom: 5px; }
+.sectionPageHeader h1 { display: block; margin: 0; line-height: 38px; color: #FFF; }
+.pageHeaderContainer.slim .sectionPageHeader h1 { color: #000; }
+.sectionPageHeader h1 a { color: #FFF; text-decoration: none; }
+.pageHeaderContainer.slim .sectionPageHeader h1 a { color: #0B306B; }
+.serviceIntro { font-size: 20px; line-height: 32px; padding-bottom: 1em; border-bottom: 1px solid #F2EBE1; margin-bottom: 1em; }
+
+/* Contact Page */
+.contactInfo { margin: 0 0 20px; border-bottom: 1px solid #CCC; font-size: 14px; line-height: 22px; padding: 0 0 20px; }
+.contactInfo h3 { margin: 0; }
+.contactInfo .intro { margin-bottom: 5px; }
+
+.staffRow { width: 100%; border-top: 1px solid #F2EBE1; padding: 5px 0; }
+.staffName { width: calc(100% - 130px); float: left; }
+.staffPhone { width: 130px; float: right; text-align: right; }
+
+/* Departments */
+.departmentAlertContainer { background: #7E0000; width: 100%; padding: 20px 0; }
+.departmentAlert { max-width: 1400px; width: calc(100% - 40px); margin: 0 auto; color: #FFF; }
+.departmentAlert h3 { margin: 0; }
+.departmentAlert p { margin: 0; }
+.departmentAlert a { color: #F6F6F6; }
+
+.department { display: flex; flex-wrap: wrap; width: 100%; max-width: 1440px; margin: 0 auto; }
+.departmentLeft { width: calc(100% - 330px); float: right; padding: 20px; order: 2; }
+.departmentLeft h2:first-child, .departmentFull h2:first-child { margin-top: 0; }
+.departmentLeft .intro, .departmentFull .intro { font-size: 20px; line-height: 34px; border-bottom: 1px solid rgba(70, 153, 169, .3); padding-bottom: 20px; margin-bottom: 20px; }
+.departmentFull { width: calc(100% - 20px); padding: 20px; }
+.departmentNav { width: 350px; float: right; background: #F2EBE1; line-height: 26px; order: 1; }
+.departmentInfo { padding: 0 20px; }
+.departmentLeft img { margin-left: 10px; }
+
+.departmentStaff { order: 2; width: 250px; float: right; padding: 40px 20px 20px; line-height: 24px; }
+.departmentStaff div { margin-bottom: 10px; }
+.departmentStaff div:first-child { margin-bottom: 20px; }
+.deptStaffMember img { width: 100%; margin-bottom: 10px; }
+.departmentStaff ul { padding-left: 20px; }
+.departmentStaff li { margin-bottom: 5px; }
+
+.departmentStaffFull { width: 100%;  padding: 0; }
+
+.departmentIcons { margin:-10px; display: flex; flex-wrap: wrap; justify-content: stretch; }
+.departmentIcons .qlIcon { width: calc(20% - 20px); margin: 10px; transition: all 350ms ease-out; transform: translateY(0); line-height: 22px; }
+.departmentIcons .qlIcon a { font-weight: 700; text-align: center; display: block; padding: 25px 0 15px; /* height: calc(100% - 40px); */ text-decoration: none; }
+.departmentIcons .qlIcon.qlColor1 a { color: #666; }
+.departmentIcons .qlIcon.qlColor2 a { color: #666; }
+.departmentIcons .qlIcon.qlColor0 a { color: #666; }
+.departmentIcons .qlIcon.qlColor3 a { color: #666; }
+.departmentIcons .qlIcon a i { font-size: 45px; margin-bottom: 5px; line-height: 90px; width: 90px; height: 90px; display: inline-block; border-radius: 50%; color: #FFF !important;border: 2px solid rgba(255,255,255,0.55); transition: all 300ms ease-out; }
+.departmentIcons .qlIcon.qlColor3 a i { background: #C6542D; width: 90px; }
+.departmentIcons .qlIcon.qlColor1 a i { background: #0B306B; width: 90px; }
+.departmentIcons .qlIcon.qlColor2 a i { background: #6f9332; width: 90px; }
+.departmentIcons .qlIcon.qlColor0 a i { background: #5ca6cc; width: 90px; }
+.departmentIcons .qlIcon:hover a i { border: 2px solid rgba(255,255,255,0.925); transform: translateY(-8px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+
+/* Departments - Map */
+.departmentMapHeader { width: 100%; background: #5CA6CC; padding: 5px 0; }
+.departmentMapHeader h3, .departmentMapHeader p { width: calc(100% - 40px); max-width: 1440px; color: #FFF; text-align: center; }
+.departmentMapHeader h3 { margin: 10px auto; }
+.departmentMapHeader h3 a { color: #F2EBE1; }
+.departmentMapHeader p { margin: 0 auto 10px; }
+.departmentMap { height: 450px; overflow: hidden; }
+.departmentMap iframe { width: 100%; height: 450px; border: 0; }
+
+/* Department and Services */
+.phoneInfoContainer { background: #F2EBE1; padding: 20px 0; text-align: center; }
+.phoneInfo { display: flex; width: calc(100% - 40px); max-width: 1400px; margin: 0 auto; }
+.phoneDetail { width: 33.3%; }
+.phoneDetail4x { width: 25%; }
+.highlightedContent { width: calc(100% - 20px); padding: 10px; background: #F2F2F2; border-bottom: 5px solid #5CA6CC; }
+.highlightedContent p:last-child { margin-bottom: 0; }
+
+/* Modules - Cities */
+#communities { display: flex; flex-wrap: wrap; margin: -10px; width: calc(100% + 20px); }
+.city { background: rgba(242, 235, 225,.6); width: calc(33.3% - 20px); margin: 10px; }
+.cityImage { width: 100%; background: #CCC; background-position: center center !important; background-size: cover !important; }
+.cityImage.noLink { width: 100%; padding-bottom: 66.6%; }
+.cityImage a { width: 100%; display: block; padding-bottom: 66.6%; }
+.cityDetail { padding: 10px; font-size: 15px; line-height: 22px; background: #F2EBE1; }
+.cityDetail h3 { margin: 0 0 2px; }
+.cityLink { width: 25%; float: left; text-align: center; font-size: 14px; line-height: 22px; font-weight: 700; }
+.cityLink3x { width: 33.3%; }
+.cityLink2x { width: 50%; }
+.cityLink1x { width: 100%; }
+.cityLink a { text-decoration: none; display: block; padding: 13px 0 5px; }
+.cityLink a:hover { background: #213159; color: #EDDEC7; }
+.cityLink a i { display: block; margin: 0 0 2px; font-size: 20px; }
+.cityDivider { width: 100%; clear: both; margin: 5px 0; border-bottom: 1px solid #EDDEC7; }
+
+/* Modules - Permits */
+.permits h3, .policies h3 { margin: 1.5em 0 .5em !important; }
+.permit { padding: .5em 0; border-bottom: 1px solid #EDDEC7; }
+.permit:hover { background: #F6F6F6; }
+.permitLast { border-bottom: 0; }
+.permit p { margin: 0; }
+
+.historicElections h3 { margin: 1.5em 0 .5em !important; }
+.historicElection { padding: .5em 0; border-bottom: 1px solid #EDDEC7; display: flex; align-items: center; }
+.historicElectionName { width: calc(100% - 250px); }
+.historicElectionInfo { width: 125px; }
+.historicElectionInfo a i { text-decoration: none; margin-left: 5px; }
+.historicElection:hover { background: #F6F6F6; }
+
+/* Departments - Board Members */
+.boardMembers { display: flex; flex-wrap: wrap; margin: 0 auto; max-width: 800px; }
+.boardMember { width: calc(33% - 20px); padding: 10px; margin: 0 0 10px; font-size: 15px; line-height: 22px; }
+.boardMember b { font-size: 16px; }
+.boardMember img { width: 100%; height: auto; margin: 0 0 5px; }
+
+/* Calendar */
+.eventListing { width: calc(100% - 10px); padding: 20px 5px; margin: 0 auto; border-bottom: 1px dotted #CCC; color: #666; }
+.eventListing .eventImage { width: 300px; float: right; height: 200px; background-size: cover; background-position: center center; border-bottom: 5px solid #0B306B; }
+.eventListing h3 { margin: 0; }
+.eventListing p, .newsListing p { margin: .5em 0; }
+.eventListing p.eventButton, .newsListing p.newsButton { margin: 1em 0 0; }
+a.eventButton { background: #5CA6CC; padding: 2px 10px; border-radius: 10px; color: #FFF; text-decoration: none; font-weight: 700; margin: 0 auto; width: 145px; text-align: center; }
+a.eventButtonRight { display: block; width: 100%; font-size: 22px; padding: 6px 10px; }
+
+/* Services */
+#servicePage { display: flex; flex-wrap: wrap; width: 100%; max-width: 1440px; margin: 0 auto; min-height: calc(100vh - 319px - 156px - 86px - 450px) }
+.serviceDetail { width: calc(100% - 360px); padding: 20px; order: 1; }
+.serviceDetail .intro { font-size: 20px; line-height: 34px; border-bottom: 1px solid rgba(70, 153, 169, .3); padding-bottom: 20px; margin-bottom: 20px; }
+.serviceDetail h2:first-child, .serviceDetail h3:first-child { margin-top: 0; }
+.serviceDetail.full { width: calc(100% - 40px); padding: 20px; }
+
+.serviceNav { width: 320px; line-height: 24px; order: 2; }
+
+.serviceNav h3 { margin: 20px; font-size: 22px; }
+.serviceNav h3 a { color: #666; text-decoration: none; padding: 0; }
+
+.serviceNav a { display: block; padding: 8px 20px; color: #666; font-weight: 700; text-decoration: none !important; font-size: 17px; line-height: 32px; }
+.serviceNav a i { margin-right: 8px; font-size: 17px; line-height: 32px; width: 32px; border-radius: 50%; background: #5ca6cc; color: #FFF; }
+.serviceNav a.qlColor1 i { background: #0B306B; }
+.serviceNav a.qlColor2 i { background: #6f9332; }
+.serviceNav a.qlColor0 i { background: #5ca6cc; }
+.serviceNav a.active { background: #F2EBE1 !important; font-weight: 700; }
+.serviceNav a:hover { background: #F2EBE1; }
+.serviceNav h3 a:hover { background: none !important; color: #0B306B; }
+.serviceDivider { border-top: 1px solid #0B306B; height: 10px; margin: 10px auto 0; width: calc(100% - 20px); }
+
+/* Elections */
+.electionYear h2 { margin: 1.5em 0 1em; }
+.electionDetails { margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #EDDEC7; }
+.electionDetails b, .precinct b.lead, .precinctAlt b.lead { display: block; font-size: 18px; padding: 0 0 5px; }
+.electionInfo { float: left; width: 50%; }
+.electionLinks { float: right; width: 50%; }
+.electionLinks a { display: block; font-weight: 700; }
+.precinct a, .precinctAlt a { font-weight: 700; }
+.electionLinks a i, .precinct a i, .precinctAlt a i { text-decoration: none; margin-right: 5px; }
+.electionTypeDescription { display: none; position: absolute; width: calc(50% - 20px); z-index: 100; background: #EDDEC7; border: 2px solid #BBB; border-radius: 5px; padding: 10px; }
+a.electionTypeInfo { cursor: pointer; }
+a:hover.electionTypeInfo + div.electionTypeDescription { display: block; }
+a.precinctInfoIcon { cursor: pointer; }
+a:hover.precinctInfoIcon + div.precinctInfoDescription { display: block; }
+
+/* Elections - Detail Page */
+.electionPage h3 { margin: 1.5em 0; font-size: 20px; }
+.electionResults h3 { margin: 2em 0 1.5em; }
+.resultsLink, .resultsCount { width: calc((100% - 60px) / 2); margin: 10px; float: left; padding: 20px 5px; background: #F2EBE1; border-radius: 5px; text-align: center; font-weight: 700; }
+.resultsLink a { text-decoration: none; display: block; }
+.resultsLink a i { margin-left: 10px; }
+.resultsLink:hover { background: #EDDEC7; }
+.electionsBack { margin: 2em 0 0; text-align: center; }
+#ballots:before { height: 80px; display: block; content: ''; margin-top: -80px; }
+.electionGraph h3 { margin: 2em 0 1.5em; }
+.electionGraph .graphCat, .electionGraph .graphCatS, .electionGraph .graphNum, .electionGraph .graphNumS { height: 30px; line-height: 30px; float: left; font-weight: 700; font-size: 12px; }
+.electionGraph .graphCat { width: 160px; text-align: right; margin-right: 5px; }
+.electionGraph .graphCatS { width: 95px; text-align: right; margin-right: 5px; }
+.electionGraph .graphNum { width: 55px; text-align: left; margin-left: 5px; }
+.electionGraph .graphGraph { width: calc(100% - 225px); height: 20px; margin: 5px 0; float: left; background: #F2EBE1; }
+.electionGraph .graphGraphS { width: calc(100% - 160px); height: 20px; margin: 5px 0; float: left; background: #F2EBE1; }
+.electionGraph strong { color: #666; font-size: 18px; display: block; margin: 30px 0 5px; }
+.graphSpacing { margin: 10px 0; }
+
+.homeElectionTurnout .registerToVote a { width: 150px; color: #FFF; padding: 10px; margin: 1.5em auto 0; display: block; background: #11437F; text-align: center; text-decoration: none; font-weight: 700; border-radius: 10px; }
+.voterReg { margin: 0 auto; padding: 20px 0 50px; border-top: 1px solid #EDDEC7; }
+.voterReg .registerToVote { text-align: center; }
+.voterReg .registerToVote a i { text-decoration: none; margin-right: 5px; }
+.voterReg h3 { text-align: center; }
+.voterReg .graphSpacing { margin: 10px auto 30px; max-width: 800px; }
+.graphFill { height: 20px; float: left; background: #E02121; }
+.graphMetric { height: 30px; margin: -5px 5px; line-height: 30px; float: left; font-weight: 700; }
+.graphDivider { height: 10px; margin-bottom: 10px; border-bottom: 1px solid #EDDEC7; }
+.graphHeader { margin: 2em 0 1em; font-size: 14px; }
+.graphHeader h4 { margin: 0; font-size: 16px; }
+
+/* Ballots */
+.serviceDetail.elections input[type="text"], input[type="text"].searchElections, .listFilter input[type="text"], input.instantSearch[type="text"] { display: block; border: 2px solid #F2EBE1; width: 100%; padding: 5px; font-size: 18px; font-family: 'Mulish', sans-serif; margin: 20px 0; border-radius: 5px; }
+.listFilter input[type="text"] { margin-top: 0; }
+.ballotRow { width: 100%; padding: .5em 0; border-bottom: 1px dotted #CCC; font-size: 14px; }
+.ballotRow a { display: block; font-size: 16px; }
+.ballotRow a i { text-decoration: none; margin-right: 5px; }
+
+/* Maps */
+.countyMaps { width: calc(100% + 20px); margin: 20px -10px 0; display: flex; flex-wrap: wrap; }
+.countyMaps h2 { width: calc(100% - 20px); text-align: center; margin: 20px auto 10px; }
+.countyMaps .map { width: calc(25% - 30px); margin: 10px 10px 20px; text-align: center; text-decoration: none; line-height: 24px; font-weight: 700; }
+.countyMaps .map a { text-decoration: none !important; display: block; }
+.mapLink:hover, .mapLink.right:hover { background: #EDDEC7; }
+
+/* Registered Voters */
+.registeredVoters { background: #F6F6F6; width: 360px; float: right; padding: 10px; margin-left: 10px; margin-bottom: 10px; }
+.registeredVoters h3 { margin-top: 0; text-align: center; }
+
+/* Modules - Jobs/Employment */
+.jobListing { padding: 0 0 20px; border-bottom: 1px solid #EDDEC7; margin: 0 0 20px; }
+.jobListing h3:first-child { padding-top: 0; margin-top: 0; }
+.jobListing p:last-child { padding-bottom: 0; margin-bottom: 0; }
+
+/* Content Pages - with No Navigation */
+#standardPage { width: calc(100% - 40px); max-width: 1400px; padding: 20px; margin: 0 auto; }
+#standardPage img, #servicePage img, .departmentLeft img { max-width: 100%; height: auto; }
+#standardPage figure, #servicePage figure, figure { max-width: 100%; margin: 10px 0 10px 10px; height: auto;  }
+figure img { margin: 0 !important; }
+figcaption { font-size: 14px; line-height: 20px; }
+img.bidNoticePhoto { width: 50%; margin: 0 0 10px 10px; height: auto; float: right; }
+@media screen and (max-width: 600px) {
+  img.bidNoticePhoto { width: 100%; margin: 0 0 10px; float: none; }
+}
+
+/* Blog */
+.featuredBlogPhoto { width: calc(100% - 40px); max-width: 500px; margin: 0 auto; }
+.featuredBlogPhoto img { width: 100%; }
+
+/* Content Pages - with Left Navigation */
+#standardPageNav { display: flex; flex-wrap: wrap; width: 100%; max-width: 1440px; margin: 0 auto; }
+.standardPageFull { width: calc(100% - 40px); padding: 20px; }
+.standardPageNav { width: 320px; background: rgba(92, 166, 204, .7); }
+.standardPageNav h3 { margin: 20px; color: #000; font-size: 22px; }
+.standardPageNav a { display: block; padding: 8px 20px; color: #0B306B; text-decoration: none !important; font-size: 17px; cursor: pointer; }
+.standardPageNav a i { text-decoration: none; margin-right: 8px; }
+.standardPageDetail { width: calc(100% - 360px); padding: 20px; }
+.standardPageNav a.activebtn { background: #0B306B !important; font-weight: 700; color: #FFF; }
+.standardPageNav a:hover { background: #0B306B; color: #FFF; }
+.serviceNav h3 a:hover { background: none !important; color: #0B306B; }
+
+/* Modules - Section Corners */
+#townshipMap { width: 1074px; height: 1089px; display: flex; flex-wrap: wrap; align-items: center; border: 3px solid #213159; background-image:url(/images/county_map.png); background-size: calc(100% + 7px); background-position: -3px -3px; }
+.township { width: calc(25% - 1px); text-align: center; border-right: 1px solid #213159; border-bottom: 1px solid #213159; background: rgba(196,224,200,.4); }
+.townshipLastColumn { width: 25%; border-right: 0; }
+.townshipLastRow { border-bottom: 0; }
+.township a { padding: 121px 0 0; display: block; height: 150.5px; font-weight: 700; }
+.township a i { display: inline-block; text-decoration: none; margin-left: 5px; }
+.township a:hover, .townshipCurrent { background: rgba(221, 221, 221, .8); }
+
+/* Modules - Township */
+.townshipList { display: flex; flex-wrap: wrap; } .townshipIndiv { width: 25%; } @media screen and (max-width:1050px) { .townshipIndiv { width: 50%; } }
+.townshipTaxes { float: right; width: 200px; padding: 10px; background: #F2EBE1; border-radius: 5px; margin-left: 10px; }
+.townshipTaxes h4 { margin: 0; }
+.townshipTaxes ul { margin: 10px 0 0; }
+
+/* Content Pages - All */
+.standardPageIntro { border-bottom: 1px solid #CCC; font-size: 20px; line-height: 32px; margin: 0 auto 20px; padding: 0 0 20px; }
+
+/* Content - General */
+.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+.embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* Modules - FAQ */
+.faqLabel { float: left; width: 40px; font-size: 24px; text-align: center; color: #6f9332; padding: 14px 0; }
+.faqText { float: left; width: calc(100% - 40px); }
+.faqTextQ { font-weight: 700; }
+.faqText p { margin: 1rem 0; }
+.faqQA { border-bottom: 1px solid #C4DBDF; padding-bottom: 1em; margin-bottom: 1em; }
+.faqLast { border-bottom: none; }
+.faqSection input[type="text"] { font-family: 'Mulish', sans-serif; border: 2px solid #F2EBE1; width: 100%; padding: 5px; font-size: 18px; margin: 0 0 .5em; border-radius: 5px; }
+.faqSection h2.faqFirst { margin-top: .5em; }
+.faqSection h4 { margin: 1em 0; }
+#filterContainer, #myBtnContainer.filterContainer { margin: -5px 0 calc(2em - 5px); padding-left: 8px; }
+#myBtnContainer.filterContainer .btn { display: inline-block; margin: 5px; background: rgba(62, 122, 194, 0.3); padding: 2px 5px; border-radius: 5px; cursor: pointer; }
+#myBtnContainer.filterContainer .btn:hover { background: #203648; color: #FFF !important; }
+#myBtnContainer.filterContainer .btn.activebtn, #myBtnContainer.filterContainer .btn.activebtn:hover { background: #203648; color: #FFF; font-weight: 700; }
+.listHidden { display: none !important; }
+.filterDiv { display: none; }
+.show { display: block; }
+.searchService.content { min-height: 0 !important; }
+.highlightedFAQ { background: rgba(92, 166, 204, 0.3); padding: 10px; }
+.highlightedFAQ .faqQA { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+.highlightedFAQ h4 { margin-top: 0; }
+input.fullSearch { width: 100%; padding: 2px 8px; border: 2px solid #CCC; font-size: 18px; font-family: 'Mulish', sans-serif; }
+
+/* Content Pages - with Two Columns */
+.contentColumns { display: flex; flex-wrap: wrap; margin: -20px 0; }
+.contentColumns.news { margin:-20px; }
+.contentLeft { width: calc(100% - 360px); margin-right: 20px; padding: 20px 0; }
+.contentLeft.news { width: calc(100% - 380px); margin-right: 0; padding: 20px; }
+.contentLeft h2:first-child, .contentLeft h3:first-child { margin-top: 0; }
+.contentLeft img { margin: 1em 0 0; }
+.contentLeft img.newsImage, .serviceDetail img.newsImage { display: block; margin: 1em auto; width: 500px; max-width: 100%; height: auto; }
+.contentRight { width: 300px; background: #F2EBE1; padding: 20px; font-size: 15px; line-height: 24px; }
+.contentRight h2:first-child, .contentRight h3:first-child, .contentRight p:first-child { margin-top: 0; }
+.contentRight ul, .contentRight ol { padding-inline-start: 30px; }
+.virtualOverlay { width: 800px; }
+
+.rightNews h4, .mainNews h4 { margin-bottom: 0; }
+.rightNews b { margin-bottom: 10px; display: block; font-weight: 400; }
+.rightNews { font-size: 14px; line-height: 22px; }
+.mainNews b { margin-bottom: 10px; display: block; font-weight: 400; font-size: 14px; line-height: 20px; }
+
+/* Modules - Budgets */
+.financialTaxFilter { margin-bottom: 1em; }
+.financialTaxInfo { display: flex; flex-wrap: wrap; }
+.financialTaxInfo .leftColumn { width: 48%; }
+.financialTaxInfo .rightColumn { width: 50%; margin-left: 2%; }
+
+/* Forms */
+#contactForm i { font-style: normal; color: #C00; font-weight: 700; }
+#contactForm ol { margin: 0; list-style-type: none; padding: 0; }
+#contactForm ol label { display: block; font-size: 15px; line-height: 24px; font-weight: 700; }
+#contactForm ol li .checkboxGroup { margin-bottom: 0.5em; }
+#contactForm ol input[type="text"], #contactForm ol input[type="email"], #contactForm ol input.form-input { font-family: 'Mulish', sans-serif; font-size: 16px; width: 100%; padding: 5px; border: 1px solid rgb(209,213,219); margin-bottom: 1em; box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+#contactForm ol input[type="submit"] { display: block; width: 150px; font-family: 'Mulish', sans-serif; font-size: 16px; color: #FFF; text-align: center; border: 0; background: #0B306B; padding: 10px 0; margin: 1.5em 0 0; }
+#contactForm ol select { font-family: 'Mulish', sans-serif; font-size: 16px; width: 100%; padding: 5px; border: 1px solid #EDDEC7; margin-bottom: 1em; }
+#contactForm ol textarea { font-family: 'Mulish', sans-serif; font-size: 16px; width: 100%; padding: 5px; border: 1px solid #EDDEC7; margin-bottom: 1em; }
+
+#contactForm li.width50 { width: 49%; float: left; margin-right: 1%; }
+#contactForm li.width40 { width: 39%; float: left; margin-right: 1%; }
+#contactForm li.width33 { width: 32.3%; float: left; margin-right: 1%; }
+#contactForm li.width30 { width: 29%; float: left; margin-right: 1%; }
+#contactForm li.width25 { width: 24%; float: left; margin-right: 1%; }
+#contactForm li.width20 { width: 19%; float: left; margin-right: 1%; }
+#contactForm li.width50.right { width: 50%; margin-right: 0%; }
+#contactForm li.width40.right { width: 40%; margin-right: 0%; }
+#contactForm li.width33.right { width: 33.3%; margin-right: 0%; }
+#contactForm li.width30.right { width: 30%; margin-right: 0%; }
+#contactForm li.width25.right { width: 25%; margin-right: 0%; }
+#contactForm li.width20.right { width: 20%; margin-right: 0%; }
+#contactForm hr { margin-block-start: 10px; }
+
+@media screen and (max-width: 600px) {
+  #contactForm li.width50, #contactForm li.width40, #contactForm li.width33, #contactForm li.width30, #contactForm li.width25, #contactForm li.width20, #contactForm li.width40.right, #contactForm li.width33.right, #contactForm li.width30.right, #contactForm li.width25.right, #contactForm li.width20.right {
+    width: 100% !important;
+    margin: 0 !important;
+    float: none;
+  }
+}
+
+/* Modules - Minutes */
+.boardMeeting { text-decoration: none; padding: 5px 0; border-bottom: 1px solid #F2EBE1; display: block; width: 100%; }
+.boardMeeting:hover { background: #F6F6F6; }
+.boardMeeting a i { margin-left: 5px; text-decoration: none; }
+.boardMeeting.last { border-bottom: none; }
+
+.boardDate { width: calc(100% - 390px); float: left; }
+.meetingNotes { font-size: 13px; color: #666; line-height: 16px; display: block; margin: 0 0 5px; }
+.boardDetail { width: 130px; text-align: center; float: right; }
+
+/* Modules - Departments */
+.listDepartment { border-bottom: 1px dotted #CCC; padding: 10px 5px; }
+.listDepartment:hover, .listLink:hover { background: #F2EBE1; }
+.listDepartment h3 { margin: 0 0 5px; }
+.listDepartmentInfo { float: left; width: 340px; }
+.listDepartmentServices, .listDepartmentSocial { float: right; width: calc(100% - 340px); }
+.listDepartmentInfo.bos { margin-bottom: 1em; float: none; width: 100%; }
+.listDepartmentInfo.listSocial h3 { margin: 0 !important; }
+.listDepartmentSocial a i { font-size: 1.5rem; }
+.listDepartmentSocial .listIcon { display: inline-block; float: right; margin: 0; width: 40px; text-align: center; }
+.listServiceIcon a { color: #FFF; display: inline-block; float: left; margin: 5px; background: #C6542D; padding: 2px 6px; border-radius: 5px; font-weight: 500; text-decoration: none; }
+.listServiceIcon a i { margin-right: 5px; text-decoration: none !important; }
+.listServiceIcon a:hover { background: #C6542D; text-decoration: underline; }
+
+/* Modules - Credits & Exemptions */
+.creditRow { width: calc(100% - 10px); padding: 5px; border-bottom: 1px dotted #F2EBE1; display: flex; flex-wrap: wrap; }
+.creditRow.header { font-weight: 700; background: #F2EBE1; border-bottom: 1px dotted #EDDEC7; margin-top: 10px; }
+.creditName { width: 250px; }
+.creditTime { width: 100px; }
+.creditContact { width: calc(100% - 500px); }
+.creditDeadline { width: 150px; text-align: center; }
+.creditDescription { width: 100%; }
+.creditDescription p { margin: 5px 0; font-size: 15px; line-height: 26px; }
+.creditDetail { display: none; }
+
+/* Modules - Sheriff Sales*/
+#sheriffSales { width: 100%; }
+.sheriffSalesRow { width: calc(100% - 2px); display: flex; flex-wrap: wrap; padding: 4px 1px 16px; border-bottom: 1px solid #AAA; }
+.sheriffSalesRow.header { background: #EDDEC7; font-weight: 700; align-items: flex-end; padding-bottom: 4px; }
+.sheriffSalesRow.alt { background: #F6F6F6; }
+.sheriffSalesRow:hover { background: #F2EBE1; }
+.sheriffSalesRow.header:hover { background: #EDDEC7; }
+.salesNumber { width: 130px; padding: 0 1px; }
+.salesName { width: calc(100% - 604px); padding: 0 5px 0 1px; }
+.salesDate { width: 110px; padding: 0 1px; }
+.salesDate b { color: #C00; }
+.salesAddress { width: 230px; padding: 0 1px; }
+.salesAmount { width: 120px; padding: 0 1px; }
+.highlight { background: #0B306B; color: #FFF; padding: 0px 2px; display: inline-block; line-height: 20px; }
+
+/* Modules - Notifications */
+form#notificationsForm { display: block; max-width: 800px; width: 100%; margin: 0 auto; }
+#notificationsForm ol { margin: 0; list-style-type: none; padding: 0; }
+#notificationsForm ol label { display: block; font-size: 15px; line-height: 24px; }
+#notificationsForm ol input[type="text"], #notificationsForm ol input[type="email"] { font-family: 'Mulish', sans-serif; font-size: 16px; width: 100%; padding: 5px; border: 1px solid #EDDEC7; margin-bottom: 1em; }
+#notificationsForm input[type="submit"] { display: block; width: 150px; font-family: 'Mulish', sans-serif; font-size: 16px; color: #FFF; text-align: center; border: 0; background: #0B306B; padding: 10px 0; margin: 1.5em 0 0; }
+
+/* Job Openings */
+.jobOpening { padding: 1em 0; border-bottom: 1px solid #F2EBE1; }
+.jobOpening h3 { margin: 0 0 .5em; }
+.jobOpening .jobButtons a i { text-decoration: none; margin-left: 5px; }
+
+/* Footer */
+.infoFooter { display: none; }
+.footerContainer { width: 100%; background: #0B306B; }
+#footer { display: flex; max-width: 1440px; color: #FFF; width: calc(100% - 40px); margin: 0 auto; vertical-align: middle; align-items: center; }
+#footer { font-size: 13px; line-height: 21px; }
+#footer a { color: rgba(255,255,255,.9); }
+.footerLogo, .footerInfo, .footerLinks { width: 33.3%; text-align: center; padding: 20px 0; }
+.footerLogo { order: 2; }
+.footerLogo img { width: auto; height: 110px; margin: -10px auto; }
+.footerInfo { order: 1; }
+.footerLinks { order: 3; }
+
+#credit { background: #FFF; color: #333; font-size: 12px; line-height: 30px; padding: 5px 10px; width: calc(100% - 20px); text-align: center; }
+#credit .container { width: 100%; max-width: 1440px; margin: 0 auto; }
+#credit .copyright { width: calc(100% - 200px); float: left; text-align: left; }
+#credit .poweredBy { width: 200px; float: right; text-align: right; }
+#credit .poweredBy a { color: #666; text-decoration: none; }
+#credit img { height: 30px; width: auto; margin: 0 0 0 10px; vertical-align: middle; border: none; }
+
+/* Events Widgets */
+.widgetEventBox { width: calc((100% - 170px) / 5); padding: 10px 12px 10px; margin: 0 10px 0 0; background: #FFF; color: #000; float: left; font-size: 12px; line-height: 19px; border-radius: 5px; border: 1px solid #EDDEC7; }
+.widgetEventBox.boxNo5 { margin: 0; }
+.widgetEventBox:hover { background: #F6F6F6; }
+h3.widgetEventHeader a { display: block; text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; padding: 0 0 5px; border-bottom: 1px solid #22336B; }
+.widgetDate { display: block; font-weight: 700; font-size: 14px; text-align: center; }
+.widgetEvent { display: block; margin: 12px 0 0; color: #666; }
+.widgetEvent a { color: #6f9332; text-decoration: none; font-weight: 700; }
+.widgetEvent a.mapLink { color: #6f9332; margin-left: 2px; }
+.calEventBoxes { width: 100%; }
+.calEventBox { width: calc(100% / 7); padding: 5px; background: #FFF; display: table-cell; font-size: 12px; line-height: 19px; }
+.calEventBox.box0 { margin-left: 0; }
+.calEventBox:hover, .calEventBox.calToday { background: #F6F6F6; padding: 4px; border: 1px solid #6f9332; }
+.calDate { display: block; border-bottom: 1px dotted #BBB; font-weight: 700; }
+.calEvent { display: block; margin: 15px 0 0; }
+.calEvents { min-height: 100px; }
+.calDivider { clear: both; height: 20px; }
+.headerBox, .headerBox:hover { background: #6f9332; color: #FFF; font-weight: 700; padding: 5px; border: 0; }
+.emptyBox, .emptyBox:hover { background: #F2EBE1; padding: 5px; border: 0; }
+.calRow { display:table; border-spacing: 1px; width: 100%; }
+#calendarHeader { width: 100%; margin: 1em auto; }
+#calendarHeader h2 { float: left; width: auto; margin: 0; }
+.nextMonth { float: right; line-height: 31px; margin: 5px 0 0; width: 300px; text-align: right; }
+.nextMonth a, #calendarFooter a { text-decoration: none; }
+.lastMonth { float: left; line-height: 22px; margin: 0; width: 150px; }
+.printMonth { float: left; width: calc(100% - 300px); text-align: center; }
+#calendarFooter { width: 100%; margin: 17px 0 34px; padding: 17px 0 0; border-top: 1px solid #F2EBE1; }
+#calendarFooter .nextMonth { margin: 0; line-height: 22px; }
+.event-overlay { width: 600px; max-width: 100%; }
+
+.fancybox-slide iframe { width: 100%; display: block; margin-top: 20px; border: 0; }
+.widgetEvent a:hover { text-decoration: underline; }
+
+@media screen and (max-width: 1440px) {
+  #townshipMap { width: 800px; height: 811px; margin: 0 auto; }
+  .township a { padding: 90px 0 0; height: 112px; }
+}
+
+@media screen and (max-width: 1200px) {
+  /* Homepage */
+  .trendingIcons { flex-wrap: wrap; transform: translateY(-18%); }
+  .trendingIcons .icon { width: 33.3%; padding-bottom: 21px; }
+
+  .departmentIcons .qlIcon { width: calc(25% - 20px); }
+
+  /* Module - Maps */
+  .countyMaps .map { width: calc(33.3% - 30px); }
+}
+
+@media screen and (max-width: 1150px) {
+  /* Modules - Bridge Data */
+  #townshipMap { width: 600px; height: 608px; margin: 0 auto; }
+  .township a { padding: 60px 0 0; height: 91px; font-size: 14px; }
+}
+
+@media screen and (max-width: 1100px) {
+  .sheriffSalesRow.header { display: none; }
+  .salesNumber { width: 100%; font-weight: 700; }
+  .salesName { width: calc(100% - 474px); }
+}
+
+/* Screen Sizes */
+@media screen and (max-width: 1050px) {
+  a.homeLink { display: none; }
+  #homeQuickLinks { width: 600px; padding: 40px 0 20px; }
+  .qlIcon { width: 33.33%; margin-bottom: 20px; }
+  .creditRow.header { display: none; }
+  .creditName { font-weight: 700; width: 100%; }
+  .creditTime, .creditContact, .creditDeadline { width: 100%; text-align: left; }
+  .creditDetail { display: inline-block; margin-right: 5px; }
+  .financialTaxInfo .leftColumn { width: 100%; }
+  .financialTaxInfo .rightColumn { width: 100%; margin-left: 0%; }
+  .videoThumbnail { float: none; margin: 0 auto 15px; display: block; }
+  .park { width: calc(50% - 15px); }
+  #facilityAmenities.extended .facilityIcon { width: 50%; }
+  .homeFeatureLeft { width: calc(50% - 80px); }
+  .homeFeatureRight { width: 50%; }
+
+  /* Departments */
+  .phoneInfo { width: 100%; flex-wrap: wrap; }
+}
+@media screen and (max-width: 950px) {
+  #headerTop, #header { width:calc(100% - 20px); }
+  .eventListing .eventImage { width: 100%; float: none; display: block; margin: 10px auto; max-width: 400px; }
+  .city { background: #F2EBE1; width: calc(50% - 20px); margin: 10px; }
+
+  .salesName, .salesDate, .salesAddress, .salesAmount { width: 100%; margin-top: 5px; }
+  .salesName { margin-top: 0; }
+
+  /* Department Pages */
+  .departmentIcons .qlIcon { width: calc(33.3% - 20px); }
+
+  .offInfo { width: calc(100% - 175px); }
+  .offName { width: calc(100% - 125px); }
+  .offName.noContact { width: 100%; }
+  .offContact { width: 125px; }
+  .offContact.collapse { width: 0; }
+  .offTerm { width: 175px; }
+
+  /* Departments */
+  .phoneDetail4x { width: 50%; }
+  #standardPage figure, #servicePage figure, figure { margin: 5px; }
+
+  /* Module - Maps */
+  .countyMaps .map { width: calc(50% - 30px); }
+
+  #townshipMap { width: 100%; height: auto; border: 0; background-image: none; }
+  .township { width: 100%; border: 0; background: #FFF; text-align: left; }
+  .township a { display: block; padding: 0; height: auto; }
+}
+
+@media screen and (max-width: 850px) {
+  .departmentIcons .qlIcon { width: calc(50% - 20px); }
+  .standardPageNav.navCollapse, #myBtnContainer { display: none; }
+  #myBtnContainer.filterContainer { display: block; }
+  .standardPageDetail.navCollapse, .officialDetails { width: 100%; }
+}
+
+@media screen and (max-width: 840px) {
+.headerLinks, .headerWeather { float: none; width: 100%; text-align: center; }
+}
+
+@media (max-width: 800px) {
+  .listDepartmentInfo { float: none; width: 100%; margin-bottom: 1em; }
+  .listDepartmentServices, .listDepartmentSocial { float: none; width: 100%; }
+  .listDepartmentSocial .listIcon { float: none; }
+  .listDepartmentSocial .listIcon.collapse { display: none; }
+  .departmentLeft img { margin-left: 0; }
+  .facilityIcon { width: 100%; }
+}
+
+@media screen and (max-width: 750px) {
+  .headerContainer { height: 80px; }
+  .headerLogo img { height: 100px; z-index: 10; }
+  .topnav a, .dropdown .dropbtn { display: none; }
+  .topIcon { display: block; margin: -5px -10px -5px 0; float: right; background: #5ca6cc; }
+  .topIcon a.icon { float: right; display: block; color: #FFF; height: 80px; font-size: 24px; padding: 0 20px 0 22px; width: auto !important; }
+  .topIcon a.icon i { line-height: 80px !important; }
+  .topnav.responsive { position: relative; float: none; text-align: left; width: 100%; margin: 70px -10px 0; z-index: 5; background: #FFF; padding: 40px 0 10px; width: calc(100% + 20px); }
+  .topnav.responsive a { float: none; display: block; text-align: left; }
+  .topnav.responsive .dropdown .dropbtn a { display: inline; }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative; max-width: none !important; width: 100% !important; margin-left: 0; border-radius: 0 !important }
+  .dropdown-content.dropdown-dept { height: 309px; }
+  .dropdown:hover, .topnav a.standard { border-radius: 0; }
+  .topnav.responsive .dropdown .dropbtn { display: block; width: 100%; text-align: left; }
+  .topnav.responsive .dropdown-content a { padding: 2px 8px; }
+  .topnav.responsive .dropdown-content.dropdown-dept a { width: calc(50% - 16px); float: left; }
+
+  .homeFeature.tourism { flex-wrap: wrap; }
+  .homeFeatureLeft { width: calc(100% - 40px); padding: 30px 20px; }
+  .homeFeatureRight { width: 100%; padding-bottom: 66.6%; }
+
+  .headerContainer.sticky { height: 70px; }
+  .sticky .topIcon a.icon { height: 70px; }
+  .sticky .topIcon a.icon { line-height: 70px !important; }
+}
+
+@media screen and (max-width: 700px) {
+  /* Departments */
+  .departmentStaffLeft { padding: 10px; }
+  .departmentLeft { width: calc(100% - 20px); float: none; padding: 10px; }
+  .departmentNav { width: 100%; float: none; padding: 0; }
+  .departmentInfo { padding: 0 10px; }
+  #standardPage figure, #servicePage figure, figure { width: 100%; margin: 20px 0; }
+  figure img { display: block; margin: 0 auto !important; }
+  figure figcaption { text-align: center; }
+
+  .serviceNav { width: 100%; order: 2; }
+  .serviceDetail { width: calc(100% - 20px); padding: 10px; order: 1; }
+  .boardDate { width: 100%; float: none; }
+  .meetingNotes { font-size: 13px; color: #666; line-height: 16px; display: block; margin: 0 0 5px; }
+  .boardDetail { width: 33.3%; text-align: center; float: right; margin-top: 5px; }
+  .widgetEventBoxes { width: 100%; margin: 0; }
+  .widgetEventBox { width: calc(100% - 26px); margin: 0 0 10px 0; }
+  .city { background: #F2EBE1; width: calc(100% - 20px); margin: 10px; }
+
+  .homeAbout { flex-wrap: wrap; margin: 20px auto; }
+  .homeInfoLogo { width: 100%; text-align: center; }
+  .homeInfoText { width: 100%; margin: 30px 0 0 0; }
+
+  .boardDate { width: 100%; float: none; }
+  .meetingNotes { font-size: 13px; color: #666; line-height: 16px; display: block; margin: 0 0 5px; }
+  .boardDetail { width: 50%; text-align: center; float: right; margin-top: 5px; }
+
+  /* Content Pages - with Two Columns */
+  .contentColumns.news { margin: -10px; }
+  .contentLeft { width: 100%; margin-right: 0; padding: 20px 0; }
+  .contentLeft.news { width: calc(100% - 20px); margin-right: 0; padding: 10px; }
+  .contentRight { width: calc(100% + 20px); margin: -10px -10px 0; background: #F2EBE1; padding: 10px; font-size: 15px; line-height: 24px; }
+  .contentRight ul, .contentRight ol { padding-inline-start: 30px; }
+
+}
+
+@media screen and (max-width: 650px) {
+  .boardMember { width: 100%; max-width: 350px; margin: 0 auto; }
+}
+
+@media (max-width: 640px) {
+  .listDepartment { padding: 1em 0; }
+  .listServiceIcon { margin: 0 2.5px 2.5px 0; font-size: 14px; line-height: 20px; padding: 2px 4px; }
+
+  #credit .copyright { width: 100%; float: none; text-align: center; line-height: 20px; padding: 5px 0; }
+  #credit .poweredBy { width: 100%; text-align: center; }
+}
+
+@media screen and (max-width: 600px) {
+  /* Homepage */
+  .trendingIcons { transform: translateY(-11%); }
+  .trendingIcons .icon { width: 50%; }
+
+  #sectionHeader { width: calc(100% - 20px); }
+  #standardPage { width: calc(100% - 20px); padding: 10px; }
+
+  #homeQuickLinks { width: 400px; max-width: 100%; }
+  .qlIcon { width: 50%; }
+
+  .offRow { font-size: 15px; line-height: 23px; }
+  .offName { width: 100%; }
+  .offContact { width: 100%; text-align: left; }
+  .offInfo.noTerm { width: 100%; }
+  .offTerm.noTerm { width: 0; }
+
+  #footer { flex-wrap: wrap; }
+  .footerInfo, .footerLogo, .footerLinks { width: 100%; }
+  .footerLogo { padding: 10px 0; }
+  .park { width: calc(100% - 15px); }
+
+}
+
+@media screen and (max-width: 500px) {
+  #headerTop { line-height: 24px; padding: 5px 0; }
+  .facilityIcon, #facilityAmenities.extended .facilityIcon { width: 100%; }
+
+  /* Module - Maps */
+  .countyMaps .map { width: calc(100% - 30px); }
+}
+
+@media screen and (max-width: 400px) {
+  .calRow { display: block; width: 100%; border-spacing: 0; }
+  .calEventBox { width: calc(100% - 10px); display: block; margin-bottom: 10px; }
+  .calEvents { min-height: 0; }
+  .headerBox, .emptyBox { display: none !important; }
+  /* Events Widget */
+  .widgetEventBox { width: calc((100% - 134px) / 4); }
+  .widgetEventBox.boxNo4 { margin: 0; }
+  .boxNo5 { display: none; }
+
+  #rotator.rotator > .rotator__video-overlay { font-size: 20px; }
+  #rotator.rotator > .rotator__video-overlay h1 { font-size: 28px; line-height: 38px; }
+}
+
+/* Parks */
+.serviceDetail.parks p:nth-child(2) { margin-top: 0; }
+.serviceDetail.parks h3 { margin-top: 1.5em; }
+.serviceDetail.parks h4 { color: #4699A9; }
+#facilityInfo { float: right; width: 300px; padding: 10px; margin-left: 10px; background: #EEE; }
+#facilityInfo img { width: 100%; height: auto; margin: 0 0 1em; }
+.parkDivider { padding-top: 5px; border-top: 1px solid #CCC; margin: 20px 0 -10px; }
+.parkListing { display: flex; flex-wrap: wrap; width: calc(100% + 15px); margin: -7.5px;) }
+.park { width: calc(33.3% - 15px); margin: 7.5px; }
+.parkFeaturedPhoto { width: 400px; max-width: 50%; height: auto; float: right; margin: 0 0 10px 10px; }
+.park.right { margin-right: 0; }
+.parkPhoto { margin: 0 0 10px; }
+.parkPhoto a { width: 100%; padding-bottom: 60%; display: block; text-decoration: none; }
+.parkInfo { text-align: center; font-size: 15px; line-height: 24px; }
+.park h3 { margin: 5px 0 1px; }
+.parkType { background: #006970; color: #FFF; font-size: 13px; line-height: 20px; padding: 0 5px; text-transform: uppercase; font-weight: 700; display: inline-block; border-radius: 5px; margin: 5px 0 0 5px; }
+.parkInfo a.moreInfo { display: block; margin: 5px auto 20px; background: #091B2B; border-radius: 5px; padding: 2px 4px; width: 100px; color: #FFF; text-decoration: none; }
+img.parkPhoto { width: 400px; max-width: 50%; height: auto; float: right; margin: 0 0 10px 10px; }
+.parkMapHeader h3 { text-align: center; margin-bottom: 5px; }
+.parkMap, .parkVideo { min-height: 450px; overflow: hidden; padding: 5px; background: #EEE; border-radius: 5px; }
+.parkMap iframe { width: 100%; height: 450px; border: 0; border-radius: 5px; overflow: hidden; }
+.parkMap #map { width: 100%; height: 450px; border: 0; border-radius: 5px; overflow: hidden; }
+.parkVideo { min-height: none; }
+.parkHunting { display: block; font-size: 13px; line-height: 18px; }
+#facilityAmenities { width: calc(100% - 330px); display: flex; flex-wrap: wrap; }
+.facilityIcon { width: calc(100% / 3); float: left; line-height: 30px; margin: 0 0 15px; font-size: 14px; }
+.facilityIcon img { width: 30px; height: 30px; display: inline-block; margin: 0 15px 0 0; float: left; }
+
+@media screen and (max-width: 1050px) {
+  .park { width: calc(50% - 15px); }
+  #facilityAmenities.extended .facilityIcon { width: 50%; }
+}
+@media screen and (max-width: 600px) {
+  .park { width: calc(100% - 15px); }
+}
+
+
+
+body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fancybox-is-hidden{left:-9999px;margin:0;position:absolute!important;top:-9999px;visibility:hidden}.fancybox-container{-webkit-backface-visibility:hidden;height:100%;left:0;outline:none;position:fixed;-webkit-tap-highlight-color:transparent;top:0;-ms-touch-action:manipulation;touch-action:manipulation;transform:translateZ(0);width:100%;z-index:99992}.fancybox-container *{box-sizing:border-box}.fancybox-bg,.fancybox-inner,.fancybox-outer,.fancybox-stage{bottom:0;left:0;position:absolute;right:0;top:0}.fancybox-outer{-webkit-overflow-scrolling:touch;overflow-y:auto}.fancybox-bg{background:#1e1e1e;opacity:0;transition-duration:inherit;transition-property:opacity;transition-timing-function:cubic-bezier(.47,0,.74,.71)}.fancybox-is-open .fancybox-bg{opacity:.9;transition-timing-function:cubic-bezier(.22,.61,.36,1)}.fancybox-caption,.fancybox-infobar,.fancybox-navigation .fancybox-button,.fancybox-toolbar{direction:ltr;opacity:0;position:absolute;transition:opacity .25s ease,visibility 0s ease .25s;visibility:hidden;z-index:99997}.fancybox-show-caption .fancybox-caption,.fancybox-show-infobar .fancybox-infobar,.fancybox-show-nav .fancybox-navigation .fancybox-button,.fancybox-show-toolbar .fancybox-toolbar{opacity:1;transition:opacity .25s ease 0s,visibility 0s ease 0s;visibility:visible}.fancybox-infobar{color:#ccc;font-size:13px;-webkit-font-smoothing:subpixel-antialiased;height:44px;left:0;line-height:44px;min-width:44px;mix-blend-mode:difference;padding:0 10px;pointer-events:none;top:0;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.fancybox-toolbar{right:0;top:0}.fancybox-stage{direction:ltr;overflow:visible;transform:translateZ(0);z-index:99994}.fancybox-is-open .fancybox-stage{overflow:hidden}.fancybox-slide{-webkit-backface-visibility:hidden;display:none;height:100%;left:0;outline:none;overflow:auto;-webkit-overflow-scrolling:touch;padding:44px;position:absolute;text-align:center;top:0;transition-property:transform,opacity;white-space:normal;width:100%;z-index:99994}.fancybox-slide:before{content:"";display:inline-block;font-size:0;height:100%;vertical-align:middle;width:0}.fancybox-is-sliding .fancybox-slide,.fancybox-slide--current,.fancybox-slide--next,.fancybox-slide--previous{display:block}.fancybox-slide--image{overflow:hidden;padding:44px 0}.fancybox-slide--image:before{display:none}.fancybox-slide--html{padding:6px}.fancybox-content{background:#fff;display:inline-block;margin:0;max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch;padding:44px;position:relative;text-align:left;vertical-align:middle}.fancybox-slide--image .fancybox-content{animation-timing-function:cubic-bezier(.5,0,.14,1);-webkit-backface-visibility:hidden;background:transparent;background-repeat:no-repeat;background-size:100% 100%;left:0;max-width:none;overflow:visible;padding:0;position:absolute;top:0;transform-origin:top left;transition-property:transform,opacity;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:99995}.fancybox-can-zoomOut .fancybox-content{cursor:zoom-out}.fancybox-can-zoomIn .fancybox-content{cursor:zoom-in}.fancybox-can-pan .fancybox-content,.fancybox-can-swipe .fancybox-content{cursor:grab}.fancybox-is-grabbing .fancybox-content{cursor:grabbing}.fancybox-container [data-selectable=true]{cursor:text}.fancybox-image,.fancybox-spaceball{background:transparent;border:0;height:100%;left:0;margin:0;max-height:none;max-width:none;padding:0;position:absolute;top:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:100%}.fancybox-spaceball{z-index:1}.fancybox-slide--iframe .fancybox-content,.fancybox-slide--map .fancybox-content,.fancybox-slide--pdf .fancybox-content,.fancybox-slide--video .fancybox-content{height:100%;overflow:visible;padding:0;width:100%}.fancybox-slide--video .fancybox-content{background:#000}.fancybox-slide--map .fancybox-content{background:#e5e3df}.fancybox-slide--iframe .fancybox-content{background:#fff}.fancybox-iframe,.fancybox-video{background:transparent;border:0;display:block;height:100%;margin:0;overflow:hidden;padding:0;width:100%}.fancybox-iframe{left:0;position:absolute;top:0}.fancybox-error{background:#fff;cursor:default;max-width:400px;padding:40px;width:100%}.fancybox-error p{color:#444;font-size:16px;line-height:20px;margin:0;padding:0}.fancybox-button{background:rgba(30,30,30,.6);border:0;border-radius:0;box-shadow:none;cursor:pointer;display:inline-block;height:44px;margin:0;padding:10px;position:relative;transition:color .2s;vertical-align:top;visibility:inherit;width:44px}.fancybox-button,.fancybox-button:link,.fancybox-button:visited{color:#ccc}.fancybox-button:hover{color:#fff}.fancybox-button:focus{outline:none}.fancybox-button.fancybox-focus{outline:1px dotted}.fancybox-button[disabled],.fancybox-button[disabled]:hover{color:#888;cursor:default;outline:none}.fancybox-button div{height:100%}.fancybox-button svg{display:block;height:100%;overflow:visible;position:relative;width:100%}.fancybox-button svg path{fill:currentColor;stroke-width:0}.fancybox-button--fsenter svg:nth-child(2),.fancybox-button--fsexit svg:first-child,.fancybox-button--pause svg:first-child,.fancybox-button--play svg:nth-child(2){display:none}.fancybox-progress{background:#ff5268;height:2px;left:0;position:absolute;right:0;top:0;transform:scaleX(0);transform-origin:0;transition-property:transform;transition-timing-function:linear;z-index:99998}.fancybox-close-small{background:transparent;border:0;border-radius:0;color:#ccc;cursor:pointer;opacity:.8;padding:8px;position:absolute;right:-12px;top:-44px;z-index:401}.fancybox-close-small:hover{color:#fff;opacity:1}.fancybox-slide--html .fancybox-close-small{color:currentColor;padding:10px;right:0;top:0}.fancybox-slide--image.fancybox-is-scaling .fancybox-content{overflow:hidden}.fancybox-is-scaling .fancybox-close-small,.fancybox-is-zoomable.fancybox-can-pan .fancybox-close-small{display:none}.fancybox-navigation .fancybox-button{background-clip:content-box;height:100px;opacity:0;position:absolute;top:calc(50% - 50px);width:70px}.fancybox-navigation .fancybox-button div{padding:7px}.fancybox-navigation .fancybox-button--arrow_left{left:0;left:env(safe-area-inset-left);padding:31px 26px 31px 6px}.fancybox-navigation .fancybox-button--arrow_right{padding:31px 6px 31px 26px;right:0;right:env(safe-area-inset-right)}.fancybox-caption{background:linear-gradient(0deg,rgba(0,0,0,.85) 0,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 65%,rgba(0,0,0,.075) 75.5%,rgba(0,0,0,.037) 82.85%,rgba(0,0,0,.019) 88%,transparent);bottom:0;color:#eee;font-size:14px;font-weight:400;left:0;line-height:1.5;padding:75px 44px 25px;pointer-events:none;right:0;text-align:center;z-index:99996}@supports (padding:max(0px)){.fancybox-caption{padding:75px max(44px,env(safe-area-inset-right)) max(25px,env(safe-area-inset-bottom)) max(44px,env(safe-area-inset-left))}}.fancybox-caption--separate{margin-top:-50px}.fancybox-caption__body{max-height:50vh;overflow:auto;pointer-events:all}.fancybox-caption a,.fancybox-caption a:link,.fancybox-caption a:visited{color:#ccc;text-decoration:none}.fancybox-caption a:hover{color:#fff;text-decoration:underline}.fancybox-loading{animation:a 1s linear infinite;background:transparent;border:4px solid #888;border-bottom-color:#fff;border-radius:50%;height:50px;left:50%;margin:-25px 0 0 -25px;opacity:.7;padding:0;position:absolute;top:50%;width:50px;z-index:99999}@keyframes a{to{transform:rotate(1turn)}}.fancybox-animated{transition-timing-function:cubic-bezier(0,0,.25,1)}.fancybox-fx-slide.fancybox-slide--previous{opacity:0;transform:translate3d(-100%,0,0)}.fancybox-fx-slide.fancybox-slide--next{opacity:0;transform:translate3d(100%,0,0)}.fancybox-fx-slide.fancybox-slide--current{opacity:1;transform:translateZ(0)}.fancybox-fx-fade.fancybox-slide--next,.fancybox-fx-fade.fancybox-slide--previous{opacity:0;transition-timing-function:cubic-bezier(.19,1,.22,1)}.fancybox-fx-fade.fancybox-slide--current{opacity:1}.fancybox-fx-zoom-in-out.fancybox-slide--previous{opacity:0;transform:scale3d(1.5,1.5,1.5)}.fancybox-fx-zoom-in-out.fancybox-slide--next{opacity:0;transform:scale3d(.5,.5,.5)}.fancybox-fx-zoom-in-out.fancybox-slide--current{opacity:1;transform:scaleX(1)}.fancybox-fx-rotate.fancybox-slide--previous{opacity:0;transform:rotate(-1turn)}.fancybox-fx-rotate.fancybox-slide--next{opacity:0;transform:rotate(1turn)}.fancybox-fx-rotate.fancybox-slide--current{opacity:1;transform:rotate(0deg)}.fancybox-fx-circular.fancybox-slide--previous{opacity:0;transform:scale3d(0,0,0) translate3d(-100%,0,0)}.fancybox-fx-circular.fancybox-slide--next{opacity:0;transform:scale3d(0,0,0) translate3d(100%,0,0)}.fancybox-fx-circular.fancybox-slide--current{opacity:1;transform:scaleX(1) translateZ(0)}.fancybox-fx-tube.fancybox-slide--previous{transform:translate3d(-100%,0,0) scale(.1) skew(-10deg)}.fancybox-fx-tube.fancybox-slide--next{transform:translate3d(100%,0,0) scale(.1) skew(10deg)}.fancybox-fx-tube.fancybox-slide--current{transform:translateZ(0) scale(1)}@media (max-height:576px){.fancybox-slide{padding-left:6px;padding-right:6px}.fancybox-slide--image{padding:6px 0}.fancybox-close-small{right:-6px}.fancybox-slide--image .fancybox-close-small{background:#4e4e4e;color:#f2f4f6;height:36px;opacity:1;padding:6px;right:0;top:0;width:36px}.fancybox-caption{padding-left:12px;padding-right:12px}@supports (padding:max(0px)){.fancybox-caption{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}}}.fancybox-share{background:#f4f4f4;border-radius:3px;max-width:90%;padding:30px;text-align:center}.fancybox-share h1{color:#222;font-size:35px;font-weight:700;margin:0 0 20px}.fancybox-share p{margin:0;padding:0}.fancybox-share__button{border:0;border-radius:3px;display:inline-block;font-size:14px;font-weight:700;line-height:40px;margin:0 5px 10px;min-width:130px;padding:0 15px;text-decoration:none;transition:all .2s;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap}.fancybox-share__button:link,.fancybox-share__button:visited{color:#fff}.fancybox-share__button:hover{text-decoration:none}.fancybox-share__button--fb{background:#3b5998}.fancybox-share__button--fb:hover{background:#344e86}.fancybox-share__button--pt{background:#bd081d}.fancybox-share__button--pt:hover{background:#aa0719}.fancybox-share__button--tw{background:#1da1f2}.fancybox-share__button--tw:hover{background:#0d95e8}.fancybox-share__button svg{height:25px;margin-right:7px;position:relative;top:-1px;vertical-align:middle;width:25px}.fancybox-share__button svg path{fill:#fff}.fancybox-share__input{background:transparent;border:0;border-bottom:1px solid #d7d7d7;border-radius:0;color:#5d5b5b;font-size:14px;margin:10px 0 0;outline:none;padding:10px 15px;width:100%}.fancybox-thumbs{background:#ddd;bottom:0;display:none;margin:0;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;padding:2px 2px 4px;position:absolute;right:0;-webkit-tap-highlight-color:rgba(0,0,0,0);top:0;width:212px;z-index:99995}.fancybox-thumbs-x{overflow-x:auto;overflow-y:hidden}.fancybox-show-thumbs .fancybox-thumbs{display:block}.fancybox-show-thumbs .fancybox-inner{right:212px}.fancybox-thumbs__list{font-size:0;height:100%;list-style:none;margin:0;overflow-x:hidden;overflow-y:auto;padding:0;position:absolute;position:relative;white-space:nowrap;width:100%}.fancybox-thumbs-x .fancybox-thumbs__list{overflow:hidden}.fancybox-thumbs-y .fancybox-thumbs__list::-webkit-scrollbar{width:7px}.fancybox-thumbs-y .fancybox-thumbs__list::-webkit-scrollbar-track{background:#fff;border-radius:10px;box-shadow:inset 0 0 6px rgba(0,0,0,.3)}.fancybox-thumbs-y .fancybox-thumbs__list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:10px}.fancybox-thumbs__list a{-webkit-backface-visibility:hidden;backface-visibility:hidden;background-color:rgba(0,0,0,.1);background-position:50%;background-repeat:no-repeat;background-size:cover;cursor:pointer;float:left;height:75px;margin:2px;max-height:calc(100% - 8px);max-width:calc(50% - 4px);outline:none;overflow:hidden;padding:0;position:relative;-webkit-tap-highlight-color:transparent;width:100px}.fancybox-thumbs__list a:before{border:6px solid #ff5268;bottom:0;content:"";left:0;opacity:0;position:absolute;right:0;top:0;transition:all .2s cubic-bezier(.25,.46,.45,.94);z-index:99991}.fancybox-thumbs__list a:focus:before{opacity:.5}.fancybox-thumbs__list a.fancybox-thumbs-active:before{opacity:1}@media (max-width:576px){.fancybox-thumbs{width:110px}.fancybox-show-thumbs .fancybox-inner{right:110px}.fancybox-thumbs__list a{max-width:calc(100% - 10px)}}
+  </style>
+  <meta content="text/html;charset=utf-8" http-equiv="content-type">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>
+   Emergency Management - Marion County, Iowa
+  </title>
+  <meta content="Be prepared in an emergency with disaster preparedness and emergency management tips. View Marion County river levels and sign up for Alert Iowa." name="description">
+  <meta content="Emergency Management - Marion County, Iowa" property="og:title">
+  <meta content="website" property="og:type">
+  <meta content="Be prepared in an emergency with disaster preparedness and emergency management tips. View Marion County river levels and sign up for Alert Iowa." property="og:description">
+  <meta content="https://www..marioncountyiowa.gov/images/marion_county_social.png" property="og:image">
+  <meta content="https://www.marioncountyiowa.gov/images/marion_county_social.png" property="og:image:secure_url">
+  <meta content="image/png" property="og:image:type">
+  <meta content="1200" property="og:image:width">
+  <meta content="630" property="og:image:height">
+  <meta content="Photo of the Marion County, Iowa, courthouse with logo." property="og:image:alt">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+ </head>
+ <body>
+  <div class="headerTopContainer">
+   <div id="headerTop">
+    <div class="headerWeather">
+     <a>
+      <i aria-hidden="true" class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a target="_blank">
+      <i aria-hidden="true" class="fab fa-youtube">
+      </i>
+     </a>
+     <i aria-hidden="true" class="fad fa-moon">
+     </i>
+     Clear &middot; 37&deg;
+    </div>
+    <div class="headerLinks">
+     <a>
+      Bid Notices
+     </a>
+     <a>
+      Calendar
+     </a>
+     <a>
+      Courts
+     </a>
+     <a>
+      Employment
+     </a>
+     <a>
+      FAQ
+     </a>
+     <a>
+      Public Information
+     </a>
+     <div id="google_translate_element" style="display: none;">
+     </div>
+     <label for="language" style="display:none;">
+      Translate Language
+     </label>
+     <input id="language" style="display:none;" value="es">
+     <a class="translate_link translate" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:changeLanguageByButtonClick();">
+      Translate
+     </a>
+    </div>
+    <div class="clear">
+    </div>
+   </div>
+  </div>
+  <div class="headerContainer" id="fixedHeader">
+   <div id="header">
+    <div class="headerLogo">
+     <a>
+      <img src="rick.jpg">
+     </a>
+    </div>
+    <div class="topIcon">
+     <a class="icon" onclick="if (!window.__cfRLUnblockHandlers) return false; ccNav()">
+      <i aria-hidden="true" class="far fa-bars">
+      </i>
+     </a>
+    </div>
+    <div class="topnav" id="myTopnav">
+     <a class="homeLink standard">
+      Home
+     </a>
+     <div class="dropdown">
+      <button class="dropbtn">
+       <a>
+        About
+       </a>
+       <i aria-hidden="true" class="fas fa-caret-down">
+       </i>
+      </button>
+      <div class="dropdown-content dropdown-about">
+       <a>
+        Cemeteries
+       </a>
+       <a>
+        Communities
+       </a>
+       <a target="_blank">
+        County Ordinances
+       </a>
+       <a target="_blank">
+        Economic Development
+       </a>
+       <a>
+        Elected Officials
+       </a>
+       <a>
+        School Districts
+       </a>
+       <a class="last">
+        Township Information
+       </a>
+      </div>
+     </div>
+     <div class="dropdown">
+      <button class="dropbtn">
+       <a class="standard">
+        Departments
+       </a>
+       <i aria-hidden="true" class="fas fa-caret-down">
+       </i>
+      </button>
+      <div class="dropdown-content dropdown-dept">
+       <a>
+        911
+       </a>
+       <a>
+        Assessor
+       </a>
+       <a>
+        Attorney
+       </a>
+       <a>
+        Auditor &amp; Elections
+       </a>
+       <a>
+        Board of Supervisors
+       </a>
+       <a>
+        Conservation
+       </a>
+       <a>
+        CROSS Mental Health
+       </a>
+       <a>
+        Development
+       </a>
+       <a>
+        Emergency Management
+       </a>
+       <a class="last">
+        Human Resources
+       </a>
+       <a>
+        IT/GIS
+       </a>
+       <a>
+        Maintenance
+       </a>
+       <a>
+        Public Health
+       </a>
+       <a>
+        Recorder
+       </a>
+       <a>
+        Road Department
+       </a>
+       <a>
+        Sheriff's Office
+       </a>
+       <a>
+        Treasurer
+       </a>
+       <a>
+        Veterans Affairs
+       </a>
+       <a>
+        Zoning
+       </a>
+      </div>
+     </div>
+     <a class="standard" target="_blank">
+      Visit
+     </a>
+     <a class="standard">
+      Contact
+     </a>
+    </div>
+    <div class="clear">
+    </div>
+   </div>
+  </div>
+  <div class="content">
+   <div class="pageHeaderContainer" style="background-image: linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,0.1)), url(/images/headers/emergency_management_header_33567.jpg); background-position: center center;">
+    <div id="sectionHeader">
+     <div class="sectionParent">
+      <a>
+       Departments
+      </a>
+     </div>
+     <div class="sectionPageHeader">
+      <h1 style="text-shadow: 0, 0, 10px #000;">
+       Emergency Management
+       <a target="_blank">
+        <i aria-hidden="true" class="fab fa-facebook-square" style="margin-left: 10px;">
+        </i>
+       </a>
+      </h1>
+     </div>
+    </div>
+   </div>
+   <div class="department">
+    <div class="departmentLeft">
+     <div class="departmentIcons">
+      <div class="qlIcon qlColor1">
+       <a target="_blank">
+        <i aria-hidden="true" class="fad fa-fw fa-exclamation-circle">
+        </i>
+        <br>
+        Marion Alerts
+       </a>
+      </div>
+      <div class="qlIcon qlColor2">
+       <a target="_blank">
+        <i aria-hidden="true" class="fad fa-fw fa-caravan">
+        </i>
+        <br>
+        Emergency Assistance Equipment
+       </a>
+      </div>
+      <div class="qlIcon qlColor0">
+       <a>
+        <i aria-hidden="true" class="fad fa-fw fa-users">
+        </i>
+        <br>
+        Emergency Management Commission
+       </a>
+      </div>
+      <div class="clear">
+      </div>
+     </div>
+     <h2>
+      Emergency Management
+     </h2>
+     <p>
+      The Office of Emergency Management is governed by Chapter 29C State Code of Iowa and enforced by the Marion County Emergency Management Commission consisting of Chair and Vice Chair positions selected from the commission members which consist of the Mayors of the corporate cities within Marion County, a Board of Supervisor member and the Marion County Sheriff.
+     </p>
+     <p>
+      Marion County EMA is responsible for county emergency planning requirements developed by the Iowa Homeland Security and Emergency Management Division under Chapter 29C and works in cooperation with the emergency response agencies within Marion County to develop emergency response planning, response and recovery guidance and serves as the initial contact and liaison for Iowa Homeland Security issues at the state and federal levels.
+     </p>
+     <p>
+      &nbsp;
+     </p>
+    </div>
+    <div class="departmentStaff">
+     <div class="deptStaffMember">
+      <img alt="Jeff Anderson" src="rick.jpg">
+      <b>
+       <a>
+        Jeff Anderson
+       </a>
+      </b>
+      <br>
+      Emergency Management Director
+     </div>
+     <h3>
+      Our Team
+     </h3>
+     <ul>
+      <li>
+       <b>
+        <a>
+         Emily Feagins
+        </a>
+       </b>
+       <br>
+       Freedom of Information Act (FOIA) Officer
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="phoneInfoContainer">
+    <div class="phoneInfo">
+     <div class="phoneDetail4x">
+      <p>
+       <b>
+        Location
+       </b>
+       <br>
+       3014 E Main St
+       <br>
+       Knoxville, IA 50138
+      </p>
+     </div>
+     <div class="phoneDetail4x">
+      <p>
+       <b>
+        Mailing Address
+       </b>
+       <br>
+       214 E Main St
+       <br>
+       Knoxville, IA 50138
+      </p>
+     </div>
+     <div class="phoneDetail4x">
+      <p>
+       <b>
+        Contact Information
+       </b>
+       <br>
+       (641) 828-2256
+       <br>
+       Cell: (641) 891-2560
+      </p>
+     </div>
+     <div class="phoneDetail4x">
+      <p>
+       <b>
+        Hours
+       </b>
+       <br>
+       Monday - Friday
+       <br>
+       8:30 a.m - 4:30 p.m.
+       <br>
+       Usually open during lunch hours but call ahead to verify
+       <br>
+       <a data-fancybox data-src="#holidayList">
+        Holiday Closures
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="departmentMapHeader">
+    <h3>
+     <i aria-hidden="true" class="fad fa-map-marker-alt">
+     </i>
+     Map &amp; Directions
+    </h3>
+   </div>
+   <div class="departmentMap">
+   </div>
+  </div>
+  <div class="footerContainer">
+   <div id="footer">
+    <div class="footerInfo">
+     <b>
+      Marion County Courthouse
+     </b>
+     <br>
+     214 E Main St
+     <br>
+     Knoxville, IA 50138
+    </div>
+    <div class="footerLogo">
+     <a>
+      <img src="rick.jpg">
+     </a>
+    </div>
+    <div class="footerLinks">
+     <b>
+      <a>
+       Contact Us
+      </a>
+     </b>
+     <br>
+     <a data-fancybox data-src="#holidayList">
+      Upcoming Holidays
+     </a>
+     <br>
+     <a>
+      Department Hours May Vary
+     </a>
+    </div>
+   </div>
+  </div>
+  <div id="credit">
+   <div class="container">
+    <div class="copyright">
+     &copy;2023 Marion County, Iowa
+    </div>
+    <div class="poweredBy">
+     <a>
+      powered by
+      <img alt="Neapolitan Labs ice cream sandwich logo" src="rick.jpg">
+     </a>
+    </div>
+    <div class="clear">
+    </div>
+   </div>
+  </div>
+  <div id="holidayList" style="display:none;">
+   <h3>
+    Upcoming Holiday Closure Schedule
+   </h3>
+   <ul>
+    <li>
+     Veteran's Day - Observed (November 10, 2023)
+    </li>
+    <li>
+     Thanksgiving Day (November 23, 2023)
+    </li>
+    <li>
+     Friday After Thanksgiving (November 24, 2023)
+    </li>
+    <li>
+     Christmas Day (December 25, 2023)
+    </li>
+   </ul>
+  </div>
+ </body>
+</html>

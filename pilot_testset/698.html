@@ -1,0 +1,514 @@
+<html lang="en" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:html="http://www.w3.org/Profiles/XHTML-transitional" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <head>
+  <style>
+   /* Date last modified: 2019-7-1 (kaw5) */
+ @font-face {font-family: texgyreadventor; src: url(http://rmc.library.cornell.edu/fonts/texgyreadventor-regular.otf);}
+ 
+ 
+BODY		{ margin: 0px 40px 40px 40px; background-color: #fff; color: #4d371c; font-family: verdana, arial, sans-serif; font-size: 14px; line-height: 26px;  }
+ H1				{ font-family: texgyreadventor, sans-serif; font-size: 22px; color: #5b1d1e; text-align: center; }
+ H2				{ font-family: texgyreadventor, sans-serif; font-size: 20px; color: #7A2900; text-align: center }
+ H4				{ font-family: texgyreadventor, sans-serif; font-size: 16px; color: #444; text-align: center }
+ H5				{ font-family: texgyreadventor, sans-serif; font-size: 15px; color: #000000; text-align: center }
+ 
+ HR { margin: 20px 0px; color: #5b1d1e; border: 0; height: 1px; background-image: linear-gradient(to right, rgba(91, 29, 30, 0.1), rgba(91, 29, 30, 0.5), rgba(91, 29, 30, 0.1));}
+ 
+.H4				{  font-family: texgyreadventor, sans-serif; color: #444; font-weight: bold; font-size: 18px; }
+.para			{ padding-bottom: 12px; }
+.heading		{ color: #7A2900; }
+.item			{ margin-left:1em; text-align: left; vertical-align: top; }
+.serieslabel	{ color: #7A2900; font-weight: bold; font-size: medium; padding-top: 10px; }
+.subserieslabel { color: #7A2900; font-weight: bold;}
+.smalllabel		{ margin-bottom: 5px; color: #7A2900; font-weight: bold; font-family: texgyreadventor, verdana, arial, sans-serif; font-size: 13px }
+.smallitem		{ margin-left: 1em; text-align: left; vertical-align: top; font-family: texgyreadventor, verdana, arial, sans-serif; font-size: 12px; }
+.note			{ font-style: italic; text-align: right; }
+
+.image			{ padding-top: 10px; padding-bottom: 10px; }
+.caption		{ font-size: 11px; width: 300px }
+
+OL.loweralpha	{ list-style-type: lower-alpha }
+OL.upperalpha 	{ list-style-type: upper-alpha }
+OL.lowerroman 	{ list-style-type: lower-roman }
+OL.upperroman 	{ list-style-type: upper-roman }
+UL.simple 		{ list-style-type: none }
+
+a:link{ color: #5b1d1e; }
+a:visited{ color: #5b1d1e; }
+
+table { border-spacing: 0px; empty-cells: show; table-layout: fixed; width: 100%;}
+
+td {padding: 8px; font-size: 14px; font-family: verdana, arial, sans-serif;  overflow: visible; white-space: normal; border: 1px;}
+
+tr:nth-child(even) { background: #eee; }
+
+
+#mainbody{
+margin-left: 360px;
+padding: 20px;
+}
+
+#titleproper{ 
+width: 340px;
+margin: 0px;
+padding: 10px;
+background-color: #ddd;
+text-align: center;
+font-family: texgyreadventor, sans-serif; 
+font-size: 14px;
+font-weight: bold;
+color: #000;
+line-height: 20px;
+}
+
+#titlepagedate{
+font-size: 14px;
+text-align: center;
+}
+
+#sidebar{
+position: fixed;
+top: 0px;
+left: 0px;
+float:left;
+width: 360px; 
+height: 100%; 
+background-color: #efefef; 
+}
+
+
+  /* Smartphone Portrait and Landscape */ 
+  @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px){ 
+     #sidebar { display: none;}
+     #mainbody{ margin-left: 0px;}
+     
+  }
+
+#collnum{
+color: #7A2900;
+line-height: 28px;
+}
+
+#serieslist{
+margin: 0px 0px 20px 0px;
+padding: 20px 20px 20px 30px; 
+font-size: 11px;
+line-height: 16px;
+font-weight: normal;
+overflow: auto;
+max-height: 400px;
+}
+
+#serieslist a{
+font-weight: normal;
+}
+
+#serieslist::-webkit-scrollbar {
+background-color: #eee;
+width: 12px;
+}
+
+#serieslist::-webkit-scrollbar-thumb {
+background-color: #999;
+border-radius: 10px; 
+}
+
+#serieslist::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+border-radius: 10px;
+}
+
+#sidebarlinks{
+text-align: center;
+font-size: 12px;
+color: #7A2900;
+font-weight: bold;
+}
+
+
+
+
+
+
+/* Date last modified: 2017-7-10 (kaw5) */
+
+BODY		{ margin: 20px 50px 20px 50px; background-color: #fff; color: #000; font-family: verdana, arial, sans-serif; font-size: 14px; line-height: 26px; background-image:none;}
+ H1				{ font-family: verdana, arial, sans-serif; font-size: 18px; color: #000; text-align: center; }
+ H2				{ font-family: verdana, arial, sans-serif; font-size: 16px; color: #000; text-align: left }
+ H4				{ font-family: verdana, arial, sans-serif; font-size: 14px; color: #000; text-align: left }
+ H5				{ font-family: verdana, arial, sans-serif; font-size: 13px; color: #000000; text-align: left }
+ 
+ HR { border: 0; height: 1px; background: #000;}
+ 
+.H4				{  font-family: verdana, arial, sans-serif;  color: #000; font-weight: bold; font-size: 14px; }
+.para			{ padding-bottom: 12px; }
+.heading		{ color: #000; }
+.item			{ margin-left:1em; text-align: left; vertical-align: top; }
+.serieslabel	{ color: #000; font-weight: bold; padding-top: 10px; }
+.subserieslabel { color: #000; font-weight: bold;}
+.smalllabel		{ margin-bottom: 5px; color: #000; font-weight: bold; font-family: verdana, arial, sans-serif; font-size: 12px }
+.smallitem		{ margin-left: 1em; text-align: left; vertical-align: top; font-family: verdana, arial, sans-serif; font-size: 12px; }
+.note			{ font-style: italic; text-align: right; }
+
+.image			{ padding-top: 10px; padding-bottom: 10px; }
+.caption		{ font-size: 11px; width: 300px }
+
+OL.loweralpha	{ list-style-type: lower-alpha }
+OL.upperalpha 	{ list-style-type: upper-alpha }
+OL.lowerroman 	{ list-style-type: lower-roman }
+OL.upperroman 	{ list-style-type: upper-roman }
+UL.simple 		{ list-style-type: none }
+
+a:link{ color: #000; }
+a:visited{ color: #000; }
+
+table { width: 100%;}
+
+td { padding: 8px; font-size: 12px; font-family: verdana, arial, sans-serif;  overflow: visible; white-space: normal; border: 1px solid #dddddd;}
+
+#sidebar{
+display: none; 
+}
+
+
+#sidebarbg{
+display: none;
+}
+
+#titleproper{
+display: none;
+}
+
+#titlepagedate{
+font-size: 14px;
+text-align: center;
+}
+
+#collnum{
+display: none;
+}
+
+#serieslist{
+display: none;
+}
+
+#sidebarlinklist{
+display: none;
+}
+
+#sidebarlinks{
+display: none;
+}
+
+#mainbody{
+	margin: 0px 0px 0px 0px;
+	padding: 20px;
+	font-size: 12px;
+}
+
+#footer{
+display: none;
+}
+
+.collnummain{
+font-size: 16px;
+}
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   Guide to the Medical Society of the County of Monroe records, [1828-1961?].
+  </title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div id="sidebar">
+   <div id="titleproper">
+    Medical Society of the County of Monroe records, [1828-1961?].
+    <br>
+    <span id="collnum">
+     Collection Number: 3083
+    </span>
+   </div>
+   <h2>
+    Contents
+   </h2>
+   <ul>
+    <li>
+     <a>
+      DESCRIPTIVE SUMMARY
+     </a>
+    </li>
+    <li>
+     <a>
+      ORGANIZATIONAL HISTORY
+     </a>
+    </li>
+    <li>
+     <a>
+      COLLECTION DESCRIPTION
+     </a>
+    </li>
+    <li>
+     <a>
+      INFORMATION FOR USERS
+     </a>
+    </li>
+   </ul>
+   <div id="serieslist">
+    <div align="center" class="h4">
+     Series List
+    </div>
+   </div>
+   <p id="sidebarlinks">
+    CTRL+F to search this guide |
+    <a>
+     Print this guide
+    </a>
+   </p>
+   <p id="sidebarlinks">
+    <a>
+     Contact Rare &amp; Manuscript Collections
+    </a>
+   </p>
+  </div>
+  <div id="mainbody">
+   <h1>
+    Medical Society of the County of Monroe records, [1828-1961?].
+    <br>
+    <span id="collnum">
+     Collection Number: 3083
+    </span>
+   </h1>
+   <h4>
+    Division of Rare and Manuscript Collections
+    <br>
+    Cornell University Library
+   </h4>
+   <hr>
+   <a name="a1">
+    <div class="H4">
+     DESCRIPTIVE SUMMARY
+    </div>
+   </a>
+   <p>
+   </p>
+   <div class="heading">
+    Title:
+   </div>
+   <div class="item">
+    Medical Society of the County of Monroe records, [1828-1961?].
+   </div>
+   <div class="heading">
+    Repository:
+   </div>
+   <div class="item">
+    Division of Rare and Manuscript Collections
+   </div>
+   <div class="heading">
+    Collection Number:
+   </div>
+   <div class="item">
+    3083
+   </div>
+   <div class="heading">
+    Abstract:
+   </div>
+   <div class="item">
+    Subject files of committees, minutes of meetings, reports, records of death associated
+            with pregnancy and childbirth, constitution and bylaws as amended June 1876, financial
+            records, pamphlets, and scrapbooks of the Medical Society of the County of Monroe,
+            Inc.
+   </div>
+   <div class="heading">
+    Creator:
+   </div>
+   <div class="item">
+    Medical Society of the County of Monroe, Inc
+   </div>
+   <div class="heading">
+    Quanitities:
+   </div>
+   <div class="item">
+    22 cubic feet.
+   </div>
+   <div class="heading">
+    Language:
+   </div>
+   <div class="item">
+    Collection material in English
+   </div>
+   <hr>
+   <a name="a2">
+   </a>
+   <div class="H4">
+    <a name="a2">
+    </a>
+    <a name="d1e142">
+     ORGANIZATIONAL HISTORY
+    </a>
+   </div>
+   <p>
+   </p>
+   <div class="para">
+    The Medical Society of the County of Monroe was formed in 1821.
+   </div>
+   <hr>
+   <a name="a3">
+   </a>
+   <div class="H4">
+    <a name="a3">
+    </a>
+    <a name="d1e149">
+     COLLECTION DESCRIPTION
+    </a>
+   </div>
+   <p>
+   </p>
+   <div class="para">
+    Subject files of committees, minutes of meetings, reports, records of death associated
+               with pregnancy and childbirth, constitution and bylaws as amended June 1876, financial
+               records, pamphlets, and scrapbooks of the Medical Society of the County of Monroe,
+               Inc.
+   </div>
+   <hr>
+   <a name="info_for_users">
+    <div class="H4">
+     INFORMATION FOR USERS
+    </div>
+    <p>
+    </p>
+   </a>
+   <div class="H4">
+    <a name="d1e156">
+     Cite As:
+    </a>
+   </div>
+   <p>
+   </p>
+   <div class="para">
+    Medical Society of the County of Monroe records, #3083. Division of Rare and Manuscript
+            Collections, Cornell University Library.
+   </div>
+   <div class="H4">
+    <a name="d1e164">
+     Access Restrictions:
+    </a>
+   </div>
+   <p>
+   </p>
+   <div class="para">
+    Access restricted to the permission of the President of the Board of Directors or
+            the Executive Director of the Medical Society of the County of Monroe, Inc.
+   </div>
+   <div class="H4">
+    <hr>
+    <a name="subjects">
+     SUBJECTS
+    </a>
+   </div>
+   <p>
+   </p>
+   <div class="heading">
+    Places:
+   </div>
+   <div class="item">
+    Monroe County (N.Y.)
+   </div>
+   <div class="heading">
+    Subjects:
+   </div>
+   <div class="item">
+    Medicine -- Societies, etc.
+   </div>
+   <div class="heading">
+    Form and Genre Terms:
+   </div>
+   <div class="item">
+    Scrapbooks.
+   </div>
+   <div class="item">
+    Bylaws (administrative records)
+   </div>
+   <div class="item">
+    Constitutions.
+   </div>
+   <div class="item">
+    Minutes (administrative records)
+   </div>
+   <hr>
+   <a name="a10">
+    <div class="H4">
+     CONTAINER LIST
+    </div>
+   </a>
+   <table cellspacing="10">
+    <tbody>
+     <tr>
+      <td align="center" colspan="2" width="25%">
+       <div class="heading">
+        Container
+       </div>
+      </td>
+      <td width="60%">
+       <div class="heading">
+        Description
+       </div>
+      </td>
+      <td align="left" width="15%">
+       <div class="heading">
+        Date
+       </div>
+      </td>
+     </tr>
+     <tr>
+      <td align="CENTER" nowrap="1" valign="TOP">
+       Box 1
+      </td>
+      <td align="CENTER" nowrap="1" valign="TOP">
+      </td>
+      <td>
+       <div style="margin-left: 2em; text-indent: -2em;">
+        Subject files (committees)
+       </div>
+      </td>
+      <td align="LEFT" nowrap="1" valign="TOP">
+       1941-1953
+      </td>
+     </tr>
+     <tr>
+      <td align="CENTER" nowrap="1" valign="TOP">
+       Box 2
+      </td>
+      <td align="CENTER" nowrap="1" valign="TOP">
+      </td>
+      <td>
+       <div style="margin-left: 2em; text-indent: -2em;">
+        Subject files (committees)
+       </div>
+      </td>
+      <td align="LEFT" nowrap="1" valign="TOP">
+       1937-1953
+      </td>
+     </tr>
+     <tr>
+      <td align="CENTER" nowrap="1" valign="TOP">
+       Box 3
+      </td>
+      <td align="CENTER" nowrap="1" valign="TOP">
+      </td>
+      <td>
+       <div style="margin-left: 2em; text-indent: -2em;">
+        Subject files (committees - primarily public relations)
+       </div>
+      </td>
+      <td align="LEFT" nowrap="1" valign="TOP">
+       1949-1952
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </body>
+</html>

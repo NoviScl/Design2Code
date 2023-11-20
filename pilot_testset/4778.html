@@ -1,0 +1,1340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+ <head>
+  <style>
+   /* Javadoc style sheet */
+/*
+Overall document style
+*/
+
+@import url('resources/fonts/dejavu.css');
+
+body {
+    background-color:#ffffff;
+    color:#353833;
+    font-family:'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-size:14px;
+    margin:0;
+}
+a:link, a:visited {
+    text-decoration:none;
+    color:#4A6782;
+}
+a:hover, a:focus {
+    text-decoration:none;
+    color:#bb7a2a;
+}
+a:active {
+    text-decoration:none;
+    color:#4A6782;
+}
+a[name] {
+    color:#353833;
+}
+a[name]:hover {
+    text-decoration:none;
+    color:#353833;
+}
+pre {
+    font-family:'DejaVu Sans Mono', monospace;
+    font-size:14px;
+}
+h1 {
+    font-size:20px;
+}
+h2 {
+    font-size:18px;
+}
+h3 {
+    font-size:16px;
+    font-style:italic;
+}
+h4 {
+    font-size:13px;
+}
+h5 {
+    font-size:12px;
+}
+h6 {
+    font-size:11px;
+}
+ul {
+    list-style-type:disc;
+}
+code, tt {
+    font-family:'DejaVu Sans Mono', monospace;
+    font-size:14px;
+    padding-top:4px;
+    margin-top:8px;
+    line-height:1.4em;
+}
+dt code {
+    font-family:'DejaVu Sans Mono', monospace;
+    font-size:14px;
+    padding-top:4px;
+}
+table tr td dt code {
+    font-family:'DejaVu Sans Mono', monospace;
+    font-size:14px;
+    vertical-align:top;
+    padding-top:4px;
+}
+sup {
+    font-size:8px;
+}
+/*
+Document title and Copyright styles
+*/
+.clear {
+    clear:both;
+    height:0px;
+    overflow:hidden;
+}
+.aboutLanguage {
+    float:right;
+    padding:0px 21px;
+    font-size:11px;
+    z-index:200;
+    margin-top:-9px;
+}
+.legalCopy {
+    margin-left:.5em;
+}
+.bar a, .bar a:link, .bar a:visited, .bar a:active {
+    color:#FFFFFF;
+    text-decoration:none;
+}
+.bar a:hover, .bar a:focus {
+    color:#bb7a2a;
+}
+.tab {
+    background-color:#0066FF;
+    color:#ffffff;
+    padding:8px;
+    width:5em;
+    font-weight:bold;
+}
+/*
+Navigation bar styles
+*/
+.bar {
+    background-color:#4D7A97;
+    color:#FFFFFF;
+    padding:.8em .5em .4em .8em;
+    height:auto;/*height:1.8em;*/
+    font-size:11px;
+    margin:0;
+}
+.topNav {
+    background-color:#4D7A97;
+    color:#FFFFFF;
+    float:left;
+    padding:0;
+    width:100%;
+    clear:right;
+    height:2.8em;
+    padding-top:10px;
+    overflow:hidden;
+    font-size:12px; 
+}
+.bottomNav {
+    margin-top:10px;
+    background-color:#4D7A97;
+    color:#FFFFFF;
+    float:left;
+    padding:0;
+    width:100%;
+    clear:right;
+    height:2.8em;
+    padding-top:10px;
+    overflow:hidden;
+    font-size:12px;
+}
+.subNav {
+    background-color:#dee3e9;
+    float:left;
+    width:100%;
+    overflow:hidden;
+    font-size:12px;
+}
+.subNav div {
+    clear:left;
+    float:left;
+    padding:0 0 5px 6px;
+    text-transform:uppercase;
+}
+ul.navList, ul.subNavList {
+    float:left;
+    margin:0 25px 0 0;
+    padding:0;
+}
+ul.navList li{
+    list-style:none;
+    float:left;
+    padding: 5px 6px;
+    text-transform:uppercase;
+}
+ul.subNavList li{
+    list-style:none;
+    float:left;
+}
+.topNav a:link, .topNav a:active, .topNav a:visited, .bottomNav a:link, .bottomNav a:active, .bottomNav a:visited {
+    color:#FFFFFF;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+.topNav a:hover, .bottomNav a:hover {
+    text-decoration:none;
+    color:#bb7a2a;
+    text-transform:uppercase;
+}
+.navBarCell1Rev {
+    background-color:#F8981D;
+    color:#253441;
+    margin: auto 5px;
+}
+.skipNav {
+    position:absolute;
+    top:auto;
+    left:-9999px;
+    overflow:hidden;
+}
+/*
+Page header and footer styles
+*/
+.header, .footer {
+    clear:both;
+    margin:0 20px;
+    padding:5px 0 0 0;
+}
+.indexHeader {
+    margin:10px;
+    position:relative;
+}
+.indexHeader span{
+    margin-right:15px;
+}
+.indexHeader h1 {
+    font-size:13px;
+}
+.title {
+    color:#2c4557;
+    margin:10px 0;
+}
+.subTitle {
+    margin:5px 0 0 0;
+}
+.header ul {
+    margin:0 0 15px 0;
+    padding:0;
+}
+.footer ul {
+    margin:20px 0 5px 0;
+}
+.header ul li, .footer ul li {
+    list-style:none;
+    font-size:13px;
+}
+/*
+Heading styles
+*/
+div.details ul.blockList ul.blockList ul.blockList li.blockList h4, div.details ul.blockList ul.blockList ul.blockListLast li.blockList h4 {
+    background-color:#dee3e9;
+    border:1px solid #d0d9e0;
+    margin:0 0 6px -8px;
+    padding:7px 5px;
+}
+ul.blockList ul.blockList ul.blockList li.blockList h3 {
+    background-color:#dee3e9;
+    border:1px solid #d0d9e0;
+    margin:0 0 6px -8px;
+    padding:7px 5px;
+}
+ul.blockList ul.blockList li.blockList h3 {
+    padding:0;
+    margin:15px 0;
+}
+ul.blockList li.blockList h2 {
+    padding:0px 0 20px 0;
+}
+/*
+Page layout container styles
+*/
+.contentContainer, .sourceContainer, .classUseContainer, .serializedFormContainer, .constantValuesContainer {
+    clear:both;
+    padding:10px 20px;
+    position:relative;
+}
+.indexContainer {
+    margin:10px;
+    position:relative;
+    font-size:12px;
+}
+.indexContainer h2 {
+    font-size:13px;
+    padding:0 0 3px 0;
+}
+.indexContainer ul {
+    margin:0;
+    padding:0;
+}
+.indexContainer ul li {
+    list-style:none;
+    padding-top:2px;
+}
+.contentContainer .description dl dt, .contentContainer .details dl dt, .serializedFormContainer dl dt {
+    font-size:12px;
+    font-weight:bold;
+    margin:10px 0 0 0;
+    color:#4E4E4E;
+}
+.contentContainer .description dl dd, .contentContainer .details dl dd, .serializedFormContainer dl dd {
+    margin:5px 0 10px 0px;
+    font-size:14px;
+    font-family:'DejaVu Sans Mono',monospace;
+}
+.serializedFormContainer dl.nameValue dt {
+    margin-left:1px;
+    font-size:1.1em;
+    display:inline;
+    font-weight:bold;
+}
+.serializedFormContainer dl.nameValue dd {
+    margin:0 0 0 1px;
+    font-size:1.1em;
+    display:inline;
+}
+/*
+List styles
+*/
+ul.horizontal li {
+    display:inline;
+    font-size:0.9em;
+}
+ul.inheritance {
+    margin:0;
+    padding:0;
+}
+ul.inheritance li {
+    display:inline;
+    list-style:none;
+}
+ul.inheritance li ul.inheritance {
+    margin-left:15px;
+    padding-left:15px;
+    padding-top:1px;
+}
+ul.blockList, ul.blockListLast {
+    margin:10px 0 10px 0;
+    padding:0;
+}
+ul.blockList li.blockList, ul.blockListLast li.blockList {
+    list-style:none;
+    margin-bottom:15px;
+    line-height:1.4;
+}
+ul.blockList ul.blockList li.blockList, ul.blockList ul.blockListLast li.blockList {
+    padding:0px 20px 5px 10px;
+    border:1px solid #ededed; 
+    background-color:#f8f8f8;
+}
+ul.blockList ul.blockList ul.blockList li.blockList, ul.blockList ul.blockList ul.blockListLast li.blockList {
+    padding:0 0 5px 8px;
+    background-color:#ffffff;
+    border:none;
+}
+ul.blockList ul.blockList ul.blockList ul.blockList li.blockList {
+    margin-left:0;
+    padding-left:0;
+    padding-bottom:15px;
+    border:none;
+}
+ul.blockList ul.blockList ul.blockList ul.blockList li.blockListLast {
+    list-style:none;
+    border-bottom:none;
+    padding-bottom:0;
+}
+table tr td dl, table tr td dl dt, table tr td dl dd {
+    margin-top:0;
+    margin-bottom:1px;
+}
+/*
+Table styles
+*/
+.overviewSummary, .memberSummary, .typeSummary, .useSummary, .constantsSummary, .deprecatedSummary {
+    width:100%;
+    border-left:1px solid #EEE; 
+    border-right:1px solid #EEE; 
+    border-bottom:1px solid #EEE; 
+}
+.overviewSummary, .memberSummary  {
+    padding:0px;
+}
+.overviewSummary caption, .memberSummary caption, .typeSummary caption,
+.useSummary caption, .constantsSummary caption, .deprecatedSummary caption {
+    position:relative;
+    text-align:left;
+    background-repeat:no-repeat;
+    color:#253441;
+    font-weight:bold;
+    clear:none;
+    overflow:hidden;
+    padding:0px;
+    padding-top:10px;
+    padding-left:1px;
+    margin:0px;
+    white-space:pre;
+}
+.overviewSummary caption a:link, .memberSummary caption a:link, .typeSummary caption a:link,
+.useSummary caption a:link, .constantsSummary caption a:link, .deprecatedSummary caption a:link,
+.overviewSummary caption a:hover, .memberSummary caption a:hover, .typeSummary caption a:hover,
+.useSummary caption a:hover, .constantsSummary caption a:hover, .deprecatedSummary caption a:hover,
+.overviewSummary caption a:active, .memberSummary caption a:active, .typeSummary caption a:active,
+.useSummary caption a:active, .constantsSummary caption a:active, .deprecatedSummary caption a:active,
+.overviewSummary caption a:visited, .memberSummary caption a:visited, .typeSummary caption a:visited,
+.useSummary caption a:visited, .constantsSummary caption a:visited, .deprecatedSummary caption a:visited {
+    color:#FFFFFF;
+}
+.overviewSummary caption span, .memberSummary caption span, .typeSummary caption span,
+.useSummary caption span, .constantsSummary caption span, .deprecatedSummary caption span {
+    white-space:nowrap;
+    padding-top:5px;
+    padding-left:12px;
+    padding-right:12px;
+    padding-bottom:7px;
+    display:inline-block;
+    float:left;
+    background-color:#F8981D;
+    border: none;
+    height:16px;
+}
+.memberSummary caption span.activeTableTab span {
+    white-space:nowrap;
+    padding-top:5px;
+    padding-left:12px;
+    padding-right:12px;
+    margin-right:3px;
+    display:inline-block;
+    float:left;
+    background-color:#F8981D;
+    height:16px;
+}
+.memberSummary caption span.tableTab span {
+    white-space:nowrap;
+    padding-top:5px;
+    padding-left:12px;
+    padding-right:12px;
+    margin-right:3px;
+    display:inline-block;
+    float:left;
+    background-color:#4D7A97;
+    height:16px;
+}
+.memberSummary caption span.tableTab, .memberSummary caption span.activeTableTab {
+    padding-top:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background-image:none;
+    float:none;
+    display:inline;
+}
+.overviewSummary .tabEnd, .memberSummary .tabEnd, .typeSummary .tabEnd,
+.useSummary .tabEnd, .constantsSummary .tabEnd, .deprecatedSummary .tabEnd {
+    display:none;
+    width:5px;
+    position:relative;
+    float:left;
+    background-color:#F8981D;
+}
+.memberSummary .activeTableTab .tabEnd {
+    display:none;
+    width:5px;
+    margin-right:3px;
+    position:relative; 
+    float:left;
+    background-color:#F8981D;
+}
+.memberSummary .tableTab .tabEnd {
+    display:none;
+    width:5px;
+    margin-right:3px;
+    position:relative;
+    background-color:#4D7A97;
+    float:left;
+
+}
+.overviewSummary td, .memberSummary td, .typeSummary td,
+.useSummary td, .constantsSummary td, .deprecatedSummary td {
+    text-align:left;
+    padding:0px 0px 12px 10px;
+    width:100%;
+}
+th.colOne, th.colFirst, th.colLast, .useSummary th, .constantsSummary th,
+td.colOne, td.colFirst, td.colLast, .useSummary td, .constantsSummary td{
+    vertical-align:top;
+    padding-right:0px;
+    padding-top:8px;
+    padding-bottom:3px;
+}
+th.colFirst, th.colLast, th.colOne, .constantsSummary th {
+    background:#dee3e9;
+    text-align:left;
+    padding:8px 3px 3px 7px;
+}
+td.colFirst, th.colFirst {
+    white-space:nowrap;
+    font-size:13px;
+}
+td.colLast, th.colLast {
+    font-size:13px;
+}
+td.colOne, th.colOne {
+    font-size:13px;
+}
+.overviewSummary td.colFirst, .overviewSummary th.colFirst,
+.overviewSummary td.colOne, .overviewSummary th.colOne,
+.memberSummary td.colFirst, .memberSummary th.colFirst,
+.memberSummary td.colOne, .memberSummary th.colOne,
+.typeSummary td.colFirst{
+    width:25%;
+    vertical-align:top;
+}
+td.colOne a:link, td.colOne a:active, td.colOne a:visited, td.colOne a:hover, td.colFirst a:link, td.colFirst a:active, td.colFirst a:visited, td.colFirst a:hover, td.colLast a:link, td.colLast a:active, td.colLast a:visited, td.colLast a:hover, .constantValuesContainer td a:link, .constantValuesContainer td a:active, .constantValuesContainer td a:visited, .constantValuesContainer td a:hover {
+    font-weight:bold;
+}
+.tableSubHeadingColor {
+    background-color:#EEEEFF;
+}
+.altColor {
+    background-color:#FFFFFF;
+}
+.rowColor {
+    background-color:#EEEEEF;
+}
+/*
+Content styles
+*/
+.description pre {
+    margin-top:0;
+}
+.deprecatedContent {
+    margin:0;
+    padding:10px 0;
+}
+.docSummary {
+    padding:0;
+}
+
+ul.blockList ul.blockList ul.blockList li.blockList h3 {
+    font-style:normal;
+}
+
+div.block {
+    font-size:14px;
+    font-family:'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+}
+
+td.colLast div {
+    padding-top:0px;
+}
+
+
+td.colLast a {
+    padding-bottom:3px;
+}
+/*
+Formatting effect styles
+*/
+.sourceLineNo {
+    color:green;
+    padding:0 30px 0 0;
+}
+h1.hidden {
+    visibility:hidden;
+    overflow:hidden;
+    font-size:10px;
+}
+.block {
+    display:block;
+    margin:3px 10px 2px 0px;
+    color:#474747;
+}
+.deprecatedLabel, .descfrmTypeLabel, .memberNameLabel, .memberNameLink,
+.overrideSpecifyLabel, .packageHierarchyLabel, .paramLabel, .returnLabel,
+.seeLabel, .simpleTagLabel, .throwsLabel, .typeNameLabel, .typeNameLink {
+    font-weight:bold;
+}
+.deprecationComment, .emphasizedPhrase, .interfaceName {
+    font-style:italic;
+}
+
+div.block div.block span.deprecationComment, div.block div.block span.emphasizedPhrase,
+div.block div.block span.interfaceName {
+    font-style:normal;
+}
+
+div.contentContainer ul.blockList li.blockList h2{
+    padding-bottom:0px;
+}
+  </style>
+  <!-- Generated by javadoc (1.8.0_51) on Fri Aug 28 00:27:15 EDT 2015 -->
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   EnumMetaData (diirt 3.0.1-SNAPSHOT API)
+  </title>
+  <meta content="2015-08-28" name="date">
+ </head>
+ <body>
+  <noscript>
+   <div>
+    JavaScript is disabled on your browser.
+   </div>
+  </noscript>
+  <!-- ========= START OF TOP NAVBAR ======= -->
+  <div class="topNav">
+   <a name="navbar.top">
+    <!-- -->
+   </a>
+   <div class="skipNav">
+    <a title="Skip navigation links">
+     Skip navigation links
+    </a>
+   </div>
+   <a name="navbar.top.firstrow">
+    <!-- -->
+   </a>
+   <ul class="navList" title="Navigation">
+    <li>
+     <a>
+      Overview
+     </a>
+    </li>
+    <li>
+     <a>
+      Package
+     </a>
+    </li>
+    <li class="navBarCell1Rev">
+     Class
+    </li>
+    <li>
+     <a>
+      Use
+     </a>
+    </li>
+   </ul>
+  </div>
+  <div class="subNav">
+   <ul class="navList">
+    <li>
+     <a title="class in org.diirt.vtype.next">
+      <span class="typeNameLink">
+       Prev&nbsp;Class
+      </span>
+     </a>
+    </li>
+    <li>
+     <a title="class in org.diirt.vtype.next">
+      <span class="typeNameLink">
+       Next&nbsp;Class
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="navList">
+    <li>
+     <a target="_top">
+      Frames
+     </a>
+    </li>
+    <li>
+     <a target="_top">
+      No&nbsp;Frames
+     </a>
+    </li>
+   </ul>
+   <ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li>
+     <a>
+      All&nbsp;Classes
+     </a>
+    </li>
+   </ul>
+   <div>
+   </div>
+   <div>
+    <ul class="subNavList">
+     <li>
+      Summary:&nbsp;
+     </li>
+     <li>
+      Nested&nbsp;|&nbsp;
+     </li>
+     <li>
+      Field&nbsp;|&nbsp;
+     </li>
+     <li>
+      <a>
+       Constr
+      </a>
+      &nbsp;|&nbsp;
+     </li>
+    </ul>
+    <ul class="subNavList">
+     <li>
+      Detail:&nbsp;
+     </li>
+     <li>
+      Field&nbsp;|&nbsp;
+     </li>
+     <li>
+      <a>
+       Constr
+      </a>
+      &nbsp;|&nbsp;
+     </li>
+     <li>
+      <a>
+       Method
+      </a>
+     </li>
+    </ul>
+   </div>
+   <a name="skip.navbar.top">
+    <!-- -->
+   </a>
+  </div>
+  <!-- ========= END OF TOP NAVBAR ========= -->
+  <!-- ======== START OF CLASS DATA ======== -->
+  <div class="header">
+   <div class="subTitle">
+    org.diirt.vtype.next
+   </div>
+   <h2 class="title" title="Class EnumMetaData">
+    Class EnumMetaData
+   </h2>
+  </div>
+  <div class="contentContainer">
+   <ul class="inheritance">
+    <li>
+     <a title="class or interface in java.lang">
+      java.lang.Object
+     </a>
+    </li>
+    <li>
+     <ul class="inheritance">
+      <li>
+       org.diirt.vtype.next.EnumMetaData
+      </li>
+     </ul>
+    </li>
+   </ul>
+   <div class="description">
+    <ul class="blockList">
+     <li class="blockList">
+      <hr>
+      <br>
+      <pre>public abstract class <span class="typeNameLabel">EnumMetaData</span>
+extends <a title="class or interface in java.lang">Object</a></pre>
+      <div class="block">
+       Enum metadata information.
+      </div>
+      <dl>
+       <dt>
+        <span class="simpleTagLabel">
+         Author:
+        </span>
+       </dt>
+       <dd>
+        carcassi
+       </dd>
+      </dl>
+     </li>
+    </ul>
+   </div>
+   <div class="summary">
+    <ul class="blockList">
+     <li class="blockList">
+      <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+      <ul class="blockList">
+       <li class="blockList">
+        <a name="constructor.summary">
+         <!-- -->
+        </a>
+        <h3>
+         Constructor Summary
+        </h3>
+        <table border="0" cellpadding="3" cellspacing="0" class="memberSummary" summary="Constructor Summary table, listing constructors, and an explanation">
+         <caption>
+          <span>
+           Constructors
+          </span>
+          <span class="tabEnd">
+           &nbsp;
+          </span>
+         </caption>
+         <tbody>
+          <tr>
+           <th class="colOne" scope="col">
+            Constructor and Description
+           </th>
+          </tr>
+          <tr class="altColor">
+           <td class="colOne">
+            <code>
+             <span class="memberNameLink">
+              <a>
+               EnumMetaData
+              </a>
+             </span>
+             ()
+            </code>
+            &nbsp;
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </li>
+      </ul>
+      <!-- ========== METHOD SUMMARY =========== -->
+      <ul class="blockList">
+       <li class="blockList">
+        <a name="method.summary">
+         <!-- -->
+        </a>
+        <h3>
+         Method Summary
+        </h3>
+        <table border="0" cellpadding="3" cellspacing="0" class="memberSummary" summary="Method Summary table, listing methods, and an explanation">
+         <caption>
+          <span class="activeTableTab" id="t0">
+           <span>
+            All Methods
+           </span>
+           <span class="tabEnd">
+            &nbsp;
+           </span>
+          </span>
+          <span class="tableTab" id="t1">
+           <span>
+            <a>
+             Static Methods
+            </a>
+           </span>
+           <span class="tabEnd">
+            &nbsp;
+           </span>
+          </span>
+          <span class="tableTab" id="t2">
+           <span>
+            <a>
+             Instance Methods
+            </a>
+           </span>
+           <span class="tabEnd">
+            &nbsp;
+           </span>
+          </span>
+          <span class="tableTab" id="t3">
+           <span>
+            <a>
+             Abstract Methods
+            </a>
+           </span>
+           <span class="tabEnd">
+            &nbsp;
+           </span>
+          </span>
+          <span class="tableTab" id="t4">
+           <span>
+            <a>
+             Concrete Methods
+            </a>
+           </span>
+           <span class="tabEnd">
+            &nbsp;
+           </span>
+          </span>
+         </caption>
+         <tbody>
+          <tr>
+           <th class="colFirst" scope="col">
+            Modifier and Type
+           </th>
+           <th class="colLast" scope="col">
+            Method and Description
+           </th>
+          </tr>
+          <tr class="altColor" id="i0">
+           <td class="colFirst">
+            <code>
+             static
+             <a title="class in org.diirt.vtype.next">
+              EnumMetaData
+             </a>
+            </code>
+           </td>
+           <td class="colLast">
+            <code>
+             <span class="memberNameLink">
+              <a>
+               create
+              </a>
+             </span>
+             (
+             <a title="class or interface in java.util">
+              List
+             </a>
+             &lt;
+             <a title="class or interface in java.lang">
+              String
+             </a>
+             &gt;&nbsp;labels)
+            </code>
+            <div class="block">
+             New EnumMetaData with the given labels.
+            </div>
+           </td>
+          </tr>
+          <tr class="rowColor" id="i1">
+           <td class="colFirst">
+            <code>
+             boolean
+            </code>
+           </td>
+           <td class="colLast">
+            <code>
+             <span class="memberNameLink">
+              <a>
+               equals
+              </a>
+             </span>
+             (
+             <a title="class or interface in java.lang">
+              Object
+             </a>
+             &nbsp;obj)
+            </code>
+            <div class="block">
+             Whether the given object is an EnumMetadata with the same labels.
+            </div>
+           </td>
+          </tr>
+          <tr class="altColor" id="i2">
+           <td class="colFirst">
+            <code>
+             abstract
+             <a title="class or interface in java.util">
+              List
+             </a>
+             &lt;
+             <a title="class or interface in java.lang">
+              String
+             </a>
+             &gt;
+            </code>
+           </td>
+           <td class="colLast">
+            <code>
+             <span class="memberNameLink">
+              <a>
+               getLabels
+              </a>
+             </span>
+             ()
+            </code>
+            <div class="block">
+             Returns the possible labels for the enum.
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        <ul class="blockList">
+         <li class="blockList">
+          <a name="methods.inherited.from.class.java.lang.Object">
+           <!-- -->
+          </a>
+          <h3>
+           Methods inherited from class&nbsp;java.lang.
+           <a title="class or interface in java.lang">
+            Object
+           </a>
+          </h3>
+          <code>
+           <a title="class or interface in java.lang">
+            clone
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            finalize
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            getClass
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            notify
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            notifyAll
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            wait
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            wait
+           </a>
+           ,
+           <a title="class or interface in java.lang">
+            wait
+           </a>
+          </code>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+   <div class="details">
+    <ul class="blockList">
+     <li class="blockList">
+      <!-- ========= CONSTRUCTOR DETAIL ======== -->
+      <ul class="blockList">
+       <li class="blockList">
+        <a name="constructor.detail">
+         <!-- -->
+        </a>
+        <h3>
+         Constructor Detail
+        </h3>
+        <a name="EnumMetaData--">
+         <!-- -->
+        </a>
+        <ul class="blockListLast">
+         <li class="blockList">
+          <h4>
+           EnumMetaData
+          </h4>
+          <pre>public&nbsp;EnumMetaData()</pre>
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <!-- ============ METHOD DETAIL ========== -->
+      <ul class="blockList">
+       <li class="blockList">
+        <a name="method.detail">
+         <!-- -->
+        </a>
+        <h3>
+         Method Detail
+        </h3>
+        <a name="getLabels--">
+         <!-- -->
+        </a>
+        <ul class="blockList">
+         <li class="blockList">
+          <h4>
+           getLabels
+          </h4>
+          <pre>public abstract&nbsp;<a title="class or interface in java.util">List</a>&lt;<a title="class or interface in java.lang">String</a>&gt;&nbsp;getLabels()</pre>
+          <div class="block">
+           Returns the possible labels for the enum.
+          </div>
+          <dl>
+           <dt>
+            <span class="returnLabel">
+             Returns:
+            </span>
+           </dt>
+           <dd>
+            the labels; not null
+           </dd>
+          </dl>
+         </li>
+        </ul>
+        <a name="equals-java.lang.Object-">
+         <!-- -->
+        </a>
+        <ul class="blockList">
+         <li class="blockList">
+          <h4>
+           equals
+          </h4>
+          <pre>public final&nbsp;boolean&nbsp;equals(<a title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
+          <div class="block">
+           Whether the given object is an EnumMetadata with the same labels.
+          </div>
+          <dl>
+           <dt>
+            <span class="overrideSpecifyLabel">
+             Overrides:
+            </span>
+           </dt>
+           <dd>
+            <code>
+             <a title="class or interface in java.lang">
+              equals
+             </a>
+            </code>
+            &nbsp;in class&nbsp;
+            <code>
+             <a title="class or interface in java.lang">
+              Object
+             </a>
+            </code>
+           </dd>
+           <dt>
+            <span class="paramLabel">
+             Parameters:
+            </span>
+           </dt>
+           <dd>
+            <code>
+             obj
+            </code>
+            - another alarm
+           </dd>
+           <dt>
+            <span class="returnLabel">
+             Returns:
+            </span>
+           </dt>
+           <dd>
+            true if equal
+           </dd>
+          </dl>
+         </li>
+        </ul>
+        <a name="hashCode--">
+         <!-- -->
+        </a>
+        <ul class="blockList">
+         <li class="blockList">
+          <h4>
+           hashCode
+          </h4>
+          <pre>public final&nbsp;int&nbsp;hashCode()</pre>
+          <dl>
+           <dt>
+            <span class="overrideSpecifyLabel">
+             Overrides:
+            </span>
+           </dt>
+           <dd>
+            <code>
+             <a title="class or interface in java.lang">
+              hashCode
+             </a>
+            </code>
+            &nbsp;in class&nbsp;
+            <code>
+             <a title="class or interface in java.lang">
+              Object
+             </a>
+            </code>
+           </dd>
+          </dl>
+         </li>
+        </ul>
+        <a name="toString--">
+         <!-- -->
+        </a>
+        <ul class="blockList">
+         <li class="blockList">
+          <h4>
+           toString
+          </h4>
+          <pre>public final&nbsp;<a title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+          <dl>
+           <dt>
+            <span class="overrideSpecifyLabel">
+             Overrides:
+            </span>
+           </dt>
+           <dd>
+            <code>
+             <a title="class or interface in java.lang">
+              toString
+             </a>
+            </code>
+            &nbsp;in class&nbsp;
+            <code>
+             <a title="class or interface in java.lang">
+              Object
+             </a>
+            </code>
+           </dd>
+          </dl>
+         </li>
+        </ul>
+        <a name="create-java.util.List-">
+         <!-- -->
+        </a>
+        <ul class="blockListLast">
+         <li class="blockList">
+          <h4>
+           create
+          </h4>
+          <pre>public static&nbsp;<a title="class in org.diirt.vtype.next">EnumMetaData</a>&nbsp;create(<a title="class or interface in java.util">List</a>&lt;<a title="class or interface in java.lang">String</a>&gt;&nbsp;labels)</pre>
+          <div class="block">
+           New EnumMetaData with the given labels.
+          </div>
+          <dl>
+           <dt>
+            <span class="paramLabel">
+             Parameters:
+            </span>
+           </dt>
+           <dd>
+            <code>
+             labels
+            </code>
+            - the enum labels
+           </dd>
+           <dt>
+            <span class="returnLabel">
+             Returns:
+            </span>
+           </dt>
+           <dd>
+            the new alarm
+           </dd>
+          </dl>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <!-- ========= END OF CLASS DATA ========= -->
+  <!-- ======= START OF BOTTOM NAVBAR ====== -->
+  <div class="bottomNav">
+   <a name="navbar.bottom">
+    <!-- -->
+   </a>
+   <div class="skipNav">
+    <a title="Skip navigation links">
+     Skip navigation links
+    </a>
+   </div>
+   <a name="navbar.bottom.firstrow">
+    <!-- -->
+   </a>
+   <ul class="navList" title="Navigation">
+    <li>
+     <a>
+      Overview
+     </a>
+    </li>
+    <li>
+     <a>
+      Package
+     </a>
+    </li>
+    <li class="navBarCell1Rev">
+     Class
+    </li>
+    <li>
+     <a>
+      Use
+     </a>
+    </li>
+   </ul>
+  </div>
+  <div class="subNav">
+   <ul class="navList">
+    <li>
+     <a title="class in org.diirt.vtype.next">
+      <span class="typeNameLink">
+       Prev&nbsp;Class
+      </span>
+     </a>
+    </li>
+    <li>
+     <a title="class in org.diirt.vtype.next">
+      <span class="typeNameLink">
+       Next&nbsp;Class
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="navList">
+    <li>
+     <a target="_top">
+      Frames
+     </a>
+    </li>
+    <li>
+     <a target="_top">
+      No&nbsp;Frames
+     </a>
+    </li>
+   </ul>
+   <ul class="navList" id="allclasses_navbar_bottom" style="display: block;">
+    <li>
+     <a>
+      All&nbsp;Classes
+     </a>
+    </li>
+   </ul>
+   <div>
+   </div>
+   <div>
+    <ul class="subNavList">
+     <li>
+      Summary:&nbsp;
+     </li>
+     <li>
+      Nested&nbsp;|&nbsp;
+     </li>
+     <li>
+      Field&nbsp;|&nbsp;
+     </li>
+     <li>
+      <a>
+       Constr
+      </a>
+      &nbsp;|&nbsp;
+     </li>
+    </ul>
+    <ul class="subNavList">
+     <li>
+      Detail:&nbsp;
+     </li>
+     <li>
+      Field&nbsp;|&nbsp;
+     </li>
+     <li>
+      <a>
+       Constr
+      </a>
+      &nbsp;|&nbsp;
+     </li>
+     <li>
+      <a>
+       Method
+      </a>
+     </li>
+    </ul>
+   </div>
+   <a name="skip.navbar.bottom">
+    <!-- -->
+   </a>
+  </div>
+  <!-- ======== END OF BOTTOM NAVBAR ======= -->
+  <p class="legalCopy">
+   <small>
+    Copyright &copy; 2015. All rights reserved.
+   </small>
+  </p>
+ </body>
+</html>
