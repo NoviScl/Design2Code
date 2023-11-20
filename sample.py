@@ -98,171 +98,65 @@ def size_buckets(data, k):
     return buckets
 
 
-unique_tags = []
-dom_depth = []
-total_nodes = []
-
-easy = []
-mid = []
-hard = []
-
-
-directory = "/juice2/scr2/nlp/pix2code/testset_filter_round1"
-for i in tqdm(range(1, 5000)):
-        filename = str(i) + ".html"
-        full_path = os.path.join(directory, filename)
-        with open(full_path, "r", encoding="utf-8") as f:
-            html_content = f.read() 
-        nodes = count_total_nodes(html_content)
-
-        if nodes >= 5 and nodes < 112:
-            easy.append(filename)
-        elif nodes >= 112 and nodes <= 287:
-            mid.append(filename)
-        else:
-            hard.append(filename)
-
-print ("nodes:")
-print ("easy: ", len(easy))
-print ("mid: ", len(mid))
-print ("hard: ", len(hard))
-
-test_set_split = {
-    "easy": easy,
-    "mid": mid,
-    "hard": hard
+unique_tags = {
+    "easy": [],
+    "hard": []
+}
+dom_depth = {
+    "easy": [],
+    "hard": []
+}
+total_nodes = {
+    "easy": [],
+    "hard": []
 }
 
-with open("test_set_split_nodes.json", "w+") as f:
-    json.dump(test_set_split, f, indent=4)
 
+directory = "/juice2/scr2/nlp/pix2code/testset_copy"
 
+with open("/juice2/scr2/nlp/pix2code/auto_filtered.json", "r") as f:
+    filtered = json.load(f)
 
-
-easy = []
-mid = []
-hard = []
-
-
-directory = "/juice2/scr2/nlp/pix2code/testset_filter_round1"
-for i in tqdm(range(1, 5000)):
-        filename = str(i) + ".html"
-        full_path = os.path.join(directory, filename)
-        with open(full_path, "r", encoding="utf-8") as f:
-            html_content = f.read() 
-        depth = calculate_dom_depth(html_content)
-
-        if depth >= 3 and depth < 10:
-            easy.append(filename)
-        elif depth >= 10 and depth <= 14:
-            mid.append(filename)
-        else:
-            hard.append(filename)
-
-print ("depth:")
-print ("easy: ", len(easy))
-print ("mid: ", len(mid))
-print ("hard: ", len(hard))
-
-test_set_split = {
-    "easy": easy,
-    "mid": mid,
-    "hard": hard
-}
-
-with open("test_set_split_depth.json", "w+") as f:
-    json.dump(test_set_split, f, indent=4)
-
-
-
-
-easy = []
-mid = []
-hard = []
-
-
-directory = "/juice2/scr2/nlp/pix2code/testset_filter_round1"
-for i in tqdm(range(1, 5000)):
-        filename = str(i) + ".html"
+for filename in tqdm(filtered):
+# for i in tqdm(range(1, 5000)):
+        # filename = str(i) + ".html"
         full_path = os.path.join(directory, filename)
         with open(full_path, "r", encoding="utf-8") as f:
             html_content = f.read() 
         tags = count_unique_tags(html_content)
+        depth = calculate_dom_depth(html_content)
+        nodes = count_total_nodes(html_content)
 
-        if tags >= 5 and tags < 18:
-            easy.append(filename)
-        elif tags >= 18 and tags <= 24:
-            mid.append(filename)
+        if tags < 20:
+            unique_tags["easy"].append(filename)
         else:
-            hard.append(filename)
+            unique_tags["hard"].append(filename)
+        
+        if depth < 12:
+            dom_depth["easy"].append(filename)
+        else:
+            dom_depth["hard"].append(filename)
+        
+        if nodes < 180:
+            total_nodes["easy"].append(filename)
+        else:
+            total_nodes["hard"].append(filename)
 
-print ("tags:")
-print ("easy: ", len(easy))
-print ("mid: ", len(mid))
-print ("hard: ", len(hard))
+print ("unique tags:")
+print (len(unique_tags["easy"]), len(unique_tags["hard"]), "\n")
+print ("dom depth:")
+print (len(dom_depth["easy"]), len(dom_depth["hard"]), "\n")
+print ("total nodes:")
+print (len(total_nodes["easy"]), len(total_nodes["hard"]), "\n")
+
 
 test_set_split = {
-    "easy": easy,
-    "mid": mid,
-    "hard": hard
+    "unique_tags": unique_tags,
+    "dom_depth": dom_depth,
+    "total_nodes": total_nodes
 }
 
-with open("test_set_split_tags.json", "w+") as f:
+with open("test_set_split_pilot.json", "w+") as f:
     json.dump(test_set_split, f, indent=4)
 
 
-
-
-# directory = "/juice2/scr2/nlp/pix2code/testset_filter_round1"
-# # for filename in tqdm(os.listdir(directory)):
-# #     if filename.endswith(".html"):
-# for i in tqdm(range(1, 5000)):
-#         filename = str(i) + ".html"
-#         full_path = os.path.join(directory, filename)
-#         with open(full_path, "r", encoding="utf-8") as f:
-#             html_content = f.read() 
-#         # tags = count_unique_tags(html_content)
-#         # depth = calculate_dom_depth(html_content)
-#         nodes = count_total_nodes(html_content)
-
-#         if nodes >= 5 and nodes < 112:
-#             easy.append(filename)
-#         elif nodes >= 112 and nodes <= 287:
-#             mid.append(filename)
-#         else:
-#             hard.append(filename)
-
-#         # if (tags >= 5 and tags < 18) and (depth >= 3 and depth < 10) and (nodes >= 5 and nodes < 112):
-#         #     easy.append(filename)
-#         # elif (tags >= 18 and tags <= 24) and (depth >= 10 and depth <= 14) and (nodes >= 112 and nodes <= 287):
-#         #     mid.append(filename)
-#         # elif (tags > 24) and (depth > 14) and (nodes > 287):
-#         #     hard.append(filename)
-
-# #         unique_tags.append(tags)
-# #         dom_depth.append(depth)
-# #         total_nodes.append(nodes)
-        
-# # print ("tags: ", size_buckets(unique_tags, 3))
-# # print ("depth: ", size_buckets(dom_depth, 3))
-# # print ("nodes: ", size_buckets(total_nodes, 3))
-
-# print ("easy: ", len(easy))
-# print ("mid: ", len(mid))
-# print ("hard: ", len(hard))
-
-# test_set_split = {
-#     "easy": easy,
-#     "mid": mid,
-#     "hard": hard
-# }
-
-# with open("test_set_split_nodes.json", "w+") as f:
-#     json.dump(test_set_split, f, indent=4)
-
-# a, mi, ma, b = compute_stats_and_bucketize(unique_tags, 5)
-# print ("number of unique tags: avg: {}, min: {}, max: {}".format(a, mi, ma))
-# a, mi, ma, b = compute_stats_and_bucketize(dom_depth, 5)
-# print ("dom depth: avg: {}, min: {}, max: {}".format(a, mi, ma))
-# a, mi, ma, b = compute_stats_and_bucketize(total_nodes, 5)
-# print ("number of total nodes: avg: {}, min: {}, max: {}".format(a, mi, ma))

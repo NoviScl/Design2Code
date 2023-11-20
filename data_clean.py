@@ -1,6 +1,6 @@
 from tqdm import tqdm
 from transformers import GPT2TokenizerFast
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag
 from nltk.tokenize import sent_tokenize
 import os
 import logging
