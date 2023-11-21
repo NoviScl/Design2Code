@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thread Pool Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .email-container {
+            background-color: #fff;
+            padding: 30px;
+            margin: 50px auto;
+            max-width: 800px;
+            border: 1px solid #dedede;
+        }
+        .email-header, .email-footer {
+            background-color: #e1e1e1;
+            padding: 10px 20px;
+            color: #333;
+            font-size: 12px;
+        }
+        .email-body {
+            padding: 20px;
+            line-height: 1.5;
+            color: #333;
+        }
+        .email-body a {
+            color: #069;
+            text-decoration: none;
+        }
+        .email-signature {
+            margin-top: 50px;
+            padding-top: 10px;
+            border-top: 1px solid #dedede;
+        }
+        .image-placeholder {
+            display: block;
+            margin: 20px auto;
+            background-image: url('rick.jpg');
+            width: 100%;
+            height: 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            Eran Kornblau <a href="mailto:eran.kornblau@kaltura.com">eran.kornblau@kaltura.com</a>
+            <div>Tue Aug 28 09:15:32 UTC 2018</div>
+        </div>
+        <div class="email-body">
+            <p>Hi,</p>
+            <p><strong>Hi Eran,</strong></p>
+            <p>Happy to see that we are not the only place where we find open to be a problem. I took a look at your module and while the approach is sound, I decided the complexity doesn't seem to be worth it.<br>
+            - Ka-Hing</p>
+            <p>I don't have numbers that show the improvement we got from moving open to a thread pool, but what I can say is that on our environment, open can sometimes take an unreasonable time to complete - several seconds.</p>
+            <p>I noticed it several years ago, after I added a feature of 'performance counters' to my module (posted it here - <a href="https://forum.nginx.org/read.php?2,255847,258854#msg-258854">https://forum.nginx.org/read.php?2,255847,258854#msg-258854</a>).</p>
+            <p>This is the reason I decided to implement the async open - in order to avoid having all worker active requests hang for so long. In my case, I was already using open file cache, and while I got a fairly good hit ratio, these extreme cases of worker hanging for few seconds wasn't something I wanted to accept. Also, in my setup, I'm not using proxy_cache - my servers serve as origin servers behind a CDN, so a solution that is limited to file cache is not something I could use.</p>
+            <div class="email-signature">Eran</div>
+            <img src="rick.jpg" alt="Placeholder Image" class="image-placeholder">
+        </div>
+        <div class="email-footer">
+            <a href="#">Previous message (by thread): cache: move open to thread pool</a><br>
+            <a href="#">Next message (by thread): cache: move open to thread pool</a><br>
+            <a href="#">Messages sorted by:</a> <span>[ date ] [ thread ] [ subject ] [ author ]</span>
+        </div>
+    </div>
+    <footer>
+        <div class="email-footer">
+            More information about the nginx-devel mailing list
+        </div>
+    </footer>
+</body>
+</html>
