@@ -10,8 +10,12 @@ from difflib import SequenceMatcher
 
 import pytesseract
 from PIL import Image, ImageDraw
+import torch
+import clip
 
 pytesseract.pytesseract.tesseract_cmd = '/sailhome/clsi/bin/tesseract'
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model, preprocess = clip.load("ViT-B/32", device=device)
 
 def mask_text_cv2(cv2_image):
     # Convert the cv2 image (BGR) to PIL Image (RGB)
@@ -392,6 +396,45 @@ def print_stat_geo(alist):
         return
     # print("Geo Mean:", geo_mean(alist),"Median:", np.median(alist),"Min:", min(alist),"Max:", max(alist))
     return geo_mean(alist), np.median(alist), min(alist), max(alist)
+
+
+def rescale_short_edge_to_long_edge(image_path):
+    # Load the image
+    with Image.open(image_path) as img:
+        width, height = img.size
+
+        # Determine which side is shorter
+        if width < height:
+            # Width is shorter, scale height to match the width
+            new_size = (width, width)
+        else:
+            # Height is shorter, scale width to match the height
+            new_size = (height, height)
+
+        # Resize the image while maintaining aspect ratio
+        img_resized = img.resize(new_size, Image.ANTIALIAS)
+
+        return img_resized
+
+def calculate_clip_similarity(image_path1, image_path2):
+    # Load and preprocess images
+    image1 = preprocess(rescale_short_edge_to_long_edge(image_path1)).unsqueeze(0).to(device)
+    image2 = preprocess(rescale_short_edge_to_long_edge(image_path2)).unsqueeze(0).to(device)
+
+    # Calculate features
+    with torch.no_grad():
+        image_features1 = model.encode_image(image1)
+        image_features2 = model.encode_image(image2)
+
+    # Normalize features
+    image_features1 /= image_features1.norm(dim=-1, keepdim=True)
+    image_features2 /= image_features2.norm(dim=-1, keepdim=True)
+
+    # Calculate cosine similarity
+    similarity = (image_features1 @ image_features2.T).item()
+
+    return similarity
+
 
 def visual_eval(gpt_img, original_img, print_all=False):
     blocks1 = get_ocr_blocks(gpt_img)

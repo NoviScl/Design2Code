@@ -2,12 +2,12 @@ import os
 from playwright.sync_api import sync_playwright
 import os
 
-def take_screenshot(url, output_file="screenshot.png"):
+def take_screenshot(url, output_file="screenshot.png", do_it_again=False):
     # Convert local path to file:// URL if it's a file
     if os.path.exists(url):
         url = "file://" + os.path.abspath(url)
 
-    if os.path.exists(output_file):
+    if os.path.exists(output_file) and not do_it_again:
         print(f"{output_file} exists!")
         return
 
@@ -43,10 +43,13 @@ def process_files_with_prefix(folder, prefix, processing_function):
     # List all files in the folder
     for filename in os.listdir(folder):
         # Check if the filename starts with the prefix
-        if filename.startswith(prefix):
+        if filename.startswith(prefix) and "demo" not in filename:
             # Construct the full path
             file_path = os.path.join(folder, filename)
+
+            file_path = file_path.replace("gpt4v_", "")
+
             # Process the file using the provided function
-            processing_function(file_path, file_path.replace(".html", ".png"))
+            processing_function(file_path, file_path.replace(".html", ".png"), True)
 
 process_files_with_prefix("/Users/zhangyanzhe/Documents/GitHub/Pix2Code/pilot_testset", "gpt4v", take_screenshot)
