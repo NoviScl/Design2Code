@@ -43,9 +43,10 @@ def process_files_with_prefix(folder, prefix, processing_function):
     # List all files in the folder
     for filename in os.listdir(folder):
         # Check if the filename starts with the prefix
-        if filename.startswith(prefix) and "demo" not in filename:
+        if filename.startswith(prefix) and "demo" not in filename and "_p" not in filename and "png" not in filename:
             # Construct the full path
             file_path = os.path.join(folder, filename)
+            processing_function(file_path, file_path.replace(".html", ".png"), True)
 
             file_path = file_path.replace("gpt4v_", "")
 
