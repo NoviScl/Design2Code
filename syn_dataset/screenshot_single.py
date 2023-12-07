@@ -34,6 +34,4 @@ def take_screenshot(url, output_file="screenshot.png", do_it_again=False):
 
         browser.close()
 
-    print(f"Saved to {output_file}")
-
 take_screenshot(args.html, args.png, do_it_again=True)

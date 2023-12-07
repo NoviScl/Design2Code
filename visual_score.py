@@ -13,6 +13,8 @@ from PIL import Image, ImageDraw
 import torch
 import clip
 
+from ocr_free_utils import get_blocks_ocr_free
+
 pytesseract.pytesseract.tesseract_cmd = '/sailhome/clsi/bin/tesseract'
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
@@ -387,14 +389,14 @@ def print_stat(alist):
     if len(alist) == 0:
         print("Empty list!")
         return
-    # print("Mean:", np.mean(alist),"Median:", np.median(alist),"Min:", min(alist),"Max:", max(alist))
+    print("Mean:", np.mean(alist),"Median:", np.median(alist),"Min:", min(alist),"Max:", max(alist))
     return np.mean(alist), np.median(alist), min(alist), max(alist)
 
 def print_stat_geo(alist):
     if len(alist) == 0:
         print("Empty list!")
         return
-    # print("Geo Mean:", geo_mean(alist),"Median:", np.median(alist),"Min:", min(alist),"Max:", max(alist))
+    print("Geo Mean:", geo_mean(alist),"Median:", np.median(alist),"Min:", min(alist),"Max:", max(alist))
     return geo_mean(alist), np.median(alist), min(alist), max(alist)
 
 
@@ -436,14 +438,27 @@ def calculate_clip_similarity(image_path1, image_path2):
     return similarity
 
 
-def visual_eval(gpt_img, original_img, print_all=False):
-    blocks1 = get_ocr_blocks(gpt_img)
-    blocks2 = get_ocr_blocks(original_img)
+def visual_eval(gpt_img, original_img, print_all=False, ocr_free=True):
+    """
+    gpt_img: file to image rendered by gpt gen code. Please place the html file with the same name in the same folder.
+    original_img: file to image rendered by the original code. Please place the html file with the same name in the same folder.
+    print_all: print matched information or not. Default to False.
+    ocr_free: using ocr free approach or not. Default to True.
+    """
 
-    blocks1 = merge_blocks(blocks1)
-    blocks2 = merge_blocks(blocks2)
+    if ocr_free:
+        blocks1 = get_blocks_ocr_free(gpt_img)
+        blocks2 = get_blocks_ocr_free(original_img)
+        consecutive_bonus, window_size = 0.1, 1
+    else:
+        blocks1 = get_ocr_blocks(gpt_img)
+        blocks2 = get_ocr_blocks(original_img)
+        consecutive_bonus, window_size = 0.25, 2
 
-    matching = find_maximum_matching(blocks1, blocks2, 0.25, 2)
+        blocks1 = merge_blocks(blocks1)
+        blocks2 = merge_blocks(blocks2)
+
+    matching = find_maximum_matching(blocks1, blocks2, consecutive_bonus, window_size)
     matched_list = []
     # print("Matching pairs:")
     location_score = []
@@ -455,6 +470,8 @@ def visual_eval(gpt_img, original_img, print_all=False):
                                                 blocks1[i]['bbox'][1] + blocks1[i]['bbox'][3], \
                                                 blocks2[j]['bbox'][0] + blocks2[j]['bbox'][2], \
                                                 blocks2[j]['bbox'][1] + blocks2[j]['bbox'][3]))
+        if min(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2], blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]) == 0:
+            print(f"{blocks1[i]} matched with {blocks2[j]}")
         assert calculate_ratio(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2]) > 0 and calculate_ratio(blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]) > 0, f"{blocks1[i]} matched with {blocks2[j]}"
         size_score.append(calculate_ratio(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2]) * calculate_ratio(blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]))
     if print_all:
@@ -484,5 +501,5 @@ def visual_eval(gpt_img, original_img, print_all=False):
 
 if __name__ == "__main__":
     # check_match_images('trial_dataset/rick.jpg', 'syn_dataset/diyi_gpt4.png', True)
-   matched, loc_score, size_score, final_score = visual_eval('syn_dataset/diyi_gpt4.png', 'syn_dataset/diyi.png')
+   matched, loc_score, size_score, final_score = visual_eval('syn_dataset/diyi_gpt4.png', 'syn_dataset/diyi.png', True)
    print (matched, loc_score, size_score, final_score)
