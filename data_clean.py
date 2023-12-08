@@ -86,6 +86,18 @@ def remove_extra_linebreaks(html_content):
     cleaned_string = "\n".join(split_lines)
     return cleaned_string
 
+def remove_web_links(html_content):
+    pattern = (
+        r'"'  # Opening quotation mark
+        r'('
+        r'(https?:\/\/|www\.)'  # "http:" or "https:" or "www."
+        r'[^"\s]+'  # Any character except space and quotation mark
+        r')'
+        r'"'  # Closing quotation mark
+    )
+    cleaned_text = re.sub(pattern, '""', html_content)
+    return cleaned_text
+
 def length_filter(html_content, max_token=32000):
     ## filter too short pages
     html_len = len(tokenizer(html_content)["input_ids"])
@@ -375,9 +387,6 @@ def all_filters_test(html_content):
         return None
     
     try:
-        # print (len(html_content.split("\n")))
-        html_content = remove_import(html_content)
-        # print (len(html_content.split("\n")))
         html_content = remove_tags(html_content, tag="script")
         html_content = remove_tags(html_content, tag="audio")
         html_content = remove_tags(html_content, tag="video")
@@ -392,6 +401,8 @@ def all_filters_test(html_content):
         html_content = item_truncation(html_content)
         html_content = text_truncation(html_content)
         # print (len(html_content.split("\n")))
+        html_content = remove_import(html_content)
+        html_content = remove_web_links(html_content)
         html_content, html_len = length_filter(html_content, max_token=320000)
         # print (len(html_content.split("\n")))
         # print ("----------------")
