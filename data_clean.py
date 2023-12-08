@@ -1,14 +1,20 @@
 from tqdm import tqdm
+import nltk 
+nltk.data.path.append("/juice2/scr2/nlp/pix2code/nltk_data")
 from transformers import GPT2TokenizerFast
-from bs4 import BeautifulSoup, Tag
 from nltk.tokenize import sent_tokenize
 import os
 import logging
 import re
 import json
 import cssutils
+from PIL import Image, ImageFile
+from bs4 import BeautifulSoup,Tag, NavigableString
+from screenshot import take_screenshot
+from image_rescale import rescale_filter
 import random 
 random.seed(2023)
+
 
 cssutils.log.setLevel(logging.CRITICAL)
 
@@ -80,7 +86,7 @@ def remove_extra_linebreaks(html_content):
     cleaned_string = "\n".join(split_lines)
     return cleaned_string
 
-def length_filter(html_content, max_token=40000):
+def length_filter(html_content, max_token=32000):
     ## filter too short pages
     html_len = len(tokenizer(html_content)["input_ids"])
     if html_len <= 100 or html_len >= max_token:
@@ -200,27 +206,33 @@ def remove_embed_dependency(html_content):
     # Return the modified HTML content as a string
     return soup.prettify(formatter="html5")
 
-def list_truncation(html_content, max_item=2):
+def item_truncation(html_content, max_items=4):
     # Parse the HTML
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # Find all unordered and ordered lists
+    # Find and truncate lists
     lists = soup.find_all(['ul', 'ol'])
-    
-    # Truncate each list to max_item items
     for lst in lists:
         list_items = lst.find_all('li', recursive=False)  # only direct children
-        if len(list_items) > max_item:
-            # Keep only the first max_item items
-            for item in list_items[max_item:]:
+        if len(list_items) > max_items:
+            for item in list_items[max_items:]:
                 item.decompose()  # Remove excess list items
+
+    # Find and truncate tables
+    tables = soup.find_all('table')
+    for table in tables:
+        # print (table)
+        # print ("----------------")
+        rows = table.find_all('tr')
+        # print (rows)
+        if len(rows) > max_items:
+            for row in rows[max_items:]:
+                row.decompose()  # Remove excess rows
     
     # Return the modified HTML as a string
     return soup.prettify(formatter="html5")
 
 def text_truncation(html_content, max_sent=2):
-    ## avoid leaf nodes that are too long
-    # Parse the HTML
     soup = BeautifulSoup(html_content, 'html.parser')
 
     # Find all elements
@@ -243,8 +255,29 @@ def text_truncation(html_content, max_sent=2):
                         if not isinstance(content, Tag):
                             content.replace_with('')
                     element.append(truncated_text)
+    html_content = soup.prettify(formatter="html5")
+
+    # Convert the soup object to a list of lines
+    lines = str(html_content).split('\n')
+
+    # Process each line
+    for i in range(1, len(lines) - 1):  # Skip the first and last line
+        prev_line, current_line, next_line = lines[i - 1], lines[i], lines[i + 1]
+
+        # Check if the current line is a text line between two tags
+        if ('<' not in current_line) and ('>' not in current_line) and ('>' in prev_line) and ('<' in next_line):
+            # print (current_line)
+            # Current line is a text line
+            text = current_line.strip()
+            sentences = sent_tokenize(text)
+            if len(sentences) > max_sent:
+                truncated_text = ' '.join(sentences[ : (max_sent //2)])
+                lines[i] = truncated_text
+
+    # Reassemble the modified lines into HTML
+    modified_html = '\n'.join(lines)
+    soup = BeautifulSoup(modified_html, 'html.parser')
     
-    # Return the modified HTML as a string
     return soup.prettify(formatter="html5")
 
 def remove_unused_css(html_content):
@@ -298,6 +331,11 @@ def remove_unused_css(html_content):
     # Return the modified HTML content
     return soup.prettify(formatter="html5")
 
+def remove_import(html_content):
+    # Remove lines that start with "@import"
+    new_lines = [line for line in html_content.split("\n") if not line.strip().startswith("@import")]
+    return "\n".join(new_lines)
+
 def all_filters_train(html_content):
     html_content = html_validator(html_content)
     if not html_content:
@@ -335,7 +373,11 @@ def all_filters_test(html_content):
         return None
     if len(html_content.split("\n")) <= 40 or len(html_content.split("\n")) >= 10000:
         return None
+    
     try:
+        # print (len(html_content.split("\n")))
+        html_content = remove_import(html_content)
+        # print (len(html_content.split("\n")))
         html_content = remove_tags(html_content, tag="script")
         html_content = remove_tags(html_content, tag="audio")
         html_content = remove_tags(html_content, tag="video")
@@ -346,7 +388,15 @@ def all_filters_test(html_content):
         html_content = remove_embed_dependency(html_content)
         html_content = remove_link_tags(html_content)
         html_content = remove_href_links(html_content)
-        html_content, html_len = length_filter(html_content, max_token=100000)
+        html_content = remove_srcset_links(html_content)
+        html_content = item_truncation(html_content)
+        html_content = text_truncation(html_content)
+        # print (len(html_content.split("\n")))
+        html_content, html_len = length_filter(html_content, max_token=320000)
+        # print (len(html_content.split("\n")))
+        # print ("----------------")
+        # print (html_content)
+        
         if not html_content:
             return None
     except:
@@ -355,31 +405,56 @@ def all_filters_test(html_content):
     total_len += html_len
     return html_content
 
-global total_len 
-total_len = 0
-counter = 0
-all_url_dict = {}
 
-for idx in range(8):
-    print ("now processing: ", "/nlp/scr/clsi/c4-val-html-part{}".format(idx))
-    with open("/nlp/scr/clsi/Pix2Code/url_dict_part{}.json".format(idx), "r") as f:
-        url_dict = json.load(f)
-    for file in tqdm(os.listdir("/nlp/scr/clsi/c4-val-html-part{}".format(idx))):
-        full_path = os.path.join("/nlp/scr/clsi/c4-val-html-part{}".format(idx), file)
-        if os.path.isfile(full_path):
-            with open(full_path, "r", encoding="utf-8") as f:
-                url = url_dict[file]
-                html_content = f.read() 
-                html_content = all_filters_test(html_content)
-                if html_content:
-                    counter += 1
-                    with open("/juice2/scr2/nlp/pix2code/testset_filter_round1/{}.html".format(counter), "w+", encoding="utf-8") as f:
-                        f.write(html_content)
-                    all_url_dict["{}.html".format(counter)] = url
-                
-print ("total number of webpages: ", counter)
-print ("avg number of tokens: ", total_len / counter)
+if __name__ == "__main__":
+    global total_len 
+    total_len = 0
+    counter = 0
+    all_url_dict = {}
 
-with open("/juice2/scr2/nlp/pix2code/testset_filter_round1_url_dict.json", "w+") as f:
-    json.dump(all_url_dict, f, indent=4)
+    # for idx in range(8):
+    #     print ("now processing: ", "/nlp/scr/clsi/c4-val-html-part{}".format(idx))
+    #     with open("/nlp/scr/clsi/Pix2Code/url_dict_part{}.json".format(idx), "r") as f:
+    #         url_dict = json.load(f)
+
+    ## filtered set from round 1
+    with open("/juice2/scr2/nlp/pix2code/auto_filtered.json", "r") as f:
+        filtered_idx = json.load(f)
+    with open("/juice2/scr2/nlp/pix2code/auto_filtered_part2.json", "r") as f:
+        filtered_idx.extend(json.load(f))
+    
+    # print ("total number of webpages: ", len(filtered_idx))
+
+    for file in tqdm(filtered_idx):
+        if file.endswith(".html") and file in filtered_idx:
+            full_path = os.path.join("/juice2/scr2/nlp/pix2code/testset_filter_round1", file)
+            if os.path.isfile(full_path):
+                with open(full_path, "r", encoding="utf-8") as f:
+                    # url = url_dict[file]
+                    html_content = f.read() 
+                    # print (html_content)
+                    html_content = all_filters_test(html_content)
+                    if html_content:
+                        with open("/juice2/scr2/nlp/pix2code/testset_cleaned/{}".format(file), "w+", encoding="utf-8") as f:
+                            f.write(html_content)
+                        
+                        ## take screenshot and rescale 
+                        rescaled = rescale_filter("/juice2/scr2/nlp/pix2code/testset_cleaned", file)
+                        if not rescaled:
+                            ## if rescaled image doesn't pass filter, delete 
+                            # print ("filtered out because of size or color")
+                            os.remove("/juice2/scr2/nlp/pix2code/testset_cleaned/{}".format(file))
+                            os.remove("/juice2/scr2/nlp/pix2code/testset_cleaned/{}".format(file.replace(".html", ".png")))
+                        else:
+                            counter += 1
+
+                        # all_url_dict["{}.html".format(counter)] = url
+                    # else:
+                    #     print ("filtered out by length")
+                    
+    print ("total number of webpages: ", counter)
+    # print ("avg number of tokens: ", total_len / counter)
+
+    # with open("/juice2/scr2/nlp/pix2code/testset_filter_round1_url_dict.json", "w+") as f:
+    #     json.dump(all_url_dict, f, indent=4)
 
