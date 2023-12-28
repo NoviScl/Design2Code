@@ -6,8 +6,8 @@ with open("chenglei_filtered_idx.json") as f:
     filtered_idx = json.load(f)
 
 # Specify the source directory and destination directory
-source_dir = '/Users/clsi/Desktop/Pix2Code/testset_cleaned'
-dest_dir = '/Users/clsi/Desktop/Pix2Code/testset_final_part1'
+source_dir = '/Users/clsi/Desktop/Pix2Code/testset_cleaned_2'
+dest_dir = '/Users/clsi/Desktop/Pix2Code/testset_manual_filtered'
 
 # Ensure the destination directory exists, if not, create it
 if not os.path.exists(dest_dir):
@@ -22,3 +22,8 @@ for filename in filtered_idx:
         shutil.copy(html, dest_dir)
     if os.path.isfile(png):
         shutil.copy(png, dest_dir)
+
+
+print (len([name for name in os.listdir(dest_dir) if os.path.isfile(os.path.join(dest_dir, name)) and ".png" in name]))
+
+
