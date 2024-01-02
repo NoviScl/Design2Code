@@ -5,6 +5,8 @@ import os
 import json
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 def count_unique_tags(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -97,7 +99,55 @@ def size_buckets(data, k):
 
     return buckets
 
+if __name__ == "__main__":
+    all_tags = []
+    all_depth = []
+    all_nodes = []
 
+    dir = "testset_filtered_100"
+    for filename in os.listdir(dir):
+        if ".html" in filename:
+            full_path = os.path.join(dir, filename)
+            with open(full_path, "r", encoding="utf-8") as f:
+                html_content = f.read() 
+                tags = count_unique_tags(html_content)
+                depth = calculate_dom_depth(html_content)
+                nodes = count_total_nodes(html_content)
+
+                all_tags.append(tags)
+                all_depth.append(depth)
+                all_nodes.append(nodes)
+
+    k = 8
+    average, minimum, maximum, buckets = compute_stats_and_bucketize(all_nodes, k)
+    # Calculate the range for each bucket
+    range_size = (maximum - minimum) / k
+
+    # Counting the number of elements in each bucket and preparing labels
+    bucket_counts = []
+    labels = []
+    for i in range(k):
+        bucket_counts.append(len(buckets[i]))
+        lower_bound = minimum + i * range_size
+        upper_bound = lower_bound + range_size
+        labels.append(f"{lower_bound:.2f} - {upper_bound:.2f}")
+
+    # Creating the bar plot
+    plt.bar(labels, bucket_counts)
+
+    # Adding title and labels
+    plt.title("Total #Nodes in Each Bucket (N=100)")
+    plt.xlabel("Bucket Range")
+    plt.ylabel("Number of Elements")
+
+    # Displaying the plot
+    plt.xticks(rotation=15)  # Rotate labels for better readability
+    plt.show()
+
+
+
+
+'''
 unique_tags = {
     "easy": [],
     "hard": []
@@ -112,7 +162,7 @@ total_nodes = {
 }
 
 
-directory = "/juice2/scr2/nlp/pix2code/testset_copy"
+directory = "testset_manual_filtered"
 
 with open("/juice2/scr2/nlp/pix2code/auto_filtered.json", "r") as f:
     filtered = json.load(f)
@@ -158,5 +208,4 @@ test_set_split = {
 
 with open("test_set_split_pilot.json", "w+") as f:
     json.dump(test_set_split, f, indent=4)
-
-
+'''
