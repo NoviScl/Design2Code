@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="">
+ <head>
+  <style>
+   @charset "UTF-8";
+
+/*
+   css Copyright Â© 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License  - http://creativecommons.org/licenses/by-sa/2.5/
+   All associated graphics belong to their respective owners and are licensed separately.
+*/
+
+/* IE7 hacks */
+
+*:first-child+html .gridItem img {
+	position:relative;
+	top:0px;
+}
+
+*:first-child+html .gridItem h3 {
+	position:relative;
+	top:0px;
+}
+
+/* Navigation arrows */
+div.text-navigation { text-align:center; margin-bottom:1em;}
+div.text-navigation div { display:inline; margin:0px 0.5em; }
+.collection-navigation .disabled-navigation { text-indent:-5000px; }
+
+/* 2.0 wrap compatibility. 2.0-compatible designs can further adjust these if they need */
+.wide { display:block; }
+
+.narrow.left {   /* Some designs won't respect without !important */
+    float:left!important;
+    clear:left!important;
+}
+.narrow.right {
+    float:right!important;
+    clear:right!important;
+}
+
+.wide.left   .graphic, img.wide.left,   .wide.left video,   .wide.left audio   { display:block; margin-left:0px; margin-right:auto; }
+.wide.center .graphic, img.wide.center, .wide.center video, .wide.center audio { display:block; margin-left:auto; margin-right:auto; }
+.wide.right  .graphic, img.wide.right,  .wide.right video,  .wide.right audio  { display:block; margin-left:auto; margin-right:0px; }
+
+
+.ImageElement.left, .AudioElement.left { text-align:left; }
+.ImageElement.center, .AudioElement.center { text-align:center; }
+.ImageElement.right, .AudioElement.right { text-align:right; }
+
+/* Captions should align themselves with the graphic */
+.graphic-container.left .caption { text-align:left; }
+.graphic-container.center .caption { text-align:center; }
+.graphic-container.right .caption { text-align:right; }
+
+/* Inline iframes need to display as a block to layout right */
+.graphic iframe { display:block; }
+
+/* Pagelet photo grids should be generally be auto width (some 1.x designs hardcoded an exact width) */
+.pagelet .photogrid-index { width:auto; }
+
+/* For content like amazon which forces white background. Design SHOULD set color for A tag and text color. */
+.whiteBackground
+{
+	background-color:white;
+}
+
+.article-info
+{
+	margin-bottom:1em;
+}
+
+/* Firefox reduce dotted lines on links */
+.photo-navigation a:focus, .replaced a:focus {overflow:hidden;}
+
+/* Disqus correction to prevent overflow scroll bars in some designs */
+#dsq-content { overflow:hidden; }
+#dsq-content .dsq-auth-header { width: auto!important; }
+#dsq-content .dsq-by { margin: 4px 6px 0px 0px; }
+#dsq-content .dsq-by a, #dsq-content .dsq-by a:hover { border: 0px none; }
+#dsq-content h3 { margin:0px; }
+
+/* Site menus. Don't wrap the top level items, and wrap sub-menu items normaly. */
+#sitemenu-content ul li span.in { white-space:nowrap;}
+* html #sitemenu-content ul li span.in {white-space: normal}
+*:first-child+html #sitemenu-content ul li span.in {white-space: normal}
+#sitemenu-content ul ul li span.in {white-space: normal}
+#sitemenu-content span.in { position: relative; }
+
+body { word-wrap:break-word; }
+
+/* Make sure scaled-down images look good in IE */
+img { -ms-interpolation-mode: bicubic; }
+
+.photogrid-index-bottom { clear:left; }
+
+.HTMLElement { overflow:hidden; }
+
+/* 
+   css Copyright Â© 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License 
+        - http://creativecommons.org/licenses/by-sa/2.5/ 
+   All associated graphics belong to their respective owners 
+        and are licensed separately. 
+*/
+
+* { 
+	padding:0px;
+	margin:0px;
+}
+
+p { 
+	margin: 10px 0px;
+}
+
+h5, h6 {
+	font-size: 100%;
+}
+
+a img { border: none; }
+
+ /* General styles  */
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+.hidden  {
+    display:none;
+}
+
+ul, ol, dd {
+	margin-left:2em;
+}
+
+/* Images embedded in text.  "narrow" are 200 pixels wide or smaller. */
+.narrow {
+	display: block;
+	clear: right;
+    float:right;
+}
+img.wide {
+	display:block;
+	clear: both;
+}
+.narrow.left{
+	margin:5px 10px 5px 0;
+}
+.narrow.right{
+	margin:5px 0 5px 10px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(200,200,200);
+}
+
+a:hover, a:focus, a:active {
+    border-bottom: 1px solid black;
+    color: black;
+	background-color: #d4effe;
+}
+
+a.imageLink {
+	border:0px none;
+}
+
+
+/* Block Level formatting, more or less in descending order */
+
+body {
+	font-size: 76%;
+	font-family: Helvetica, Arial, sans-serif;
+	margin: 0;
+	background: #f4f4f4 none;
+	line-height: 1.4em;
+}
+
+#page {
+    margin: auto;
+    width: 771px;
+	background-image: none;
+}
+
+
+#page-top {
+    margin:0;
+    background: url(header_top.jpg) no-repeat transparent;
+}
+.no-page-title #page-top{ background:url(bkgd.png) repeat-y transparent;}
+
+#title {
+    padding: 13px 20px;
+    margin: 0;
+    overflow: auto;
+    text-align: center;
+	color: #19253b;
+	line-height: 40px;
+}
+
+h1 {
+    font-size: 2.9em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px;
+    margin-top: 22px;
+    margin-bottom: 15px;
+    display: block;
+	color: #19253b;
+	text-shadow: 0 2px 8px #FFF;
+
+}
+
+
+#title a {
+    text-decoration:none;
+    color: #19253b;
+    border: none !important;
+    text-shadow: 0 2px 8px #FFF;
+}
+
+#title a:hover, #title a:focus, #title a:active {
+	border: none !important;
+	background-color: transparent;
+	color: #000000;
+}
+
+#title img {
+    margin: 3px;
+    margin-top: 10px;
+    padding: 5px;
+    background: white;
+    margin-bottom: -8px;
+}
+
+#title p {
+    text-align: center;
+    margin: 20px 0px 14px;
+	color: #001b52;
+	font-style: oblique;
+	font-size: 1.2em;
+	line-height: 20px;
+}
+
+/* IE Hack */
+/* Hides from IE5-mac \*/
+* html #title p {
+    height: 1%;
+}
+/* End hide from IE5-mac */
+
+
+/* BANNER HANDLING */
+/*body.has-custom-banner #page-top {
+	background: url(bkgd.png) center top repeat-y;
+}*/
+
+body.has-custom-banner #title {
+/*	margin: 0px 15px;
+*/	background: url(banner_image.jpg) center top no-repeat;
+	min-height: 158px;
+/*	max-height: 274px;
+*/}
+
+* html body.has-custom-banner  #title {
+	margin-bottom: -15px;
+}
+
+body.has-custom-banner #title p {
+/*	text-shadow: #fff 0px 1px 3px;
+*/	font-weight: bold;
+}
+
+
+
+/* SITEMENU */
+#sitemenu-container {
+    clear:both;
+	background:url(menu_bkgd_bottom.png) repeat-y bottom center;
+    padding: 0px;
+}
+
+#sitemenu {
+    min-height: 35px;
+	background: url(menu_bkgd.png) no-repeat top center;
+}
+
+
+#sitemenu-content ul {
+    text-align: center;
+    padding: 10px 20px;
+    margin:0px;
+}
+
+#sitemenu-content li {
+    margin: 0px 0.5em;
+    display: inline;
+    line-height: 1.4em;
+}
+
+#sitemenu-content a {
+	text-decoration: none;
+	color: #474747;
+	border-width: 0;
+	margin-bottom: 3px;
+}
+
+#sitemenu-content span.in {
+	border-bottom: 2px solid transparent;
+}
+
+#sitemenu-content a:hover span.in, 
+#sitemenu-content a:focus span.in, 
+#sitemenu-content a:active span.in {
+	color: #000;
+	background-color: #fcfcfc;
+	border-bottom-color: #a6a6a6;
+}
+
+#sitemenu-content li.currentPage span.in {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+#sitemenu-content li.currentParent a span.in {
+	border-bottom-color: #999;
+}
+
+#sitemenu-content li.currentParent a:hover, 
+#sitemenu-content li.currentParent a:focus, 
+#sitemenu-content li.currentParent a:active {
+	color: #000;
+	border-bottom-color: #a6a6a6;
+}
+
+#sitemenu-content ul li ul {
+	box-shadow: 3px 2px 3px rgba(106,145,201,0.5);
+	-webkit-box-shadow: 3px 2px 3px rgba(106,145,201,0.5);
+	-moz-box-shadow: 3px 2px 3px rgba(106,145,201,0.5);
+}
+
+#sitemenu-content ul li ul a {
+	margin: 0px;
+}
+
+#sitemenu-content ul ul .currentPage,
+#sitemenu-content ul ul .currentParent > a > span.in {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#sitemenu-content ul ul .currentParent > a > span.in {
+	color: #999;
+}
+
+#sitemenu-content ul li ul li {
+	background: url(menu_bkgd_bottom.png) repeat-y bottom center;
+}
+
+#sitemenu-content ul li ul li span.in {
+	background: url(menu_bkgd.png) no-repeat top center;
+}
+
+
+
+#page-content {
+    width: 771px;
+    margin: auto;
+    clear: both;
+    overflow: hidden;
+	background: #f4f4f4 url(bkgd.png);
+	line-height: 20px;
+}
+
+/* Hides from IE5-mac \*/
+* html #page-content {
+    margin-top: -17px;
+    margin-left: 0px;
+}
+/* End hide from IE5-mac */
+
+body.no-sidebar #page-content {
+    width: 771px;
+}
+
+
+#sidebar {
+    float: left;
+    width: 210px;
+    font-size: 0.9em;
+    /*text-align: center;*/
+	padding: 2px;
+    margin-left: 20px;
+    margin-top: 10px;
+	background-color: #f4faff;
+	border-style: solid;
+	border-color: #c0d0de;
+	border-width: 1px;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html body.allow-sidebar #sidebar {
+    margin-left: 10px;
+}
+/* End hide from IE5-mac */
+
+
+#sidebar p {
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: left;
+}
+
+#sidebar ul, #sidebar ol, #sidebar dl, #sidebar table {
+	text-align:left;
+}
+
+
+.pagelet {
+	margin-top:1em;
+    width:210px;
+    overflow:hidden;
+}
+
+.pagelet.i1 {
+	margin-top:0px;
+}	
+
+
+.pagelet h4 {
+    font-weight: bold;
+    font-size: 1.4em;
+    text-align: center;
+    display: block;
+    border-bottom: 1px solid #d7d7d7;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    margin-top: 5px;
+	color: #6b6b6b;
+	}
+#sidebar .pagelet h4 {
+    text-align: left;
+   	padding-left:5px;
+}
+
+.blockquote-container>.pagelet-body, .blockquote-container>.graphic {
+	position: relative;
+	padding: 1px 20px 1px 30px;
+	background: -40px 0px no-repeat;
+	background-color: #eff4f8;
+	background-image: url(QuotationMarks-Cirrus.png);
+}
+
+.blockquote-container .pagelet-body:after, .blockquote-container .graphic:after {
+	display: block;
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	bottom: 0px;
+	right: 0px;
+	content: "";
+	background: transparent 35px 30px no-repeat;
+	background-image: url(QuotationMarks-Cirrus.png);
+} 
+
+.blockquote-container blockquote {
+	margin: 0px;
+	z-index: 100;
+	position: relative;
+	font-style: italic;
+}
+
+blockquote p {
+	margin: 10px 0px;
+}
+
+
+#main {
+    min-height: 190px;
+    margin-top: 0;
+    padding-bottom:24px;
+}
+
+/* photo-page, html-page (in some cases), iframe-page don't have sidebar */
+body.no-sidebar #main {
+    margin: 10px 20px 0px;
+}
+
+/* Most other pages have sidebars */
+body.allow-sidebar #main {
+    margin: 10px 20px 0px 0px;
+    float: right;
+    width: 508px;
+}
+* html  body.allow-sidebar #main {
+	width:475px;
+	margin-right:30px;
+}
+
+/* Hides from IE5-mac \*/
+* html  body.allow-sidebar #main {
+	width:482px;
+	margin-right:20px;
+}
+/* End hide from IE5-mac */
+
+
+h2 {
+    font-weight: normal;
+    border-bottom: 2px solid #c4d4e2;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.7em;
+    margin-top: 2px;
+    padding-bottom: 5px;
+    min-height:25px;
+}
+
+
+.has-photo-navigation h2 {
+	padding-right:104px;
+}
+
+.no-sidebar .has-photo-navigation h2 {
+	padding-left: 104px;
+}
+
+.article, .no-callouts {
+	margin:0px 10px 10px 10px!important;
+	clear: right;
+}
+
+.article h3 {
+     border-bottom: 1px solid #5c646b;
+     padding: 5px;
+     color: black;
+     font-weight: normal;
+     font-size: 1.3em;
+}
+
+.article img {
+    border: none;
+}
+
+.article .narrow{
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.article-info {
+	clear:right;
+}
+
+.article-thumbnail {
+    float: left;
+    margin: 5px 10px 5px 0;
+	clear:left;
+}
+
+.callout {
+    float: right;
+    width:200px;
+    margin: 0px 0px 10px 10px;
+    padding-left: 10px;
+    border-left: 1px solid rgb(200,200,200);
+}
+
+.callout h4 {
+    font-weight: normal !important;
+    font-size: 1.1em !important;
+}
+
+#page-bottom {
+	height:65px;
+    line-height:1.6em;
+    padding:14px 23px 0px 23px;
+    color: rgb(61, 61, 61);
+    text-align: center;
+    text-transform: uppercase;
+	overflow:hidden;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url(page_bottom.jpeg);
+	background-position: center bottom;
+	font-style: oblique;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html #page-bottom {
+	margin-top: -17px;
+}
+/* End hide from IE5-mac */
+
+
+#page-bottom div {
+	height:20px;
+	overflow:hidden;
+}
+#page-bottom p {
+	margin:0px;
+}
+
+div.photo-viewer-summary .article {
+    margin: auto;
+}
+
+.HTMLElement {
+    margin-bottom: 10px;
+}
+
+.ImageElement, .VideoElement {
+    text-align: center;
+    margin-top:20px;
+}
+
+.pagelet .ImageElement {
+	margin-top:6px;
+}
+
+.caption {
+    padding: 10px;
+}
+
+/* Used on Photo Grid Pages ... */
+.photogrid-index {
+    background: #f9f9f9;
+    text-align: center;
+    margin: 10px auto;
+    padding: 5px;
+    border: 1px solid #8ec1fe;
+    overflow: hidden;
+    width: 480px;
+}
+
+body.no-sidebar .photogrid-index {
+	width:640px;
+}
+
+
+.photogrid-index a {
+	color:#000;
+	text-decoration:none;
+	border:none;
+}
+
+.photogrid-index a:hover  {
+	text-decoration:underline;
+	border:none;
+}
+
+
+.gridItem {
+    float: left;
+    position:relative;
+    width:152px;
+    height:192px;	/* room for caption */
+    overflow: hidden;
+    margin: 3px;
+    padding-top: 10px;
+    border: 1px solid rgb(200,200,200);
+}
+
+.gridItem h3 {
+    font-size:1em;
+    font-weight:normal;
+    margin-top: 2px;
+    margin-left: 7px;
+    margin-right: 7px;
+    text-shadow: 0px 1px 1px white;
+    height: 50px;
+    overflow: hidden;
+    position:absolute;
+	top: 147px; /* needs to leave 38px from the bottom of the gridItem */
+	width: 136px;
+	line-height:16px;
+}
+.article .gridItem h3 {
+	margin:0 0 0 3px;
+}
+
+.gridItem img {
+    border: 1px solid rgb(80, 80, 80);
+    margin: auto;
+    display:block;
+    position: absolute;
+    top: 0;
+    bottom: 40px;
+    right: 0;
+    left: 0;
+}
+
+* html .photogrid-index {
+	overflow:visible;
+	margin-left:13px;
+}
+
+* html .no-sidebar .photogrid-index {
+	margin-left:35px;
+}
+
+* html .gridItem {
+	width:150px;
+}
+
+* html .gridItem img {
+	position: relative;
+	top:6px;
+}
+#sidebar .photogrid-index{
+	width:auto;
+	padding:10px 0 10px 15px;
+	margin:10px;
+}
+#sidebar .gridItem h3 {
+	height:48px;
+	font-size:12px;
+}
+
+
+
+/* IE Hack */
+/* Hides from IE5-mac \*/
+* html .gridItem h3 {
+	position: relative;
+	top: 8px;
+}
+/* End hide from IE5-mac */
+
+
+
+
+/* Used on index summary pages */
+.listing-index li h3 a {
+	text-decoration:none;
+	font-size:1em;
+	font-weight:normal;
+	border-style: none;
+}
+
+.listing-index ul li {
+	list-style: none;
+	font-size:0.9em;
+}
+
+/* Individual Photo Pages */
+
+.photo-navigation {
+    position: relative;
+    z-index: 100;
+    height:0px;
+}
+
+/* Hides from IE5-mac \*/
+* html .photo-navigation {
+    margin-top: 1px;
+}
+/* End hide from IE5-mac */
+
+.photo-navigation div {
+	text-indent: -5000em;
+    width: 25px;
+    height: 30px;
+    position: absolute;
+    margin-top: -35px;
+}
+
+.photo-navigation a {
+    display: block;
+    width:100%;
+    height:100%;
+}
+
+.photo-navigation a:active {
+    border: none !important;
+}
+
+#previous-photo	{
+    background: url(previous_disabled.jpg)		no-repeat;
+    left: 632px;
+}
+.allow-sidebar #previous-photo {
+	left:408px;
+}
+#previous-photo a {
+    background: url(previous_enabled.jpg)		no-repeat;
+}
+
+#next-photo {
+    background: url(next_disabled.jpg)		no-repeat;
+    left: 705px;
+}
+.allow-sidebar #next-photo {
+	left:480px;
+}
+#next-photo a {
+    background: url(next_enabled.jpg)		no-repeat;
+}
+
+#photo-list {
+    width: 38px;
+    background: url(index_disabled.jpg)		no-repeat;
+    left: 662px;
+}
+.allow-sidebar #photo-list {
+	left:438px;
+}
+#photo-list a {
+    background: url(index_enabled.jpg)		no-repeat;
+}
+.text-navigation #previous-photo, .text-navigation #next-photo, .text-navigation  #photo-list, .text-navigation a, .text-navigation a:hover{
+	background:none!important;
+	width:auto!important;
+}
+.article-info .timestamp, h3.index-title{ clear:left;}
+.no-page-title .photo-navigation {top:24px;}
+
+.callout-container, .graphic-container { clear:both; }
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <title>
+   Ice Fishing in Extreme Conditions - Part Two | Welcome to Dave Genz.com | Winter Fishing Systems
+  </title>
+  <meta content="Winter Fishing Systems" name="author">
+  <meta content="all" name="robots">
+  <meta content="Sandvox 2.10.12" name="generator">
+  <meta content="width=770" name="viewport">
+  <meta content="IYql1y3DxDj2XZ1Orviabl4jePIX_tQBHLpF4IwT68Y" name="google-site-verification">
+  <!--
+		Photo credits for this website's design: <http://davegenz.com/sandvox_Cirrus/Credits.rtf>
+		Licensing for this website's design:     <http://davegenz.com/sandvox_Cirrus/License.rtf>
+		-->
+ </head>
+ <body class="sandvox has-page-title allow-sidebar no-custom-banner has-text-navigation no-IR" id="davegenz_com__">
+  <div id="page-container">
+   <div id="page">
+    <div class="no-logo no-title has-tagline" id="page-top">
+     <div id="title">
+      <h1 class="title hidden">
+       <a>
+        Welcome to Dave Genz.com
+       </a>
+      </h1>
+      <p id="tagline">
+       <span class="in">
+        <span style="color: rgb(255, 255, 255); font-size: 36px; font-family: Futura; ">
+         The Home of Mr. Ice Fishing
+        </span>
+       </span>
+      </p>
+     </div>
+     <!-- title -->
+     <div id="sitemenu-container">
+      <div id="sitemenu">
+       <h2 class="hidden">
+        Site Navigation
+        <a rel="nofollow">
+         [Skip]
+        </a>
+       </h2>
+       <div id="sitemenu-content">
+        <ul>
+         <li class="i1 o">
+          <a title="Welcome to DaveGenz.com">
+           <span class="in">
+            Home
+           </span>
+          </a>
+         </li>
+         <li class="i2 e">
+          <a title="About">
+           <span class="in">
+            About
+           </span>
+          </a>
+         </li>
+         <li class="i3 o">
+          <a title="The System">
+           <span class="in">
+            The System
+           </span>
+          </a>
+         </li>
+         <li class="i4 e currentParent">
+          <a title="Articles and News">
+           <span class="in">
+            Articles and News
+           </span>
+          </a>
+         </li>
+        </ul>
+       </div>
+       <!-- /sitemenu-content -->
+      </div>
+      <!-- /sitemenu -->
+     </div>
+     <!-- sitemenu-container -->
+    </div>
+    <!-- page-top -->
+    <div class="clear below-page-top">
+    </div>
+    <div class="has-text-navigation" id="page-content">
+     <div id="sidebar-container">
+      <div id="sidebar">
+       <div id="sidebar-top">
+       </div>
+       <div id="sidebar-content">
+        <h3 class="hidden">
+         Sidebar
+         <a rel="nofollow">
+          [Skip]
+         </a>
+        </h3>
+        <div class="pagelet titled i1 o">
+         <h4 class="title pagelet-title">
+          <span class="in">
+           Up Coming Event
+          </span>
+         </h4>
+         <div class="pagelet-body">
+          <div class="RichTextElement">
+           <div>
+            <p>
+             On
+												 Saturday, March 23rd at 2pm, John Schaubach and I will 
+												be at the e-Bike Challenge at the Minneapolis Convention Center telling 
+												our story of how the experience and adventures of John&rsquo;s winter fat 
+												biking in Cuyuna Mountain Bike Trails led to the eventual use of a pedal assist fat bike for 
+												ice fishing. Come and check us out!
+            </p>
+            <p>
+             For tickets go to
+             <a rel="noopener nofollow" target="_blank">
+              http://ebikechallenge.com
+             </a>
+            </p>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i2 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink">
+              <img alt="Trap Grafic" height="107" src="rick.jpg" width="150">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i3 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink" target="_blank">
+              <img alt="clamlogo" height="49" src="rick.jpg" width="150">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i4 e">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink" target="_blank">
+              <img alt="New Vex Logo" height="118" src="rick.jpg" width="150">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i5 o">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink" target="_blank">
+              <img alt="IceTeamLogo sm" height="146" src="rick.jpg" width="150">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pagelet untitled i6 e last-item">
+         <div class="pagelet-body">
+          <div class="ImageElement">
+           <div class="photo">
+            <div>
+             <!-- sandvox.ImageElement -->
+             <a class="imageLink" target="_blank">
+              <img alt="IceArmor" height="43" src="rick.jpg" width="150">
+             </a>
+             <!-- /sandvox.ImageElement -->
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <!-- sidebar-content -->
+       <div id="sidebar-bottom">
+       </div>
+      </div>
+      <!-- sidebar -->
+     </div>
+     <!-- sidebar-container -->
+     <div id="main">
+      <div id="main-top">
+      </div>
+      <div id="main-content">
+       <h2 class="title">
+        <span class="in">
+         Ice Fishing in Extreme Conditions - Part Two
+         <br>
+        </span>
+       </h2>
+       <div class="collection-navigation text-navigation">
+        <div class="previous-page">
+         <a>
+          <span>
+           &laquo;
+          </span>
+          Ice Fishing in Extreme Conditions - Part One
+         </a>
+        </div>
+        <div class="collection-index">
+         <a>
+          Articles and News
+         </a>
+        </div>
+        <div class="next-page">
+         <a>
+          Icing April Walleyes
+          <span>
+           &raquo;
+          </span>
+         </a>
+        </div>
+       </div>
+       <div class="article">
+        <div class="article-content">
+         <div class="RichTextElement">
+          <div>
+           <p>
+            Part Two: Fishing Well When You Get There
+           </p>
+           <p>
+            By Dave Genz
+           </p>
+           <p>
+            Last time, we started going over a plan I use for fishing as well as possible when winter weather gets downright nasty. I suppose the definition might change depending on where you live, but everybody knows what you mean when you tell them it was &lsquo;brutal&rsquo; out there.
+           </p>
+           <p>
+            Just to review, I mentioned last time that this is probably not the day to tackle a new lake. If you can, go to a lake you know well, and go right to your best spot.
+           </p>
+           <p>
+            -When we fish together, we often split up and check completely different areas, touching base with radios or cell phones, depending on distance. But on a really cold day, we&rsquo;ll huddle together on the same spot, and leapfrog past one another as we look for active fish.
+           </p>
+           <p>
+            You decide ahead of time, for example, that you&rsquo;re going to check out a deep weed edge. You find the edge, and then decide which direction you&rsquo;re going to move.
+           </p>
+           <p>
+            After we leapfrog past each other and end up at the end, we can use one motorized transport to take us all back to the beginning. If we only have one &lsquo;machine&rsquo; out there, one person hops in it and moves it to the front of the leapfrog line when we get some distance from the starting point.
+           </p>
+           <p>
+            I mentioned this before, but it bears repeating: wear a windproof, waterproof outer layer of clothing. If the wind can&rsquo;t get at you, it&rsquo;s amazing how warm you stay.
+           </p>
+           <p>
+            Put your heater up on top of a bucket. This requires extreme attention to detail.
+           </p>
+           <p>
+            Take great care to keep your auger blades free of ice. There&rsquo;s no way you can drill a hole if you allow slush, snow and water to build up on the cutting surfaces.
+           </p>
+           <p>
+            I helped develop a new tool that StrikeMaster is going to make for next year that does a great job. It doesn&rsquo;t even have a name yet, but it&rsquo;s a tool that&rsquo;s a peening hammer on one side and a chisel on the other.
+           </p>
+           <p>
+            Having said all this, the best way to solve this problem is to prevent it. When you finish drilling, make a clean spot on the ice, or put the auger up on your tailgate, and set it down without ever letting it contact snow, slush or water.
+           </p>
+           <p>
+            When you&rsquo;re fishing, bank in your Fish Trap flaps. If the wind is flopping those flaps up and down, it&rsquo;s much colder in there and you don&rsquo;t have as much control over your presentation.
+           </p>
+           <p>
+            As you bank in, make good use of the auger slush. Put some on the flaps after you get inside.
+           </p>
+           <p>
+            Don&rsquo;t take batteries for granted. Make sure they&rsquo;re charged up, and keep them warm as long as you can before taking them out into the cold.
+           </p>
+           <p>
+            <br>
+           </p>
+           <p>
+            <span style="font-size: 9px; font-family: 'Lucida Grande'; ">
+             <strong>
+              First Published December 28th, 2005&nbsp;
+             </strong>
+            </span>
+           </p>
+          </div>
+         </div>
+        </div>
+        <!-- /article-content -->
+        <div class="article-info">
+        </div>
+        <!-- /article-info -->
+       </div>
+       <!-- /article -->
+      </div>
+      <!-- main-content -->
+      <div id="main-bottom">
+      </div>
+     </div>
+     <!-- main -->
+    </div>
+    <!-- content -->
+    <div class="clear below-content">
+    </div>
+    <div id="page-bottom">
+     <div id="page-bottom-contents">
+      <div>
+       &copy; Winter Fishing Systems, Inc 2019
+      </div>
+      <div class="hidden">
+       <a rel="nofollow">
+        [Back To Top]
+       </a>
+      </div>
+     </div>
+    </div>
+    <!-- page-bottom -->
+   </div>
+   <!-- container -->
+   <div id="extraDiv1">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv2">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv3">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv4">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv5">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv6">
+    <span>
+    </span>
+   </div>
+  </div>
+  <!-- specific body type -->
+ </body>
+</html>
