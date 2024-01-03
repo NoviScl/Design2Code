@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   @font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  src: url(http://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  src: url(http://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1x4gaVc.ttf) format('truetype');
+}
+
+
+
+.clearfix {display:inline-block; display:block} .clearfix:after {content:" "; display:block; height:0; clear:both; overflow:hidden; visibility:hidden}  a {text-decoration:none} a:hover {text-decoration:underline}  p, ul, ol, pre, h1, h2, h3, h4, h5, h6 {margin:0 0 1em 0} fieldset, img {border:0; padding:0; margin:0} .bodyHeader h1 {margin:0; display:inline}  small, .subText {color:#888} .disabled {color:#888; cursor:default} .disabled:hover {text-decoration:none} span.highlight {background:#fdef34; padding:1px 4px; border-radius:3px} .hasControls .controls {color:#888} .help {color:#888; line-height:1.5em}  .action {color:#888} .action .avatar {margin-right:3px} .action .name, .action a, .action strong {color:#444; font-weight:bold}  .bodyHeader {padding:15px 0 12px; margin-bottom:10px}  #hdr .popupWrapper {margin:-5px 0; display:inline-block} #hdr .popupButton:hover {text-decoration:none} #hdr #notifications {color:rgba(255, 255, 255, 0.3)} #hdr #notifications.new, #hdr .active .popupButton {background-color:#fff; border-bottom-color:transparent} #hdr #notifications.new, #hdr .active .popupButton, #hdr .active .popupButton i {color:#444 !important} #hdr .item-notifications {margin-right:-10px}  #loading {padding:5px 12px; position:fixed; top:0; left:50%; margin-left:-35px; text-align:center; width:70px; border-radius:0 0 3px 3px; background:#fff5a0; color:#a06a00; z-index:500} .loadingOverlay {background:#fff url(/forum/core/skin/loading.gif) no-repeat center 10px; z-index:250} .loading {background:url(/forum/core/skin/loading.gif) center 10px no-repeat; height:40px}  .area, .sheet {border-radius:3px; margin-bottom:30px; margin-top:0} .area h3 {font-size:110%}  .thing {border:1px solid #ddd; border-radius:3px; background:#fff; padding:1px; position:relative} .thing:before {border-color:#ddd} .thing:after {border-color:#fff}  .controls {list-style-type:none; padding:0; font-size:85%; white-space:nowrap} .controls > li {display:inline; margin-right:10px} .hasControls .controls {opacity:0; float:right; transition:opacity 0.1s linear} .hasControls:hover .controls, .edit .controls, .showControls .controls {opacity:1}  [class*=control-] {opacity:0.4; transition:opacity 0.05s linear; width:12px; height:12px; padding:6px; margin:-6px -1px; font-size:14px; text-decoration:none !important; color:#444 !important} [class*=control-]:hover {opacity:0.7} [class*=control-]:active {opacity:1}  .starButton {} .starButton:hover {text-decoration:none} .star {color:#fc0 !important; font-size:14px} .star.icon-star-empty {color:#ccc !important} .starButton:hover .star {color:#fc0 !important; text-decoration:none} .starButton:active .star {color:#da0 !important; text-decoration:none} .gambit-starred {color:#efcb00 !important}  .label {font-size:70%; font-weight:bold; white-space:nowrap; text-transform:uppercase} .label-locked, .gambit-locked {color:#555 !important} .label-muted, .gambit-muted {color:#aaa !important} .label-private, .gambit-private {color:#a43fe7 !important} .label-sticky, .gambit-sticky {color:#f90 !important} .label-draft, .gambit-draft {color:#0b2 !important} .labels .label {margin-right:3px} .label i {font-size:14px}  .online {width:9px; height:9px; font-size:9px !important; color:#81cb37 !important}  .avatar {width:64px; height:64px; border-radius:3px; background:#eee; text-align:center; font-size:30px; line-height:64px; color:#bbb; display:inline-block} .avatar.thumb {width:20px; height:20px; font-size:12px; line-height:20px; vertical-align:middle}  #messages {position:fixed; bottom:20px; left:20px; z-index:600} .message {max-width:700px; background:#eee; padding:10px 13px; line-height:1.5em; display:inline-block; margin-top:10px; border-radius:3px} .message .control-delete {float:right; margin-left:6px; margin-right:-6px; margin-top:-6px} .message a {color:#000} .message.hasIcon img {float:left; margin:-2px 8px -2px -3px} .message code {background:none} .message.warning {background-color:#fde; border:1px solid #ebb; color:#c00} .message.success {background-color:#cfd; border:1px solid #aeb; color:#050}  .messageLink {display:block; float:left; padding:8px 13px; margin:-7px 0 -7px -12px} .messageLink:hover {text-decoration:none; background:rgba(0, 0, 0, 0.1)}  .popup {text-shadow:none; background:#fff; color:#000; border:1px solid #666; border-bottom-width:2px; border-radius:2px; z-index:300} .popup h3 {margin:0; padding:10px} .withArrow.popup:before {border-color:#666} .withArrow.popup:after {border-color:#fff} .popupWrapper .popup {min-width:99%} .popup.right {border-radius:2px 0 2px 2px} .popup.left {border-radius:0 2px 2px 2px}  .popupMenu {list-style-type:none; padding:6px 0; margin:0} .popupMenu li > a, .popupMenu li > span {display:block; padding:3px 25px 3px 35px; overflow:hidden; white-space:nowrap} .popupMenu li > a {color:#444} .popupMenu li > span {color:#888 !important} .popupMenu li > a:hover, ul.popupMenu li.selected > a {text-decoration:none; background:#364159; color:#fff !important} .popupMenu li > a:hover *, ul.popupMenu li.selected > a * {color:#fff} .popupMenu li.sep {border-top:1px solid #ccc; margin:5px} .popupMenu li > a i, .popupMenu li > span i {margin-left:-23px; float:left; width:15px; text-align:right; line-height:20px; font-size:14px}  .popupButton {border:solid transparent; border-width:1px 1px 0} .popupWrapper.active .popupButton {border:1px solid #666; border-bottom-color:#fff !important; position:relative; z-index:301; border-radius:2px 2px 0 0 !important; background:#fff !important} .popupWrapper {display:inline-block}  .tooltip {color:#fff; background:#111; background:rgba(0, 0, 0, 0.9); padding:6px 10px 4px; display:block; border-radius:3px; font-size:85%; max-width:400px; line-height:1.5em; cursor:default; z-index:400; font-weight:normal} .withArrow.tooltip:before {display:none} .withArrow.tooltip:after {border-color:rgba(0, 0, 0, 0.9)}  .withArrow {overflow:visible !important} .withArrow:before, .withArrow:after {content:" "; border:6px solid transparent; height:0; width:0; position:absolute} .withArrowTop {margin-top:4px} .withArrowTop:before, .withArrowTop:after {border-top:0; border-left-color:transparent !important; border-right-color:transparent !important; left:8px; top:-6px} .withArrowTop:after {top:-5px} .withArrowTopRight:before, .withArrowTopRight:after {left:auto; right:8px} .withArrowBottom {margin:-4px 0 0 0} .withArrowBottom:before, .withArrowBottom:after {border-bottom:0; border-left-color:transparent !important; border-right-color:transparent !important; left:8px; bottom:-6px} .withArrowBottom:after {bottom:-5px}  .sheet {margin:30px auto; width:600px; padding:1px; border:1px solid #d5d5d5} .sheet.active {background:#fff; border-radius:3px; box-shadow:0 5px 20px rgba(0, 0, 0, 0.2); top:80px; margin:0; z-index:200} .sheetOverlay {background:rgba(255, 255, 255, 0.9); z-index:150; position:fixed; top:0; left:0; bottom:0; right:0} .sheet h3 {font-weight:normal; font-size:120%; margin-bottom:-1px !important; position:relative} .sheet .close {float:right; margin:5px 12px 0 0; position:relative; z-index:1} .sheet .section, .sheet h3, .sheet .buttons {padding:10px 15px; margin:0} .sheet .section {padding:15px} .sheet .buttons {overflow:hidden; margin-top:-1px; position:relative} .sheet .buttons .button {margin-left:10px; float:right} .sheet .buttons small {float:left; font-size:100%; margin:5px 0} .sheet .sheetBody {max-height:500px; overflow:auto} .scrollShadowTop {box-shadow:0 3px 3px rgba(0, 0, 0, 0.05)} .scrollShadowBottom {box-shadow:0 -3px 3px rgba(0, 0, 0, 0.05)}  .list {margin:0; border-bottom:1px solid #e1e1e1; line-height:1.5em; padding:0; list-style-type:none} .list > li {border:solid #e1e1e1; border-width:1px 0; padding:12px 0; margin:-1px 0} .list > li:hover {background-color:#f6f6f6} .list .controls {visibility:hidden} .list > li:hover .controls {visibility:visible} .popup .list > li:last-child {border-bottom:0}  .tabs {margin:0; padding:1px; line-height:1em; overflow:hidden} .tabs li {float:left; list-style-type:none; margin:4px 7px 4px 0} .tabs li > a, .tabs li > span {padding:5px 7px; white-space:nowrap; font-size:85%; display:block} .tabs li > a {color:#666; cursor:pointer; border-radius:3px} .tabs li > span {color:#888} .tabs li a:hover {border:1px solid #eee; margin:-1px; text-decoration:none} .tabs li.selected a {background-color:#fff; border:1px solid #d5d5d5; margin:-1px; color:#666} .tabs li > a i, .tabs li > span i {margin-right:5px; font-size:14px; width:14px; display:inline-block} .tabs.big {font-size:120%; border-bottom:1px solid #ddd; padding-bottom:5px} .tabs.big li a {padding:10px 13px}  .tabs .pathItem {margin-right:20px} .tabs .pathItem a {position:relative; float:left; padding-left:20px; margin-left:1px !important} .tabs .pathItem.selected a {border-radius:0} .tabs .pathItem a:first-child {padding-left:7px; border-radius:3px 0 0 3px} .tabs .pathItem.selected a:before, .tabs .pathItem.selected a:after {z-index:1; content:" "; border:13px solid transparent; height:0; width:0; right:-27px; top:-1px; position:absolute; border-left-color:#d5d5d5} .tabs .pathItem.selected a:after {float:left; border-left-color:#fff; right:-24px; border-width:12px; top:0} .tabs .pathEnd.selected a:last-child {border-radius:0 3px 3px 0} .tabs .pathEnd.selected a:only-child {border-radius:3px} .tabs .pathEnd.selected a:last-child:before, .tabs .pathEnd.selected a:last-child:after {display:none}  .channel {background:#fff; text-decoration:none; color:#666; text-shadow:none; border-radius:3px; font-size:85%; border:1px solid #ddd; white-space:nowrap; padding:2px 5px} a.channel:hover {text-decoration:none; border-color:#aaa}  .badge {background:#666; color:#fff; border-radius:10px; font-size:10px; padding:0 4px} .tabs li .badge {float:right} .tabs li.selected .badge {background:#000}  .search {float:right} .search .icon-search {float:left; width:18px; padding-left:7px; margin:7px 0 0; position:relative; color:#ddd; pointer-events:none} .search input.text {width:250px; padding-right:25px; padding-left:25px; margin-left:-25px; float:left; font-size:100%} .search .control-reset {float:left; margin-top:-1px; margin-left:-27px; margin-right:0} .search .popupButton {margin-left:10px; vertical-align:2px}  #notificationsPopup {width:450px; font-size:100%} #notificationsPopup ul {padding:0} #notificationsPopup .help {padding:10px} .notificationsList li {padding:0 !important; line-height:1.75em;} .notificationsList li > a {display:block; padding:7px 10px 7px 60px !important; white-space:normal} .notificationsList li > a:hover {text-decoration:none} .notificationsList li a .avatar {float:left; margin-left:-50px; width:40px; height:40px; line-height:40px; font-size:30px} .notificationsList li .star {vertical-align:-2px} .notificationsList li.unread {background-color:#ebf5fa} #memberContent .notificationsList li {padding:0} #memberContent .notificationsList li a:hover {text-decoration:none}  .channel-list i {font-size:14px; margin:0 !important} #conversationsFilter .channels {padding-left:130px} #conversationsFilter .channelListItem {margin-left:-129px} #conversationsFilter .pathItem {margin-left:-95px}  #channelList {margin-top:-11px} .channelList {background:#f5f5f5} .channelList > li {padding:10px; background:#fff} .channelList .channel {padding:3px 6px; font-size:85%; font-weight:bold;} .channelList .description {font-size:85%; margin-top:10px; color:#888; margin-bottom:0} .channelList .stats {font-size:85%; margin-left:10px; color:#888} .channelList .channelControls {float:right; margin:-3px 0} .channelList .unsubscribed {background:#f5f5f5} .channelList .unsubscribed .channel {opacity:0.75} .channelList .unsubscribed .description {color:#bbb} .channelList .button .text {display:none} .channelList .button {margin-left:5px} .channelList .depth0 {padding:15px 10px} .channelList .depth0 .channel, .channelList .depth0 .description {font-size:100%} .depth1 {margin-left:25px !important} .depth2 {margin-left:50px !important} .depth3 {margin-left:75px !important} .depth4 {margin-left:100px !important} .depth5 {margin-left:125px !important} .depth6 {margin-left:150px !important}  #changeChannelSheet {width:700px} #changeChannelSheet .section {padding:0} .changeChannelList {margin:-1px 0} .changeChannelList li {padding:5px 10px !important} .changeChannelList label {display:block; padding:10px} .changeChannelList .disabled {opacity:0.5} .changeChannelList .description {display:block}  #conversationsFilter {padding-bottom:25px} #conversationsFilter .search {margin-top:3px}  #gambits {display:none} #gambits.popup {width:300px; height:280px; overflow:auto !important; margin:0}  #conversations {margin-top:-11px} .conversationList li {overflow:hidden; padding-right:27em; padding-left:13em} .conversationList .title {font-weight:normal} .conversationList .title a {color:#000} .conversationList .unread .title a {font-weight:bold; color:#000} .conversationList .excerpt {color:#888; font-size:85%} .conversationList .justVisited {border-color:#aaa; border-style:dotted; position:relative} .conversationList .controls {margin-left:10px} .conversationList .controls a {margin-right:5px} .conversationList .action * {font-weight:normal} .conversationList .viewMore {padding:0} .conversationList .viewMore a {text-align:center; display:block; padding:8px}  .conversationList .col-conversation {width:95%; display:inline-block} .conversationList .col-star {float:left; width:1em; margin-left:-13em; padding-left:0.7em} .conversationList .col-channel {float:left; width:10em; margin-left:-11em; text-align:right} .conversationList .col-lastPost {float:right; width:23em; margin-right:-27em; font-size:85%; overflow:hidden; white-space:nowrap} .conversationList .col-replies {float:right; margin-right:-31em; width:4em; text-align:center; margin-bottom:-2px} .conversationList .col-replies span {font-size:20px; font-weight:300} .list .col-replies {color:#888; font-size:85%} .list .col-replies span i {font-size:14px; color:#ddd; margin-right:5px}  .conversationList .col-star {visibility:hidden} .conversationList .starred .col-star, .conversationList li:hover .col-star {visibility:visible}  .unreadIndicator {display:none; font-size:14px} .conversationList li.unread:hover .col-star .starButton {display:none} .conversationList li.unread:hover .unreadIndicator {display:block}  #conversationHeader {margin-bottom:0} #conversationHeader .star {vertical-align:-2px; margin-left:10px} #conversationHeader .channels {margin-left:15px; display:inline-block; margin-bottom:-13px} #conversationHeader > #control-changeChannel {font-size:85%} #conversationTitle {margin:0; line-height:1.4em} #conversationTitle input.text {font-weight:300} #conversationTitle a {cursor:text; padding:1px; color:#000; text-decoration:none} #conversationTitle a.editing, #conversationTitle a.editing:hover {padding:0; border:0} #conversationTitle a:hover {border:1px dotted #ccc; padding:0px}  #conversationControls.controls {margin:10px 0; float:right} #conversationHeader .popupWrapper {float:right; margin:0 0 0 10px}  #conversationPrivacy {margin:10px 0 40px; clear:both} #control-changeMembersAllowed {font-size:85%; margin-left:5px}  .allowedList {line-height:1em; font-size:100%; overflow:hidden} .allowedList .avatar {margin-right:0} .allowedList .avatars {margin:0 5px 5px 0} .allowedList .name img {margin-right:5px} .allowedList.editing .name, .allowedList.popup .name {display:block; margin-bottom:5px} .allowedList.editing .name {float:left; width:33%; overflow:hidden; white-space:nowrap} a.deleteLink:hover {color:#f00 !important; text-decoration:line-through} #addMemberForm .help {margin-left:10px} #addMemberForm .button {margin-left:5px} .allowedList.popup {padding:10px 40px 5px 10px}  #conversationBody {margin-top:20px; clear:both} #conversationReply {margin:60px 0 30px; clear:left}  .hasScrubber {margin-right:190px} .scrubberColumn {width:150px; float:right; margin-right:-190px; margin-top:15px;} .scrubberContent {width:150px; position:fixed; z-index:2} .scrubberContent .button {text-align:center; margin-bottom:10px; display:block} .scrubberContent .popupWrapper {display:block; margin-bottom:10px} .scrubberContent .popupWrapper .button {margin-bottom:0} .scrubberContent .search {float:none; margin-bottom:10px} .scrubberContent .search input {width:100%; box-sizing:border-box} .scrubber {margin:30px 0; padding:0; list-style-type:none} .scrubber > li {border-left:5px solid #eee; margin-bottom:2px} .scrubber > li:hover {border-left-color:#ddd} .scrubber > li a {color:#888} .scrubber > li > a {display:block; padding:5px 10px} .scrubber > li.selected {border-left-color:#ccc} .scrubber li.selected > a {font-weight:bold; color:#000} .scrubber > li i {color:#ddd; margin-left:-4px; margin-right:3px} .scrubber > li:hover i {color:#bbb} .scrubber li ul {display:none} .scrubber li.selected ul {display:block} .scrubber li ul {list-style-type:none; padding:0 0 0 15px; margin:0; font-size:85%} .scrubber li ul li.selected a {color:#000} .scrubber .scrubber-nav {border-left:0} .scrubber .scrubber-nav a {padding-left:0}  .scrubberMore {text-align:center; background:#f7f7f7; border:dotted #fff; border-width:2px 0; height:56px; line-height:56px; margin:35px 0} .scrubberMore a {display:block; color:#bbb; font-size:18px;} .scrubberMore.loading a {background:url(/forum/core/skin/loading.gif) no-repeat center center; text-indent:-9999px} .list .scrubberMore {border:0; padding:0} .list .scrubberMore:hover {background-color:transparent}  .postList, .activityList {list-style-type:none; margin:0; padding:0; position:relative} .timeMarker {padding:7px 13px; text-transform:uppercase; font-size:85%; letter-spacing:1px; background:#f7f7f7; color:#aaa; display:inline-block; clear:both; border-radius:3px; margin-bottom:15px} .post {margin-bottom:20px; padding-left:79px; padding-bottom:2px; position:relative} .post div.avatar {float:left; margin-left:-79px} .postContent:before, .postContent:after {content:" "; border-top-color:transparent !important; border-bottom-color:transparent !important; border-left-color:transparent !important; border-style:solid; border-width:8px; height:0; width:0; left:-16px; top:12px; position:absolute} .postContent:after {float:left; left:-15px} .highlight .postContent {box-shadow:0 0 0 2px #fe9} .postHeader {margin-bottom:2px; padding:10px 10px 10px 15px; overflow:hidden; color:#888} .postHeader h3 {display:inline; font-size:110%; margin:0} .postHeader h3, .postHeader h3 a {color:#000} .postHeader .info {display:inline} .postHeader .info > span, .postHeader .info > a {font-size:85%; margin-left:7px; color:#888} .postHeader .controls {float:right; margin-top:3px} .postBody {line-height:1.5em; overflow:auto; padding:0px 15px} .postBody img {vertical-align:bottom; max-width:100%} .postBody ul {list-style-type:disc} .deleted .postHeader {margin:0; padding:6px 5px 6px 12px} .deleted .postHeader * {color:#888} .deleted .controls {margin-top:1px} .deleted .thing {background:#f2f2f2; border:0} .deleted .thing:before, .deleted .thing:after {display:none}  .postBody h4 {margin:1.2em 0 0.8em; font-size:130%; font-weight:normal} blockquote {background:#f2f2f2; background:rgba(0, 0, 0, 0.05); margin:0 -15px 1em; padding:5px 7px 1px 36px; color:#555; position:relative} blockquote cite {display:inline; font-style:normal; font-weight:bold; margin-right:5px} blockquote cite a {color:#555} blockquote p {margin-bottom:0.5em} blockquote .postRef {float:left; margin:-3px 0 0 -30px; visibility:hidden} blockquote:hover .postRef {visibility:visible} blockquote:hover:before {display:none} blockquote.collapsed {max-height:100px; overflow:hidden; position:relative} blockquote.collapsed:after {content:" "; position:absolute; left:0; right:0; bottom:0; height:4px; background:rgba(0, 0, 0, 0.1)} blockquote a.expand {position:absolute; bottom:0; left:50%; margin-left:-13px; background:#ddd; padding:4px 10px; color:#888; border-radius:3px 3px 0 0; width:16px; text-align:center; font-size:14px; text-decoration:none; line-height:1em; z-index:2} blockquote a.expand:active {background:#ccc} pre, code, .fixed {font-family:monospace; font-size:80%; overflow-x:auto; white-space:pre-wrap; white-space:-moz-pre-wrap !important; white-space:-pre-wrap; white-space:-o-pre-wrap; word-wrap:break-word} pre {border:1px dashed #ccc; padding:7px} code {background:#eee} .link-external .icon-external-link {font-size:14px}  .post.edit .postBody {padding:0} .post.edit .controls {margin-top:0} .post .postBody textarea {height:25em; width:100%; border-style:dashed; border-width:1px 0; border-radius:0; resize:none; padding:12px; line-height:1.5em; outline:0; box-sizing:border-box; display:block} .post .postBody .preview {padding:0 12px} .post .editButtons {padding:7px; text-align:right; overflow:hidden; clear:both} .post .editButtons > .button {float:right; margin-left:7px} .post .editButtons .draftButtons {float:left} .post .previewCheckbox {margin:0 5px; white-space:nowrap}  .logInToReply .postContent {height:62px} .logInToReply .postHeader {display:none} .logInToReply .postBody {padding-top:8px; color:#888} .replyPlaceholder .postContent {height:62px; cursor:text} .replyPlaceholder .postBody, .replyPlaceholder .postHeader .controls, .replyPlaceholder .postFooter {display:none} .replyPlaceholder .postHeader h3 {color:#888; font-style:italic; font-weight:normal; font-size:100%}  #memberListFilter {overflow:hidden; margin-bottom:0} #memberListBody {margin-top:30px; min-height:550px} #memberListFilter h1 {float:left; margin-top:4px} #memberListFilter #memberListOrderBy {float:left; margin-left:20px} .letterScrubber > li > a {padding:0 8px; line-height:18px;} .memberList {border-bottom:0} .memberList strong a {color:#000} .memberList li div {display:inline-block} .memberList .col-member {width:55%} .memberList .col-member .group {font-size:85%} .memberList .col-lastActive {width:25%; font-size:85%} .memberList .col-replies {width:10%; padding:0} .memberList .avatar {margin-right:5px} .memberList .group, .memberList .controls, .memberList .online {margin-left:5px}  #memberProfile .avatar {float:left; margin-right:15px} #memberProfile .online {margin-left:5px; vertical-align:0} #memberInfo {float:left} #memberInfo h1 {margin:0 0 5px 0} #memberInfo p {margin:5px 0 0 0} #memberProfile .popupWrapper {float:right; margin:0 0 10px} #memberActions {clear:right; float:right; text-align:right; list-style-type:none; margin:0; padding:0} #memberActions li {margin-bottom:7px} #memberControls.controls {margin:10px 0 0} #memberPanes {margin:20px 0}  .activity {margin-bottom:30px} .activity .action {margin-bottom:5px} .activityBody {padding:10px 15px 1px; overflow:auto; max-height:100px; margin-left:26px} .activityBody p {margin-bottom:9px}  #memberStatistics label {width:200px} #memberStatistics div {font-size:14px}  .permissionsGrid {border-spacing:0; border:1px solid #ddd; border-radius:3px; border-bottom:0} .permissionsGrid th, .permissionsGrid td {border-bottom:1px solid #ddd; padding:7px 10px} .permissionsGrid th {text-align:left} .permissionsGrid td.yes {color:green} .permissionsGrid td.no {color:red} .permissionsGrid tbody td, .permissionsGrid thead th {width:3em; text-align:center} .permissionsGrid .group th {font-weight:normal; padding-left:30px} .sheet .permissionsGrid {width:100%}  #settings-general .label, #settings-general .star {margin-right:5px} .avatarChooser {padding-left:74px} .avatarChooser .avatar {float:left; margin-left:-74px} .avatarChooser small {display:block}  #loginSheet {width:470px} #loginSheet .link-forgot {margin-left:5px}  #joinSheet {width:500px}  #forgotPasswordSheet {width:450px}  #onlineSheet {width:500px} #onlineSheet #onlineList {padding:0} #onlineList ul {margin-top:-1px} #onlineList li {padding:7px 10px} #onlineList strong a {color:#000}  form {margin:0} input[type=checkbox], input[type=radio] {padding:0; margin:4px 2px 0 0; cursor:pointer; font-size:11px} .radio, .checkbox {padding-left:23px; display:block} .radio, .radio label, .checkbox, .checkbox label {cursor:pointer} .radio input[type=radio], .checkbox input[type=checkbox] {float:left; margin-left:-20px} input.error, input.error:focus {border-color:#f59e79 !important} .form div.error {color:#db3000; font-size:85%} .indent {margin-left:20px}  .form {margin:0; padding:0} .form > li {display:block; list-style:none; margin-bottom:7px; padding-left:150px; overflow:hidden} .form > li > label {line-height:1.8em; margin:0 10px 1px 0; width:140px; margin-left:-150px; float:left} .form > li > small {font-size:85%; margin:0 0 5px 0; padding:5px 10px; display:block; padding:0; background:none; border:0} .form > li.sep {border-top:1px solid #e5e5e5; border-bottom:1px solid #fff; margin:15px 0} .fieldGroup, .checkboxGroup {line-height:1.7em} .colorSwatch {display:inline-block; height:21px; width:21px; border-radius:3px; margin-right:5px; vertical-align:-8px; border:1px solid rgba(0, 0, 0, 0.2)} .form input[type=text], .form input[type=password], .form input[type=number], .form input[type=email], .form select, .form textarea, .form .input {margin:0 3px 3px 0; width:260px; font-size:110%; padding:5px} .form input.color {font-size:100%; padding:3px; width:60px}  .button {height:23px; cursor:pointer; padding:1px 10px 3px; border:1px solid #bbb; border-radius:3px; line-height:19px; margin:0} .button.big {height:26px; font-size:100%; padding:0 10px 2px; line-height:26px} .button i {margin:0 2px; font-size:14px; color:#666; line-height:12px} a.button {padding:5px 8px; height:auto; line-height:1em; display:inline-block} a.button:hover {text-decoration:none} .buttonGroup {padding-right:5px} .buttonGroup .button {margin-right:-5px; position:relative} .buttonGroup .button.disabled {position:static} .buttonGroup .button:not(:only-child) {border-radius:0} .buttonGroup .button:not(:only-child):first-child {border-radius:3px 0 0 3px} .buttonGroup .button:not(:only-child):last-child {border-radius:0 3px 3px 0}   @font-face { font-family: 'FontAwesome'; src: url('/forum/core/skin/font/fontawesome-webfont.eot?v=3.2.1'); src: url('/forum/core/skin/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('/forum/core/skin/font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('/forum/core/skin/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('/forum/core/skin/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg'); font-weight: normal; font-style: normal; }  [class^="icon-"], [class*=" icon-"] { font-family: FontAwesome; font-weight: normal; font-style: normal; text-decoration: inherit; -webkit-font-smoothing: antialiased; *margin-right: .3em; } [class^="icon-"]:before, [class*=" icon-"]:before { text-decoration: inherit; display: inline-block; speak: none; }  .icon-large:before { vertical-align: -10%; font-size: 1.3333333333333333em; }  a [class^="icon-"], a [class*=" icon-"] { display: inline; }  [class^="icon-"].icon-fixed-width, [class*=" icon-"].icon-fixed-width { display: inline-block; width: 1.1428571428571428em; text-align: right; padding-right: 0.2857142857142857em; } [class^="icon-"].icon-fixed-width.icon-large, [class*=" icon-"].icon-fixed-width.icon-large { width: 1.4285714285714286em; } .icons-ul { margin-left: 2.142857142857143em; list-style-type: none; } .icons-ul > li { position: relative; } .icons-ul .icon-li { position: absolute; left: -2.142857142857143em; width: 2.142857142857143em; text-align: center; line-height: inherit; } [class^="icon-"].hide, [class*=" icon-"].hide { display: none; } .icon-muted { color: #eeeeee; } .icon-light { color: #ffffff; } .icon-dark { color: #333333; } .icon-border { border: solid 1px #eeeeee; padding: .2em .25em .15em; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; } .icon-2x { font-size: 2em; } .icon-2x.icon-border { border-width: 2px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; } .icon-3x { font-size: 3em; } .icon-3x.icon-border { border-width: 3px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; } .icon-4x { font-size: 4em; } .icon-4x.icon-border { border-width: 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; } .icon-5x { font-size: 5em; } .icon-5x.icon-border { border-width: 5px; -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px; } .pull-right { float: right; } .pull-left { float: left; } [class^="icon-"].pull-left, [class*=" icon-"].pull-left { margin-right: .3em; } [class^="icon-"].pull-right, [class*=" icon-"].pull-right { margin-left: .3em; }   [class^="icon-"], [class*=" icon-"] { display: inline; width: auto; height: auto; line-height: normal; vertical-align: baseline; background-image: none; background-position: 0% 0%; background-repeat: repeat; margin-top: 0; }  .icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] { background-image: none; }  .btn [class^="icon-"].icon-large, .nav [class^="icon-"].icon-large, .btn [class*=" icon-"].icon-large, .nav [class*=" icon-"].icon-large { line-height: .9em; } .btn [class^="icon-"].icon-spin, .nav [class^="icon-"].icon-spin, .btn [class*=" icon-"].icon-spin, .nav [class*=" icon-"].icon-spin { display: inline-block; } .nav-tabs [class^="icon-"], .nav-pills [class^="icon-"], .nav-tabs [class*=" icon-"], .nav-pills [class*=" icon-"], .nav-tabs [class^="icon-"].icon-large, .nav-pills [class^="icon-"].icon-large, .nav-tabs [class*=" icon-"].icon-large, .nav-pills [class*=" icon-"].icon-large { line-height: .9em; } .btn [class^="icon-"].pull-left.icon-2x, .btn [class*=" icon-"].pull-left.icon-2x, .btn [class^="icon-"].pull-right.icon-2x, .btn [class*=" icon-"].pull-right.icon-2x { margin-top: .18em; } .btn [class^="icon-"].icon-spin.icon-large, .btn [class*=" icon-"].icon-spin.icon-large { line-height: .8em; } .btn.btn-small [class^="icon-"].pull-left.icon-2x, .btn.btn-small [class*=" icon-"].pull-left.icon-2x, .btn.btn-small [class^="icon-"].pull-right.icon-2x, .btn.btn-small [class*=" icon-"].pull-right.icon-2x { margin-top: .25em; } .btn.btn-large [class^="icon-"], .btn.btn-large [class*=" icon-"] { margin-top: 0; } .btn.btn-large [class^="icon-"].pull-left.icon-2x, .btn.btn-large [class*=" icon-"].pull-left.icon-2x, .btn.btn-large [class^="icon-"].pull-right.icon-2x, .btn.btn-large [class*=" icon-"].pull-right.icon-2x { margin-top: .05em; } .btn.btn-large [class^="icon-"].pull-left.icon-2x, .btn.btn-large [class*=" icon-"].pull-left.icon-2x { margin-right: .2em; } .btn.btn-large [class^="icon-"].pull-right.icon-2x, .btn.btn-large [class*=" icon-"].pull-right.icon-2x { margin-left: .2em; }  .nav-list [class^="icon-"], .nav-list [class*=" icon-"] { line-height: inherit; }   .icon-stack { position: relative; display: inline-block; width: 2em; height: 2em; line-height: 2em; vertical-align: -35%; } .icon-stack [class^="icon-"], .icon-stack [class*=" icon-"] { display: block; text-align: center; position: absolute; width: 100%; height: 100%; font-size: 1em; line-height: inherit; *line-height: 2em; } .icon-stack .icon-stack-base { font-size: 2em; *line-height: 1em; }  .icon-spin { display: inline-block; -moz-animation: spin 2s infinite linear; -o-animation: spin 2s infinite linear; -webkit-animation: spin 2s infinite linear; animation: spin 2s infinite linear; }  a .icon-stack, a .icon-spin { display: inline-block; text-decoration: none; } @-moz-keyframes spin { 0% { -moz-transform: rotate(0deg); } 100% { -moz-transform: rotate(359deg); } } @-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(359deg); } } @-o-keyframes spin { 0% { -o-transform: rotate(0deg); } 100% { -o-transform: rotate(359deg); } } @-ms-keyframes spin { 0% { -ms-transform: rotate(0deg); } 100% { -ms-transform: rotate(359deg); } } @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(359deg); } }  .icon-rotate-90:before { -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); } .icon-rotate-180:before { -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2); } .icon-rotate-270:before { -webkit-transform: rotate(270deg); -moz-transform: rotate(270deg); -ms-transform: rotate(270deg); -o-transform: rotate(270deg); transform: rotate(270deg); filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); } .icon-flip-horizontal:before { -webkit-transform: scale(-1, 1); -moz-transform: scale(-1, 1); -ms-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); } .icon-flip-vertical:before { -webkit-transform: scale(1, -1); -moz-transform: scale(1, -1); -ms-transform: scale(1, -1); -o-transform: scale(1, -1); transform: scale(1, -1); }  a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, a .icon-flip-horizontal:before, a .icon-flip-vertical:before { display: inline-block; }  .icon-glass:before { content: "\f000"; } .icon-music:before { content: "\f001"; } .icon-search:before { content: "\f002"; } .icon-envelope-alt:before { content: "\f003"; } .icon-heart:before { content: "\f004"; } .icon-star:before { content: "\f005"; } .icon-star-empty:before { content: "\f006"; } .icon-user:before { content: "\f007"; } .icon-film:before { content: "\f008"; } .icon-th-large:before { content: "\f009"; } .icon-th:before { content: "\f00a"; } .icon-th-list:before { content: "\f00b"; } .icon-ok:before { content: "\f00c"; } .icon-remove:before { content: "\f00d"; } .icon-zoom-in:before { content: "\f00e"; } .icon-zoom-out:before { content: "\f010"; } .icon-power-off:before, .icon-off:before { content: "\f011"; } .icon-signal:before { content: "\f012"; } .icon-gear:before, .icon-cog:before { content: "\f013"; } .icon-trash:before { content: "\f014"; } .icon-home:before { content: "\f015"; } .icon-file-alt:before { content: "\f016"; } .icon-time:before { content: "\f017"; } .icon-road:before { content: "\f018"; } .icon-download-alt:before { content: "\f019"; } .icon-download:before { content: "\f01a"; } .icon-upload:before { content: "\f01b"; } .icon-inbox:before { content: "\f01c"; } .icon-play-circle:before { content: "\f01d"; } .icon-rotate-right:before, .icon-repeat:before { content: "\f01e"; } .icon-refresh:before { content: "\f021"; } .icon-list-alt:before { content: "\f022"; } .icon-lock:before { content: "\f023"; } .icon-flag:before { content: "\f024"; } .icon-headphones:before { content: "\f025"; } .icon-volume-off:before { content: "\f026"; } .icon-volume-down:before { content: "\f027"; } .icon-volume-up:before { content: "\f028"; } .icon-qrcode:before { content: "\f029"; } .icon-barcode:before { content: "\f02a"; } .icon-tag:before { content: "\f02b"; } .icon-tags:before { content: "\f02c"; } .icon-book:before { content: "\f02d"; } .icon-bookmark:before { content: "\f02e"; } .icon-print:before { content: "\f02f"; } .icon-camera:before { content: "\f030"; } .icon-font:before { content: "\f031"; } .icon-bold:before { content: "\f032"; } .icon-italic:before { content: "\f033"; } .icon-text-height:before { content: "\f034"; } .icon-text-width:before { content: "\f035"; } .icon-align-left:before { content: "\f036"; } .icon-align-center:before { content: "\f037"; } .icon-align-right:before { content: "\f038"; } .icon-align-justify:before { content: "\f039"; } .icon-list:before { content: "\f03a"; } .icon-indent-left:before { content: "\f03b"; } .icon-indent-right:before { content: "\f03c"; } .icon-facetime-video:before { content: "\f03d"; } .icon-picture:before { content: "\f03e"; } .icon-pencil:before { content: "\f040"; } .icon-map-marker:before { content: "\f041"; } .icon-adjust:before { content: "\f042"; } .icon-tint:before { content: "\f043"; } .icon-edit:before { content: "\f044"; } .icon-share:before { content: "\f045"; } .icon-check:before { content: "\f046"; } .icon-move:before { content: "\f047"; } .icon-step-backward:before { content: "\f048"; } .icon-fast-backward:before { content: "\f049"; } .icon-backward:before { content: "\f04a"; } .icon-play:before { content: "\f04b"; } .icon-pause:before { content: "\f04c"; } .icon-stop:before { content: "\f04d"; } .icon-forward:before { content: "\f04e"; } .icon-fast-forward:before { content: "\f050"; } .icon-step-forward:before { content: "\f051"; } .icon-eject:before { content: "\f052"; } .icon-chevron-left:before { content: "\f053"; } .icon-chevron-right:before { content: "\f054"; } .icon-plus-sign:before { content: "\f055"; } .icon-minus-sign:before { content: "\f056"; } .icon-remove-sign:before { content: "\f057"; } .icon-ok-sign:before { content: "\f058"; } .icon-question-sign:before { content: "\f059"; } .icon-info-sign:before { content: "\f05a"; } .icon-screenshot:before { content: "\f05b"; } .icon-remove-circle:before { content: "\f05c"; } .icon-ok-circle:before { content: "\f05d"; } .icon-ban-circle:before { content: "\f05e"; } .icon-arrow-left:before { content: "\f060"; } .icon-arrow-right:before { content: "\f061"; } .icon-arrow-up:before { content: "\f062"; } .icon-arrow-down:before { content: "\f063"; } .icon-mail-forward:before, .icon-share-alt:before { content: "\f064"; } .icon-resize-full:before { content: "\f065"; } .icon-resize-small:before { content: "\f066"; } .icon-plus:before { content: "\f067"; } .icon-minus:before { content: "\f068"; } .icon-asterisk:before { content: "\f069"; } .icon-exclamation-sign:before { content: "\f06a"; } .icon-gift:before { content: "\f06b"; } .icon-leaf:before { content: "\f06c"; } .icon-fire:before { content: "\f06d"; } .icon-eye-open:before { content: "\f06e"; } .icon-eye-close:before { content: "\f070"; } .icon-warning-sign:before { content: "\f071"; } .icon-plane:before { content: "\f072"; } .icon-calendar:before { content: "\f073"; } .icon-random:before { content: "\f074"; } .icon-comment:before { content: "\f075"; } .icon-magnet:before { content: "\f076"; } .icon-chevron-up:before { content: "\f077"; } .icon-chevron-down:before { content: "\f078"; } .icon-retweet:before { content: "\f079"; } .icon-shopping-cart:before { content: "\f07a"; } .icon-folder-close:before { content: "\f07b"; } .icon-folder-open:before { content: "\f07c"; } .icon-resize-vertical:before { content: "\f07d"; } .icon-resize-horizontal:before { content: "\f07e"; } .icon-bar-chart:before { content: "\f080"; } .icon-twitter-sign:before { content: "\f081"; } .icon-facebook-sign:before { content: "\f082"; } .icon-camera-retro:before { content: "\f083"; } .icon-key:before { content: "\f084"; } .icon-gears:before, .icon-cogs:before { content: "\f085"; } .icon-comments:before { content: "\f086"; } .icon-thumbs-up-alt:before { content: "\f087"; } .icon-thumbs-down-alt:before { content: "\f088"; } .icon-star-half:before { content: "\f089"; } .icon-heart-empty:before { content: "\f08a"; } .icon-signout:before { content: "\f08b"; } .icon-linkedin-sign:before { content: "\f08c"; } .icon-pushpin:before { content: "\f08d"; } .icon-external-link:before { content: "\f08e"; } .icon-signin:before { content: "\f090"; } .icon-trophy:before { content: "\f091"; } .icon-github-sign:before { content: "\f092"; } .icon-upload-alt:before { content: "\f093"; } .icon-lemon:before { content: "\f094"; } .icon-phone:before { content: "\f095"; } .icon-unchecked:before, .icon-check-empty:before { content: "\f096"; } .icon-bookmark-empty:before { content: "\f097"; } .icon-phone-sign:before { content: "\f098"; } .icon-twitter:before { content: "\f099"; } .icon-facebook:before { content: "\f09a"; } .icon-github:before { content: "\f09b"; } .icon-unlock:before { content: "\f09c"; } .icon-credit-card:before { content: "\f09d"; } .icon-rss:before { content: "\f09e"; } .icon-hdd:before { content: "\f0a0"; } .icon-bullhorn:before { content: "\f0a1"; } .icon-bell:before { content: "\f0a2"; } .icon-certificate:before { content: "\f0a3"; } .icon-hand-right:before { content: "\f0a4"; } .icon-hand-left:before { content: "\f0a5"; } .icon-hand-up:before { content: "\f0a6"; } .icon-hand-down:before { content: "\f0a7"; } .icon-circle-arrow-left:before { content: "\f0a8"; } .icon-circle-arrow-right:before { content: "\f0a9"; } .icon-circle-arrow-up:before { content: "\f0aa"; } .icon-circle-arrow-down:before { content: "\f0ab"; } .icon-globe:before { content: "\f0ac"; } .icon-wrench:before { content: "\f0ad"; } .icon-tasks:before { content: "\f0ae"; } .icon-filter:before { content: "\f0b0"; } .icon-briefcase:before { content: "\f0b1"; } .icon-fullscreen:before { content: "\f0b2"; } .icon-group:before { content: "\f0c0"; } .icon-link:before { content: "\f0c1"; } .icon-cloud:before { content: "\f0c2"; } .icon-beaker:before { content: "\f0c3"; } .icon-cut:before { content: "\f0c4"; } .icon-copy:before { content: "\f0c5"; } .icon-paperclip:before, .icon-paper-clip:before { content: "\f0c6"; } .icon-save:before { content: "\f0c7"; } .icon-sign-blank:before { content: "\f0c8"; } .icon-reorder:before { content: "\f0c9"; } .icon-list-ul:before { content: "\f0ca"; } .icon-list-ol:before { content: "\f0cb"; } .icon-strikethrough:before { content: "\f0cc"; } .icon-underline:before { content: "\f0cd"; } .icon-table:before { content: "\f0ce"; } .icon-magic:before { content: "\f0d0"; } .icon-truck:before { content: "\f0d1"; } .icon-pinterest:before { content: "\f0d2"; } .icon-pinterest-sign:before { content: "\f0d3"; } .icon-google-plus-sign:before { content: "\f0d4"; } .icon-google-plus:before { content: "\f0d5"; } .icon-money:before { content: "\f0d6"; } .icon-caret-down:before { content: "\f0d7"; } .icon-caret-up:before { content: "\f0d8"; } .icon-caret-left:before { content: "\f0d9"; } .icon-caret-right:before { content: "\f0da"; } .icon-columns:before { content: "\f0db"; } .icon-sort:before { content: "\f0dc"; } .icon-sort-down:before { content: "\f0dd"; } .icon-sort-up:before { content: "\f0de"; } .icon-envelope:before { content: "\f0e0"; } .icon-linkedin:before { content: "\f0e1"; } .icon-rotate-left:before, .icon-undo:before { content: "\f0e2"; } .icon-legal:before { content: "\f0e3"; } .icon-dashboard:before { content: "\f0e4"; } .icon-comment-alt:before { content: "\f0e5"; } .icon-comments-alt:before { content: "\f0e6"; } .icon-bolt:before { content: "\f0e7"; } .icon-sitemap:before { content: "\f0e8"; } .icon-umbrella:before { content: "\f0e9"; } .icon-paste:before { content: "\f0ea"; } .icon-lightbulb:before { content: "\f0eb"; } .icon-exchange:before { content: "\f0ec"; } .icon-cloud-download:before { content: "\f0ed"; } .icon-cloud-upload:before { content: "\f0ee"; } .icon-user-md:before { content: "\f0f0"; } .icon-stethoscope:before { content: "\f0f1"; } .icon-suitcase:before { content: "\f0f2"; } .icon-bell-alt:before { content: "\f0f3"; } .icon-coffee:before { content: "\f0f4"; } .icon-food:before { content: "\f0f5"; } .icon-file-text-alt:before { content: "\f0f6"; } .icon-building:before { content: "\f0f7"; } .icon-hospital:before { content: "\f0f8"; } .icon-ambulance:before { content: "\f0f9"; } .icon-medkit:before { content: "\f0fa"; } .icon-fighter-jet:before { content: "\f0fb"; } .icon-beer:before { content: "\f0fc"; } .icon-h-sign:before { content: "\f0fd"; } .icon-plus-sign-alt:before { content: "\f0fe"; } .icon-double-angle-left:before { content: "\f100"; } .icon-double-angle-right:before { content: "\f101"; } .icon-double-angle-up:before { content: "\f102"; } .icon-double-angle-down:before { content: "\f103"; } .icon-angle-left:before { content: "\f104"; } .icon-angle-right:before { content: "\f105"; } .icon-angle-up:before { content: "\f106"; } .icon-angle-down:before { content: "\f107"; } .icon-desktop:before { content: "\f108"; } .icon-laptop:before { content: "\f109"; } .icon-tablet:before { content: "\f10a"; } .icon-mobile-phone:before { content: "\f10b"; } .icon-circle-blank:before { content: "\f10c"; } .icon-quote-left:before { content: "\f10d"; } .icon-quote-right:before { content: "\f10e"; } .icon-spinner:before { content: "\f110"; } .icon-circle:before { content: "\f111"; } .icon-mail-reply:before, .icon-reply:before { content: "\f112"; } .icon-github-alt:before { content: "\f113"; } .icon-folder-close-alt:before { content: "\f114"; } .icon-folder-open-alt:before { content: "\f115"; } .icon-expand-alt:before { content: "\f116"; } .icon-collapse-alt:before { content: "\f117"; } .icon-smile:before { content: "\f118"; } .icon-frown:before { content: "\f119"; } .icon-meh:before { content: "\f11a"; } .icon-gamepad:before { content: "\f11b"; } .icon-keyboard:before { content: "\f11c"; } .icon-flag-alt:before { content: "\f11d"; } .icon-flag-checkered:before { content: "\f11e"; } .icon-terminal:before { content: "\f120"; } .icon-code:before { content: "\f121"; } .icon-reply-all:before { content: "\f122"; } .icon-mail-reply-all:before { content: "\f122"; } .icon-star-half-full:before, .icon-star-half-empty:before { content: "\f123"; } .icon-location-arrow:before { content: "\f124"; } .icon-crop:before { content: "\f125"; } .icon-code-fork:before { content: "\f126"; } .icon-unlink:before { content: "\f127"; } .icon-question:before { content: "\f128"; } .icon-info:before { content: "\f129"; } .icon-exclamation:before { content: "\f12a"; } .icon-superscript:before { content: "\f12b"; } .icon-subscript:before { content: "\f12c"; } .icon-eraser:before { content: "\f12d"; } .icon-puzzle-piece:before { content: "\f12e"; } .icon-microphone:before { content: "\f130"; } .icon-microphone-off:before { content: "\f131"; } .icon-shield:before { content: "\f132"; } .icon-calendar-empty:before { content: "\f133"; } .icon-fire-extinguisher:before { content: "\f134"; } .icon-rocket:before { content: "\f135"; } .icon-maxcdn:before { content: "\f136"; } .icon-chevron-sign-left:before { content: "\f137"; } .icon-chevron-sign-right:before { content: "\f138"; } .icon-chevron-sign-up:before { content: "\f139"; } .icon-chevron-sign-down:before { content: "\f13a"; } .icon-html5:before { content: "\f13b"; } .icon-css3:before { content: "\f13c"; } .icon-anchor:before { content: "\f13d"; } .icon-unlock-alt:before { content: "\f13e"; } .icon-bullseye:before { content: "\f140"; } .icon-ellipsis-horizontal:before { content: "\f141"; } .icon-ellipsis-vertical:before { content: "\f142"; } .icon-rss-sign:before { content: "\f143"; } .icon-play-sign:before { content: "\f144"; } .icon-ticket:before { content: "\f145"; } .icon-minus-sign-alt:before { content: "\f146"; } .icon-check-minus:before { content: "\f147"; } .icon-level-up:before { content: "\f148"; } .icon-level-down:before { content: "\f149"; } .icon-check-sign:before { content: "\f14a"; } .icon-edit-sign:before { content: "\f14b"; } .icon-external-link-sign:before { content: "\f14c"; } .icon-share-sign:before { content: "\f14d"; } .icon-compass:before { content: "\f14e"; } .icon-collapse:before { content: "\f150"; } .icon-collapse-top:before { content: "\f151"; } .icon-expand:before { content: "\f152"; } .icon-euro:before, .icon-eur:before { content: "\f153"; } .icon-gbp:before { content: "\f154"; } .icon-dollar:before, .icon-usd:before { content: "\f155"; } .icon-rupee:before, .icon-inr:before { content: "\f156"; } .icon-yen:before, .icon-jpy:before { content: "\f157"; } .icon-renminbi:before, .icon-cny:before { content: "\f158"; } .icon-won:before, .icon-krw:before { content: "\f159"; } .icon-bitcoin:before, .icon-btc:before { content: "\f15a"; } .icon-file:before { content: "\f15b"; } .icon-file-text:before { content: "\f15c"; } .icon-sort-by-alphabet:before { content: "\f15d"; } .icon-sort-by-alphabet-alt:before { content: "\f15e"; } .icon-sort-by-attributes:before { content: "\f160"; } .icon-sort-by-attributes-alt:before { content: "\f161"; } .icon-sort-by-order:before { content: "\f162"; } .icon-sort-by-order-alt:before { content: "\f163"; } .icon-thumbs-up:before { content: "\f164"; } .icon-thumbs-down:before { content: "\f165"; } .icon-youtube-sign:before { content: "\f166"; } .icon-youtube:before { content: "\f167"; } .icon-xing:before { content: "\f168"; } .icon-xing-sign:before { content: "\f169"; } .icon-youtube-play:before { content: "\f16a"; } .icon-dropbox:before { content: "\f16b"; } .icon-stackexchange:before { content: "\f16c"; } .icon-instagram:before { content: "\f16d"; } .icon-flickr:before { content: "\f16e"; } .icon-adn:before { content: "\f170"; } .icon-bitbucket:before { content: "\f171"; } .icon-bitbucket-sign:before { content: "\f172"; } .icon-tumblr:before { content: "\f173"; } .icon-tumblr-sign:before { content: "\f174"; } .icon-long-arrow-down:before { content: "\f175"; } .icon-long-arrow-up:before { content: "\f176"; } .icon-long-arrow-left:before { content: "\f177"; } .icon-long-arrow-right:before { content: "\f178"; } .icon-apple:before { content: "\f179"; } .icon-windows:before { content: "\f17a"; } .icon-android:before { content: "\f17b"; } .icon-linux:before { content: "\f17c"; } .icon-dribbble:before { content: "\f17d"; } .icon-skype:before { content: "\f17e"; } .icon-foursquare:before { content: "\f180"; } .icon-trello:before { content: "\f181"; } .icon-female:before { content: "\f182"; } .icon-male:before { content: "\f183"; } .icon-gittip:before { content: "\f184"; } .icon-sun:before { content: "\f185"; } .icon-moon:before { content: "\f186"; } .icon-archive:before { content: "\f187"; } .icon-bug:before { content: "\f188"; } .icon-vk:before { content: "\f189"; } .icon-weibo:before { content: "\f18a"; } .icon-renren:before { content: "\f18b"; }   body {font-size:14px; font-weight:300; margin:0; overflow-y:scroll; background:#fff; color:#666} body, input, textarea, select {font-family:open sans,lucida grande,lucida sans unicode,helvetica,arial,sans-serif} input, textarea, select {font-size:100%} strong {font-weight:600}  a {text-decoration:none} a:hover {text-decoration:none; color:#000}  small {font-size:85%}  h1 {font-size:150%; font-weight:300} h2 {font-size:160%; font-weight:300} h3 {font-size:115%; font-weight:600} h4 {font-weight:600} p, ul, pre {line-height:1.6em} .bodyHeader h1 {line-height:1.5em}  .sheet h3 {font-weight:300} .sheet, .area {background:#fff}  .conversationList .title {font-weight:300; font-size:16px} .conversationList .unread .title a {font-weight:600} .conversationList .action * {font-weight:300}  .channelList .channel {font-weight:600}  .postHeader h3 {font-size:120%; font-weight:600} .postBody h4 {font-weight:300} .replyPlaceholder .postHeader h3 {font-weight:300} .postBody {line-height:1.75em; font-size:16px} .postBody a {font-weight:600}  .tabs.big li.selected a {color:#fff; border:0; padding:11px 14px}  .permissionsGrid .group th {font-weight:300} .action .name, .action a, .action strong {font-weight:600} .avatar {border-radius:32px} .scrubber li.selected > a {font-weight:600}  #hdr-content, #body-content, #ftr-content {margin:0 auto; min-width:760px; max-width:1100px; padding:0 30px} #body-content, #ftr-content {background-color:#fff} #body-content {padding-bottom:20px; padding-top:10px} #body {padding-top:60px}  .menu {font-size:95%; list-style-type:none; margin-top:0; margin-bottom:0; padding:0; line-height:1} .menu > li {display:inline-block}  #hdr {background:#fff; position:fixed; width:100%; z-index:100; border-bottom:1px solid} #hdr-inner {padding-right:580px; white-space:nowrap} #hdr h1 {display:inline-block; max-width:100%; font-size:20px; padding:14px 0; margin:0; font-weight:300; overflow:hidden; white-space:nowrap; text-overflow:ellipsis} #hdr h1 img {display:inline; vertical-align:-5px; margin-right:5px; border:0} #hdr h1 span {margin-left:10px} #backButton {float:left; margin-right:10px; margin-left:-30px; font-size:20px; line-height:20px; margin-top:17px; text-decoration:none} #mainMenu {margin-left:30px; display:inline; padding:18px 0} #userMenu {float:right; padding:18px 0; margin-right:-580px; margin-left:-18px;} #userMenu .item-user {font-weight:600} #userMenu .item-user .avatar {vertical-align:middle; margin:-5px 8px -5px 0} #userMenu.menu > li {margin-left:18px; text-align:left} #hdr .button {border-radius:4px; font-size:100%; padding:9px 12px; margin:-7px 0} #hdr #notifications {color:#ccc} #hdr #notifications.new {color:#fff !important}  #ftr {font-size:90%} #ftr-content {padding-top:20px; padding-bottom:20px} #ftr li {margin-right:10px} #ftr .item-copyright {float:right; margin:0}  input[type=text], input[type=password], input[type=number], input[type=email], textarea, .input {font-weight:300; background:#fff; border:1px solid; padding:5px; border-radius:3px; vertical-align:-1px; margin:0; -webkit-appearance:none} input[type=text]:focus, input[type=password]:focus, textarea:focus, input[type=number]:focus, input[type=email]:focus, .input:focus {outline:0}  .button {background:#f6f6f6; font-weight:600; border:1px solid transparent; margin-bottom:1px; white-space:nowrap; height:30px; font-size:90%; padding:0 10px 2px; line-height:30px; -webkit-appearance:none} .button.big {height:34px; font-size:90%; padding:0 10px 0; line-height:28px} .button:hover, .button:active {border-color:#ddd} .button:active {background-color:#ddd} .button.disabled {opacity:0.25; cursor:default; border-color:transparent !important} a.button {padding:8px 10px; height:auto; line-height:1em; display:inline-block} a.button.big {padding:10px; height:auto; line-height:1em} .button.submit {color:#fff} .button.submit:hover {border-color:#000; color:#fff} .buttonGroup .button {margin-right:-3px}  .conversationList .title a, .conversationList .unread .title a, .action .name, .action a, .action strong, .postHeader h3, .postHeader h3 a, .button, .button i, .button:hover, #hdr-inner > a, #hdr-inner > h1 a, #hdr-inner > ul > li > a, #hdr, .tabs li.selected a, .channelList .channel, #conversationTitle a, #pluginList > li, #skinList > li, #languageList > li, .memberList strong a, .scrubber li.selected > a, .scrubber li ul li.selected a, a { color:#515e85 } .tabs.big li.selected a, #hdr .active .popupButton, #hdr #notifications.new, .button.submit, .popupMenu li > a:hover, ul.popupMenu li.selected > a { background-color:#515e85 } .sheet.active, .popup, .popupWrapper.active .popupButton, input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, .input:focus, #hdr, .withArrow.popup:before, .scrubber > li.selected { border-color:#515e85 }  .tabs li > a, .channel, .list .col-replies, .list .col-replies a, .action, .timeMarker, .conversationList .excerpt, .postHeader .info > span, .postHeader .info > a, #ftr, #hdr h1 span, .channel { color:#999999 }  .channel, .list > li, .thing, .sheet, .sheet h3, .sheet .section, .sheet .buttons, input[type=text], input[type=password], input[type=number], input[type=email], textarea, .input, .tabs li.selected a, .tabs li a:hover, .tabs.big, #adminMenu li.separator { border-color:#eaeaea } .tabs .pathItem.selected a:before { border-left-color:#eaeaea } .button { background-color:#eaeaea }
+
+
+[class*=bbcode-] {margin:-6px -2px; display:inline-block} .emoticon {display:inline-block; text-indent:-9999px; width:16px; height:16px; background:url(/forum/addons/plugins/Emoticons/resources/emoticons.png); background-repeat:no-repeat}
+  </style>
+  <meta charset="utf-8">
+  <title>
+   Spawn Plane Radius Question - ALiVE Forum
+  </title>
+  <!-- This page was generated by esoTalk (http://esotalk.org) -->
+  <meta content="Good evening gents/ladies.  On the Virtual AI System module radius setting, this needs to be set in order to actually see anything on the ground right? If ..." name="description">
+  <style type="text/css">
+   .form > li.etphp1{display:none;}.form > li.etphp2,.form > li.etphp3{height:1px;}
+  </style>
+ </head>
+ <body class="">
+  <div id="messages">
+  </div>
+  <div id="wrapper">
+   <!-- HEADER -->
+   <div id="hdr">
+    <div id="hdr-content">
+     <div id="hdr-inner">
+      <h1 id="forumTitle">
+       <a>
+        <img alt="ALiVE Forum" height="40" src="rick.jpg" width="80">
+       </a>
+      </h1>
+      <ul class="menu" id="mainMenu">
+      </ul>
+      <ul class="menu" id="userMenu">
+       <li class="item-join">
+        <a class="link-join">
+         Sign Up
+        </a>
+       </li>
+       <li class="item-login">
+        <a class="link-login">
+         Log In
+        </a>
+       </li>
+       <li>
+        <a class="link-newConversation button">
+         New Conversation
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <!-- BODY -->
+   <div id="body">
+    <div id="body-content">
+     <div class="hasScrubber channel-4" id="conversation">
+      <div class="scrubberColumn">
+       <div class="scrubberContent">
+        <form action="/forum/4250-spawn-plane-radius-question" class="search" id="searchWithinConversation" method="get">
+         <fieldset>
+          <i class="icon-search">
+          </i>
+          <input class="text" name="search" placeholder="Search" type="text" value>
+         </fieldset>
+        </form>
+        <a class="button big">
+         <i class="icon-plus">
+         </i>
+         Post a Reply
+        </a>
+        <!-- Timeline scrubber -->
+        <ul class="scrubber timelineScrubber">
+         <li class="scrubber-op scrubber-nav" data-index="first">
+          <a>
+           <i class="icon-arrow-up">
+           </i>
+           Original Post
+          </a>
+         </li>
+         <li class="scrubber-201801 selected" data-index="201801">
+          <a>
+           2018
+          </a>
+          <ul>
+           <li class="scrubber-201809 selected" data-index="201809">
+            <a>
+             September
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li class="scrubber-now scrubber-nav" data-index="last">
+          <a>
+           <i class="icon-arrow-down">
+           </i>
+           Latest
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+      <!-- Conversation header -->
+      <div class="bodyHeader" id="conversationHeader">
+       <h1 id="conversationTitle">
+        Spawn Plane Radius Question
+       </h1>
+       <ul class="channels tabs">
+        <li class="pathItem selected pathEnd">
+         <a class="channel channel-4" data-channel="mission-makers" title="Support and discussion on using the ALiVE modules in your missions">
+          Mission Makers
+         </a>
+        </li>
+       </ul>
+       <span class="labels">
+       </span>
+      </div>
+      <div id="conversationBody">
+       <!-- Posts -->
+       <ol class="postList" id="conversationPosts" start="1">
+        <li data-index="201809">
+         <div class="timeMarker">
+          5 years ago
+         </div>
+         <div class="post hasControls group-member" data-id="25543" data-memberid="2161" id="p25543">
+          <div class="avatar">
+           <a>
+            <img alt class="avatar" src="rick.jpg">
+           </a>
+          </div>
+          <div class="postContent thing">
+           <div class="postHeader">
+            <div class="info">
+             <h3>
+              <a title="View Fletcher's profile">
+               Fletcher
+              </a>
+             </h3>
+             <a class="time" title="Tue Sep  4 04:32:11 2018">
+              4 Sep 2018
+             </a>
+             <span class="group">
+             </span>
+            </div>
+            <div class="controls">
+            </div>
+           </div>
+           <div class="postBody">
+            <p>
+             Good evening gents/ladies.
+            </p>
+            <p>
+             On the Virtual AI System module radius setting, this needs to be set in order to actually see anything on the ground right? If I'm doing a high altitude bomb run and use the camera to lock on to a target i'll need to have that radius set to the altitude I'm bombing from?
+            </p>
+            <p>
+             I was just wondering because if I set my plane radius to let's say 3000m and my jet goes mach 1 lol I'll see a fps drop like crazy because my system is trying to load all the objects popping up at one time.
+            </p>
+            <p>
+             Thanks for any info.
+            </p>
+           </div>
+          </div>
+         </div>
+        </li>
+        <li data-index="201809">
+         <div class="post hasControls group-member" data-id="25547" data-memberid="2377" id="p25547">
+          <div class="avatar">
+           <a>
+            <span class="avatar">
+             A
+            </span>
+           </a>
+          </div>
+          <div class="postContent thing">
+           <div class="postHeader">
+            <div class="info">
+             <h3>
+              <a title="View AngusDLX's profile">
+               AngusDLX
+              </a>
+             </h3>
+             <a class="time" title="Tue Sep  4 13:56:20 2018">
+              4 Sep 2018
+             </a>
+             <span class="group">
+             </span>
+            </div>
+            <div class="controls">
+            </div>
+           </div>
+           <div class="postBody">
+            <p>
+             The camera is not taken into account in the spawn radius but the aircraft.
+            </p>
+            <p>
+             I had terrible experiences playing with attack jeets on ALiVE precisely because of the spawn radius in airplanes. If you increase too much, spawn / despawn will actually cause fps dropl (not because of ALiVE but because of the amount of objects appearing and disappearing, especially in areas with many enemies).
+            </p>
+            <p>
+             My only way was to set the spawn radius at 200 (so the bots that are at an airport for example are visible) and use a drone to move to the attack area to spawn the targets. The problem is that sometimes the AR-2 Darter gets drunk (ArmaBUG) and takes too long to get to the destination or worse, is killed before arriving.
+            </p>
+            <p>
+             SpyderBlack gave some tips on how to replace this drone with an object that will call ALiVE_spawnSources and generate the spawn in a specific location but I could not get it to work.
+            </p>
+            <p>
+             One possibility could also be: Once the ALiVE generates an air-related task like CAS, SEAD for example, it creates an object using spawnSources and deletes it as soon as the object is destroyed. I do not know if it would be possible but it is a suggestion to the devs.
+            </p>
+            <p>
+             So players on planes can view and attack their targets at a safe distance without knocking down their own fps or everyone present. As I said, more than 1 plane on the server can create many problems when the spawn radius is high.
+            </p>
+           </div>
+          </div>
+         </div>
+        </li>
+        <li data-index="201809">
+         <div class="post hasControls group-member" data-id="25548" data-memberid="2161" id="p25548">
+          <div class="avatar">
+           <a>
+            <img alt class="avatar" src="rick.jpg">
+           </a>
+          </div>
+          <div class="postContent thing">
+           <div class="postHeader">
+            <div class="info">
+             <h3>
+              <a title="View Fletcher's profile">
+               Fletcher
+              </a>
+             </h3>
+             <a class="time" title="Tue Sep  4 15:08:44 2018">
+              4 Sep 2018
+             </a>
+             <span class="group">
+             </span>
+            </div>
+            <div class="controls">
+            </div>
+           </div>
+           <div class="postBody">
+            <p>
+             Oh ok thanks man!
+            </p>
+           </div>
+          </div>
+         </div>
+        </li>
+        <li data-index="201809">
+         <div class="post hasControls group-administrator" data-id="25558" data-memberid="7" id="p25558">
+          <div class="avatar">
+           <a>
+            <img alt class="avatar" src="rick.jpg">
+           </a>
+          </div>
+          <div class="postContent thing">
+           <div class="postHeader">
+            <div class="info">
+             <h3>
+              <a title="View Friznit's profile">
+               Friznit
+              </a>
+             </h3>
+             <a class="time" title="Wed Sep  5 18:25:15 2018">
+              5 Sep 2018
+             </a>
+             <span class="group">
+              <span class="group-administrator">
+               Administrator
+              </span>
+             </span>
+            </div>
+            <div class="controls">
+            </div>
+           </div>
+           <div class="postBody">
+            <p>
+             That's not a bad idea actually. We could potentially add a capability for players to place a "Target" marker over an intended objective which spawns an invisible object that calls ALiVE_spawnSources.
+            </p>
+           </div>
+          </div>
+         </div>
+        </li>
+       </ol>
+       <!-- Reply area -->
+       <div id="conversationReply">
+        <form action="/forum/conversation/reply/4250" enctype="multipart/form-data" method="post">
+         <input name="token" type="hidden" value="4e7fcf0c7b9c5">
+         <div class="post hasControls logInToReply" id="reply">
+          <div class="avatar">
+           <span class="avatar">
+            &nbsp;
+           </span>
+          </div>
+          <div class="postContent thing">
+           <div class="postHeader">
+            <div class="info">
+             <h3>
+             </h3>
+            </div>
+            <div class="controls">
+            </div>
+           </div>
+           <div class="postBody">
+            <a class="link-login">
+             Log In
+            </a>
+            or
+            <a class="link-join">
+             Sign Up
+            </a>
+            to reply!
+           </div>
+          </div>
+         </div>
+        </form>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- FOOTER -->
+   <div id="ftr">
+    <div id="ftr-content">
+     <ul class="menu">
+      <li id="goToTop">
+       <a>
+        Go to top
+       </a>
+      </li>
+      <li class="item-copyright">
+       <a target="_blank">
+        Powered by esoTalk
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <div id="loading" style="display: none;">
+   Loading...
+  </div>
+  <div class="popup withArrow withArrowTop allowedList action" id="membersAllowedTooltip" style="display: none;">
+   Loading...
+  </div>
+  <div class="popup autoCompletePopup" id="autoCompletePopup-undefined" style="display: none;">
+  </div>
+ </body>
+</html>

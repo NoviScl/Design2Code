@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   .litebox.overlay {
+	background: rgba(0, 0, 0, 0.96);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	box-sizing: border-box;
+	padding: 1em;
+}
+
+.litebox.overlay img {
+	flex-shrink: 1;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
+
+
+.gallery {
+	padding: 0.5rem;
+	
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.gallery figure {
+	margin: 1rem;
+	
+	background-color: rgb(250, 250, 250);
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+	
+	/* This ensures that our figures never grow bigger than desired. */
+	flex-basis: 400px;
+}
+
+.gallery figure a {
+	display: block;
+	margin: 0.5rem;
+}
+
+.gallery img {
+	border: none;
+	display: block;
+	
+	width: 100%;
+}
+
+.gallery figcaption {
+	display: block;
+	margin: 0.5rem;
+	
+	font-size: 1rem;
+	text-align: center;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	/* The figure caption should have a minimum height, if there are multiple
+	lines of caption, the total size of the figure is likely to be the same as
+	others. */
+	min-height: 4rem;
+}
+
+
+
+
+* {box-sizing: border-box;}
+
+html {
+	/* font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif; */
+	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
+	font-weight: lighter;
+	min-height: 100%;
+}
+
+html {
+	--main-color: #111;
+	--main-background-color: #fff;
+	
+	--header-color: #eee;
+	--underlay-color: #ddd;
+	
+	--accent-color: #0062b3;
+	--accent-hover-color: #33a3ff;
+	
+	--overlay-color: rgba(255, 255, 255, 0.9);
+	--underlay-color: rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		--main-color: #e1e1e1;
+		--main-background-color: #111;
+		
+		--header-color: #222;
+		--overlay-color: #333;
+		
+		--accent-color: #01b9ff;
+		--accent-hover-color: #80dcff;
+		
+		--overlay-color: rgba(0, 0, 0, 0.8);
+		--underlay-color: rgba(0, 0, 0, 1.0);
+		
+		background-color: black;
+	}
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	
+	color: var(--main-color);
+	background-color: var(--main-background-color);
+}
+
+/* Page Navigation Bar */
+
+nav {
+	position: relative;
+	white-space: nowrap;
+}
+
+nav ul.trail {
+	padding: 0;
+	margin: 0;
+}
+
+nav li {
+	display: inline-block;
+	list-style: none;
+}
+
+#header {
+	width: 100%;
+	
+	background: var(--header-color);
+	margin: 0;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	
+	text-align: center;
+}
+
+#header h1 {
+	margin: 1rem 2rem;
+}
+
+#header nav {
+	padding: 1rem;
+	width: 100%;
+	
+	background-color: inherit;
+	
+	z-index: 5;
+}
+
+#header.sticky nav {
+	position: fixed;
+	
+	left: 0; right: 0;
+	top: 0;
+}
+
+a {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--accent-hover-color);
+}
+
+main {
+	margin: auto;
+	max-width: 46rem;
+}
+
+p, ul, dl, figure {
+	margin: 2rem 1rem;
+}
+
+section.articles {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+section.articles a {
+	box-sizing: border-box;
+	-flex-basis: 20rem;
+	flex-grow: 1;
+	
+	margin: 1rem;
+	position: relative;
+	background-color: white;
+	
+	width: 15rem;
+	height: 15rem;
+	
+	background-size: cover;
+	background-position: center;
+	text-decoration: none;
+	
+	box-shadow: 0 0 0.5rem var(--underlay-color);
+	
+	overflow: hidden;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+section.articles a > * {
+	padding: 0.5rem;
+	background-color: var(--overlay-color);
+}
+
+section.articles small {
+	opacity: 0;
+	transition: 0.2s;
+	color: var(--main-color);
+}
+
+section.articles a:hover small {
+	opacity: 1;
+	display: block;
+}
+
+main {
+	margin-top: 4rem;
+}
+
+main > section, main > article, main > header {
+	margin-bottom: 4rem;
+}
+
+main header {
+	text-align: center;
+}
+
+main header span {
+	line-height: 2rem;
+	margin: 0 2rem;
+	white-space: nowrap;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+	padding: 1.25rem;
+}
+
+pre {
+	tab-size: 2;
+	-moz-tab-size: 2;
+	overflow: auto;
+	margin: 0;
+}
+
+pre, code {
+	/* Same size as paragraph and other normal text. */
+	font-size: 16px;
+}
+
+pre code {
+	display: block;
+}
+
+figure {
+	text-align: center;
+	padding: 0.2rem;
+}
+
+figure.diagram {
+	background-color: white;
+	border-radius: 1rem;
+}
+
+figure.listing {
+	text-align: left;
+}
+
+figure img {
+	max-width: 100%;
+}
+
+figure figcaption {
+	text-align: center;
+	color: #999;
+	
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	/* text-align: justify; */
+}
+
+ul ul {
+	margin: 0.5rem;
+}
+
+@media (min-width: 40em) {
+	pre {
+		tab-size: 4;
+		-moz-tab-size: 4;
+	}
+	
+	p {
+		text-align: left;
+	}
+}
+
+p.discussion {
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 1rem;
+	
+	border-radius: 1rem;
+}
+
+div.centered {
+	text-align: center;
+}
+
+main h1, main h2, main h3, main h4 {
+	font-weight: normal;
+	filter: brightness(150%);
+	
+	margin: 1rem 0.5rem 2rem;
+	/* This was added to fix linking to anchors with the fixed <nav>. Maybe in the future consider scroll-padding-top. */
+	padding-top: 5rem;
+	
+	letter-spacing: 0.12rem;
+}
+
+main h1 {
+	margin-top: 0;
+}
+
+main h2 + p, main h3 + p {
+	margin-top: 0;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+	padding: 1.25rem;
+}
+
+li {
+	margin: 0.25rem;
+}
+
+dl.basic dt {
+	text-decoration: underline;
+	padding-top: 0.25rem;
+}
+
+dl.basic dd {
+	padding: 0.25rem;
+}
+
+dl.basic dt {
+	margin-top: 1.5rem;
+}
+
+dl.options {
+	padding-top: 0.5rem;
+	margin: 0;
+	
+	/* background: rgba(230, 230, 230, 0.25);
+	border: 0.0625rem solid #ccc; */
+}
+
+dl.options dt {
+	opacity: 0.5;
+	
+	float: left;
+	clear: both;
+	
+	width: 30%;
+	text-align: right;
+	
+	padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+dl.options dd {
+	margin: 0 0 0.5rem 32%;
+	padding: 0 0.4rem;
+}
+
+dl.options dd + dd {
+	margin-top: 0.5rem;
+}
+
+dl.options dd.container {
+	border-left: 0.0625rem solid #ccc;
+}
+
+dl.options dd.container p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#entry {
+	padding-bottom: 5rem;
+}
+
+img {
+	border: none;
+}
+
+.diagram {
+	text-align: center;
+}
+
+table.basic {
+	border-collapse: collapse;
+	margin: auto;
+	width: 90%;
+}
+
+table th {
+	font-weight: inherit;
+}
+
+table.basic thead th, table.basic tfoot th {
+	font-family: "Lucida Grande", Sans-Serif;
+	font-size: 110%;
+	text-align: left;
+}
+
+table.basic thead th {
+	border-bottom: 0.125rem solid var(--accent-color);
+	padding: 0.625rem 0.5rem;
+}
+
+table.basic tfoot th {
+	border-bottom: 0.125rem solid var(--accent-color);
+	padding: 0.625rem 0.5rem;
+}
+
+table.basic tbody th,
+table.basic tbody td {
+	border: none;
+	padding: 0.5625rem 0.5rem 0rem 0.5rem;
+}
+
+table.basic tbody th {
+	text-align: left;
+	text-decoration: underline;
+	padding-top: 0.75rem;
+}
+
+table.data th {
+	background-color: var(--header-color);
+	padding: 0.25rem;
+}
+
+table.data {
+	background-color: var(--underlay-color);
+	
+	margin: auto;
+	text-align: center;
+}
+
+table.data td {
+	padding: 0.25rem;
+}
+
+form label {
+	display: block;
+	margin: 0.5rem 0;
+}
+
+button, input, textarea {
+	border-radius: 0.2rem;
+	border: 0.1rem solid;
+	
+	margin: 0.2rem 0.2rem;
+	padding: 0.2rem;
+}
+
+@media(prefers-color-scheme: dark) {
+	input[type=submit] {
+		background-color: #ccc;
+	}
+
+	input[type=submit]:active {
+		background-color: #aaa;
+		border-color: #666;
+	}
+
+	input, textarea {
+		background-color: #222;
+		color: #fff;
+		border-color: #444;
+	}
+
+	input[type=submit] {
+		border-color: #aaa;
+		background-color: #444;
+		color: #ccc;
+	}
+
+	input[type=submit]:active {
+		border-color: #444;
+		background-color: #222;
+		color: white;
+	}
+}
+
+form label input, form label textarea {
+	display: block;
+	margin: 0.5rem 0;
+	padding: 0.5rem;
+}
+
+form fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+form fieldset.footer {
+	text-align: right;
+}
+
+form#login fieldset input {
+	max-width: 6rem;
+}
+
+form.basic input:not([type=button]):not([type=reset]):not([type=submit]) {
+	width: 70%;
+}
+
+form.basic input:invalid,
+form.basic textarea:invalid {
+	border-color: red;
+}
+
+form.basic textarea {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+audio {
+	width: 100%;
+}
+
+.latex.inline {
+	padding: 0rem 0.3125rem 0rem;
+	vertical-align: middle;
+}
+
+/* Entry Footnotes */
+
+sup a {
+	text-decoration: none;
+}
+
+/* Google Maps */
+
+.google-map {
+	width: 50rem;
+	height: 37.5rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Blockquotes */
+
+blockquote {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.comment blockquote {
+	border-left: 0.2rem solid #888;
+}
+
+blockquote .spoken:before {
+	content: "â";
+}
+ 
+blockquote .spoken:after {
+	content: "â";
+}
+
+blockquote .spoken:first-letter {
+}
+
+blockquote .spoken {
+	font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+	
+	letter-spacing: 0.1rem;
+	text-align: center;
+	font-variant: small-caps;
+}
+
+blockquote > .written {
+	border-left: 2px solid blue;
+	padding-left: 1rem;
+}
+
+blockquote cite {
+	display: block;
+	font-style: normal;
+	text-align: right;
+	margin-top: 1rem;
+}
+
+blockquote cite:before {
+	content: " â ";
+}
+
+/* Features */
+
+ul.features {
+	list-style: none;
+}
+
+ul.features li {
+	background-image: url("/_static/plus.png");
+	padding-left: 2rem;
+	
+	background-repeat: no-repeat;
+	margin-bottom: 0.5rem;
+}
+
+/* Journal comments */
+
+section.comments h1 {
+	margin-top: 8rem;
+}
+
+section.comments .comment .byline {
+	padding: 0.5rem 0.25rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+section.comments .comment .byline .summary {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+section.comments .comment .byline .details {
+	display: flex;
+	justify-content: space-between;
+}
+
+section.comments .comment .moderation {
+	text-align: center;
+	padding: 1rem;
+}
+
+section.comments .comment .byline .tools {
+	text-align: right;
+	padding-bottom: 0.2rem;
+}
+
+section.comments .comment .byline .icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	
+	margin: 0 0.5rem 0 0;
+}
+
+section.comments .comment .byline .summary {
+	flex-grow: 1;
+}
+
+section.comments .comment .byline .posted_on {
+	color: #999;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+}
+
+section.comments .comment .body {
+	margin: 0.125rem;
+	border-top: 0.0625rem solid #ccc;
+}
+
+section.comments .comment pre {
+	margin: 1.0rem;
+}
+
+/* Journal navigation */
+
+.navigation {
+	clear: both;
+	
+	margin: 1rem 0 1rem 0;
+}
+
+.navigation .prev_link {
+	float: left;
+}
+
+.navigation .next_link {
+	float: right;
+}
+
+/* Translations header */
+
+li.locale {
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	padding-left: 1.25rem;
+}
+
+/* Make youtube videos retain their 16:9 aspect ratio as they scale */
+
+.youtube-wrapper {
+	position: relative;
+	
+	/* 16:9 aspect ratio */
+	padding-bottom: 56.25%;
+	
+	height: 0;
+	width 100%;
+}
+
+.youtube-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+section.sponsors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+section.sponsors a {
+	position: relative;
+	
+	margin: 1rem;
+	
+	width: 15rem;
+	height: 15rem;
+	
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	border-radius: 2rem;
+	
+	border: 1rem solid white;
+	background-color: white;
+	
+	box-shadow: 0 0 0.5rem var(--underlay-color);
+}
+  </style>
+  <meta content="website" property="og:type">
+  <title>
+   Scared By The Waves
+  </title>
+  <meta content="Scared By The Waves" property="og:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <!--
+		<content:env for="development">
+			<meta http-equiv="refresh" content="10"/>
+		</content:env>
+		-->
+  <link rel="prefetch">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <header id="header">
+   <h1>
+    Scared By The Waves
+   </h1>
+   <nav id="navigation">
+    <a class="link">
+     codeotaku
+    </a>
+    /
+    <a class="link">
+     Music
+    </a>
+    /
+    <a class="link">
+     The Space Between Here And There
+    </a>
+   </nav>
+  </header>
+  <p>
+   Clarity of the mind; takes time.
+  </p>
+  <p>
+   The ebony blackness of the sky draws me in. With experience comes pain and fear.
+  </p>
+  <p>
+   In this space; chaos and void coincided with my heart. Both a sense of belonging, and abandonment.
+  </p>
+  <p>
+   To move beyond this mindset, we can truly become clear of mind and vision. Life is too short to dwell on those things which are not possible.
+  </p>
+  <div style="text-align: center; padding: 2rem;">
+  </div>
+  <footer>
+   <a>
+    Contact Me
+   </a>
+   &mdash;
+   <a rel="author">
+    About Me
+   </a>
+   &mdash;
+			&copy; 2023 [NAME REDACTED].
+  </footer>
+ </body>
+</html>
