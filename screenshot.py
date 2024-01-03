@@ -23,4 +23,4 @@ def take_screenshot(url, output_file="screenshot.png"):
 #     take_screenshot("/Users/clsi/Desktop/Pix2Code/trial_dataset/" + "{}.html".format(name), "trial_dataset/" + "{}.png".format(name))
 
 if __name__ == "__main__":
-    take_screenshot("/juice2/scr2/nlp/pix2code/testset_filter_round1/" + "{}.html".format("1"), "/juice2/scr2/nlp/pix2code/testset_filter_round1/" + "{}.png".format("1"))
+    take_screenshot("testset_anonymized/" + "{}.html".format("1438"), "testset_anonymized/" + "{}.png".format("1438"))
