@@ -437,7 +437,7 @@ if __name__ == "__main__":
     # print ("total number of webpages: ", len(filtered_idx))
 
     for file in tqdm(filtered_idx):
-        if file.endswith(".html") and file in filtered_idx:
+        if file.endswith(".html") and int(file.replace(".html", "").strip()) > 5941:
             full_path = os.path.join("/juice2/scr2/nlp/pix2code/testset_filter_round1", file)
             if os.path.isfile(full_path):
                 with open(full_path, "r", encoding="utf-8") as f:
@@ -446,16 +446,16 @@ if __name__ == "__main__":
                     # print (html_content)
                     html_content = all_filters_test(html_content)
                     if html_content:
-                        with open("/juice2/scr2/nlp/pix2code/testset_cleaned/{}".format(file), "w+", encoding="utf-8") as f:
+                        with open("/juice2/scr2/nlp/pix2code/testset_cleaned_2/{}".format(file), "w+", encoding="utf-8") as f:
                             f.write(html_content)
                         
                         ## take screenshot and rescale 
-                        rescaled = rescale_filter("/juice2/scr2/nlp/pix2code/testset_cleaned", file)
+                        rescaled = rescale_filter("/juice2/scr2/nlp/pix2code/testset_cleaned_2", file)
                         if not rescaled:
                             ## if rescaled image doesn't pass filter, delete 
                             # print ("filtered out because of size or color")
-                            os.remove("/juice2/scr2/nlp/pix2code/testset_cleaned/{}".format(file))
-                            os.remove("/juice2/scr2/nlp/pix2code/testset_cleaned/{}".format(file.replace(".html", ".png")))
+                            os.remove("/juice2/scr2/nlp/pix2code/testset_cleaned_2/{}".format(file))
+                            os.remove("/juice2/scr2/nlp/pix2code/testset_cleaned_2/{}".format(file.replace(".html", ".png")))
                         else:
                             counter += 1
 
