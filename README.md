@@ -1,6 +1,19 @@
+# Pix2Code: Benchmarking Multimodal Code Generation
 
+## Data
 
+We have two versions of the test set: 
 
-The manually filtered test set: [https://drive.google.com/file/d/1BZFrwb6Q6gBAeo_RrvlCu6TH7kwnAPok/view?usp=sharing](https://drive.google.com/file/d/1BZFrwb6Q6gBAeo_RrvlCu6TH7kwnAPok/view?usp=sharing)
+1. The full test set can be downloaded from [this link](https://drive.google.com/file/d/1CuYfYorfhh-hGSFPH8sfrnWHfPyWPigr/view?usp=drive_link). It contains 777 examples. 
 
-The manually anonymized test set (N=777): [https://drive.google.com/file/d/1CuYfYorfhh-hGSFPH8sfrnWHfPyWPigr/view?usp=drive_link](https://drive.google.com/file/d/1CuYfYorfhh-hGSFPH8sfrnWHfPyWPigr/view?usp=drive_link)
+2. The mini version is a subset of 100 examples and can be loaded from the `testset_100` directory. Below is a snapshot of some examples. 
+
+![](examples.png)
+
+## Code Structure
+
+- `data_utils` contains the filtering and processing scripts to construct the test data from C4. 
+
+- `metrics` contains the metric scripts for the evaluation.
+
+- `prompting` contains the code for running all the prompting experiments, including the actual prompts used. 
