@@ -1,18 +1,12 @@
-import base64
 import requests
-import json
 import os
 from tqdm import tqdm
 from Pix2Code.data_utils.screenshot import take_screenshot
-
-# Function to encode the image
-def encode_image(image_path):
-	with open(image_path, "rb") as image_file:
-		return base64.b64encode(image_file.read()).decode('utf-8')
+from gpt4v_utils import cleanup_response, rescale_image_loader
 
 def gpt4v_call(api_key, image_path, prompt):
 	# Getting the base64 string
-	base64_image = encode_image(image_path)
+	base64_image = rescale_image_loader(image_path)
 
 	headers = {
 		"Content-Type": "application/json",
@@ -45,12 +39,8 @@ def gpt4v_call(api_key, image_path, prompt):
 	response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
 	response = response.json()
 	response = response["choices"][0]["message"]["content"].strip()
-	if response[ : 3] == "```":
-		response = response[3 :]
-	if response[-3 : ] == "```":
-		response = response[ : -3]
-	if response[ : 4] == "html":
-		response = response[4 : ]
+	
+	response = cleanup_response(response)
 
 	return response
 
@@ -68,10 +58,10 @@ if __name__ == "__main__":
 	for filename in tqdm(os.listdir(test_data_dir)):
 		if filename.endswith("2.png"):
 			## call GPT-4V
-			try:
-				html = gpt4v_call(api_key, os.path.join(test_data_dir, filename), prompt)
-				with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
-					f.write(html)
-				take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
-			except:
-				continue 
+			# try:
+			html = gpt4v_call(api_key, os.path.join(test_data_dir, filename), prompt)
+			with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+				f.write(html)
+			take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+			# except:
+			# 	continue 
