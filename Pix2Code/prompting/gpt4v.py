@@ -63,14 +63,15 @@ if __name__ == "__main__":
 	with open("gpt_4v_prompt.txt") as f:
 		prompt = f.read().strip()
 
-	# test_data_dir = "../testset_100"
-	# predictions_dir = "../predictions_100/gpt4v"
-	# for filename in tqdm(os.listdir(test_data_dir)):
-	# 	if filename.endswith(".png"):
-	# 		## call GPT-4-V
-	# 		try:
-	# 			html = gpt4v_call(api_key, os.path.join(test_data_dir, filename), prompt)
-	# 			with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
-	# 				f.write(html)
-	# 		except:
-				# continue 
+	test_data_dir = "../../testset_100"
+	predictions_dir = "../../predictions_100/gpt4v"
+	for filename in tqdm(os.listdir(test_data_dir)):
+		if filename.endswith("2.png"):
+			## call GPT-4V
+			try:
+				html = gpt4v_call(api_key, os.path.join(test_data_dir, filename), prompt)
+				with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+					f.write(html)
+				take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+			except:
+				continue 
