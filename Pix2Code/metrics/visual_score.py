@@ -7,15 +7,16 @@ import random
 import os
 from sklearn.metrics.pairwise import cosine_similarity
 from difflib import SequenceMatcher
+from tqdm import tqdm 
 
-import pytesseract
+# import pytesseract
 from PIL import Image, ImageDraw
 import torch
 import clip
 
 from ocr_free_utils import get_blocks_ocr_free
 
-pytesseract.pytesseract.tesseract_cmd = '/sailhome/clsi/bin/tesseract'
+# pytesseract.pytesseract.tesseract_cmd = '/sailhome/clsi/bin/tesseract'
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 
@@ -489,6 +490,8 @@ def visual_eval(gpt_img, original_img, print_all=False, ocr_free=True):
 
     cv2.imwrite(gpt_img.replace(".png", "_demo.png"), img1_with_boxes)
     cv2.imwrite(original_img.replace(".png", "_demo.png"), img2_with_boxes)
+    os.remove(gpt_img.replace(".png", "_demo.png"))
+    os.remove(original_img.replace(".png", "_demo.png"))
 
     if len(location_score) > 0:
         matched = len(location_score)
@@ -500,6 +503,18 @@ def visual_eval(gpt_img, original_img, print_all=False, ocr_free=True):
         return 0.0, None, None, None
 
 if __name__ == "__main__":
-    # check_match_images('trial_dataset/rick.jpg', 'syn_dataset/diyi_gpt4.png', True)
-   matched, loc_score, size_score, final_score = visual_eval('syn_dataset/diyi_gpt4.png', 'syn_dataset/diyi.png', True)
-   print (matched, loc_score, size_score, final_score)
+    reference_dir = "../../testset_100"
+    predictions_dir = "../../predictions_100/gpt4v"
+    all_scores = 0
+    counter = 0
+    for filename in tqdm(os.listdir(predictions_dir)):
+        if filename.endswith(".html"):
+            matched, loc_score, size_score, final_score = visual_eval(os.path.join(predictions_dir, filename.replace(".html", ".png")), os.path.join(reference_dir, filename.replace(".html", ".png")))
+            print (filename, matched, final_score)
+            all_scores += final_score
+            counter += 1
+    
+    print ("\n")
+    print ("avg score: ", all_scores / counter)
+    
+    

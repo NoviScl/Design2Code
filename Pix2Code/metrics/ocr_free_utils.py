@@ -123,7 +123,7 @@ def extract_text_with_color(html_file):
             return list(children_texts)
 
     with open(html_file, 'r', encoding='utf-8') as file:
-        soup = BeautifulSoup(file, 'lxml')
+        soup = BeautifulSoup(file, 'html.parser')
         body = soup.body
         return extract_text_recursive(body) if body else []
 
@@ -202,8 +202,8 @@ def get_blocks_ocr_free(image_path):
     process_html(html, p_html)
     process_html(html, p_html_1, offset=50)
 
-    os.system(f"python3 {Path(__file__).parent}/syn_dataset/screenshot_single.py --html {p_html} --png {p_png}")
-    os.system(f"python3 {Path(__file__).parent}/syn_dataset/screenshot_single.py --html {p_html_1} --png {p_png_1}")
+    os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {p_html} --png {p_png}")
+    os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {p_html_1} --png {p_png_1}")
 
     different_pixels = find_different_pixels(p_png, p_png_1)
     html_text_color_tree = flatten_tree(extract_text_with_color(p_html))
