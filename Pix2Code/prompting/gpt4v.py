@@ -3,25 +3,14 @@ import requests
 import json
 import os
 from tqdm import tqdm
-
-prompt = '''You are an expert web developer who specializes in HTML and CSS.
-A user will provide you with a screenshot of a webpage. 
-You will return a single html file that uses HTML and CSS to create a fully functional static website.
-Include any extra CSS in the HTML file itself.
-If it involves any images, use \"rick.jpg\" as the placeholder.
-Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.
-Do not hallucinate any dependencies to external files. You do not need to include JavaScript. scrips for dynamic interactions.
-Respond ONLY with the contents of the html file.'''
+from Pix2Code.data_utils.screenshot import take_screenshot
 
 # Function to encode the image
 def encode_image(image_path):
 	with open(image_path, "rb") as image_file:
 		return base64.b64encode(image_file.read()).decode('utf-8')
 
-# # Path to your image
-# image_path = "pilot_testset/11.png"
-
-def gpt4v_call(api_key, image_path):
+def gpt4v_call(api_key, image_path, prompt):
 	# Getting the base64 string
 	base64_image = encode_image(image_path)
 
@@ -67,15 +56,21 @@ def gpt4v_call(api_key, image_path):
 
 if __name__ == "__main__":
 	# OpenAI API Key
-	with open("api_key.txt") as f:
+	with open("../../api_key.txt") as f:
 		api_key = f.read().strip()
+	
+	## load the prompt 
+	with open("gpt_4v_prompt.txt") as f:
+		prompt = f.read().strip()
 
-	for filename in tqdm(os.listdir("pilot_testset")):
-		if filename.endswith(".png"):
-			## call GPT-4-V
-			try:
-				html = gpt4v_call(api_key, "pilot_testset/{}".format(filename))
-				with open("pilot_testset/gpt4v_{}".format(filename.replace(".png", ".html")), "w") as f:
-					f.write(html)
-			except:
-				continue 
+	# test_data_dir = "../testset_100"
+	# predictions_dir = "../predictions_100/gpt4v"
+	# for filename in tqdm(os.listdir(test_data_dir)):
+	# 	if filename.endswith(".png"):
+	# 		## call GPT-4-V
+	# 		try:
+	# 			html = gpt4v_call(api_key, os.path.join(test_data_dir, filename), prompt)
+	# 			with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+	# 				f.write(html)
+	# 		except:
+				# continue 
