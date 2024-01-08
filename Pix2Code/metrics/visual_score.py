@@ -574,10 +574,10 @@ def visual_eval_v1(gpt_img, original_img, print_all=False, ocr_free=True, debug=
     
         plt.figure(figsize=(20, 10))
         plt.subplot(1, 2, 1)
-        plt.imshow(img1_with_boxes)
+        plt.imshow(cv2.cvtColor(img1_with_boxes, cv2.COLOR_BGR2RGB))
         plt.axis('off')
         plt.subplot(1, 2, 2)
-        plt.imshow(img2_with_boxes)
+        plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
         plt.axis('off')
         plt.show()
 
