@@ -8,7 +8,7 @@ import os
 from sklearn.metrics.pairwise import cosine_similarity
 from difflib import SequenceMatcher
 from tqdm import tqdm 
-
+from pathlib import Path
 # import pytesseract
 from PIL import Image, ImageDraw
 import torch
@@ -483,15 +483,14 @@ def visual_eval(gpt_img, original_img, print_all=False, ocr_free=True):
         print_stat_geo(size_score)
     
 
+    """
+    # For Debugging: show matched blocks
     img1 = cv2.imread(gpt_img)
     img2 = cv2.imread(original_img)
-
     img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
-
     cv2.imwrite(gpt_img.replace(".png", "_demo.png"), img1_with_boxes)
     cv2.imwrite(original_img.replace(".png", "_demo.png"), img2_with_boxes)
-    os.remove(gpt_img.replace(".png", "_demo.png"))
-    os.remove(original_img.replace(".png", "_demo.png"))
+    """
 
     if len(location_score) > 0:
         matched = len(location_score)
@@ -502,14 +501,107 @@ def visual_eval(gpt_img, original_img, print_all=False, ocr_free=True):
     else:
         return 0.0, None, None, None
 
+
+def sum_of_area(blocks):
+    sum = 0
+    for block in blocks:
+        sum += block['bbox'][2] * block['bbox'][3]
+    return sum
+    
+def visual_eval_v1(gpt_img, original_img, print_all=False, ocr_free=True, debug=False):
+    """
+    gpt_img: file to image rendered by gpt gen code. Please place the html file with the same name in the same folder.
+    original_img: file to image rendered by the original code. Please place the html file with the same name in the same folder.
+    print_all: print matched information or not. Default to False.
+    ocr_free: using ocr free approach or not. Default to True.
+    """
+
+    if ocr_free:
+        gpt_html = gpt_img.replace(".png", ".html")
+        original_html = original_img.replace(".png", ".html")
+        os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {gpt_html} --png {gpt_img}")
+        os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {original_html} --png {original_img}")
+
+        blocks1 = get_blocks_ocr_free(gpt_img)
+        blocks2 = get_blocks_ocr_free(original_img)
+        consecutive_bonus, window_size = 0.1, 1
+    else:
+        blocks1 = get_ocr_blocks(gpt_img)
+        blocks2 = get_ocr_blocks(original_img)
+        consecutive_bonus, window_size = 0.25, 2
+
+        blocks1 = merge_blocks(blocks1)
+        blocks2 = merge_blocks(blocks2)
+
+    blocks1_area = sum_of_area(blocks1)
+    blocks2_area = sum_of_area(blocks2)
+    max_blocks_area = max(blocks1_area, blocks2_area)
+
+    matching = find_maximum_matching(blocks1, blocks2, consecutive_bonus, window_size)
+    matched_list = []
+    scores = []
+
+    for i, j in matching:
+        if debug:
+            # print(f"{blocks1[i]} matched with {blocks2[j]}")
+            # print(SequenceMatcher(None, blocks1[i]['text'], blocks2[j]['text']).ratio())
+            pass
+
+        min_block_area = min(blocks1[i]['bbox'][2] * blocks1[i]['bbox'][3], blocks2[j]['bbox'][2] * blocks2[j]['bbox'][3])
+        text_similarity = SequenceMatcher(None, blocks1[i]['text'], blocks2[j]['text']).ratio()
+        position_similarity = 1 - calculate_distance(blocks1[i]['bbox'][0] + blocks1[i]['bbox'][2] / 2, \
+                                                blocks1[i]['bbox'][1] + blocks1[i]['bbox'][3] / 2, \
+                                                blocks2[j]['bbox'][0] + blocks2[j]['bbox'][2] / 2, \
+                                                blocks2[j]['bbox'][1] + blocks2[j]['bbox'][3] / 2) / np.sqrt(2)
+        matched_list.append([blocks1[i]['bbox'], blocks2[j]['bbox']])
+
+        # validation check
+        if min(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2], blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]) == 0:
+            print(f"{blocks1[i]} matched with {blocks2[j]}")
+        assert calculate_ratio(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2]) > 0 and calculate_ratio(blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]) > 0, f"{blocks1[i]} matched with {blocks2[j]}"
+
+        scores.append(min_block_area * text_similarity * position_similarity / max_blocks_area)
+    
+    if print_all:
+        print(f"Matched: {len(location_score)}")
+        print("Score:")
+        print_stat(scores)
+
+    if debug:
+        img1 = cv2.imread(gpt_img)
+        img2 = cv2.imread(original_img)
+        img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
+    
+        plt.figure(figsize=(20, 10))
+        plt.subplot(1, 2, 1)
+        plt.imshow(img1_with_boxes)
+        plt.axis('off')
+        plt.subplot(1, 2, 2)
+        plt.imshow(img2_with_boxes)
+        plt.axis('off')
+        plt.show()
+
+    if len(scores) > 0:
+        matched = len(scores)
+        final_score = np.sum(scores)
+        return matched, final_score
+    else:
+        return 0.0, 0.0
+
+
 if __name__ == "__main__":
     reference_dir = "../../testset_100"
     predictions_dir = "../../predictions_100/gpt4v"
     all_scores = 0
     counter = 0
-    for filename in tqdm(os.listdir(predictions_dir)):
+
+    print("Visual Eval V1 applied!")
+    print("Last update: 01/08/24 -- Yanzhe")
+    
+    for filename in tqdm([item for item in os.listdir(predictions_dir) if item.endswith(".html")]):
         if filename.endswith(".html"):
-            matched, loc_score, size_score, final_score = visual_eval(os.path.join(predictions_dir, filename.replace(".html", ".png")), os.path.join(reference_dir, filename.replace(".html", ".png")))
+            # matched, loc_score, size_score, final_score = visual_eval(os.path.join(predictions_dir, filename.replace(".html", ".png")), os.path.join(reference_dir, filename.replace(".html", ".png")))
+            matched, final_score = visual_eval_v1(os.path.join(predictions_dir, filename.replace(".html", ".png")), os.path.join(reference_dir, filename.replace(".html", ".png")))
             print (filename, matched, final_score)
             all_scores += final_score
             counter += 1
