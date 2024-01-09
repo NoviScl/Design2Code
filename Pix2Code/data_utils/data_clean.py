@@ -378,7 +378,7 @@ def all_filters_train(html_content):
     
     return html_content
 
-def all_filters_test(html_content):
+def all_filters_test(html_content, count_total=True):
     global total_len
     html_content = html_validator(html_content)
     if not html_content:
@@ -412,8 +412,8 @@ def all_filters_test(html_content):
             return None
     except:
         return None
-    
-    total_len += html_len
+    if count_total:
+        total_len += html_len
     return html_content
 
 
