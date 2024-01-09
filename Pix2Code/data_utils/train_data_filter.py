@@ -17,8 +17,8 @@ with open(c4, 'r') as f:
 urls = list(set(urls))
 print ("total #urls: ", len(urls))
 
-if not os.path.exists("/juice2/scr2/nlp/pix2code/zyanzhe/c4-val-html-part{}".format(partition)):
-    os.makedirs("/juice2/scr2/nlp/pix2code/zyanzhe/c4-val-html-part{}".format(partition))
+if not os.path.exists("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-part{}".format(partition)):
+    os.makedirs("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-part{}".format(partition))
 
 counter = 1
 for i, url in tqdm(enumerate(urls), total=len(urls)):
@@ -27,7 +27,7 @@ for i, url in tqdm(enumerate(urls), total=len(urls)):
         html_content = all_filters_test(html_content, count_total=False)
         if html_content:
             try:
-                with open("/juice2/scr2/nlp/pix2code/zyanzhe/c4-val-html-part{}/{}.html".format(partition, counter), "w") as f:
+                with open("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-part{}/{}.html".format(partition, counter), "w") as f:
                     f.write(html_content)
                 counter += 1
             except:
