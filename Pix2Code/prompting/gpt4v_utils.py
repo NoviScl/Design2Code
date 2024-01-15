@@ -1,6 +1,8 @@
 import base64
 from PIL import Image
 import os
+from bs4 import BeautifulSoup
+
 
 def cleanup_response(response):
     ## simple post-processing
@@ -71,6 +73,7 @@ def rescale_image_loader(image_path):
         
         return base64_image
 
+
 def gpt_cost(model, usage):
     '''
     Example response from GPT-4V: {'id': 'chatcmpl-8h0SZYavv8pmLGp45y05VB6NgzHxN', 'object': 'chat.completion', 'created': 1705260563, 'model': 'gpt-4-1106-vision-preview', 'usage': {'prompt_tokens': 903, 'completion_tokens': 2, 'total_tokens': 905}, 'choices': [{'message': {'role': 'assistant', 'content': '```html'}, 'finish_reason': 'length', 'index': 0}]}
@@ -84,4 +87,42 @@ def gpt_cost(model, usage):
         print ("model not supported: ", model)
         return 0
 
-     
+
+def remove_css_from_html(html_content):
+    """
+    Removes all CSS (contents within <style> and </style> tags) from an HTML
+    webpage (provided as a string) and returns the modified HTML without CSS.
+
+    :param html_content: A string containing the HTML content.
+    :return: A string representing the HTML content without CSS.
+    """
+    # Using BeautifulSoup to parse the HTML content
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Finding and removing all <style> tags along with their contents
+    [style_tag.decompose() for style_tag in soup.find_all('style')]
+
+    return str(soup)
+
+
+def extract_text_from_html(html_content):
+    """
+    Extracts all text elements from an HTML webpage (provided as a string)
+    and returns a list of these text elements.
+
+    :param html_content: A string containing the HTML content.
+    :return: A list of strings, each representing a text element from the HTML content.
+    """
+    html_content_without_css = remove_css_from_html(html_content)
+    soup = BeautifulSoup(html_content_without_css, 'html.parser')
+
+    # Finding all text elements, excluding those within <script> tags
+    texts = [element.strip() for element in soup.find_all(string=True) if element.parent.name != 'script' and len(element.strip()) > 0 and element.strip() != 'html']
+
+    return texts
+
+if __name__ == "__main__":
+    test_data_dir = "../../testset_100"
+    with open(os.path.join(test_data_dir, "58.html"), "r") as f:
+        html_content = f.read()
+    print (extract_text_from_html(html_content))

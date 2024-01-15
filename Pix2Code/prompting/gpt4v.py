@@ -7,7 +7,6 @@ import json
 from openai import AzureOpenAI
 
 def gpt4v_call(openai_client, base64_image, prompt):
-	
 	response = openai_client.chat.completions.create(
 		model="gpt-4-vision-preview",
 		messages=[
@@ -48,6 +47,14 @@ def direct_prompting(direct_prompt, openai_client, image_file):
 	html, prompt_tokens, completion_tokens, cost = gpt4v_call(openai_client, base64_image, direct_prompt)
 
 	return html, prompt_tokens, completion_tokens, cost
+
+def text_augmented_prompting(text_augmented_prompt, openai_client, image_file):
+	## encode the image 
+	base64_image = encode_image(image_file)
+
+	## extract all texts from the webpage 
+
+	return 
 
 if __name__ == "__main__":
 	## track usage
