@@ -71,14 +71,13 @@ def rescale_image_loader(image_path):
         
         return base64_image
 
-def gpt_cost(model, response):
+def gpt_cost(model, usage):
     '''
     Example response from GPT-4V: {'id': 'chatcmpl-8h0SZYavv8pmLGp45y05VB6NgzHxN', 'object': 'chat.completion', 'created': 1705260563, 'model': 'gpt-4-1106-vision-preview', 'usage': {'prompt_tokens': 903, 'completion_tokens': 2, 'total_tokens': 905}, 'choices': [{'message': {'role': 'assistant', 'content': '```html'}, 'finish_reason': 'length', 'index': 0}]}
     '''
     if model == "gpt-4-vision-preview":
-        usage = response["usage"]
-        prompt_tokens = usage["prompt_tokens"]
-        completion_tokens = usage["completion_tokens"]
+        prompt_tokens = usage.prompt_tokens
+        completion_tokens = usage.completion_tokens
         cost = 0.01 * prompt_tokens / 1000 + 0.03 * completion_tokens / 1000
         return prompt_tokens, completion_tokens, cost 
     else:
