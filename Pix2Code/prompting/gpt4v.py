@@ -92,6 +92,10 @@ def text_augmented_prompting(openai_client, image_file):
 	return html, prompt_tokens, completion_tokens, cost
 
 if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--prompt_method', type=str, default='direct_prompting', help='prompting method to be chosen from {direct_prompting, text_augmented_prompting}')
+	args = parser.parse_args()
+
 	## track usage
 	if os.path.exists("usage.json"):
 		with open("usage.json", 'r') as f:
@@ -115,12 +119,18 @@ if __name__ == "__main__":
 	)
 
 	test_data_dir = "../../testset_100"
-	predictions_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
+	if args.prompt_method == "direct_prompting":
+		predictions_dir = "../../predictions_100/gpt4v_direct_prompting"
+	elif args.prompt_method == "text_augmented_prompting":
+		predictions_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
+	
 	for filename in tqdm(os.listdir(test_data_dir)):
-		if filename.endswith("2.png"):
+		if filename.endswith("5.png"):
 			try:
-				# html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
-				html, prompt_tokens, completion_tokens, cost = text_augmented_prompting(openai_client, os.path.join(test_data_dir, filename))
+				if args.prompt_method == "direct_prompting":
+					html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
+				elif args.prompt_method == "text_augmented_prompting":
+					html, prompt_tokens, completion_tokens, cost = text_augmented_prompting(openai_client, os.path.join(test_data_dir, filename))
 				total_prompt_tokens += prompt_tokens
 				total_completion_tokens += completion_tokens
 				total_cost += cost
