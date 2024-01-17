@@ -2,6 +2,7 @@ import base64
 from PIL import Image
 import os
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 
 def cleanup_response(response):
@@ -122,7 +123,13 @@ def extract_text_from_html(html_content):
     return texts
 
 if __name__ == "__main__":
-    test_data_dir = "../../testset_100"
-    with open(os.path.join(test_data_dir, "58.html"), "r") as f:
-        html_content = f.read()
-    print (extract_text_from_html(html_content))
+    reference_dir = "../../testset_100"
+    predictions_dir = "../../predictions_100/gpt4v_direct_prompting"
+
+    for filename in [item for item in os.listdir(predictions_dir) if item.endswith("2.html")]:
+        if filename.endswith("2.html"):
+            with open(os.path.join(reference_dir, filename), "r") as f:
+                html_content = f.read()
+            print (filename)
+            print (extract_text_from_html(html_content))
+            print ("\n\n")
