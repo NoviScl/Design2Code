@@ -3,6 +3,7 @@ from PIL import Image
 import os
 from bs4 import BeautifulSoup
 from tqdm import tqdm
+import re
 
 
 def cleanup_response(response):
@@ -13,6 +14,11 @@ def cleanup_response(response):
         response = response[ : -3].strip()
     if response[ : 4] == "html":
         response = response[4 : ].strip()
+
+    ## strip anything before '<!DOCTYPE'
+    if '<!DOCTYPE' in response:
+        response = response.split('<!DOCTYPE', 1)[1]
+        response = '<!DOCTYPE' + response
 		
     ## strip anything after '</html>'
     if '</html>' in response:
@@ -84,6 +90,8 @@ def gpt_cost(model, usage):
         completion_tokens = usage.completion_tokens
         cost = 0.01 * prompt_tokens / 1000 + 0.03 * completion_tokens / 1000
         return prompt_tokens, completion_tokens, cost 
+    elif model == "gpt-4-1106-preview" or model == "gpt-4-1106":
+        return (0.01 * usage.prompt_tokens + 0.03 * usage.completion_tokens) / 1000.0
     else:
         print ("model not supported: ", model)
         return 0
@@ -105,6 +113,24 @@ def remove_css_from_html(html_content):
 
     return str(soup)
 
+def extract_css_from_html(html_content):
+    """
+    Extracts all CSS (contents within <style> and </style> tags) from an HTML
+    webpage (provided as a string) and returns the CSS content.
+
+    :param html_content: A string containing the HTML content.
+    :return: A string representing the extracted CSS content.
+    """
+    # Using BeautifulSoup to parse the HTML content
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Extracting the CSS content from all <style> tags
+    css_content = ''
+    for style_tag in soup.find_all('style'):
+        css_content += str(style_tag) + '\n'
+
+    return css_content
+
 
 def extract_text_from_html(html_content):
     """
@@ -122,14 +148,55 @@ def extract_text_from_html(html_content):
 
     return texts
 
+
+def replace_text_with_placeholder(html_content):
+    """
+    Replaces all text elements in an HTML webpage (provided as a string)
+    with the placeholder string "placeholder" and returns the modified HTML content.
+
+    :param html_content: A string containing the HTML content.
+    :return: A string, which is the modified HTML content with text elements replaced.
+    """
+    css = extract_css_from_html(html_content)
+    html_content_without_css = remove_css_from_html(html_content)
+    soup = BeautifulSoup(html_content_without_css, 'html.parser')
+
+    # Iterate over all text elements and replace their contents
+    for element in soup.find_all(string=True):
+        if element.parent.name != 'script' and len(element.strip()) > 0 and 'html' not in element.strip():
+            element.replace_with("placeholder")
+    
+    html_content = str(soup)
+    
+    ## insert back css 
+    head_tag = '<head>'
+    end_of_head_tag_index = html_content.find(head_tag)
+
+    # Calculate the position to insert the CSS (after the <head> tag)
+    insert_position = end_of_head_tag_index + len(head_tag)
+    # Insert the CSS string at the found position
+    html_content = html_content[:insert_position] + css + "\n" + html_content[insert_position:]
+
+    return html_content
+
+
 if __name__ == "__main__":
     reference_dir = "../../testset_100"
     predictions_dir = "../../predictions_100/gpt4v_direct_prompting"
 
-    for filename in [item for item in os.listdir(predictions_dir) if item.endswith("2.html")]:
-        if filename.endswith("2.html"):
-            with open(os.path.join(reference_dir, filename), "r") as f:
-                html_content = f.read()
-            print (filename)
-            print (extract_text_from_html(html_content))
-            print ("\n\n")
+    with open(os.path.join(reference_dir, "8915.html"), "r") as f:
+        html_content = f.read()
+    html = replace_text_with_placeholder(html_content)
+
+    with open(os.path.join(predictions_dir, "8915_temp.html"), "w") as f:
+        f.write(html)
+
+    # print (replace_text_with_placeholder(html_content))
+
+    # for filename in [item for item in os.listdir(predictions_dir) if item.endswith("2.html")]:
+    #     if filename.endswith("2.html"):
+    #         with open(os.path.join(reference_dir, filename), "r") as f:
+    #             html_content = f.read()
+    #         print (filename)
+    #         print (extract_text_from_html(html_content))
+    #         print ("\n\n")

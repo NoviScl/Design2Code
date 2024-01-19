@@ -4,7 +4,7 @@ from tqdm import tqdm
 from Pix2Code.data_utils.screenshot import take_screenshot
 from gpt4v_utils import cleanup_response, encode_image, gpt_cost, extract_text_from_html
 import json
-from openai import AzureOpenAI
+from openai import OpenAI, AzureOpenAI
 import argparse
 
 def gpt4v_call(openai_client, base64_image, prompt):
@@ -41,7 +41,27 @@ def gpt4v_call(openai_client, base64_image, prompt):
 
 	return response, prompt_tokens, completion_tokens, cost
 
+def gpt4_call(openai_client, prompt, model="gpt-4-1106", temperature=0., max_tokens=4000, json_output=False):
+	prompt_messages = [{"role": "user", "content": prompt}]
+	response_format = {"type": "json_object"} if json_output else {"type": "text"}
+	completion = openai_client.chat.completions.create(
+        model=model,
+        messages=prompt_messages,
+        temperature=temperature,
+        max_tokens=max_tokens,
+        response_format=response_format
+    )
+	cost = gpt_cost(model, completion.usage)
+	response = completion.choices[0].message.content.strip()
+	response = cleanup_response(response)
+    
+	return response, completion.usage.prompt_tokens, completion.usage.completion_tokens, cost
+
 def direct_prompting(openai_client, image_file):
+	'''
+	{original input image + prompt} -> {output html}
+	'''
+
 	## the prompt 
 	direct_prompt = ""
 	direct_prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
@@ -62,6 +82,10 @@ def direct_prompting(openai_client, image_file):
 	return html, prompt_tokens, completion_tokens, cost
 
 def text_augmented_prompting(openai_client, image_file):
+	'''
+	{original input image + extracted text + prompt} -> {output html}
+	'''
+
 	## encode the image 
 	base64_image = encode_image(image_file)
 
@@ -81,7 +105,7 @@ def text_augmented_prompting(openai_client, image_file):
 	text_augmented_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
 	text_augmented_prompt += "Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.\n"
 	text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
-	text_augmented_prompt += "Respond with the content of the HTML+CSS file:\n"
+	text_augmented_prompt += "Respond with the content of the HTML+CSS file (directly start with the code, do not add any additional explanation):\n"
 
 	## encode image 
 	base64_image = encode_image(image_file)
@@ -90,6 +114,51 @@ def text_augmented_prompting(openai_client, image_file):
 	html, prompt_tokens, completion_tokens, cost = gpt4v_call(openai_client, base64_image, text_augmented_prompt)
 
 	return html, prompt_tokens, completion_tokens, cost
+
+def text_revision_prompting(openai_client, input_html, original_html):
+	'''
+	TEXT ONLY
+	{initial output html + oracle extracted text} -> {revised output html}
+	'''
+	extracted_texts = extract_text_from_html(input_html)
+
+	prompt = ""
+	prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
+	prompt += "I have an HTML file for implementing a webpage but it is missing some elements. The current HTML implementation is:\n" + original_html + "\n\n"
+	prompt += "I provide you all the texts that I want to include in the webpage here:\n"
+	prompt += "\n".join(extracted_texts) + "\n\n"
+	prompt += "Please revise and extend the given HTML file to include all the texts (unless there are parts that can't fit into the webpage appropriately) in the correct places or edit existing parts if they differ from the texts I provided. Make sure the code is syntactically correct and can render into a well-formed webpage. (\"rick.jpg\" is the placeholder image file.) "
+	prompt += "Do not change the layout or style, just edit the content itself.\n"
+	prompt += "Respond with the content of the new revised and improved HTML file:\n"
+
+	response, prompt_tokens, completion_tokens, cost = gpt4_call(openai_client, prompt)
+
+	return response, prompt_tokens, completion_tokens, cost
+
+def visual_revision_prompting(openai_client, input_image_file, original_output_image):
+	'''
+	{input image + initial output image + initial output html + oracle extracted text} -> {revised output html}
+	'''
+
+	## encode the image 
+	input_image = encode_image(input_image_file)
+	original_output_image = encode_image(original_output_image)
+
+	## extract all texts from the webpage 
+	with open(input_image_file.replace(".png", ".html"), "r") as f:
+		html_content = f.read()
+	texts = "\n".join(extract_text_from_html(html_content))
+
+	prompt = ""
+	prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
+	prompt += "I have an HTML file for implementing a webpage but it is missing some elements. I have attached the screenshots of the reference webpage that I want to build as well as the rendered webpage of the current implementation.\n"
+	prompt += "I also provide you all the texts that I want to include in the webpage here:\n"
+	prompt += "\n".join(texts) + "\n\n"
+	prompt += "Please compare the two versions, and revise and extend the given HTML file to include all the texts (unless there are parts that can't fit into the webpage appropriately) in the correct places or edit existing parts if they differ from the texts I provided. Make sure the code is syntactically correct and can render into a well-formed webpage. (\"rick.jpg\" is the placeholder image file.) "
+	prompt += "Do not change the layout or style, just edit the content itself.\n"
+	prompt += "Respond with the content of the new revised and improved HTML file:\n"
+
+	return
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
@@ -118,28 +187,56 @@ if __name__ == "__main__":
 		azure_endpoint=api_key["salt_openai_endpoint"]
 	)
 
-	test_data_dir = "../../testset_100"
-	if args.prompt_method == "direct_prompting":
-		predictions_dir = "../../predictions_100/gpt4v_direct_prompting"
-	elif args.prompt_method == "text_augmented_prompting":
-		predictions_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
+	# test_data_dir = "../../testset_100"
+	# if args.prompt_method == "direct_prompting":
+	# 	predictions_dir = "../../predictions_100/gpt4v_direct_prompting"
+	# elif args.prompt_method == "text_augmented_prompting":
+	# 	predictions_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
 	
-	for filename in tqdm(os.listdir(test_data_dir)):
-		if filename.endswith("5.png"):
+	## text revision 
+	test_data_dir = "../../testset_100"
+	orig_data_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
+	predictions_dir = "../../predictions_100/gpt4_text_revision_prompting"
+	for filename in tqdm(os.listdir(orig_data_dir)):
+		if filename.endswith(".html"):
+			with open(os.path.join(test_data_dir, filename), "r") as f:
+				input_html_content = f.read()
+			with open(os.path.join(orig_data_dir, filename), "r") as f:
+				original_html_content = f.read()
 			try:
-				if args.prompt_method == "direct_prompting":
-					html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
-				elif args.prompt_method == "text_augmented_prompting":
-					html, prompt_tokens, completion_tokens, cost = text_augmented_prompting(openai_client, os.path.join(test_data_dir, filename))
+				html, prompt_tokens, completion_tokens, cost = text_revision_prompting(openai_client, input_html_content, original_html_content)
 				total_prompt_tokens += prompt_tokens
 				total_completion_tokens += completion_tokens
 				total_cost += cost
 
-				with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+				with open(os.path.join(predictions_dir, filename), "w") as f:
 					f.write(html)
-				take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
-			except:
-				continue 
+				take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
+			except: 
+				continue
+
+	
+	# with open("../../predictions_100/gpt4v_direct_prompting/2.html", "r") as f:
+	# 	html_content = f.read()
+	# response, cost = text_revision_prompting(personal_openai_client, html_content)
+	# print (response, cost)
+
+	# for filename in tqdm(os.listdir(test_data_dir)):
+	# 	if filename.endswith("5.png"):
+	# 		try:
+	# 			if args.prompt_method == "direct_prompting":
+	# 				html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
+	# 			elif args.prompt_method == "text_augmented_prompting":
+	# 				html, prompt_tokens, completion_tokens, cost = text_augmented_prompting(openai_client, os.path.join(test_data_dir, filename))
+	# 			total_prompt_tokens += prompt_tokens
+	# 			total_completion_tokens += completion_tokens
+	# 			total_cost += cost
+
+	# 			with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+	# 				f.write(html)
+	# 			take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+	# 		except:
+	# 			continue 
 
 	## save usage
 	usage = {
