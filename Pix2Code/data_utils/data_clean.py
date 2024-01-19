@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import nltk 
 nltk.data.path.append("/juice2/scr2/nlp/pix2code/nltk_data")
-from transformers import GPT2TokenizerFast
+from transformers import GPT2TokenizerFast, CodeLlamaTokenizerFast
 from nltk.tokenize import sent_tokenize
 import os
 import logging
@@ -18,7 +18,7 @@ random.seed(2023)
 
 cssutils.log.setLevel(logging.CRITICAL)
 
-tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
+tokenizer = CodeLlamaTokenizerFast.from_pretrained("codellama/CodeLlama-34b-Instruct-hf")
 
 def remove_tags(html_content, tag="script"):
     while '<' + tag in html_content:
@@ -102,8 +102,7 @@ def length_filter(html_content, max_token=32000):
     ## filter too short pages
     html_len = len(tokenizer(html_content)["input_ids"])
     if html_len <= 100 or html_len >= max_token:
-        return None
-    
+        return None, None
     return html_content, html_len
 
 def html_validator(html_content):
@@ -353,26 +352,31 @@ def all_filters_train(html_content):
     if not html_content:
         return None
     # html_content = remove_extra_linebreaks(html_content)
-    if len(html_content.split("\n")) <= 40 or len(html_content.split("\n")) >= 10000:
+    if len(html_content.split("\n")) >= 10000:
         return None
-    html_content = remove_html_comments(html_content)
-    html_content = remove_css_js_comments(html_content)
-    html_content = remove_unused_css(html_content)
-    html_content = remove_useless_meta_tags(html_content)
-    html_content = remove_tags(html_content, tag="script")
-    html_content = remove_tags(html_content, tag="audio")
-    html_content = remove_tags(html_content, tag="video")
-    html_content = remove_tags(html_content, tag="iframe")
-    html_content = remove_tags(html_content, tag="map")
-    html_content = remove_tags(html_content, tag="svg")
-    html_content = remove_object_dependency(html_content)
-    html_content = remove_embed_dependency(html_content)
-    html_content = remove_link_tags(html_content)
-    html_content = remove_href_links(html_content)
-    html_content = remove_srcset_links(html_content)
-    html_content = text_truncation(html_content)
-    html_content = remove_extra_linebreaks(html_content)
-    html_content = length_filter(html_content)
+
+    try:
+        html_content = remove_html_comments(html_content)
+        html_content = remove_css_js_comments(html_content)
+        html_content = remove_unused_css(html_content)
+        html_content = remove_useless_meta_tags(html_content)
+        html_content = remove_tags(html_content, tag="script")
+        html_content = remove_tags(html_content, tag="audio")
+        html_content = remove_tags(html_content, tag="video")
+        html_content = remove_tags(html_content, tag="iframe")
+        html_content = remove_tags(html_content, tag="map")
+        html_content = remove_tags(html_content, tag="svg")
+        html_content = remove_object_dependency(html_content)
+        html_content = remove_embed_dependency(html_content)
+        html_content = remove_link_tags(html_content)
+        html_content = remove_href_links(html_content)
+        html_content = remove_srcset_links(html_content)
+        html_content = text_truncation(html_content)
+        html_content = remove_extra_linebreaks(html_content)
+        html_content, html_len = length_filter(html_content, max_token=2048)
+    except:
+        return None
+
     if not html_content:
         return None
     
