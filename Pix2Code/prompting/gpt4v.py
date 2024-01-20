@@ -28,13 +28,56 @@ def gpt4v_call(openai_client, base64_image, prompt):
 				],
 			}
 		],
-		max_tokens=3200,
+		max_tokens=4000,
 		temperature=0.0
 	)
 
-	# print (response)
-	# print (response.choices[0].message.content.strip())
-	# print (response.usage)
+	prompt_tokens, completion_tokens, cost = gpt_cost("gpt-4-vision-preview", response.usage)
+	response = response.choices[0].message.content.strip()
+	response = cleanup_response(response)
+
+	return response, prompt_tokens, completion_tokens, cost
+
+def gpt4v_revision_call(openai_client, base64_image_ref, base64_image_pred, prompt):
+	response = openai_client.chat.completions.create(
+		model="gpt-4-vision-preview",
+		messages=[
+			{
+				"role": "user",
+				"content": [
+					{
+						"type": "text", 
+						"text": prompt
+					},
+					{
+						"type": "text", 
+						"text": "Reference Webpage:"
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": f"data:image/jpeg;base64,{base64_image_ref}",
+							"detail": "high"
+						},
+					},
+					{
+						"type": "text", 
+						"text": "Current Webpage:"
+					},
+					{
+						"type": "image_url",
+						"image_url": {
+							"url": f"data:image/jpeg;base64,{base64_image_pred}",
+							"detail": "high"
+						},
+					},
+				],
+			}
+		],
+		max_tokens=4000,
+		temperature=0.0
+	)
+	
 	prompt_tokens, completion_tokens, cost = gpt_cost("gpt-4-vision-preview", response.usage)
 	response = response.choices[0].message.content.strip()
 	response = cleanup_response(response)
@@ -140,6 +183,10 @@ def visual_revision_prompting(openai_client, input_image_file, original_output_i
 	{input image + initial output image + initial output html + oracle extracted text} -> {revised output html}
 	'''
 
+	## load the original output
+	with open(original_output_image.replace(".png", ".html"), "r") as f:
+		original_output_html = f.read()
+
 	## encode the image 
 	input_image = encode_image(input_image_file)
 	original_output_image = encode_image(original_output_image)
@@ -151,14 +198,16 @@ def visual_revision_prompting(openai_client, input_image_file, original_output_i
 
 	prompt = ""
 	prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
-	prompt += "I have an HTML file for implementing a webpage but it is missing some elements. I have attached the screenshots of the reference webpage that I want to build as well as the rendered webpage of the current implementation.\n"
+	prompt += "I have an HTML file for implementing a webpage but it is missing some elements:\n" + original_output_html + "\n\n"
+	prompt += "I have attached the screenshots of the reference webpage that I want to build as well as the rendered webpage of the current implementation.\n"
 	prompt += "I also provide you all the texts that I want to include in the webpage here:\n"
 	prompt += "\n".join(texts) + "\n\n"
-	prompt += "Please compare the two versions, and revise and extend the given HTML file to include all the texts (unless there are parts that can't fit into the webpage appropriately) in the correct places or edit existing parts if they differ from the texts I provided. Make sure the code is syntactically correct and can render into a well-formed webpage. (\"rick.jpg\" is the placeholder image file.) "
-	prompt += "Do not change the layout or style, just edit the content itself.\n"
+	prompt += "Please compare the two screenshots, and revise the original HTML file to make it look exactly like the reference webpage. Make sure the code is syntactically correct and can render into a well-formed webpage. You can use \"rick.jpg\" as the placeholder image file.\n"
 	prompt += "Respond with the content of the new revised and improved HTML file:\n"
 
-	return
+	html, prompt_tokens, completion_tokens, cost = gpt4v_revision_call(openai_client, input_image, original_output_image, prompt)
+
+	return html, prompt_tokens, completion_tokens, cost
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
@@ -193,27 +242,28 @@ if __name__ == "__main__":
 	# elif args.prompt_method == "text_augmented_prompting":
 	# 	predictions_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
 	
-	## text revision 
+	## visual revision 
 	test_data_dir = "../../testset_100"
 	orig_data_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
-	predictions_dir = "../../predictions_100/gpt4_text_revision_prompting"
+	predictions_dir = "../../predictions_100/gpt4v_visual_revision_prompting"
 	for filename in tqdm(os.listdir(orig_data_dir)):
 		if filename.endswith(".html"):
 			with open(os.path.join(test_data_dir, filename), "r") as f:
 				input_html_content = f.read()
 			with open(os.path.join(orig_data_dir, filename), "r") as f:
 				original_html_content = f.read()
-			try:
-				html, prompt_tokens, completion_tokens, cost = text_revision_prompting(openai_client, input_html_content, original_html_content)
-				total_prompt_tokens += prompt_tokens
-				total_completion_tokens += completion_tokens
-				total_cost += cost
+			# try:
+			# html, prompt_tokens, completion_tokens, cost = text_revision_prompting(openai_client, input_html_content, original_html_content)
+			html, prompt_tokens, completion_tokens, cost = visual_revision_prompting(openai_client, os.path.join(test_data_dir, filename.replace(".html", ".png")), os.path.join(orig_data_dir, filename.replace(".html", ".png")))
+			total_prompt_tokens += prompt_tokens
+			total_completion_tokens += completion_tokens
+			total_cost += cost
 
-				with open(os.path.join(predictions_dir, filename), "w") as f:
-					f.write(html)
-				take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
-			except: 
-				continue
+			with open(os.path.join(predictions_dir, filename), "w") as f:
+				f.write(html)
+			take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
+			# except: 
+			# 	continue
 
 	
 	# with open("../../predictions_100/gpt4v_direct_prompting/2.html", "r") as f:
