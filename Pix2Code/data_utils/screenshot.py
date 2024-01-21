@@ -24,7 +24,9 @@ def take_screenshot(url, output_file="screenshot.png"):
 #     take_screenshot("/Users/clsi/Desktop/Pix2Code/trial_dataset/" + "{}.html".format(name), "trial_dataset/" + "{}.png".format(name))
 
 if __name__ == "__main__":
-    predictions_dir = "../../predictions_100/finetuned_v0"
-    for filename in tqdm(os.listdir(predictions_dir)):
-        if filename.endswith(".html"):
-            take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
+    # predictions_dir = "../../predictions_100/finetuned_v0"
+    # for filename in tqdm(os.listdir(predictions_dir)):
+    #     if filename.endswith(".html"):
+    #         take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
+
+    take_screenshot("/Users/clsi/Desktop/Pix2Code/testset_100/00.html", "/Users/clsi/Desktop/Pix2Code/testset_100/00.png")

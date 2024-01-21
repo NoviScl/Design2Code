@@ -199,11 +199,11 @@ def visual_revision_prompting(openai_client, input_image_file, original_output_i
 	prompt = ""
 	prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
 	prompt += "I have an HTML file for implementing a webpage but it is missing some elements:\n" + original_output_html + "\n\n"
-	prompt += "I have attached the screenshots of the reference webpage that I want to build as well as the rendered webpage of the current implementation.\n"
+	prompt += "I will provide the reference webpage that I want to build as well as the rendered webpage of the current implementation.\n"
 	prompt += "I also provide you all the texts that I want to include in the webpage here:\n"
 	prompt += "\n".join(texts) + "\n\n"
-	prompt += "Please compare the two screenshots, and revise the original HTML file to make it look exactly like the reference webpage. Make sure the code is syntactically correct and can render into a well-formed webpage. You can use \"rick.jpg\" as the placeholder image file.\n"
-	prompt += "Respond with the content of the new revised and improved HTML file:\n"
+	prompt += "Please compare the two webpages and refer to the provided texts in to included, and revise the original HTML file to make it look exactly like the reference webpage. Make sure the code is syntactically correct and can render into a well-formed webpage. You can use \"rick.jpg\" as the placeholder image file.\n"
+	prompt += "Respond directly with the content of the new revised and improved HTML file without any extra explanations:\n"
 
 	html, prompt_tokens, completion_tokens, cost = gpt4v_revision_call(openai_client, input_image, original_output_image, prompt)
 
@@ -211,7 +211,7 @@ def visual_revision_prompting(openai_client, input_image_file, original_output_i
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
-	parser.add_argument('--prompt_method', type=str, default='direct_prompting', help='prompting method to be chosen from {direct_prompting, text_augmented_prompting}')
+	parser.add_argument('--prompt_method', type=str, default='text_augmented_prompting', help='prompting method to be chosen from {direct_prompting, text_augmented_prompting}')
 	args = parser.parse_args()
 
 	## track usage
@@ -242,28 +242,29 @@ if __name__ == "__main__":
 	# elif args.prompt_method == "text_augmented_prompting":
 	# 	predictions_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
 	
-	## visual revision 
+	# ## visual revision 
 	test_data_dir = "../../testset_100"
 	orig_data_dir = "../../predictions_100/gpt4v_text_augmented_prompting"
 	predictions_dir = "../../predictions_100/gpt4v_visual_revision_prompting"
-	for filename in tqdm(os.listdir(orig_data_dir)):
-		if filename.endswith(".html"):
-			with open(os.path.join(test_data_dir, filename), "r") as f:
-				input_html_content = f.read()
-			with open(os.path.join(orig_data_dir, filename), "r") as f:
-				original_html_content = f.read()
-			# try:
-			# html, prompt_tokens, completion_tokens, cost = text_revision_prompting(openai_client, input_html_content, original_html_content)
-			html, prompt_tokens, completion_tokens, cost = visual_revision_prompting(openai_client, os.path.join(test_data_dir, filename.replace(".html", ".png")), os.path.join(orig_data_dir, filename.replace(".html", ".png")))
-			total_prompt_tokens += prompt_tokens
-			total_completion_tokens += completion_tokens
-			total_cost += cost
+	# for filename in tqdm(os.listdir(orig_data_dir)):
+	# 	if filename == "102.html":
+	# 	# if filename.endswith(".html"):
+	# 		with open(os.path.join(test_data_dir, filename), "r") as f:
+	# 			input_html_content = f.read()
+	# 		with open(os.path.join(orig_data_dir, filename), "r") as f:
+	# 			original_html_content = f.read()
+	# 		# try:
+	# 		# html, prompt_tokens, completion_tokens, cost = text_revision_prompting(openai_client, input_html_content, original_html_content)
+	# 		html, prompt_tokens, completion_tokens, cost = visual_revision_prompting(openai_client, os.path.join(test_data_dir, filename.replace(".html", ".png")), os.path.join(orig_data_dir, filename.replace(".html", ".png")))
+	# 		total_prompt_tokens += prompt_tokens
+	# 		total_completion_tokens += completion_tokens
+	# 		total_cost += cost
 
-			with open(os.path.join(predictions_dir, filename), "w") as f:
-				f.write(html)
-			take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
-			# except: 
-			# 	continue
+	# 		with open(os.path.join(predictions_dir, filename), "w") as f:
+	# 			f.write(html)
+	# 		take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
+	# 		# except: 
+	# 		# 	continue
 
 	
 	# with open("../../predictions_100/gpt4v_direct_prompting/2.html", "r") as f:
@@ -271,22 +272,22 @@ if __name__ == "__main__":
 	# response, cost = text_revision_prompting(personal_openai_client, html_content)
 	# print (response, cost)
 
-	# for filename in tqdm(os.listdir(test_data_dir)):
-	# 	if filename.endswith("5.png"):
-	# 		try:
-	# 			if args.prompt_method == "direct_prompting":
-	# 				html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
-	# 			elif args.prompt_method == "text_augmented_prompting":
-	# 				html, prompt_tokens, completion_tokens, cost = text_augmented_prompting(openai_client, os.path.join(test_data_dir, filename))
-	# 			total_prompt_tokens += prompt_tokens
-	# 			total_completion_tokens += completion_tokens
-	# 			total_cost += cost
+	for filename in tqdm(os.listdir(test_data_dir)):
+		if filename == "00.png":
+			try:
+				if args.prompt_method == "direct_prompting":
+					html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
+				elif args.prompt_method == "text_augmented_prompting":
+					html, prompt_tokens, completion_tokens, cost = text_augmented_prompting(openai_client, os.path.join(test_data_dir, filename))
+				total_prompt_tokens += prompt_tokens
+				total_completion_tokens += completion_tokens
+				total_cost += cost
 
-	# 			with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
-	# 				f.write(html)
-	# 			take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
-	# 		except:
-	# 			continue 
+				with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+					f.write(html)
+				take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+			except:
+				continue 
 
 	## save usage
 	usage = {
