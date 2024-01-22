@@ -50,6 +50,7 @@ def process_html(input_file_path, output_file_path, offset=0):
     for tag in soup.find_all(text_tags):
         color = f"#{color_pool.pop_color()}"
         update_style(tag, 'color', color)
+        update_style(tag, 'opacity', 1.0)
 
     # Write the modified HTML to a new file
     with open(output_file_path, 'w') as file:
@@ -144,6 +145,26 @@ def flatten_tree(tree):
     return flat_list
 
 
+def average_color(image_path, coordinates):
+    """
+    Calculates the average color of the specified coordinates in the given image.
+
+    :param image: A PIL Image object.
+    :param coordinates: A 2D numpy array of coordinates, where each row represents [x, y].
+    :return: A tuple representing the average color (R, G, B).
+    """
+    # Convert image to numpy array
+    image_array = np.array(Image.open(image_path).convert('RGB'))
+
+    # Extract colors at the specified coordinates
+    colors = [image_array[x, y] for x, y in coordinates]
+
+    # Calculate the average color
+    avg_color = np.mean(colors, axis=0)
+
+    return tuple(avg_color.astype(int))
+
+
 def get_blocks_from_image_diff_pixels(image_path, html_text_color_tree, different_pixels):
     image = cv2.imread(image_path)
     x_w = image.shape[0]
@@ -188,9 +209,9 @@ def get_blocks_from_image_diff_pixels(image_path, html_text_color_tree, differen
 
         x_min, y_min = np.min(coords, axis=0)
         x_max, y_max = np.max(coords, axis=0)
+        color = average_color(image_path.replace("_p.png", ".png"), coords)
 
-        blocks.append({'text': item[0], 'bbox': (y_min / y_w, x_min / x_w, (y_max - y_min + 1) / y_w, (x_max - x_min + 1) / x_w)})
-    
+        blocks.append({'text': item[0], 'bbox': (y_min / y_w, x_min / x_w, (y_max - y_min + 1) / y_w, (x_max - x_min + 1) / x_w), 'color': color})
     return blocks
 
 

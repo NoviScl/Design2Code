@@ -415,7 +415,7 @@ def rescale_short_edge_to_long_edge(image_path):
             new_size = (height, height)
 
         # Resize the image while maintaining aspect ratio
-        img_resized = img.resize(new_size, Image.ANTIALIAS)
+        img_resized = img.resize(new_size, Image.LANCZOS)
 
         return img_resized
 
@@ -587,6 +587,117 @@ def visual_eval_v1(gpt_img, original_img, print_all=False, ocr_free=True, debug=
         return matched, final_score
     else:
         return 0.0, 0.0
+
+
+def color_similarity(color1, color2):
+    # Calculate the Euclidean distance between two RGB colors
+    distance = math.sqrt(sum((c2 - c1) ** 2 for c1, c2 in zip(color1, color2)))
+    
+    # Maximum possible Euclidean distance in RGB space
+    max_distance = math.sqrt(3 * (255 ** 2))
+    
+    # Normalize the distance to a value between 0 and 1
+    normalized_distance = distance / max_distance
+    
+    # Return the similarity as 1 - normalized distance
+    return 1 - normalized_distance
+
+
+def visual_eval_v2(gpt_img, original_img, print_all=False, ocr_free=True, debug=False):
+    """
+    gpt_img: file to image rendered by gpt gen code. Please place the html file with the same name in the same folder.
+    original_img: file to image rendered by the original code. Please place the html file with the same name in the same folder.
+    print_all: print matched information or not. Default to False.
+    ocr_free: using ocr free approach or not. Default to True.
+    """
+
+    if ocr_free:
+        gpt_html = gpt_img.replace(".png", ".html")
+        original_html = original_img.replace(".png", ".html")
+        os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {gpt_html} --png {gpt_img}")
+        os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {original_html} --png {original_img}")
+
+        blocks1 = get_blocks_ocr_free(gpt_img)
+        blocks2 = get_blocks_ocr_free(original_img)
+        consecutive_bonus, window_size = 0.1, 1
+    else:
+        blocks1 = get_ocr_blocks(gpt_img)
+        blocks2 = get_ocr_blocks(original_img)
+        consecutive_bonus, window_size = 0.25, 2
+
+        blocks1 = merge_blocks(blocks1)
+        blocks2 = merge_blocks(blocks2)
+
+    blocks1_area = sum_of_area(blocks1)
+    blocks2_area = sum_of_area(blocks2)
+    max_blocks_area = max(blocks1_area, blocks2_area)
+
+    matching = find_maximum_matching(blocks1, blocks2, consecutive_bonus, window_size)
+    matched_list = []
+    scores = []
+    size_scores = []
+    matched_text_scores = []
+    position_scores = []
+    text_color_scores = []
+
+    for i, j in matching:
+        if debug:
+            print(f"{blocks1[i]} matched with {blocks2[j]}")
+            print(SequenceMatcher(None, blocks1[i]['text'], blocks2[j]['text']).ratio())
+            pass
+
+        min_block_area = min(blocks1[i]['bbox'][2] * blocks1[i]['bbox'][3], blocks2[j]['bbox'][2] * blocks2[j]['bbox'][3])
+        max_block_area = max(blocks1[i]['bbox'][2] * blocks1[i]['bbox'][3], blocks2[j]['bbox'][2] * blocks2[j]['bbox'][3])
+        text_similarity = SequenceMatcher(None, blocks1[i]['text'], blocks2[j]['text']).ratio()
+        position_similarity = 1 - calculate_distance(blocks1[i]['bbox'][0] + blocks1[i]['bbox'][2] / 2, \
+                                                blocks1[i]['bbox'][1] + blocks1[i]['bbox'][3] / 2, \
+                                                blocks2[j]['bbox'][0] + blocks2[j]['bbox'][2] / 2, \
+                                                blocks2[j]['bbox'][1] + blocks2[j]['bbox'][3] / 2) / np.sqrt(2)
+        # scale to 0.5 ~ 1.0
+        text_color_similarity = color_similarity(blocks1[i]['color'], blocks2[j]['color']) * 0.5 + 0.5
+        matched_list.append([blocks1[i]['bbox'], blocks2[j]['bbox']])
+
+        # validation check
+        if min(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2], blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]) == 0:
+            print(f"{blocks1[i]} matched with {blocks2[j]}")
+        assert calculate_ratio(blocks1[i]['bbox'][2], blocks2[j]['bbox'][2]) > 0 and calculate_ratio(blocks1[i]['bbox'][3], blocks2[j]['bbox'][3]) > 0, f"{blocks1[i]} matched with {blocks2[j]}"
+
+        scores.append(min_block_area * text_similarity * position_similarity * text_color_similarity / max_blocks_area)
+        size_scores.append(min_block_area / max_blocks_area)
+        matched_text_scores.append(text_similarity)
+        position_scores.append(position_similarity)
+        text_color_scores.append(text_color_similarity)
+    
+    if print_all:
+        print(f"Matched: {len(location_score)}")
+        print("Score:")
+        print_stat(scores)
+
+    if debug:
+        img1 = cv2.imread(gpt_img)
+        img2 = cv2.imread(original_img)
+        img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
+    
+        plt.figure(figsize=(20, 10))
+        plt.subplot(1, 2, 1)
+        plt.imshow(cv2.cvtColor(img1_with_boxes, cv2.COLOR_BGR2RGB))
+        plt.axis('off')
+        plt.subplot(1, 2, 2)
+        plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
+        plt.axis('off')
+        plt.show()
+
+    if len(scores) > 0:
+        matched = len(scores)
+        final_score = np.sum(scores)
+        final_size_score = np.sum(size_scores)
+        final_matched_text_score = np.mean(matched_text_scores)
+        final_position_score = np.mean(position_scores)
+        final_text_color_score = np.mean(text_color_scores)
+        final_clip_score = calculate_clip_similarity(gpt_img, original_img)
+        return matched, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)
+    else:
+        return 0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)
 
 
 if __name__ == "__main__":

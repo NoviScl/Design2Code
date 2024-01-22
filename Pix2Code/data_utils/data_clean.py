@@ -100,9 +100,10 @@ def remove_web_links(html_content):
 
 def length_filter(html_content, max_token=32000):
     ## filter too short pages
+    print(html_content)
     html_len = len(tokenizer(html_content)["input_ids"])
     if html_len <= 100 or html_len >= max_token:
-        return None, None
+        return None, html_len
     return html_content, html_len
 
 def html_validator(html_content):
@@ -349,11 +350,19 @@ def remove_import(html_content):
 
 def all_filters_train(html_content):
     html_content = html_validator(html_content)
+
+    if html_content:
+        print("survive 1")
+
     if not html_content:
+        print("G!")
         return None
     # html_content = remove_extra_linebreaks(html_content)
     if len(html_content.split("\n")) >= 10000:
         return None
+
+    if html_content:
+        print("survive 2")
 
     try:
         html_content = remove_html_comments(html_content)
@@ -371,9 +380,18 @@ def all_filters_train(html_content):
         html_content = remove_link_tags(html_content)
         html_content = remove_href_links(html_content)
         html_content = remove_srcset_links(html_content)
+        if html_content:
+            print("survive 3")
         html_content = text_truncation(html_content)
+        if html_content:
+            print("survive 4")
         html_content = remove_extra_linebreaks(html_content)
+        if html_content:
+            print("survive 5")
         html_content, html_len = length_filter(html_content, max_token=2048)
+        print(html_len)
+        if html_content:
+            print("survive 6")
     except:
         return None
 
