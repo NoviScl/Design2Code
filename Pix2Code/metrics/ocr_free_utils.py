@@ -58,7 +58,7 @@ def process_html(input_file_path, output_file_path, offset=0):
 
 
 def similar(n1, n2):
-    if abs(n1 - n2) <= 5:
+    if abs(n1 - n2) <= 8:
         return True
     else:
         return False
@@ -195,8 +195,8 @@ def get_blocks_from_image_diff_pixels(image_path, html_text_color_tree, differen
     blocks = []
     for item in html_text_color_tree:
         color = np.array(hex_to_bgr(item[1]), dtype="uint8")
-        lower = color - 2
-        upper = color + 2
+        lower = color - 4
+        upper = color + 4
 
         mask = cv2.inRange(image, lower, upper)
 

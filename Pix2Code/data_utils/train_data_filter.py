@@ -38,8 +38,9 @@ with open(c4, 'r') as f:
 urls = list(set(urls))
 print ("total #urls: ", len(urls))
 
-if not os.path.exists("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-part{}".format(partition)):
-    os.makedirs("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-part{}".format(partition))
+if not os.path.exists("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part{}".format(partition)):
+    os.makedirs("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part{}".format(partition))
+
 
 def filter_and_save(inputs):
     i, url = inputs
@@ -56,10 +57,28 @@ def filter_and_save(inputs):
                 except:
                     pass
 
+
+def filter_s1_and_save(inputs):
+    i, url = inputs
+    html_content = fetch_and_embed_css(url)
+    if html_content:
+        html_content = html_content.strip()
+        if len(html_content) > 0:
+            try:
+                with open("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part{}/{}.html".format(partition, i), "w") as f:
+                    f.write(html_content)
+            except:
+                pass
+
+
 input_list = [(i, url) for i, url in enumerate(urls)]
 
 input_list = input_list[args.begin:]
 print (f"Start from {args.begin}, remain #urls: ", len(input_list))
 
+"""
 with tqdm_joblib(tqdm(total=len(input_list))) as progress_bar:
-    res = list(tqdm(Parallel(n_jobs=16)(delayed(filter_and_save)(inputs) for inputs in input_list), total=len(input_list)))
+    res = list(tqdm(Parallel(n_jobs=4)(delayed(filter_and_save)(inputs) for inputs in input_list), total=len(input_list)))
+"""
+with tqdm_joblib(tqdm(total=len(input_list))) as progress_bar:
+    res = list(tqdm(Parallel(n_jobs=4)(delayed(filter_s1_and_save)(inputs) for inputs in input_list), total=len(input_list)))

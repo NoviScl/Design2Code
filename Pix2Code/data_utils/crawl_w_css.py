@@ -19,37 +19,37 @@ def replace_img_src(content):
     return re.sub(pattern, replacement, content)
 
 def fetch_and_embed_css(url, navigation_timeout=4000, request_timeout=10):
-    # try:
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page()
-
-        # Navigate to the URL with timeout
-        page.goto(url, timeout=navigation_timeout)
-
-        # Extract stylesheets' hrefs using JavaScript
-        stylesheets_hrefs = page.eval_on_selector_all("link[rel='stylesheet']", 'nodes => nodes.map(n => n.href)')
-
-        inline_css = ""
-        # Fetch and embed each external CSS
-        content = page.content()
-        for href in stylesheets_hrefs:
-            response = requests.get(href, timeout=request_timeout)
-            response.raise_for_status()  # Raise HTTPError for bad responses (4xx and 5xx)
-            css_content = response.text
-            inline_css += '\n' + css_content + '\n\n'
-
-        if "<style>" in content:
-            content = content.replace("<style>", "<style>\n" + inline_css)
-        else:
-            content = content.replace('<head>', '<head>\n<style>' + inline_css + "</style>")
-        
-        content = replace_img_src(content)
-        browser.close()
-
-        return content
-    # except:
-    #     return None
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+    
+            # Navigate to the URL with timeout
+            page.goto(url, timeout=navigation_timeout)
+    
+            # Extract stylesheets' hrefs using JavaScript
+            stylesheets_hrefs = page.eval_on_selector_all("link[rel='stylesheet']", 'nodes => nodes.map(n => n.href)')
+    
+            inline_css = ""
+            # Fetch and embed each external CSS
+            content = page.content()
+            for href in stylesheets_hrefs:
+                response = requests.get(href, timeout=request_timeout)
+                response.raise_for_status()  # Raise HTTPError for bad responses (4xx and 5xx)
+                css_content = response.text
+                inline_css += '\n' + css_content + '\n\n'
+    
+            if "<style>" in content:
+                content = content.replace("<style>", "<style>\n" + inline_css)
+            else:
+                content = content.replace('<head>', '<head>\n<style>' + inline_css + "</style>")
+            
+            content = replace_img_src(content)
+            browser.close()
+    
+            return content
+    except:
+        return None
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
