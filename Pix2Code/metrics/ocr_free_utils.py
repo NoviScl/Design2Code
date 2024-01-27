@@ -93,7 +93,10 @@ def find_different_pixels(image1_path, image2_path):
             if similar((r1 + 50) % 256, r2) and similar((g1 + 50) % 256, g2) and similar((b1 + 50) % 256, b2):
                 different_pixels.append((y, x))
 
-    return np.stack(different_pixels)
+    if len(different_pixels) > 0:
+        return np.stack(different_pixels)
+    else:
+        return None
 
 
 def extract_text_with_color(html_file):
@@ -227,6 +230,11 @@ def get_blocks_ocr_free(image_path):
     os.system(f"python3 {Path(__file__).parent}/screenshot_single.py --html {p_html_1} --png {p_png_1}")
 
     different_pixels = find_different_pixels(p_png, p_png_1)
+
+    if different_pixels is None:
+        os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
+        return []
+
     html_text_color_tree = flatten_tree(extract_text_with_color(p_html))
     blocks = get_blocks_from_image_diff_pixels(p_png, html_text_color_tree, different_pixels)
     os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")

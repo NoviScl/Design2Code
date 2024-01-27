@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import nltk 
 nltk.data.path.append("/juice2/scr2/nlp/pix2code/nltk_data")
-from transformers import GPT2TokenizerFast, CodeLlamaTokenizerFast
+from transformers import AutoTokenizer
 from nltk.tokenize import sent_tokenize
 import os
 import logging
@@ -18,7 +18,7 @@ random.seed(2023)
 
 cssutils.log.setLevel(logging.CRITICAL)
 
-tokenizer = CodeLlamaTokenizerFast.from_pretrained("codellama/CodeLlama-34b-Instruct-hf")
+tokenizer = AutoTokenizer.from_pretrained('lmsys/vicuna-13b-v1.5')
 
 def remove_tags(html_content, tag="script"):
     while '<' + tag in html_content:
@@ -100,7 +100,6 @@ def remove_web_links(html_content):
 
 def length_filter(html_content, max_token=32000):
     ## filter too short pages
-    print(html_content)
     html_len = len(tokenizer(html_content)["input_ids"])
     if html_len <= 100 or html_len >= max_token:
         return None, html_len
@@ -348,21 +347,91 @@ def remove_import(html_content):
     new_lines = [line for line in html_content.split("\n") if not line.strip().startswith("@import")]
     return "\n".join(new_lines)
 
+
+def optimize_html_styles(html_content, threshold=2000):
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Extract and parse styles and media queries using cssutils
+    all_style_list = []
+    for style_tag in soup.find_all('style'):
+        stylesheet = cssutils.parseString(style_tag.string)
+        for rule in stylesheet:
+            if rule.type == rule.STYLE_RULE or rule.type == rule.MEDIA_RULE:
+                all_style_list.append(rule)
+
+    random.shuffle(all_style_list)
+    all_styles = cssutils.parseString('')
+    for rule in all_style_list:
+        all_styles.add(rule)
+
+    # Check each selector against the HTML content and keep used styles
+    used_styles = cssutils.parseString('')
+    string_list = []
+    current_length = 0
+    for rule in all_styles:
+        current_rule = None
+        if rule.type == rule.STYLE_RULE:
+            selectors = rule.selectorText.split(',')
+            for selector in selectors:
+                try:
+                    if soup.select(selector.strip()):
+                        current_rule = rule
+                        break
+                except NotImplementedError:
+                    continue
+        elif rule.type == rule.MEDIA_RULE:
+            media_rule = cssutils.css.CSSMediaRule()
+            media_rule.media = rule.media
+            for style_rule in rule:
+                if style_rule.type == rule.STYLE_RULE:
+                    selectors = style_rule.selectorText.split(',')
+                    for selector in selectors:
+                        try:
+                            if soup.select(selector.strip()):
+                                media_rule.add(style_rule)
+                                break
+                        except NotImplementedError:
+                            continue
+            if media_rule.cssRules:
+                current_rule = media_rule
+        if current_rule is None:
+            continue
+        
+        new_length = len(tokenizer(current_rule.cssText)['input_ids'])
+        if current_length + new_length < threshold:
+            used_styles.add(current_rule)
+            current_length += new_length
+        elif current_length + new_length > threshold:
+            if current_length > 0:
+                string_list.append(used_styles.cssText.decode('utf-8'))
+                # print("Truncated CSS length", current_length)
+            used_styles = cssutils.parseString('')
+            used_styles.add(current_rule)
+            current_length = new_length
+
+    if current_length > 100:
+        string_list.append(used_styles.cssText.decode('utf-8'))
+        # print("Truncated CSS length", current_length)
+
+    html_content_list = []
+    for j, string in enumerate(string_list):
+        # Replace the old style tags with the new one
+        for style_tag in soup.find_all('style'):
+            style_tag.decompose()
+        new_style_tag = soup.new_tag('style')
+        new_style_tag.string = string
+        soup.head.append(new_style_tag)
+        html_content_list.append(str(soup))
+    return html_content_list
+
+
 def all_filters_train(html_content):
     html_content = html_validator(html_content)
+    if html_content is None:
+        return []
 
-    if html_content:
-        print("survive 1")
-
-    if not html_content:
-        print("G!")
-        return None
-    # html_content = remove_extra_linebreaks(html_content)
     if len(html_content.split("\n")) >= 10000:
-        return None
-
-    if html_content:
-        print("survive 2")
+        return []
 
     try:
         html_content = remove_html_comments(html_content)
@@ -380,25 +449,21 @@ def all_filters_train(html_content):
         html_content = remove_link_tags(html_content)
         html_content = remove_href_links(html_content)
         html_content = remove_srcset_links(html_content)
-        if html_content:
-            print("survive 3")
+        html_content = item_truncation(html_content)
         html_content = text_truncation(html_content)
-        if html_content:
-            print("survive 4")
-        html_content = remove_extra_linebreaks(html_content)
-        if html_content:
-            print("survive 5")
-        html_content, html_len = length_filter(html_content, max_token=2048)
-        print(html_len)
-        if html_content:
-            print("survive 6")
+        html_content = remove_import(html_content)
+        html_content = remove_web_links(html_content)
+        html_content_list = optimize_html_styles(html_content, threshold=1000)
+        final_list = []
+        for html_content in html_content_list:
+            html_content, html_len = length_filter(html_content, max_token=3800)
+            # print(html_len)
+            if html_content is not None:
+                final_list.append(html_content)
     except:
-        return None
+        return []
+    return final_list
 
-    if not html_content:
-        return None
-    
-    return html_content
 
 def all_filters_test(html_content, count_total=True):
     global total_len

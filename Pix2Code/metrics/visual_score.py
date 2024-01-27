@@ -971,6 +971,9 @@ def visual_eval_v3(gpt_img, original_img, print_all=False, ocr_free=True, debug=
         blocks1 = merge_blocks(blocks1)
         blocks2 = merge_blocks(blocks2)
 
+    if len(blocks1) == 0 or len(blocks2) == 0:
+        return 0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)
+
     blocks1 = merge_blocks_by_bbox(blocks1)
     blocks2 = merge_blocks_by_bbox(blocks2)
     # matching, cost, _ = find_maximum_matching_v3(blocks1, blocks2, consecutive_bonus, window_size)
