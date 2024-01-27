@@ -1,6 +1,8 @@
 from Pix2Code.metrics.visual_score import visual_eval_v1, visual_eval_v3
 from tqdm import tqdm 
 import os
+import sys
+sys.stdout = open('eval_results.txt', 'w')
 
 predictions= ["websight", "finetuned_v0", "gpt4v_direct_prompting", "gpt4v_text_augmented_prompting", "gpt4v_visual_revision_prompting"]
 
