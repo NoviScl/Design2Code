@@ -4,7 +4,7 @@ import os
 import sys
 sys.stdout = open('eval_results.txt', 'w')
 
-predictions= ["websight", "finetuned_v0", "gpt4v_direct_prompting", "gpt4v_text_augmented_prompting", "gpt4v_visual_revision_prompting"]
+predictions= ["finetuned_v0", "websight", "gpt4v_direct_prompting", "gpt4v_text_augmented_prompting", "gpt4v_visual_revision_prompting"]
 
 reference_dir = "../../testset_100"
 
