@@ -144,7 +144,8 @@ def extract_text_from_html(html_content):
     soup = BeautifulSoup(html_content_without_css, 'html.parser')
 
     # Finding all text elements, excluding those within <script> tags
-    texts = [element.strip() for element in soup.find_all(string=True) if element.parent.name != 'script' and len(element.strip()) > 0 and element.strip() != 'html']
+    texts = [element.strip().replace("\n", " ") for element in soup.find_all(string=True) if element.parent.name != 'script' and len(element.strip()) > 0 and element.strip() != 'html']
+    texts = [' '.join(element.split()) for element in texts]
 
     return texts
 
