@@ -425,6 +425,94 @@ def optimize_html_styles(html_content, threshold=2000):
     return html_content_list
 
 
+def parse_html_structure(html):
+    def parse_element(element):
+        if element.name:
+            content_length = len(str(element))
+            children = [parse_element(child) for child in element.children if child.name]
+            return (element.name, content_length, children)
+        return None
+
+    soup = BeautifulSoup(html, 'html.parser')
+    return [parse_element(child) for child in soup.children if child.name]
+
+
+
+def update_html_and_structure(html, structure, path_to_delete):
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # Function to navigate to the element
+    def navigate_to_element(soup, path):
+        current_element = soup
+        for index in path[:-1]:  # Exclude the last index
+            # Filter out NavigableString objects, only keep Tag objects
+            current_element = [el for el in current_element.children if isinstance(el, Tag)][index]
+        return current_element
+
+    # Navigate to the parent of the target element
+    parent_element = navigate_to_element(soup, path_to_delete)
+
+    # Remove the target element from the HTML
+    children = [el for el in parent_element.children if isinstance(el, Tag)]
+    if path_to_delete[-1] < len(children):
+        target_element = children[path_to_delete[-1]]
+        target_element.decompose()
+
+    # Function to remove empty tags
+    def remove_empty_tags(element):
+        for tag in element.find_all():
+            if not tag.contents or all(isinstance(c, NavigableString) and not c.strip() for c in tag.contents):
+                tag.decompose()
+
+    # Remove any empty tags
+    remove_empty_tags(soup)
+
+    def parse_element(element):
+        if element.name:
+            content_length = len(str(element))
+            children = [parse_element(child) for child in element.children if child.name]
+            return (element.name, content_length, children)
+        return None
+
+    return str(soup), [parse_element(child) for child in soup.children if child.name]
+
+def randomly_reduce_html_body_size(html, max_length=6000):
+    soup = BeautifulSoup(html, 'html.parser')
+    body = soup.body
+    if not body:
+        return html  # No body tag found
+
+    # Initialize the structure for the body
+    structure = parse_html_structure(str(body))
+    while len(str(body)) > max_length:
+        # Generate a random path to delete
+        path_to_delete = generate_random_path(structure)
+        if path_to_delete is None:
+            break  # Break if no more deletable elements
+
+        # Update the HTML body and structure
+        updated_body_html, structure = update_html_and_structure(str(body), structure, path_to_delete)
+        soup.body.replace_with(BeautifulSoup(updated_body_html, 'html.parser').body)
+        body = soup.body
+
+    return str(soup), structure
+
+
+def generate_random_path(structure):
+    def accumulate_paths(struct, current_path):
+        paths = []
+        for i, (_, _, children) in enumerate(struct):
+            new_path = current_path + [i]
+            if children:  # If there are children, continue accumulating paths
+                paths.extend(accumulate_paths(children, new_path))
+            else:
+                paths.append(new_path)  # Leaf node, add the path
+        return paths
+
+    all_paths = accumulate_paths(structure, [])
+    return random.choice(all_paths) if all_paths else None
+
+
 def all_filters_train(html_content):
     html_content = html_validator(html_content)
     if html_content is None:
@@ -453,6 +541,7 @@ def all_filters_train(html_content):
         html_content = text_truncation(html_content)
         html_content = remove_import(html_content)
         html_content = remove_web_links(html_content)
+        html_content, _ = randomly_reduce_html_body_size(html_content)
         html_content_list = optimize_html_styles(html_content, threshold=1000)
         final_list = []
         for html_content in html_content_list:

@@ -48,4 +48,4 @@ input_list = [os.path.join("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-p
 print(input_list[:5])
 
 with tqdm_joblib(tqdm(total=len(input_list))) as progress_bar:
-    res = list(tqdm(Parallel(n_jobs=4)(delayed(filter_s2_and_save)(inputs) for inputs in input_list), total=len(input_list)))
+    res = list(tqdm(Parallel(n_jobs=16)(delayed(filter_s2_and_save)(inputs) for inputs in input_list), total=len(input_list)))
