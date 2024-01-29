@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wyckoff Smith Jewellery</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  header, footer {
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  .top-nav ul li {
+    margin-right: 20px;
+  }
+  .top-nav ul li:last-child {
+    margin-right: 0;
+  }
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  .main-nav ul li {
+    margin-right: 20px;
+  }
+  .main-nav ul li:last-child {
+    margin-right: 0;
+  }
+  .breadcrumb {
+    margin: 20px 0;
+  }
+  .breadcrumb a {
+    color: #333;
+    text-decoration: none;
+  }
+  .product-details {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .product-image {
+    width: 50%;
+    margin-right: 20px;
+  }
+  .product-info {
+    width: 50%;
+  }
+  .product-info h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  .product-info .price {
+    color: #e44d26;
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  .product-info .add-to-cart {
+    background-color: #e44d26;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .product-description {
+    margin-bottom: 20px;
+  }
+  .product-description h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+  .product-description p {
+    margin: 10px 0;
+  }
+  .product-description a {
+    color: #e44d26;
+    text-decoration: none;
+  }
+  .reviews {
+    margin-bottom: 20px;
+  }
+  .reviews h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+  .reviews a {
+    color: #e44d26;
+    text-decoration: none;
+  }
+  .collection {
+    margin-bottom: 20px;
+  }
+  .collection h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+  .collection .product {
+    display: inline-block;
+    width: 24%;
+    margin-right: 1%;
+    margin-bottom: 20px;
+  }
+  .collection .product img {
+    width: 100%;
+    height: auto;
+  }
+  .collection .product .price {
+    color: #e44d26;
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  .collection .product .sale-price {
+    color: #333;
+    font-size: 16px;
+    margin: 5px 0;
+    text-decoration: line-through;
+  }
+  .footer-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .footer-section div {
+    width: 24%;
+  }
+  .footer-section h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  .footer-section p, .footer-section a {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    text-decoration: none;
+  }
+  .social-media {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .social-media a {
+    color: #333;
+    text-decoration: none;
+  }
+  .newsletter {
+    margin-bottom: 20px;
+  }
+  .newsletter input[type="email"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+  }
+  .newsletter input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #e44d26;
+    color: white;
+    border: none;
+  }
+  .footer-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  .footer-nav ul li {
+    margin-right: 20px;
+  }
+  .footer-nav ul li:last-child {
+    margin-right: 0;
+  }
+  .footer-nav a {
+    color: #333;
+    text-decoration: none;
+  }
+  .copyright {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .payment-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .payment-icons img {
+    margin-right: 10px;
+  }
+  .payment-icons img:last-child {
+    margin-right: 0;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container top-nav">
+    <div class="search">
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="account-links">
+      <a href="#">Log in</a>
+      <span>or</span>
+      <a href="#">Create account</a>
+      <span>|</span>
+      <a href="#">Cart 0</a>
+    </div>
+  </div>
+</header>
+<nav class="main-nav">
+  <div class="container">
+    <ul>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Shop +</a></li>
+      <li><a href="#">Rings</a></li>
+      <li><a href="#">Chains</a></li>
+      <li><a href="#">Earrings</a></li>
+      <li><a href="#">Bracelets</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Studio Life</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="breadcrumb">
+    <a href="#">Home</a> › <a href="#">SALE: Organic Shape Stacking Pebble Rings</a>
+  </div>
+  <div class="product-details">
+    <div class="product-image">
+      <img src="rick.jpg" alt="SALE: Organic Shape Stacking Pebble Rings – Wyckoff Smith Jewellery">
+    </div>
+    <div class="product-info">
+      <h1>Wyckoff Smith Jewellery</h1>
+      <p class="price">£180.00</p>
+      <p>Size</p>
+      <select>
+        <option>K - £180.00 GBP</option>
+        <option>K 1/2 - £180.00 GBP</option>
+        <option>L - £180.00 GBP</option>
+        <option>L 1/2 - £180.00 GBP</option>
+        <option>M - £180.00 GBP</option>
+        <option>M1/2 - £180.00 GBP</option>
+        <option>N - £180.00 GBP</option>
+        <option>N 1/2 - £180.00 GBP</option>
+        <option>O - £180.00 GBP</option>
+        <option>O 1/2 - £180.00 GBP</option>
+        <option>P - £180.00 GBP</option>
+        <option>P 1/2 - £180.00 GBP</option>
+        <option>Q - £180.00 GBP</option>
+        <option>Q 1/2 - £180.00 GBP</option>
+        <option>R - £180.00 GBP</option>
+        <option>R 1/2 - £180.00 GBP</option>
+        <option>S - £180.00 GBP</option>
+        <option>S 1/2 - £180.00 GBP</option>
+        <option>T - £180.00 GBP</option>
+        <option>T 1/2 - £180.00 GBP</option>
+        <option>U - £180.00 GBP</option>
+      </select>
+      <a href="#" class="add-to-cart">Add to Cart</a>
+      <p>SALE: was £220, now £180 (one large and one small stacks left before they are discontinued)</p>
+    </div>
+  </div>
+  <div class="product-description">
+    <h2>SALE: Organic Shape Stacking Pebble Rings</h2>
+    <p>Beautiful stacking pebble rings remind me of a walk on the beach collecting my favourite stones.</p>
+    <p>The three rings shown are available in a variety of sizes.</p>
+    <p>These rings were made in my London studio, and are fully Hallmarked with my makers mark, the mark for London and Sterling Silver. They will come to you in a little drawstring bag, perfect for storing them when they aren't on your finger.</p>
+    <p>Here is a handy <a href="#">International ring conversion chart</a> to determine your UK ring size.</p>
+    <p><a href="#">Please read my Store Policies before purchasing.</a></p>
+  </div>
+  <div class="reviews">
+    <h2>Customer Reviews</h2>
+    <p>Based on 3 reviews</p>
+    <a href="#">Write a review</a>
+  </div>
+  <div class="collection">
+    <h2>More from this collection</h2>
+    <div class="product">
+      <img src="rick.jpg" alt="Green Tourmaline Pinkie Ring">
+      <p class="sale-price">£245.00</p>
+      <p class="price">£195.00</p>
+    </div>
+    <div class="product">
+      <img src="rick.jpg" alt="Pear Shaped Green Idiocrase Silver and Gold Stacking Ring">
+      <p class="price">£345.00</p>
+    </div>
+    <div class="product">
+      <img src="rick.jpg" alt="Faceted Peridot Silver and Gold Stacking Ring">
+      <p class="price">£230.00</p>
+    </div>
+    <div class="product">
+      <img src="rick.jpg" alt="Blue Tourmaline Silver and Gold Stacking Ring">
+      <p class="price">£220.00</p>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-section">
+      <div>
+        <h3>Latest News</h3>
+        <p>Create a Jewellery Capsule Wardrobe</p>
+        <p>In the age of the slow fashion movement, creating a jewellery capsule wardrobe helps to keep our consumer footprint to a minimum.</p>
+        <p>The key is to make your pieces do more for you with modular jewellery.</p>
+      </div>
+      <div>
+        <h3>Contact Me</h3>
+        <p>[EMAIL REDACTED]</p>
+        <p>Collage Artspace 2</p>
+        <p>4 Colburg Road</p>
+        <p>Wood Green, London</p>
+        <p>N22 6UJ</p>
+        <p>+ 447958962398</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <a href="#">Twitter</a>
+        <a href="#">Facebook</a>
+        <a href="#">Pinterest</a>
+        <a href="#">Instagram</a>
+      </div>
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <form action="#">
+          <input type="email" placeholder="Your email">
+          <input type="submit" value="Subscribe">
+        </form>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <ul>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Blog Posts</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Upcoming Events</a></li>
+      </ul>
+    </div>
+    <div class="copyright">
+      <p>Copyright © 2023, Wyckoff Smith Jewellery.</p>
+    </div>
+    <div class="payment-icons">
+      <img src="rick.jpg" alt="american express">
+      <img src="rick.jpg" alt="apple pay">
+      <img src="rick.jpg" alt="diners club">
+      <img src="rick.jpg" alt="discover">
+    </div>
+  </div>
+</footer>
+</body>
+</html>
