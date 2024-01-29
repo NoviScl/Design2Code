@@ -1,7 +1,7 @@
 import base64
 from PIL import Image
 import os
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 from tqdm import tqdm
 import re
 
@@ -131,6 +131,19 @@ def extract_css_from_html(html_content):
 
     return css_content
 
+def remove_html_comments(html_content):
+    while "<!--" in html_content:
+        start_index = html_content.find("<!--")
+        end_index = html_content.find("-->") + 3  # +3 to account for the length of "-->"
+
+        # Ensure both opening and closing comment delimiters are found
+        if start_index == -1 or end_index < 3 or start_index >= end_index:
+            break
+
+        # Remove content between and including the comment delimiters
+        html_content = html_content[:start_index] + html_content[end_index:]
+
+    return html_content
 
 def extract_text_from_html(html_content):
     """
@@ -140,6 +153,7 @@ def extract_text_from_html(html_content):
     :param html_content: A string containing the HTML content.
     :return: A list of strings, each representing a text element from the HTML content.
     """
+    html_content = remove_html_comments(html_content)
     html_content_without_css = remove_css_from_html(html_content)
     soup = BeautifulSoup(html_content_without_css, 'html.parser')
 
@@ -148,6 +162,47 @@ def extract_text_from_html(html_content):
     texts = [' '.join(element.split()) for element in texts]
 
     return texts
+
+
+def index_text_from_html(html_content):
+    """
+    Replaces all text elements in an HTML webpage with index markers,
+    and returns the modified HTML and a dictionary mapping these indices
+    to the actual text.
+
+    :param html_content: A string containing the HTML content.
+    :return: A tuple with two elements:
+             1. A string of the modified HTML content.
+             2. A dictionary mapping each index to the corresponding text element.
+    """
+
+    html_content = remove_html_comments(html_content)
+    css = extract_css_from_html(html_content)
+    html_content_without_css = remove_css_from_html(html_content)
+    soup = BeautifulSoup(html_content_without_css, 'html.parser')
+    text_dict = {}
+    index = 1
+
+    # Iterate over each navigable string and replace it with an index
+    for element in soup.find_all(string=True):
+        if element.parent.name != 'script' and len(element.strip()) > 0 and element.strip() != 'html':
+            clean_text = ' '.join(element.strip().replace("\n", " ").split())
+            text_dict[index] = clean_text
+            element.replace_with(f'[{index}]')
+            index += 1
+    
+    html_content = str(soup)
+
+    ## insert back css 
+    head_tag = '<head>'
+    end_of_head_tag_index = html_content.find(head_tag)
+
+    # Calculate the position to insert the CSS (after the <head> tag)
+    insert_position = end_of_head_tag_index + len(head_tag)
+    # Insert the CSS string at the found position
+    html_content = html_content[:insert_position] + css + "\n" + html_content[insert_position:]
+
+    return html_content, text_dict
 
 
 def replace_text_with_placeholder(html_content):
@@ -185,19 +240,14 @@ if __name__ == "__main__":
     reference_dir = "../../testset_100"
     predictions_dir = "../../predictions_100/gpt4v_direct_prompting"
 
-    with open(os.path.join(reference_dir, "8915.html"), "r") as f:
+    with open(os.path.join(reference_dir, "7713.html"), "r") as f:
         html_content = f.read()
-    html = replace_text_with_placeholder(html_content)
+    
+    # print (extract_text_from_html(html_content))
 
-    with open(os.path.join(predictions_dir, "8915_temp.html"), "w") as f:
+    html, text_dict = index_text_from_html(html_content)
+
+    with open(os.path.join(predictions_dir, "7713_temp.html"), "w") as f:
         f.write(html)
-
-    # print (replace_text_with_placeholder(html_content))
-
-    # for filename in [item for item in os.listdir(predictions_dir) if item.endswith("2.html")]:
-    #     if filename.endswith("2.html"):
-    #         with open(os.path.join(reference_dir, filename), "r") as f:
-    #             html_content = f.read()
-    #         print (filename)
-    #         print (extract_text_from_html(html_content))
-    #         print ("\n\n")
+    
+    print (text_dict)
