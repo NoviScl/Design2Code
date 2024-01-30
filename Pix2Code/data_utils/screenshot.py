@@ -29,4 +29,4 @@ if __name__ == "__main__":
     #     if filename.endswith(".html"):
     #         take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
 
-    take_screenshot("/Users/clsi/Desktop/Pix2Code/testset_100/00.html", "/Users/clsi/Desktop/Pix2Code/testset_100/00.png")
+    take_screenshot("/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.html", "/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.png")

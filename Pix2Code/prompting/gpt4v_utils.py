@@ -31,6 +31,8 @@ def encode_image(image_path):
 	with open(image_path, "rb") as image_file:
 		return base64.b64encode(image_file.read()).decode('utf-8')
 
+def gemini_encode_image(image_path):
+    return Image.open(image_path)
 
 def rescale_image_loader(image_path):
     """

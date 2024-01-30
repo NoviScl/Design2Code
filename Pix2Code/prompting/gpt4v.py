@@ -1,4 +1,3 @@
-import requests
 import os
 from tqdm import tqdm
 from Pix2Code.data_utils.screenshot import take_screenshot
@@ -31,7 +30,7 @@ def gpt4v_call(openai_client, base64_image, prompt):
 				],
 			}
 		],
-		max_tokens=4000,
+		max_tokens=4096,
 		temperature=0.0,
 		seed=2024
 	)
@@ -79,7 +78,7 @@ def gpt4v_revision_call(openai_client, base64_image_ref, base64_image_pred, prom
 				],
 			}
 		],
-		max_tokens=4000,
+		max_tokens=4096,
 		temperature=0.0,
 		seed=2024
 	)
@@ -240,11 +239,11 @@ def layout_marker_prompting(openai_client, image_file, auto_insertion=False):
 		for index, text in text_dict.items():
 			html = html.replace(f"[{index}]", text)
 	else:
-		# ## take screenshot of the generated marker webpage
-		# with open(image_file.replace(".png", "_marker.html"), "w") as f:
-		# 	f.write(html)
-		# take_screenshot(image_file.replace(".png", "_marker.html"), image_file.replace(".png", "_marker.png"))
-		# generated_marker_image = encode_image(image_file.replace(".png", "_marker.png"))
+		## take screenshot of the generated marker webpage
+		with open(image_file.replace(".png", "_marker.html"), "w") as f:
+			f.write(html)
+		take_screenshot(image_file.replace(".png", "_marker.html"), image_file.replace(".png", "_marker.png"))
+		generated_marker_image = encode_image(image_file.replace(".png", "_marker.png"))
 
 		## the text insertion prompt
 		text_augmented_prompt = ""
@@ -263,9 +262,9 @@ def layout_marker_prompting(openai_client, image_file, auto_insertion=False):
 		## call GPT-4V
 		html, prompt_tokens, completion_tokens, cost = gpt4v_call(openai_client, orig_input_image, text_augmented_prompt)
 
-	## remove the marker files
-	os.remove(image_file.replace(".png", "_marker.html"))
-	os.remove(image_file.replace(".png", "_marker.png"))
+	# ## remove the marker files
+	# os.remove(image_file.replace(".png", "_marker.html"))
+	# os.remove(image_file.replace(".png", "_marker.png"))
 
 	return html, prompt_tokens, completion_tokens, cost
 
@@ -331,12 +330,13 @@ if __name__ == "__main__":
 	
 	test_files = []
 	if args.file_name == "all":
-		test_files = [item for item in os.listdir(test_data_dir) if item.endswith(".png")]
+		test_files = [item for item in os.listdir(test_data_dir) if item.endswith(".png") and "_marker" not in item]
 	else:
 		test_files = [args.file_name]
 
 	for filename in tqdm(test_files):
 		if filename.endswith("2.png") or filename.endswith("5.png"):
+			print (filename)
 			try:
 				if args.prompt_method == "direct_prompting":
 					html, prompt_tokens, completion_tokens, cost = direct_prompting(openai_client, os.path.join(test_data_dir, filename))
