@@ -17,6 +17,7 @@ from copy import deepcopy
 from collections import Counter
 from copy import deepcopy
 from Pix2Code.metrics.ocr_free_utils import get_blocks_ocr_free
+from bs4 import BeautifulSoup, NavigableString, Comment
 
 # pytesseract.pytesseract.tesseract_cmd = '/sailhome/clsi/bin/tesseract'
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -1068,15 +1069,61 @@ def visual_eval_v3(gpt_img, original_img, print_all=False, ocr_free=True, debug=
         return 0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)
 
 
+def truncate_repeated_html_elements(soup, max_count=50):
+    """
+    Truncate HTML elements whose exact HTML content appears more than `max_count` times.
+
+    Args:
+    html (str): A string containing HTML content.
+    max_count (int): The maximum allowed occurrences for identical content.
+
+    Returns:
+    str: The modified HTML with repeated elements truncated.
+    """
+    # Dictionary to keep track of exact HTML content occurrences
+    content_counts = {}
+
+    # Iterate over all elements
+    for element in soup.find_all(True):
+        # Skip non-tag elements like NavigableString or Comment
+        if isinstance(element, (NavigableString, Comment)):
+            continue
+        
+        try:
+            element_html = str(element)
+        except:
+            element.decompose()
+            continue
+        content_counts[element_html] = content_counts.get(element_html, 0) + 1
+
+        # Check if the element's exact HTML content exceeds max_count
+        if content_counts[element_html] > max_count:
+            # Remove or truncate the element
+            element.decompose()  # or element.string = '...' to truncate
+
+    # Return the modified HTML
+    return str(soup)
+
+
+def pre_process(html_file):
+    with open(html_file, 'r') as file:
+        soup = BeautifulSoup(file, 'html.parser')
+    soup_str = truncate_repeated_html_elements(soup)
+    with open(html_file, 'w') as file:
+        file.write(soup_str)
+
+
 def visual_eval_v3_multi(input_list, debug=False):
     predict_img_list, original_img = input_list[0], input_list[1]
     predict_blocks_list = []
     for predict_img in predict_img_list:
+        # This will help fix some html syntax error
         predict_html = predict_img.replace(".png", ".html")
+        pre_process(predict_html)
         os.system(f"python3 screenshot_single.py --html {predict_html} --png {predict_img}")
         predict_blocks = get_blocks_ocr_free(predict_img)
         predict_blocks_list.append(predict_blocks)
-    
+
     original_html = original_img.replace(".png", ".html")
     os.system(f"python3 screenshot_single.py --html {original_html} --png {original_img}")
     original_blocks = get_blocks_ocr_free(original_img)

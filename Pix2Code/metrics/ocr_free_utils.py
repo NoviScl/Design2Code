@@ -236,6 +236,11 @@ def get_blocks_ocr_free(image_path):
         return []
 
     html_text_color_tree = flatten_tree(extract_text_with_color(p_html))
-    blocks = get_blocks_from_image_diff_pixels(p_png, html_text_color_tree, different_pixels)
+    try:
+        blocks = get_blocks_from_image_diff_pixels(p_png, html_text_color_tree, different_pixels)
+    except:
+        print(p_png)
+        exit(0)
+
     os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
     return blocks

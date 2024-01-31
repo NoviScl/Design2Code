@@ -6,7 +6,7 @@ from multiprocessing import Pool
 import contextlib, joblib
 from joblib import Parallel, delayed
 from tqdm import tqdm
-
+import numpy as np
 
 @contextlib.contextmanager
 def tqdm_joblib(tqdm_object):
@@ -35,17 +35,21 @@ def print_multi_score(multi_score):
     print("CLIP Score", final_clip_score)
     print("--------------------------------\n")
 
-debug = True
+debug = False
 
 reference_dir = "../../testset_100"
 
-test_dirs = {"websight": "../../predictions_100/websight",\
-             "direct_prompting": "../../predictions_100/gpt4v_direct_prompting", \
-             "text_augmented_prompting": "../../predictions_100/gpt4v_text_augmented_prompting", \
-             "revision_prompting": "../../predictions_100/gpt4v_visual_revision_prompting"}
+test_dirs = {"finetune-cogagent-chat-01-28-23-02": "../../predictions_100/finetune-cogagent-chat-01-28-23-02",\
+             "finetune-cogagent-chat-01-18-18-28": "../../predictions_100/finetune-cogagent-chat-01-18-18-28",\
+             "finetuned_v0": "../../predictions_100/finetuned_v0"}
+
+file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-01-28-23-02") if item.endswith(".html")]
+# file_name_list = ["102.html"]
+print(len(file_name_list))
+print(file_name_list)
 
 input_lists = []
-for filename in ["16635.html", "8512.html", "13775.html", "13935.html"]:
+for filename in file_name_list:
     print(filename)
 
     input_pred_list = [os.path.join(test_dirs[key], filename.replace(".html", ".png")) for key in test_dirs]
@@ -55,15 +59,23 @@ for filename in ["16635.html", "8512.html", "13775.html", "13935.html"]:
     input_lists.append(input_list)
 
 with tqdm_joblib(tqdm(total=len(input_lists))) as progress_bar:
-    return_score_lists = list(tqdm(Parallel(n_jobs=4)(delayed(visual_eval_v3_multi)(input_list) for input_list in input_lists), total=len(input_lists)))
+    return_score_lists = list(tqdm(Parallel(n_jobs=16)(delayed(visual_eval_v3_multi)(input_list, debug=debug) for input_list in input_lists), total=len(input_lists)))
 
-for i, filename in enumerate(["16635.html", "8512.html", "13775.html", "13935.html"]):
+res_dict = {}
+for key in test_dirs:
+    res_dict[key] = []
+
+for i, filename in enumerate(file_name_list):
     print(filename)
     return_score_list = return_score_lists[i]
     idx = 0
     for key in test_dirs:
         matched, final_score, multi_score = return_score_list[idx]
         idx += 1
-    
-        print(f"{key} score: ", final_score)
-        print_multi_score(multi_score)
+        current_score = [final_score] + [item for item in multi_score]
+        res_dict[key].append(current_score)
+
+for key in test_dirs:
+    print(key)
+    current_res = np.mean(np.array(res_dict[key]), axis=0)
+    print(current_res)
