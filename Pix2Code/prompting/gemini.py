@@ -9,16 +9,6 @@ import argparse
 import retry
 import shutil 
 
-import pathlib
-import textwrap
-from IPython.display import display
-from IPython.display import Markdown
-
-
-def to_markdown(text):
-  text = text.replace('•', '  *')
-  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
-
 @retry.retry(tries=3, delay=2)
 def gemini_call(gemini_client, encoded_image, prompt):
     generation_config = genai.GenerationConfig(
@@ -175,7 +165,7 @@ def layout_marker_prompting(gemini_client, image_file, auto_insertion=False):
     text_augmented_prompt += "Respond with the content of the HTML+CSS file (directly start with the code, do not add any additional explanation):\n"
 
     ## call GPT-4V
-    html, prompt_tokens, completion_tokens, cost = gemini_call(gemini_client, orig_input_image, text_augmented_prompt)
+    html = gemini_call(gemini_client, orig_input_image, text_augmented_prompt)
 
     if auto_insertion:
         ## put texts back into marker positions 
@@ -263,23 +253,21 @@ if __name__ == "__main__":
     else:
       test_files = [args.file_name]
 
-    for filename in tqdm(test_files[:1]):
-    #   if filename.endswith("2.png") or filename.endswith("5.png"):
-    #       print (filename)
-        #   try:
-        if args.prompt_method == "direct_prompting":
-            html = direct_prompting(gemini_client, os.path.join(test_data_dir, filename))
-        elif args.prompt_method == "text_augmented_prompting":
-            html = text_augmented_prompting(gemini_client, os.path.join(test_data_dir, filename))
-        elif args.prompt_method == "revision_prompting":
-            html = visual_revision_prompting(gemini_client, os.path.join(test_data_dir, filename), os.path.join(orig_data_dir, filename))
-        elif args.prompt_method == "layout_marker_prompting":
-            html = layout_marker_prompting(gemini_client, os.path.join(test_data_dir, filename), auto_insertion=args.auto_insertion)
+    for filename in tqdm(test_files):
+        try:
+            if args.prompt_method == "direct_prompting":
+                html = direct_prompting(gemini_client, os.path.join(test_data_dir, filename))
+            elif args.prompt_method == "text_augmented_prompting":
+                html = text_augmented_prompting(gemini_client, os.path.join(test_data_dir, filename))
+            elif args.prompt_method == "revision_prompting":
+                html = visual_revision_prompting(gemini_client, os.path.join(test_data_dir, filename), os.path.join(orig_data_dir, filename))
+            elif args.prompt_method == "layout_marker_prompting":
+                html = layout_marker_prompting(gemini_client, os.path.join(test_data_dir, filename), auto_insertion=args.auto_insertion)
 
-        with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
-            f.write(html)
-        if args.take_screenshot:
-            take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
-        #   except:
-        #       continue 
+            with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
+                f.write(html)
+            if args.take_screenshot:
+                take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+        except:
+            continue 
             
