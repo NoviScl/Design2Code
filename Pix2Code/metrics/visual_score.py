@@ -1114,103 +1114,121 @@ def pre_process(html_file):
 
 
 def visual_eval_v3_multi(input_list, debug=False):
-    predict_img_list, original_img = input_list[0], input_list[1]
-    predict_blocks_list = []
-    for predict_img in predict_img_list:
-        # This will help fix some html syntax error
-        predict_html = predict_img.replace(".png", ".html")
-        pre_process(predict_html)
-        os.system(f"python3 screenshot_single.py --html {predict_html} --png {predict_img}")
-        predict_blocks = get_blocks_ocr_free(predict_img)
-        print(len(predict_blocks))
-        predict_blocks_list.append(predict_blocks)
+    print (input_list)
+    try:
+        predict_img_list, original_img = input_list[0], input_list[1]
+        predict_blocks_list = []
+        for predict_img in predict_img_list:
+            # This will help fix some html syntax error
+            predict_html = predict_img.replace(".png", ".html")
+            pre_process(predict_html)
+            os.system(f"python3 screenshot_single.py --html {predict_html} --png {predict_img}")
+            predict_blocks = get_blocks_ocr_free(predict_img)
+            predict_blocks_list.append(predict_blocks)
 
-    original_html = original_img.replace(".png", ".html")
-    os.system(f"python3 screenshot_single.py --html {original_html} --png {original_img}")
-    original_blocks = get_blocks_ocr_free(original_img)
-    original_blocks = merge_blocks_by_bbox(original_blocks)
+        original_html = original_img.replace(".png", ".html")
+        os.system(f"python3 screenshot_single.py --html {original_html} --png {original_img}")
+        original_blocks = get_blocks_ocr_free(original_img)
+        original_blocks = merge_blocks_by_bbox(original_blocks)
 
-    consecutive_bonus, window_size = 0.1, 1
+        consecutive_bonus, window_size = 0.1, 1
 
-    return_score_list = []
+        return_score_list = []
 
-    for k, predict_blocks in enumerate(predict_blocks_list):
-        if len(predict_blocks) == 0 or len(original_blocks) == 0:
-            return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
-            continue
-    
-        predict_blocks = merge_blocks_by_bbox(predict_blocks)
-        predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
-        indices1 = [item[0] for item in matching]
-        indices2 = [item[1] for item in matching]
-
-        matched_list = []
-        scores = []
-        max_areas = []
-        matched_areas = []
-        matched_text_scores = []
-        position_scores = []
-        text_color_scores = []
-    
-        unmatched_area_1 = 0.0
-        for i in range(len(predict_blocks_m)):
-            if i not in indices1:
-                unmatched_area_1 += predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3]
-        unmatched_area_2 = 0.0
-        for j in range(len(original_blocks_m)):
-            if j not in indices2:
-                unmatched_area_2 += original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
-        max_areas.append(max(unmatched_area_1, unmatched_area_2))
-    
-        for i, j in matching:
-            min_block_area = min(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
-            max_block_area = max(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
-            text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
-            if text_similarity < 0.5:
-                max_areas.append(max_block_area)
+        for k, predict_blocks in enumerate(predict_blocks_list):
+            if len(predict_blocks) == 0 or len(original_blocks) == 0:
+                return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
                 continue
-            position_similarity = 1 - calculate_distance(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
-                                                    predict_blocks_m[i]['bbox'][1] + predict_blocks_m[i]['bbox'][3] / 2, \
-                                                    original_blocks_m[j]['bbox'][0] + original_blocks_m[j]['bbox'][2] / 2, \
-                                                    original_blocks_m[j]['bbox'][1] + original_blocks_m[j]['bbox'][3] / 2) / np.sqrt(2)
-            # scale to 0.5 ~ 1.0
-            text_color_similarity = color_similarity(predict_blocks_m[i]['color'], original_blocks_m[j]['color']) * 0.5 + 0.5
-            matched_list.append([predict_blocks_m[i]['bbox'], original_blocks_m[j]['bbox']])
-    
-            # validation check
-            if min(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2], predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) == 0:
-                print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
-            assert calculate_ratio(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2]) > 0 and calculate_ratio(predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) > 0, f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}"
-    
-            scores.append(max_block_area * text_similarity * position_similarity * text_color_similarity)
-            matched_areas.append(max_block_area)
-            max_areas.append(max_block_area)
-            matched_text_scores.append(text_similarity)
-            position_scores.append(position_similarity)
-            text_color_scores.append(text_color_similarity)
-    
+        
+            predict_blocks = merge_blocks_by_bbox(predict_blocks)
+            predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
+            indices1 = [item[0] for item in matching]
+            indices2 = [item[1] for item in matching]
+
+            matched_list = []
+            scores = []
+            max_areas = []
+            matched_areas = []
+            matched_text_scores = []
+            position_scores = []
+            text_color_scores = []
+        
+            unmatched_area_1 = 0.0
+            for i in range(len(predict_blocks_m)):
+                if i not in indices1:
+                    unmatched_area_1 += predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3]
+            unmatched_area_2 = 0.0
+            for j in range(len(original_blocks_m)):
+                if j not in indices2:
+                    unmatched_area_2 += original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
+            max_areas.append(max(unmatched_area_1, unmatched_area_2))
+        
+            for i, j in matching:
+                min_block_area = min(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
+                max_block_area = max(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
+                text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
+                if text_similarity < 0.5:
+                    max_areas.append(max_block_area)
+                    continue
+                position_similarity = 1 - calculate_distance(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
+                                                        predict_blocks_m[i]['bbox'][1] + predict_blocks_m[i]['bbox'][3] / 2, \
+                                                        original_blocks_m[j]['bbox'][0] + original_blocks_m[j]['bbox'][2] / 2, \
+                                                        original_blocks_m[j]['bbox'][1] + original_blocks_m[j]['bbox'][3] / 2) / np.sqrt(2)
+                # scale to 0.5 ~ 1.0
+                text_color_similarity = color_similarity(predict_blocks_m[i]['color'], original_blocks_m[j]['color']) * 0.5 + 0.5
+                matched_list.append([predict_blocks_m[i]['bbox'], original_blocks_m[j]['bbox']])
+        
+                # validation check
+                if min(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2], predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) == 0:
+                    print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
+                assert calculate_ratio(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2]) > 0 and calculate_ratio(predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) > 0, f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}"
+        
+                scores.append(max_block_area * text_similarity * position_similarity * text_color_similarity)
+                matched_areas.append(max_block_area)
+                max_areas.append(max_block_area)
+                matched_text_scores.append(text_similarity)
+                position_scores.append(position_similarity)
+                text_color_scores.append(text_color_similarity)
+        
+                if debug:
+                    print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
+                    print(SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio())
+                    print("text similarity score", text_similarity)
+                    print("position score", position_similarity)
+                    print("color score", text_color_similarity)
+                    print("----------------------------------")
+                    pass
+            """
             if debug:
-                print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
-                print(SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio())
-                print("text similarity score", text_similarity)
-                print("position score", position_similarity)
-                print("color score", text_color_similarity)
-                print("----------------------------------")
-                pass
-    
-        if len(scores) > 0:
-            matched = len(scores)
-    
-            final_size_score = np.sum(matched_areas) / np.sum(max_areas)
-            final_matched_text_score = np.mean(matched_text_scores)
-            final_position_score = np.mean(position_scores)
-            final_text_color_score = np.mean(text_color_scores)
-            final_clip_score =  calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks_m, original_blocks_m)
-            final_score = np.sum(scores) / np.sum(max_areas) * final_clip_score
-            return_score_list.append([matched, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
-        else:
-            return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
-    return return_score_list
+                img1 = cv2.imread(predict_img_list[k])
+                img2 = cv2.imread(original_img)
+                img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
+            
+                plt.figure(figsize=(20, 10))
+                plt.subplot(1, 2, 1)
+                plt.imshow(cv2.cvtColor(img1_with_boxes, cv2.COLOR_BGR2RGB))
+                plt.axis('off')
+                plt.subplot(1, 2, 2)
+                plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
+                plt.axis('off')
+                plt.show()
+            """
+        
+            if len(scores) > 0:
+                matched = len(scores)
+        
+                final_size_score = np.sum(matched_areas) / np.sum(max_areas)
+                final_matched_text_score = np.mean(matched_text_scores)
+                final_position_score = np.mean(position_scores)
+                final_text_color_score = np.mean(text_color_scores)
+                final_clip_score =  calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks_m, original_blocks_m)
+                final_score = np.sum(scores) / np.sum(max_areas) * final_clip_score
+                return_score_list.append([matched, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
+            else:
+                return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
+        return return_score_list
+    except:
+        return None
 
 
 if __name__ == "__main__":

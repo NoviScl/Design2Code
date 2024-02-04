@@ -10,6 +10,12 @@ We have two versions of the test set:
 
 ![](examples.png)
 
+## Prediction Files
+
+GPT-4V Predictions Full [link](https://drive.google.com/file/d/1jFUhb3PuuZsmL9p9O5lKdDed106XG9PT/view?usp=sharing)
+
+Gemini-Pro Predictions Full: [link](https://drive.google.com/file/d/1fUwEFLeo4XNntzgP-eMAlO38j4CHv205/view?usp=sharing)
+
 ## Code Structure
 
 - `data_utils` contains the filtering and processing scripts to construct the test data from C4. 

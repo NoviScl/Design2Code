@@ -1,12 +1,13 @@
-import sys,os
-sys.path.append("/nlp/scr/zyanzhe/Pix2Code")
-
+# import sys,os
+# sys.path.append("/nlp/scr/zyanzhe/Pix2Code")
 from Pix2Code.metrics.visual_score import visual_eval_v3_multi
 from multiprocessing import Pool
 import contextlib, joblib
 from joblib import Parallel, delayed
 from tqdm import tqdm
 import numpy as np
+import json
+import os
 
 @contextlib.contextmanager
 def tqdm_joblib(tqdm_object):
@@ -37,20 +38,32 @@ def print_multi_score(multi_score):
 
 debug = False
 
-reference_dir = "../../testset_100"
+reference_dir = "../../testset_full"
+test_dirs = {
+    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
+    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
+    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
+    "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
+    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
+}
 
-test_dirs = {"finetune-cogagent-chat-01-28-23-02": "../../predictions_100/finetune-cogagent-chat-01-28-23-02",\
-             "finetune-cogagent-chat-01-18-18-28": "../../predictions_100/finetune-cogagent-chat-01-18-18-28",\
-             "finetuned_v0": "../../predictions_100/finetuned_v0"}
+file_name_list = []
 
-file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-01-28-23-02") if item.endswith(".html")]
-# file_name_list = ["102.html"]
-print(len(file_name_list))
-print(file_name_list)
+## check if the file is in all prediction directories
+for filename in os.listdir(reference_dir):
+    if filename.endswith(".html"):
+        if all([os.path.exists(os.path.join(test_dirs[key], filename.replace(".html", ".png"))) for key in test_dirs]):
+            file_name_list.append(filename)
+
+# file_name_list = file_name_list[:10]
+
+print ("total #egs: ", len(file_name_list))
+with open("prediction_file_name_list.json", "w") as f:
+    json.dump(file_name_list, f, indent=4)
 
 input_lists = []
 for filename in file_name_list:
-    print(filename)
 
     input_pred_list = [os.path.join(test_dirs[key], filename.replace(".html", ".png")) for key in test_dirs]
     original = os.path.join(reference_dir, filename.replace(".html", ".png"))
@@ -61,19 +74,31 @@ for filename in file_name_list:
 with tqdm_joblib(tqdm(total=len(input_lists))) as progress_bar:
     return_score_lists = list(tqdm(Parallel(n_jobs=16)(delayed(visual_eval_v3_multi)(input_list, debug=debug) for input_list in input_lists), total=len(input_lists)))
 
+## cache all scores 
+with open("return_score_lists.json", "w") as f:
+    json.dump(return_score_lists, f, indent=4)
+
 res_dict = {}
 for key in test_dirs:
     res_dict[key] = []
 
 for i, filename in enumerate(file_name_list):
-    print(filename)
-    return_score_list = return_score_lists[i]
     idx = 0
-    for key in test_dirs:
-        matched, final_score, multi_score = return_score_list[idx]
-        idx += 1
-        current_score = [final_score] + [item for item in multi_score]
-        res_dict[key].append(current_score)
+    return_score_list = return_score_lists[i]
+    if return_score_list:
+        for key in test_dirs:
+            matched, final_score, multi_score = return_score_list[idx]
+            idx += 1
+            current_score = [final_score] + [item for item in multi_score]
+            res_dict[key].append(current_score)
+    else:
+        print (filename + " didn't get a score")
+        for key in test_dirs:
+            res_dict[key].append([0, 0, 0, 0, 0, 0])
+
+## cache all scores 
+with open("res_dict.json", "w") as f:
+    json.dump(res_dict, f, indent=4)
 
 for key in test_dirs:
     print(key)
