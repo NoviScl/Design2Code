@@ -1122,6 +1122,7 @@ def visual_eval_v3_multi(input_list, debug=False):
         pre_process(predict_html)
         os.system(f"python3 screenshot_single.py --html {predict_html} --png {predict_img}")
         predict_blocks = get_blocks_ocr_free(predict_img)
+        print(len(predict_blocks))
         predict_blocks_list.append(predict_blocks)
 
     original_html = original_img.replace(".png", ".html")
@@ -1136,6 +1137,7 @@ def visual_eval_v3_multi(input_list, debug=False):
     for k, predict_blocks in enumerate(predict_blocks_list):
         if len(predict_blocks) == 0 or len(original_blocks) == 0:
             return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
+            continue
     
         predict_blocks = merge_blocks_by_bbox(predict_blocks)
         predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
@@ -1195,20 +1197,6 @@ def visual_eval_v3_multi(input_list, debug=False):
                 print("color score", text_color_similarity)
                 print("----------------------------------")
                 pass
-
-        if debug:
-            img1 = cv2.imread(predict_img_list[k])
-            img2 = cv2.imread(original_img)
-            img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
-        
-            plt.figure(figsize=(20, 10))
-            plt.subplot(1, 2, 1)
-            plt.imshow(cv2.cvtColor(img1_with_boxes, cv2.COLOR_BGR2RGB))
-            plt.axis('off')
-            plt.subplot(1, 2, 2)
-            plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
-            plt.axis('off')
-            plt.show()
     
         if len(scores) > 0:
             matched = len(scores)
