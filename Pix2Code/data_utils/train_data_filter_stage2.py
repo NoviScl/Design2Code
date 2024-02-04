@@ -36,15 +36,15 @@ def filter_s2_and_save(html_file):
                     c_name = html_name.replace(".html", f"_{j}.html")
                     html_content = html_content.strip()
                     if len(html_content) > 0:
-                        with open(f"/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part00-v1.1/{c_name}", "w") as f:
+                        with open(f"/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part00-v1.2/{c_name}", "w") as f:
                             f.write(html_content)
         else:
             print(html_file, "not valid")
     except:
         pass
 
-input_list = os.listdir("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part00-v1")
-input_list = [os.path.join("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part00-v1", item) for item in input_list]
+input_list = os.listdir("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part00")
+input_list = [os.path.join("/juice2/scr2/nlp/pix2code/zyanzhe/c4-train-html-s1-part00", item) for item in input_list]
 print(input_list[:5])
 
 with tqdm_joblib(tqdm(total=len(input_list))) as progress_bar:

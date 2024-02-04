@@ -134,18 +134,9 @@ def extract_css_from_html(html_content):
     return css_content
 
 def remove_html_comments(html_content):
-    while "<!--" in html_content:
-        start_index = html_content.find("<!--")
-        end_index = html_content.find("-->") + 3  # +3 to account for the length of "-->"
-
-        # Ensure both opening and closing comment delimiters are found
-        if start_index == -1 or end_index < 3 or start_index >= end_index:
-            break
-
-        # Remove content between and including the comment delimiters
-        html_content = html_content[:start_index] + html_content[end_index:]
-
-    return html_content
+    comment_pattern = r'<!.*?>'
+    html_content = re.sub(comment_pattern, '', html_content, flags=re.DOTALL)
+    return html_content.strip()
 
 def extract_text_from_html(html_content):
     """
@@ -179,7 +170,7 @@ def index_text_from_html(html_content):
     """
 
     html_content = remove_html_comments(html_content)
-    css = extract_css_from_html(html_content)
+    css = extract_css_from_html(html_content).strip()
     html_content_without_css = remove_css_from_html(html_content)
     soup = BeautifulSoup(html_content_without_css, 'html.parser')
     text_dict = {}
@@ -198,11 +189,19 @@ def index_text_from_html(html_content):
     ## insert back css 
     head_tag = '<head>'
     end_of_head_tag_index = html_content.find(head_tag)
-
-    # Calculate the position to insert the CSS (after the <head> tag)
-    insert_position = end_of_head_tag_index + len(head_tag)
-    # Insert the CSS string at the found position
-    html_content = html_content[:insert_position] + css + "\n" + html_content[insert_position:]
+    if end_of_head_tag_index >= 0:
+        # Calculate the position to insert the CSS (after the <head> tag)
+        insert_position = end_of_head_tag_index + len(head_tag)
+        # Insert the CSS string at the found position
+        html_content = html_content[:insert_position] + css + "\n" + html_content[insert_position:]
+        html_content = html_content.replace("<head><style>", "<head>\n<style>")
+    else:
+        html_content = html_content.replace("<html>", "<html>\n<head>\n</head>")
+        head_tag = '<head>\n'
+        end_of_head_tag_index = html_content.find(head_tag)
+        end_of_head_tag_index = html_content.find(head_tag)
+        insert_position = end_of_head_tag_index + len(head_tag)
+        html_content = html_content[:insert_position] + css + "\n" + html_content[insert_position:]
 
     return html_content, text_dict
 
