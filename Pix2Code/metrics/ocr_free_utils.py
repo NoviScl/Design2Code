@@ -71,7 +71,8 @@ def find_different_pixels(image1_path, image2_path):
 
     # Ensure both images are of the same size
     if img1.size != img2.size:
-        raise ValueError("Images are not the same size")
+        print(f"Warning: Images are not the same size, {image1_path}, {image2_path}")
+        return None
 
     # Convert images to RGB if they are not
     img1 = img1.convert('RGB')
@@ -109,8 +110,7 @@ def extract_text_with_color(html_file):
                 if color[0] == "#":
                     return color
                 else:
-                    # print(tag, "unable to identify color...")
-                    print("Warning: unable to identify color...", color)
+                    print(f"Warning: unable to identify color in {html_file}...", color)
                     return None
         return None
 
