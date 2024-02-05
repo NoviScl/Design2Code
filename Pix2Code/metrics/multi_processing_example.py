@@ -48,6 +48,12 @@ test_dirs = {
     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
 }
 
+# test_dirs = {
+#     "gpt4v_direct_prompting": "../../predictions_100/gpt4v_direct_prompting",
+#     "gpt4v_text_augmented_prompting": "../../predictions_100/gpt4v_text_augmented_prompting",
+#     "gpt4v_visual_revision_prompting": "../../predictions_100/gpt4v_visual_revision_prompting",
+# }
+
 file_name_list = []
 
 ## check if the file is in all prediction directories
@@ -57,6 +63,8 @@ for filename in os.listdir(reference_dir):
             file_name_list.append(filename)
 
 # file_name_list = file_name_list[:10]
+
+# file_name_list = ['9412.html', '15385.html', '11625.html', '10582.html', '6315.html', '8512.html', '13935.html', '1895.html', '11465.html', '5672.html', '13775.html', '10612.html', '4272.html', '2.html', '13692.html']
 
 print ("total #egs: ", len(file_name_list))
 with open("prediction_file_name_list.json", "w") as f:
