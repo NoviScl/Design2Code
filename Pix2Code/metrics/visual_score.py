@@ -1114,7 +1114,7 @@ def pre_process(html_file):
 
 
 def visual_eval_v3_multi(input_list, debug=False):
-    print (input_list)
+    print(input_list)
     try:
         predict_img_list, original_img = input_list[0], input_list[1]
         predict_blocks_list = []
@@ -1228,6 +1228,7 @@ def visual_eval_v3_multi(input_list, debug=False):
                 return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
         return return_score_list
     except:
+        print("Error found in: ", input_list)
         return None
 
 

@@ -37,15 +37,17 @@ def print_multi_score(multi_score):
 
 debug = False
 
-reference_dir = "../../testset_100"
+reference_dir = "../../testset_full"
+test_dirs = {
+    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
+    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
+    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
+    "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
+    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
+}
 
-# """
-test_dirs = {"finetune-cogagent-chat-02-01-14-05_1500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_1500",\
-             "finetuned_v0": "../../predictions_100/finetuned_v0"}
-# """
-# test_dirs = {"finetuned_v0": "../../predictions_100/finetuned_v0"}
-
-file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-01-14-05_1500") if item.endswith("932.html")]
+file_name_list = [item for item in os.listdir("../../gpt4v_predictions_full/gpt4v_direct_prompting") if item.endswith("14423.html")]
 # file_name_list = ["102.html"]
 print(len(file_name_list))
 print(file_name_list)
@@ -62,6 +64,8 @@ for filename in file_name_list:
 
 with tqdm_joblib(tqdm(total=len(input_lists))) as progress_bar:
     return_score_lists = list(tqdm(Parallel(n_jobs=16)(delayed(visual_eval_v3_multi)(input_list, debug=debug) for input_list in input_lists), total=len(input_lists)))
+
+print(return_score_lists)
 
 res_dict = {}
 for key in test_dirs:

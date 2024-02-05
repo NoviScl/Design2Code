@@ -46,7 +46,7 @@ def process_html(input_file_path, output_file_path, offset=0):
     color_pool = ColorPool(offset)
 
     # Assign a unique color to text within each text-containing element
-    text_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'a', 'li', 'table', 'td', 'th', 'button', 'footer', 'header']  # Add more tags as needed
+    text_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'a', 'b', 'li', 'table', 'td', 'th', 'button', 'footer', 'header']  # Add more tags as needed
     for tag in soup.find_all(text_tags):
         color = f"#{color_pool.pop_color()}"
         update_style(tag, 'color', color)
@@ -110,8 +110,15 @@ def extract_text_with_color(html_file):
                 if color[0] == "#":
                     return color
                 else:
-                    print(f"Warning: unable to identify color in {html_file}...", color)
-                    return None
+                    try:
+                        if color.startswith('rgb'):
+                            color = tuple(map(int, color[4:-1].split(',')))  # Extract the RGB values
+                        else:
+                            color = ImageColor.getrgb(color)  # Convert named color to RGB
+                        return '#{:02x}{:02x}{:02x}'.format(*color)  # Convert RGB to hexadecimal
+                    except ValueError:
+                        print(f"Warning: unable to identify or convert color in {html_file}...", color)
+                        return None
         return None
 
     def extract_text_recursive(element, parent_color='#000000'):
@@ -197,7 +204,11 @@ def get_blocks_from_image_diff_pixels(image_path, html_text_color_tree, differen
 
     blocks = []
     for item in html_text_color_tree:
-        color = np.array(hex_to_bgr(item[1]), dtype="uint8")
+        try:
+            color = np.array(hex_to_bgr(item[1]), dtype="uint8")
+        except:
+            continue
+        
         lower = color - 4
         upper = color + 4
 
@@ -239,8 +250,9 @@ def get_blocks_ocr_free(image_path):
     try:
         blocks = get_blocks_from_image_diff_pixels(p_png, html_text_color_tree, different_pixels)
     except:
-        print(p_png)
-        exit(0)
+        print(f"Warning: unable to get blocks from {p_png}...")
+        os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
+        return []
 
     os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
     return blocks
