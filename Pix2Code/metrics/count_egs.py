@@ -45,9 +45,9 @@ all_scores_dict = {}
 # print (matched_files)
 
 
-for test_dir in test_dirs:
-    print (test_dir)
-    print (len(os.listdir(test_dirs[test_dir])) // 2)
+# for test_dir in test_dirs:
+#     print (test_dir)
+#     print (len(os.listdir(test_dirs[test_dir])) // 2)
 
 '''
 number of predictions:
@@ -65,3 +65,35 @@ gemini_text_augmented_prompting
 gemini_visual_revision_prompting
 524
 '''
+
+
+## merge missing gemini predictions into all_scores_dict
+with open("all_scores_dict.json", "r") as f:
+    all_scores_dict = json.load(f)
+
+with open("prediction_file_name_list_gemini_missing.json", "r") as f:
+    missing_gemini_files = json.load(f)
+
+with open("res_dict_gemini_missing.json", "r") as f:
+    res_dict_gemini_missing = json.load(f)
+
+
+for k,v in res_dict_gemini_missing.items():
+    print (k)
+    for i in range(len(missing_gemini_files)):
+        filename = missing_gemini_files[i]
+        all_scores_dict[k][filename] = v[i]
+    print (len(all_scores_dict[k]))
+
+missing_scores = ["15915.html", "13579.html", "14423.html", "6941.html"]
+
+## remove cases where the scores are all 0
+for k,v in all_scores_dict.items():
+    print (k)
+    for filename in missing_scores:
+        del v[filename]
+    print (len(v))
+    print (np.mean(list(v.values()), axis=0))
+
+with open("all_scores_dict.json", "w") as f:
+    json.dump(all_scores_dict, f, indent=4)
