@@ -9,7 +9,7 @@ import argparse
 import retry
 import shutil 
 
-@retry.retry(tries=3, delay=2)
+@retry.retry(tries=2, delay=2)
 def gemini_call(gemini_client, encoded_image, prompt):
     generation_config = genai.GenerationConfig(
         temperature=0.,
@@ -24,7 +24,7 @@ def gemini_call(gemini_client, encoded_image, prompt):
 
     return response
 
-@retry.retry(tries=3, delay=2)
+@retry.retry(tries=2, delay=2)
 def gemini_revision_call(gemini_client, encoded_image_ref, encoded_image_pred, prompt):
     generation_config = genai.GenerationConfig(
         temperature=0.,
@@ -225,7 +225,7 @@ if __name__ == "__main__":
       cache_dir = "../../predictions_100/"
     elif args.subset == "testset_full":
       test_data_dir = "../../testset_full"
-      cache_dir = "../../predictions_full/"
+      cache_dir = "../../gemini_predictions_full/"
     else:
       print ("Invalid subset!")
       exit()
@@ -246,14 +246,20 @@ if __name__ == "__main__":
     ## create cache directory if not exists
     os.makedirs(predictions_dir, exist_ok=True)
     shutil.copy("rick.jpg", os.path.join(predictions_dir, "rick.jpg"))
+
+    # get the list of predictions already made
+    existing_predictions = [item for item in os.listdir(predictions_dir)]
+    print ("#existing predictions: ", len(existing_predictions))
     
     test_files = []
     if args.file_name == "all":
-      test_files = [item for item in os.listdir(test_data_dir) if item.endswith(".png") and "_marker" not in item]
+      test_files = [item for item in os.listdir(test_data_dir) if item.endswith(".png") and "_marker" not in item and item not in existing_predictions]
     else:
       test_files = [args.file_name]
 
+    counter = 0
     for filename in tqdm(test_files):
+        # print (filename)
         try:
             if args.prompt_method == "direct_prompting":
                 html = direct_prompting(gemini_client, os.path.join(test_data_dir, filename))
@@ -268,6 +274,9 @@ if __name__ == "__main__":
                 f.write(html)
             if args.take_screenshot:
                 take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+            counter += 1
         except:
             continue 
+
+    print ("#new predictions: ", counter)
             
