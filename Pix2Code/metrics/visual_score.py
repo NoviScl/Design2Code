@@ -1105,7 +1105,18 @@ def truncate_repeated_html_elements(soup, max_count=50):
     return str(soup)
 
 
+def make_html(filename):
+    with open(filename, 'r') as file:
+        content = file.read()
+
+    if '<html>' not in content:
+        new_content = f'<html><body><p>{content}</p></body></html>'
+        with open(filename, 'w') as file:
+            file.write(new_content)
+
+
 def pre_process(html_file):
+    make_html(html_file)
     with open(html_file, 'r') as file:
         soup = BeautifulSoup(file, 'html.parser')
     soup_str = truncate_repeated_html_elements(soup)

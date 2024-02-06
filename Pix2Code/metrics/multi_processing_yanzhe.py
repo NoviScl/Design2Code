@@ -36,7 +36,7 @@ def print_multi_score(multi_score):
     print("--------------------------------\n")
 
 debug = False
-
+"""
 reference_dir = "../../testset_full"
 test_dirs = {
     "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
@@ -46,9 +46,22 @@ test_dirs = {
     "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
 }
-
 file_name_list = [item for item in os.listdir("../../gpt4v_predictions_full/gpt4v_direct_prompting") if item.endswith("14423.html")]
-# file_name_list = ["102.html"]
+"""
+
+reference_dir = "../../testset_100"
+test_dirs = { \
+             # "finetune-cogagent-chat-02-01-14-05_2500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_2500",\
+             # "finetune-cogagent-chat-02-01-14-05_2000": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_2000",\
+             # "finetune-cogagent-chat-02-01-14-05_1500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_1500",\
+             # "finetune-cogagent-chat-02-01-14-05_1000": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_1000",\
+             # "finetune-cogagent-chat-02-01-14-05_500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_500",\
+             "finetune-cogagent-chat-01-18-18-28": "../../predictions_100/finetune-cogagent-chat-01-18-18-28",
+             "finetune-cogagent-chat-01-28-23-02": "../../predictions_100/finetune-cogagent-chat-01-28-23-02",
+             "websight": "../../predictions_100/websight",
+             "finetuned_v0": "../../predictions_100/finetuned_v0"}
+file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-01-14-05_1500") if item.endswith(".html") and item != "102.html"]
+
 print(len(file_name_list))
 print(file_name_list)
 
