@@ -48,11 +48,6 @@ test_dirs = {
     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
 }
 
-# test_dirs = {
-#     "gpt4v_direct_prompting": "../../predictions_100/gpt4v_direct_prompting",
-#     "gpt4v_text_augmented_prompting": "../../predictions_100/gpt4v_text_augmented_prompting",
-#     "gpt4v_visual_revision_prompting": "../../predictions_100/gpt4v_visual_revision_prompting",
-# }
 
 file_name_list = []
 
@@ -62,12 +57,14 @@ for filename in os.listdir(reference_dir):
         if all([os.path.exists(os.path.join(test_dirs[key], filename.replace(".html", ".png"))) for key in test_dirs]):
             file_name_list.append(filename)
 
-# file_name_list = file_name_list[:10]
+## load the predictions already made 
+with open("prediction_file_name_list.json", "r") as f:
+    existing_predictions = json.load(f)
 
-# file_name_list = ['9412.html', '15385.html', '11625.html', '10582.html', '6315.html', '8512.html', '13935.html', '1895.html', '11465.html', '5672.html', '13775.html', '10612.html', '4272.html', '2.html', '13692.html']
+file_name_list = [f for f in file_name_list if f not in existing_predictions]
 
 print ("total #egs: ", len(file_name_list))
-with open("prediction_file_name_list.json", "w") as f:
+with open("prediction_file_name_list_gemini_missing.json", "w") as f:
     json.dump(file_name_list, f, indent=4)
 
 input_lists = []
@@ -83,7 +80,7 @@ with tqdm_joblib(tqdm(total=len(input_lists))) as progress_bar:
     return_score_lists = list(tqdm(Parallel(n_jobs=16)(delayed(visual_eval_v3_multi)(input_list, debug=debug) for input_list in input_lists), total=len(input_lists)))
 
 ## cache all scores 
-with open("return_score_lists.json", "w") as f:
+with open("return_score_lists_gemini_missing.json", "w") as f:
     json.dump(return_score_lists, f, indent=4)
 
 res_dict = {}
@@ -105,7 +102,7 @@ for i, filename in enumerate(file_name_list):
             res_dict[key].append([0, 0, 0, 0, 0, 0])
 
 ## cache all scores 
-with open("res_dict.json", "w") as f:
+with open("res_dict_gemini_missing.json", "w") as f:
     json.dump(res_dict, f, indent=4)
 
 for key in test_dirs:

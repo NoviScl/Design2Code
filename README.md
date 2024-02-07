@@ -12,9 +12,9 @@ We have two versions of the test set:
 
 ## Prediction Files
 
-GPT-4V Predictions Full [link](https://drive.google.com/file/d/1jFUhb3PuuZsmL9p9O5lKdDed106XG9PT/view?usp=sharing)
+GPT-4V Predictions Full [link](https://drive.google.com/file/d/1m4dvP0drPoEhSVhKIJ9zWVm3vhIqP7FA/view?usp=sharing)
 
-Gemini-Pro Predictions Full: [link](https://drive.google.com/file/d/1fUwEFLeo4XNntzgP-eMAlO38j4CHv205/view?usp=sharing)
+Gemini-Pro Predictions Full: [link](https://drive.google.com/file/d/18qAatN6XC2PlxtvhutLVBj2OhHSZvq9c/view?usp=sharing)
 
 ## Code Structure
 
