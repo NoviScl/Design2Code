@@ -30,7 +30,7 @@ def take_screenshot(url, output_file="screenshot.png", do_it_again=False):
         page.goto(url)
 
         # Take the screenshot
-        page.screenshot(path=output_file, full_page=True)
+        page.screenshot(path=output_file, full_page=True, animations="disabled")
 
         browser.close()
 

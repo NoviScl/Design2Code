@@ -1126,8 +1126,8 @@ def pre_process(html_file):
 
 def visual_eval_v3_multi(input_list, debug=False):
     print(input_list)
+    predict_img_list, original_img = input_list[0], input_list[1]
     try:
-        predict_img_list, original_img = input_list[0], input_list[1]
         predict_blocks_list = []
         for predict_img in predict_img_list:
             # This will help fix some html syntax error
@@ -1147,7 +1147,12 @@ def visual_eval_v3_multi(input_list, debug=False):
         return_score_list = []
 
         for k, predict_blocks in enumerate(predict_blocks_list):
-            if len(predict_blocks) == 0 or len(original_blocks) == 0:
+            if len(predict_blocks) == 0:
+                print("[Warning] No detected blocks in: ", predict_img_list[k])
+                return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
+                continue
+            elif len(original_blocks) == 0:
+                print("[Warning] No detected blocks in: ", original_img)
                 return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
                 continue
         
@@ -1236,11 +1241,12 @@ def visual_eval_v3_multi(input_list, debug=False):
                 final_score = np.sum(scores) / np.sum(max_areas) * final_clip_score
                 return_score_list.append([matched, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
             else:
+                print("[Warning] No matched blocks in: ", predict_img_list[k])
                 return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
         return return_score_list
     except:
-        print("Error found in: ", input_list)
-        return None
+        print("[Warning] Error not handled in: ", input_list)
+        return [[0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)] for _ in range(len(predict_img_list))]
 
 
 if __name__ == "__main__":

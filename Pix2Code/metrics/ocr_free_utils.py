@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageColor
 import os
 from bs4 import BeautifulSoup, NavigableString, Tag, Comment
 from pathlib import Path
@@ -40,8 +40,8 @@ def process_html(input_file_path, output_file_path, offset=0):
         element['style'] = '; '.join(updated_styles).strip()
 
     # Set the background color of all elements to white
-    # for element in soup.find_all(True):
-    #     update_style(element, 'background-color', 'white')
+    for element in soup.find_all(True):
+        update_style(element, 'background-color', 'rgba(255, 255, 255, 0.0)')
 
     color_pool = ColorPool(offset)
 
@@ -71,7 +71,7 @@ def find_different_pixels(image1_path, image2_path):
 
     # Ensure both images are of the same size
     if img1.size != img2.size:
-        print(f"Warning: Images are not the same size, {image1_path}, {image2_path}")
+        print(f"[Warning] Images are not the same size, {image1_path}, {image2_path}")
         return None
 
     # Convert images to RGB if they are not
@@ -243,14 +243,15 @@ def get_blocks_ocr_free(image_path):
     different_pixels = find_different_pixels(p_png, p_png_1)
 
     if different_pixels is None:
-        os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
+        print(f"[Warning] Unable to get pixels with different colors from {p_png}, {p_png_1}...")
+        # os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
         return []
 
     html_text_color_tree = flatten_tree(extract_text_with_color(p_html))
     try:
         blocks = get_blocks_from_image_diff_pixels(p_png, html_text_color_tree, different_pixels)
     except:
-        print(f"Warning: unable to get blocks from {p_png}...")
+        print(f"[Warning] Unable to get blocks from {p_png}...")
         os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
         return []
 
