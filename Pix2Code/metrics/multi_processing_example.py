@@ -39,13 +39,18 @@ def print_multi_score(multi_score):
 debug = False
 
 reference_dir = "../../testset_full"
+# test_dirs = {
+#     "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
+#     "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
+#     "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
+#     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
+#     "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
+#     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
+# }
 test_dirs = {
-    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
-    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
-    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
-    "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
+    "gemini_direct_prompting": "../../gemini_ultra_predictions_full/gemini_direct_prompting",
+    "gemini_text_augmented_prompting": "../../gemini_ultra_predictions_full/gemini_text_augmented_prompting",
+    "gemini_visual_revision_prompting": "../../gemini_ultra_predictions_full/gemini_visual_revision_prompting"
 }
 
 
@@ -57,14 +62,13 @@ for filename in os.listdir(reference_dir):
         if all([os.path.exists(os.path.join(test_dirs[key], filename.replace(".html", ".png"))) for key in test_dirs]):
             file_name_list.append(filename)
 
-## load the predictions already made 
-with open("prediction_file_name_list.json", "r") as f:
-    existing_predictions = json.load(f)
-
-file_name_list = [f for f in file_name_list if f not in existing_predictions]
+# ## load the predictions already made 
+# with open("prediction_file_name_list.json", "r") as f:
+#     existing_predictions = json.load(f)
+# file_name_list = [f for f in file_name_list if f not in existing_predictions]
 
 print ("total #egs: ", len(file_name_list))
-with open("prediction_file_name_list_gemini_missing.json", "w") as f:
+with open("prediction_file_name_list_gemini_ultra.json", "w") as f:
     json.dump(file_name_list, f, indent=4)
 
 input_lists = []
@@ -80,7 +84,7 @@ with tqdm_joblib(tqdm(total=len(input_lists))) as progress_bar:
     return_score_lists = list(tqdm(Parallel(n_jobs=16)(delayed(visual_eval_v3_multi)(input_list, debug=debug) for input_list in input_lists), total=len(input_lists)))
 
 ## cache all scores 
-with open("return_score_lists_gemini_missing.json", "w") as f:
+with open("return_score_lists_gemini_ultra.json", "w") as f:
     json.dump(return_score_lists, f, indent=4)
 
 res_dict = {}
@@ -102,7 +106,7 @@ for i, filename in enumerate(file_name_list):
             res_dict[key].append([0, 0, 0, 0, 0, 0])
 
 ## cache all scores 
-with open("res_dict_gemini_missing.json", "w") as f:
+with open("res_dict_gemini_ultra.json", "w") as f:
     json.dump(res_dict, f, indent=4)
 
 for key in test_dirs:

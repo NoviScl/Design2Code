@@ -13,10 +13,10 @@ def take_screenshot(url, output_file="screenshot.png"):
         page = browser.new_page()
 
         # Navigate to the URL
-        page.goto(url)
+        page.goto(url, timeout=60000)
 
         # Take the screenshot
-        page.screenshot(path=output_file, full_page=True, animations="disabled")
+        page.screenshot(path=output_file, full_page=True, animations="disabled", timeout=60000)
 
         browser.close()
 
@@ -24,9 +24,10 @@ def take_screenshot(url, output_file="screenshot.png"):
 #     take_screenshot("/Users/clsi/Desktop/Pix2Code/trial_dataset/" + "{}.html".format(name), "trial_dataset/" + "{}.png".format(name))
 
 if __name__ == "__main__":
-    # predictions_dir = "../../predictions_100/finetuned_v0"
-    # for filename in tqdm(os.listdir(predictions_dir)):
-    #     if filename.endswith(".html"):
-    #         take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
+    predictions_dirs = ["../../gemini_ultra_predictions_full/direct_prompting", "../../gemini_ultra_predictions_full/text_augmented_prompting", "../../gemini_ultra_predictions_full/visual_revision_prompting"]
+    for predictions_dir in predictions_dirs:
+        for filename in tqdm(os.listdir(predictions_dir)):
+            if filename.endswith(".html"):
+                take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
 
-    take_screenshot("/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.html", "/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.png")
+    # take_screenshot("/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.html", "/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.png")
