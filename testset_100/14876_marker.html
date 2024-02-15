@@ -1,0 +1,645 @@
+<html lang="en">
+<head>
+<style>
+   /**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+* { box-sizing: border-box; }
+/* Defaults */
+@font-face {
+	font-family: "Atkinson Hyperlegible";
+	src: url('/css/files/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2');
+	font-display: swap;
+}
+@font-face {
+	font-family: "Atkinson Hyperlegible";
+	font-weight: bold;
+	src: url('/css/files/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2');
+	font-display: swap;
+}
+@font-face {
+	font-family: "Atkinson Hyperlegible";
+	font-style: italic
+	src: url('/css/files/atkinson-hyperlegible-latin-400-italic.woff2') format('woff2');
+	font-display: swap;
+}
+
+:root {
+	--font-family: "Atkinson Hyperlegible", -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+	font-size: 18px;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #d61d4a;
+	--text-color-link-active: #853439;
+	--text-color-link-visited: #e8325e;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-50);
+}
+header:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+footer {
+	border-top: 1px dashed var(--color-gray-50);
+}
+
+.links-nextprev {
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-50);
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+	font-size: .9em;
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+}
+code {
+	word-break: break-all;
+	background-color: #f1f3f6;
+	border: 1px solid #dfe1e2;
+	border-radius: 5px;
+	padding: 0 0.6rem;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em .5em;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	font-size: 1.5em; /* 16px /16 */
+	font-weight: 700;
+	margin-right: 2em;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Archive list */
+.archivelist {
+	padding: 0;
+	padding-left: 2.5rem;
+}
+.archivelist-item {
+	align-items: baseline;
+	margin-bottom: 1em;
+}
+.archivelist-item::marker {
+	text-align: right;
+	margin-left: -1.5rem;
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.archivelist-date {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+	word-spacing: -0.5px;
+}
+.archivelist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.archivelist-item-active .archivelist-link {
+	font-weight: bold;
+}
+
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: none;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-20);
+	border-bottom: 1px dashed var(--color-gray-20);
+	padding: 3px 0px 3px 0px;
+	margin: 0;
+	font-size: .8em;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: .1em;
+}
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+h1 {
+	font-weight: bolder;
+}
+
+summary {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: .5em;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+blockquote {
+	display: block;
+	margin-left: 2em;
+	margin-right: 3em;
+	padding-left: 10px;
+	border-left: 10px solid var(--text-color-link);
+}
+/* Webmention Section */
+
+.webmentions {
+	display:block;
+	text-align: left;
+}
+.webmentions__facepile {
+	display:flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.webmentions__face {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	object-fit: cover;
+	flex: none;
+}
+.webmentions__list {
+	list-style-type: none;
+	padding:0;
+}
+.webmentions__item {
+	margin-bottom: 2rem;
+}
+
+/* Single Webmention */
+
+.webmention {
+	display:block;
+}
+.webmention__meta,
+.webmention__author {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.webmention__meta {
+	margin-bottom:.5rem;
+}
+.webmention__author {
+	margin-right:.25rem;
+}
+.webmention__author__photo {
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-right:.5rem;
+}
+.webmention__pubdate {
+	font-style: italic;
+}
+  </style>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>[1]</title>
+<meta content="The long-running and erratically updated blog of Kathleen Fitzpatrick." name="description"/>
+</head>
+<body>
+<a class="visually-hidden">[2]</a>
+<header>
+<a class="home-link">[3]</a>
+<nav>
+<h2 class="visually-hidden">[4]</h2>
+<ul class="nav">
+<li class="nav-item">
+<a>[5]</a>
+</li>
+<li class="nav-item">
+<a>[6]</a>
+</li>
+<li class="nav-item">
+<a>[7]</a>
+</li>
+<li class="nav-item">
+<a>[8]</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id="skip">
+<h1>[9]</h1>
+<ul class="post-metadata">
+<li>
+<time datetime="2006-05-28">[10]</time>
+</li>
+<li>
+<a class="post-tag">[11]</a>[12]</li>
+<li>
+<a class="post-tag">[13]</a>
+</li>
+</ul>
+<p>[14]<a>[15]</a>[16]</p>
+<ul class="links-nextprev">
+<li>[17]<a>[18]</a>
+</li>
+<li>[19]<a>[20]</a>
+</li>
+</ul>
+<hyvor-talk-comments id="hyvor-talk-comments-38544398" page-id="/spambot-university-library/" website-id="9100">
+</hyvor-talk-comments>
+<div class="webmentions" id="webmentions">
+<h3>[21]</h3>
+</div>
+</main>
+<footer>
+<p>[22]<a>[23]</a>[24]</p>
+</footer>
+</body>
+</html>

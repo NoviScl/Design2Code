@@ -244,7 +244,7 @@ def get_blocks_ocr_free(image_path):
 
     if different_pixels is None:
         print(f"[Warning] Unable to get pixels with different colors from {p_png}, {p_png_1}...")
-        # os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
+        os.system(f"rm {p_html} {p_png} {p_html_1} {p_png_1}")
         return []
 
     html_text_color_tree = flatten_tree(extract_text_with_color(p_html))

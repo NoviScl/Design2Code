@@ -40,6 +40,7 @@ def index_text(html_file):
     except:
         pass
 
+"""
 input_list = [item for item in os.listdir("/juice2/scr2/nlp/pix2code/zyanzhe/websight_file") if item.endswith(".html")]
 input_list = [os.path.join("/juice2/scr2/nlp/pix2code/zyanzhe/websight_file", item) for item in input_list]
 
@@ -55,3 +56,12 @@ print(len(input_list), input_list[:5])
 
 with tqdm_joblib(tqdm(total=len(input_list))) as progress_bar:
     res = list(tqdm(Parallel(n_jobs=16)(delayed(index_text)(inputs) for inputs in input_list), total=len(input_list)))
+"""
+
+input_list = [item for item in os.listdir("/juice2/scr2/nlp/pix2code/zyanzhe/websight_file_164k") if item.endswith(".html")]
+input_list = [os.path.join("/juice2/scr2/nlp/pix2code/zyanzhe/websight_file_164k", item) for item in input_list]
+
+print(len(input_list), input_list[:5])
+
+with tqdm_joblib(tqdm(total=len(input_list))) as progress_bar:
+    res = list(tqdm(Parallel(n_jobs=4)(delayed(index_text)(inputs) for inputs in input_list), total=len(input_list)))

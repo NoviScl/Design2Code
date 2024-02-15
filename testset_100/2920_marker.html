@@ -1,0 +1,1893 @@
+<html lang="en" xml:lang="en" xmlns="">
+<head>
+<style>
+   /*
+ * Font sizing based on 16px browser defaults (use em):
+ *   14px = 0.875em
+ *   13px = 0.812em
+ *   12px = 0.75em
+ *   11px = 0.6875em
+ */
+
+/*
+ * ARCH GLOBAL NAVBAR
+ * We're forcing all generic selectors with !important
+ * to help prevent other stylesheets from interfering.
+ */
+
+/* container for the entire bar */
+
+[dir="rtl"] html {
+    direction: rtl;
+}
+#archnavbar { min-height: 40px !important; padding: 10px 15px !important; background: #333 !important; border-bottom: 5px #08c solid !important; }
+
+[dir="rtl"] #archnavbarlogo { float: right !important; }
+#archnavbarlogo { float: left !important; margin: 0 !important; padding: 0 !important; height: 40px !important; width: 190px !important; background: url('archnavbar/archlogo.png') no-repeat !important; }
+@media (-webkit-min-device-pixel-ratio: 1.2), (min--moz-device-pixel-ratio: 1.2), (-o-min-device-pixel-ratio: 2/1) {
+    [dir="rtl"] #archnavbarlogo { float: right !important;}
+	#archnavbarlogo { float: left !important; margin: 0 !important; padding: 0 !important; height: 40px !important; width: 190px !important; background: url(archnavbar/archlogo.svg) no-repeat !important;background-size:100% !important;
+	}
+}
+
+/* move the heading text offscreen */
+#archnavbarlogo h1 { margin: 0 !important; padding: 0 !important; text-indent: -9999px !important; }
+
+/* make the link the same size as the logo */
+#archnavbarlogo a { display: block !important; height: 40px !important; width: 190px !important; }
+
+/* display the list inline, float it to the right and style it */
+[dir="rtl"] #archnavbarlist {text-align: left !important;}
+#archnavbarlist { display: block !important; list-style: none !important; margin: 0 !important; padding: 0 !important; font-size: 0px !important; text-align: right !important; }
+[dir="rtl"] #archnavbarlist li { padding: 14px 0px 0px 15px; }
+#archnavbarlist li { display: inline-block !important; font-size: 14px !important; font-family: sans-serif !important; line-height: 14px !important; padding: 14px 15px 0px !important; }
+
+/* style the links */
+#archnavbarlist li a { color: #999; font-weight: bold !important; text-decoration: none !important; }
+#archnavbarlist li a:hover { color: white !important; text-decoration: underline !important; }
+
+/* END ARCH GLOBAL NAVBAR */
+
+/* simple reset */
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+
+/* general styling */
+body {
+    min-width: 650px;
+    background: #f6f9fc;
+    color: #222;
+    font: normal 100% sans-serif;
+    text-align: center;
+}
+
+p {
+    margin: .33em 0 1em;
+}
+
+[dir="rtl"] ol,
+[dir="rtl"] ul {
+    padding-right: 2em;
+}
+
+ol,
+ul {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+    ul {
+        list-style: square;
+    }
+
+code {
+    font: 1.2em monospace;
+    background: #ffd;
+    padding: 0.15em 0.25em;
+}
+
+pre {
+    font: 1.2em monospace;
+    border: 1px solid #bdb;
+    background: #dfd;
+    padding: 0.5em;
+    margin: 1em;
+}
+
+    pre code {
+        display: block;
+        background: none;
+        overflow: auto;
+    }
+
+blockquote {
+    margin: 1.5em 2em;
+}
+
+input {
+    vertical-align: middle;
+}
+
+select[multiple] {
+    padding: 1px 0;
+}
+
+    select[multiple] option {
+        padding: 0 0.5em 0 0.3em;
+    }
+
+input[type=submit] {
+    padding: 0 0.6em;
+}
+
+.clear {
+    clear: both;
+}
+
+.hide {
+    display: none;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #888;
+}
+
+img {
+    border: 0;
+}
+
+/* scale fonts down to a sane default (16 * .812 = 13px) */
+#content {
+    font-size: 0.812em;
+}
+
+/* link style */
+a {
+    text-decoration: none;
+}
+
+    a:link,
+    th a:visited {
+        color: #07b;
+    }
+
+    a:visited {
+        color: #666;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: #666;
+    }
+
+    a:active {
+        color: #e90;
+    }
+
+/* special anchor elements */
+[dir="rtl"] a.headerlink {
+    padding-right: 0.5em;
+}
+
+a.headerlink {
+    visibility: hidden;
+    padding-left: 0.5em;
+}
+
+h3:hover > a.headerlink {
+    visibility: visible;
+}
+
+/* headings */
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #888;
+}
+
+h3 {
+    font-size: 1.25em;
+    margin-top: .5em;
+}
+
+h4 {
+    font-size: 1.15em;
+    margin-top: 1em;
+}
+
+h5 {
+    font-size: 1em;
+    margin-top: 1em;
+}
+
+/* general layout */
+[dir="rtl"] #content {
+    text-align: right;
+}
+
+#content {
+    width: 95%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+[dir="rtl"] #content-left-wrapper {
+    float: right;
+}
+
+#content-left-wrapper {
+    float: left;
+    width: 100%; /* req to keep content above sidebar in source code */
+}
+
+[dir="rtl"] #content-left {
+    margin: 0 0 0 340px;
+}
+
+#content-left {
+    margin: 0 340px 0 0;
+}
+
+[dir="rtl"] #content-right {
+    float: right;
+    margin-right: -300px;
+}
+
+#content-right {
+    float: left;
+    width: 300px;
+    margin-left: -300px;
+}
+
+div.box {
+    margin-bottom: 1.5em;
+    padding: 0.65em;
+    background: #ecf2f5;
+    border: 1px solid #bcd;
+}
+
+#footer {
+    clear: both;
+    margin: 2em 0 1em;
+}
+
+    #footer p {
+        margin: 0;
+        text-align: center;
+        font-size: 0.85em;
+    }
+
+/* alignment */
+div.center,
+table.center,
+img.center {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p.center,
+td.center,
+th.center {
+    text-align: center;
+}
+
+/* table generics */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table .wrap {
+        white-space: normal;
+    }
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+    text-align: right;
+}
+
+th,
+td {
+    white-space: nowrap;
+    text-align: left;
+}
+
+    th {
+        vertical-align: middle;
+        font-weight: bold;
+    }
+
+    td {
+        vertical-align: top;
+    }
+
+/* table pretty styles */
+table.pretty2 {
+    width: auto;
+    margin-top: 0.25em;
+    margin-bottom: 0.5em;
+    border-collapse: collapse;
+    border: 1px solid #bbb;
+}
+
+    .pretty2 th {
+        padding: 0.35em;
+        background: #eee;
+        border: 1px solid #bbb;
+    }
+
+    .pretty2 td {
+        padding: 0.35em;
+        border: 1px dotted #bbb;
+    }
+
+table.compact {
+    width: auto;
+}
+
+    .compact td {
+        padding: 0.25em 0 0.25em 1.5em;
+    }
+
+
+/* definition lists */
+dl {
+    clear: both;
+}
+
+    dl dt,
+    dl dd {
+        margin-bottom: 4px;
+        padding: 8px 0 4px;
+        font-weight: bold;
+        border-top: 1px dotted #bbb;
+    }
+
+    [dir="rtl"] dl dt {
+        float: right;
+        padding-left: 15px;
+    }
+    dl dt {
+        color: #333;
+        float: left;
+        padding-right: 15px;
+    }
+
+/* forms and input styling */
+form p {
+    margin: 0.5em 0;
+}
+
+fieldset {
+    border: 0;
+}
+
+label {
+    width: 12em;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: bold;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+textarea {
+    padding: 0.10em;
+}
+
+form.general-form label,
+form.general-form .form-help {
+    width: 10em;
+    vertical-align: top;
+    display: inline-block;
+}
+
+form.general-form input[type=text],
+form.general-form textarea {
+    width: 45%;
+}
+
+/* archdev navbar */
+#archdev-navbar {
+    margin: 1.5em 0;
+}
+
+    #archdev-navbar ul {
+        list-style: none;
+        margin: -0.5em 0;
+        padding: 0;
+    }
+
+    #archdev-navbar li {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        font-size: 0.9em;
+    }
+
+        #archdev-navbar li a {
+            padding: 0 0.5em;
+            color: #07b;
+        }
+
+/* error/info messages (x pkg is already flagged out-of-date, etc) */
+#sys-message {
+    width: 35em;
+    text-align: center;
+    margin: 1em auto;
+    padding: 0.5em;
+    background: #fff;
+    border: 1px solid #f00;
+}
+
+    #sys-message p {
+        margin: 0;
+    }
+
+ul.errorlist {
+    color: red;
+}
+
+form ul.errorlist {
+    margin: 0.5em 0;
+}
+
+/* JS sorting via tablesorter */
+[dir="rtl"] table th.tablesorter-header {
+    padding-left: 20px;
+    background-position: center left ;
+}
+table th.tablesorter-header {
+    padding-right: 20px;
+    background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table thead th.tablesorter-headerAsc {
+    background-color: #e4eeff;
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+}
+
+table thead th.tablesorter-headerDesc {
+    background-color: #e4eeff;
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+}
+
+table thead th.sorter-false {
+    background-image: none;
+    cursor: default;
+}
+
+.tablesorter-header:focus {
+    outline: none;
+}
+
+/**
+ *  PAGE SPECIFIC STYLES
+ */
+
+/* home: introduction */
+[dir="rtl"] #intro p.readmore {
+    text-align: left;
+}
+#intro p.readmore {
+    margin: -0.5em 0 0 0;
+    font-size: .9em;
+    text-align: right;
+}
+
+/* home: news */
+#news {
+    margin-top: 1.5em;
+}
+
+    [dir="rtl"] #news h3 {
+        float: right;
+    }
+    #news h3 {
+        float: left;
+        padding-bottom: .5em
+    }
+
+    #news div {
+        margin-bottom: 1em;
+    }
+
+        #news div p {
+            margin-bottom: 0.5em;
+        }
+
+    #news .more {
+        font-weight: normal;
+    }
+    [dir="rtl"] #news .rss-icon {
+        float: left;
+    }
+    #news .rss-icon {
+        float: right;
+        margin-top: 1em;
+    }
+
+    #news h4 {
+        clear: both;
+        font-size: 1em;
+        margin-top: 1.5em;
+        border-bottom: 1px dotted #bbb;
+    }
+    [dir="rtl"] #news .timestamp {
+        float: left;
+        margin: -1.8em 0 0 0.5em;
+    }
+    #news .timestamp {
+        float: right;
+        font-size: 0.85em;
+        margin: -1.8em 0.5em 0 0;
+    }
+
+/* home: arrowed headings */
+#news h3 a {
+    display: block;
+    background: #1794D1;
+    font-size: 15px;
+    padding: 2px 10px;
+    color: white;
+}
+
+    #news a:active {
+        color: white;
+    }
+
+h3 span.arrow {
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #1794D1;
+    margin: 0 auto;
+    font-size: 0;
+    line-height: 0px;
+}
+
+/* home: pkgsearch box */
+#pkgsearch {
+    padding: 1em 0.75em;
+    background: #3ad;
+    color: #fff;
+    border: 1px solid #08b;
+}
+
+    #pkgsearch label {
+        width: auto;
+        padding: 0.1em 0;
+    }
+
+    [dir="rtl"] #pkgsearch input {
+        float: left;
+    }
+    #pkgsearch input {
+        width: 10em;
+        float: right;
+        font-size: 1em;
+        color: #000;
+        background: #fff;
+        border: 1px solid #09c;
+    }
+
+    [dir="rtl"] .pkgsearch-typeahead {
+        right: 0;
+        float: right;
+        text-align: right;
+    }
+
+    .pkgsearch-typeahead {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        padding: 0.15em 0.1em;
+        margin: 0;
+        min-width: 10em;
+        font-size: 1em;
+        text-align: left;
+        list-style: none;
+        background-color: #f6f9fc;
+        border: 1px solid #09c;
+    }
+
+        .pkgsearch-typeahead li a {
+            color: #000;
+        }
+
+        .pkgsearch-typeahead li:hover a,
+        .pkgsearch-typeahead li.active a {
+            color: #07b;
+        }
+
+/* home: recent pkg updates */
+#pkg-updates h3 {
+    margin: 0 0 0.3em;
+}
+
+    #pkg-updates .more {
+        font-weight: normal;
+    }
+    [dir="rtl"] #pkg-updates .rss-icon {
+        float: left;
+    }
+    #pkg-updates .rss-icon {
+        float: right;
+        margin: -2em 0 0 0;
+    }
+
+    [dir="rtl"] #pkg-updates .rss-icon.latest {
+        margin-left: 1em;
+    }
+    #pkg-updates .rss-icon.latest {
+        margin-right: 1em;
+    }
+
+    #pkg-updates table {
+        margin: 0;
+        direction: ltr;
+    }
+
+    #pkg-updates td.pkg-name {
+        white-space: normal;
+        text-align: left;
+    }
+
+    [dir="rtl"] #pkg-updates td.pkg-arch {
+        text-align: left;
+    }
+    #pkg-updates td.pkg-arch {
+        text-align: right;
+    }
+
+    #pkg-updates span.testing {
+        font-style: italic;
+    }
+
+    #pkg-updates span.staging {
+        font-style: italic;
+        color: #ff8040;
+    }
+
+/* home: sidebar navigation */
+[dir="rtl"] #nav-sidebar ul {
+    margin: 0.5em 1em 0.5em 0;
+}
+
+#nav-sidebar ul {
+    list-style: none;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0;
+}
+
+/* home: sponsor banners */
+#arch-sponsors img {
+    padding: 0.3em 0;
+}
+
+/* home: sidebar components (navlist, sponsors, pkgsearch, etc) */
+div.widget {
+    margin-bottom: 1.5em;
+}
+
+/* feeds page */
+[dir="rtl"] #rss-feeds .rss {
+    padding-left: 20px;
+    background: url(rss.png) top left no-repeat;
+}
+
+#rss-feeds .rss {
+    padding-right: 20px;
+    background: url(rss.png) top right no-repeat;
+}
+
+/* artwork: logo images */
+#artwork img.inverted {
+    background: #333;
+    padding: 0;
+}
+
+#artwork div.imagelist img {
+    display: inline;
+    margin: 0.75em;
+}
+
+/* news: article list */
+[dir="rtl"] .news-nav {
+    float: left;
+}
+.news-nav {
+    float: right;
+    margin-top: -2.2em;
+}
+
+    .news-nav .prev,
+    .news-nav .next {
+        margin: 0 1em;
+    }
+
+/* news: article pages */
+div.news-article .article-info {
+    margin: 0;
+    color: #999;
+}
+
+/* news: add/edit article */
+#newsform {
+    width: 60em;
+}
+
+    #newsform input[type=text],
+    #newsform textarea {
+        width: 75%;
+    }
+
+#news-preview {
+    display: none;
+}
+
+/* todolists: list */
+[dir="rtl"] .todolist-nav {
+    float: left;
+}
+.todolist-nav {
+    float: right;
+    margin-top: -2.2em;
+}
+
+    .todolist-nav .prev,
+    .todolist-nav .next {
+        margin: 0 1em;
+    }
+
+/* donate: donor list */
+#donor-list ul {
+    width: 100%;
+}
+    /* max 4 columns, but possibly fewer if screen size doesn't allow for more */
+    [dir="rtl"] #donor-list li {
+        float: right;
+    }
+    #donor-list li {
+        float: left;
+        width: 25%;
+        min-width: 20em;
+    }
+
+/* download page */
+#arch-downloads h3 {
+    border-bottom: 1px dotted #bbb;
+}
+
+/* pkglists/devlists */
+table.results {
+    font-size: 0.846em;
+    border-top: 1px dotted #999;
+    border-bottom: 1px dotted #999;
+    direction: ltr;
+}
+
+    [dir="rtl"] .results th {text-align: center; direction:rtl;}
+    .results th {
+        padding: 0.5em 1em 0.25em 0.25em;
+        border-bottom: 1px solid #999;
+        white-space: nowrap;
+        background-color:#fff;
+    }
+
+    .results td {
+        padding: .3em 1em .3em 3px;
+        text-align: left;
+    }
+
+    .results .flagged {
+        color: red;
+    }
+
+    .results tr.empty td {
+        text-align: center;
+    }
+
+/* pkglist: layout */
+#pkglist-about {
+    margin-top: 1.5em;
+}
+
+/* pkglist: results navigation */
+.pkglist-stats {
+    font-size: 0.85em;
+}
+
+[dir="rtl"] #pkglist-results .pkglist-nav {
+    float: left;
+}
+#pkglist-results .pkglist-nav {
+    float: right;
+    margin-top: -2.2em;
+}
+
+[dir="rtl"] .pkglist-nav .prev {
+    margin-left: 1em;
+}
+
+.pkglist-nav .prev {
+    margin-right: 1em;
+}
+
+[dir="rtl"] .pkglist-nav .next {
+    margin-left: 1em;
+}
+.pkglist-nav .next {
+    margin-right: 1em;
+}
+
+/* search fields  and other filter selections */
+.filter-criteria {
+    margin-bottom: 1em;
+}
+
+.filter-criteria h3 {
+    font-size: 1em;
+    margin-top: 0;
+}
+[dir="rtl"] .filter-criteria div {
+    float: right;
+    margin-left: 1.65em;
+}
+.filter-criteria div {
+    float: left;
+    margin-right: 1.65em;
+    font-size: 0.85em;
+}
+
+.filter-criteria legend {
+    display: none;
+}
+
+.filter-criteria label {
+    width: auto;
+    display: block;
+    font-weight: normal;
+}
+
+/* pkgdetails: details links that float on the right */
+[dir="rtl"] #pkgdetails #detailslinks {
+    float: left;
+}
+#pkgdetails #detailslinks {
+    float: right;
+}
+
+    #pkgdetails #detailslinks h4 {
+        margin-top: 0;
+        margin-bottom: 0.25em;
+    }
+
+    #pkgdetails #detailslinks ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+        font-size: 0.846em;
+    }
+
+    #pkgdetails #detailslinks > div {
+        padding: 0.5em;
+        margin-bottom: 1em;
+        background: #eee;
+        border: 1px solid #bbb;
+    }
+
+#pkgdetails #actionlist .flagged {
+    color: red;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* pkgdetails: pkg info */
+#pkgdetails #pkginfo {
+    width: auto;
+}
+
+[dir="rtl"] #pkgdetails td {
+        padding: 0.25em 1.5em 0.25em 0;
+    }
+
+    #pkgdetails #pkginfo td {
+        padding: 0.25em 0 0.25em 1.5em;
+    }
+
+    #pkgdetails #pkginfo .userdata {
+        font-size: 0.85em;
+        padding: 0.5em;
+    }
+
+/* pkgdetails: flag package */
+#flag-pkg-form label {
+    width: 10em;
+}
+
+#flag-pkg-form textarea,
+#flag-pkg-form input[type=text] {
+    width: 45%;
+}
+
+#flag-pkg-form #id_website {
+    display: none;
+}
+
+/* pkgdetails: deps, required by and file lists */
+#pkgdetails #metadata {
+    clear: both;
+}
+
+#pkgdetails #metadata h3 {
+    background: #555;
+    color: #fff;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    padding: 0.2em 0.35em;
+}
+
+#pkgdetails #metadata ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+[dir="rtl"] #pkgdetails #metadata li {
+    padding-right: 0.5em;
+}
+
+#pkgdetails #metadata li {
+    padding-left: 0.5em;
+}
+
+[dir="rtl"] #pkgdetails #metadata p {
+    padding-right: 0.5em;
+}
+#pkgdetails #metadata p {
+    padding-left: 0.5em;
+}
+
+#pkgdetails #metadata .message {
+    font-style: italic;
+}
+
+#pkgdetails #metadata br {
+    clear: both;
+}
+
+[dir="rtl"] #pkgdetails #pkgdeps {
+    float: right;
+    width: 48%;
+    margin-left: 2%;
+
+}
+#pkgdetails #pkgdeps {
+    float: left;
+    width: 48%;
+    margin-right: 2%;
+}
+
+#pkgdetails #metadata .virtual-dep,
+#pkgdetails #metadata .testing-dep,
+#pkgdetails #metadata .staging-dep,
+#pkgdetails #metadata .opt-dep,
+#pkgdetails #metadata .make-dep,
+#pkgdetails #metadata .check-dep,
+#pkgdetails #metadata .dep-desc {
+    font-style: italic;
+}
+
+[dir="rtl"] #pkgdetails #pkgreqs {
+    float: right;
+    width: 48%;
+}
+
+#pkgdetails #pkgreqs {
+    float: left;
+    width: 50%;
+}
+
+#pkgdetails #pkgfiles {
+    clear: both;
+    padding-top: 1em;
+}
+
+#pkgfilelist li.d {
+    color: #666;
+}
+
+#pkgfilelist li.f {
+}
+
+/* mirror stuff */
+table td.country {
+    white-space: normal;
+}
+
+#list-generator div ul {
+    list-style: none;
+    display: inline;
+    padding-left: 0;
+}
+
+    #list-generator div ul li {
+        display: inline;
+    }
+
+.visualize-mirror .axis path,
+.visualize-mirror .axis line {
+    fill: none;
+    stroke: #000;
+    stroke-width: 3px;
+    shape-rendering: crispEdges;
+}
+
+.visualize-mirror .url-dot {
+    stroke: #000;
+}
+
+.visualize-mirror .url-line {
+    fill: none;
+    stroke-width: 1.5px;
+}
+
+/* dev/PM biographies */
+#arch-bio-toc {
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    #arch-bio-toc a {
+        white-space: nowrap;
+    }
+
+.arch-bio-entry {
+    width: 75%;
+    min-width: 640px;
+    margin: 0 auto;
+}
+    .arch-bio-entry td.pic {
+        padding-left: 15px;
+        }
+    .arch-bio-entry td.pic {
+        vertical-align: top;
+        padding-right: 15px;
+        padding-top: 2.25em;
+    }
+
+        .arch-bio-entry td.pic img {
+            padding: 4px;
+            border: 1px solid #ccc;
+        }
+
+    .arch-bio-entry td h3 {
+        border-bottom: 1px dotted #ccc;
+        margin-bottom: 0.5em;
+    }
+
+    .arch-bio-entry table.bio {
+        margin-bottom: 2em;
+    }
+        [dir="rtl"] .arch-bio-entry table.bio th {
+            text-align: left;
+            padding-left: 0.5em;
+        }
+
+        .arch-bio-entry table.bio th {
+            color: #666;
+            font-weight: normal;
+            text-align: right;
+            padding-right: 0.5em;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        .arch-bio-entry table.bio td {
+            width: 100%;
+            padding-bottom: 0.25em;
+            white-space: normal;
+        }
+
+/* dev: login/out */
+#dev-login {
+    width: auto;
+}
+
+/* tables rows: highlight on mouse-vover */
+#article-list tr:hover,
+#clocks-table tr:hover,
+#dev-dashboard tr:hover,
+#dev-todo-lists tr:hover,
+#dev-todo-pkglist tr:hover,
+#pkglist-results tr:hover,
+#stats-area tr:hover {
+    background: #ffd;
+}
+
+.results tr:nth-child(even),
+#article-list tr:nth-child(even) {
+    background: #e4eeff;
+}
+
+.results tr:nth-child(odd),
+#article-list tr:nth-child(odd) {
+    background: #fff;
+}
+
+/* dev dashboard: */
+table.dash-stats .key {
+    width: 50%;
+}
+
+/* dev dashboard: admin actions (add news items, todo list, etc) */
+[dir="rtl"] ul.admin-actions {
+    float: left;
+}
+ul.admin-actions {
+    float: right;
+    list-style: none;
+    margin-top: -2.5em;
+}
+
+    ul.admin-actions li {
+        display: inline;
+        padding-left: 1.5em;
+    }
+
+/* colored yes/no type values */
+.todo-table .complete,
+.signoff-yes,
+#key-status .signed-yes,
+#release-list .available-yes {
+    color: green;
+}
+
+.todo-table .incomplete,
+.signoff-no,
+#key-status .signed-no,
+#release-list .available-no {
+    color: red;
+}
+
+.todo-table .inprogress,
+.signoff-bad {
+    color: darkorange;
+}
+
+
+/* todo lists (public and private) */
+.todo-info {
+    color: #999;
+    border-bottom: 1px dotted #bbb;
+}
+
+.todo-description {
+    margin-top: 1em;
+    padding-left: 2em;
+    max-width: 900px;
+}
+
+.todo-pkgbases {
+    border-top: 1px dotted #bbb;
+}
+
+.todo-list h4 {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+
+/* dev: signoff page */
+#dev-signoffs tr:hover {
+    background: #ffd;
+}
+
+ul.signoff-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.signoff-yes {
+    font-weight: bold;
+}
+
+.signoff-disabled {
+    color: gray;
+}
+
+/* highlight current website in the navbar */
+#archnavbar.anb-home ul li#anb-home a,
+#archnavbar.anb-packages ul li#anb-packages a,
+#archnavbar.anb-download ul li#anb-download a {
+    color: white !important;
+}
+
+/* visualizations page */
+.visualize-buttons {
+    margin: 0.5em 0.33em;
+}
+
+.visualize-chart {
+    position: relative;
+    height: 500px;
+    margin: 0.33em;
+}
+
+#visualize-archrepo .treemap-cell {
+    border: solid 1px white;
+    overflow: hidden;
+    position: absolute;
+}
+
+    #visualize-archrepo .treemap-cell span {
+        padding: 3px;
+        font-size: 0.85em;
+        line-height: 1em;
+    }
+
+#visualize-keys svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* releases */
+#release-table th:first-of-type {
+    width: 30px;
+}
+
+/* itemprops */
+.itemprop {
+    display: none;
+}
+
+
+
+/* aurweb-specific customizations to archweb.css */
+
+#archnavbar.anb-aur ul li#anb-aur a {
+    color: white !important;
+}
+
+#archnavbarlogo {
+    background: url('archnavbar/aurlogo.png') !important;
+}
+
+[dir="rtl"] #lang_sub {
+	float: left;
+  }
+#lang_sub {
+  float: right;
+}
+
+.pkglist-nav .page {
+    margin: 0 .25em;
+}
+
+#pkg-stats td.stat-desc {
+  white-space: normal;
+}
+
+#actionlist form {
+	margin: 0;
+	padding: 0;
+}
+
+.arch-bio-entry ul {
+	list-style: none;
+	padding: 0;
+}
+
+#pkg-updates table {
+	table-layout: fixed;
+	width:100%;
+}
+
+#pkg-updates td.pkg-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+[dir="rtl"] #pkg-updates td.pkg-date {
+	text-align:left;
+}
+#pkg-updates td.pkg-date {
+	text-align:right;
+}
+
+[dir="rtl"] .keyword:link, .keyword:visited {
+	float: right;
+}
+
+.keyword:link, .keyword:visited {
+	float: left;
+	margin: 1px .5ex 1px 0;
+	padding: 0 1em;
+	color: white;
+	background-color: #36a;
+	border: 1px solid transparent;
+	border-radius: 2px;
+}
+
+.keyword:hover {
+	cursor: pointer;
+}
+
+.keyword:focus {
+	border: 1px dotted #000;
+}
+
+.text-button {
+	background: transparent;
+	border: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font: normal 100% sans-serif;
+	text-decoration: none;
+	color: #07b;
+	cursor: pointer;
+}
+
+.text-button:hover {
+	text-decoration: underline;
+	color: #666;
+}
+
+.text-button::-moz-focus-inner {
+	padding: 0;
+	border: none;
+}
+
+.comment-deleted {
+	color: #999;
+}
+
+.edited {
+	font-size: 0.9em;
+	color: #999;
+}
+
+[dir="rtl"] .delete-comment-form, .undelete-comment-form, .pin-comment-form, .edit-comment {
+	float: left;
+	margin-right: 8px;
+}
+
+.delete-comment-form, .undelete-comment-form, .pin-comment-form, .edit-comment {
+	float: right;
+	margin-left: 8px;
+}
+
+.edit-comment {
+	height: 11px;
+	position: relative;
+	top: 1px;
+}
+
+.comment-enable-notifications {
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.rss-icon, .delete-comment, .undelete-comment, .edit-comment, .pin-comment {
+	filter: grayscale(100%);
+	opacity: 0.6;
+}
+
+.rss-icon:hover, .delete-comment:hover, .undelete-comment:hover, .edit-comment:hover, .pin-comment:hover {
+	filter: none;
+	opacity: 1;
+}
+
+[dir="rtl"] .ajax-loader {
+	float: left;
+}
+
+.ajax-loader {
+	float: right;
+	position: relative;
+	top: 4px;
+}
+
+.flagged a {
+	color: inherit;
+}
+
+legend {
+	padding: 1em 0;
+}
+
+p.important {
+	font-weight: bold;
+}
+
+span.hover-help {
+	border-bottom: 1px dotted black;
+	cursor:help;
+}
+
+label.confirmation {
+	width: auto;
+}
+
+#pkgdepslist .broken {
+	color: red;
+	font-weight: bold;
+}
+
+.package-comments {
+	margin-top: 1.5em;
+}
+
+.comments-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+/* arrowed headings */
+.comments-header h3 span.text {
+	display: block;
+	background: #1794D1;
+	font-size: 15px;
+	padding: 2px 10px;
+	color: white;
+}
+
+.comments-header .comments-header-nav {
+	align-self: flex-end;
+}
+
+.comments-footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.comment-header {
+	clear: both;
+	font-size: 1em;
+	margin-top: 1.5em;
+	border-bottom: 1px dotted #bbb;
+}
+
+.comments div {
+	margin-bottom: 1em;
+}
+
+.comments div p {
+	margin-bottom: 0.5em;
+}
+
+.comments .more {
+	font-weight: normal;
+}
+
+.error {
+	color: red;
+}
+
+.article-content > div {
+	overflow: hidden;
+	transition: height 1s;
+}
+
+.proposal.details {
+    margin: .33em 0 1em;
+}
+
+button[type="submit"],
+button[type="reset"] {
+    padding: 0 0.6em;
+}
+
+.results tr td[align="left"] fieldset {
+    text-align: left;
+}
+
+.results tr td[align="right"] fieldset {
+    text-align: right;
+}
+
+input#search-action-submit {
+    width: 80px;
+}
+
+.success {
+    color: green;
+}
+
+/* Styling used to clone <a> styles for a form.link button. */
+form.link, form.link button {
+    display: inline;
+    font-family: sans-serif;
+}
+form.link button {
+    padding: 0 0.5em;
+    color: #07b;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+}
+form.link button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Customize form.link when used inside of a page. */
+div.box form.link p {
+    margin: .33em 0 1em;
+}
+div.box form.link button {
+    padding: 0;
+}
+
+pre.traceback {
+    /* https://css-tricks.com/snippets/css/make-pre-text-wrap/ */
+    white-space: pre-wrap;
+    word-wrap: break-all;
+}
+
+/* By default, tables use 100% width, which we do not always want. */
+table.no-width {
+    width: auto;
+}
+table.no-width > tbody > tr > td {
+    padding-right: 2px;
+}
+  </style>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>[1]</title>
+</head>
+<body>
+<div class="anb-aur" id="archnavbar">
+<div id="archnavbarlogo">
+<h1>
+<a title="Return to the main page">[2]</a>
+</h1>
+</div>
+<div id="archnavbarmenu">
+<ul id="archnavbarlist">
+<li id="anb-home">
+<a title="Arch news, packages, projects and more">[3]</a>
+</li>
+<li id="anb-packages">
+<a title="Arch Package Database">[4]</a>
+</li>
+<li id="anb-forums">
+<a title="Community forums">[5]</a>
+</li>
+<li id="anb-wiki">
+<a title="Community documentation">[6]</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="lang_sub">
+<form action="/language" method="post">
+<fieldset>
+<div>
+<select id="id_setlang" name="set_lang">
+<option value="ar">[7]</option>
+<option value="ast">[8]</option>
+<option value="ca">[9]</option>
+<option value="cs">[10]</option>
+<option value="da">[11]</option>
+<option value="de">[12]</option>
+<option value="el">[13]</option>
+<option selected="selected" value="en">[14]</option>
+<option value="es">[15]</option>
+<option value="es_419">[16]</option>
+<option value="fi">[17]</option>
+<option value="fr">[18]</option>
+<option value="he">[19]</option>
+<option value="hr">[20]</option>
+<option value="hu">[21]</option>
+<option value="it">[22]</option>
+<option value="ja">[23]</option>
+<option value="nb">[24]</option>
+<option value="nl">[25]</option>
+<option value="pl">[26]</option>
+<option value="pt_BR">[27]</option>
+<option value="pt_PT">[28]</option>
+<option value="ro">[29]</option>
+<option value="ru">[30]</option>
+<option value="sk">[31]</option>
+<option value="sr">[32]</option>
+<option value="tr">[33]</option>
+<option value="uk">[34]</option>
+<option value="zh_CN">[35]</option>
+<option value="zh_TW">[36]</option>
+</select>
+<input name="next" type="hidden" value="/packages/litecoin-bin"/>
+<input name="q" type="hidden" value=""/>
+<input type="submit" value="Go"/>
+</div>
+</fieldset>
+</form>
+</div>
+<div id="archdev-navbar">
+<ul>
+<li>
+<a>[37]</a>
+</li>
+<li>
+<a>[38]</a>
+</li>
+<li>
+<a>[39]</a>
+</li>
+<li>
+<a>[40]</a>
+</li>
+</ul>
+</div>
+<div class="box filter-criteria" id="pkglist-search">
+<h2>[41]</h2>
+<form action="/packages" method="get">
+<p>
+<input name="O" type="hidden" value="0"/>
+</p>
+<fieldset>
+<legend>[42]</legend>
+<div>
+<label for="id_method">[43]</label>
+<select name="SeB">
+<option value="nd">[44]</option>
+<option value="n">[45]</option>
+<option value="b">[46]</option>
+<option value="N">[47]</option>
+<option value="B">[48]</option>
+<option value="k">[49]</option>
+<option value="m">[50]</option>
+<option value="c">[51]</option>
+<option value="M">[52]</option>
+<option value="s">[53]</option>
+</select>
+</div>
+<div>
+<label for="id_q">[54]</label>
+<input maxlength="35" name="K" size="30" type="text" value=""/>
+</div>
+<div>
+<label for="id_out_of_date">[55]</label>
+<select name="outdated">
+<option value="">[56]</option>
+<option value="on">[57]</option>
+<option value="off">[58]</option>
+</select>
+</div>
+<div>
+<label for="id_sort_by">[59]</label>
+<select name="SB">
+<option value="n">[60]</option>
+<option value="v">[61]</option>
+<option selected="" value="p">[62]</option>
+<option value="w">[63]</option>
+<option value="o">[64]</option>
+<option value="m">[65]</option>
+<option value="l">[66]</option>
+</select>
+</div>
+<div>
+<label for="id_order_by">[67]</label>
+<select name="SO">
+<option value="a">[68]</option>
+<option selected="" value="d">[69]</option>
+</select>
+</div>
+<div>
+<label for="id_per_page">[70]</label>
+<select name="PP">
+<option value="50">[71]</option>
+<option value="100">[72]</option>
+<option value="250">[73]</option>
+</select>
+</div>
+<div>
+<label>
+         
+       </label>
+<button class="button" name="submit" type="submit" value="Go">[74]</button>
+<button class="button" name="submit" type="submit" value="Orphans">[75]</button>
+</div>
+</fieldset>
+</form>
+</div>
+<div class="box" id="pkgdetails">
+<h2>[76]</h2>
+<div class="listing" id="detailslinks">
+<div id="actionlist">
+<h4>[77]</h4>
+<ul class="small">
+<li>
+<a>[78]</a>[79]<a>[80]</a>
+</li>
+<li>
+<a>[81]</a>
+</li>
+<li>
+<a>[82]</a>
+</li>
+<li>
+<a>[83]</a>
+</li>
+</ul>
+</div>
+</div>
+<table id="pkginfo">
+<tbody>
+<tr>
+<th>[84]</th>
+<td>
+<a class="copy">[85]</a>[86]</td>
+</tr>
+<tr>
+<th>[87]</th>
+<td class="wrap">
+<a>[88]</a>
+</td>
+</tr>
+<tr id="pkg-description">
+<th>[89]</th>
+<td class="wrap">[90]</td>
+</tr>
+<tr>
+<th>[91]</th>
+<td class="wrap">
+<a>[92]</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div id="metadata">
+<div class="listing" id="pkgdeps">
+<h3>[93]</h3>
+<ul id="pkgdepslist">
+<li>
+<a>[94]</a>
+<em>[95]<a>[96]</a>[97]</em>
+<em>
+</em>
+</li>
+<li>
+<a>[98]</a>
+<em>[99]<a>[100]</a>[101]<a>[102]</a>[103]</em>
+<em>
+</em>
+</li>
+<li>
+<a>[104]</a>
+<em>[105]<a>[106]</a>[107]<a>[108]</a>[109]<a>[110]</a>[111]<a>[112]</a>[113]</em>
+<em>
+</em>
+</li>
+<li>
+<a>[114]</a>
+<em>[115]<a>[116]</a>[117]<a>[118]</a>[119]<a>[120]</a>[121]</em>
+<em>
+</em>
+</li>
+</ul>
+</div>
+<div class="listing" id="pkgreqs">
+<h3>[122]</h3>
+<ul id="pkgreqslist">
+</ul>
+</div>
+<div class="listing" id="pkgfiles">
+<h3>[123]</h3>
+</div>
+<div>
+<ul id="pkgsrcslist">
+<li>
+<a>[124]</a>
+</li>
+<li>
+<a>[125]</a>
+</li>
+<li>
+<a>[126]</a>
+</li>
+<li>
+<a>[127]</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="comments package-comments">
+<div class="comments-header">
+<h3>
+<span class="text">[128]</span>
+<span class="arrow">
+</span>
+</h3>
+</div>
+<h4 class="comment-header" id="comment-884699">[129]<a class="date">[130]</a>
+</h4>
+<div class="article-content" id="comment-884699-content">
+<div>
+<p>[131]<code>[132]</code>[133]</p>
+</div>
+</div>
+<h4 class="comment-header" id="comment-884543">[134]<a class="date">[135]</a>
+</h4>
+<div class="article-content" id="comment-884543-content">
+<div>
+<p>[136]</p>
+<pre><code>[137]</code></pre>
+</div>
+</div>
+<h4 class="comment-header" id="comment-741758">[138]<a class="date">[139]</a>
+<span class="edited">[140]<a>[141]</a>[142]</span>
+</h4>
+<div class="article-content" id="comment-741758-content">
+<div>
+<p>[143]</p>
+<p>[144]</p>
+<p>[145]</p>
+</div>
+</div>
+<h4 class="comment-header" id="comment-624985">[146]<a class="date">[147]</a>
+<span class="edited">[148]<a>[149]</a>[150]</span>
+</h4>
+<div class="article-content" id="comment-624985-content">
+<div>
+<p>[151]</p>
+<p>
+<a>[152]</a>
+</p>
+</div>
+</div>
+<h4 class="comment-header" id="comment-595844">[153]<a class="date">[154]</a>
+</h4>
+<div class="article-content" id="comment-595844-content">
+<div>[155]</div>
+</div>
+<h4 class="comment-header" id="comment-595840">[156]<a class="date">[157]</a>
+</h4>
+<div class="article-content" id="comment-595840-content">
+<div>[158]</div>
+</div>
+<h4 class="comment-header" id="comment-595761">[159]<a class="date">[160]</a>
+</h4>
+<div class="article-content" id="comment-595761-content">
+<div>[161]</div>
+</div>
+<h4 class="comment-header" id="comment-526110">[162]<a class="date">[163]</a>
+</h4>
+<div class="article-content" id="comment-526110-content">
+<div>[164]</div>
+</div>
+<div class="comments-footer">
+</div>
+</div>
+<div id="footer">
+<p>[165]<a>[166]</a>
+</p>
+<p>[167]<a>[168]</a>[169]</p>
+<p>[170]</p>
+<p>[171]</p>
+</div>
+</div>
+</body>
+</html>
