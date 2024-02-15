@@ -1125,7 +1125,7 @@ def pre_process(html_file):
 
 
 def visual_eval_v3_multi(input_list, debug=False):
-    print(input_list)
+    # print(input_list)
     predict_img_list, original_img = input_list[0], input_list[1]
     try:
         predict_blocks_list = []
