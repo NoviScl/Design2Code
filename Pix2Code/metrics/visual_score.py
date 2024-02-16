@@ -1,5 +1,9 @@
 import cv2
 import numpy as np
+def patch_asscalar(a):
+    return a.item()
+setattr(np, "asscalar", patch_asscalar)
+
 import matplotlib.pyplot as plt
 from scipy.optimize import linear_sum_assignment
 import math
@@ -379,6 +383,10 @@ def calculate_distance(x1, y1, x2, y2):
     distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
     return distance
 
+def calculate_distance_max_1d(x1, y1, x2, y2):
+    distance = max(abs(x2 - x1), abs(y2 - y1))
+    return distance
+
 def calculate_ratio(h1, h2):
     return max(h1, h2) / min(h1, h2)
 
@@ -601,6 +609,46 @@ def color_similarity(color1, color2):
     
     # Return the similarity as 1 - normalized distance
     return 1 - normalized_distance
+
+
+import math
+from colormath.color_objects import sRGBColor, LabColor
+from colormath.color_conversions import convert_color
+from colormath.color_diff import delta_e_cie2000
+
+
+def rgb_to_lab(rgb):
+    """
+    Convert an RGB color to Lab color space.
+    RGB values should be in the range [0, 255].
+    """
+    # Create an sRGBColor object from RGB values
+    rgb_color = sRGBColor(rgb[0], rgb[1], rgb[2], is_upscaled=True)
+    
+    # Convert to Lab color space
+    lab_color = convert_color(rgb_color, LabColor)
+    
+    return lab_color
+
+def color_similarity_ciede2000(rgb1, rgb2):
+    """
+    Calculate the color similarity between two RGB colors using the CIEDE2000 formula.
+    Returns a similarity score between 0 and 1, where 1 means identical.
+    """
+    # Convert RGB colors to Lab
+    lab1 = rgb_to_lab(rgb1)
+    lab2 = rgb_to_lab(rgb2)
+    
+    # Calculate the Delta E (CIEDE2000)
+    delta_e = delta_e_cie2000(lab1, lab2)
+    
+    # Normalize the Delta E value to get a similarity score
+    # Note: The normalization method here is arbitrary and can be adjusted based on your needs.
+    # A delta_e of 0 means identical colors. Higher values indicate more difference.
+    # For visualization purposes, we consider a delta_e of 100 to be completely different.
+    similarity = max(0, 1 - (delta_e / 100))
+    
+    return similarity
 
 
 def visual_eval_v2(gpt_img, original_img, print_all=False, ocr_free=True, debug=False):
@@ -906,10 +954,38 @@ def mask_bounding_boxes(image, bounding_boxes):
     return image
 
 
+def mask_bounding_boxes_with_inpainting(image, bounding_boxes):
+    # Convert PIL image to OpenCV format
+    image_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+
+    # Create a black mask
+    mask = np.zeros(image_cv.shape[:2], dtype=np.uint8)
+
+    height, width = image_cv.shape[:2]
+
+    # Draw white rectangles on the mask
+    for bbox in bounding_boxes:
+        x_ratio, y_ratio, h_ratio, w_ratio = bbox
+        x = int(x_ratio * width)
+        y = int(y_ratio * height)
+        w = int(w_ratio * width)
+        h = int(h_ratio * height)
+        mask[y:y+h, x:x+w] = 255
+
+    # Use inpainting
+    inpainted_image = cv2.inpaint(image_cv, mask, 3, cv2.INPAINT_TELEA)
+
+    # Convert back to PIL format
+    inpainted_image_pil = Image.fromarray(cv2.cvtColor(inpainted_image, cv2.COLOR_BGR2RGB))
+
+    return inpainted_image_pil
+
+
 def rescale_and_mask(image_path, blocks):
     # Load the image
     with Image.open(image_path) as img:
-        img = mask_bounding_boxes(img, blocks)
+        # use inpainting instead of simple mask
+        img = mask_bounding_boxes_with_inpainting(img, blocks)
 
         width, height = img.size
 
@@ -1162,7 +1238,6 @@ def visual_eval_v3_multi(input_list, debug=False):
             indices2 = [item[1] for item in matching]
 
             matched_list = []
-            scores = []
             max_areas = []
             matched_areas = []
             matched_text_scores = []
@@ -1186,12 +1261,14 @@ def visual_eval_v3_multi(input_list, debug=False):
                 if text_similarity < 0.5:
                     max_areas.append(max_block_area)
                     continue
-                position_similarity = 1 - calculate_distance(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
+
+                # Consider the max postion shift, either horizontally or vertically
+                position_similarity = 1 - calculate_distance_max_1d(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
                                                         predict_blocks_m[i]['bbox'][1] + predict_blocks_m[i]['bbox'][3] / 2, \
                                                         original_blocks_m[j]['bbox'][0] + original_blocks_m[j]['bbox'][2] / 2, \
-                                                        original_blocks_m[j]['bbox'][1] + original_blocks_m[j]['bbox'][3] / 2) / np.sqrt(2)
-                # scale to 0.5 ~ 1.0
-                text_color_similarity = color_similarity(predict_blocks_m[i]['color'], original_blocks_m[j]['color']) * 0.5 + 0.5
+                                                        original_blocks_m[j]['bbox'][1] + original_blocks_m[j]['bbox'][3] / 2)
+                # Normalized ciede2000 formula
+                text_color_similarity = color_similarity_ciede2000(predict_blocks_m[i]['color'], original_blocks_m[j]['color'])
                 matched_list.append([predict_blocks_m[i]['bbox'], original_blocks_m[j]['bbox']])
         
                 # validation check
@@ -1199,12 +1276,11 @@ def visual_eval_v3_multi(input_list, debug=False):
                     print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
                 assert calculate_ratio(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2]) > 0 and calculate_ratio(predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) > 0, f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}"
         
-                scores.append(max_block_area * text_similarity * position_similarity * text_color_similarity)
-                matched_areas.append(max_block_area)
                 max_areas.append(max_block_area)
-                matched_text_scores.append(text_similarity)
-                position_scores.append(position_similarity)
-                text_color_scores.append(text_color_similarity)
+                matched_areas.append(max_block_area)
+                matched_text_scores.append(max_block_area * text_similarity)
+                position_scores.append(max_block_area * position_similarity)
+                text_color_scores.append(max_block_area * text_color_similarity)
         
                 if debug:
                     print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
@@ -1230,16 +1306,18 @@ def visual_eval_v3_multi(input_list, debug=False):
                 plt.show()
             """
         
-            if len(scores) > 0:
-                matched = len(scores)
+            if len(max_areas) > 0:
+                sum_max_areas = np.sum(max_areas)
         
                 final_size_score = np.sum(matched_areas) / np.sum(max_areas)
-                final_matched_text_score = np.mean(matched_text_scores)
-                final_position_score = np.mean(position_scores)
-                final_text_color_score = np.mean(text_color_scores)
+                final_matched_text_score = np.sum(matched_text_scores) / np.sum(max_areas)
+                final_position_score = np.sum(position_scores) / np.sum(max_areas)
+                final_text_color_score = np.sum(text_color_scores) / np.sum(max_areas)
                 final_clip_score =  calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks_m, original_blocks_m)
-                final_score = np.sum(scores) / np.sum(max_areas) * final_clip_score
-                return_score_list.append([matched, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
+
+                # final_score = 0.25 * (3 - (3 - final_matched_text_score - final_position_score - final_text_color_score) * np.sum(max_areas) + final_clip_score)
+                final_score = 0.25 * (final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)
+                return_score_list.append([sum_max_areas, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
             else:
                 print("[Warning] No matched blocks in: ", predict_img_list[k])
                 return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
