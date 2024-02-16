@@ -22,6 +22,8 @@ from collections import Counter
 from copy import deepcopy
 from Pix2Code.metrics.ocr_free_utils import get_blocks_ocr_free
 from bs4 import BeautifulSoup, NavigableString, Comment
+import re
+
 
 # pytesseract.pytesseract.tesseract_cmd = '/sailhome/clsi/bin/tesseract'
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -1185,7 +1187,8 @@ def make_html(filename):
     with open(filename, 'r') as file:
         content = file.read()
 
-    if '<html>' not in content:
+    # Use regular expression to check for a pattern that starts with <html (ignoring any attributes)
+    if not re.match(r'<html[^>]*>', content, re.IGNORECASE):
         new_content = f'<html><body><p>{content}</p></body></html>'
         with open(filename, 'w') as file:
             file.write(new_content)
