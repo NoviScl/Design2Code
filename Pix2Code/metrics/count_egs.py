@@ -66,7 +66,7 @@ gemini_visual_revision_prompting
 524
 '''
 
-
+'''
 ## merge missing gemini predictions into all_scores_dict
 with open("all_scores_dict.json", "r") as f:
     all_scores_dict = json.load(f)
@@ -97,3 +97,27 @@ for k,v in all_scores_dict.items():
 
 with open("all_scores_dict.json", "w") as f:
     json.dump(all_scores_dict, f, indent=4)
+'''
+
+with open("all_scores_dict.json", "r") as f:
+    all_scores_dict = json.load(f)
+files = list(all_scores_dict["gemini_direct_prompting"].keys())
+all_scores_dict["gemini_ultra_direct_prompting"] = {}
+all_scores_dict["gemini_ultra_text_augmented_prompting"] = {}
+all_scores_dict["gemini_ultra_visual_revision_prompting"] = {}
+
+with open("prediction_file_name_list_gemini_ultra.json", "r") as f:
+    file_name_list = json.load(f)
+with open("res_dict_gemini_ultra.json", "r") as f:
+    res_dict = json.load(f)
+
+for k,v in res_dict.items():
+    k = k.replace("gemini_", "gemini_ultra_")
+    print (k)
+    for i in range(len(file_name_list)):
+        filename = file_name_list[i]
+        if filename in files:
+            if sum(v[i]) > 0:
+                all_scores_dict[k][filename] = v[i]
+    print (len(all_scores_dict[k]))
+    print (np.mean(list(all_scores_dict[k].values()), axis=0))
