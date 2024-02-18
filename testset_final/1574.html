@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <style>
+   @font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4n.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4n.ttf) format('truetype');
+}
+
+
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKd3vUDQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKebukDQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKeiukDQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFukDQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfsukDQ.ttf) format('truetype');
+}
+
+
+
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/permanentmarker/v16/Fh4uPib9Iyv2ucM6pGQMWimMp004Hao.ttf) format('truetype');
+}
+
+
+
+html {
+	text-rendering: optimizeLegibility;
+	--text-color: #333;
+	--header-font: 'Open Sans', sans-serif;
+	--title-font: 'Playfair Display', serif;
+	--text-font: 'Open Sans', sans-serif;
+}
+
+body {
+	color: var(--text-color);
+	margin: 0;
+	padding: 0;
+	font-family: var(--text-font);
+	min-height: 100vh;
+	max-width: 65vw;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	font-weight: 400;
+}
+
+@media only screen and (max-width:55em) {
+	body {
+		max-width: 80vw;
+	}
+}
+
+main {
+	margin: auto;
+	flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-family: var(--title-font);
+	color: var(--text-color);
+	font-weight: 400;
+}
+
+p {
+	margin: 0;
+	font-family: var(--text-font);
+	font-size: 1.1em;
+	line-height: 1.5em;
+	color: var(--text-color);
+	font-weight: 400;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+strong {
+	font-weight: 600;
+}
+/*Header*/
+header {
+	width: 100%;
+	margin: 4em auto 2em auto;
+	color: var(--text-color);
+}
+
+.header-content {
+	font-size: 1em;
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: auto;
+	font-size: 1.35em;
+	width: 75%;
+}
+
+.header-name {
+	border-bottom: 1.5px solid #a8a8a8;
+	padding-bottom: 1em;
+	margin-bottom: 0.2em;
+	text-align: center;
+	font-family: var(--header-font);
+	font-size: 1.5em;
+}
+
+header nav ul {
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+	justify-content: center;
+}
+
+header nav a {
+	margin: 0 0.5em;
+	padding: 0.2em 0.25em;
+	border-bottom: 1.5px solid white;
+}
+
+header nav a:hover {
+	border-bottom: 1.5px solid var(--text-color);
+}
+
+header nav a.active {
+	border-bottom: 1.5px solid var(--text-color);
+}
+
+@media only screen and (max-width:55em) {
+	header {
+		width: 95%;
+		margin: 1em auto;
+	}
+
+	.header-content {
+		width: 90%;
+		margin: auto;
+	}
+
+}
+
+@media only screen and (max-width:34em) {
+	header nav ul {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	header nav a {
+		font-size: 0.75em;
+	}
+
+	.header-name {
+		font-size: 1.2em;
+	}
+	
+
+}
+
+/*Index*/
+.top-bar {
+	position: relative;
+	margin: 4em auto 4em auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.dot {
+	border: 1px solid #222;
+	border-radius: 100em;
+	width: 8px;
+	height: 8px;
+	margin: 0 0.8em;
+	color: white;
+}
+
+
+.top-bar-p {
+	margin: 0em;
+	padding: 0em;
+}
+
+.index-main {
+	margin: auto;
+}
+
+.index-text p {
+	font-size: 0.9em;
+	opacity: 0.8;
+}
+
+.index-main h1 {
+	font-size: 3em;
+	margin: 1em 0;
+}
+
+@media only screen and (max-width:32em) {
+	.index-main h1 {
+		font-size: 2em;
+	}
+
+	.top-bar {
+		width: 80%;
+	}
+
+}
+
+.index-main h2 {
+	margin: 1em 0;
+}
+
+.index-main h3 {
+	font-size: 1.5em;
+	text-transform: uppercase;
+	margin: 1em 0;
+}
+
+.index-me-all {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto 4em;
+}
+
+.index-me-img {
+	width: 75px;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.index-me-text {
+	margin-top: 1em;
+	margin-left: 0;
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+.index-me-text a {
+	text-decoration: underline;
+}
+
+.masonry-with-columns {
+	columns: 3;
+	column-gap: 1em;
+}
+/* 
+.masonry-with-columns div {
+	margin: 0 1em 1em 0;
+	display: inline-block;
+	width: 100%;
+  } */
+
+.masonry-with-columns figure {
+	margin: 0 1em 1em 0;
+	display: inline-block;
+	width: 100%;
+}
+.index-box-img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	margin: auto;
+}
+
+.masonry-with-columns figcaption {
+	font-size: 0.9em;
+	opacity: 0.8;
+}
+
+@media only screen and (max-width:50em) {
+	.masonry-with-columns {
+		columns: 2;
+		column-gap: 1em;
+	}
+
+	.index-me-text {
+		width: 70%;
+	}
+}
+
+@media only screen and (max-width:36em) {
+	.masonry-with-columns {
+		columns: 1;
+		column-gap: 1em;
+	}
+
+	.index-box-img {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		margin: auto;
+	}
+
+	.index-me-text {
+		width: 100%;
+	}
+
+}
+
+/*Projects*/
+.projects {
+	margin: auto;
+}
+
+.projects p {
+	padding: 0.5em 0;
+	width: 80%;
+	margin: 1em auto;
+}
+
+.projects__title-area {
+	width: 80%;
+	margin: 1em auto;
+}
+
+.projects h1 {
+	font-size: 3em;
+	font-weight: 700;
+}
+
+.projects h2 {
+	/* text-transform: uppercase; */
+	margin: 2em auto -0.5em;
+	font-weight: 600;
+}
+
+.projects a {
+	text-decoration: underline;
+}
+
+.projects_singleimg {
+	width: 100%;
+	margin: auto;
+}
+
+.projects_img-shadow {
+	box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.07);
+}
+
+.projects_masonry {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: auto;
+}
+
+.projects_masonry img {
+	width: 48%;
+	height: 100%;
+	margin: 1em 0;
+	justify-content: space-between;
+}
+
+.projects-img-description {
+	margin: 0 0 4em 0;
+	padding: 0;
+	font-size: 1em;
+	opacity: 0.6;
+}
+
+
+@media only screen and (max-width:55em) {
+
+.projects p {
+	width: 90%;
+}
+}
+
+@media only screen and (max-width:36em) {
+	.projects_singleimg {
+		width: 100%;
+		margin: auto;
+	}
+	
+	.projects_masonry {
+		flex-direction: column;
+	}
+
+.projects p {
+	width: 100%;
+	margin: auto;
+}
+
+
+	.projects_masonry img {
+		width: 100%;
+	}
+
+	
+}
+
+/*Subsites*/
+section {
+	width: 65%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+section h1 {
+	font-size: 2em;
+	margin: 1em 0 0 0;
+}
+
+section p {
+	margin-bottom: 0.75em;
+}
+
+section img {
+	width: 100%;
+	margin: 0.5em 0;
+}
+
+section h2 {
+	font-size: 2em;
+	margin: 1em 0;
+}
+
+section h3 {
+	font-size: 1.5em;
+	text-transform: uppercase;
+	margin: 1em 0;
+}
+
+section h4 {
+	font-size: 1.3em;
+	text-transform: uppercase;
+	margin: 1em 0;
+}
+
+section li {
+	list-style: disc;
+	margin-left: 3em;
+	font-size: 1.15em;
+	line-height: 1.25em;
+	margin-bottom: 0.75em;
+}
+
+section img {
+	margin: 2em auto;
+}
+
+@media only screen and (max-width:55em) {
+	section {
+		width: 85%;
+	}
+
+}
+
+@media only screen and (max-width:32em) {
+	section h1 {
+		font-size: 2em;
+	}
+
+	section {
+		width: 95%;
+	}
+
+}
+
+
+.place-link-id {
+	background-color: red;
+}
+
+.signature {
+	font-family: 'Waiting for the Sunrise', cursive;
+	font-size: 3em;
+	margin-left: 0.5em;
+	transform: rotate(-2deg);
+	opacity: 0.8;
+}
+
+.img-design-page {
+	/* box-shadow: 0 4px 8px 0 #d3d3d3, 0 6px 20px 0 #d3d3d3; */
+	width: 40%
+}
+
+/*BlogPost Ubersicht*/
+.blog-all {
+	width: 65%;
+	margin: auto;
+}
+
+.blog-all li {
+	list-style: none;
+	margin-left: 0;
+}
+
+.blog-all a {
+	background-color: transparent;
+	padding: 0;
+}
+
+.blog-all a:hover {
+	background-color: transparent;
+	padding: 0;
+}
+
+.blog-section-title {
+	font-size: 3em;
+	margin: 1em 0;
+}
+
+.single-blog-post {
+}
+
+.seperator-blog-posts {
+	border-bottom: 2px solid var(--text-color);
+	width: 50%;
+	text-align: center;
+	margin: 5em auto 5em auto;
+}
+
+.single-blog-post a:hover {
+	opacity: 0.7;
+}
+
+.blog-ubersicht-date {
+	opacity: 0.6;
+	margin-bottom: 1.5em;
+	margin-top: 0.5em;
+}
+
+.blog-ubersicht-title {
+	padding: 0;
+	font-size: 2em;
+}
+
+.blog-ubersicht-lesezeit {
+	opacity: 0.8;
+}
+
+.blog-ubersicht-summary {
+	font-size: 1.1em;
+	line-height: 1.6em;
+	opacity: 0.8;
+}
+
+.blog-ubersicht-read-more {
+	font-weight: 600;
+	font-size: 1.15em;
+}
+
+@media only screen and (max-width:55em) {
+	.blog-all {
+		width: 85%;
+	}
+
+	.blog-section-title {
+		margin: 1em 0;
+	}
+
+	.blog-ubersicht-date {
+		font-size: 0.9em;
+		line-height: 1em;
+	}
+
+	.blog-ubersicht-title {
+		padding: 0.1em 0;
+		margin: 0.5em 0 0 0;
+		font-size: 1.5em;
+		line-height: 1.5em;
+	}
+
+	.blog-ubersicht-summary {
+		padding: 0.8em 0;
+		font-size: 0.9em;
+		line-height: 1.7em;
+	}
+
+	.blog-ubersicht-read-more {
+		font-size: 1em;
+	}
+
+}
+
+@media only screen and (max-width:32em) {
+	.blog-section-title {
+		font-size: 2em;
+		margin: 1em 0;
+	}
+
+}
+
+/*Blogposts*/
+.blog-post-date {
+	opacity: 0.8;
+}
+
+.blog-post-title {
+	font-size: 2em;
+	margin: 0.5em 0 0.2em 0;
+}
+
+.blog-post-lesezeit {
+	margin-bottom: 2.5em;
+}
+
+.blog-post-text {
+}
+
+/*Contact*/
+.contact-all {
+	width: 80%;
+	margin: auto;
+}
+
+/*Impressum*/
+.kontakt-impressum-link {
+	margin-top: 4em;
+	margin-bottom: -2em;
+}
+
+.kontakt-impressum-link a {
+	background-color: white;
+}
+
+/*Footer*/
+footer {
+	position: relative;
+	margin: 6em auto 2em auto;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	font-size: 1em;
+}
+
+footer p {
+	font-size: 1em;
+}
+footer div {
+	display: flex;
+	margin: 0em auto 1em;
+	flex-direction: row;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+@media only screen and (max-width:32em) {
+	footer div {
+		width: 85%;
+	}
+
+}
+  </style>
+  <title>
+   The dog in my head | Verena Ortlieb - Designer &amp; Illustrator
+  </title>
+  <meta charset="utf-8">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content name="description">
+  <meta content name="author">
+ </head>
+ <body>
+  <header>
+   <div class="header-content">
+    <div class="header-name">
+     <a>
+      Verena Ortlieb
+     </a>
+    </div>
+   </div>
+  </header>
+  <main>
+   <section>
+    <div class="blog-post-date">
+     16.03.2018
+    </div>
+    <div>
+     <h2 class="blog-post-title">
+      The dog in my head
+     </h2>
+     <div class="blog-post-lesezeit">
+      Reading time ~ 3 minutes
+     </div>
+     <img alt src="rick.jpg">
+     <p class="blog-post-text">
+     </p>
+     <p>
+      <strong>
+       Sometimes, my brain behaves like a dog.
+      </strong>
+      A sweet little dog.
+     </p>
+     <p>
+      When I pay attention, keep him occupied, and train him well he is a blast to be around. We have a lot of fun together, get compliments and enjoy our evenings cuddling on the couch.
+     </p>
+     <p>
+      <strong>
+       But if I don&rsquo;t pay attention, when I am distracted or forget to occupy this sweet little dog, it goes south. The dog starts to bite the sofa, digs holes into the floor and barks at the mailman.
+      </strong>
+     </p>
+     <p>
+      No matter how sweet the dog is, this behavior isn&rsquo;t welcome in the long run. In the beginning, it might be sweet to watch the puppy catch the mailman or slip on the floor with his small clumsy paws, but as the puppy grows into a bigger dog, he can do a lot of damage.
+     </p>
+     <p>
+      No, it is not possible that I am attentive all the time and always be mindful and occupy my brain with the &ldquo;right stuff.&rdquo; Every now and then the thoughts wander. Every now and then negative thoughts take over.
+     </p>
+     <p>
+      That&rsquo;s ok. Every now and then the dog can dig a hole in the garden, may be scared of a loud noise or chase a rabbit in the woods.
+     </p>
+     <p>
+      <strong>
+       But it is essential that it is only every now and then. This must not become the rule and may under no circumstances determine my life.
+      </strong>
+     </p>
+     <p>
+      In these situations, it is important to watch out and rethink. Because what happens in my mind is still my decision.
+     </p>
+     <p>
+      And I am not going to allow a scared dog to determine what I do. I will take the dog to my side, show him that it was nothing terrible that scared him, and walk with him in the eerie forest because I know that nothing can happen to me.
+     </p>
+     <p>
+      <strong>
+       And in the end, these are the stories I want to tell.
+      </strong>
+      Of the roads that scared me, and the steep slopes I climbed, and the eerie caves I explored. And all with my companion, with my wonderfully behaved dog by my side.
+     </p>
+     <p>
+     </p>
+    </div>
+   </section>
+  </main>
+  <footer>
+   <div>
+    <a class="hover-1" rel="noopener" target="_blank">
+     Email
+    </a>
+    <p class="dot">
+    </p>
+    <a rel="noopener" target="_blank">
+     Instagram
+    </a>
+    <p class="dot">
+    </p>
+    <a rel="noopener" target="_blank">
+     Twitter
+    </a>
+    <p class="dot">
+    </p>
+    <a rel="noopener" target="_blank">
+     Dribbble
+    </a>
+   </div>
+   <p>
+    &copy; 2022 Verena Ortlieb
+   </p>
+  </footer>
+ </body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   @font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v32/0QI6MX1D_JOuGQbT0gvTJPa787weuxJBkqg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v32/0QI6MX1D_JOuGQbT0gvTJPa787z5vBJBkqg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ubuntu/v20/4iCs6KVjbNBYlgoKfw7z.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ubuntumono/v17/KFOjCneDtsqEr0keqCMhbCc6CsE.ttf) format('truetype');
+}
+
+
+
+html
+{
+  --red: #ef4955;
+  --orange: #f7974d;
+  --green: #43a095;
+  --brown: #433032;
+  --off-white: #fffaf8;
+  --plain-white: #ffffff;
+}
+
+html
+{
+}
+
+body
+{
+  color: var(--brown);
+  font-family: "Lora", Georgia, serif;
+  line-height: 1.4;
+  background-color: var(--off-white);
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+p
+{
+  text-align: justify;
+}
+
+a
+{
+  color: var(--green);
+}
+
+a:hover
+{
+  color: var(--orange);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: -0.5em;
+  color: var(--red);
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+pre,
+code
+{
+  font-family: "Ubuntu Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+
+input,
+textarea
+{
+  display: block;
+}
+
+.old_banner {
+  text-align: center;
+  background-color: var(--red);
+}
+
+.old_banner span {
+  color: var(--off-white);
+  font-family: "Ubuntu Mono", "Courier New", monospace;
+  text-decoration: none !important;
+}
+
+.old_banner:hover {
+  background-color: var(--green);
+}
+
+.old{
+  text-decoration: none !important;
+}
+
+#navigation {
+  width: 100%;
+  clear: both;
+  display: block;
+  position: relative
+}
+
+#container #content {
+  clear: both;
+  display: block;
+  position: relative
+}
+
+.column {
+  margin-bottom: 2rem;
+}
+
+.banner {
+  background-image: url("../img/og-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner p {
+  margin: 0;
+  padding: 5% 12.5% 5% 12.5%;
+  font-size: 2rem;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--off-white);
+  text-align: center;
+  text-shadow: -1px 0 var(--brown), 0 1px var(--brown), 1px 0 var(--brown), 0 -1px var(--brown);
+}
+
+#footer {
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: .5rem;
+  font-size: .7rem;
+  background-color: var(--brown);
+  color: var(--off-white);
+  width: 100%;
+  overflow: overlay;
+  display: table;
+  vertical-align: middle;
+}
+
+#footer p {
+  margin-top: 0;
+  text-align: center;
+}
+
+.footer-column {
+    float: left;
+    width: 33.33%;
+    display: table-column;
+}
+
+#footer a {
+  color: var(--off-white);
+}
+
+#footer #social {
+  text-align: left;
+}
+
+#footer #coc p{
+  text-align: right;
+}
+
+#footer #social img {
+  width: 2rem;
+}
+
+@media (max-width: 880px) {
+    .footer-column {
+        width: 100%;
+        margin-bottom: 1rem;
+        text-align: center !important;
+    }
+
+    .footer-column div {
+      border-top: 1px;
+    }
+
+    .copy .column {
+      width: 100% !important;
+      margin: 0 !important;
+      margin-bottom: 2rem !important;
+    }
+}
+
+
+
+
+
+button {
+  margin-top: 2rem;
+  font-size: 2rem;
+  padding: 1rem;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  background-color: var(--green);
+  color: var(--plain-white);
+  border: none;
+}
+
+button:hover {
+  background-color: var(--brown);
+  cursor: pointer;
+}
+
+.copy {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  float: left;
+}
+
+.copy #main {
+  float: left;
+  width: 67%;
+  margin-right: 3%;
+}
+
+.copy #side {
+  float: left;
+  width: 27%;
+  margin-left: 3%;
+}
+
+.copy #photograph {
+  float: left;
+  width: 27%;
+  margin-left: 3%;
+}
+
+.copy #photograph img {
+  padding-top: 6rem;
+  width: 100%;
+}
+
+.copy #biography {
+  float: left;
+  width: 67%;
+  margin-right: 3%;
+}
+
+.copy #fullwidth {
+  float: none;
+  clear: both;
+  margin-bottom: 3rem;
+}
+
+.schedule-table .schedule-row {
+  display: block;
+  clear: both;
+  vertical-align: middle;
+  padding-left: .8rem;
+  padding-top: .3rem;
+  height: 2rem;
+}
+
+.schedule-table .placeholder {
+	color: #dbc7c9;
+}
+
+.schedule-table .organisational {
+  background-color: var(--orange);
+}
+
+.schedule-table .schedule-row div{
+  display: inline-block;
+  float: left;
+}
+
+.schedule-table .schedule-row div:nth-of-type(1){
+  width: 10%;
+}
+.schedule-table .schedule-row div:nth-of-type(2){
+  width: 40%;
+}
+.schedule-table .schedule-row div:nth-of-type(3){
+  width: 50%;
+  font-style: italic;
+}
+
+@media (max-width: 880px) {
+
+    .schedule-table .schedule-row{
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .schedule-table .schedule-row div:nth-of-type(1){
+      display: inline-block;
+      float: left;
+      width: 3rem;
+      margin-right: 1rem;
+    }
+    .schedule-table .schedule-row div:nth-of-type(2){
+      display: inline-block;
+      float: left;
+      width: initial;
+    }
+
+    .schedule-table .schedule-row div:nth-of-type(3){
+      display: block;
+      clear: both;
+      width: calc(100% - 4rem);
+      margin-left: 4rem;
+      font-style: italic;
+    }
+
+    .copy #photograph img {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 0;
+      width: 100%;
+      max-width: 300px;
+    }
+
+}
+
+.speakercard {
+  margin: .5%;
+  display: inline-block;
+  float: left;
+  padding: 3%;
+  box-sizing: border-box;
+}
+
+.speakercard#tba {
+  display: inline-block;
+  float: left;
+  padding: 1%;
+  box-sizing: border-box;
+  background-color: #dbc7c9;
+}
+
+#tba-list
+{
+  list-style: disc !important;
+}
+#tba-list li
+{
+  display: inline-block;
+}
+
+.speakercard#tba:hover {
+  background-color: #dbc7c9;
+}
+
+.speakercard#bruno {
+  background-color: var(--green);
+}
+
+.speakercard p {
+  text-align: left;
+  color: var(--brown)
+}
+
+.speakercard:nth-of-type(odd){
+	background-color: var(--orange);
+}
+
+.speakercard:nth-of-type(even){
+	background-color: var(--red);
+}
+
+.speakercard:hover {
+  background-color: var(--green);
+}
+
+.speakercard h2 {
+  color: var(--off-white);
+}
+
+.speakercard .button {
+  background-color: var(--green);
+  color: var(--off-white);
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: .5rem;
+  clear: both;
+  display: block;
+}
+
+.speakercard .photoblock {
+	width: 100%;
+	display: inline-block;
+	float: left;
+}
+
+.speakercard .textblock {
+	width: 100%;
+	display: inline-block;
+	float: left;
+	box-sizing: border-box;
+	padding-left: 2%;
+}
+
+.speakercard img {
+  width: 100%;
+  height: 100%;
+}
+
+#hosts {
+  float: none;
+  clear: both;
+}
+
+@media (max-width: 880px) {
+  .speakercard {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}
+
+.invisible{
+	color: var(--off-white);
+}
+
+.copy #speakers, .copy #schedule {
+	margin-bottom: 1.5rem;
+}
+
+@media (min-width: 881px) {
+	.hostgrid .speakercard{
+		width: 49%;
+	}
+
+	.hostgrid .speakercard .photoblock {
+		width: 30%;
+	}
+
+	.hostgrid .speakercard .textblock {
+		width: 70%;
+	}
+}
+
+.committee {
+  font-family: "Ubuntu Mono", "Courier New", monospace;
+}
+
+.committee div div {
+  display: inline-block;
+  float: left;
+}
+
+.committee .name {
+  width: 60%;
+}
+
+.committee .name a{
+  text-decoration: none;
+}
+
+.committee .role {
+  width: 40%;
+}
+
+@media (min-width: 881px) {
+  .contact, .contact p{
+    text-align: right;
+  }
+}
+
+.impression {
+  width: 100%;
+}
+
+.partner-overview {
+  width: 100%;
+  text-align: center;
+}
+
+.partner-overview .partner {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.partner-overview .partner img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+.partner-overview #principal img {
+  max-height: 12rem;
+}
+
+.partner-overview #gold img {
+  max-height: 9rem;
+}
+
+.partner-overview #silver img {
+  max-height: 7rem;
+}
+
+.partner-overview #bronze img {
+  max-height: 5rem;
+}
+
+.partner-tier {
+  width: 100%;
+  float: block;
+  clear: both;
+}
+
+.partner-tier#gold .partner {
+  width: 100%;
+  display: inline-block;
+  float: left;
+}
+
+.partner-tier#gold .partner {
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+
+.partner-tier#silver .partner {
+  width: calc(100%/2);
+  display: inline-block;
+  float: left;
+}
+
+.partner-tier#bronze .partner {
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+
+@media (max-width: 881px) {
+  .partner-overview .partner{
+    width: 100% !important;
+    float: none;
+  }
+}
+
+.partner-banner {
+  width: 100%;
+  clear: both;
+  text-align: center;
+}
+
+.partner-banner img {
+  max-height: 4rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+.partner-overview .partner:hover{
+  background-color: var(--green);
+}
+
+#partner-link {
+  text-decoration: none;
+  color: var(--brown);
+}
+
+p.warning {
+  font-size: .8rem;
+}
+
+p.warning-header {
+  color: var(--red);
+}
+
+.speakergrid
+{
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: [one] 33% [two] 33% [three] 33%;
+}
+
+.card
+{
+  background: #ccc;
+  width: 100%;
+  height: 100px;
+}
+
+
+
+#navigation {
+    line-height: 70px;
+    background-color: var(--brown);
+    font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--off-white);
+}
+
+#navigation div {
+    display: inline-block;
+}
+
+/*Strip the ul of padding and list styling*/
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+
+    display: inline-block;
+    float: right;
+}
+/*Create a horizontal list with spacing*/
+li {
+    display:inline-block;
+    float: left;
+    margin-right: 1px;
+}
+
+/*Style for menu links*/
+li a {
+    display:block;
+    min-width:140px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--off-white);
+}
+/*Hover state for top level links*/
+li:hover a {
+    color: var(--green);
+}
+/*Style for dropdown links*/
+li:hover ul a {
+    background: var(--brown);
+    color: var(--off-white);
+    height: 40px;
+    line-height: 40px;
+}
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+    background: var(--green);
+    color: var(--off-white);
+}
+
+
+
+
+/*Hide dropdown links until they are needed*/
+li ul {
+    display: none;
+}
+/*Make dropdown links vertical*/
+li ul li {
+    display: block;
+    float: none;
+}
+/*Prevent text wrapping*/
+li ul li a {
+    width: auto;
+    min-width: 100px;
+    padding: 0 20px;
+}
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+    display: block;
+}
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+    font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: red);
+    background: var(--green);
+    text-align: center;
+    display: none;
+}
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+/*Responsive Styles*/
+@media screen and (max-width : 880px){
+    nav {
+        line-height: 50px;
+    }
+
+    /*Make dropdown links appear inline*/
+    ul {
+        width: 100%;
+        position: static;
+        display: none;
+    }
+    /*Create vertical spacing*/
+    li {
+        margin-top: 1px;
+        background-color: var(--brown)
+    }
+    /*Make all menu links full width*/
+    ul li, li a {
+        width: 100%;
+    }
+    /*Display 'show menu' link*/
+    .show-menu {
+        display: inline-block;
+        float: right;
+        width: 70px;
+    }
+}
+
+#logo{
+    height: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#hamburger{
+    height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+  </style>
+  <meta charset="utf-8">
+  <title>
+   exec(ut)
+  </title>
+  <meta content="A new general software and technology conference that will take place on April 23rd, 2018 in the city of Utrecht. Visit our website for information and tickets." name="description">
+  <meta content="execut,execute,conference,congres,symposium,utrecht,studievereniging,sticky,stichting,it,tech,technology" name="keywords">
+  <meta content="exec(ut)" name="author">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <!-- Favicon and Facebook OG -->
+  <meta content="/icons/browserconfig.xml" name="msapplication-config">
+  <meta content="#ef4955" name="theme-color">
+  <meta content="/img/og-image.jpg" property="og:image">
+  <meta content="1406" property="og:image:width">
+  <meta content="736" property="og:image:height">
+  <meta content="exec(ut) conference - April 23rd, 2018" property="og:title">
+  <meta content="A new general software and technology conference that will take place on April 23rd, 2018 in the city of Utrecht. Visit our website for information and tickets." property="og:description">
+  <meta content="" property="og:url">
+ </head>
+ <body>
+  <div class="container">
+   <a alt="Visit our currently relevant website!" class="old">
+    <div class="old_banner">
+     <span>
+      This is the archived version of 2018's conference website. Click here for currently relevant info.
+     </span>
+    </div>
+   </a>
+   <div id="navigation">
+    <div>
+     <a alt="Home">
+      <img alt="exec(ut) logo" id="logo" src="rick.jpg">
+     </a>
+    </div>
+    <label class="show-menu" for="show-menu">
+     <img alt="Menu" id="hamburger" src="rick.jpg">
+    </label>
+    <input id="show-menu" role="button" type="checkbox">
+    <ul id="menu">
+     <li>
+      <a>
+       Programme
+      </a>
+     </li>
+     <li>
+      <a>
+       Partners
+      </a>
+     </li>
+     <li>
+      <a>
+       Location
+      </a>
+     </li>
+     <li>
+      <a>
+       Tickets
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div id="content">
+    <div class="banner">
+     <p>
+      <code>
+       exec(ut)
+      </code>
+      would not be possible without our amazing partners
+      <br>
+     </p>
+    </div>
+    <div class="copy">
+     <h1>
+      About our partnerships
+     </h1>
+     <p>
+      Organising
+      <code>
+       exec(ut)
+      </code>
+      is only made possible through the contributions of our partners, to whom we are very grateful for their support.
+      <code>
+       exec(ut)
+      </code>
+      with a stand, so make sure to stop by and have a chat!
+     </p>
+     <div class="partner-overview">
+      <div class="partner-tier" id="principal">
+       <h1>
+        Principal partner
+       </h1>
+       <a alt="More about PwC" target="_blank">
+        <div class="partner" id="pwc">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+      </div>
+      <div class="partner-tier" id="gold">
+       <h1>
+        Gold partners
+       </h1>
+       <a alt="More about ChipSoft">
+        <div class="partner" id="chipsoft">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+       <a alt="More about Nedap" target="_blank">
+        <div class="partner" id="nedap">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+      </div>
+      <div class="partner-tier" id="silver">
+       <h1>
+        Silver partners
+       </h1>
+       <a alt="More about Topicus" target="_blank">
+        <div class="partner" id="topicus">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+       <a alt="More about Quintor">
+        <div class="partner" id="quintor">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+       <a alt="More about Capgemini">
+        <div class="partner" id="capgemini">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+       <a alt="More about ING">
+        <div class="partner" id="ing">
+         <img class="partner-logo" src="rick.jpg">
+        </div>
+       </a>
+      </div>
+      <div class="partner-tier" id="bronze">
+       <h1>
+        Bronze partners
+       </h1>
+       <div class="logos">
+        <a alt="More about ASML">
+         <div class="partner" id="asml">
+          <img class="partner-logo" src="rick.jpg">
+         </div>
+        </a>
+        <a alt="More about Brunel" target="_blank">
+         <div class="partner" id="brunel">
+          <img class="partner-logo" src="rick.jpg">
+         </div>
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="footer">
+    <div class="footer-column" id="social">
+     <a alt="Facebook page" target="_blank">
+      <img alt="Facebook page" class="socialmedia" src="rick.jpg">
+     </a>
+     <a alt="Tweeter page" target="_blank">
+      <img alt="Tweeter page" class="socialmedia" src="rick.jpg">
+     </a>
+    </div>
+    <div class="footer-column" id="copyright">
+     <p>
+      <code>
+       exec(ut)
+      </code>
+      is an event organised by
+      <a alt="Stichting Sticky" target="_blank">
+       Stichting Sticky
+      </a>
+      .
+      <br>
+      All rights reserved.
+     </p>
+    </div>
+    <div class="footer-column" id="coc">
+     <p>
+      Please take note of our
+      <br>
+      <a alt="Our Code of Conduct" target="_blank">
+       Code of Conduct
+      </a>
+      and
+      <a alt="Our Privacy Policy" target="_blank">
+       Privacy Policy
+      </a>
+     </p>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

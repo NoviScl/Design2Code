@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="desktop landscape">
+ <head>
+  <meta charset="utf-8">
+  <title>
+   Enagic Distributor Support Portal
+  </title>
+  <meta content="Enagic International Co., Ltd." name="author">
+  <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+  <!--OPTIONAL JQUERY PLUGIN-->
+  <!-- -->
+  <meta content="index,follow" name="robots">
+  <style>
+   /* GENERAL
+================================================== */
+
+/* Simple Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+	height: 100%
+}
+body {
+	font: 500 95%/1.3em 'Roboto', sans-serif;
+	height: 100%;
+	width: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	background: #000;
+	color: #FFF;
+}
+
+/* Form Layout */
+.form-wrapper {
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: 3em auto;
+	padding: 1em;
+	max-width: 300px;
+	border-radius: 5px; 
+}
+.form-wrapper img { max-width: 100%;}
+form {
+	padding: 0 1.5em;
+}
+h1 { 
+	margin-bottom: .5em;
+}
+
+.form-item {
+	margin-bottom: 0.75em;
+	width: 100%;
+}
+.form-item a[href $='.pdf'] {
+    background:url(https://information.enagic.com/mypage/my/images/icon_pdf.png) no-repeat left top;
+    background-size: 11%;
+    margin: 0 0 0 0;
+    padding: 0px 0px 100px 25px;
+    color: #FFF;
+}
+.form-item a[href $='.pdf']:hover { color:#FFC}
+.form-item input {
+	background: #fafafa;
+	border: none;
+	font-size: 1em;
+	padding: .75em 1em;
+	width: 100%;
+	font-family: 'Roboto', sans-serif;
+	border-radius: 3px;
+}
+
+.form-item input:focus {
+	border-bottom: 2px solid #c0c0c0;
+	outline: none;
+}
+.form-item input#policycheck {
+	margin-top: 10px;
+	width: inherit;
+	-ms-transform: scale(2, 2);
+	-webkit-transform: scale(2, 2);
+	transform: scale(2, 2);
+}
+.button-panel {
+	margin: 1em 0 0;
+	width: 100%;
+}
+.button-panel .button {
+	background: #024F9E;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	height: 50px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.2em;
+	letter-spacing: 0.05em;
+	text-align: center;
+	text-transform: uppercase;
+	transition: background 0.3s ease-in-out;
+	width: 100%;
+	border-radius: 3px; 
+}
+.button:hover {
+	background: #2A8FEA;
+}
+
+.button-panel2 {
+	margin: 1em 0 0;
+	width: 100%;
+}
+.button-panel2 .button2 {
+	background: #FFA500;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	height: 50px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.2em;
+	letter-spacing: 0.05em;
+	text-align: center;
+	text-transform: uppercase;
+	transition: background 0.3s ease-in-out;
+	width: 100%;
+	border-radius: 3px; 
+}
+.button2:hover {
+	background: #F9CB7C;
+}
+
+.button2:disabled {
+	background: #F9CB7C;
+}
+
+.form-footer {
+	font-size: 1em;
+	padding: 1em 0;
+	text-align: center;
+}
+.form-footer a {
+	color: #FFF;
+	text-decoration: none;
+	transition: border-color 0.3s;
+}
+.form-footer a:hover {
+	border-bottom: 1px dotted #8c8c8c;
+	color: #FFC;
+}
+.error_message {
+	background: pink;
+	margin-bottom:  .5em;
+	padding: 2px 5px;
+	color: red
+}
+.pattern {
+	background-image: url(../images/pattern.png);
+	background-repeat: repeat;
+	background-attachment: scroll;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+/* BIG VIDEO BACKGROUND
+================================================== */
+
+.big-background {
+	z-index: 550;
+	text-align: center;
+	height: 100%;
+	min-height: 100%;
+	position: relative;
+	overflow: hidden
+}
+.big-background .big-background-container {
+	width: 830px;
+	max-width: 100%;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)
+}
+.big-background-title {
+	font-family: 'Raleway', sans-serif;
+	font-size: 78px;
+	color: #fff;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 22px;
+	padding-top: 20px;
+	display: inline-block;
+	background-attachment: scroll;
+	background-repeat: repeat-x;
+	background-position: top center
+}
+a.big-background-btn {
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #fff;
+	background: transparent;
+	border: 2px solid #fff;
+	padding: 10px 14px;
+	cursor: pointer;
+	letter-spacing: 2px;
+	text-align: center;
+	display: inline-block;
+	-webkit-transition: .4s background ease;
+	-moz-transition: .4s background ease;
+	-o-transition: .4s background ease;
+	transition: .4s background ease;
+}
+.big-background-btn:hover {
+	color: #fff;
+	background: rgba(255, 255, 255, 0.20)
+}
+.big-background-default-image {
+	background:url(../images/enagic-mypage.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	max-width: 100%;
+	height: 100%;
+	z-index: 0;
+	backface-visibility: hidden
+}
+
+/* MEDIA QUERIES
+================================================== */
+
+@media screen and (max-width: 768px) {
+	.about-section-title {
+		line-height: 1
+	}
+}
+@media screen and (max-width: 480px) {
+	.big-background-title {
+		font-size: 58px
+	}
+	.small-background-title {
+		line-height: 1
+	}
+	/*.player{ display: none;}  -> If you want to remove the video bg on a specific viewport w/o plugin*/
+}
+@media screen and (max-width: 360px) {
+	.big-background-title, #colorize {
+		line-height: 1
+	}
+}
+@media screen and (max-width: 320px) {
+	.small-background-title {
+		font-size: 30px
+	}
+}
+
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden; -webkit-transform: translate3d(0,0,0);}
+#cboxWrapper {max-width:none;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0; padding:0; margin:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#fff; opacity: 0.7; filter: alpha(opacity = 70);}
+#colorbox{outline:0;}
+    #cboxContent{margin-top:32px; overflow:visible; background:#FFF;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{background:#FFF; padding:1px; color:#000;}
+        #cboxLoadingGraphic{background:url(../images/loading.gif) no-repeat center center;}
+        #cboxLoadingOverlay{background:#FFF;}
+        #cboxTitle{position:absolute; top:-22px; left:0; color:#000;}
+        #cboxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px;}
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; text-indent:-9999px; width:20px; height:20px; position:absolute; top:-20px; background:url(../images/controls.png) no-repeat 0 0;}
+        
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+
+        #cboxPrevious{background-position:0px 0px; right:44px;}
+        #cboxPrevious:hover{background-position:0px -25px;}
+        #cboxNext{background-position:-25px 0px; right:22px;}
+        #cboxNext:hover{background-position:-25px -25px;}
+        #cboxClose{background-position:-50px 0px; right:0;}
+        #cboxClose:hover{background-position:-50px -25px;}
+        .cboxSlideshow_on #cboxPrevious, .cboxSlideshow_off #cboxPrevious{right:66px;}
+        .cboxSlideshow_on #cboxSlideshow{background-position:-75px -25px; right:44px;}
+        .cboxSlideshow_on #cboxSlideshow:hover{background-position:-100px -25px;}
+        .cboxSlideshow_off #cboxSlideshow{background-position:-100px 0px; right:44px;}
+        .cboxSlideshow_off #cboxSlideshow:hover{background-position:-75px -25px;}
+
+
+
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) format('truetype');
+}
+
+
+
+        #bgndVideo {
+            position: absolute; pointer-events: none;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #bgndVideo video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+  </style>
+  <!-- <meta http-equiv="refresh" content="0;url=https://information.enagic.com/mypage/maintenance.php"> -->
+ </head>
+ <body>
+  <section class="big-background">
+   <div id="bgndVideo">
+   </div>
+   <div class="pattern">
+   </div>
+   <div class="big-background-container">
+    <!-- Form -->
+    <div class="form-wrapper">
+     <h1>
+      <img alt="Enagic Distributor Support Portal" src="rick.jpg">
+     </h1>
+     <form action="guest.php" method="post" name="guest">
+      <div style="padding-bottom:4px;">
+       <p>
+        Do you have an Enagic Client ID Number?
+       </p>
+      </div>
+      <div class="button-panel2">
+       <button class="button2" name="go_to_login" onclick="location.href='https://information.enagic.com/mypage/login.php?loginfrom=us'" style="display:inline-block;width:40%;margin-right:8px;" type="button">
+        YES
+       </button>
+       <button class="button2" name="go_to_gws" style="display:inline-block;width:40%;" type="button">
+        NO
+       </button>
+      </div>
+      <input name="country" type="hidden" value="us">
+      <input name="page_name_from" type="hidden" value="guest">
+     </form>
+    </div>
+    <!-- / From -->
+   </div>
+  </section>
+  <!-- This contains the hidden content for inline calls -->
+  <div id="cboxOverlay" style="display: none;">
+  </div>
+  <div class="" id="colorbox" role="dialog" style="display: none;" tabindex="-1">
+   <div id="cboxWrapper">
+    <div>
+     <div id="cboxTopLeft" style="float: left;">
+     </div>
+     <div id="cboxTopCenter" style="float: left;">
+     </div>
+     <div id="cboxTopRight" style="float: left;">
+     </div>
+    </div>
+    <div style="clear: left;">
+     <div id="cboxMiddleLeft" style="float: left;">
+     </div>
+     <div id="cboxContent" style="float: left;">
+      <div id="cboxTitle" style="float: left;">
+      </div>
+      <div id="cboxCurrent" style="float: left;">
+      </div>
+      <button id="cboxPrevious" type="button">
+      </button>
+      <button id="cboxNext" type="button">
+      </button>
+      <button id="cboxSlideshow" type="button">
+      </button>
+      <div id="cboxLoadingOverlay" style="float: left;">
+      </div>
+      <div id="cboxLoadingGraphic" style="float: left;">
+      </div>
+     </div>
+     <div id="cboxMiddleRight" style="float: left;">
+     </div>
+    </div>
+    <div style="clear: left;">
+     <div id="cboxBottomLeft" style="float: left;">
+     </div>
+     <div id="cboxBottomCenter" style="float: left;">
+     </div>
+     <div id="cboxBottomRight" style="float: left;">
+     </div>
+    </div>
+   </div>
+   <div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;">
+   </div>
+  </div>
+ </body>
+</html>

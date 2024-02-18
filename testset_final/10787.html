@@ -1,0 +1,720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "">
+<html lang="en" xml:lang="en" xmlns="">
+ <head>
+  <style>
+   /*FiftySense stylesheet*/
+body	{
+	margin:		0;
+	padding:	0;
+	font: medium/1.4em "trebuchet MS", lucida, arial, helvetica, sans-serif;
+	color:	#000;
+	background : #669885;
+	}
+
+li {
+	margin-bottom: .6em;
+	}
+
+a {
+	color: #39F;
+	text-decoration: none;
+	}
+
+.print {
+	display: none;
+	}
+
+a:visited {
+	color: #e9b662;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: #a6684a;
+	text-decoration: underline;
+	}
+
+#textsize {
+	position: absolute;
+	top: 145px;
+	left: 5px;
+	z-index: 200;
+	}
+
+#main {
+	color: #000;
+	position: relative;
+	width: 950px;
+	background: #f6ecb8;
+	border: 1px solid white;
+	margin: 0 auto 20px auto;
+	padding: 0;
+	}
+
+#mainstuff {
+	float: left;
+	width: 730px;
+	/*border: 1px solid red;*/
+	display: inline;
+	margin: 0;
+	padding: 0;
+	}
+
+#rightside {
+	float: right;
+	width: 200px;
+	position: absolute;
+	top: 180px;
+	left: 750px;
+	background: #f6ecb8;
+	border: none;
+	margin: 0;
+	}
+
+#content {
+	float: right;
+	position: relative;
+	width: 530px;
+	margin: 0 2px 0 0;
+	/*border: 1px solid green;*/
+	padding-left: 2px;
+	background: #f6ecb8;
+	}
+
+
+/*Left Navigation -----------*/
+#nav {
+	width: 150px;
+	position: relative;
+	margin: 40px 0 0 15px;
+	padding: 0;
+	text-align: right;
+/*
+	border: 1px solid white;
+*/
+	}
+
+#nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	}
+
+#nav ul li {
+	font-family: verdana, lucida, arial, helvetica, sans-serif;
+	font-size: medium;
+	line-height: 1.2em;
+	padding:  0 0 16px 0;
+	margin: 0;
+	}
+
+#nav ul li a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #39f;
+	padding: 12px 0 0 0;
+	}
+
+#nav ul li a:visited {
+	text-decoration: none;
+	color: #a6684a;
+	background: transparent;
+	}
+
+#nav ul li a:hover {
+	text-decoration: underline;
+	color: #ccc;
+	background: transparent;
+	}
+
+
+#subhead {
+	clear: both;
+	position: relative;
+	padding: 15px 0 0 0;
+	font-size: 1.5em;
+	}
+
+
+/*SubNav-------------------*/
+#subnav {
+	position: relative;
+	/*border: 1px solid white;*/
+	float: left;
+	margin: 0 0 20px 0;
+/*fixes IE6 bug*/
+/*	margin: 0 0 0 200px !important;
+	margin: 0 0 0 100px;  */
+	padding: 0;
+	font-weight: bold;
+	width: 530px
+	}
+
+#subnav ul {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	}
+
+#subnav li {
+	/*border: 1px solid red;*/
+	float: left;
+	margin: 0;
+	padding: 0;
+	background: #f7e9b6;
+	font-size: 1em;
+	line-height: 1.4em;
+	width: auto;
+	list-style: none;
+	}
+
+#subnav li a {
+	float: left;
+	display: block;
+	padding: 4px 8px;
+	color: #333;
+	text-decoration: none;
+	border: 1px solid #9B8748;
+	}
+
+#subnav li a:hover {
+	color: #333;
+	padding: 4px 8px;
+	text-decoration: underline;
+	background: #fff;
+	border: 1px solid #fff;
+	}
+/*EndSubNav---------------------------*/
+
+
+/*menu page indication-----------------*/
+#home a#linkhome,
+#about a#linkabout,
+#outdoors a#linkoutdoors,
+#adventure a#linkadventure,
+#health a#linkhealth,
+#apparel a#linkapparel,
+#orgs a#linkorgs,
+#humor a#linkhumor,
+#active a#linkactive,
+#videos a#linkvideos,
+#resources a#linkresources,
+#reviews a#linkreviews,
+#search a#linksearch,
+#contact a#linkcontact  {
+/*	color: #b86847;*/
+	color: #e9ad9b;
+	font-weight: bold;
+	text-decoration: none;
+	}
+
+
+#home a#linkhome:hover,
+#about a#linkabout:hover,
+#outdoors a#linkoutdoors:hover,
+#adventure a#linkadventure:hover,
+#health a#linkhealth:hover,
+#apparel a#linkapparel:hover,
+#orgs a#linkorgs:hover,
+#humor a#linkhumor:hover,
+#active a#linkactive:hover,
+#videos a#linkvideos:hover,
+#resources a#linkresources:hover,
+#reviews a#linkreviews:hover,
+#search a#linksearch:hover,
+#contact a#linkcontact:hover {
+	color: #b86847;
+	text-decoration: none;
+	}
+/*EndMenu page indication-----------------*/
+
+
+/*SubMenu page indication-------------------*/
+.walk a#linkwalk,
+.hiking a#linkhiking,
+.backpack a#linkbackpack,
+.camp a#linkcamp,
+.canoe a#linkcanoe,
+.cycle a#linkcycle,
+.alpine a#linkalpine,
+.nordic a#linknordic,
+.snowboard a#linksnowboard,
+.golf a#linkgolf,
+.advenstart a#linkadvenstart,
+.advenplan a#linkadvenplan,
+.advenpack a#linkadvenpack,
+.adventrips a#linkadventrips,
+.advenfit a#linkadvenfit
+	{
+	color: #666;
+	font-weight: bold;
+	background: white;
+	border: 1px solid #fff;
+	}
+
+.walk a#linkwalk:hover,
+.hiking a#linkhiking:hover,
+.backpack a#linkbackpack:hover,
+.camp a#linkcamp:hover,
+.canoe a#linkcanoe:hover,
+.cycle a#linkcycle:hover,
+.alpine a#linkalpine:hover,
+.nordic a#linknordic:hover,
+.snowboard a#linksnowboard:hover,
+.golf a#linkgolf:hover,
+.advenstart a#linkadvenstart:hover,
+.advenplan a#linkadvenplan:hover,
+.advenpack a#linkadvenpack:hover,
+.adventrips a#linkadventripshover,
+.advenfit a#linkadvenfit:hover
+	{
+	color: #666;
+	font-weight: bold;
+	background: white;
+	text-decoration: none;
+	border: 1px solid #fff;
+	}
+/*EndMenu page indication--------------------*/
+
+
+/*Tertiary Navigation----------------------*/
+#nav3 {
+	position: relative;
+	/*border: 1px solid white;*/
+	margin: 0 0 10px 0;
+	padding: 0;
+	text-align: right;
+	font-size: .9em;
+	}
+
+#nav3 a {
+	background: #fcecb5;
+	border: 1px solid blue;
+	padding: 4px 8px;
+	margin-top: 4px;
+	line-height: 1.8em;
+	}
+
+#nav3 a:visited {
+	color: black;
+	text-decoration: none;
+	}
+
+#nav3 a:hover {
+	color: #994b27;
+
+	text-decoration: underline;
+	}
+/*endTertiary Navigation----------------------*/
+
+
+
+h1, h2, h3, h4, h5, h6	{
+	font-family: verdana, lucida, arial, helvetica, sans-serif;
+	font-weight: bold;
+	color: #000;
+	background: transparent;
+	}
+
+h1	{
+	font-size:	175%;
+	line-height: 120%;
+	}
+
+h2	{
+	font-size:	120%;
+	line-height: 110%;
+	}
+
+h3	{
+	font-size:	110%;
+	}
+
+
+cite {
+	display: block;
+	margin: 0 0 20px 20px;
+	}
+
+strong {
+	font-weight: bold;
+	font-size: 1.2em;
+	}
+
+.blurb {
+	border: 3px solid #666;
+	padding: 4px;
+	position: relative;
+/*	height: 180px;*/
+	margin: 0 0 10px 0;
+	}
+
+.blurb img {
+	float: left;
+	position: relative;
+	margin-right: 10px;
+	}
+
+.blurb p {
+	float: none;
+	margin-bottom: 20px;
+	}
+
+.blurb h2 {
+	margin: 0 0 4px 0;
+	padding: 0;
+	}
+
+.commumnity  {
+	position: absolute;
+	top: 140px;
+	left: 250px;
+	z-index: 200;
+	text-align: center;
+	}
+
+#footer {
+	clear: both;
+	position: relative;
+	text-align: center;
+	padding: 5px 0 5px 0;
+	margin: 0 auto 4px auto;
+	/*border: 1px solid white;*/
+
+	}
+
+#footer a {
+	padding: 10px 0 10px 0;
+	font: 16px arial, sans-serif;
+	line-height: 18px;
+	text-align: center;
+	}
+
+a .breadcrumbs {
+	font-size: .9em;
+	margin-top: -15px;
+	margin-bottom: 10px;
+	padding: 0;
+	color: #000;
+	/*border: 1px solid white;*/
+	}
+
+#breadcrumbs {
+	font-size: .9em;
+	margin-top: -15px;
+	margin-bottom: 10px;
+	padding: 0;
+	color: black;
+	/*border: 1px solid white;*/
+	}
+
+table {
+	border: 1px solid black;
+	}
+td  {
+	border: 1px solid white;
+	padding: 4px;
+	}
+
+
+/*FiftySense Print stylesheet*/
+body	{
+	margin:		0;
+	padding:	0;
+	font: 18px/20px "trebuchet MS", lucida, arial, helvetica, sans-serif;
+	color:	#000;
+	background : #fff;
+	}
+
+.screen {
+	display: none;
+	}
+
+p .link {
+	display: none;
+	}
+
+a {
+	text-decoration: none;
+	}
+
+#main {
+	position: relative;
+	width: 950px;
+	background: #fff;
+	border: none;
+	margin: 0 auto;
+	padding: 0;
+	}
+
+#mainstuff {
+	float: left;
+	width: 730px;
+/*	border: 1px solid red;*/
+	display: inline;
+	margin: 0;
+	padding: 0;
+	}
+
+
+#rightside {
+	float: right;
+	width: 205px;
+	position: relative;
+	background: #ccc;
+	border: 1px solid #666;
+	}
+
+
+
+#content {
+	position: relative;
+	width: 530px;
+	margin: 0 2px 0 0;
+/*	border: 1px solid green;*/
+	padding-left: 20px;
+	}
+
+#nav {
+	display: none;
+	}
+
+
+
+
+#subhead {
+	clear: both;
+	position: relative;
+	padding: 15px 0 0 0;
+	}
+
+
+
+/*SubNav*/
+#subnav {
+	display: none;
+	}
+
+h1, h2, h3, h4, h5, h6	{
+	font-family: verdana, lucida, arial, helvetica, sans-serif;
+	font-weight: bold;
+	color: #000;
+	background: transparent;
+	}
+
+h1	{
+	font-size:	175%;
+	line-height: 155%;
+	}
+
+h2	{
+	font-size:	120%;
+	line-height: 110%;
+	}
+
+h3	{
+	font-size:	110%;
+	}
+
+.commumnity {
+	display: none;
+	}
+
+
+cite {
+	display: block;
+	margin: 0 0 20px 20px;
+	}
+
+strong {
+	font-weight: bold;
+	color: #000;
+	font-size: 1.2em;
+	}
+
+#footer {
+	clear: both;
+	position: relative;
+	text-align: center;
+	padding: 5px 0 5px 0;
+	margin: 10px auto 4px auto;
+	}
+  </style>
+  <title>
+   Ladakh - Adventure Travel For Active Boomers Over Fifty: FiftySense
+  </title>
+  <meta content="
+We at Fiftysense believe that adventure travel can be more accessible, and the information from our website will show you how." name="description">
+  <meta content="
+over fifty
+Adventure Travel
+Small ship tours" name="keywords">
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta content="mike gould" name="author">
+  <!-- 
+The FiftySense site was created with great care by
+Mike Gould, in charge, MondoDyne Web Works
+http://mondodyne.com
+734 904 0659
+started: 8-6-07-->
+ </head>
+ <body class="adventrips" id="adventure" onload="changeFontSize(readCookie('fontSize'));">
+  <div id="main">
+   <!-- Header -->
+   <!-- Text resize -->
+   <p id="textsize">
+    Text Size:
+    <a>
+     &uarr;
+     <span style="font-size: 1.2em">
+      A
+     </span>
+    </a>
+    <a>
+     &darr;
+     <span style="font-size: .8em">
+      A
+     </span>
+    </a>
+   </p>
+   <!-- EndText resize -->
+   <!-- Header Print -->
+   <div class="print">
+    <img alt="Fifty Sense: Common Sense Ideas for Thriving after 50" height="150" src="rick.jpg" width="551">
+   </div>
+   <!-- Header Screen -->
+   <div class="screen" style="position: relative; width: 951px; height: 179px; margin: 2px auto; text-align: center; background: #f6ecb8">
+    <img alt="Fifty Sense: Common Sense Ideas for Thriving after 50" height="179" src="rick.jpg" width="951">
+   </div>
+   <!-- endHeader Screen -->
+   <!-- SubNavigation -->
+   <div id="subnav">
+    <ul>
+     <li>
+      <a id="linkadvenstart">
+       Getting Started
+      </a>
+     </li>
+     <li>
+      <a id="linkadvenplan">
+       Planning Your Adventure
+      </a>
+     </li>
+     <li>
+      <a id="linkadvenfit">
+       Fitness and skill
+      </a>
+     </li>
+     <!-- 
+<li><a  id="linkadventrips">Trips</a></li>
+ -->
+     <li>
+      <a id="linkadventips">
+       Travel Tips
+      </a>
+     </li>
+    </ul>
+   </div>
+   <!-- EndSubNavigation -->
+   <!-- Mainstuff: Nav + Content -->
+   <div id="mainstuff">
+    <!--Content-->
+    <div id="content">
+     <!-- BreadCrumbs -->
+     <p id="breadcrumbs">
+      <a title="Go to FiftySense Homepage">
+       HOME
+      </a>
+      &gt;
+      <a>
+       Adventure Travel
+      </a>
+      &gt;  Ladakh
+     </p>
+     <!-- EndBreadCrumbs -->
+     <h1>
+      Trekking in Ladakh
+     </h1>
+     <p>
+      In the past few years, Ladakh has become increasing more popular as an adventure travel destination. Because of the recent political problems in Nepal (which hopefully are now overcome), many travelers have sought the Himalayan region of Ladakh as an alternative trekking destination.
+     </p>
+     <p>
+      The standard way to trek in Ladakh is to hire a guide as well as a couple horses and assistants to walk with you, making the trip much easier and hassle free. Because of the rough and dry terrain as well as extremely high altitudes, it is highly recommended that trekkers take advantage of these services in order to experience an enjoyable as well as safe trek in the Himalayas.
+     </p>
+     <p>
+      One popular trek which takes you through the varied terrain of Ladakh is the Markha Valley trek. This trek will take you through green valleys, as well as over high altitude passes passing through moon-like desert landscape along the way.
+     </p>
+     <p>
+      Because of the high altitudes and passes the best time of year to do this trek is from July to September. An easier trek to consider is the Sham trek from Liker to Khaltser.
+     </p>
+     Trekking in Ladakh is a once in a lifetime experience where you can not only challenge yourself physically, but also experience the amazing landscape and the vastly different Ladakhi culture along the way.
+     <p>
+      We hope you not only learn something new, but will also share your experiences with us.
+      <a>
+       email us
+      </a>
+      .  If you add to our knowledge by sending us pictures, your story, information, and/or
+      <a>
+       product reviews
+      </a>
+      , you may even be selected for our weekly feature!
+     </p>
+    </div>
+    <!--EndContent-->
+    <!-- LeftNavigation -->
+    <div id="nav">
+     <ul>
+      <li>
+       <a style="font-size: 1.3em; padding: 1px 4px 2px 4px;  border: 1px solid white;">
+        Search
+       </a>
+      </li>
+      <li>
+       <a id="linkhome">
+        HOME
+       </a>
+      </li>
+      <li>
+       <a>
+        Sue's Column Sense
+       </a>
+      </li>
+      <li>
+       <a id="linkoutdoors">
+        Outdoor
+        <br>
+        Activities
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- EndLeftNavigation -->
+   </div>
+   <!-- End Nav + Content -->
+   <!-- 
+<!~~ RightSide Ad Space ~~>
+<div id="rightside">
+<br /><br /><br /><br /><br /><br /><br /><br />
+</div>
+<!~~ EndRightSide Ad Space ~~>
+ -->
+   <div id="footer">
+    <a>
+     FiftySense.com
+    </a>
+    <br>
+    <a>
+     Email Us
+    </a>
+    <p>
+    </p>
+    <br>
+    <span style="font-size: .8em;">
+     Entire Contents &copy;2007-2022, FIFTYSENSE, LLC, All Rights Reserved
+    </span>
+   </div>
+  </div>
+ </body>
+</html>

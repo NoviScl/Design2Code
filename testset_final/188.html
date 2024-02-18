@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html class="" lang="en-CA">
+ <head>
+  <style>
+
+h1 { font-family: 'Open Sans', sans-serif; font-size: 20px; line-height:24px; border-bottom:2px solid #ddd; color:#161d40; padding-bottom:20px; margin:15px 0; font-weight:bold; }
+h2 { font-family: 'Open Sans', sans-serif; font-size: 20px; line-height:24px; border-bottom:2px solid #ddd; color:#161d40; padding-bottom:20px; margin:15px 0; font-weight:bold; }
+h3 { font-family: 'Open Sans', sans-serif; font-size: 20px; line-height:24px; margin:12px 0; font-weight:bold; text-transform:uppercase; }
+h4 { font-family: 'Open Sans', sans-serif; font-size: 14px; line-height:20px; color:#222222; }
+h5 { font-family: 'Open Sans', sans-serif; font-size: 12px; line-height:20px; color:#222222; }
+h6 { font-family: 'Open Sans', sans-serif; font-size: 10px; line-height:20px; color:#222222; }
+p { font-family: 'Open Sans', sans-serif; font-size: 14px; line-height:20px; color:#222222; margin:16px 0; }
+a { color:#1D2951;  
+	-o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s; }
+a:hover { color:#770015; }
+
+* { margin:0px; }
+.wrapper { width: 940px; margin: 0 auto; }
+html { background:none !important; margin:0px; }
+body { margin:0; font-family: 'Open Sans', sans-serif; background-color:#fff; color:#222222; }
+a{ color:#161d40;text-decoration:none; }
+a:hover{ color:#770015; }
+#header-wrapper #logo-container { float:left; width:100%; min-height:160px; }
+#header-container #header-wrapper #logo{ display:block; float:left; text-indent:-9999px; background:url("/template/logo.png") no-repeat transparent; width:460px; height:160px; }
+#header-container #header-wrapper .slogan{ float:right; font-style:italic; color:#770015; font-size:18px; font-weight:300; margin-top:66px; }
+
+#menu-container { float:left; width:100%; min-height:60px; background-color:#eeeeee; border-bottom:1px solid #dddddd; }
+#menu-container ul{ padding:0px; list-style:none; }
+#menu-container #menu-wrapper ul li a{ font-family: 'Open Sans', sans-serif; font-size:18px; color:#161d40; font-weight:500; padding: 18px 30px; float:left; width:100px;}
+#menu-container #menu-wrapper ul li ul li a{ width:200px; }
+#menu-container #menu-wrapper ul li a:hover{ color:#770015; font-weight:bold; }
+#menu-container #menu-wrapper ul li a.selected{ color:#770015; font-weight:bold; }
+#menu-container #menu-wrapper ul li a.first-item{ padding-left:0px; }
+#menu-container #menu-wrapper ul li a.last-item{ padding-right:0px; }
+ul .menu-arrow { background: url("/template/menu-arrow.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 11px; width: 14px; left: 40px; position: absolute; top: -11px; }
+
+#banner-container { width:100%; height:330px; background-color:#E4E4E4; float:left; overflow:hidden; }
+#banner-container #banner-wrapper {width:1400px; margin:0 auto; height:481px; position:relative; }
+#banner-container #banner-wrapper .prev { cursor:pointer; position:absolute; top:160px; left:10%; z-index:20;  width:36px; height:36px; background:url("/template/nav.png") transparent no-repeat; text-indent:-9999px;background-position:0 100%; }
+#banner-container #banner-wrapper .next { cursor:pointer; position:absolute; top:160px; right:10%; z-index:20;  width:36px; height:36px; background:url("/template/nav.png") transparent no-repeat; text-indent:-9999px;}
+#banner-container #banner-wrapper .prev:hover { background-position:100% 100%; }
+#banner-container #banner-wrapper .next:hover { background-position:100% 0; }
+#banner-container #banner-wrapper .pager { position:absolute; top:300px; left:45%; z-index:20; width:300px; }
+#banner-container #banner-wrapper .pager a { width:12px; height:12px; background:url("/template/pager.png") no-repeat; text-indent:-9999px; float:left; margin-right:10px; -moz-transition: none; -webkit-transition: none;
+-o-transition: color 0 ease-in; transition: none; }
+#banner-container #banner-wrapper .pager a:hover, #banner-container #banner-wrapper .pager a.activeSlide { background-position:0 100%; }
+#banner-container #banner-wrapper .banner-text {width:590px; left:60%; top:220px; position:absolute; }
+#banner-container #banner-wrapper .banner-text h2 {width:590px; font-family: 'Open Sans', sans-serif; font-size:28px; color:#ffffff; text-shadow: 2px 1px #000; font-style:italic; border:none; }
+
+#content { padding-top:20px; overflow:hidden; }
+#content .home-left { float:left; width:620px; }
+#content .home-right { float:left; width:300px; margin-left:20px; }
+#content .home-right .bubble-title{ float:left; width:300px; text-align:center; }
+#content .home-right .bubble{ float:left; width:300px; background-color:#d6d6d6; min-height:200px; margin-top:10px; position:relative; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#content .home-right .bubble .bubble-arrow{ width:20px; height:16px; background:url("/template/bubble_arrow.png") no-repeat; position:absolute; top:-16px; left:210px; }
+#content .home-right span{ margin-top:30px; float:left; width:100%; text-align:center; font-weight:bold; font-size:20px; color:#fff; }
+#content .home-right span a{ float:left; width:100%; text-align:center; font-weight:bold; font-size:24px; color:#161d40; }
+#content .home-right span a:hover { color:#770015; }
+.shadow { -moz-box-shadow:    1px 1px #b0b2b2; -webkit-box-shadow: 1px 1px #b0b2b2; box-shadow:         1px 1px #b0b2b2; }
+#content #sidebar{ float:left; width:220px; min-height:200px; padding-bottom:60px;  }
+#content #sidebar .bubble-title{ float:left; width:220px; text-align:center; font-size:16px;}
+#content #sidebar .bubble{ float:left; width:220px; background-color:#d6d6d6; min-height:140px; margin-top:10px; position:relative; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#content #sidebar .bubble .bubble-arrow{ width:20px; height:16px; background:url("/template/bubble_arrow.png") no-repeat; position:absolute; top:-16px; left:160px; }
+#content #sidebar span{ margin-top:25px; float:left; width:100%; text-align:center; font-weight:bold; font-size:14px; color:#fff; }
+#content #sidebar span a{ float:left; width:100%; text-align:center; font-weight:bold; font-size:16px; color:#161d40; }
+#content #sidebar span a:hover { color:#770015; }
+#content #main-column{ float:left; width:700px; margin-left:20px; }
+#content #main-column a { color:#770015; }
+#content #main-column a:hover { text-decoration:underline; }
+#content #sidebar ul { list-style:none; padding:0px; margin-bottom:50px; float:left; margin-top:10px; }
+#content #sidebar ul li { position:relative; float:left; width:170px; border-bottom:1px solid #dddddd; border-left:1px solid #dddddd; border-right:1px solid #dddddd; background-color:#efefef; padding:10px 20px 10px 30px;  }
+#content #sidebar ul li a{ font-size:16px; 	}
+#content #sidebar ul li.first-item { border-top:1px solid #dddddd; border-left:1px solid #dddddd; border-right:1px solid #dddddd;  }
+#content #sidebar ul li.last-item { border-bottom:1px solid #dddddd; border-left:1px solid #dddddd; border-right:1px solid #dddddd; }
+#content #sidebar ul li a.selected { color:#770015; }
+#content #sidebar ul .menu-arrow { background: url("/template/sidebar-arrow.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 14px; width: 14px; position:absolute; top:15px; left:9px; }
+#content #sidebar ul li .more { background: url("/template/more_less.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 16px; width: 16px; position:absolute; top:13px; right:9px; text-indent:-9999px; -moz-transition: none; -webkit-transition: none; -o-transition: color 0 ease-in; transition: none;}
+#content #sidebar ul li .more:hover { cursor:pointer; }
+#content #sidebar ul li .open { background-position:0 100%; }
+#content #sidebar ul ul { margin:0px; }
+#content #sidebar ul ul li{ border-bottom:1px solid #dddddd; border-left:1px solid #dddddd; border-right:1px solid #dddddd; background-color:#F8F8F8; padding:10px; width:200px; }
+#content #sidebar ul ul a{ font-size:12px; }
+#content #sidebar ul ul a.selected{ color:#770015; }
+#content #sidebar ul ul li .menu-arrow { background: url("/template/sidebar-arrow.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 14px; width: 14px; position:absolute; top:16px; left:20px; }
+#content { float:left; width:100%; background: url("/template/background.jpg") repeat; }
+#content-wrapper { min-height:300px; }
+#footer-container{ min-height:240px; background-color:#ddd; background: url("/template/footer-background.png") no-repeat transparent; margin-top:10px; position:relative; }
+#footer{ min-height:240px; font-family: 'Open Sans', sans-serif; font-size:12px; color:#666666; float:left; width:100%; }
+#footer a { font-family: 'Open Sans', sans-serif; font-size:12px; color:#666666; text-decoration:none; }
+#footer a:hover { text-decoration:underline; }
+#footer-cover-left{ background:#E4E4E4; position:absolute; height:106px; left:-100%; top:132px; width:100%; }
+#footer-cover-right{ background:#E4E4E4; position:absolute; height:153px; right:-100%; top:85px; width:100%; }	
+#footer-left{ float:left; width:220px; margin-left:160px; margin-top:110px; }
+#footer-right{ float:left; width:560px; margin-top:110px;}
+#footer .footer-menu li { float:left; list-style:none; }
+#footer .footer-menu li span{ float:left;margin:0 10px 17px; }
+#footer .footer-copy { float:right; text-align:right; }
+
+
+/*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+}
+
+.fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+}
+
+.fancybox-skin {
+	position: relative;
+	background: #f9f9f9;
+	color: #444;
+	text-shadow: none;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+}
+
+.fancybox-opened {
+	z-index: 8030;
+}
+
+.fancybox-opened .fancybox-skin {
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.fancybox-outer, .fancybox-inner {
+	position: relative;
+}
+
+.fancybox-inner {
+	overflow: hidden;
+}
+
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+
+.fancybox-error {
+	color: #444;
+	font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 0;
+	padding: 15px;
+	white-space: nowrap;
+}
+
+.fancybox-image, .fancybox-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.fancybox-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+	background-image: url('fancybox_sprite.png');
+}
+
+#fancybox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -22px;
+	margin-left: -22px;
+	background-position: 0 -108px;
+	opacity: 0.8;
+	cursor: pointer;
+	z-index: 8060;
+}
+
+#fancybox-loading div {
+	width: 44px;
+	height: 44px;
+	background: url('fancybox_loading.gif') center center no-repeat;
+}
+
+.fancybox-close {
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 8040;
+}
+
+.fancybox-nav {
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	background: transparent url('blank.gif'); /* helps IE */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	z-index: 8040;
+}
+
+.fancybox-prev {
+	left: 0;
+}
+
+.fancybox-next {
+	right: 0;
+}
+
+.fancybox-nav span {
+	position: absolute;
+	top: 50%;
+	width: 36px;
+	height: 34px;
+	margin-top: -18px;
+	cursor: pointer;
+	z-index: 8040;
+	visibility: hidden;
+}
+
+.fancybox-prev span {
+	left: 10px;
+	background-position: 0 -36px;
+}
+
+.fancybox-next span {
+	right: 10px;
+	background-position: 0 -72px;
+}
+
+.fancybox-nav:hover span {
+	visibility: visible;
+}
+
+.fancybox-tmp {
+	position: absolute;
+	top: -99999px;
+	left: -99999px;
+	visibility: hidden;
+	max-width: 99999px;
+	max-height: 99999px;
+	overflow: visible !important;
+}
+
+/* Overlay helper */
+
+.fancybox-lock {
+    overflow: hidden !important;
+    width: auto;
+}
+
+.fancybox-lock body {
+    overflow: hidden !important;
+}
+
+.fancybox-lock-test {
+    overflow-y: hidden !important;
+}
+
+.fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+	background: url('fancybox_overlay.png');
+}
+
+.fancybox-overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.fancybox-lock .fancybox-overlay {
+	overflow: auto;
+	overflow-y: scroll;
+}
+
+/* Title helper */
+
+.fancybox-title {
+	visibility: hidden;
+	font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	position: relative;
+	text-shadow: none;
+	z-index: 8050;
+}
+
+.fancybox-opened .fancybox-title {
+	visibility: visible;
+}
+
+.fancybox-title-float-wrap {
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	margin-bottom: -35px;
+	z-index: 8050;
+	text-align: center;
+}
+
+.fancybox-title-float-wrap .child {
+	display: inline-block;
+	margin-right: -100%;
+	padding: 2px 20px;
+	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
+	background: rgba(0, 0, 0, 0.8);
+	-webkit-border-radius: 15px;
+	   -moz-border-radius: 15px;
+	        border-radius: 15px;
+	text-shadow: 0 1px 2px #222;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 24px;
+	white-space: nowrap;
+}
+
+.fancybox-title-outside-wrap {
+	position: relative;
+	margin-top: 10px;
+	color: #fff;
+}
+
+.fancybox-title-inside-wrap {
+	padding-top: 10px;
+}
+
+.fancybox-title-over-wrap {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	padding: 10px;
+	background: #000;
+	background: rgba(0, 0, 0, .8);
+}
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	   only screen and (min--moz-device-pixel-ratio: 1.5),
+	   only screen and (min-device-pixel-ratio: 1.5){
+
+	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+		background-image: url('[EMAIL REDACTED]');
+		background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
+	}
+
+	#fancybox-loading div {
+		background-image: url('[EMAIL REDACTED]');
+		background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
+	}
+}
+
+
+/*** ESSENTIAL STYLES ***/
+.sf-menu, .sf-menu * {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sf-menu li {
+	position: relative;
+}
+.sf-menu ul {
+	position: absolute;
+	display: none;
+	top: 100%;
+	left: 0;
+	z-index: 99;
+}
+.sf-menu > li {
+	float: left;
+}
+.sf-menu li:hover > ul,
+.sf-menu li.sfHover > ul {
+	display: block;
+}
+
+.sf-menu a {
+	display: block;
+	position: relative;
+}
+.sf-menu ul ul {
+	top: 0;
+	left: 100%;
+}
+
+
+/*** DEMO SKIN ***/
+
+.sf-menu li ul{
+}
+.sf-menu li ul li a{
+	font-size:16px!important; 
+	color:#1C2951;
+	padding:15px!important; 
+	width:100%;
+	background:#ddd;
+}
+.sf-menu li ul li a:hover{
+	color:#8C101A;
+	background: #eeeeee;
+}
+.sf-menu li:hover,
+.sf-menu li.sfHover {
+	/* only transition out, not in */
+	-webkit-transition: none;
+	transition: none;
+}
+
+/*** arrows (for all except IE7) **/
+.sf-arrows .sf-with-ul {
+	padding-right: 2.5em;
+	*padding-right: 1em; /* no CSS arrows for IE7 (lack pseudo-elements) */
+}
+/* styling for both css and generated arrows */
+.sf-arrows > li > .sf-with-ul:focus:after,
+.sf-arrows > li:hover > .sf-with-ul:after,
+.sf-arrows > .sfHover > .sf-with-ul:after {
+	border-top-color: white; /* IE8 fallback colour */
+}
+/* styling for right-facing arrows */
+.sf-arrows ul .sf-with-ul:after {
+	margin-top: -5px;
+	margin-right: -3px;
+	border-color: transparent;
+	border-left-color: #dFeEFF; /* edit this to suit design (no rgba in IE8) */
+	border-left-color: rgba(255,255,255,.5);
+}
+.sf-arrows ul li > .sf-with-ul:focus:after,
+.sf-arrows ul li:hover > .sf-with-ul:after,
+.sf-arrows ul .sfHover > .sf-with-ul:after {
+	border-left-color: white;
+}
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   E-Factor Engineering - Morris and Helen Belkin Art Gallery Humidification System Upgrade Project - Projects - HVAC Design Application
+  </title>
+  <meta content="index,follow" name="robots">
+  <style type="text/css">
+   .fancybox-margin{margin-right:0px;}
+  </style>
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div id="body-container">
+   <div id="header-container">
+    <div class="wrapper" id="header-wrapper">
+     <div id="logo-container">
+      <a alt="E-Factor Engineering" id="logo">
+       E-Factor Engineering
+      </a>
+      <span class="slogan">
+       Specializing in Energy Efficient Solutions for Buildings
+      </span>
+      <div class="slogan">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="menu-container">
+    <div class="wrapper" id="menu-wrapper">
+     <ul class="nav sf-menu sf-js-enabled sf-arrows">
+      <li>
+       <a class="menu-2 first-item sf-with-ul">
+        About Us
+       </a>
+       <ul style="display: none;">
+        <div class="menu-arrow">
+        </div>
+        <li>
+         <a class="">
+          Who we are
+         </a>
+        </li>
+        <li>
+         <a class="last-item">
+          Our Team
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="menu-3 sf-with-ul">
+        Our Focus
+       </a>
+       <ul style="display: none;">
+        <div class="menu-arrow">
+        </div>
+        <li>
+         <a class="">
+          Engineering
+         </a>
+        </li>
+        <li>
+         <a class="">
+          Energy Management
+         </a>
+        </li>
+        <li>
+         <a class="">
+          Efficiency
+         </a>
+        </li>
+        <li>
+         <a class="">
+          Economics
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li class="selected">
+       <a class="selected menu-4 sf-with-ul">
+        Projects
+       </a>
+       <ul style="display: none;">
+        <div class="menu-arrow">
+        </div>
+        <li>
+         <a class="first-item selected">
+          All Projects
+         </a>
+        </li>
+        <li>
+         <a class="">
+          Health Care
+         </a>
+        </li>
+        <li>
+         <a class="">
+          Government
+         </a>
+        </li>
+        <li>
+         <a class="">
+          Institutional
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="menu-5">
+        Clients
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div id="content">
+    <div class="wrapper" id="content-wrapper">
+     <div id="sidebar">
+      <ul>
+       <li class="first-item">
+        <a class="first-item">
+         All Projects
+        </a>
+       </li>
+       <li>
+        <a class="more">
+         more
+        </a>
+        <a class="">
+         Health Care
+        </a>
+       </li>
+       <ul style="display:none;">
+        <li>
+         <a>
+          VCHA - Hybrid Heat Recovery Systems
+         </a>
+        </li>
+        <li>
+         <a>
+          625 Powell St Foundation - Mechanical Design
+         </a>
+        </li>
+        <li>
+         <a>
+          Lower Mainland Facilities Mgmt COp Projects
+         </a>
+        </li>
+        <li>
+         <a>
+          Jack Bell Chilled Water Interconnect Project
+         </a>
+        </li>
+       </ul>
+       <li>
+        <a class="more">
+         more
+        </a>
+        <a class="">
+         Government
+        </a>
+       </li>
+       <ul style="display:none;">
+        <li>
+         <a>
+          City of Richmond - Watermania Projects
+         </a>
+        </li>
+        <li>
+         <a>
+          City of Burnaby - Edmonds Community Centre (2018)
+         </a>
+        </li>
+        <li>
+         <a>
+          VCHA - Hybrid Heat Recovery Systems
+         </a>
+        </li>
+        <li>
+         <a>
+          NRCan PFC Victoria - RCx and Boiler Project
+         </a>
+        </li>
+       </ul>
+       <li>
+        <a class="more open">
+         more
+        </a>
+        <a class="selected">
+         Institutional
+        </a>
+       </li>
+       <ul>
+        <li>
+         <a>
+          VCHA - Hybrid Heat Recovery Systems
+         </a>
+        </li>
+        <li>
+         <a>
+          Schools District 35 - Continuous Optimization and Power Factor Correction
+         </a>
+        </li>
+        <li class="selected">
+         <!--<div class="menu-arrow"></div>-->
+         <a class="selected">
+          UBC Art Gallery Humidification System Upgrade
+         </a>
+        </li>
+       </ul>
+       <ul style="display:none;">
+        <li>
+         <a>
+          City of Richmond - Watermania Projects
+         </a>
+        </li>
+        <li>
+         <a>
+          Aircraft Hangars
+         </a>
+        </li>
+        <li>
+         <a>
+          625 Powell St Foundation - Mechanical Design
+         </a>
+        </li>
+        <li>
+         <a>
+          NRCan PFC Victoria - RCx and Boiler Project
+         </a>
+        </li>
+       </ul>
+       <ul style="display:none;">
+        <li>
+         <a>
+          825 Homer Street
+         </a>
+        </li>
+        <li>
+         <a>
+          Shaughnessy Plc  High Efficiency Boilers
+         </a>
+        </li>
+        <li>
+         <a>
+          Aquarius Mews - Parkade Heat Reclaim Project
+         </a>
+        </li>
+        <li>
+         <a>
+          Shaughnessy Place - HVAC Projects
+         </a>
+        </li>
+       </ul>
+       <ul style="display:none;">
+        <li>
+         <a>
+          Sprinkler Systems Upgrade
+         </a>
+        </li>
+        <li>
+         <a>
+          Backflow Prevention
+         </a>
+        </li>
+        <li>
+         <a>
+          Insurance Claims Reports and Studies
+         </a>
+        </li>
+        <li>
+         <a>
+          Lafarge Canada Inc.
+         </a>
+        </li>
+       </ul>
+      </ul>
+      <h3 class="bubble-title">
+       Do you have a
+       <br>
+       question for us?
+      </h3>
+      <div class="bubble shadow">
+       <div class="bubble-arrow">
+       </div>
+       <span>
+        Email us at
+        <br>
+        <a>
+         [EMAIL REDACTED]
+        </a>
+        <br>
+        Or give us a call at
+        <br>
+        <a>
+         [PHONE REDACTED]
+        </a>
+       </span>
+      </div>
+     </div>
+     <div id="main-column">
+      <style type="text/css">
+       #projects-container { margin-top:40px; }
+#projects-container .project-container { width:220px; float:left; margin:0px 20px 20px 0px; background:#FFF; padding-bottom:5px; min-height:285px; }
+#projects-container .project-container.last { width:220px; float:left; margin:0px 0px 20px 0px; }
+#projects-container .project-container .image-container img { border: 2px solid #fff; }
+#projects-container .project-container .image-container a{ position:relative; display:block; }
+#projects-container .project-container .content-container { text-align:left; margin: 10px auto; font-size:14px; width:200px; }
+#projects-container .project-container .image-container .overlay { background: url("/template/overlay.png") repeat scroll 0 0 rgba(0, 0, 0, 0); display: none; height:196px; left:2px; position: absolute; top:2px; width: 216px; }
+#projects-container .project-container .content-container h4 a{ font-weight:normal; }
+#project-slide-container { position:relative; margin-bottom:20px; }
+#project-slide-container #sliders{ padding:0px; border:5px solid #fff; list-style:none; }
+#project-slide-container .prev { cursor:pointer; position:absolute; top:180px; left:2%; z-index:20;  width:36px; height:36px; background:url("/template/nav.png") transparent no-repeat; text-indent:-9999px;background-position:0 100%; }
+#project-slide-container .next { cursor:pointer; position:absolute; top:180px; right:2%; z-index:20;  width:36px; height:36px; background:url("/template/nav.png") transparent no-repeat; text-indent:-9999px;}
+#project-slide-container .prev:hover { background-position:100% 100%; }
+#project-slide-container .next:hover { background-position:100% 0; }
+#project-slide-container .pager { position:absolute; top:375px; left:45%; z-index:20; width:300px; }
+#project-slide-container .pager a { width:12px; height:12px; background:url("/template/pager.png") no-repeat; text-indent:-9999px; float:left; margin-right:10px; -moz-transition: none; -webkit-transition: none;
+-o-transition: color 0 ease-in; transition: none;}
+#project-slide-container .pager a:hover, #project-slide-container .pager a.activeSlide { background-position:0 100%; }
+#project-slide-container #caption{ text-align:center; font-weight:bold; }
+
+#single-project-container { float:left; width:100%; }
+#single-project-container .content-container{ float:left; width:100%; }
+#single-project-container .content-container .client{ float:left; width:100%; font-size:18px; color:#161d40; font-weight:bold; }
+#single-project-container .content-container .client span { color:#222222; }
+#single-project-container .content-container .venue{ float:left; width:100%; font-size:18px; color:#161d40; font-weight:bold; }
+#single-project-container .content-container .venue span { color:#222222; }
+#single-project-container .content-container .year{ float:left; width:100%; font-size:18px; color:#161d40; font-weight:bold; }
+#single-project-container .content-container .year span { color:#222222; }
+#single-project-container .content-container .type{ float:left; width:100%; font-size:18px; color:#161d40; font-weight:bold; }
+#single-project-container .content-container .type span { color:#222222; }
+#single-project-container .content-container .description{ float:left; width:100%; margin-top:4px; }
+      </style>
+      <div id="single-project-container">
+       <h1>
+        Morris and Helen Belkin Art Gallery Humidification System Upgrade Project
+       </h1>
+       <div id="project-slide-container">
+        <nav class="slide-wrapper">
+         <span class="prev">
+          Previous
+         </span>
+         <span class="next">
+          Next
+         </span>
+        </nav>
+        <ul id="sliders" style="position: relative; width: 690px; height: 394px; overflow: hidden;">
+         <a style="position: absolute; top: 0px; left: 0px; display: block; z-index: 6; opacity: 1;" target="_blank" title>
+          <img alt src="rick.jpg" style="width:690px; height:390px;" title>
+         </a>
+         <a style="position: absolute; top: 0px; left: 0px; display: none; z-index: 4;" target="_blank" title>
+          <img alt src="rick.jpg" style="width:690px; height:390px;" title>
+         </a>
+         <a style="position: absolute; top: 0px; left: 0px; display: none; z-index: 3;" target="_blank" title>
+          <img alt src="rick.jpg" style="width:690px; height:390px;" title>
+         </a>
+         <a style="position: absolute; top: 0px; left: 0px; display: none; z-index: 2;" target="_blank" title>
+          <img alt src="rick.jpg" style="width:690px; height:390px;" title>
+         </a>
+         <a style="position: absolute; top: 0px; left: 0px; display: none; z-index: 1;" target="_blank" title>
+          <img alt src="rick.jpg" style="width:690px; height:390px;" title>
+         </a>
+        </ul>
+        <div class="pager">
+         <a class="activeSlide">
+          1
+         </a>
+         <a>
+          2
+         </a>
+         <a>
+          3
+         </a>
+         <a>
+          4
+         </a>
+         <a>
+          5
+         </a>
+        </div>
+        <p id="caption">
+        </p>
+       </div>
+       <div class="content-container">
+        <div class="client">
+         <span>
+          Client:
+         </span>
+         University of British Columbia
+        </div>
+        <div class="venue">
+         <span>
+          Venue:
+         </span>
+         Morris and Helen Belkin Art Gallery
+        </div>
+        <div class="year">
+         <span>
+          Year:
+         </span>
+         2007
+        </div>
+        <div class="type">
+         <span>
+          Type: Institutional
+         </span>
+        </div>
+        <div class="description">
+         <p>
+          <span style="color: #000000;">
+           This project began with a review of the existing humidification system design problems and determination of causes and the development of some redesign options. An option to replace 5 of the 8 zone humidifiers with new electric pan humidifiers was selected to replace the failing - oversized steam to steam units.
+          </span>
+         </p>
+         <p>
+          <span style="color: #000000;">
+           A dew-point temperature control scheme will be used to ensure tight RH control under variable conditions to well within +/- 1%RH. The new equipment was installed in March 2007.
+          </span>
+         </p>
+         <p>
+          <span style="color: #000000;">
+           Many thanks to UBCH staff and also to Chris Malloy at Square M for the great service and pricing for the Dristeem equipment.
+          </span>
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <!-- END #main-column -->
+    </div>
+    <!-- END #content-wrapper -->
+    <div id="footer">
+     <div class="wrapper" id="footer-container">
+      <div id="footer-cover-left">
+      </div>
+      <div id="footer-cover-right">
+      </div>
+      <div id="footer-left">
+       [ADDRESS REDACTED]
+       <br>
+       [ADDRESS REDACTED]
+       <br>
+       [ADDRESS REDACTED]
+       <br>
+       [PHONE REDACTED]
+       <br>
+       <a>
+        [EMAIL REDACTED]
+       </a>
+      </div>
+      <div id="footer-right">
+       <ul class="footer-menu" style="float:right;">
+        <li>
+         <a>
+          About Us
+         </a>
+        </li>
+        <li>
+         <a>
+          Our Focus
+         </a>
+         <span>
+          |
+         </span>
+        </li>
+        <li class="selected">
+         <a>
+          Projects
+         </a>
+         <span>
+          |
+         </span>
+        </li>
+        <li>
+         <a>
+          Clients
+         </a>
+         <span>
+          |
+         </span>
+        </li>
+       </ul>
+       <div class="footer-copy">
+        &copy; 2023 E-Factor Engineering, Incorporated
+        <br>
+        Website Design by
+        <a target="_blank">
+         Eggbeater Creative
+        </a>
+        Inc.  |   Powered By
+        <a target="_blank">
+         Vortex
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- END #content-container -->
+  </div>
+  <!-- END #body-container -->
+ </body>
+</html>

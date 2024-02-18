@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+
+/* Tripod.com Colors & Components - If you want to use a color that's not in this list... don't. Seriously. 
+                                    Making up new colors is why we can't have nice things.
+
+  -- Colors --
+
+    Logo Blue           4ca7d9
+    Logo Green          9ac546
+    Footer Blue 1       #3c5561             lighter
+    Footer Blue 2       rgb(45, 70, 82)     darker, used for the top bar as well
+    Page Background     f2efe9              cream color
+    Emph Blocks         f5f4f0              lighter cream color, for emph blocks and header image areas, etc.
+    Type                463434              very dark, almost black, red-brown
+    Knockout Type       f5f4f0 - fff        cream or white
+    Blue Border         rgb(41, 134, 179)
+    Green Border        ...
+
+
+  -- Styles --
+
+    Borders             1px solid #d5d3ce                   very light gray-brown 1px borders.
+    Lighter Border      1px solid #E7E6E3                   For between list items, etc.
+    Shadows             2px 2px 0 rgba(0, 0, 0, 0.11)       basic 2px 45 degree shadow. No blur.
+                        inset 1px 1px 0 [color];            1px inset 'shadow' in light color, for buttons.
+
+  -- Fonts --
+
+    Base / Overall      Source Sans Pro     For Headers and Body copy
+    Fine Print          Verdana             For use on things like legal BS and tiny captions where the text will be less than 
+                                            10-11px as Source Sans does not perform well at tiny sizes
+
+*/
+
+.authorsNote{margin:0 auto; padding:3.5%;}
+
+/* HTML TAG RESETS */
+html, body, form, fieldset, input, textarea, button, 
+h1, h2, h3, h4, img, a img, p, label, table, tbody, 
+thead, tfoot, tr, td{border:0;  font-family:'Source Sans Pro', 'Gill Sans', Calibri, 'Franklin Gothic', sans-serif; font-size:100%; line-height:normal; margin:0; outline:0; padding:0} 
+:focus, input[type="submit"]::-moz-focus-inner{outline:none}
+header, article, aside, footer, nav, section{display:block}
+nav ul, .flexslider ul{margin:0; padding:0; list-style:none}
+
+/* *{-moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box} turned this off because IE. FML. */
+
+body{background:#f2efe9; color:#463434}
+html, body{height:100%;}
+
+/* Links */
+a, .link{color:#388DAF}
+a:hover, .link:hover{color:#5E838E; text-decoration:none}
+
+.baseFooter a{color:rgb(250, 248, 245);}
+.baseFooter a:hover{color:#fff; text-decoration:none}
+
+/* Header Styles */
+    h1, h2, h3, h4, .ultra, .mega, .alpha, .beta, .gamma, .delta{font-family:'Source Sans Pro', 'Gill Sans', Calibri, 'Franklin Gothic', sans-serif; letter-spacing:-.04em; line-height:1em; margin-bottom:3.5%}
+	/* Header Helper Classes. The H tag itself should be utilized to create a proper document outline, while the classes below are what dictate it's appearance. */
+	.ultra{font-size:4.8em; font-weight:700; line-height:.8em; text-transform:uppercase}
+	.mega{font-size:3.6em; font-weight:300; text-transform:uppercase}
+	h1, .alpha{font-size:2.4em; font-weight:300; text-transform:uppercase}
+	h2, .beta{font-size:2.1em; font-weight:200; letter-spacing:-.03em; text-transform:capitalize}
+	h3, .gamma{font-size:1.45em; font-weight:700; letter-spacing:-.01em; line-height:1.2em; text-transform:capitalize}
+	h4, .delta{font-size:1.15em; font-weight:700; letter-spacing:-.01em; line-height:1.2em; text-transform:none}
+
+/* text Styles */
+    p, li, .base{font-size:1em; font-weight:normal; letter-spacing:0; line-height:1.3em; margin-bottom:15px; text-transform:none}
+
+    .tiny, .mini{letter-spacing:0; line-height:1.1em; text-transform:none}
+    .tiny{font-size:.85em}
+    .mini{font-size:.7em}
+
+
+hr{border:0; border-top:1px solid #d5d3ce; display:block; height:1px; margin:1em 0; padding:0}
+
+::-moz-selection{background:#463434; color:#eee; text-shadow:none}
+::selection{background:#463434; color:#eee; text-shadow:none}
+
+/* Sitewide Classes */
+    .clearfix:after, .navigation:after, .row:after{clear:both; content:"."; display:block; height:0; visibility:hidden}
+    .clearfix{*zoom:1 /* triggers hasLayout */}
+    .clr{clear:both; height:0; overflow:hidden}
+    .float_left{float:left} /* I hate this class */
+    .float_right{float:right} /* and this one */
+    .hide, .ie6clr, .mobileShow{display:none} /* i don't even know what scott was doing */
+
+/* Buttons */
+
+/* Default Button Styling */
+    .btn, .btnSm, .button, .sbutton{ 
+        -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;
+        cursor: pointer;
+        color:#463434;
+        display: inline-block;
+        border:1px solid #d5d3ce;
+        font-size: 1em;
+        font-weight:400;
+        line-height: normal;
+        padding:5px 8px;
+        text-decoration: none;
+        -webkit-appearance: none;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.11), inset 1px 1px 0 rgba(255, 255, 255, 0.38);}
+    a.btn:hover, a.btn:active, a.btn, a.btn:visited, a.btn:focus, a.button:hover, a.button:active, a.button, a.button:visited, a.button:focus{color: #463434;}
+        
+    .blue, .secondary{ /* Basic Buttons */
+        background: #51aeda;
+        border: 1px solid rgb(41, 134, 179); }
+    .btn.blue:hover, .btn.secondary:hover{background: rgb(65, 157, 201); }
+    .btn.blue:active, .btn.secondary:active{background: rgb(65, 157, 201); box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.24); }
+        
+    .green{ /* Call to Action / Signup Button */
+        background: #9ac546;
+        border: 1px solid #8b976c;}
+    .btn.green:hover{background: rgb(138, 180, 57); }
+    .btn.green:active{background: rgb(138, 180, 57); box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.24); }
+
+    .red{
+        background: #AC4825; 
+        border: 1px solid #853113;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.11), inset 1px 1px #D6653D;
+        color:#f5f4f0!important;}
+    .red:hover{background: #AC4825; border: 1px solid #853113;
+         box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.11), inset 1px 1px #D6653D;}
+
+    .cancel, .grey{background:#EFECE5; border:1px solid #C7BFA1; color:#3F3B31; text-decoration:none}
+    .cancel:hover, .cancel:focus, .grey:hover, .grey:focus, .cancel.selected, .grey.selected{background:#F1EDDE; color:#3F3B31; text-decoration:none}
+
+
+    .bigButton, .btnLg{ font-size:1.5em; }
+    .btnSm{font-size:.9em;}
+
+/* border-radius:2px Page Button */
+    .freeSignupBtn.bigButton{color:#f5f4f0;}
+    .tHeadBtn{text-decoration:none;}
+
+/* Style Helper Classes */
+    .rounded{-moz-background-clip:padding; -webkit-background-clip:padding-box; background-clip:padding-box; border-radius:2px} /* 2px round corners */
+    .boxShadow{-moz-box-shadow:1px 1px 2px #444; -webkit-box-shadow:1px 1px 2px #444; box-shadow:1px 1px 2px #444} /* standard box shadow */
+    .transition, a, input.button{-moz-transition:all 0.35s; -webkit-transition:all 0.35s; -o-transition:all 0.35s; transition:all 0.35s} /* transition ALL THE THINGS */
+
+/* Apparently this is the 'nav' for the two links under the Tripod Website of the Month... ? */ 
+.nav{overflow:hidden; margin:0 ;padding:10px 0}
+	.nav li{border-right:1px solid; float:left; list-style:none; padding:0 10px}
+	.nav a{text-decoration:none;}
+	.nav li:last-child{border-right:0}
+
+
+.relative{position:relative}
+.overflow{overflow:hidden}
+.txt_center{text-align:center}
+.txt_left{text-align:left}
+.txt_right{text-align:right}
+.input{background:#f9f9ef; border:1px solid #C8C7B4; font-size:14px; padding:5px 10px}
+.input:focus{background:#fff; border-color:#10A0AE}
+.bold{font-weight:bold}
+.multi4{-moz-column-count:4; -webkit-column-count:4; column-count:4; -moz-column-gap:15px; -webkit-column-gap:15px; column-gap:15px}
+	.multi4 li{margin-bottom:20px}
+.multi{-moz-column-count:2; -webkit-column-count:2; column-count:2; -moz-column-gap:20px; -webkit-column-gap:20px; column-gap:20px}
+	.multi li{margin-bottom:10px}
+	.multi li .input{width:80%}
+	
+/* Responsive Grid for Tripod.com 
+
+    3.5% Gutters Horizontal Gutters.
+    3.5% or 7% or 14% Vertical Gutters.
+    Usage: .cols-X class goes on the parent DIV and .colX and .col go on each column. The parent div should also have the ROW class attached to it.
+    
+    Columns Layouts:
+    
+                column  (gutter)  column    etc.. in percentages
+            
+    cols-2a     42.5    (3.5)   54                                                  Two-Column Layout where the Right Column is slightly wider.
+    cols-2b     54      (3.5)   42.5                                                Two-Column Layout where the Left Column is slightly wider.
+    cols-2c     75      (3.5)   21.5                                                Two-Column with narrow right sidebar for section navigation. - Meant for the Interior Page Nav
+    cols-2d     31.5    (3.5)   65                                                  Two-Column with narrow left sidebar for highlighting content. - meant for the Features Page
+    cols-2e     65      (3.5)   31.5
+    cols-3      31      (3.5)   31      (3.5)   31                                  Three-Column equal width Layout.
+    cols-3b     31      (3.5)   31      (3.5)   31                                  Three-Column unequal width Layout. Specific to the Home Page Footer
+    cols-4      22.375  (3.5)   22.375  (3.5)   22.375  (3.5)   22.375q             Four-Column equal width layout. 
+
+  -- Usage --
+
+    <div class="row cols-2">
+        <div class="col col1"></div>
+        <div class="col col1"></div>
+    </div>
+    
+*/
+
+.row{overflow:hidden; clear:both; margin:3.5% 0 0 0;}
+.col{}
+
+.cols-2 .col1{width:42.5%; float:left; margin-right:3.5%;}
+.cols-2 .col2{width:54%; float:right;}
+
+.cols-2b .col1{width:54%; float:left; margin-right:3.5%;}
+.cols-2b .col2{width:42.5%; float:right;}
+
+.cols-2c .col1{width:75%; float:left; margin-right:3.5%;}
+.cols-2c .col2{width:21.5%; float:right;}
+
+.cols-2d .col1{width:31.5%; float:left; margin-right:3.5%;}
+.cols-2d .col2{width:65%; float:right;}
+
+.cols-2e .col1{width:65%; float:left; margin-right:3.5%;}
+.cols-2e .col2{width:31.5%;  float:right;}
+
+.cols-3 .col1{width:31%; float:left; margin-right:3.5%;}
+.cols-3 .col2{width:31%; float:left; margin-right:3.5%;}
+.cols-3 .col3{width:31%; float:left;}
+
+.cols-3b .col1{width:10%; float:left; margin-right:3.5%;}
+.cols-3b .col2{width:49%; float:left; margin-right:3.5%;}
+.cols-3b .col3{width:32%; float:left;}
+
+.cols-4 .col1{width:22.375%; float:left; margin-right:3.5%;}
+.cols-4 .col2{width:22.375%; float:left; margin-right:3.5%;}
+.cols-4 .col3{width:22.375%; float:left; margin-right:3.5%;}
+.cols-4 .col4{width:22.375%; float:left;}
+	
+ /* Value Props
+    : Three Block Vertical List of features used in various locations on the site. 
+      Should be placed inside of a 54% or 42.5% column. Will not fit well in 
+      anything more narrow */
+        
+        .valueProps{}
+        .valueProps h1{font-size:1.8em; margin-bottom:7%;}
+        .value{margin-bottom:7%;}
+        .value h2{font-size:1.1em; margin-bottom:1%;}
+        .value h2, .value p{padding-left:60px;}
+        .value .lpSprite{float:left;}
+	
+
+/* Sticky Footer */
+
+.pageWrap{  min-height:100%; margin-bottom:-60px; } /* equal to footer height */
+.pageWrap:after{content:""; display:block;}
+.baseFooter, .page-wrap:after{height:60px;}
+
+/* Misc Classes */	
+	
+.decNone{text-decoration:none;}
+.noborder{border:0}
+.padding{padding:0 15px 30px}
+.pad{padding:15px}
+.block{display:block}
+.list{list-style:none; margin:0; padding:0}
+.list li{margin-bottom:5px}
+.list li:last-child{margin:0}
+	.bullet.list{list-style:disc; padding-left:15px}
+	ol.list{list-style:decimal; margin-left:6px; padding-left:15px}
+	.bullet.list li:last-child, ol.list li:last-child{margin-bottom:10px}
+.note{color:#5E838E; font-size:11px}
+.red{color:#f00}
+.imageBdr{border:2px solid #C8C7B4; margin:0 0 0 15px}
+.imageBdr.float_left{margin:0 15px 15px 0}
+.emphBlock{background:rgb(250, 248, 245); border:1px solid #d5d3ce;} /* no padding */
+.emphBlock2{background:rgb(250, 248, 245); border:1px solid #d5d3ce; overflow:hidden; padding:1em;} /* padding */
+.maxWidth{max-width:100%}
+
+
+/* Site Header */
+	.baseHeader{ 
+	   	overflow:hidden; position:relative; margin-top:0;}
+	.hp .baseHeader{padding:0}
+    .logoContainer{padding:40px 0 1em;}
+	.intH, #interior .logoContainer{
+	    background:#f5f4f0; 
+	    overflow:hidden; 
+	    padding:40px 0 1em;
+	    border-bottom:1px solid #d5d3ce;
+	    border-top: 1px solid #d5d3ce;
+	    margin-bottom:0;}
+    #interior .baseHeader .logo {
+        float: left;
+        font-size: 6px;
+        margin: 0;
+        max-height: 40px;
+        }
+    #interior .baseHeader nav {
+        float: right;
+        overflow: hidden;
+        width: 58%;
+        height: 40px;
+        padding:0;
+        }
+	.logoContainer{overflow:hidden;}
+	.hp .baseHeader .intH{background-position:left bottom; padding:0; margin:14px 0 0 0; clear:both;}
+	.baseHeader .logo{float:left; font-size:6px; margin:0; max-width:220px; width:40%}
+	.hp .baseHeader .logo{max-width:300px; padding-top:10px}
+	.baseHeader .logo span{left:-99999px; position:absolute; top:-99999px; visibility:hidden}
+	.baseHeader .logo a{display:block; text-decoration:none}
+	.baseHeader .logo a img{display:block; max-width:100%}
+	.baseHeader nav{float:right; overflow:hidden; padding-top:10px; text-shadow:0 -1px 1px rgba(255,255,255,.4); width:58%}
+		.hp .baseHeader nav{position:relative; top:10px}
+    .hpImage{z-index:1;}
+	.baseHeader nav ul{float:right}
+	.baseHeader nav li{float:left; margin:0}
+	.baseHeader nav a{
+	    color: #312f21;
+        display: block;
+        font-size: 16px;
+        padding: 0 0 .3em;
+        margin: .5em 1em;
+        border-bottom: 1px solid #d5d3ce;
+        text-align: center;
+        text-decoration: none;}
+		.baseHeader nav a:hover{
+		    text-decoration: none;
+            color: #388DAF;
+            border-bottom: 2px solid #388DAF;}
+		.featuresPage .featuresLink, .pricingPage .pricingLink, .cpanel .cpLink{text-decoration:none}
+	.baseHeader nav li:first-child a{border-left:0; padding-left:0}
+	.baseHeader nav li:last-child a{border-right:0; padding-right:0}
+	.baseHeader .media, .baseHeader .media img{overflow:visible}
+.baseHeader .mImg{width:44.333%}
+.baseHeader .mImg img{max-width:none; position:relative}
+.baseHeader .mTxt{padding-top:4.5%; width:47.3%}
+
+/* Login DropBox */
+
+	.loginInside{
+	    background: rgb(245, 244, 240);
+        border: 1px solid #d5d3ce;
+        color: #463434;
+        padding: 1em;
+        position: absolute;
+        right: .5em;
+        top: 0;
+        z-index: 9999;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.11), inset 1px 1px 0 rgba(255, 255, 255, 0.38);
+	    }
+	.loginBOX fieldset{margin-bottom:5px}
+		#lbSubmit{font-size:16px; padding:5px 10px}
+	.logclose-btn{
+	    background: #AC4825;
+        color: #463434;
+        border: 0;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 0;
+        height: 25px;
+        display: block;
+        position: absolute;
+        top: -1px;
+        left: -25px;
+        line-height: 25px;
+        width: 25px;
+        color: #f5f4f0;
+        font-size: 1em;
+        font-weight: 400;
+        text-align:center;
+        text-decoration: none;
+	    }
+		.logclose-btn:hover{
+            color: #f5f4f0;
+            width: 27px;
+            height: 27px; 
+            }
+    .lgnGroup{min-width:29em; overflow: hidden; margin-bottom: 1em;}
+        .lgnGroup label{
+            width: 25%;
+            display: block;
+            float: left;
+            line-height: 1em;
+            padding: .5em 0;
+            border: 1px solid transparent;
+            font-size: 1em;}
+        .lgnGroup input{
+            width: 68%;
+            float: right;
+            padding: .5em 2%;
+            line-height: 1em;}
+	.loginHR{margin:10px 0 8px}
+	.loginHelp{float:left; list-style:none; margin:0; overflow:hidden; padding:0}
+		.loginHelp li{border-right:1px solid #C8C7B4; float:left; margin:0 10px 0 0; padding-right:10px}
+		.loginHelp li:last-child{border:0; margin:0; padding:0}
+		.loginHelp a{line-height: 1.7em; padding: .3em 0; display: block;}
+	.loginButton{
+        position: absolute;
+        bottom: 1em;
+        right: 1em;
+        font-size: 1.1em;
+        line-height: 1.1em;
+        padding: .3em .7em;}
+
+/* Top Bar */
+#topBar{background-color: #ddeff9; font-size:14px; height:45px; width:100%; z-index:999;margin-bottom: -10px;}
+.topBarInfo{float:right;height: 70%;}
+.hp #topBar {background-color: #fff;}
+#topBar .member{
+    display:block; line-height:1; padding:.6em 1em; margin-right:.5em;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.11);
+    background: #9ac546;
+    color: rgb(250, 248, 245); 
+    }
+#topBar .member:hover{padding:1em 1.4em;}
+#topBar .or{color:rgba(64, 78, 57, 0.59);}
+#topBar .member a{color:#463434; text-decoration:none}
+#topBar .member a:hover{color:#463434; text-decoration:none}
+
+/* free sign up modal */
+#freeBox{background:url(../images/black-80.png); background:rgba(0,0,0,.75); display:none; height:100%; left:0; position:fixed; top:0; width:100%; z-index:892}
+	.freeBoxInner{margin:10% auto 0; max-width:600px; width:100%}
+		#freeBoxFrame{background:#E6E4D8; border:1px solid #000; border-radius:5px; height:470px; overflow:auto; width:100%}
+        #freeBoxFrame.iframeView2 {background:transparent; border:0;}
+.free-close{float:right; margin-bottom:15px}
+
+#page{overflow:hidden; position:relative}
+.container{margin:0 auto; max-width:1100px; padding:0 15px; position:relative}
+#divider{}
+.hp #divider{margin-bottom:25px}
+
+#content{overflow:hidden; padding: 0 1em 7% 1em;}
+
+/* Footer Area Styling */
+    .outro{border-top:1px solid #BCB49A; -moz-box-shadow:inset 0 0 22px rgba(0,0,0,.15); -webkit-box-shadow:inset 0 0 22px rgba(0,0,0,.15); box-shadow:inset 0 0 22px rgba(0,0,0,.15); padding:15px}
+        .pricingPage .outro{display:none} /* Outro. No Screw the outro. It's useless. There are way too many Calls to Action on these pages */
+        
+    .baseFooter{background:#3c5561; color:rgb(250, 248, 245); padding:0; font-family:Verdana; font-size:11px;}
+    .hp .baseFooter{height:auto;}
+    .baseFooter a{text-decoration:none;}
+        #.hp .footerList li{display:list-item;}
+        .footerList{margin:0 auto; padding:5px 0 0; font-size: 200%;}
+        .footerList.vertical{text-align:right;}
+        .footerList.vertical li{display:list-item; list-style:none;}
+        .footerList li{display:inline-block; *display:inline; margin:0 15px 5px 0; *zoom:1}
+        .baseFooter .row{margin-bottom:3.5%;}
+        .cols-3 .footerList li{display:block; padding: 0 0 1em 0;}
+        .cols-3 .footerList a, a.featSiteLink{border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 0 0 2px 0; text-decoration:none;}
+        .baseFooter .col1, .baseFooter .col2{border-right:1px solid rgba(255, 255, 255, 0.12);}
+        .baseFooter .col{margin-bottom: -1000px; padding-bottom: 1000px; }
+        .blog{font-size:1.2em; padding:0 7% 0 0;}
+        .blog .gamma{display:inline; font-weight: 600;}
+        .blog h4.gamma{font-weight:300; margin-left:.6em;}
+        .blog .blogContent{margin:1em 0;}
+    
+    .bookEnd{background:rgb(45, 70, 82); font-size:10px; overflow:hidden; position:relative; width:100%;}
+        .bookEnd li{float:left; line-height:18px; list-style:none; margin:0 0 0 15px; padding-top:2px}
+        .bookEnd li:first-child{margin:0}
+    
+    .bookEnd .social-list{float:right; padding:3px 0}	
+        .social-list a{background:url(../images/socialSprite.png); display:inline-block; *display:inline; border-bottom:0; font-size:1px; height:21px; line-height:60px; opacity:.8; overflow:hidden; width:22px; *zoom:1}
+        .social-list a:hover{opacity:1}
+        .social-list .fbTP{background-position:-29px 0}
+        .social-list .twTP{background-position:-57px 0}
+        
+    .callUs{float:right; padding-top:2px}
+    a.featSiteLink{font-size:.75em; font-weight:200; float:right; display:inline-block; margin-left:1em;}
+
+/* Media element styling */		
+.media, .media img{display:block; max-width:100%; overflow:hidden}
+	 .mImg, .mVid{float:left; width:32.333%}
+	 	.mVid{border:2px solid #BCB49A}
+	 	.mVid iframe{border:none; display:block; height:250px; width:100%}
+	 .mTxt{float:right; width:66.2%; position: absolute;
+top: 0;
+z-index: 100;}
+	 
+.rev .mImg, .rev .mVid{float:right}
+.rev .mTxt{float:left}
+
+.mVideo .mVid{width:45%}
+.mVideo .mTxt{width:51%}
+
+/* Icons */
+
+.icon{min-height:48px; padding:10px 15px 10px 56px; position:relative; width:175px}
+.icon span{background:url(../images/tpIcons.png) no-repeat; height:50px; left:0; position:absolute; top:10px; width:50px}
+	.icon.build span{background-position:-181px 4px}
+	.icon.grow span{background-position:-241px 2px}
+	.icon.addon span{background-position:-120px 4px}
+	.icon.look span{background-position:0 4px}
+	.icon.url span{background-position:-61px 4px}
+	.icon.knowledge span{background-position:-296px 2px}
+	.icon.phone span{background-position:-302px -55px}
+	.icon.community span{background-position:-247px -55px}
+	.icon.webDev span{background-position:-177px 3px}
+	.icon.triHelp span{background-position:-61px 3px}
+	.icon.zee span{background-position:-359px 2px}
+.dBlock{color:#463434; display:block; text-decoration:none}
+.dBlock:hover{background:#e7e5db; color:#463434}
+.icon.hpBlock{display:block; margin:10px auto; padding:0; width:48px}
+span.icon{background:url(../images/tpIcons.png) no-repeat}
+	.icon.addons{background-position:-179px 0}
+	.icon.smBus{background-position:-241px 0}
+	.icon.mobileReady{background-position:-302px -57px}
+
+/* flex slider 
+   - used on home page and control panel sidebar
+*/
+.flexslider{min-height:50px}
+	.flexslider .slides > li{display:none; -webkit-backface-visibility:hidden}
+	.flexslider .slides img{display:block; max-width:100%}
+
+.bz-slide{
+  background: #fff;
+  }
+
+.bz-slide img{
+  margin: 10px auto;
+  }
+.bz-slide p{
+  padding:10px;
+  font-size: .9em;
+  }
+.bz-slide a{
+  margin:0 10px 10px 0;
+  float: right;
+  }
+
+/* Clearfix for the .slides element */
+	.slides:after{content:"."; clear:both; display:block; height:0; line-height:0; visibility:hidden}
+	html[xmlns] .slides{display:block}
+	* html .slides{height:1%}
+	
+	.viewMoreWS{padding-top:10px}
+	
+/* No JavaScript Fallback */
+	.no-js .slides > li:first-child{display:block}
+	.flexslider, .flex-container{position:relative; zoom:1}
+		.flexslider .slides{zoom:1}
+		.flexslider .slides > li{margin:0; position:relative}
+	
+/* Slider Controls */
+	.flex-direction-nav{display:none}
+    /* home page specific styling */
+    .hp .flex-control-nav{bottom:-39px; position:absolute; right:1px}
+    .flex-control-nav li{display:inline-block; *display:inline; margin:0 0 0 5px; zoom:1}
+    .flex-control-nav li:first-child{margin:0}
+        .flex-control-nav li a{
+            background:rgba(81, 174, 218, 0.29); 
+            border:1px solid rgba(41, 134, 179, 0.33); 
+            -moz-border-radius:12px; -webkit-border-radius:12px; border-radius:12px; 
+            cursor:pointer; 
+            display:block; 
+            height:13px; 
+            text-indent:-999em; 
+            width:13px;
+            box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.11), inset 1px 1px 0 rgba(255, 255, 255, 0.38);}
+        .flex-control-nav li a:hover{background:#9ac546; border: 1px solid #8b976c;}
+        .flex-control-nav li a.active{
+            background: #51AEDA;
+            cursor: pointer;
+            border: 1px solid rgb(41, 134, 179);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.11), inset 1px 1px 0 rgba(255, 255, 255, 0.38);}
+				
+	ul.screenshots{overflow:hidden;list-style:none; padding: 3.5% 3.5% 0 3.5%;}
+	.screenshots li{}
+	.screenshots a{border: 1px solid rgba(0, 0, 0, 0.25); display:block; overflow:hidden}
+	.screenshots img{display:block; max-width:100%}
+	.screenshots .col{margin-bottom:3.5%;}
+	.styleSlider h2{font-size: .9em; text-align: left; position: absolute; bottom: -22px; left: 1px; margin-bottom:0;}
+
+/* Marketing Pages */
+	.mPageTitle{border-bottom: 1px solid #E7E6E3; margin: 3.5% 0; padding: 0 0 1.75%;}
+
+/* Features Tabbed Content */
+	.sbInfo{margin-bottom:20px}
+		.sbContent{display:none}
+		.sbContent.sbShow{display:block}
+	.sbCats{overflow:hidden}
+		.sbCats li{float:left; margin:0 5px 0 0}
+		.sbCats a{border-bottom:none; border-radius:3px 3px 0 0; display:block; padding:5px 10px; text-decoration:none}
+			.sbCats .selected, .sbCats a:hover{border-bottom:none}
+	.features .featureBlock nav a.add-btn{margin:0; padding:10px}
+	
+/* Video Player :used on 'Featured Sites' 'Features' and Home Page */
+.videoHolder, .installWindow{background:#fff; background:rgba(255, 255, 255, .8); height:100%; left:0; position:fixed; top:0; width:100%; z-index:9999}
+	.videoFrame{background:#F9F8EF; border:10px solid #C8C7B4; padding:15px; position:relative; margin:0 auto; top:15%; width:84%}
+	.videoFrame iframe{border:0; display:block; height:451px; margin:0 auto; max-width:810px; width:100%}
+	.videoClose{float:right; margin-bottom:5px; text-decoration:none}
+	.videoClose:hover{text-decoration:underline}
+
+/* Features Sidebar */
+
+.featList{margin-bottom:1em;}
+
+.featList li{padding:2% 0; border-top:1px solid #E7E6E3; position:relative; margin-bottom:0;}
+.featList li:first-child{border-top:0;}
+.featList li a{display:inline; padding:0;}
+
+.featMore{display:none; font-size: .95em; margin: 3.5% 0 3.5% 3.5%; padding: 0 0 0 3.5%; border-left: 1px solid rgba(0, 0, 0, 0.1);}
+
+.featMoreIcon{display:inline-block; cursor:pointer; font-weight:bold; font-size:1.5em; float:right; padding: 0% 0 2% 0!important;}
+.featMoreIcon.fhide{display:none;}
+
+.featZeebImg{max-width:100%; float:right; margin: 0 0 1em 0;}
+
+/* Help & Features 3 Column Blocks */
+	.helpDivide{border-bottom:1px solid #D4D4C5; margin-bottom:20px; padding-bottom:20px; overflow:hidden}
+	.helpDivide:last-child{border:0}
+	.helpDivide article, .col3feat{float:left; padding:0 1.5%; width:30%}
+	
+/* main help/article pages */
+	.faq{display:none; margin-bottom:15px}
+	.faq-btn, .add-btn{display:block; padding:5px; text-decoration:none}
+	#faq0{display:block}
+	
+/* Pricing Page Table */
+	.tablePrice{border-spacing:0; margin-bottom:10px; width:100%}
+		.tablePrice td{
+            background: #f5f4f0;
+            border-top: 0;
+            width: 25%;
+            border-bottom: 1px solid #E7E6E3;
+            border-right: 1px solid #d5d3ce;}
+		.tablePrice th{vertical-align:bottom; border-bottom:1px solid #d5d3ce!important;}
+	.tablePrice .blank{background:none; border:none}
+		.tablePrice tfoot .blank{border-top:0}
+	.tablePrice .feature{border-left:1px solid #d5d3ce; text-align:left}
+	.tablePrice .tAction{background:0; border:0; border-top:0; padding:0;}
+    .tablePricetbody{border-bottom:1px solid #d5d3ce;}
+
+
+	.pHeader, .tablePrice th.mPlus, .tablePrice th.mFree, .tablePrice th.mPro{background:none; border:none; font-size:10px; padding:5px 0 0}
+	.tablePrice .plans{color:#463434; padding:0; border:0;}
+	.tablePrice .plans p{font-size:12px; margin:0}
+    .tablePrice .planName{
+        width: 100%;
+        border-bottom: 0;
+        color: #fff;
+        font-size: 1.2em;
+        overflow: hidden;
+        background: rgba(48, 46, 46, 0.09);}
+        .planName .tHead, .planName .planCostDesc{padding:5px;}
+        .planName .tHead{float:left;}
+        .planName .planCostDesc{float:right; text-align:right;}
+    .tablePrice sup{font-size:.4em;}
+    .tablePrice .planPrice{
+        font-size:10em; 
+        font-weight: normal;
+        vertical-align: super;
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.57);}
+	.tablePrice .plans .tHead{font-family:Source Sans Pro, Arial, Helvetica, sans-serif;}
+    .tablePrice .plans .description{
+        padding: 12px;
+        text-align: left;
+        font-size: 1.4em;
+        background: rgba(255, 255, 255, 0.32);}
+
+    /* Free */
+    .tablePrice .plans.mFree{background:#66A7BB; height:auto; }
+    .tablePrice .mFree{background:#f5f4f0 }
+    .mFree .planPrice{font-size:8em;}
+
+    /* Personal */
+    .tablePrice .plans.mPlus{background:#7eba95; height:auto; }
+    .tablePrice .mPlus{background:#f5f4f0 }
+    .mPlus .planPrice{font-size:9em;}
+
+    /* Professional */
+	.tablePrice .plans.mPro{background:#b1d166; height:auto; }
+    .tablePrice .mPro{background:#f5f4f0 }
+    .mPro .planPrice{font-size:10em;}
+
+    .planPeriod{font-size: 0.15em;}
+	
+	
+    .tablePrice .priceArea.mPro, .tablePrice .priceArea.mPlus, .tablePrice .priceArea.mFree{background:none}
+    .space{color:#66A7BB; text-shadow:0 0 0 transparent;}
+	
+	.learnMore{display:block; overflow:hidden; padding:25px 15px}
+		.learnMore strong{color:#393939; text-shadow:0 1px 1px rgba(255,255,255,.8)}
+	.learnMore.selected{background:#f5f4f0}
+	
+	.tablePrice .infoRow{background:#f5f4f0}
+	.tablePrice .infoRow td{background:#839097; color:#f5f4f0; border:0; border-left:1px solid #c8c7b4; border-right:1px solid #c8c7b4}
+		.infoRow p, .fText{font-size:.9em; margin:0}
+        .infoRow .toggle{border-bottom: 1px solid #E7E6E3;}
+	
+	#step2{display:none; margin:0 auto; padding:15px; overflow:hidden; max-width:860px}
+	#windowbox-content{border:0; display:block; clear:both; height:660px; margin:0 auto; max-width:770px; width:100%}
+	
+	.planCall a{display:inline-block; text-decoration:none; vertical-align:bottom}
+	
+    .tAction{position:relative;}
+    .tblBtn{
+        width: 75%;
+        border-radius: 0 0 2px 2px;
+        border-top: 0;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.11);}
+    th.emptyTHmobile{vertical-align: top; text-align: left}
+    .mobileShow .sbutton{float: left; margin: 0 .5em 0 0;}
+
+
+	.testimonial{font-size:1em; width:100%; margin:0 auto; float:left;}
+		.testimonial .txt_right{margin-bottom:25px}
+        .testArrow{margin: 0 auto;}
+        .testimonial .txt_right{
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 1em;
+            font-size: .9em;
+            font-weight: 300;
+            padding-top: .2em;}
+
+    .cert{width:100%; float:right; text-align:right; margin-bottom:1em; overflow:hidden;}
+
+/* Other Services Tables (Currently only used for Sitelock) */
+
+	.table4{border-spacing:0; width:100%}
+	.table4 td{border-bottom:1px solid #c8c7b4; border-right:1px solid #c8c7b4; height:34px; width:25%}
+		.table4 .blank{border:none; border-right:1px solid #c8c7b4}
+		.table4 .plans, .plans{background:#f7f7f3; border-top:1px solid #c8c7b4; height:95px}
+		.table4 .plans p{margin:0}
+		.prices{background:#655654; color:#e9e8e3; height:40px}
+		.prices h3{margin:0}
+		.table4 .tableAction{background:#f7f7f3; height:50px}
+		.table4 .txt_left{border:none; border-right:1px solid #c8c7b4; font-weight:bold; text-indent:20px}
+	.checkMark, .unAvailable, .oneTime, .mFeatureIcon{
+        background: #A6C152 url(../images/tableIcons.png) no-repeat -20px 0px;
+        display: inline-block;
+        height: 21px;
+        border-radius: 20px;
+        line-height: 20px;
+        margin: 0 auto;
+        padding-left: 30px;
+        text-align: left;
+        width: 114px;}
+		.unAvailable{background: #AD4824 url(../images/tableIcons.png) no-repeat -20px -20px;}
+		.oneTime{background-position:0 -88px}
+        .mFeatureIcon{background-position:0 -88px}
+		.checkMark.noText, .unAvailable.noText, .oneTime.noText, .mFeatureIcon.noText{
+            margin-top: 2px;
+            padding: 0;
+            width: 20px;
+            height: 20px;}
+        .mFeatureIcon.noText{background:#388DAF url(../images/tableIcons.png) no-repeat  -20px -40px;}
+        .selected .mFeatureIcon.noText{background-position: -20px -60px;}
+
+
+/* Interior pages Sidebar & content area styling */
+
+    .intNav{font-size:.9em;}
+    .int{ padding: 1em; background:#f5f4f0; border:1px solid #d5d3ce;}
+    .toc li, .intNasv li{list-style:none; margin-bottom:0; display:block; padding:5px; text-decoration:none}
+    .toc li a, .intNav li a{padding:5px; text-decoration:none;}
+    
+    /* In the News & Press Kits Links */
+    .newsListing{margin:0; padding:0;}
+    .newsListing li{border-bottom:1px solid #d5d3ce; overflow:hidden; padding:0 0 3.5% 0; margin:0 0 3.5% 0;}
+    .newsListing .readMore{float:right;}
+
+    /* OLD CODE /* 9.20.13 -- I thought this wasn't needed but apparently there's some obscure stuff that may or may not be in use that dependes on the mainContnets class to not be broken. fml */
+
+		.mainContents{width:65%}
+		.cpSidebar.boxSize{width:30%;}
+	
+	.toggle{display:none}
+
+    /* Site Status Box -- Area on the top of the logged-in sidebar for alerting users to upcoming outages or issues. */
+
+    .tpStatus{ 
+        /* border-bottom:1px solid #AC4825; */
+        padding:5px;}
+    .tpStatus h3{ 
+        background: #AC4825; 
+        color: white; 
+        padding:5px 5px;
+        font-weight:300;
+        }
+    .tpStatus .alert{}
+	
+/* google adwords promo page */
+.googleInfo{float:left; padding:0 1.5% 0 0; width:65.5%}
+.googlePromo{float:left; padding:0 0 0 1.5%; width:31.5%}
+	/* -- Styles for the Box Holding the Promo Code -- */
+		.adwordsCodeBlock{background:url(../images/bg.jpg) #EFEADE; border:1px solid #BCB49A; margin-bottom:20px; margin-top:3em; padding:15px}
+		.adwordsCode{font-size:5em; text-align:center}
+		.adWordsPromo .outro{display:none} /* Hide the Footer Outro */
+		.googleCoupon{background:#fff; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; margin-bottom:1em; padding:.5em 1em; text-align:center}
+		.googlePrimary{margin-bottom:0}
+		.adwordsLogo{margin-top:1em; max-width:100%}
+		.googleButton{font-size:2em; display:block; text-align:center} /* -- Adjustments to Button Style for 'Claim Your Credit' Button -- */
+		
+/* Zenbox */
+	#zenbox_overlay{height:100%; left:0; position:fixed; top:0; width:100%; z-index:90000}
+	#zenbox_overlay * {color:#333; font-size:12px; margin:0; padding:0}
+	#zenbox_container{height:620px; margin:0 auto; position:relative; top:7%; width:638px; z-index:2}
+	#zenbox_container .zenbox_header{position:relative; z-index:100}
+	   #zenbox_close{cursor:pointer; height:46px; position:absolute; right:0; top:-40px; width:46px}
+	#zenbox_body{height:900px; margin-top:-18px; position:relative; width:615px}
+	#zenbox_scrim{background:#000; background:rgba(0,0,0,.5); filter:alpha(opacity=42); left:0; position:absolute; top:0; width:100%; z-index:1}
+
+/* Site of the Month */
+	.sotmThumbs{overflow:hidden; padding:0}
+	.sotmThumbs li{float:left; list-style:none; padding:5px 1% 0; width:48%}
+	.sotmThumbs a, .sotmThumbs img{display:block}
+
+/* error pages */
+	#errorLeft{width:65%}
+	#errorRight{padding-top:111px; width:33%}
+	.errorCall{background:#fff no-repeat 15px 30px; display:block; margin-bottom:15px; min-height:70px; padding-left:260px}
+	.errorCall.shopping{background-image:url(../images/shop.png)} /* WTF? */
+	.errorCall.classifieds{background-image:url(../images/lycosLogo.jpg); background-position:15px 10px}
+	.errorCall.tripod{background-image:url(../images/tripodLogo200.png)}
+	
+/* put this somewhere smarter */
+#trafficFrame{border:0; height:600px; width:100%}
+.pricing-row{background:#3c5561; margin-bottom:0; padding:3.5% 0; color:#f5f4f0;}
+
+/*  ----- Internet Explorer Fixes ----- */
+.ieAll .helpDivide article{padding-right:3%}
+	
+/* ie7 fixes */
+.ie7 .container{width:900px}
+.ie7 .cols-3 .col{width:31.33%}
+.ie7 #tweet li{padding-top:0}
+.ie7 .all-toolsNav li{font-size:12px; width:109px}
+.ie7 .cpInfoArea{position:relative; left:10px}
+.ie7 .tool-Instances{height:auto; overflow:visible}
+.ie7 .instance-Image, .ie7 .social-list{display:none}
+.ie7 .instance{padding-left:5px; padding-right:5px}
+.ie7 .instance-Title{width:75%}
+.ie7 .instance-Actions{left:0; margin:0; top:0; width:20%}
+.ie7 .callUs{float:left; padding-bottom:5px}
+.ie7 #this-trafficFrame{height:900px}
+.ie7 .col3feat{width:28.5%}
+.ie7 .leftFocus.cols-2 .col2{37.5%}
+.ie7 .hp .flex-control-nav{bottom:10px}
+.ie7 .classicTool{width:29%}
+.ie7 .loginBOX{width:440px}
+.ie7 .loginBOX h2 .logclose-btn{position:absolute; top:10px; right:10px}
+.ie7 .all-toolsNav.tabs-2 li{width:49.666%}
+.ie7 .all-toolsNav.tabs-3 li{width:32.666%}
+.ie7 .all-toolsNav.tabs-4 li{width:24.2%}
+
+/* ie8 fixes */
+.ie8 .col3feat{width:28.5%}
+.ie8 .instance-dd{text-decoration:none}
+.ie8 .classicTool{width:29%}
+
+
+
+
+
+
+
+/* ----- Media Queries ----- */
+@media screen and (min-width:700px) and (min-height:820px){
+	.baseFooter{bottom:0; left:0; width:100%}
+	.outro{background:#F3F2EA; bottom:60px; left:0; position:fixed; width:100%}
+}
+
+@media (max-device-width:480px), screen and (max-width:1023px){
+	.baseFooter .container, .bookEndCenter{width:auto}
+	.wnLink img{max-width:100%}
+}
+
+@media (max-device-width:480px), screen and (max-width:500px){	
+	.baseFeatures{min-height:1px}/* -- for pricing plan page -- */
+    .mobileShow .sbutton{float:left; margin-right: 30%; margin-bottom: 1em;}
+}
+
+@media (max-device-width:480px), screen and (max-width:675px){
+	body{font-size:80%}
+	p, li, .base{font-size:1.2em}
+	.bookEnd{font-size:10px}
+	.button, .bigButton, .btn{font-size:14px}
+}
+
+@media (max-device-width:480px), screen and (max-width:760px){
+	.cols-3{overflow:hidden}
+	.cols-3 .col, .cols-2 .col{float:none; overflow:hidden; width:auto}
+	.cols-3 .col1, .cols-2 .col1{padding:0}
+	.cols-3 .col2, .cols-2 .col2{padding:0; text-align:left}
+	.cols-3 .col3{padding:0}
+		.cols-3 .col .emphBlock{padding:5px 10px}
+	.cols-2.leftFocus .col1, .cols-2.leftFocus .col2{width:auto}
+
+    #content.cols-2d .col1, #content.cols-2d .col2{width:100%; float:none;}
+    #content.cols-2c .col1, #content.cols-2c .col2{width:100%; float:none;}
+
+    .valueProps.col1{width:100%; float:none;}
+    .styleSlider{display:none;}
+    .planPrice{font-size:7em!important;}
+		
+	.col.col1 .btnSm{margin-bottom:25px}
+	
+	.sbCats{text-align:center}
+	.sbCats li{display:inline-block; float:none; margin-bottom:5px}
+	.sbCats a{border-radius:2px}
+	
+	.media, .media img{display:block; max-width:100%; overflow:hidden}
+		 .mImg, .mVid{float:none; width:auto}
+			.mVid{border:2px solid #BCB49A}
+			.mVid iframe{border:none; display:block; height:230px; width:100%}
+		 .mTxt{float:none; width:auto}
+		 
+	.rev .mImg, .rev .mVid{float:none}
+	.rev .mTxt{float:none}
+	
+	.mVideo .mVid{margin-bottom:15px; width:auto}
+	.mVideo .mTxt{width:auto}
+		 
+	.baseHeader .media{pading:10px; width:auto}
+	  .baseHeader .mImg{display:none}
+	  .baseHeader .mTxt{margin:0 auto; max-width:500px; padding-bottom:20px; width:90%}
+	  
+	 .emphBlock .txt_center.float_right{float:none}
+	 .emphBlock .beta.mb0{margin-bottom:15px}
+	
+	.mobileHide{display:none}
+	.mobileShow{display:block}
+	
+	/* logged out */
+	#hpLeft, #hpRight, .hpBlocks .callout{float:none; width:auto}
+	.wnLink{background:#D4D4C5; padding:5px 5px 3px}
+	.loginBOX{right:0}
+	.loginBOX .input{width:200px}
+	.baseHeader .hpContent .bigButton.blue.float_right{display:block; float:none; margin:15px auto 0; width:200px}
+	.mainContents{float:none; width:auto}
+	.mainArticle{padding:0}
+	
+	.helpBtnZbl{margin-top:10px!important}
+	
+	.flex-control-nav{bottom:0; top:auto}
+	
+	.planCall{width:auto}
+	#content, #interior #cpContent, #content{padding:0 20px 150px}
+	.mFree, .mPro, .mPlus{display:none}
+	.mFree.planShow, .mPro.planShow, .mPlus.planShow{display:table-cell; width:100%}
+		div.mFree.planShow, div.mPro.planShow, div.mPlus.planShow{display:block}
+	.tablePrice .plans.mPro, .tablePrice .plans.mPlus{padding-top:5px}
+	.tablePrice .feature{font-size:13px; width:50%}
+	
+	/* universal */
+	#interior .cpSidebar .banner .lip{display:none}
+	.mPageTitle{text-align:center}
+	.helpPage .mPageTitle{margin:0}
+	
+	/* content & sidebar areas */
+	#interior .cpSidebar{border:3px solid #C8C7B4; border-radius:0; float:none; width:auto}	
+	#interior .cpSidebar .banner a, #interior .cpSidebar .banner{position:static; width:auto}
+	#interior .cpSidebar .banner{padding:0}
+	
+	.helpDivide article, .helpDivide article:last-child{float:none; padding:15px 20px; width:auto}
+	
+	/* footer stuffs */
+	.container{padding:0 10px}
+	.footerList{overflow:hidden; list-style:none; padding-bottom:15px}
+	.social-list{position:relative; top:0}
+		.social-list li{margin:0 10px 15px 0}
+	#interior .footerList{display:block;}
+	#interior .footerList li {
+        display: inline-block;
+        font-size: .8em;
+        margin: 0 15px 5px 0;}
+	
+	/* error pages */
+	#errorLeft, #errorRight{float:none; width:auto}
+	#errorRight{padding:0; text-align:center}
+	.errorCall{padding:90px 15px 0}
+}
+
+@media (max-device-width:480px), screen and (max-width:896px){
+    .styleSlider h2 {
+        text-align: center;
+        bottom: -48px;
+        width: 100%;}
+    }
+
+@media (max-device-width:480px), screen and (max-width:820px){	
+/* header */
+.baseHeader .logo{float:none; margin:0 auto; width:320px}
+.baseHeader nav{float:none; margin:0 auto; width:90%}
+.baseHeader nav ul{float:none; text-align:center}
+.baseHeader nav li{float:none; display:inline-block; *display:inline; *zoom:1}
+.baseHeader nav li a{border-right:none; font-size:14px!important; padding:0 8px!important}
+#divider{margin-bottom:15px}
+
+/* footer */
+.footerList{padding:5px;}
+.callUs{display:block; float:none}
+.bookEnd{font-size:9px; padding:5px 0;}
+.bookEnd li{display:inline-block; float:none; line-height:normal}
+.bookEnd li:first-child{display:block}
+.bookEnd .social-list{display:none}
+.baseFooter .col.col1{
+    width: 100%;
+    float: none;
+    overflow: hidden;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+.baseFooter .col.col2{clear:both; width:60%;}
+.baseFooter .footerList li{ display: block; float: left; }
+}
+
+@media (max-device-width:480px), screen and (max-width:860px){
+	.baseHeader .alpha{font-size:1.5em} /* alpha + delta Currently unused, left in for future use */
+	.baseHeader .delta{font-size:1em}
+	.baseHeader .mImg img{left:-50px;
+}}
+	
+
+/* Below this line is new styling being introduced to Tripod in 2014. It is being kept separate so that 
+when the entire site is overhauled, older styles can more easily be removed. 
+
+In order to prevent new styles from interfering with old in unexpected ways, things like buttons will be prefixed with nt-
+
+These prfixes should be removed when the rest of the site is overhauled.
+
+This separation is a temporary measure and should be rolled into the promary CSS as soon as possible.
+
+*/
+
+/* ------ !BUTTONS! ------ */
+
+.nt-button-action{ 
+    background: #53ADDA;
+    color: #FFF;
+    border-radius: 20px;
+    border: 0px;
+    font-size: 20px;
+    height: 40px;
+    padding:0 45px; 
+    }
+.nt-button{ 
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .5px;
+    cursor: pointer;
+    }
+.nt-button-action:hover,
+.nt-button-action:focus,
+.nt-button-action:active{
+    background: #4693BA;
+    }
+
+.nt-button-action, 
+.nt-button-action:hover,
+.nt-button-action:focus,
+.nt-button-action:active{
+    transition:         background .3s ease;
+    -webkit-transition: background .3s ease;
+    -moz-transition:    background .3s ease;
+    }
+
+
+/* ------ !PROMO-BANNER! ------ */
+
+.messCenter{
+    display: none;
+    }
+
+.promo-banner{
+    display: none;
+    background: #FFFEF9;
+    overflow: hidden;
+    position: relative;
+    padding:15px;
+    font-weight: 200;
+    border: 1px solid #B8B6B7;
+    margin:15px;
+    }
+.promo-banner .inner-block{
+    margin: 0 auto;
+    width: auto;
+    }
+.promo-banner h1{
+    text-align: left;
+    font-size:33px;
+    font-weight: 200;
+    text-transform: capitalize;
+    letter-spacing: .01px;
+    padding-right:20px;
+    }
+.superbold{ text-transform: uppercase;}
+.promo-banner .col1{
+    width: 50%;
+    float:left;
+    }
+.promo-banner .col2{
+    width: 50%;
+    float:right;
+    }
+
+.promo-banner .col1 ul,
+.promo-banner .col2 ul{
+    padding: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 0 20px;
+    font-size:1em;
+    font-weight: 200;
+    }
+
+@media screen and (max-width: 985px){
+    .promo-banner .col1,
+    .promo-banner .col2{
+        width: 100%;
+    }
+    .promo-banner .col2 ul{ margin:0;}
+}
+@media (max-device-width:480px), screen and (max-width:760px){
+        .promo-banner .col1,
+        .promo-banner .col2{
+        width: 50%;
+    }
+    .promo-banner .col2 ul{ margin: 0 0 0 20px;}
+    }
+.promo-banner li{
+    font-weight: 200;
+    list-style-image: disc;
+    margin-left: 20px;
+    padding:0 30px 0 0;
+    margin-bottom:5px;
+    }
+.promo-banner .col1 ul{
+    float: right;
+    }
+
+.promo-banner .close{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-weight: 400;
+    font-size: 20px;
+    font-family: arial;
+    color: darkgray;
+    cursor: pointer;
+    }
+.promo-banner .close:hover{
+    color: black;
+    }
+
+.promo-banner .nt-button-action{
+    margin: 20px auto 0 auto;
+    font-size:1.1em;
+    display: block;
+    }
+
+
+//India Regionalization Changes
+section#page {margin-top: 0px;}
+div.container nav ul{float: left;width: 100%; }
+#div.container nav li{margin-right: 15%; margin-top: 5px;}
+div.container nav li a {font-size: 120%;font-weight: bolder;}
+div.flexslider-container.emphBlock {border:none !important;}
+section#page {background-color: #ddeff9;}
+#.intH {display: none;}
+.intH {background-color: #ddeff9;border: none !important;}
+.intH img {margin-left: 20px;}
+.wow {color:#5aa7df ;font-weight: bolder;}
+.beta {text-align: center;}
+.logoContainer {background-color: #ffffff;}
+.baseHeader {margin: none;}
+div#page {border-top: 1px solid #c0c0c0;}
+div.bottom-box {display: none;}
+section.bookEnd {margin-top: 20px;
+div.cpanel-bottom.row {margin-bottom: -50px;height: 0px !important;}
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   Create a Website | Tripod Web Hosting
+  </title>
+  <!--[if IE]>
+  
+<![endif]-->
+ </head>
+ <body class="interior">
+  <section class="" id="topBar">
+   <span class="float_right member">
+    <a title="Log out of your account">
+     Log out
+    </a>
+   </span>
+   <br class="clr">
+  </section>
+  <header class="baseHeader">
+   <div class="intH">
+    <div class="container">
+     <h1 class="logo">
+      <a title="Tripod.com">
+       <img alt="Tripod.com logo" src="rick.jpg">
+       <span>
+        Tripod.com
+       </span>
+      </a>
+     </h1>
+     <nav>
+      <ul>
+       <li>
+        <a class="featuresLink" title="Check out other great Tripod features">
+         Features
+        </a>
+       </li>
+       <li>
+        <a class="pricingLink" title="Tripod plan comparisons and pricing">
+         Pricing
+        </a>
+       </li>
+       <li>
+        <a title="Tripod's Team Blog for the latest Tripod updates">
+         Blog
+        </a>
+       </li>
+       <li>
+        <a class="helpLink" title="Help and support for your Tripod and Zeeblio websites">
+         Help
+        </a>
+       </li>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </header>
+  <div id="divider">
+  </div>
+  <section class="container helpPage" id="content">
+   <div class="mainContents float_left" id="errorLeft">
+    <h1 class="mPageTitle">
+     410 - Website No Longer Exists
+    </h1>
+    <br class="clr">
+    <article class="mainArticle boxSize">
+     <h3>
+      The page you've requested is from a site that has been permanently removed.
+      <br>
+      Please remove all references to this page.
+     </h3>
+     <a class="tripod errorCall pad emphBlock mb15">
+      <span>
+       <strong>
+        Tripod.com
+       </strong>
+       <br>
+       Create a website for your business, interests and hobbies on Tripod!
+      </span>
+     </a>
+     <a class="shopping errorCall pad emphBlock mb15">
+      <span>
+       <strong>
+        Lycos Shopping
+       </strong>
+       <br>
+       The best online shopping deals, coupons &amp; exclusive close out sales at bargain prices.
+      </span>
+     </a>
+     <a class="classifieds errorCall pad emphBlock" title="Lycos.com">
+      <span>
+       <strong>
+        Lycos.com
+       </strong>
+       <br>
+       Search the web, read the news, check your mail and more!
+      </span>
+     </a>
+    </article>
+   </div>
+  </section>
+  <div class="txt_center" style="margin-bottom:40px">
+   <img src="rick.jpg" style="height:1px; width:1px">
+  </div>
+  <!-- Google Analytics -->
+  <!-- End Google Analytics -->
+  <!-- begin compete js -->
+  <!-- end compete js -->
+  <!-- quantcast -->
+  <!-- end quantcast -->
+ </body>
+</html>

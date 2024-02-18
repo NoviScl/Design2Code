@@ -2,6 +2,7 @@ from tqdm import tqdm
 import numpy as np
 import json
 import os
+import shutil
 
 reference_dir = "../../testset_full"
 test_dirs = {
@@ -99,6 +100,8 @@ with open("all_scores_dict.json", "w") as f:
     json.dump(all_scores_dict, f, indent=4)
 '''
 
+
+'''
 with open("all_scores_dict.json", "r") as f:
     all_scores_dict = json.load(f)
 files = list(all_scores_dict["gemini_direct_prompting"].keys())
@@ -121,3 +124,73 @@ for k,v in res_dict.items():
                 all_scores_dict[k][filename] = v[i]
     print (len(all_scores_dict[k]))
     print (np.mean(list(all_scores_dict[k].values()), axis=0))
+'''
+
+# all_scores_dict = {}
+# with open("prediction_file_name_list_gemini_public.json", "r") as f:
+#     file_name_list = json.load(f)
+# with open("res_dict_gemini_public.json", "r") as f:
+#     res_dict = json.load(f)
+
+# for k,v in res_dict.items():
+#     print (k)
+#     if k not in all_scores_dict:
+#         all_scores_dict[k] = {}
+#     for i in range(len(file_name_list)):
+#         filename = file_name_list[i]
+#         # if sum(v[i]) > 0:
+#         all_scores_dict[k][filename] = v[i]
+#     print (len(all_scores_dict[k]))
+#     print (np.mean(list(all_scores_dict[k].values()), axis=0))
+
+
+# with open("prediction_file_name_list_gemini_public.json", "r") as f:
+#     file_name_list = json.load(f)
+# with open("res_dict_gemini_public.json", "r") as f:
+#     res_dict = json.load(f)
+
+# with open("prediction_file_name_list_gpt4v.json", "r") as f:
+#     file_name_list = json.load(f)
+# with open("res_dict_gpt4v.json", "r") as f:
+#     res_dict = json.load(f)
+
+# all_scores_dict_gpt4v = {}
+# for k,v in res_dict.items():
+#     k = k.replace("gpt4v_", "")
+#     print (k)
+#     if k not in all_scores_dict:
+#         all_scores_dict[k] = {}
+#     for i in range(len(file_name_list)):
+#         filename = file_name_list[i]
+#         if sum(v[i]) == 0:
+#             print (filename)
+#     #     if sum(v[i]) > 0 and filename in file_name_list_gemini_public:
+#     #         all_scores_dict[k][filename] = v[i]
+#     # print (len(all_scores_dict[k]))
+#     # print (np.mean(list(all_scores_dict[k].values()), axis=0))
+
+# skip_files = ["11699.html", "11239.html", "512.html", "9625.html", "11059.html"]
+
+
+
+with open("prediction_file_name_list_gemini_public.json", "r") as f:
+    file_name_list_gemini_public = json.load(f)
+
+with open("prediction_file_name_list_gpt4v.json", "r") as f:
+    file_name_list_gpt4v = json.load(f)
+
+final_testset = []
+for filename in file_name_list_gpt4v:
+    if filename in file_name_list_gemini_public:
+        final_testset.append(filename)
+print (len(final_testset))
+
+
+for filename in final_testset:
+    source_path = '../../testset_full/' + filename
+    destination_path = '../../testset_final/' + filename
+    shutil.copy(source_path, destination_path)
+
+    source_path = '../../testset_full/' + filename.replace(".html", ".png")
+    destination_path = '../../testset_final/' + filename.replace(".html", ".png")
+    shutil.copy(source_path, destination_path)

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   /** Reset some basic elements */
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
+
+/** Basic styling */
+body { font: 400 16px/1.5 Bitter, "Apple SD Gothic Neo", AppleGothic, NanumBarunGothic, "Malgun Gothic", Dotum, sans-serif; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; -webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1; font-feature-settings: "kern" 1; font-kerning: normal; word-wrap: break-word; }
+
+table { width: 100%; margin: 0 0 20px 0; text-align: left; }
+
+/** Set `margin-bottom` to maintain vertical rhythm */
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 15px; }
+
+/** Images */
+img { max-width: 100%; vertical-align: middle; }
+
+/** Figures */
+figure > img { display: block; }
+
+figcaption { font-size: 14px; }
+
+/** Lists */
+ul, ol { margin-left: 30px; }
+
+li > ul, li > ol { margin-bottom: 0; }
+
+/** Headings */
+h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; }
+
+h1:lang(ko), h2:lang(ko), h3:lang(ko) { word-break: keep-all; }
+
+/** Links */
+a { color: #2568ba; text-decoration: none; }
+
+a:visited { color: #1d508f; }
+
+a:hover { color: #111; text-decoration: underline; }
+
+/** Blockquotes */
+blockquote { color: #757575; border-left: 4px solid #e8e8e8; padding-left: 15px; font-size: 18px; letter-spacing: -1px; font-style: italic; }
+
+blockquote > :last-child { margin-bottom: 0; }
+
+blockquote pre, blockquote code { color: #111; }
+
+/** Rules */
+hr { height: 4px; margin: 15px 0; border: 0; background-color: #e8e8e8; }
+
+/** Code formatting */
+pre, code { font-family: Monaco, Menlo, Consolas, "Courier New", DotumChe, monospace; font-size: 13px; border: 1px solid #e8e8e8; border-radius: 0; background-color: #f8f8f8; }
+
+code { padding: 1px 5px; }
+
+pre { padding: 8px 12px; overflow-x: auto; word-wrap: normal; }
+
+pre > code { border: 0; padding-right: 0; padding-left: 0; }
+
+/** Wrapper */
+.wrapper { max-width: -webkit-calc(800px - (30px * 2)); max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }
+
+@media screen and (max-width: 800px) { .wrapper { max-width: -webkit-calc(800px - (30px)); max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }
+
+/** Clearfix */
+.pagination:after, .wrapper:after { content: ""; display: table; clear: both; }
+
+/** Site header */
+.site-header { min-height: 56px; position: relative; }
+
+.site-title { font-size: 26px; font-weight: 300; line-height: 56px; letter-spacing: -1px; margin-bottom: 0; float: left; }
+
+.site-title, .site-title:visited { color: #424242; }
+
+.site-nav { float: right; line-height: 56px; }
+
+.site-nav .page-link { color: #111; line-height: 1.5; }
+
+.site-nav .page-link:not(:last-child) { margin-right: 20px; }
+
+@media screen and (max-width: 600px) { .site-nav .page-link { padding: 20px 0; margin-left: 20px; } .site-nav .page-link:not(:last-child) { margin-right: 0; } }
+
+/** Site footer */
+.site-footer { padding: 30px 0; font-size: 15px; color: #757575; text-align: center; }
+
+/** Page content */
+.page-content { padding: 30px 0; }
+
+.page-heading { font-size: 20px; }
+
+.post-list { margin-left: 0; list-style: none; }
+
+.post-list .post-link:hover { text-decoration: none; }
+
+.post-list > li { margin-bottom: 60px; }
+
+.post-list > li:not(:first-child) { border-top: 4px solid #e8e8e8; padding-top: 60px; }
+
+.post-archives { margin-left: 0; list-style: none; }
+
+.post-archives .post-link { font-size: 24px; }
+
+.post-archives > li { margin-bottom: 30px; }
+
+.post-meta { font-size: 14px; color: #757575; }
+
+.post-link, .post-link:visited { color: #111; }
+
+.post-link:hover { color: #2568ba; }
+
+.post-continue a { padding: 8px 15px; text-decoration: none; }
+
+.post-continue a, .post-continue a:visited { color: #424242; background-color: #e8e8e8; }
+
+.post-continue a:hover { color: white; background-color: #2568ba; }
+
+/** Posts */
+.post-header { margin-bottom: 30px; }
+
+.post-title { font-size: 42px; letter-spacing: -1px; line-height: 1; }
+
+@media screen and (max-width: 800px) { .post-title { font-size: 36px; } }
+
+.post-content { margin-bottom: 30px; }
+
+.post-content h1 { font-size: 38px; }
+
+@media screen and (max-width: 800px) { .post-content h1 { font-size: 34px; } }
+
+.post-content h2 { font-size: 32px; }
+
+@media screen and (max-width: 800px) { .post-content h2 { font-size: 28px; } }
+
+.post-content h3 { font-size: 26px; }
+
+@media screen and (max-width: 800px) { .post-content h3 { font-size: 22px; } }
+
+.post-content h4 { font-size: 20px; }
+
+@media screen and (max-width: 800px) { .post-content h4 { font-size: 18px; } }
+
+/** Pagination */
+.pagination { padding: 15px 0; border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; text-align: center; }
+
+.pagination a, .pagination a:visited { color: #757575; }
+
+.pagination a:hover { color: #2568ba; }
+
+.pagination .previous { float: left; }
+
+.pagination .next { float: right; }
+
+/** Syntax highlighting styles */
+.highlight { background-color: #f8f8f8; }
+
+.highlighter-rouge .highlight { background-color: #f8f8f8; }
+
+.highlight .cm { color: #727262; font-style: italic; }
+
+.highlight .cp { color: #727272; font-weight: bold; }
+
+.highlight .c1 { color: #727262; font-style: italic; }
+
+.highlight .cs { color: #727272; font-weight: bold; font-style: italic; }
+
+.highlight .c, .highlight .cd { color: #727262; font-style: italic; }
+
+.highlight .err { color: #a61717; background-color: #e3d2d2; }
+
+.highlight .gd { color: #000; background-color: #fdd; }
+
+.highlight .ge { color: #000; font-style: italic; }
+
+.highlight .gr { color: #a00; }
+
+.highlight .gh { color: #727272; }
+
+.highlight .gi { color: #000; background-color: #dfd; }
+
+.highlight .go { color: #727272; }
+
+.highlight .gp { color: #555; }
+
+.highlight .gs { font-weight: bold; }
+
+.highlight .gu { color: #727272; }
+
+.highlight .gt { color: #a00; }
+
+.highlight .kc { color: #000; font-weight: bold; }
+
+.highlight .kd { color: #000; font-weight: bold; }
+
+.highlight .kn { color: #000; font-weight: bold; }
+
+.highlight .kp { color: #000; font-weight: bold; }
+
+.highlight .kr { color: #000; font-weight: bold; }
+
+.highlight .kt { color: #458; font-weight: bold; }
+
+.highlight .k, .highlight .kv { color: #000; font-weight: bold; }
+
+.highlight .mf { color: #007f7f; }
+
+.highlight .mh { color: #007f7f; }
+
+.highlight .il { color: #007f7f; }
+
+.highlight .mi { color: #007f7f; }
+
+.highlight .mo { color: #007f7f; }
+
+.highlight .m, .highlight .mb, .highlight .mx { color: #007f7f; }
+
+.highlight .sb { color: #d14; }
+
+.highlight .sc { color: #d14; }
+
+.highlight .sd { color: #d14; }
+
+.highlight .s2 { color: #d14; }
+
+.highlight .se { color: #d14; }
+
+.highlight .sh { color: #d14; }
+
+.highlight .si { color: #d14; }
+
+.highlight .sx { color: #d14; }
+
+.highlight .sr { color: #008522; }
+
+.highlight .s1 { color: #d14; }
+
+.highlight .ss { color: #990073; }
+
+.highlight .s { color: #d14; }
+
+.highlight .na { color: #007f7f; }
+
+.highlight .bp { color: #727272; }
+
+.highlight .nb { color: #007aa3; }
+
+.highlight .nc { color: #458; font-weight: bold; }
+
+.highlight .no { color: #007f7f; }
+
+.highlight .nd { color: #3c5d5d; font-weight: bold; }
+
+.highlight .ni { color: #800080; }
+
+.highlight .ne { color: #900; font-weight: bold; }
+
+.highlight .nf { color: #900; font-weight: bold; }
+
+.highlight .nl { color: #900; font-weight: bold; }
+
+.highlight .nn { color: #555; }
+
+.highlight .nt { color: #000080; }
+
+.highlight .vc { color: #007f7f; }
+
+.highlight .vg { color: #007f7f; }
+
+.highlight .vi { color: #007f7f; }
+
+.highlight .nv { color: #007f7f; }
+
+.highlight .ow { color: #000; font-weight: bold; }
+
+.highlight .o { color: #000; font-weight: bold; }
+
+.highlight .w { color: #727272; }
+
+/*# sourceMappingURL=main.css.map */
+
+
+@font-face {
+  font-family: 'Bitter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/bitter/v33/raxjHiqOu8IVPmn7epZnDMyKBvHf5D6c4Pz-X3B3.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/bitter/v33/raxhHiqOu8IVPmnRc6SY1KXhnF_Y8fbfOLjOWA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/bitter/v33/raxhHiqOu8IVPmnRc6SY1KXhnF_Y8RHYOLjOWA.ttf) format('truetype');
+}
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>
+   Community contributions for those who don't feel rockstarry enough yet
+  </title>
+  <meta content="Mark Stosberg kicks ass. Note only is he a driving force in CGI::Application, he&rsquo;s also working on some scutwork in CGI.pm. He got privileges to the CGI.pm bug queue and has closed 100 of the 150 bugs in the queue. (He&rsquo;s also done this for me with the WWW::Mechanize queue, too)" name="description">
+  <meta content="Community contributions for those who don't feel rockstarry enough yet" property="og:title">
+  <meta content="Perlbuzz" property="og:site_name">
+  <meta content="" property="og:url">
+  <meta content="Mark Stosberg kicks ass. Note only is he a driving force in CGI::Application, he&rsquo;s also working on some scutwork in CGI.pm. He got privileges to the CGI.pm bug queue and has closed 100 of the 150 bugs in the queue. (He&rsquo;s also done this for me with the WWW::Mechanize queue, too)" property="og:description">
+  <meta content="summary" name="twitter:card">
+  <meta content="perlbuzz" name="twitter:site">
+  <meta content="Community contributions for those who don't feel rockstarry eno..." name="twitter:title">
+  <meta content="Mark Stosberg kicks ass. Note only is he a driving force in CGI::Application, he&rsquo;s also working on some scutwork in CGI.pm. He got privileges to the CGI.pm bug queue and has closed 100 of the 150 b..." name="twitter:description">
+  <meta content="perlbuzz" name="twitter:creator">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="wrapper">
+    <a class="site-title">
+     Perlbuzz
+    </a>
+    <nav class="site-nav">
+     <a class="page-link">
+      About
+     </a>
+     <a class="page-link">
+      Feed
+     </a>
+     <a class="page-link">
+      Archives
+     </a>
+     <a class="page-link">
+      Categories
+     </a>
+     <a class="page-link">
+      Tags
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main aria-label="Content" class="page-content">
+   <div class="wrapper">
+    <article class="post" itemscope itemtype="">
+     <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+       Community contributions for those who don't feel rockstarry enough yet
+      </h1>
+      <p class="post-meta">
+       <time datetime="2009-08-15T15:49:02-05:00" itemprop="datePublished">
+        Aug 15, 2009
+       </time>
+       &bull;
+       <span itemprop="author" itemscope itemtype="">
+        <span itemprop="name">
+         Andy Lester
+        </span>
+       </span>
+       &bull;
+       <a>
+        Community
+       </a>
+       ,
+       <a>
+        CPAN
+       </a>
+      </p>
+     </header>
+     <div class="post-content" itemprop="articleBody">
+      <p>
+       Mark Stosberg kicks ass.  Note only is he a driving force in
+CGI::Application, he&rsquo;s also working on some scutwork in CGI.pm.  He got
+privileges to the CGI.pm bug queue and has
+       <a>
+        closed 100 of the 150 bugs in the queue
+       </a>
+       .
+(He&rsquo;s also done this for me with the WWW::Mechanize queue, too)
+      </p>
+      <p>
+       Note that I didn&rsquo;t say he
+       <em>
+        fixed
+       </em>
+       100 tickets, but that he
+       <em>
+        closed
+       </em>
+       100
+tickets.  As he notes:
+      </p>
+      <blockquote>
+       <p>
+        Many had already been addressed by Lincoln some time ago. Those were
+simply closed.
+       </p>
+      </blockquote>
+      <p>
+       Although Mark Stosberg is a fine programmer in his own right, what he&rsquo;s
+been doing here requires no special skills, no megabrain rockstar code
+chops.  He&rsquo;s doing project management and cleanup.  It&rsquo;s so simple, even
+       <em>
+        you
+       </em>
+       can do it.
+      </p>
+      <p>
+       Yes, I&rsquo;m talking to you out there, thinking &ldquo;I&rsquo;ve always wanted to get into
+open source projects,&rdquo; whether it&rsquo;s to
+       <a>
+        improve your career
+       </a>
+       or just to help out.  There are always ways you can pitch in that don&rsquo;t
+involve writing new code.  I hope you&rsquo;ll find some and join us.
+      </p>
+     </div>
+    </article>
+   </div>
+  </main>
+  <footer class="site-footer">
+   <div class="wrapper">
+    <p>
+     &copy; Andy Lester - Powered by
+     <a>
+      Jekyll
+     </a>
+     &amp;
+     <a>
+      whiteglass
+     </a>
+     - Subscribe via
+     <a>
+      RSS
+     </a>
+    </p>
+   </div>
+  </footer>
+ </body>
+</html>

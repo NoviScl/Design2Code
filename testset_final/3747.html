@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <style>
+   /* fonts */
+   
+   @font-face 
+   {
+      font-family: 'Font Awesome 5 Brands'; font-style: normal; font-weight: normal;
+      src: url('fonts/fa-brands-400.woff2') format('woff2'), url('fonts/fa-brands-400.woff') format('woff');
+   }
+   .fab { font-family: 'Font Awesome 5 Brands'; }
+   @font-face 
+   {
+      font-family: 'Font Awesome 5 Pro'; font-style: normal; font-weight: 900;
+      src: url('fonts/fa-solid-900.woff2') format('woff2'), url('fonts/fa-solid-900.woff') format('woff');
+   }
+   .fa, .fas { font-family: 'Font Awesome 5 Pro'; font-weight: 900; }
+
+   /* resets */
+   
+   * 
+   { 
+      box-sizing: border-box; border: none; outline: none; text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-kerning: auto; 
+   }
+   html { height: 100%; -webkit-text-size-adjust: 100%; }
+   body { margin: 0px; padding: 0px; color: #000000; background-color: #FFFFFF; }
+   *:before, *:after { box-sizing: inherit; }
+   .cf:before, .cf:after { content: " "; display: table; }
+   .cf:after { clear: both; }
+   table { border: 0; padding: 0; border-spacing: 0px; border-collapse: collapse; }   
+   tr { text-align: left; }
+   table.schedule tr:first-child td { border-top: 1px solid #CCCCCC; }
+   table.schedule td { padding: 9px 15px 9px 0px; border-bottom: 1px solid #CCCCCC; }
+   table.schedule td:first-child { white-space: nowrap; }
+   table.schedule td:last-child { padding-right: 0px; }
+   tr { vertical-align: top; }
+   body.modal-open { overflow: hidden; position: fixed; } /* stop scroll when modal open */
+   sup, sub { vertical-align: baseline; position: relative; top: -0.4em; }
+   sub { top: 0.4em; }
+   
+   /* fixed aspect ratio */
+   
+   .aspect::before { content: ''; padding-top: 100%; float: left; }
+   .aspect::after { content: ''; display: block; clear: both; }
+   
+   /* type */
+   
+   body, input, textarea, select { font: 300 16px/23px 'Montserrat', sans-serif; }
+   b { font-weight: 700; }
+   p, h2, h3, h4, h5 { margin: 20px 0px; padding: 0px; }
+   h2 { font: 700 32px/32px 'Montserrat', sans-serif; }
+   h3 { font: 700 26px/30px 'Montserrat', sans-serif; }
+   h4 { font: 500 20px/24px 'Montserrat', sans-serif; }
+   h5 { font: 700 16px/20px 'Roboto Condensed', sans-serif; color: #E32C22; text-transform: uppercase; letter-spacing: 1px; }
+   .date { font: 700 16px/20px 'Roboto Condensed', sans-serif; color: #000000; }
+   .location { font: 500 13px/18px 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+   dd { padding: 0px; margin: 20px 0px 20px 40px; }
+   small, .small { font-size: 85%; line-height: 100%; }
+   .placeholder { padding-bottom: 400px; }
+   ul.loose li { margin-bottom: 10px; }
+   
+   /* links */
+   
+   a { color: #00B0B5; text-decoration: none; }
+   a:hover { color: #E32C22; }
+   .btn, a.btn, a.btn:visited 
+   {
+      color: #00B0B5; background-color: transparent; border: 1px solid #00B0B5; padding: 4px 10px 3px 10px;
+      font: 700 16px/16px 'Roboto Condensed', sans-serif; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+   }
+   .btn:hover, a.btn:hover { color: #FFFFFF; background-color: #E32C22; border-color: #E32C22; }
+   
+   /* badge */
+   
+   #pmd { display: block; position: fixed; top: 0px; left: 0px; width: 260px; padding: 38px 50px; background-color: #FFFFFF; }
+   #pmd .badge 
+   { 
+      display: block; width: 100%; height: 0; padding-top: 100%; 
+      background: transparent url('images/pmd-cpa.svg') top center no-repeat; background-size: contain;
+   }
+   
+   /* images */
+   
+   img { border: 0px; }
+   img.photo, img.right { width: 100%; height: auto; }
+   img.right { float: right; width: 33%; max-width: 500px; margin: 0px 0px 30px 30px; }
+   img.logo { height: 75px; width: auto; display: inline-block; margin: 0px 40px 0px 0px; }
+   .footer img.logo { height: 70px; margin-bottom: 20px; }
+   .footer img.logo.westphal { height: 80px; margin-bottom: 10px; }
+   .footer a:hover img.logo { opacity: 0.8; }
+   img.hero { width: 100%; height: auto; display: block; margin: 0px 0px 30px 0px; }
+   
+   /* menu */
+   
+   #nav 
+   { 
+      position: fixed; top: 0px; right: 0px; left: 260px; display: flex; z-index: 100;
+      justify-content: space-between; align-items: center;
+      background-color: #00B0B5; padding: 0px 12px; font: 700 18px/18px 'Roboto Condensed', sans-serif; 
+   }
+   #nav a { color: #FFFFFF; display: inline-block; padding: 10px 8px; }
+   #nav a:hover { color: #000000; }
+   #nav ul { list-style-type: none; margin: 0px; padding: 0px; }
+   #nav ul li { display: inline-block; text-transform: lowercase; }
+   #nav ul li .fab { font-weight: normal; }
+   
+   /* main menu */
+
+   #nav ul.menu > li > ul 
+   { 
+      position: absolute; display: none; list-style-type: none; margin: 0px; padding: 8px 0px 8px 0px;
+      z-index: 12; background-color: #007649; float: none;
+   }
+   #nav ul.menu > li:hover > ul { display: block; -webkit-animation: slidein 0.1s ease-in 1; }
+   #nav ul.menu > li > ul > li { float: none; margin: 0px; padding: 0px; display: block; }  
+   #nav ul.menu > li > ul > li > a 
+   { 
+      display: block; padding: 3px 15px 3px 10px; font-size: 90%; line-height: 100%; 
+      text-transform: lowercase;
+   } 
+   #nav ul.menu > li > ul > li > a:hover { color: rgba(255,255,255,0.7); }
+   @-webkit-keyframes slidein { 0% { margin-top: -10px; opacity: 0; } 100% { margin-top: 0px; opacity: 1; } }
+   
+   /* mobile nav modal */
+   
+   #modal 
+   { 
+      position: fixed; top: 0px; right: 0px; left: 0px; height: 100%; z-index: 200; display: none; 
+      color: #FFFFFF; background-color: #00B0B5; 
+   }
+   #modal ul.menu 
+   { 
+      font-size: 5vh; line-height: 3vh; margin: 0px; padding: 0px 0px 0px 28px; list-style-type: none; 
+      text-transform: lowercase; 
+   }
+   #modal ul.menu ul { display: none; }
+   #modal .closemodal { text-align: right; font-size: 24px; cursor: pointer; }
+   #modal a, #modal .closemodal { color: #FFFFFF; display: block; padding: 12px; }
+   #modal a:hover, #modal .closemodal:hover { color: #000000; }
+   
+   /* content areas */
+   
+   .content { margin: 120px 50px 50px 260px; }
+   .footer { color: #CCCCCC; background-color: #000000; padding: 30px 50px; font-size: 90%; }
+   .footer.prefix { padding-bottom: 0px; margin-bottom: 0px; }
+   .content a, .footer a { font-weight: 500; }
+   
+   /* columns */
+   
+   .columnar { display: flex; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; margin-right: -50px; }
+   .columnar > div { margin: 0px 50px 30px 0px; }
+   
+   /* tiles */
+   
+   .tiles { display: flex; flex-wrap: wrap; align-items: stretch; align-content: flex-start; }
+   .tile 
+   { 
+      width: 24%; position: relative; background-color: #EFEFEF; margin: 0 1% 1vh 0; 
+      background-position: center center; background-repeat: no-repeat; background-size: cover;
+   }
+   .tile::before { content: ''; padding-top: 100%; float: left; }
+   .tile::after { content: ''; display: block; clear: both; }
+   .tile .caption 
+   { 
+      position: absolute; bottom: 0px; left: 0px; padding: 4px 8px; color: #FFFFFF; background-color: rgba(0,0,0,0.6); 
+      display: inline-block;
+   }
+   .tile:hover .caption { background-color: #E32C22; }
+   
+   /* video */
+   
+   .video-container { overflow: hidden; height: 0; padding-bottom: 56.25%; position: relative; margin-bottom: 30px; }
+   .video-container iframe { position:absolute; left: 0; top: 0; height: 100%; width: 100%; }
+   
+   /* home page variants */
+   
+   body.home #nav { left: 0px; padding-left: 90px; }
+   body.home #csv-cpa { width: 100%; height: auto; }
+   body.home .footer { padding-left: 100px; }
+   .zone { display: flex; justify-content: space-between; align-items: stretch; width: 100%; }
+   .zone .primary { width: 50%; padding: 100px; }
+   .zone .secondary { width: 50%; min-height: 100vh; }
+   #zone-welcome .primary { align-self: center; }
+   #zone-welcome .primary p { margin-left: 4.44%; margin-top: 40px; font-size: 110%; line-height: 125%; }
+   #zone-welcome .secondary { display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; }
+   #zone-welcome .secondary .poster 
+   { 
+      background: #BCE2D7 url('images/zone1.jpg') center center no-repeat; background-size: cover; 
+      flex-basis: 98%; flex-shrink: 1;
+   }
+   @media screen and (orientation:portrait) { #zone-welcome .secondary .poster { background-position: right center; } }
+   #zone-welcome .secondary .linkage
+   {
+      display: flex; justify-content: space-between; align-items: stretch; flex-shrink: 1;
+   }  
+   #zone-welcome .secondary .linkage a:first-child { background: #EA308F url('images/link-enticed.jpg') center center no-repeat; background-size: 0px 0px; }
+   #zone-welcome .secondary .linkage a:last-child { background: #F47E2D url('images/link-engaged.jpg') center center no-repeat; background-size: 0px 0px; }
+   #zone-welcome .secondary .linkage a { flex-basis: 50%; padding: 30px; color: #FFFFFF; }
+   #zone-welcome .secondary .linkage a:hover { background-size: cover; }
+   #zone-welcome .secondary .linkage a .label { font-size: 2.5vw; line-height: 2.5vw; }
+   #zone-welcome .secondary .linkage a .date { margin: 10px 0px; }
+   #zone-welcome .secondary .linkage a .control { text-align: right; padding-bottom: 30px; font-size: 18px; line-height: 18px; }
+   #zone-welcome .secondary .linkage a:hover .control { color: #000000; }
+   
+   #zone-fringe 
+   { 
+      background: #000000 url('images/zone2.jpg') left top no-repeat; background-size: cover; background-attachment: fixed; 
+   }
+   #zone-fringe .primary { color: #FFFFFF; background-color: rgba(0,0,0,0.65); }
+   #zone-fringe .primary h5 { color: #EA308F; }
+   #zone-barnes 
+   { 
+      background: #FFFFFF url('images/zone3a.jpg') right center no-repeat; background-size: cover; background-attachment: fixed; 
+   }
+   #zone-barnes .primary { background-color: rgba(255,255,255,0.85); }
+   #zone-barnes .primary h5 { color: #f47e2d; }
+   #zone-barnes .primary .photo { max-width: 500px; margin: 0px 0px 30px 0px; }
+   
+   /* scroll-to-top control */
+   
+   a#totop
+   {  
+      position: fixed; width: 100px; height: 100px; bottom: 0px; left: 50%; margin-left: -50px; margin-bottom: -55px; 
+      z-index: 25; text-align: center; color: #FFFFFF; background-color: #00B0B5; border-radius: 50px; display: none; 
+      font-size: 34px; line-height: 48px; z-index: 150;
+   }
+   a#totop:hover { color: #FFFFFF; background-color: #E32C22; }
+   
+   /* large desktop */
+   
+   @media screen and (min-width: 1800px)
+   {
+      body, input, textarea, select { font-size: 125%; line-height: 150%; }
+      #zone-welcome .primary p { font-size: 150%; line-height: 150%; }
+      .date, h5 { font-size: 22px; line-height: 28px; }
+      h2 { font-size: 40px; line-height: 40px; }
+      h4 { font-size: 26px; line-height: 32px; }
+   }
+
+   /* standard desktop + tablet landscape */
+   
+   @media screen and (max-width: 1200px)
+   {
+      body.home #nav { padding-left: 50px; }
+      body.home .footer { padding-left: 60px; }
+      .zone .primary { padding: 80px 60px 60px 60px; }
+   }
+   
+   /* tablet portrait (avg 768) */
+   
+   @media screen and (max-width: 990px)
+   {
+      #nav { left: 90px; justify-content: flex-end; }
+      #nav .menu { display: none; }
+      .content { margin-left: 90px; margin-right: 25px; }
+      #pmd { width: 90px; padding: 40px 35px; }
+      #pmd .badge { padding-top: 350%; background-image: url('images/pmd.svg'); }
+      #zone-welcome .secondary .linkage a { padding: 20px; }
+      #zone-welcome .secondary .linkage a .control { padding-bottom: 20px; }
+      .footer { padding: 30px 35px; }
+      .tile { width: 32%; }
+   }
+   
+   /* mobile only */
+   
+   @media screen and (min-width: 991px) 
+   { 
+      #nav ul li.mobileonly { display: none; } 
+   }
+   
+   /* home layout switch */
+   
+   @media screen and (max-width: 750px)
+   { 
+      #zone-welcome .primary p { color: #000000; font-size: 100%; line-height: 125%; }
+      #zone-welcome .secondary .linkage a .label { font-weight: 500; }
+      #zone-fringe .secondary, #zone-barnes .secondary { display: none; }
+      #zone-fringe .primary, #zone-barnes .primary { width: 100%; }
+      .footer, body.home .footer { padding-bottom: 60px; }
+      .footer.prefix, body.home .footer.prefix { padding-bottom: 0px; }
+   }
+   
+   /* phone (avg 360) */
+   
+   @media screen and (max-width: 600px)
+   {
+      #nav { left: 40px; }
+      .content { margin-left: 40px; margin-top: 80px; }
+      #pmd { width: 40px; height: 29px; padding: 0px; }
+      #pmd .badge { background-position: center 6px; background-size: auto 29px; padding: 0px; width: 100%; height: 60px; }
+      h2 { font-size: 24px; line-height: 24px; }
+      .footer, body.home .footer { padding-left: 40px; }
+      
+      img.photo, img.right { width: 50%; height: auto; }
+      img.right { float: none; max-width: 50%; margin: 0px 0px 20px 0px; }
+      
+      .tile { width: 48%; margin: 0% 2% 2% 0%; }
+      
+      .zone .primary { padding: 60px 40px 40px 40px; }
+      #zone-welcome { flex-wrap: wrap; }
+      #zone-welcome .primary { padding-top: 80px; }
+      #zone-welcome .primary, #zone-welcome .secondary { width: 100%; }
+      #zone-welcome .secondary { background-color: #EFEFEF; }
+      #zone-welcome .secondary .linkage a .label { font-size: 4vw; line-height: 4vw; font-weight: 700; }
+      #zone-barnes .primary .photo { width: 100%; max-width: 100%; }
+   }  
+   
+   /* print */
+
+   @media print
+   {
+      #nav, #pmd, .footer .logo, a#totop { display: none; }
+      .footer, body.home .footer 
+      { 
+         color: #999999; background-color: #FFFFFF; margin: 30px 0px 0px 0px; padding: 20px 0px 0px 0px; border-top: 1px solid #CCCCCC;
+      }
+      .content { margin: 0px; }
+      a#totop { color: transparent; background-color: transparent; width: 1; height: 1; overflow: hidden; }
+   }
+  </style>
+  <meta charset="utf-8">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>
+   Philadelphia Museum of Dance &ndash; Schedule
+  </title>
+ </head>
+ <body class="schedule">
+  <a id="top" name="#top">
+  </a>
+  <div id="nav">
+   <ul class="menu">
+    <li>
+     <a>
+      Schedule
+     </a>
+    </li>
+    <li>
+     <a>
+      The Artists
+     </a>
+     <ul>
+      <li>
+       <a>
+        Boris Charmatz
+       </a>
+      </li>
+      <li>
+       <a>
+        Valerie Amiss
+       </a>
+      </li>
+      <li>
+       <a>
+        Rebecca Arends
+       </a>
+      </li>
+      <li>
+       <a>
+        Lori Belilove &amp;
+        <nobr>
+         Isadora Duncan
+        </nobr>
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a>
+      The Curators
+     </a>
+     <ul>
+      <li>
+       <a>
+        Boris Charmatz
+       </a>
+      </li>
+      <li>
+       <a>
+        Dr. Miriam Giguere
+       </a>
+      </li>
+      <li>
+       <a>
+        Lois Welk
+       </a>
+      </li>
+      <li>
+       <a>
+        Simon Dove
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a>
+      Press
+     </a>
+    </li>
+   </ul>
+   <ul class="social">
+    <li>
+     <a class="fab" target="_blank" title="instagram">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+    </li>
+    <li>
+     <a class="fab" target="_blank" title="facebook">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+    </li>
+    <li>
+     <a class="fab" target="_blank" title="twitter">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+    </li>
+    <li>
+     <a class="fas" target="_blank" title="mailing list">
+      <i class="fas fa-envelope">
+      </i>
+     </a>
+    </li>
+   </ul>
+  </div>
+  <a id="pmd">
+   <div class="badge">
+   </div>
+  </a>
+  <div class="content">
+   <h2>
+    Schedule
+   </h2>
+   <br>
+   <h3>
+    <i>
+     manger
+    </i>
+    by Boris Charmatz
+   </h3>
+   <h5>
+    September 22-23, 2018 &middot; 8&ndash;9 PM
+   </h5>
+   <p>
+    FringeArts
+    <br>
+    140 N Columbus Blvd (at Race St)
+    <br>
+    Philadelphia, PA 19106
+   </p>
+   <br>
+   <h3>
+    Philadelphia Museum of Dance
+   </h3>
+   <h5>
+    October 6, 2018 &middot; 3&ndash;9 PM
+   </h5>
+   <p>
+    Barnes Foundation
+    <br>
+    2025 Benjamin Franklin Parkway
+    <br>
+    Philadelphia, PA 19130
+    <br>
+    [PHONE REDACTED]
+   </p>
+   <p>
+    FREE EVENT &middot; Just walk up. Stop by for an hour or stay for all six.
+   </p>
+   <h4>
+    Schedule
+   </h4>
+   <table class="schedule">
+    <tbody>
+     <tr>
+      <td class="date">
+       3&ndash;4 pm
+      </td>
+      <td>
+       <b>
+        <a>
+         Public warm-up led by Boris Charmatz and Romain Big&eacute;
+        </a>
+       </b>
+       <br>
+       <span class="location">
+        West Terrace, Main Floor
+       </span>
+       <br>
+       Join In&mdash;the audience is invited to participate
+      </td>
+     </tr>
+     <tr>
+      <td class="date">
+       4&ndash;4:30 pm
+      </td>
+      <td>
+       <b>
+        <a>
+         A medley of choreographed and freestyle pieces by It&rsquo;s Showtime NYC!
+        </a>
+       </b>
+       <br>
+       <span class="location">
+        West Terrace, Main Floor
+       </span>
+      </td>
+     </tr>
+     <tr>
+      <td>
+      </td>
+      <td>
+       <b>
+        <a>
+         STAGED? (2016) _
+         <i>
+          undressed
+         </i>
+         by Maria Hassabi
+        </a>
+       </b>
+       <br>
+       <span class="location">
+        Main Entrance, outside
+       </span>
+      </td>
+     </tr>
+     <tr>
+      <td class="date">
+       4:30&ndash;4:45 pm
+      </td>
+      <td>
+       <b>
+        <a>
+         <i>
+          1973,
+         </i>
+         a collective dance proposed by Boris Charmatz, 
+         performed by local college students
+        </a>
+       </b>
+       <br>
+       <span class="location">
+        Annenberg Court, Main Floor
+       </span>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <h4>
+    Rain or Shine
+   </h4>
+   <p>
+    Philadelphia Museum of Dance will take place rain or shine. Outside performance locations for the Solo Forest 
+   may be inside if it rains.
+   </p>
+   <h4>
+    Times to Remember
+   </h4>
+   <p>
+    <span class="date">
+     5 pm
+    </span>
+    &middot; Barnes collection and parking lot close
+    <br>
+    <span class="date">
+     9 pm
+    </span>
+    &middot; Event ends and building closes
+   </p>
+  </div>
+  <div class="footer">
+   <a target="_blank">
+    <img class="logo" src="rick.jpg">
+   </a>
+   <a target="_blank">
+    <img class="logo westphal" src="rick.jpg">
+   </a>
+   <a target="_blank">
+    <img class="logo" src="rick.jpg">
+   </a>
+   <a target="_blank">
+    <img class="logo" src="rick.jpg">
+   </a>
+   <br>
+   Support for Philadelphia Museum of Dance has been provided to Westphal College of Media Arts &amp; Design by
+   <a target="_blank">
+    The Pew Center for Arts &amp; Heritage
+   </a>
+   . Philadelphia Museum of Dance 
+         is produced in partnership with the Barnes Foundation. Performances of
+   <i>
+    manger
+   </i>
+   are presented in partnership 
+         with FringeArts.
+   <br>
+   <br>
+   Copyright &copy; 2023,
+   <a target="_blank">
+    Westphal College of Media Arts &amp; Design
+   </a>
+   ,
+   <nobr>
+    <a target="_blank">
+     Drexel University
+    </a>
+    .
+   </nobr>
+   <nobr>
+    All rights reserved.
+   </nobr>
+   <br>
+   Contact: &nbsp;
+   <a>
+    <i class="fas fa-mobile-alt">
+    </i>
+    [PHONE REDACTED]
+   </a>
+   &nbsp;
+   <nobr>
+    <a>
+     <i class="fas fa-envelope">
+     </i>
+     [EMAIL REDACTED]
+    </a>
+   </nobr>
+   <br>
+   Website developed by
+   <a target="_blank">
+    Zero Defect Design
+   </a>
+   .
+  </div>
+  <!-- Start of DoubleClick Floodlight Tag: Please do not remove -->
+  <noscript>
+  </noscript>
+  <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+  <div id="modal">
+   <div class="closemodal">
+    <i class="fas fa-times-circle">
+    </i>
+   </div>
+   <ul class="menu">
+    <li>
+     <a>
+      home
+     </a>
+    </li>
+    <li>
+     <a>
+      Schedule
+     </a>
+    </li>
+    <li>
+     <a>
+      The Artists
+     </a>
+     <ul>
+      <li>
+       <a>
+        Boris Charmatz
+       </a>
+      </li>
+      <li>
+       <a>
+        Valerie Amiss
+       </a>
+      </li>
+      <li>
+       <a>
+        Rebecca Arends
+       </a>
+      </li>
+      <li>
+       <a>
+        Lori Belilove &amp;
+        <nobr>
+         Isadora Duncan
+        </nobr>
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a>
+      The Curators
+     </a>
+     <ul>
+      <li>
+       <a>
+        Boris Charmatz
+       </a>
+      </li>
+      <li>
+       <a>
+        Dr. Miriam Giguere
+       </a>
+      </li>
+      <li>
+       <a>
+        Lois Welk
+       </a>
+      </li>
+      <li>
+       <a>
+        Simon Dove
+       </a>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </div>
+  <a id="totop">
+   <i class="fas fa-arrow-up">
+   </i>
+  </a>
+ </body>
+</html>

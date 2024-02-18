@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>
+   Grumpy Website
+  </title>
+  <style type="text/css">
+   * { box-sizing: border-box; }
+
+:root {
+  --body-bg: #FFF;
+  --body-fg: #000;
+}
+
+body {
+  background-color: var(--body-bg);
+  font-family: sans-serif;
+  line-height: 140%;
+  padding: 0.25em 1em;
+  max-width: 652px; /* .post_img =>> 550px */
+  margin: 0 auto;
+  transition: transform 500ms ease-in-out;
+}
+
+.icon_rotate { width: 20px; height: 20px; display: inline-block; background: url("/static/rotate.svg"); margin: 5px 5px -5px -25px; } 
+@media (max-width: 679px) {
+  .icon_rotate { display: none; }
+}
+
+/* HEADER */
+
+header { margin-bottom: 2em; display: flex; flex-direction: column; }
+
+.title { margin-bottom: 10px; }
+.title_back { position: absolute; margin-left: -1em; text-decoration: none; }
+.title_back:hover { text-decoration: underline; }
+
+body.anonymous #menu_page_new,
+body.anonymous #menu_page_edit,
+body.anonymous #menu_page_stats { display: none; }
+
+.subtitle { margin: 0 0 10px 0.09em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+.subtitle > span { cursor: pointer; }
+
+.menu { display: flex; border-bottom: 1px solid currentColor; gap: 1em; }
+.menu > span, .menu > a { padding: 0.5em 0; display: block; }
+.menu > .selected { padding-left: 1em; padding-right: 1em; border-top: 1px solid var(--body-fg); border-left: 1px solid var(--body-fg); border-right: 1px solid var(--body-fg); background: var(--body-bg); position: relative; top: 1px; }
+.menu > .selected > span { position: relative; top: -1px; }
+@media (max-width: 679px) {
+  .wide { display: none; }
+}
+
+/* PAGE */
+
+.page { margin-bottom: 2em; }
+
+/* POST */
+
+.post { display: flex; justify-content: flex-start; margin-bottom: 2em; }
+.post_side { margin-right: 20px; min-width: 50px; }
+@media (max-width: 399px) {
+  .post_side { display: none; }
+}
+.post_avatar { width: 50px; height: 50px; }
+
+.post_video_outer { position: relative; max-width: max-content; }
+.post_img, .post_video { display: block; position: relative; }
+.post_img, .post_video_outer { margin-bottom: 1em; }
+.post_img-fix { display: block; background-size: 100%; }
+.post_img-fix > img { position: absolute; height: 100%; }
+.post_video,
+.post_img-flex > img { display: block; max-width: 100%; height: auto; max-height: 500px; }
+.post_img > img, .post_video_outer { border: 1px solid #eee; }
+
+.post_author { font-weight: bold; }
+.post_content { width: 100%; }
+.post_body > p { margin: 0 0 1em 0; }
+
+.post_meta_edit { float: right; color: #c3c; }
+.post_meta_edit:hover { color: #d4d; }
+body.anonymous .post_meta_edit { display: none; }
+
+.controls { display: flex; justify-content: space-between; background-color: #eee; }
+.controls > button { width: 24px; height: 24px; background-image: url(/static/controls.svg); border: none; background-color: transparent; cursor: pointer; }
+button.paused           { background-position:     0 0; }
+button.paused:hover     { background-position: -100% 0; }
+button.playing          { background-position:     0 -100%; }
+button.playing:hover    { background-position: -100% -100%; }
+button.fullscreen       { background-position:     0 -200%; }
+button.fullscreen:hover { background-position: -100% -200%; }
+
+@media (prefers-color-scheme: dark) {
+  .post_img > img, .post_video_outer { border-color: #333; }
+  .controls { background-color: #333; }
+
+  button.paused           { background-position: -200% 0; }
+  button.paused:hover     { background-position: -300% 0; }
+  button.playing          { background-position: -200% -100%; }
+  button.playing:hover    { background-position: -300% -100%; }
+  button.fullscreen       { background-position: -200% -200%; }
+  button.fullscreen:hover { background-position: -300% -200%; }
+}
+
+/* PAGES */
+
+.pages { display: flex; justify-content: flex-start; border-top: 1px solid currentColor; padding: 0.5em 0; }
+.pages_title { width: 70px; padding: 0.5em 0; }
+.pages_inner { width: 100%; display: flex; flex-wrap: wrap; }
+.pages a, .pages span { text-align: center; padding: 0.5em 0.5em; }
+.pages span.selected { font-weight: bold; }
+
+@media (max-width: 679px) {
+  .pages_title { display: none; }
+  .pages a, .pages span { padding: 0.5em 0.25em; }
+}
+
+/* SEARCH */
+
+form.search { margin: 0 0 2em 0; }
+form.search > span { margin-right: 0; width: 70px; }
+.search-results em { font-style: normal; background-color: #F4E3B4; padding: 0 1px; margin: 0 -1px; }
+.no-results { margin: 2em 0 2em 70px; }
+
+@media (prefers-color-scheme: dark) {
+  .search-results em { background-color: #F7941F; }
+}
+
+/* FOOTER */
+@keyframes rotating {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+footer {
+  padding: 1em 0 1em;
+  border-top: 1px solid currentColor;
+}
+
+
+/* CSS Framework */
+
+.relative { position: relative; }
+
+.row { display: flex; }
+.row > * { margin-right: 20px; }
+.row > *:last-child { margin-right: 0; }
+.row.left   { justify-content: flex-start; }
+.row.center { justify-content: center; }
+.row.right  { justify-content: flex-end; }
+.row.top    { align-items: flex-start; }
+.row.middle { align-items: center; }
+.row.bottom { align-items: flex-end; }
+
+.column { display: flex; flex-direction: column; }
+.column > * { margin-bottom: 20px; }
+.column > *:last-child { margin-bottom: 0; }
+.column.top    { justify-content: flex-start; }
+.column.middle { justify-content: center; }
+.column.bottom { justify-content: flex-end; }
+.column.left   { align-items: flex-start; }
+.column.center { align-items: center; }
+.column.right  { align-items: flex-end; }
+
+.grow { flex: 1; }
+.space-between { justify-content: space-between; }
+button, .no-select { user-select: none; -webkit-user-select: none; }
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+
+.no-display { display: none; }
+
+.stick-left { position: absolute; left: 0; }
+.stick-right { position: absolute; right: 0; }
+.stick-top { position: absolute; top: 0; }
+.stick-bottom { position: absolute; bottom: 0; }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #2b2c2d;
+    --body-fg: #FFF;
+  }
+
+  body { color: #FFF; }
+  a { color: #8FC4EC; }
+  a:visited { color: #BC84BC; }
+  .title_new, .post_meta_edit { color: #e9e; }
+  .icon_rotate { background-image: url("/static/rotate_dark.svg"); }
+} 
+
+/* FORMS */
+
+textarea,
+input[type=text], 
+input[type=search], 
+button { font: inherit; outline: none; }
+
+.input { height: 36px; }
+.input { position: relative; border: 0px solid #d5d1c9; }
+.input:before { border-top: 1px solid #808080; border-right: 1px solid #D5D1C9; border-bottom: 1px solid #E5E1D9; border-left: 1px solid #808080; content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; }
+.input:after { border-top: 1px solid #3d3d3d; border-right: 1px solid #D5D1C9; border-bottom: 1px solid #E5E1D9; border-left: 1px solid #3d3d3d; content: ''; position: absolute; top: 1px; right: 1px; bottom: 1px; left: 1px; z-index: 1; background: #FFF; }
+.input.disabled:after { background: #f5f5f0; }
+.input > textarea,
+.input > input[type=text],
+.input > input[type=search] { min-width: 100px; padding: 6px 6px 4px; background: transparent; border: none; height: 100%; width: 100%; margin: 0; position: absolute; z-index: 2; }
+
+button { border: none; padding: 0; }
+
+.btn { height: 36px; padding: 1px 30px 0; background: #D5D1C9; color: black; position: relative; border: 1px solid #000; }
+.btn:before { border-top: 1px solid #FFF; border-left: 1px solid #FFF; border-right: 1px solid #3d3d3d; border-bottom: 1px solid #3d3d3d; content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.btn:after { border-top: 1px solid #D5D1C9; border-left: 1px solid #D5D1C9; border-right: 1px solid #808080; border-bottom: 1px solid #808080; content: ''; position: absolute; top: 1px; right: 1px; bottom: 1px; left: 1px; }
+.btn:not([disabled]):active { padding: 7px 29px 4px 31px; }
+.btn:not([disabled]):active:before, .btn:not([disabled]):active:after { border: none; }
+
+.btn[disabled] { color: #808080; text-shadow: 1px 1px 0 #FFF; border-color: #FFF; }
+
+button.inline { background: none; color: #00F; border-bottom: 1px dotted #00F; cursor: pointer; }
+button.inline:active { position: relative; top: 1px; }
+  </style>
+ </head>
+ <body class="anonymous">
+  <header>
+   <h1 class="title">
+    <a>
+     Grumpy Website
+    </a>
+   </h1>
+   <p class="subtitle">
+    <span class="icon_rotate" onclick="body_rotate()">
+    </span>
+    <span class="subtitle-text">
+     Would you like to save this file?
+    </span>
+   </p>
+   <div class="menu">
+    <a class="no-select selected" id="menu_page_index">
+     <span>
+      Home
+     </span>
+    </a>
+    <a class="no-select" id="menu_page_search">
+     <span>
+      Search
+     </span>
+    </a>
+    <a class="no-select" id="menu_page_subscribe">
+     <span>
+      Subscribe
+     </span>
+    </a>
+    <a class="no-select" id="menu_page_suggest">
+     <span>
+      Suggest
+     </span>
+    </a>
+    <a class="no-select" id="menu_page_about">
+     <span>
+      About
+     </span>
+    </a>
+    <a class="no-select" id="menu_page_new">
+     <span>
+      +
+     </span>
+    </a>
+    <a class="no-select" id="menu_page_stats">
+     <span>
+      Stats
+     </span>
+    </a>
+   </div>
+  </header>
+  <div class="post" data-id="195">
+   <div class="post_side">
+    <img class="post_avatar" src="rick.jpg">
+   </div>
+   <div class="post_content">
+    <a class="post_img post_img-flex" target="_blank">
+     <img src="rick.jpg">
+    </a>
+    <div class="post_body">
+     <p>
+      <span class="post_author">
+       nikitonsky:
+      </span>
+      organising stuff is a burden.
+     </p>
+     <p>
+      In the case above I wanted to add a place to the bookmarks so it&rsquo;ll be easier to find. But instead of just marking it with a small heart icon, app asks me if I want to create  a new collection.
+     </p>
+     <p>
+      So I roll with it and now I have to invent a name! What name should I choose?
+     </p>
+     <p>
+      It&rsquo;s not all that bad though. There were times when they asked you to create an account before you can create any marks.
+     </p>
+    </div>
+    <p class="post_meta">
+     December 27, 2017 //
+     <a>
+      Permalink
+     </a>
+     <a class="post_meta_edit">
+      Edit
+     </a>
+    </p>
+   </div>
+  </div>
+  <footer>
+   <a>
+    Nikita Prokopov
+   </a>
+   ,
+   <a>
+    Dmitrii Dimandt
+   </a>
+   ,
+   <a>
+    Rakhim Davletkaliyev
+   </a>
+   &amp; contributors.
+  </footer>
+ </body>
+</html>

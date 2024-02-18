@@ -1,0 +1,838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "">
+<html lang="en" xml:lang="en" xmlns="">
+ <head>
+  <style>
+   @CHARSET "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #222;
+}
+
+a:hover {
+  color: #137;
+}
+
+a img {
+  border: none;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Gill Sans","Trebuchet MS", Verdana, Helvetica;
+  background-color: #eee;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+code {
+  font-size: 13px;
+  font-family: Monospace, "Courier New";
+  background-color: #eef;
+}
+
+h1 {
+  color: #000;
+  margin: 0 -2px;
+  padding: .2em .2em;
+  font-size: 20px;
+  text-align: left;
+  font-weight: normal;
+  text-transform: uppercase;
+  background-color: #eee;
+}
+
+h1 a {
+  color: #000;
+  text-decoration: none;
+}
+
+h1#header {
+  display: none;
+}
+
+h1:first-child:first-letter {
+font-size: 22px;
+}
+
+h2 {
+margin-top: 1.5em;
+font-weight: normal;
+}
+
+h2.sf_comments_title {
+  color: #000;
+  margin: 2em -2px 0 -2px;
+  padding: 0;
+  font-size: 17px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+h3 {
+margin-top: 2em;
+font-weight: normal;
+}
+
+h4 {
+margin-top: .5em;
+font-weight: normal;
+}
+
+html {
+  background-color: #eee;
+  overflow: auto;
+}
+
+li {
+  margin: .5em 0 0 2em;
+  list-style-type: square;
+}
+
+object {
+  max-width: 100%;
+}
+
+p {
+  margin: 1em 0;
+}
+
+pre {
+  margin: 1em 0;
+  overflow: auto;
+}
+
+pre code {
+  display: block;
+  padding: 1em 10px;
+  overflow: auto;
+  line-height: 13px;
+  border-left: 5px #47a solid;
+}
+
+.informations {
+font-size: 14px;
+list-style-type: none;
+}
+
+.informations li {
+color: #999;
+margin: 0 1em;
+}
+
+.informations li a {
+color: #999;
+}
+
+.informations li a:hover {
+color: #137;
+}
+
+.items-list {
+padding: 0;
+}
+
+.items-list h2 {
+margin: 0;
+padding: 0 0 0 20px;
+font-size: 1.2em;
+}
+
+.items-list h2 a {
+text-decoration: none;
+margin: 0;
+line-height: .7em;
+}
+
+.items-list>li {
+margin: 1em 0;
+list-style-type: none;
+}
+
+.items-list li.other {
+background: transparent url(../images/icons/other.png) 0 3px no-repeat;
+}
+
+.items-list li.movie {
+background: transparent url(../images/icons/movie.png) 0 3px no-repeat;
+}
+
+.items-list li.book {
+background: transparent url(../images/icons/book.png) 0 3px no-repeat;
+}
+
+.items-list li.link {
+background: transparent url(../images/icons/link.png) 0 3px no-repeat;
+}
+
+.items-list li.museum {
+background: transparent url(../images/icons/museum.png) 3px 0 no-repeat;
+}
+
+.items-list li.music {
+background: transparent url(../images/icons/music.png) 0 3px no-repeat;
+}
+
+.items-list li.photo {
+background: transparent url(../images/icons/photo.png) 0 3px no-repeat;
+}
+
+.items-list li.visit {
+background: transparent url(../images/icons/visit.png) 0 3px no-repeat;
+}
+
+.items-list li.writing {
+background: transparent url(../images/icons/post.png) 0 3px no-repeat;
+}
+
+.microformat {
+display: none;
+}
+
+.sf_comment {
+font-size: 14px;
+margin-bottom: 40px;
+}
+
+.sf_comment_form div {
+margin: 0 0 10px 0;
+}
+
+.sf_comment_form fieldset {
+border: none;
+padding: 0;
+}
+
+.sf_comment_form label {
+margin: 0;
+padding: 0;
+display: block;
+}
+
+.sf_comment_form input, .sf_comment_form textarea {
+border: 1px #888 solid;
+padding: 1px 0 1px 10px;
+min-width: 30em;
+background: #fff url(../images/icons/input-shadow.gif) top left repeat-x;
+}
+
+.sf_comment_form textarea {
+width: 660px;
+height: 10em;
+}
+
+.sf_comment_form .form_error {
+color: #888;
+margin: 0;
+padding: 0 0 0 20px;
+font-size: 11px;
+background: transparent url(../images/icons/error.png) 0 4px no-repeat;
+font-weight: bold;
+}
+
+.sf_comment_form input.submit {
+color: #666;
+width: auto;
+border: 1px #666 solid;
+height: 2.2em;
+margin: 0 0 2em 0;
+padding: 0 5px;
+font-size: 1em;
+min-width: 0;
+background: none;
+background-color: #ececec;
+}
+
+.sf_comment_form input.submit:hover {
+color: #ececec;
+border: 1px #ececec solid;
+background-color: #666;
+}
+
+.sf_comment_form .required input, .sf_comment_form .required textarea {
+background: #fff url(../images/icons/input-shadow-required.gif) top left no-repeat;
+}
+
+.sf_comment_form_error {
+color: red;
+font-weight: bold;
+}
+
+.sf_comment_info {
+margin-bottom: 0;
+}
+
+.sf_comment_info a {
+color: #444;
+}
+
+.sf_comment_text {
+overflow: auto;
+margin-top: 0;
+border-left: 5px solid #ccc;
+padding: 0 0 0 5px;
+}
+
+.sf_comment_text p {
+margin: 0;
+}
+
+#sf_comment_ajax_indicator {
+width: 20px;
+height: 20px;
+margin: 0;
+padding: 0;
+background: transparent url(../images/icons/indicator.gif) top left no-repeat;
+}
+
+#sf_comment_list {
+margin-left: 60px;
+}
+
+#sf_comment_list .gravatar_photo {
+float: left;
+margin-left: -60px;
+}
+
+.spacer {
+clear: both;
+height: 1px;
+}
+
+.tag-cloud {
+font-size: 1.5em;
+list-style-type: none;
+}
+
+.tag-cloud li {
+margin: 0 .5em;
+display: inline;
+padding: 0;
+}
+
+.tag-cloud li a {
+text-decoration: none;
+}
+
+.tag-cloud li a.normal {
+font-size: 1.5em;
+}
+
+.tag-cloud li strong a {
+font-size: 2em;
+}
+
+.tags-list {
+margin: 10px 0 2em 0;
+display: inline;
+}
+
+.tags-list li {
+margin: 0;
+display: inline;
+list-style-type: none;
+}
+
+ul.toc li, ol.toc li {
+list-style: disc;		/* Mac NS has problem with 'none' */
+list-style: none;
+}
+
+#container {
+border-left: 1px #ccc solid;
+border-right: 1px #ccc solid;
+-moz-border-radius: 50px 50px 0 0;
+-webkit-border-top-right-radius: 50px;
+-webkit-border-top-left-radius: 50px;
+}
+
+#container p {
+line-height: 1.5em;
+}
+
+#container blockquote {
+border: 1px #eee solid;
+margin: 1em 4em;
+padding: 10px 10px 10px 40px;
+font-size: 14px;
+background: #f2f2f2 url(../images/icons/quote.png) top left no-repeat;
+}
+
+#container blockquote cite.author {
+font-style: normal;
+font-weight: bold;
+}
+
+#container blockquote cite.title {
+font-style: normal;
+text-decoration: underline;
+}
+
+#container ul {
+margin-bottom: 20px;
+}
+
+#container #menu {
+width: 100%;
+height: 55px;
+float: left;
+padding: 0;
+position: relative;
+margin-bottom: -22px;
+}
+
+#container #menu ul {
+clear: both;
+margin: 0;
+padding: 0 10px;
+width: calc(100% - 20px);
+}
+
+#container #menu ul#first-level {
+height: 33px;
+background-color: #1a1a1a;
+-moz-border-radius: 10px 10px 0 0;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+-webkit-border-top-right-radius: 10px;
+-webkit-border-top-left-radius: 10px;
+}
+
+#container #menu ul#second-level {
+position: absolute;
+padding-bottom: 3px;
+background: transparent url(../images/second-level-menu-background.png) top left repeat;
+z-index: 200;
+}
+
+#container #menu ul li {
+list-style-type: none;
+margin: 0;
+float: left;
+}
+
+#container #menu ul#first-level li {
+height: 33px;
+background-color: #1a1a1a;
+}
+
+#container #menu ul li.right {
+float: right;
+}
+
+#container #menu ul li a {
+color: #fff;
+padding: 0 10px;
+font-size: 16px;
+text-decoration: none;
+}
+
+#container #menu ul#first-level li a {
+height: 25px;
+padding: 5px 10px;
+display: block;
+}
+
+#container #menu ul li.current a {
+color: #8ae;
+}
+
+#container #menu ul li:hover a {
+color: #000;
+background-color: #eee;
+}
+
+#container #menu ul#first-level li a {
+padding: 4px 10px;
+}
+
+#container #menu ul#second-level li a {
+font-size: .7em;
+padding: 3px 10px;
+}
+
+#container .illustration {
+margin: 0 0 1em 0;
+}
+
+#container .illustration img {
+border-bottom: 1px #eee solid;
+max-width: 100%;
+}
+
+#container .illustration-comment {
+color: #888;
+margin: -1em 10px 1em 10px;
+line-height: 16px;
+font-style: italic;
+text-align: right;
+}
+
+#container .sf_comment blockquote {
+margin: 0;
+}
+
+#content {
+padding: 0 40px 10px 40px;
+font-size: 15px;
+}
+
+#footer {
+padding: 12px 0;
+font-size: 14px;
+border-top: 1px #ccc solid;
+background-color: #eee;
+}
+
+#how {
+padding: 0;
+}
+
+#how h2 {
+display: inline;
+margin: 0;
+padding: 0 2em 0 0;
+}
+
+#how h2 a {
+text-decoration: none;
+margin: 0;
+line-height: .7em;
+}
+
+#how li {
+margin: 1em 0;
+list-style-type: none;
+}
+
+#language-choice {
+padding: .5em 0;
+font-size: 14px;
+width: 195px;
+}
+
+#language-choice li {
+background: transparent url(../images/white-background.png) top left repeat;
+list-style-type: none;
+margin: 0 0 1px 0;
+padding: 0 10px;
+}
+
+#prelude {
+display: none;
+}
+
+#root {
+color: #111;
+hyphens: auto;
+width: 752px;
+margin: 0 auto;
+text-align: justify;
+background-color: #fff;
+}
+
+@media screen and (max-width: 752px) {
+  #content {
+    padding: 0 20px 10px 20px;
+  }
+
+  #footer {
+    padding: 12px;
+  }
+
+  #root {
+    width: 100%;
+  }
+}
+  </style>
+  <meta content="application/xhtml+xml; charset=utf-8" http-equiv="Content-Type">
+  <meta content='Ressources tagged with "compiler"' name="title">
+  <meta content="Personal page of Xavier Lacot : articles, (open-source) code, photos, artwork" name="description">
+  <meta content="xavier, lacot, php, symfony, photo, photos, writings, standards, semantic web" name="keywords">
+  <meta content="en" name="language">
+  <meta content="index, follow" name="robots">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>
+   Ressources tagged with "compiler"
+  </title>
+ </head>
+ <body>
+  <div id="root">
+   <h1 id="header">
+    <a>
+     Chez Xavier
+    </a>
+   </h1>
+   <ul id="prelude">
+    <li>
+     <a>
+      Go to the content
+     </a>
+    </li>
+    <li>
+     <a>
+      Go to the menu
+     </a>
+    </li>
+   </ul>
+   <div id="container">
+    <h1>
+     <a>
+      Home
+     </a>
+     /
+  What /
+  "compiler"
+    </h1>
+    <div id="menu">
+     <ul id="first-level">
+      <li>
+       <a>
+        writings
+       </a>
+      </li>
+      <li>
+       <a>
+        photos
+       </a>
+      </li>
+      <li>
+       <a>
+        projects
+       </a>
+      </li>
+      <li class="right">
+       <a>
+        about
+       </a>
+      </li>
+     </ul>
+    </div>
+    <p class="illustration">
+     <img alt="One Tag, I'll be a cloud." src="rick.jpg">
+    </p>
+    <p class="illustration-comment">
+     One
+     <em>
+      Tag
+     </em>
+     , I'll be a cloud.
+    </p>
+    <div id="content">
+     <ul class="items-list">
+      <li class="link">
+       <h2>
+        <a rel="nofollow">
+         Phrozn - Static Site Generator for PHP
+        </a>
+       </h2>
+       <ul class="informations">
+        <li>
+         saved on: 2011-04-13
+        </li>
+        <li>
+         uri:
+         <a>
+          http://www.phrozn.info/en/
+         </a>
+        </li>
+        <li>
+         about: Phrozn is a Static Site Generator built in PHP with modern libraries. Still rather geeky, but a GUI to it would make it a much more attractive tool for simple requirements !
+        </li>
+        <li>
+         tags:
+         <ul class="tags-list">
+          <li>
+           <a rel="tag">
+            compiler
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            generator
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            php
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            simple
+           </a>
+           ,
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </li>
+      <li class="link">
+       <h2>
+        <a rel="nofollow">
+         PHP compiler performance - PHP Classes blog - PHP Classes
+        </a>
+       </h2>
+       <ul class="informations">
+        <li>
+         saved on: 2010-02-23
+        </li>
+        <li>
+         uri:
+         <a>
+          http://www.phpclasses.org/blog/post/117-PHP-compiler-performance.html
+         </a>
+        </li>
+        <li>
+         about: A first benchmark of the main PHP compilers. Where HipHop PHP seems to perform well, but not at a tremendous level as expected.
+        </li>
+        <li>
+         tags:
+         <ul class="tags-list">
+          <li>
+           <a rel="tag">
+            benchmark
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            blog
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            compiler
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            facebook
+           </a>
+           ,
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </li>
+      <li class="link">
+       <h2>
+        <a rel="nofollow">
+         Roadsend PHP Compiler
+        </a>
+       </h2>
+       <ul class="informations">
+        <li>
+         saved on: 2010-01-08
+        </li>
+        <li>
+         uri:
+         <a>
+          http://www.roadsend.com/home/index.php?pageID=compiler
+         </a>
+        </li>
+        <li>
+         about: A compiler for PHP programs, which allows to compile PHP application as common desktop binaries: non-required php executable, eventually microserver embedded, php-gtk support, etc.
+        </li>
+        <li>
+         tags:
+         <ul class="tags-list">
+          <li>
+           <a rel="tag">
+            application
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            compiler
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            desktop
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            developement
+           </a>
+           ,
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </li>
+      <li class="link">
+       <h2>
+        <a rel="nofollow">
+         lessphp
+        </a>
+       </h2>
+       <ul class="informations">
+        <li>
+         saved on: 2009-08-03
+        </li>
+        <li>
+         uri:
+         <a>
+          http://leafo.net/lessphp/
+         </a>
+        </li>
+        <li>
+         about: lessphp is a compiler for the CSS LESS syntax, written in php.
+        </li>
+        <li>
+         tags:
+         <ul class="tags-list">
+          <li>
+           <a rel="tag">
+            compiler
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            css
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            development
+           </a>
+           ,
+          </li>
+          <li>
+           <a rel="tag">
+            less
+           </a>
+           ,
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div id="footer">
+    &copy; 1998-2023 Xavier Lacot -
+    <a>
+     about
+    </a>
+   </div>
+  </div>
+ </body>
+</html>

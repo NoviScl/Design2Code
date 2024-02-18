@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html class="js" lang="en">
+ <head>
+  <style>
+   /* cookieUse v3.1 */
+.badjs .cookieuse {
+  display: none !important;
+}
+.cookieuse {
+  color: #fff;
+  background: #000;
+  background: rgba(0, 0, 0, 0.8);
+
+  font-size: 0.8em;
+  line-height: 1.5;
+  z-index: 9999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  max-height: 80vh;
+  overflow: auto;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 0.5s;
+}
+@media (min-width: 600px) {
+  .cookieuse {
+    font-size: 1em;
+  }
+}
+
+.cookieuse-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cookieuse p,
+.cookieuse small {
+  display: block;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+.cookieuse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.cookieuse button {
+  cursor: pointer;
+  color: inherit;
+  background: none;
+}
+.cookieuse-actions button {
+  font-weight: bold;
+  min-width: 10em;
+  padding: 0.5em 1em;
+  border: 1px solid;
+  margin: 0.5em 0;
+}
+.cookieuse-closer {
+  font-size: 3em;
+  line-height: 1;
+  float: right;
+  border: none;
+  padding: 0 0.5em;
+}
+.cookieuse .cookieuse-accept {
+  color: #000;
+  background: #fff;
+  border-color: #fff;
+}
+.cookieuse a,
+.cookieuse a:hover,
+.cookieuse a:focus {
+  text-decoration: underline;
+  color: inherit;
+}
+.cookieuse a:hover,
+.cookieuse a:focus,
+.cookieuse button:hover,
+.cookieuse button:focus {
+  opacity: 0.6;
+}
+
+
+
+/* vanillaSlider.VERSION = 2.2 */
+.vslider {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.vslider > * {
+  display: block;
+  position: relative;
+}
+
+.vslider > * + * {
+  display: none;
+  position: absolute;
+}
+
+.vslider-item {
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  /* -ms-touch-action: none;
+  touch-action: none; */
+  transition: z-index 0s,
+  opacity 1.2s ease-in-out,
+  transform 1s ease-in-out;
+  z-index: 20;
+  opacity: 0;
+  transform: translateX(-10%);
+}
+
+.vslider-item[aria-hidden='false'] {
+  /* hack for Edge 16?! */
+  transition: z-index 0s,
+  opacity 1.2s ease-in-out,
+  transform 1s ease-in-out;
+  z-index: 30;
+  opacity: 1.0;
+  transform: translateX(0);
+}
+
+.vslider-before {
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(10%);
+}
+
+.vslider-direct {
+  transition: none;
+}
+
+.vslider-status {
+  display: none;
+}
+
+/*.vslider-status {
+  display: block;
+  list-style: none;
+  z-index: 110;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.vslider-status-item {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.1em;
+  width: 4px;
+  height: 4px;
+  line-height: 1;
+  color: transparent;
+  background: transparent;
+  border: 3px solid rgb(45,170,225);
+  border-radius: 100%;
+  margin: 0 2px;
+  transition: 1s;
+  opacity: 0.5;
+}
+
+.vslider-status-item:hover,
+.vslider-status-item:focus,
+.vslider-status-item[aria-selected='true'] {
+  opacity: 1;
+}*/
+
+.vslider-nav {
+  display: block;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.vslider-prev,
+.vslider-next {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  line-height: 1;
+  font-size: 2em;
+  border: none;
+  color: rgb(45,170,225);
+  color: #fff;
+  opacity: 0.25;
+}
+
+.vslider-prev:hover,
+.vslider-prev:focus,
+.vslider-next:hover,
+.vslider-next:focus {
+  opacity: 1;
+}
+
+.vslider-next {
+  left: auto;
+  right: 0;
+  background: url('../../media/img/icons/arrow-right.svg') no-repeat;
+}
+.vslider-prev {
+  background: url('../../media/img/icons/arrow-left.svg') no-repeat;
+}
+
+.vslider-prev:after {
+  content: '.';
+}
+
+.vslider-next:after {
+  content: '.';
+}
+
+
+.vslider,
+.vslider-item {
+  height: 70vh;
+}
+.vslider-item {
+  background: no-repeat center;
+  background-size: contain;
+}
+
+
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+
+
+/*******************************************************
+*
+Theme Name:     SDW 2.0
+Theme URI:      schuellerdewaal.com
+Description:    ArtDirection-Site
+Version:        1.0
+Author:         Tina Hoeke
+License:        none (public domain)
+*
+*******************************************************/
+
+
+/*******************************************************
+    1 Global Settings
+*******************************************************/
+
+/*** horizontale Navigation ***/
+.inline {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+  .inline li, .inline div {
+    display: inline-block;
+    list-style: none;
+  }
+
+.flex-horizontal {
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+  }
+
+
+/*** text-align ***/
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
+
+
+
+/*******************************************************
+    1 Font-Settings
+*******************************************************/
+
+/* *** Global *** */
+
+html {
+  font-family: 'Times New Roman', Times, Georgia, Palatino, serif;
+  line-height: 1.2;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.serif {
+  font-family: 'Times New Roman', Times, Georgia, Palatino, serif;
+}
+.sans-serif {
+  font-family: Arial, 'Lucida Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.monospace {
+  font-family: 'Courier New', Courier, Monaco, 'Lucida Console', monospace;
+}
+
+.txt-small {
+  font-size: .8em;
+}
+.txt-bold {
+  font-weight: bold;
+}
+
+
+/* *** Module *** */
+
+h1, h2, h3, h4, p, ul, form, table {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+}
+  h1 {
+    margin-bottom: 1rem;
+  }
+  h2 {
+    margin-bottom: 2.5rem;
+  }
+  h3 {
+    font-weight: normal;
+  }
+
+  p, ul, table, form {
+    margin-bottom: 2rem;
+  }
+
+h2, h3, p, ul, table, dl, a, b {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  }
+
+ul, li {
+  list-style: none;
+  text-align: left;
+}
+
+dt {
+  font-weight: bold;
+}
+
+
+/* *** Links *** */
+a:link, a:hover, a:focus, a:visited, a:active {
+    color: rgb(45,170,225);
+  }
+  a:hover, a:focus,
+  .icon,
+  .button {
+      text-decoration: none;
+    }
+
+
+  .without-line {
+    text-decoration: none;
+  }
+  .without-line:hover, .without-line:focus {
+    text-decoration: underline;
+  }
+
+
+  /*.icon, .mainmenue a {
+    color: #000;
+    transition: color .2s;
+  }
+    .icon:hover,.icon:focus {
+      color: orange;
+    }
+  .icon-big {
+    font-size: 5em;
+  }*/
+
+
+  .button:link, .button:hover, .button:focus, .button:visited, .button:active {
+    display: block;
+    padding: 12px 24px;
+    margin: 2% auto;
+    width: 33%;
+    min-width: 200px;
+    font-size: 1rem;
+    color: #fff;
+    text-align: center;
+    background-color: rgb(197,197,196);
+    border-radius: 24px;
+    transition: background-color .2s;
+  }
+    .button:hover, .button:focus {
+      background-color: orange;
+    }
+
+
+
+/*******************************************************
+    2 Layout
+*******************************************************/
+
+body {
+  text-align: center;
+  background-color: #fff;
+  color: rgb(45,170,225);
+  margin: 0;
+}
+  .bg-blue,
+  .bg-blue .mainmenue {
+    background-color: rgb(224,242,251);
+  }
+  .bg-pink,
+  .bg-pink .mainmenue {
+    background-color: rgb(252,219,210);
+  }
+
+.wrapper {
+  margin: 5vw auto 0 auto;
+  width: 95%;
+  max-width: 1440px;
+}
+
+
+/* *** Header *** */
+.mainmenue {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  text-transform: uppercase;
+  background-color: #fff;
+}
+  .mainmenue a {
+    padding: 3vw 3vw 1vw 3vw;
+  }
+
+.logo {
+  position: relative;
+  width: 33%;
+  max-width: 480px;
+  margin: 2vw;
+  z-index: 1000;
+}
+
+
+/* *** Content *** */
+section {
+  margin-bottom: 60px;
+  padding-bottom: 48px;
+  border-bottom: 2px solid rgb(45,170,225);
+}
+
+
+/* *** Newsletter Sign Up *** */
+
+.profile-nl {
+    width: 33%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .profile-nl h2,{
+    margin-bottom: 0;
+    }
+
+input[type=email]{
+   margin-top: 36px;
+   width: 100%;
+   min-height: 48px;
+   border-radius: 24px;
+   text-align: center;
+   background-color: #fff;
+   color: rgb(52,167,222);
+   outline: none;
+   border: none;
+ }
+input[type=submit],
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus {
+  height: 30px;
+   width: 100%;
+   text-align: right;
+   color: rgb(52,167,222);
+   font-weight: bold;
+   text-transform: uppercase;
+   background: none;
+   outline: none;
+   border: none;
+ }
+  input[type=submit]:hover,
+  input[type=submit]:active,
+  input[type=submit]:focus {
+    text-decoration: underline;
+    height: 30px;
+  }
+
+  /* *** Footer *** */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 100px;
+  color: #000;
+}
+  footer a:link, footer a:hover, footer a:focus, footer a:visited, footer a:active {
+    display: block;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .to-privacy,
+  .copy  {
+    margin-bottom: 10px;
+  }
+
+  /* *** Footer Folgeseiten *** */
+
+  .footer-follow { /* groÃes Einzelicon sichtbar */
+    display: block;
+    margin-bottom: 20px;
+  }
+    .footer-follow img {
+      width: 72px;
+    }
+
+  .footer-home { /* NL-SignUp and kleine Icons versteckt */
+    display: none;
+    }
+
+
+  /* *** Footer Home *** */
+  .home footer {
+    background: rgb(100, 186, 229) url('../media/img/footer-bg2x.png') top center no-repeat;
+    background-size: contain;
+    padding-top: 15vw;
+  }
+  .body-home footer {
+    background: none;
+  }
+  .home .footer-follow { /* groÃes Einzelicon verstecken */
+    display: none;
+    }
+  .home .footer-home { /* NL-SignUp and kleine Icons sichtbar */
+    display: block;
+    }
+
+  .home-nl {
+    width: 50%;
+    max-width: 480px;
+    margin: 0 auto 3vw auto;
+  }
+  .home-nl h2,
+  .home-nl h3 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    }
+  .home-nl input[type=email]{
+    margin-top: 12px;
+  }
+  .home-nl input[type=submit],
+  .home-nl input[type=submit]:hover,
+  .home-nl input[type=submit]:active,
+  .home-nl input[type=submit]:focus {
+    color: #000;
+    font-size: 1em;
+  }
+
+  .small-icon {
+    margin: 1vw auto 3vw auto;
+  }
+    .small-icon img {
+      width: 29px;
+      padding: 0 6px;
+      margin: 0 3px;
+    }
+
+
+/*******************************************************
+    3 Templates
+*******************************************************/
+
+
+/********************** Hompage **********************/
+
+/* *** Gradient *** */
+.body-home {
+  background: linear-gradient(120deg, rgb(193,227,235) 0%, rgb(245,167,175) 33%, rgb(253, 254, 162) 66%, rgb(193,227,235) 100%);
+}
+.home .logo {
+    width: 50%;
+    max-width: 740px;
+  }
+
+.switcher {
+  cursor: pointer;
+  position: relative;
+  z-index: 200;
+  text-align: left;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  margin-bottom: 2vw;
+  color: transparent;
+  background-image: linear-gradient(90deg, rgb(45,170,225) 0%, rgb(255,255,255) 100% );
+  border: none;
+  border-radius: 30px;
+  box-shadow: 1px 1px 1px rgb(223,237,245), 0px 0px 1px rgb(223,237,245);
+  }
+  .switcher img {
+    width: 24px;
+    height: 24px;
+  }
+  .body-home .switcher {
+    background: #fff;
+    text-align: right;
+  }
+
+  .body-home .mainmenue {
+    background-color: transparent;
+  }
+
+
+/* *** Content Home *** */
+.content-home { /* wrapper */
+      margin-top: 0;
+    }
+
+.package-wrapper {
+    position: relative;
+  }
+    .package {
+      width: 95%;
+      margin: 2vw 0;
+    }
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -3vw;
+  right: 5vw;
+  width: 14vw;
+  max-width: 204px;
+  height: 204px;
+  max-height: 14vw;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20vw;
+  background: url('../media/img/shop.png') no-repeat center center;
+  background-size: contain;
+}
+.shop b {
+    color: #fff;
+    line-height: 1.2;
+  }
+  .shop span {
+    display: block;
+    font-size: .5em;
+  }
+
+
+.shop-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -3vw;
+  right: 5vw;
+  width: 14vw;
+  max-width: 204px;
+  height: 204px;
+  max-height: 14vw;
+  background: url('../media/img/shop-bg.png') no-repeat center center;
+  background-size: contain;
+}
+
+.toshop,
+.toshop:link,
+.toshop:visited {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 204px;
+  max-height: 204px;
+  min-width: 75px;
+  min-height: 75px;
+  background: url('../media/img/shop-ct-normal.png') no-repeat center center;
+  background-size: contain;
+  transition: background-image .2s;
+  text-decoration: none;
+}
+.toshop:hover,
+.toshop:active,
+.toshop:focus {
+  background-image: url('../media/img/shop-ct-high.png');
+}
+
+
+/* *** Need to talk *** */
+.talk-container {
+    margin: 5vw auto;
+    max-width: 720px;
+    color: rgb(52, 167, 222);
+    font-size: 200%;
+}
+  .icon-talk {
+    display: block;
+    margin: 0 auto 2vw auto;
+    width: 20vw;
+    max-width: 180px;
+  }
+  .txt-one {
+    font-size: 115%;
+    line-height: 1.2;
+    margin-bottom: 3vw;
+  }
+  .txt-two {
+    font-size: 90%;
+  }
+
+
+
+
+/********************** Profile **********************/
+
+/* *** CONTENT *** */
+.twocol,
+.threecol {
+  align-items: flex-start;
+}
+  .twocol div {
+    width: 48%;
+  }
+  .threecol div {
+    width: 30%;
+  }
+
+.portrait {
+  width: 100%;
+  margin-bottom: 1em;
+}
+.icon-vcard {
+    width: 22px;
+    padding: 2px 12px 0 0;
+}
+
+/* *** Newsletter Sign Up *** */
+.profile-nl {
+  margin: 0 auto;
+  width: 33%;
+  padding: 0 48px;
+}
+ .profile-nl h2 {
+   margin-bottom: 0;
+ }
+
+input[type=email]{
+   margin-top: 36px;
+   width: 100%;
+   min-height: 48px;
+   border-radius: 24px;
+   text-align: center;
+   background-color: #fff;
+   color: rgb(52,167,222);
+   outline: none;
+   border: none;
+ }
+input[type=submit],
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus {
+   height: 30px;
+   width: 100%;
+   text-align: right;
+   color: rgb(52,167,222);
+   font-weight: bold;
+   text-transform: uppercase;
+   background: none;
+   outline: none;
+   border: none;
+   font-size: 1em;
+ }
+  input[type=submit]:hover,
+  input[type=submit]:active,
+  input[type=submit]:focus {
+  }
+
+
+/********************** Projects Oberview **********************/
+table {
+  text-align: left;
+  width: 100%;
+  border-top: 2px solid rgb(45,170,225);
+  border-bottom: 2px solid rgb(45,170,225);
+}
+  th {
+    text-transform: uppercase;
+    padding: 1em 0;
+    /*border-collapse: collapse;
+    border-bottom: 2px solid rgb(45,170,225);*/
+  }
+  td {
+    padding: 1em 0;
+  }
+  .table-middle {
+    padding: 1em 1.5em;
+  }
+  .table-line {
+    background-color: rgb(45,170,225);
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    height: 2px;
+  }
+
+
+/********************** Projects **********************/
+
+.projects {
+  background: rgb(215, 245, 255);
+  }
+
+.content-projects {
+  max-width: 960px;
+  margin: 5vw auto 0 auto;
+}
+.ximg-slider {
+  border: 0;
+}
+
+.image-container img { /* for single Images */
+  display: block;
+  width: 100%;
+  max-width: 960px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 65%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  border: 0;
+}
+  .video-container iframe,
+  .video-container object,
+  .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+.project-txt {
+  text-align: left;
+}
+.credits {
+  display: grid;
+  grid-template-columns: 200px calc(100% - 120px);
+}
+  dt, dl {
+    margin-bottom: 1em;
+    margin-left: 0;
+  }
+
+  .project-txt dl {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+  .project-txt li {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+/*FÃR IE und Edge
+dl.credits {
+    display: flex; flex-wrap: wrap;
+}
+.credits dt {width: 200px; }
+.credits dd { width: calc(100% - 146px);}*/
+
+
+
+
+
+/*******************************************************
+    4 Media Queries
+*******************************************************/
+
+/*** Huge Screens (bigger 1440px) ***/
+@media (min-width: 1260px) {
+
+  .content-projects  { /* Abstans HL Logo verringern */
+    margin-top: 3vw;
+  }
+}
+
+/*** Pads (smaller 1024px) ***/
+@media (max-width: 1023px) {
+
+  h2, h3, p, ul, table, a, b {
+    font-size: 1.1em;
+  }
+
+  section { /* AbstÃ¤nde verringern */
+    margin-bottom: 36px;
+    padding-bottom: 12px;
+  }
+
+  .shop {
+    top: -3vw;
+    right: 15vw;
+    }
+    .shop a,
+    .shop b {
+    font-size: 1rem;
+    }
+
+}
+
+/*** Mobile (smaller 768px) ***/
+
+@media (max-width: 767px) {
+
+  /* *** Global **** */
+  .logo { /* grÃ¶Ãer und runter */
+      width: 75%;
+      max-width: 600px;
+      margin-top: 48px;
+      z-index: 0;
+    }
+
+    h1, h2, p, ul, table, form {
+      margin-bottom: 1rem;
+      font-size: 1em;
+    }
+    h2 {
+      padding-top: .5rem;
+    }
+
+    /* *** Homepage *** */
+    .content-home { /* SVGs am Rand rauslaufen lassen */
+      position: relative;
+      left: -20%;
+      width: 140%;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .switcher {
+      width: 36px;
+      height: 16px;
+      padding: 1px;
+    }
+    .switcher img {
+      width: 14px;
+      height: 14px;
+    }
+    .shop,
+    .shop-frame {
+      padding: 10px;
+      top: -3vw;
+      right: 66px;
+    }
+    .shop a,
+    .shop b {
+      font-size: .8rem;
+    }
+
+    .shop-frame {
+      padding: 10px;
+      top: -3vw;
+      right: 70px;
+    }
+
+    .talk-container {
+      width: 65%;
+      font-size: 125%;
+    }
+
+    .home-nl {
+      width: 90%;
+    }
+
+    /* *** Profile *** */
+    .twocol,
+    .threecol { /* einspaltig werden */
+      flex-direction: column;
+    }
+      .twocol div,
+      .threecol div,
+      .profile-nl {
+        width: 100%;
+        padding: 0;
+      }
+ }
+
+
+ /*** small Mobile (smaller 420px) ***/
+
+@media (max-width: 420px) {
+  .credits {
+    grid-template-columns: 100px calc(100% - 100px);
+  }
+  }
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <title>
+   SCHUELLER DE WAAL
+  </title>
+  <meta content="Schueller de Waal Ltc." name="author">
+  <meta content="Schueller de Waal Ltc." name="copyright">
+  <meta content="en" name="Content-Language">
+  <meta content="en" name="language">
+  <meta content="Schueller de Waal, fashion, design, womanswear, Amsterdam, Netherland, Philipp Schueller, Rens de Waal " name="keywords">
+ </head>
+ <body class="">
+  <a>
+   <img alt="Schueller de Waal" class="logo" src="rick.jpg">
+  </a>
+  <nav class="mainmenue flex-horizontal serif">
+   <a class="without-line">
+    Projects
+   </a>
+   <a class="without-line">
+    Profile
+   </a>
+  </nav>
+  <main class="wrapper content-projects">
+   <h1>
+    Lady BlaBla at Showroom / Roomshow
+   </h1>
+   <section aria-label="Carousel" aria-live="polite" class="ximg-slider vslider" id="slider" style="height: 504px;" tabindex="0">
+    <div aria-hidden="false" aria-labelledby="vslider-tab$0" class="vslider-item" id="vslider-tabpanel$0" role="tabpanel" style="background-image: url(/media/img/projects/a6/p1.jpg)">
+    </div>
+    <div aria-hidden="true" aria-labelledby="vslider-tab$1" class="vslider-item" id="vslider-tabpanel$1" role="tabpanel" style="background-image: url(/media/img/projects/a6/p2.jpg)">
+    </div>
+    <div aria-hidden="true" aria-labelledby="vslider-tab$2" class="vslider-item" id="vslider-tabpanel$2" role="tabpanel" style="background-image: url(/media/img/projects/a6/p3.jpg)">
+    </div>
+    <div aria-hidden="true" aria-labelledby="vslider-tab$3" class="vslider-item" id="vslider-tabpanel$3" role="tabpanel" style="background-image: url(/media/img/projects/a6/p4.jpg)">
+    </div>
+    <div aria-hidden="true" aria-labelledby="vslider-tab$4" class="vslider-item" id="vslider-tabpanel$4" role="tabpanel" style="background-image: url(/media/img/projects/a6/p5.jpg)">
+    </div>
+    <div aria-hidden="true" aria-labelledby="vslider-tab$5" class="vslider-item" id="vslider-tabpanel$5" role="tabpanel" style="background-image: url(/media/img/projects/a6/p6.jpg)">
+    </div>
+    <ol class="vslider-status" role="tablist">
+     <li aria-controls="vslider-tabpanel$0" aria-label="0" class="vslider-status-item vslider-status-item-active" id="vslider-tab$0" role="tab" tabindex="0">
+      &bull;
+     </li>
+     <li aria-controls="vslider-tabpanel$1" aria-label="1" class="vslider-status-item" id="vslider-tab$1" role="tab">
+      &bull;
+     </li>
+     <li aria-controls="vslider-tabpanel$2" aria-label="2" class="vslider-status-item" id="vslider-tab$2" role="tab">
+      &bull;
+     </li>
+     <li aria-controls="vslider-tabpanel$3" aria-label="3" class="vslider-status-item" id="vslider-tab$3" role="tab">
+      &bull;
+     </li>
+    </ol>
+    <div aria-controls="slider" aria-label="Carousel navigation" class="vslider-nav">
+     <button aria-label="previous" class="vslider-prev">
+     </button>
+     <button aria-label="next" class="vslider-next">
+     </button>
+    </div>
+   </section>
+   <section class="project-txt">
+    <p>
+     SCHUELLER DE WAAL stages their Spring-Summer 2017 collection in a performance art presentation evolving around &lsquo;being multidimensionally normal&rsquo;. The performative piece &lsquo;Lady Blabla&rsquo; humorously depicts on the relationships of designers with their agents and muses and satirically illuminates on scenarios designers have to face in order to have their workbeing seen.
+    </p>
+   </section>
+   <section class="project-txt">
+    <h2 class="monospace">
+     Credits
+    </h2>
+    <dl class="credits monospace">
+     <dt>
+      Art Direction:
+     </dt>
+     <dd>
+      SDW STUDIO
+     </dd>
+     <dt>
+      Photography:
+     </dt>
+     <dd>
+      Team Peter Stigter
+     </dd>
+     <dt>
+      Script and Performance:
+     </dt>
+     <dd>
+      Eva Bartels &amp; Merante Tamar van Amersvoort
+     </dd>
+     <dt>
+      Make-Up:
+     </dt>
+     <dd>
+      Yokaw Pat
+     </dd>
+     <dt>
+      Hair:
+     </dt>
+     <dd>
+      Floor Kleyne
+     </dd>
+    </dl>
+   </section>
+  </main>
+  <footer>
+   <!-- homepage only: start -->
+   <div class="footer-home">
+    <!-- Begin MailChimp Signup Form -->
+    <div class="home-nl" id="mc_embed_signup">
+     <h2>
+      Newsletter
+     </h2>
+     <h3>
+      Please Sign Up to Stay in the Loop.
+     </h3>
+     <form action="" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate target="_blank">
+      <div id="mc_embed_signup_scroll">
+       <input class="email" id="mce-EMAIL" name="EMAIL" placeholder="Email Address" required type="email" value>
+       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+       <div aria-hidden="true" style="position: absolute; left: -5000px;">
+        <input name="b_277eacb9e6c55130e9d6fd422_a0592fe48f" tabindex="-1" type="text" value>
+       </div>
+       <div class="clear">
+        <input class="serif" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe">
+       </div>
+      </div>
+     </form>
+    </div>
+    <!--End mc_embed_signup-->
+    <ul class="inline small-icon-wrapper">
+     <li>
+      <a class="small-icon" title="Visit us at Instagram">
+       <img alt="Instagramicon" src="rick.jpg">
+      </a>
+     </li>
+     <li>
+      <a class="small-icon" title="Visit us at Vimeo">
+       <img alt="Vimeoicon" src="rick.jpg">
+      </a>
+     </li>
+     <li>
+      <a class="small-icon" title="Send us an Email">
+       <img alt="Envelop" src="rick.jpg">
+      </a>
+     </li>
+    </ul>
+   </div>
+   <!-- homepage only: end -->
+   <!-- normal footer: start -->
+   <a class="footer-follow" title="Email">
+    <img src="rick.jpg">
+    <!-- normal footer: end -->
+   </a>
+   <p class="copy txt-small sans-serif">
+    <a class="footer-follow" title="Email">
+    </a>
+    <a class="to-privacy serif">
+     Imprint &amp; Privacy
+    </a>
+    Copyright &copy; SchuellerdeWaal. All rights reserved.
+   </p>
+  </footer>
+  <div class="cookieuse cookieuse-open">
+   <button class="cookieuse-closer" type="button">
+    &times;
+   </button>
+   <p>
+    <a>
+     Privacy policy
+    </a>
+   </p>
+   <small>
+    Cookies are used to optimise and continually improve the website. Through the continued use of the Web site, you agree to our use of cookies.
+   </small>
+  </div>
+ </body>
+</html>

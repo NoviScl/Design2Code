@@ -1,0 +1,2939 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   /***************/
+/* MEYER RESET */
+/***************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.fork-me-wrapper {
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.fork-me {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #30892a;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxOCIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDE4IDMyIj4KPGc+CjwvZz4KCTxwYXRoIGQ9Ik01LjE0MyAyNi4yODZxMC0wLjcxNC0wLjUtMS4yMTR0LTEuMjE0LTAuNS0xLjIxNCAwLjUtMC41IDEuMjE0IDAuNSAxLjIxNCAxLjIxNCAwLjUgMS4yMTQtMC41IDAuNS0xLjIxNHpNNS4xNDMgNS43MTRxMC0wLjcxNC0wLjUtMS4yMTR0LTEuMjE0LTAuNS0xLjIxNCAwLjUtMC41IDEuMjE0IDAuNSAxLjIxNCAxLjIxNCAwLjUgMS4yMTQtMC41IDAuNS0xLjIxNHpNMTYuNTcxIDhxMC0wLjcxNC0wLjUtMS4yMTR0LTEuMjE0LTAuNS0xLjIxNCAwLjUtMC41IDEuMjE0IDAuNSAxLjIxNCAxLjIxNCAwLjUgMS4yMTQtMC41IDAuNS0xLjIxNHpNMTguMjg2IDhxMCAwLjkyOS0wLjQ2NCAxLjcyM3QtMS4yNSAxLjI0MXEtMC4wMzYgNS4xMjUtNC4wMzYgNy4zOTMtMS4yMTQgMC42NzktMy42MjUgMS40NDYtMi4yODYgMC43MTQtMy4wMjcgMS4yNjh0LTAuNzQxIDEuNzg2djAuNDY0cTAuNzg2IDAuNDQ2IDEuMjUgMS4yNDF0MC40NjQgMS43MjNxMCAxLjQyOS0xIDIuNDI5dC0yLjQyOSAxLTIuNDI5LTEtMS0yLjQyOXEwLTAuOTI5IDAuNDY0LTEuNzIzdDEuMjUtMS4yNDF2LTE0LjY0M3EtMC43ODYtMC40NDYtMS4yNS0xLjI0MXQtMC40NjQtMS43MjNxMC0xLjQyOSAxLTIuNDI5dDIuNDI5LTEgMi40MjkgMSAxIDIuNDI5cTAgMC45MjktMC40NjQgMS43MjN0LTEuMjUgMS4yNDF2OC44NzVxMC45NjQtMC40NjQgMi43NS0xLjAxOCAwLjk4Mi0wLjMwNCAxLjU2Mi0wLjUyN3QxLjI1OS0wLjU1NCAxLjA1NC0wLjcwNSAwLjcyMy0wLjkxMSAwLjUtMS4yNDEgMC4xNTItMS42MzRxLTAuNzg2LTAuNDQ2LTEuMjUtMS4yNDF0LTAuNDY0LTEuNzIzcTAtMS40MjkgMS0yLjQyOXQyLjQyOS0xIDIuNDI5IDEgMSAyLjQyOXoiIGZpbGw9IiNmZmZmZmYiIC8+Cjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position: center center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@media only screen and (min-width: 40.063em) {
+  .fork-me {
+    width: auto;
+    height: auto;
+    top: 40px;
+    right: -55px;
+    padding: 2px 0;
+    box-shadow: 0 0 10px 0 #888;
+    background-color: #30892a;
+    background-image: none !important;
+    transform: rotate(45deg);
+  }
+}
+
+.fork-me-link, .fork-me-link:link, .fork-me-link:visited, .fork-me-link:hover, .fork-me-link:focus, .fork-me-link:active {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  border: none;
+}
+@media only screen and (min-width: 40.063em) {
+  .fork-me-link, .fork-me-link:link, .fork-me-link:visited, .fork-me-link:hover, .fork-me-link:focus, .fork-me-link:active {
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+    padding: 10px 50px;
+    border: 1px solid #fff;
+    text-shadow: 0 0 5px #444;
+  }
+}
+.fork-me-link:focus {
+  text-decoration: underline;
+}
+
+.fork-me-text {
+  display: none;
+}
+@media only screen and (min-width: 40.063em) {
+  .fork-me-text {
+    display: inline;
+  }
+}
+
+.fork-me-dark {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxOCIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDE4IDMyIj4KPGc+CjwvZz4KCTxwYXRoIGQ9Ik01LjE0MyAyNi4yODZxMC0wLjcxNC0wLjUtMS4yMTR0LTEuMjE0LTAuNS0xLjIxNCAwLjUtMC41IDEuMjE0IDAuNSAxLjIxNCAxLjIxNCAwLjUgMS4yMTQtMC41IDAuNS0xLjIxNHpNNS4xNDMgNS43MTRxMC0wLjcxNC0wLjUtMS4yMTR0LTEuMjE0LTAuNS0xLjIxNCAwLjUtMC41IDEuMjE0IDAuNSAxLjIxNCAxLjIxNCAwLjUgMS4yMTQtMC41IDAuNS0xLjIxNHpNMTYuNTcxIDhxMC0wLjcxNC0wLjUtMS4yMTR0LTEuMjE0LTAuNS0xLjIxNCAwLjUtMC41IDEuMjE0IDAuNSAxLjIxNCAxLjIxNCAwLjUgMS4yMTQtMC41IDAuNS0xLjIxNHpNMTguMjg2IDhxMCAwLjkyOS0wLjQ2NCAxLjcyM3QtMS4yNSAxLjI0MXEtMC4wMzYgNS4xMjUtNC4wMzYgNy4zOTMtMS4yMTQgMC42NzktMy42MjUgMS40NDYtMi4yODYgMC43MTQtMy4wMjcgMS4yNjh0LTAuNzQxIDEuNzg2djAuNDY0cTAuNzg2IDAuNDQ2IDEuMjUgMS4yNDF0MC40NjQgMS43MjNxMCAxLjQyOS0xIDIuNDI5dC0yLjQyOSAxLTIuNDI5LTEtMS0yLjQyOXEwLTAuOTI5IDAuNDY0LTEuNzIzdDEuMjUtMS4yNDF2LTE0LjY0M3EtMC43ODYtMC40NDYtMS4yNS0xLjI0MXQtMC40NjQtMS43MjNxMC0xLjQyOSAxLTIuNDI5dDIuNDI5LTEgMi40MjkgMSAxIDIuNDI5cTAgMC45MjktMC40NjQgMS43MjN0LTEuMjUgMS4yNDF2OC44NzVxMC45NjQtMC40NjQgMi43NS0xLjAxOCAwLjk4Mi0wLjMwNCAxLjU2Mi0wLjUyN3QxLjI1OS0wLjU1NCAxLjA1NC0wLjcwNSAwLjcyMy0wLjkxMSAwLjUtMS4yNDEgMC4xNTItMS42MzRxLTAuNzg2LTAuNDQ2LTEuMjUtMS4yNDF0LTAuNDY0LTEuNzIzcTAtMS40MjkgMS0yLjQyOXQyLjQyOS0xIDIuNDI5IDEgMSAyLjQyOXoiIGZpbGw9IiMwMDAwMDAiIC8+Cjwvc3ZnPgo=");
+}
+
+.fork-me-left {
+  left: 0;
+  right: auto;
+}
+.fork-me-left .fork-me {
+  left: 5px;
+  right: auto;
+}
+@media only screen and (min-width: 40.063em) {
+  .fork-me-left .fork-me {
+    left: -55px;
+    right: auto;
+    transform: rotate(-45deg);
+  }
+}
+
+.fork-me-fixed {
+  position: fixed;
+}
+
+/**************/
+/* BASE RULES */
+/**************/
+html {
+  font-size: 100%;
+}
+
+body {
+  background: #fff;
+  font: 18px/1.4 Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222;
+  font-weight: bold;
+  line-height: 1.7;
+  margin: 1em 0 15px;
+  padding: 0;
+}
+@media screen and (max-width: 640px) {
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+  }
+}
+
+h1 {
+  font-size: 30px;
+  color: #6acf64;
+}
+h1 a {
+  color: inherit;
+}
+
+h2 {
+  font-size: 24px;
+  color: #6acf64;
+}
+
+h3 {
+  font-size: 20px;
+  color: #222;
+}
+
+h4 {
+  font-size: 18px;
+  color: #666;
+}
+
+p {
+  margin: 15px 0;
+}
+
+a {
+  color: #5cacee;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover, a:active {
+  color: #167bce;
+}
+
+ul, ol {
+  margin: 15px 0;
+  padding-left: 30px;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ol ul, ul ol, ul ul, ol ol {
+  margin: 0;
+}
+
+ul ul, ol ul {
+  list-style-type: circle;
+}
+
+em, i {
+  font-style: italic;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+.gmnoprint img {
+  max-width: none;
+}
+
+.date {
+  font-style: italic;
+  color: #666;
+}
+
+::-moz-selection {
+  color: #000;
+  background: #eee;
+}
+
+::selection {
+  color: #000;
+  background: #eee;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/*********************/
+/* LAYOUT / SECTIONS */
+/*********************/
+.wrapper-masthead {
+  margin-bottom: 50px;
+}
+
+.masthead {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+@media screen and (max-width: 640px) {
+  .masthead {
+    text-align: center;
+  }
+}
+
+.site-avatar {
+  float: left;
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
+}
+@media screen and (max-width: 640px) {
+  .site-avatar {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+.site-avatar img {
+  border-radius: 5px;
+}
+
+.site-info {
+  float: left;
+}
+@media screen and (max-width: 640px) {
+  .site-info {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.site-name {
+  margin: 0;
+  color: #333;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.site-description {
+  margin: -5px 0 0 0;
+  color: #fff;
+  font-size: 16px;
+}
+@media screen and (max-width: 640px) {
+  .site-description {
+    margin: 3px 0;
+  }
+}
+
+nav {
+  float: right;
+  margin-top: 23px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+}
+@media screen and (max-width: 640px) {
+  nav {
+    float: none;
+    margin-top: 9px;
+    display: block;
+    font-size: 16px;
+  }
+}
+nav a {
+  margin-left: 20px;
+  color: #fff;
+  text-align: right;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+nav a:hover, nav a:active {
+  color: #333333;
+}
+@media screen and (max-width: 640px) {
+  nav a {
+    margin: 0 10px;
+    color: #fff;
+  }
+}
+
+.posts > .post {
+  padding-bottom: 2em;
+  border-bottom: 1px solid #eee;
+}
+
+.posts > .post:last-child {
+  padding-bottom: 1em;
+  border-bottom: none;
+}
+
+.post meta {
+  font-size: 80%;
+  color: #666;
+}
+.post blockquote {
+  margin: 1.8em .8em;
+  border-left: 2px solid #666;
+  padding: 0.1em 1em;
+  color: #666;
+  font-size: 22px;
+  font-style: italic;
+}
+.post .comments {
+  margin-top: 10px;
+}
+.post .read-more {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.wrapper-footer {
+  margin-top: 50px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #eee;
+}
+
+footer {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.entry > pre {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #fafafa;
+  overflow: auto;
+  font-size: 15px;
+}
+
+.entry > pre > code,
+.entry > pre {
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
+pre {
+  font-size: 15px;
+}
+
+a.tag {
+  display: inline-block;
+  background: #333;
+  color: #fff !important;
+  padding: 2px 8px;
+  margin-right: 2px;
+  border-radius: 4px;
+  font-size: 80%;
+}
+
+a.tag:hover {
+  background: #000;
+}
+
+.highlight {
+  background-color: #efefef;
+  padding: 7px 7px 7px 10px;
+  border: 1px solid #ddd;
+  -moz-box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  margin: 20px 0 20px 0;
+  overflow: scroll;
+}
+
+code {
+  font-family: 'Bitstream Vera Sans Mono','Courier', monospace;
+}
+
+.highlight .c {
+  color: #586E75;
+}
+
+/* Comment */
+.highlight .err {
+  color: #93A1A1;
+}
+
+/* Error */
+.highlight .g {
+  color: #93A1A1;
+}
+
+/* Generic */
+.highlight .k {
+  color: #859900;
+}
+
+/* Keyword */
+.highlight .l {
+  color: #93A1A1;
+}
+
+/* Literal */
+.highlight .n {
+  color: #93A1A1;
+}
+
+/* Name */
+.highlight .o {
+  color: #859900;
+}
+
+/* Operator */
+.highlight .x {
+  color: #CB4B16;
+}
+
+/* Other */
+.highlight .p {
+  color: #93A1A1;
+}
+
+/* Punctuation */
+.highlight .cm {
+  color: #586E75;
+}
+
+/* Comment.Multiline */
+.highlight .cp {
+  color: #859900;
+}
+
+/* Comment.Preproc */
+.highlight .c1 {
+  color: #586E75;
+}
+
+/* Comment.Single */
+.highlight .cs {
+  color: #859900;
+}
+
+/* Comment.Special */
+.highlight .gd {
+  color: #2AA198;
+}
+
+/* Generic.Deleted */
+.highlight .ge {
+  color: #93A1A1;
+  font-style: italic;
+}
+
+/* Generic.Emph */
+.highlight .gr {
+  color: #DC322F;
+}
+
+/* Generic.Error */
+.highlight .gh {
+  color: #CB4B16;
+}
+
+/* Generic.Heading */
+.highlight .gi {
+  color: #859900;
+}
+
+/* Generic.Inserted */
+.highlight .go {
+  color: #93A1A1;
+}
+
+/* Generic.Output */
+.highlight .gp {
+  color: #93A1A1;
+}
+
+/* Generic.Prompt */
+.highlight .gs {
+  color: #93A1A1;
+  font-weight: bold;
+}
+
+/* Generic.Strong */
+.highlight .gu {
+  color: #CB4B16;
+}
+
+/* Generic.Subheading */
+.highlight .gt {
+  color: #93A1A1;
+}
+
+/* Generic.Traceback */
+.highlight .kc {
+  color: #CB4B16;
+}
+
+/* Keyword.Constant */
+.highlight .kd {
+  color: #268BD2;
+}
+
+/* Keyword.Declaration */
+.highlight .kn {
+  color: #859900;
+}
+
+/* Keyword.Namespace */
+.highlight .kp {
+  color: #859900;
+}
+
+/* Keyword.Pseudo */
+.highlight .kr {
+  color: #268BD2;
+}
+
+/* Keyword.Reserved */
+.highlight .kt {
+  color: #DC322F;
+}
+
+/* Keyword.Type */
+.highlight .ld {
+  color: #93A1A1;
+}
+
+/* Literal.Date */
+.highlight .m {
+  color: #2AA198;
+}
+
+/* Literal.Number */
+.highlight .s {
+  color: #2AA198;
+}
+
+/* Literal.String */
+.highlight .na {
+  color: #93A1A1;
+}
+
+/* Name.Attribute */
+.highlight .nb {
+  color: #B58900;
+}
+
+/* Name.Builtin */
+.highlight .nc {
+  color: #268BD2;
+}
+
+/* Name.Class */
+.highlight .no {
+  color: #CB4B16;
+}
+
+/* Name.Constant */
+.highlight .nd {
+  color: #268BD2;
+}
+
+/* Name.Decorator */
+.highlight .ni {
+  color: #CB4B16;
+}
+
+/* Name.Entity */
+.highlight .ne {
+  color: #CB4B16;
+}
+
+/* Name.Exception */
+.highlight .nf {
+  color: #268BD2;
+}
+
+/* Name.Function */
+.highlight .nl {
+  color: #93A1A1;
+}
+
+/* Name.Label */
+.highlight .nn {
+  color: #93A1A1;
+}
+
+/* Name.Namespace */
+.highlight .nx {
+  color: #555;
+}
+
+/* Name.Other */
+.highlight .py {
+  color: #93A1A1;
+}
+
+/* Name.Property */
+.highlight .nt {
+  color: #268BD2;
+}
+
+/* Name.Tag */
+.highlight .nv {
+  color: #268BD2;
+}
+
+/* Name.Variable */
+.highlight .ow {
+  color: #859900;
+}
+
+/* Operator.Word */
+.highlight .w {
+  color: #93A1A1;
+}
+
+/* Text.Whitespace */
+.highlight .mf {
+  color: #2AA198;
+}
+
+/* Literal.Number.Float */
+.highlight .mh {
+  color: #2AA198;
+}
+
+/* Literal.Number.Hex */
+.highlight .mi {
+  color: #2AA198;
+}
+
+/* Literal.Number.Integer */
+.highlight .mo {
+  color: #2AA198;
+}
+
+/* Literal.Number.Oct */
+.highlight .sb {
+  color: #586E75;
+}
+
+/* Literal.String.Backtick */
+.highlight .sc {
+  color: #2AA198;
+}
+
+/* Literal.String.Char */
+.highlight .sd {
+  color: #93A1A1;
+}
+
+/* Literal.String.Doc */
+.highlight .s2 {
+  color: #2AA198;
+}
+
+/* Literal.String.Double */
+.highlight .se {
+  color: #CB4B16;
+}
+
+/* Literal.String.Escape */
+.highlight .sh {
+  color: #93A1A1;
+}
+
+/* Literal.String.Heredoc */
+.highlight .si {
+  color: #2AA198;
+}
+
+/* Literal.String.Interpol */
+.highlight .sx {
+  color: #2AA198;
+}
+
+/* Literal.String.Other */
+.highlight .sr {
+  color: #DC322F;
+}
+
+/* Literal.String.Regex */
+.highlight .s1 {
+  color: #2AA198;
+}
+
+/* Literal.String.Single */
+.highlight .ss {
+  color: #2AA198;
+}
+
+/* Literal.String.Symbol */
+.highlight .bp {
+  color: #268BD2;
+}
+
+/* Name.Builtin.Pseudo */
+.highlight .vc {
+  color: #268BD2;
+}
+
+/* Name.Variable.Class */
+.highlight .vg {
+  color: #268BD2;
+}
+
+/* Name.Variable.Global */
+.highlight .vi {
+  color: #268BD2;
+}
+
+/* Name.Variable.Instance */
+.highlight .il {
+  color: #2AA198;
+}
+
+/* Literal.Number.Integer.Long */
+/****************************/
+/* JEKYLL-mono-color */
+/***************************/
+/* 
+    *Title
+*/
+.site-name a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.site-name a:hover {
+  color: #333333;
+}
+
+.post a {
+  color: #6acf64;
+}
+.post a:hover {
+  color: #379d30;
+}
+
+.post-heading a {
+  color: #333;
+}
+.post-heading a:hover {
+  color: black;
+}
+.post-heading .edit a {
+  opacity: 0;
+  transition: opacity 1s;
+}
+.post-heading .edit a:hover {
+  opacity: 1;
+}
+
+/*
+    *Buttons
+*/
+.button,
+button {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.button:hover,
+button:hover,
+.button:focus,
+button:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0;
+}
+
+.button.button-primary,
+button.button-primary {
+  color: #6acf64;
+  background-color: transparent;
+  border-color: #6acf64;
+}
+
+.button.button-primary:hover,
+button.button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus {
+  color: #FFF;
+  background-color: #6acf64;
+  border-color: #6acf64;
+}
+
+/*
+    *Header
+*/
+.intro-header {
+  border-top: 5px solid white;
+  background-color: #6acf64;
+}
+
+.intro-header .post-heading {
+  padding: 0 0 50px;
+  color: #fff;
+}
+
+.intro-header .post-heading h1 {
+  color: #fff;
+  font-size: 36px;
+  line-height: 1.5;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* 
+    *empty spaces
+*/
+.space-medium {
+  padding: 100px 0 50px;
+}
+
+.space-small {
+  padding: 50px 0 25px;
+}
+
+.space-extra-small {
+  padding: 30px 0 15px;
+}
+
+/* 
+    *svg-icons
+    
+*/
+.svg-icon a {
+  color: #45c33d;
+  cursor: pointer;
+}
+.svg-icon a:hover {
+  color: #379d30;
+}
+
+/*
+    *Image Hover Effects
+*/
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ch-grid {
+  padding: 0;
+  list-style: none;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.ch-grid:after,
+.ch-item:before {
+  content: '';
+  display: table;
+}
+
+.ch-grid:after {
+  clear: both;
+}
+
+.ch-grid li {
+  width: 220px;
+  height: 220px;
+  display: inline-block;
+}
+
+.ch-item {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: default;
+}
+
+.ch-info-wrap,
+.ch-info {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.ch-info-wrap {
+  top: 20px;
+  left: 20px;
+  background: #fff url(/images/bg.jpg);
+  box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), inset 0 0 3px rgba(115, 114, 23, 0.8);
+}
+
+.ch-info > div {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-position: center center;
+  -webkit-backface-visibility: hidden;
+}
+
+.ch-info .ch-info-front {
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+
+.ch-info .ch-info-back {
+  opacity: 0;
+  background: #fff;
+  pointer-events: none;
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition: all 0.4s ease-in-out 0.2s;
+  -moz-transition: all 0.4s ease-in-out 0.2s;
+  -o-transition: all 0.4s ease-in-out 0.2s;
+  -ms-transition: all 0.4s ease-in-out 0.2s;
+  transition: all 0.4s ease-in-out 0.2s;
+}
+
+.ch-img-1 {
+  background-image: url(/images/avatar.jpg);
+}
+
+.ch-info h3 {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 18px;
+  margin: 0 15px;
+  padding: 40px 0 0 0;
+  height: 80px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-shadow: 0 0 1px #fff, 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ch-info p {
+  color: #fff;
+  padding: 10px 5px 0;
+  font-style: italic;
+  margin: 0 30px;
+  font-size: 12px;
+}
+
+.ch-info p a {
+  display: block;
+  color: #6acf64;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding-top: 4px;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.ch-info p a:hover {
+  color: #45c33d;
+}
+
+.ch-item:hover .ch-info-front {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -o-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+}
+
+.ch-item:hover .ch-info-back {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.highlight pre.highlight {
+  border: 0;
+  box-shadow: none;
+}
+
+.highlight {
+  overflow: auto;
+  padding: 20px;
+  margin: 0;
+}
+
+div.highlight {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.posts > .post {
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background-color: #333;
+    color: white;
+  }
+
+  .masthead,
+  .masthead a,
+  .site-description {
+    color: #333;
+  }
+
+  .wrapper-footer {
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+    background-color: #444;
+  }
+
+  .highlight {
+    background-color: #444;
+    border: 1px solid #444;
+  }
+
+  .intro-header {
+    border-top: 5px solid #333;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: white;
+  }
+}
+
+
+
+/*!
+ *  Font Awesome 3.2.1
+ *  the iconic font designed for Bootstrap
+ *  ------------------------------------------------------------------------------
+ *  The full suite of pictographic icons, examples, and documentation can be
+ *  found at http://fontawesome.io.  Stay up to date on Twitter at
+ *  http://twitter.com/fontawesome.
+ *
+ *  License
+ *  ------------------------------------------------------------------------------
+ *  - The Font Awesome font is licensed under SIL OFL 1.1 -
+ *    http://scripts.sil.org/OFL
+ *  - Font Awesome CSS, LESS, and SASS files are licensed under MIT License -
+ *    http://opensource.org/licenses/mit-license.html
+ *  - Font Awesome documentation licensed under CC BY 3.0 -
+ *    http://creativecommons.org/licenses/by/3.0/
+ *  - Attribution is no longer required in Font Awesome 3.0, but much appreciated:
+ *    "Font Awesome by Dave Gandy - http://fontawesome.io"
+ *
+ *  Author - Dave Gandy
+ *  ------------------------------------------------------------------------------
+ *  Email: [EMAIL REDACTED]
+ *  Twitter: http://twitter.com/byscuits
+ *  Work: Lead Product Designer @ Kyruus - http://kyruus.com
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../font/fontawesome-webfont.eot?v=3.2.1');
+  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* FONT AWESOME CORE
+ * -------------------------- */
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em;
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+/* makes the font 33% larger relative to the icon container */
+.icon-large:before {
+  vertical-align: -10%;
+  font-size: 1.3333333333333333em;
+}
+/* makes sure icons active on rollover in links */
+a [class^="icon-"],
+a [class*=" icon-"] {
+  display: inline;
+}
+/* increased font size for icon-large */
+[class^="icon-"].icon-fixed-width,
+[class*=" icon-"].icon-fixed-width {
+  display: inline-block;
+  width: 1.1428571428571428em;
+  text-align: right;
+  padding-right: 0.2857142857142857em;
+}
+[class^="icon-"].icon-fixed-width.icon-large,
+[class*=" icon-"].icon-fixed-width.icon-large {
+  width: 1.4285714285714286em;
+}
+.icons-ul {
+  margin-left: 2.142857142857143em;
+  list-style-type: none;
+}
+.icons-ul > li {
+  position: relative;
+}
+.icons-ul .icon-li {
+  position: absolute;
+  left: -2.142857142857143em;
+  width: 2.142857142857143em;
+  text-align: center;
+  line-height: inherit;
+}
+[class^="icon-"].hide,
+[class*=" icon-"].hide {
+  display: none;
+}
+.icon-muted {
+  color: #eeeeee;
+}
+.icon-light {
+  color: #ffffff;
+}
+.icon-dark {
+  color: #333333;
+}
+.icon-border {
+  border: solid 1px #eeeeee;
+  padding: .2em .25em .15em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.icon-2x {
+  font-size: 2em;
+}
+.icon-2x.icon-border {
+  border-width: 2px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.icon-3x {
+  font-size: 3em;
+}
+.icon-3x.icon-border {
+  border-width: 3px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.icon-4x {
+  font-size: 4em;
+}
+.icon-4x.icon-border {
+  border-width: 4px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.icon-5x {
+  font-size: 5em;
+}
+.icon-5x.icon-border {
+  border-width: 5px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+[class^="icon-"].pull-left,
+[class*=" icon-"].pull-left {
+  margin-right: .3em;
+}
+[class^="icon-"].pull-right,
+[class*=" icon-"].pull-right {
+  margin-left: .3em;
+}
+/* BOOTSTRAP SPECIFIC CLASSES
+ * -------------------------- */
+/* Bootstrap 2.0 sprites.less reset */
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+/* more sprites.less reset */
+.icon-white,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"] {
+  background-image: none;
+}
+/* keeps Bootstrap styles with and without icons the same */
+.btn [class^="icon-"].icon-large,
+.nav [class^="icon-"].icon-large,
+.btn [class*=" icon-"].icon-large,
+.nav [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
+.btn [class^="icon-"].icon-spin,
+.nav [class^="icon-"].icon-spin,
+.btn [class*=" icon-"].icon-spin,
+.nav [class*=" icon-"].icon-spin {
+  display: inline-block;
+}
+.nav-tabs [class^="icon-"],
+.nav-pills [class^="icon-"],
+.nav-tabs [class*=" icon-"],
+.nav-pills [class*=" icon-"],
+.nav-tabs [class^="icon-"].icon-large,
+.nav-pills [class^="icon-"].icon-large,
+.nav-tabs [class*=" icon-"].icon-large,
+.nav-pills [class*=" icon-"].icon-large {
+  line-height: .9em;
+}
+.btn [class^="icon-"].pull-left.icon-2x,
+.btn [class*=" icon-"].pull-left.icon-2x,
+.btn [class^="icon-"].pull-right.icon-2x,
+.btn [class*=" icon-"].pull-right.icon-2x {
+  margin-top: .18em;
+}
+.btn [class^="icon-"].icon-spin.icon-large,
+.btn [class*=" icon-"].icon-spin.icon-large {
+  line-height: .8em;
+}
+.btn.btn-small [class^="icon-"].pull-left.icon-2x,
+.btn.btn-small [class*=" icon-"].pull-left.icon-2x,
+.btn.btn-small [class^="icon-"].pull-right.icon-2x,
+.btn.btn-small [class*=" icon-"].pull-right.icon-2x {
+  margin-top: .25em;
+}
+.btn.btn-large [class^="icon-"],
+.btn.btn-large [class*=" icon-"] {
+  margin-top: 0;
+}
+.btn.btn-large [class^="icon-"].pull-left.icon-2x,
+.btn.btn-large [class*=" icon-"].pull-left.icon-2x,
+.btn.btn-large [class^="icon-"].pull-right.icon-2x,
+.btn.btn-large [class*=" icon-"].pull-right.icon-2x {
+  margin-top: .05em;
+}
+.btn.btn-large [class^="icon-"].pull-left.icon-2x,
+.btn.btn-large [class*=" icon-"].pull-left.icon-2x {
+  margin-right: .2em;
+}
+.btn.btn-large [class^="icon-"].pull-right.icon-2x,
+.btn.btn-large [class*=" icon-"].pull-right.icon-2x {
+  margin-left: .2em;
+}
+/* Fixes alignment in nav lists */
+.nav-list [class^="icon-"],
+.nav-list [class*=" icon-"] {
+  line-height: inherit;
+}
+/* EXTRAS
+ * -------------------------- */
+/* Stacked and layered icon */
+.icon-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: -35%;
+}
+.icon-stack [class^="icon-"],
+.icon-stack [class*=" icon-"] {
+  display: block;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  line-height: inherit;
+  *line-height: 2em;
+}
+.icon-stack .icon-stack-base {
+  font-size: 2em;
+  *line-height: 1em;
+}
+/* Animated rotating icon */
+.icon-spin {
+  display: inline-block;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+/* Prevent stack and spinners from being taken inline when inside a link */
+a .icon-stack,
+a .icon-spin {
+  display: inline-block;
+  text-decoration: none;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+/* Icon rotations and mirroring */
+.icon-rotate-90:before {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+.icon-rotate-180:before {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+.icon-rotate-270:before {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.icon-flip-horizontal:before {
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.icon-flip-vertical:before {
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+/* ensure rotation occurs inside anchor tags */
+a .icon-rotate-90:before,
+a .icon-rotate-180:before,
+a .icon-rotate-270:before,
+a .icon-flip-horizontal:before,
+a .icon-flip-vertical:before {
+  display: inline-block;
+}
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+.icon-glass:before {
+  content: "\f000";
+}
+.icon-music:before {
+  content: "\f001";
+}
+.icon-search:before {
+  content: "\f002";
+}
+.icon-envelope-alt:before {
+  content: "\f003";
+}
+.icon-heart:before {
+  content: "\f004";
+}
+.icon-star:before {
+  content: "\f005";
+}
+.icon-star-empty:before {
+  content: "\f006";
+}
+.icon-user:before {
+  content: "\f007";
+}
+.icon-film:before {
+  content: "\f008";
+}
+.icon-th-large:before {
+  content: "\f009";
+}
+.icon-th:before {
+  content: "\f00a";
+}
+.icon-th-list:before {
+  content: "\f00b";
+}
+.icon-ok:before {
+  content: "\f00c";
+}
+.icon-remove:before {
+  content: "\f00d";
+}
+.icon-zoom-in:before {
+  content: "\f00e";
+}
+.icon-zoom-out:before {
+  content: "\f010";
+}
+.icon-power-off:before,
+.icon-off:before {
+  content: "\f011";
+}
+.icon-signal:before {
+  content: "\f012";
+}
+.icon-gear:before,
+.icon-cog:before {
+  content: "\f013";
+}
+.icon-trash:before {
+  content: "\f014";
+}
+.icon-home:before {
+  content: "\f015";
+}
+.icon-file-alt:before {
+  content: "\f016";
+}
+.icon-time:before {
+  content: "\f017";
+}
+.icon-road:before {
+  content: "\f018";
+}
+.icon-download-alt:before {
+  content: "\f019";
+}
+.icon-download:before {
+  content: "\f01a";
+}
+.icon-upload:before {
+  content: "\f01b";
+}
+.icon-inbox:before {
+  content: "\f01c";
+}
+.icon-play-circle:before {
+  content: "\f01d";
+}
+.icon-rotate-right:before,
+.icon-repeat:before {
+  content: "\f01e";
+}
+.icon-refresh:before {
+  content: "\f021";
+}
+.icon-list-alt:before {
+  content: "\f022";
+}
+.icon-lock:before {
+  content: "\f023";
+}
+.icon-flag:before {
+  content: "\f024";
+}
+.icon-headphones:before {
+  content: "\f025";
+}
+.icon-volume-off:before {
+  content: "\f026";
+}
+.icon-volume-down:before {
+  content: "\f027";
+}
+.icon-volume-up:before {
+  content: "\f028";
+}
+.icon-qrcode:before {
+  content: "\f029";
+}
+.icon-barcode:before {
+  content: "\f02a";
+}
+.icon-tag:before {
+  content: "\f02b";
+}
+.icon-tags:before {
+  content: "\f02c";
+}
+.icon-book:before {
+  content: "\f02d";
+}
+.icon-bookmark:before {
+  content: "\f02e";
+}
+.icon-print:before {
+  content: "\f02f";
+}
+.icon-camera:before {
+  content: "\f030";
+}
+.icon-font:before {
+  content: "\f031";
+}
+.icon-bold:before {
+  content: "\f032";
+}
+.icon-italic:before {
+  content: "\f033";
+}
+.icon-text-height:before {
+  content: "\f034";
+}
+.icon-text-width:before {
+  content: "\f035";
+}
+.icon-align-left:before {
+  content: "\f036";
+}
+.icon-align-center:before {
+  content: "\f037";
+}
+.icon-align-right:before {
+  content: "\f038";
+}
+.icon-align-justify:before {
+  content: "\f039";
+}
+.icon-list:before {
+  content: "\f03a";
+}
+.icon-indent-left:before {
+  content: "\f03b";
+}
+.icon-indent-right:before {
+  content: "\f03c";
+}
+.icon-facetime-video:before {
+  content: "\f03d";
+}
+.icon-picture:before {
+  content: "\f03e";
+}
+.icon-pencil:before {
+  content: "\f040";
+}
+.icon-map-marker:before {
+  content: "\f041";
+}
+.icon-adjust:before {
+  content: "\f042";
+}
+.icon-tint:before {
+  content: "\f043";
+}
+.icon-edit:before {
+  content: "\f044";
+}
+.icon-share:before {
+  content: "\f045";
+}
+.icon-check:before {
+  content: "\f046";
+}
+.icon-move:before {
+  content: "\f047";
+}
+.icon-step-backward:before {
+  content: "\f048";
+}
+.icon-fast-backward:before {
+  content: "\f049";
+}
+.icon-backward:before {
+  content: "\f04a";
+}
+.icon-play:before {
+  content: "\f04b";
+}
+.icon-pause:before {
+  content: "\f04c";
+}
+.icon-stop:before {
+  content: "\f04d";
+}
+.icon-forward:before {
+  content: "\f04e";
+}
+.icon-fast-forward:before {
+  content: "\f050";
+}
+.icon-step-forward:before {
+  content: "\f051";
+}
+.icon-eject:before {
+  content: "\f052";
+}
+.icon-chevron-left:before {
+  content: "\f053";
+}
+.icon-chevron-right:before {
+  content: "\f054";
+}
+.icon-plus-sign:before {
+  content: "\f055";
+}
+.icon-minus-sign:before {
+  content: "\f056";
+}
+.icon-remove-sign:before {
+  content: "\f057";
+}
+.icon-ok-sign:before {
+  content: "\f058";
+}
+.icon-question-sign:before {
+  content: "\f059";
+}
+.icon-info-sign:before {
+  content: "\f05a";
+}
+.icon-screenshot:before {
+  content: "\f05b";
+}
+.icon-remove-circle:before {
+  content: "\f05c";
+}
+.icon-ok-circle:before {
+  content: "\f05d";
+}
+.icon-ban-circle:before {
+  content: "\f05e";
+}
+.icon-arrow-left:before {
+  content: "\f060";
+}
+.icon-arrow-right:before {
+  content: "\f061";
+}
+.icon-arrow-up:before {
+  content: "\f062";
+}
+.icon-arrow-down:before {
+  content: "\f063";
+}
+.icon-mail-forward:before,
+.icon-share-alt:before {
+  content: "\f064";
+}
+.icon-resize-full:before {
+  content: "\f065";
+}
+.icon-resize-small:before {
+  content: "\f066";
+}
+.icon-plus:before {
+  content: "\f067";
+}
+.icon-minus:before {
+  content: "\f068";
+}
+.icon-asterisk:before {
+  content: "\f069";
+}
+.icon-exclamation-sign:before {
+  content: "\f06a";
+}
+.icon-gift:before {
+  content: "\f06b";
+}
+.icon-leaf:before {
+  content: "\f06c";
+}
+.icon-fire:before {
+  content: "\f06d";
+}
+.icon-eye-open:before {
+  content: "\f06e";
+}
+.icon-eye-close:before {
+  content: "\f070";
+}
+.icon-warning-sign:before {
+  content: "\f071";
+}
+.icon-plane:before {
+  content: "\f072";
+}
+.icon-calendar:before {
+  content: "\f073";
+}
+.icon-random:before {
+  content: "\f074";
+}
+.icon-comment:before {
+  content: "\f075";
+}
+.icon-magnet:before {
+  content: "\f076";
+}
+.icon-chevron-up:before {
+  content: "\f077";
+}
+.icon-chevron-down:before {
+  content: "\f078";
+}
+.icon-retweet:before {
+  content: "\f079";
+}
+.icon-shopping-cart:before {
+  content: "\f07a";
+}
+.icon-folder-close:before {
+  content: "\f07b";
+}
+.icon-folder-open:before {
+  content: "\f07c";
+}
+.icon-resize-vertical:before {
+  content: "\f07d";
+}
+.icon-resize-horizontal:before {
+  content: "\f07e";
+}
+.icon-bar-chart:before {
+  content: "\f080";
+}
+.icon-twitter-sign:before {
+  content: "\f081";
+}
+.icon-facebook-sign:before {
+  content: "\f082";
+}
+.icon-camera-retro:before {
+  content: "\f083";
+}
+.icon-key:before {
+  content: "\f084";
+}
+.icon-gears:before,
+.icon-cogs:before {
+  content: "\f085";
+}
+.icon-comments:before {
+  content: "\f086";
+}
+.icon-thumbs-up-alt:before {
+  content: "\f087";
+}
+.icon-thumbs-down-alt:before {
+  content: "\f088";
+}
+.icon-star-half:before {
+  content: "\f089";
+}
+.icon-heart-empty:before {
+  content: "\f08a";
+}
+.icon-signout:before {
+  content: "\f08b";
+}
+.icon-linkedin-sign:before {
+  content: "\f08c";
+}
+.icon-pushpin:before {
+  content: "\f08d";
+}
+.icon-external-link:before {
+  content: "\f08e";
+}
+.icon-signin:before {
+  content: "\f090";
+}
+.icon-trophy:before {
+  content: "\f091";
+}
+.icon-github-sign:before {
+  content: "\f092";
+}
+.icon-upload-alt:before {
+  content: "\f093";
+}
+.icon-lemon:before {
+  content: "\f094";
+}
+.icon-phone:before {
+  content: "\f095";
+}
+.icon-unchecked:before,
+.icon-check-empty:before {
+  content: "\f096";
+}
+.icon-bookmark-empty:before {
+  content: "\f097";
+}
+.icon-phone-sign:before {
+  content: "\f098";
+}
+.icon-twitter:before {
+  content: "\f099";
+}
+.icon-facebook:before {
+  content: "\f09a";
+}
+.icon-github:before {
+  content: "\f09b";
+}
+.icon-unlock:before {
+  content: "\f09c";
+}
+.icon-credit-card:before {
+  content: "\f09d";
+}
+.icon-rss:before {
+  content: "\f09e";
+}
+.icon-hdd:before {
+  content: "\f0a0";
+}
+.icon-bullhorn:before {
+  content: "\f0a1";
+}
+.icon-bell:before {
+  content: "\f0a2";
+}
+.icon-certificate:before {
+  content: "\f0a3";
+}
+.icon-hand-right:before {
+  content: "\f0a4";
+}
+.icon-hand-left:before {
+  content: "\f0a5";
+}
+.icon-hand-up:before {
+  content: "\f0a6";
+}
+.icon-hand-down:before {
+  content: "\f0a7";
+}
+.icon-circle-arrow-left:before {
+  content: "\f0a8";
+}
+.icon-circle-arrow-right:before {
+  content: "\f0a9";
+}
+.icon-circle-arrow-up:before {
+  content: "\f0aa";
+}
+.icon-circle-arrow-down:before {
+  content: "\f0ab";
+}
+.icon-globe:before {
+  content: "\f0ac";
+}
+.icon-wrench:before {
+  content: "\f0ad";
+}
+.icon-tasks:before {
+  content: "\f0ae";
+}
+.icon-filter:before {
+  content: "\f0b0";
+}
+.icon-briefcase:before {
+  content: "\f0b1";
+}
+.icon-fullscreen:before {
+  content: "\f0b2";
+}
+.icon-group:before {
+  content: "\f0c0";
+}
+.icon-link:before {
+  content: "\f0c1";
+}
+.icon-cloud:before {
+  content: "\f0c2";
+}
+.icon-beaker:before {
+  content: "\f0c3";
+}
+.icon-cut:before {
+  content: "\f0c4";
+}
+.icon-copy:before {
+  content: "\f0c5";
+}
+.icon-paperclip:before,
+.icon-paper-clip:before {
+  content: "\f0c6";
+}
+.icon-save:before {
+  content: "\f0c7";
+}
+.icon-sign-blank:before {
+  content: "\f0c8";
+}
+.icon-reorder:before {
+  content: "\f0c9";
+}
+.icon-list-ul:before {
+  content: "\f0ca";
+}
+.icon-list-ol:before {
+  content: "\f0cb";
+}
+.icon-strikethrough:before {
+  content: "\f0cc";
+}
+.icon-underline:before {
+  content: "\f0cd";
+}
+.icon-table:before {
+  content: "\f0ce";
+}
+.icon-magic:before {
+  content: "\f0d0";
+}
+.icon-truck:before {
+  content: "\f0d1";
+}
+.icon-pinterest:before {
+  content: "\f0d2";
+}
+.icon-pinterest-sign:before {
+  content: "\f0d3";
+}
+.icon-google-plus-sign:before {
+  content: "\f0d4";
+}
+.icon-google-plus:before {
+  content: "\f0d5";
+}
+.icon-money:before {
+  content: "\f0d6";
+}
+.icon-caret-down:before {
+  content: "\f0d7";
+}
+.icon-caret-up:before {
+  content: "\f0d8";
+}
+.icon-caret-left:before {
+  content: "\f0d9";
+}
+.icon-caret-right:before {
+  content: "\f0da";
+}
+.icon-columns:before {
+  content: "\f0db";
+}
+.icon-sort:before {
+  content: "\f0dc";
+}
+.icon-sort-down:before {
+  content: "\f0dd";
+}
+.icon-sort-up:before {
+  content: "\f0de";
+}
+.icon-envelope:before {
+  content: "\f0e0";
+}
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+.icon-rotate-left:before,
+.icon-undo:before {
+  content: "\f0e2";
+}
+.icon-legal:before {
+  content: "\f0e3";
+}
+.icon-dashboard:before {
+  content: "\f0e4";
+}
+.icon-comment-alt:before {
+  content: "\f0e5";
+}
+.icon-comments-alt:before {
+  content: "\f0e6";
+}
+.icon-bolt:before {
+  content: "\f0e7";
+}
+.icon-sitemap:before {
+  content: "\f0e8";
+}
+.icon-umbrella:before {
+  content: "\f0e9";
+}
+.icon-paste:before {
+  content: "\f0ea";
+}
+.icon-lightbulb:before {
+  content: "\f0eb";
+}
+.icon-exchange:before {
+  content: "\f0ec";
+}
+.icon-cloud-download:before {
+  content: "\f0ed";
+}
+.icon-cloud-upload:before {
+  content: "\f0ee";
+}
+.icon-user-md:before {
+  content: "\f0f0";
+}
+.icon-stethoscope:before {
+  content: "\f0f1";
+}
+.icon-suitcase:before {
+  content: "\f0f2";
+}
+.icon-bell-alt:before {
+  content: "\f0f3";
+}
+.icon-coffee:before {
+  content: "\f0f4";
+}
+.icon-food:before {
+  content: "\f0f5";
+}
+.icon-file-text-alt:before {
+  content: "\f0f6";
+}
+.icon-building:before {
+  content: "\f0f7";
+}
+.icon-hospital:before {
+  content: "\f0f8";
+}
+.icon-ambulance:before {
+  content: "\f0f9";
+}
+.icon-medkit:before {
+  content: "\f0fa";
+}
+.icon-fighter-jet:before {
+  content: "\f0fb";
+}
+.icon-beer:before {
+  content: "\f0fc";
+}
+.icon-h-sign:before {
+  content: "\f0fd";
+}
+.icon-plus-sign-alt:before {
+  content: "\f0fe";
+}
+.icon-double-angle-left:before {
+  content: "\f100";
+}
+.icon-double-angle-right:before {
+  content: "\f101";
+}
+.icon-double-angle-up:before {
+  content: "\f102";
+}
+.icon-double-angle-down:before {
+  content: "\f103";
+}
+.icon-angle-left:before {
+  content: "\f104";
+}
+.icon-angle-right:before {
+  content: "\f105";
+}
+.icon-angle-up:before {
+  content: "\f106";
+}
+.icon-angle-down:before {
+  content: "\f107";
+}
+.icon-desktop:before {
+  content: "\f108";
+}
+.icon-laptop:before {
+  content: "\f109";
+}
+.icon-tablet:before {
+  content: "\f10a";
+}
+.icon-mobile-phone:before {
+  content: "\f10b";
+}
+.icon-circle-blank:before {
+  content: "\f10c";
+}
+.icon-quote-left:before {
+  content: "\f10d";
+}
+.icon-quote-right:before {
+  content: "\f10e";
+}
+.icon-spinner:before {
+  content: "\f110";
+}
+.icon-circle:before {
+  content: "\f111";
+}
+.icon-mail-reply:before,
+.icon-reply:before {
+  content: "\f112";
+}
+.icon-github-alt:before {
+  content: "\f113";
+}
+.icon-folder-close-alt:before {
+  content: "\f114";
+}
+.icon-folder-open-alt:before {
+  content: "\f115";
+}
+.icon-expand-alt:before {
+  content: "\f116";
+}
+.icon-collapse-alt:before {
+  content: "\f117";
+}
+.icon-smile:before {
+  content: "\f118";
+}
+.icon-frown:before {
+  content: "\f119";
+}
+.icon-meh:before {
+  content: "\f11a";
+}
+.icon-gamepad:before {
+  content: "\f11b";
+}
+.icon-keyboard:before {
+  content: "\f11c";
+}
+.icon-flag-alt:before {
+  content: "\f11d";
+}
+.icon-flag-checkered:before {
+  content: "\f11e";
+}
+.icon-terminal:before {
+  content: "\f120";
+}
+.icon-code:before {
+  content: "\f121";
+}
+.icon-reply-all:before {
+  content: "\f122";
+}
+.icon-mail-reply-all:before {
+  content: "\f122";
+}
+.icon-star-half-full:before,
+.icon-star-half-empty:before {
+  content: "\f123";
+}
+.icon-location-arrow:before {
+  content: "\f124";
+}
+.icon-crop:before {
+  content: "\f125";
+}
+.icon-code-fork:before {
+  content: "\f126";
+}
+.icon-unlink:before {
+  content: "\f127";
+}
+.icon-question:before {
+  content: "\f128";
+}
+.icon-info:before {
+  content: "\f129";
+}
+.icon-exclamation:before {
+  content: "\f12a";
+}
+.icon-superscript:before {
+  content: "\f12b";
+}
+.icon-subscript:before {
+  content: "\f12c";
+}
+.icon-eraser:before {
+  content: "\f12d";
+}
+.icon-puzzle-piece:before {
+  content: "\f12e";
+}
+.icon-microphone:before {
+  content: "\f130";
+}
+.icon-microphone-off:before {
+  content: "\f131";
+}
+.icon-shield:before {
+  content: "\f132";
+}
+.icon-calendar-empty:before {
+  content: "\f133";
+}
+.icon-fire-extinguisher:before {
+  content: "\f134";
+}
+.icon-rocket:before {
+  content: "\f135";
+}
+.icon-maxcdn:before {
+  content: "\f136";
+}
+.icon-chevron-sign-left:before {
+  content: "\f137";
+}
+.icon-chevron-sign-right:before {
+  content: "\f138";
+}
+.icon-chevron-sign-up:before {
+  content: "\f139";
+}
+.icon-chevron-sign-down:before {
+  content: "\f13a";
+}
+.icon-html5:before {
+  content: "\f13b";
+}
+.icon-css3:before {
+  content: "\f13c";
+}
+.icon-anchor:before {
+  content: "\f13d";
+}
+.icon-unlock-alt:before {
+  content: "\f13e";
+}
+.icon-bullseye:before {
+  content: "\f140";
+}
+.icon-ellipsis-horizontal:before {
+  content: "\f141";
+}
+.icon-ellipsis-vertical:before {
+  content: "\f142";
+}
+.icon-rss-sign:before {
+  content: "\f143";
+}
+.icon-play-sign:before {
+  content: "\f144";
+}
+.icon-ticket:before {
+  content: "\f145";
+}
+.icon-minus-sign-alt:before {
+  content: "\f146";
+}
+.icon-check-minus:before {
+  content: "\f147";
+}
+.icon-level-up:before {
+  content: "\f148";
+}
+.icon-level-down:before {
+  content: "\f149";
+}
+.icon-check-sign:before {
+  content: "\f14a";
+}
+.icon-edit-sign:before {
+  content: "\f14b";
+}
+.icon-external-link-sign:before {
+  content: "\f14c";
+}
+.icon-share-sign:before {
+  content: "\f14d";
+}
+.icon-compass:before {
+  content: "\f14e";
+}
+.icon-collapse:before {
+  content: "\f150";
+}
+.icon-collapse-top:before {
+  content: "\f151";
+}
+.icon-expand:before {
+  content: "\f152";
+}
+.icon-euro:before,
+.icon-eur:before {
+  content: "\f153";
+}
+.icon-gbp:before {
+  content: "\f154";
+}
+.icon-dollar:before,
+.icon-usd:before {
+  content: "\f155";
+}
+.icon-rupee:before,
+.icon-inr:before {
+  content: "\f156";
+}
+.icon-yen:before,
+.icon-jpy:before {
+  content: "\f157";
+}
+.icon-renminbi:before,
+.icon-cny:before {
+  content: "\f158";
+}
+.icon-won:before,
+.icon-krw:before {
+  content: "\f159";
+}
+.icon-bitcoin:before,
+.icon-btc:before {
+  content: "\f15a";
+}
+.icon-file:before {
+  content: "\f15b";
+}
+.icon-file-text:before {
+  content: "\f15c";
+}
+.icon-sort-by-alphabet:before {
+  content: "\f15d";
+}
+.icon-sort-by-alphabet-alt:before {
+  content: "\f15e";
+}
+.icon-sort-by-attributes:before {
+  content: "\f160";
+}
+.icon-sort-by-attributes-alt:before {
+  content: "\f161";
+}
+.icon-sort-by-order:before {
+  content: "\f162";
+}
+.icon-sort-by-order-alt:before {
+  content: "\f163";
+}
+.icon-thumbs-up:before {
+  content: "\f164";
+}
+.icon-thumbs-down:before {
+  content: "\f165";
+}
+.icon-youtube-sign:before {
+  content: "\f166";
+}
+.icon-youtube:before {
+  content: "\f167";
+}
+.icon-xing:before {
+  content: "\f168";
+}
+.icon-xing-sign:before {
+  content: "\f169";
+}
+.icon-youtube-play:before {
+  content: "\f16a";
+}
+.icon-dropbox:before {
+  content: "\f16b";
+}
+.icon-stackexchange:before {
+  content: "\f16c";
+}
+.icon-instagram:before {
+  content: "\f16d";
+}
+.icon-flickr:before {
+  content: "\f16e";
+}
+.icon-adn:before {
+  content: "\f170";
+}
+.icon-bitbucket:before {
+  content: "\f171";
+}
+.icon-bitbucket-sign:before {
+  content: "\f172";
+}
+.icon-tumblr:before {
+  content: "\f173";
+}
+.icon-tumblr-sign:before {
+  content: "\f174";
+}
+.icon-long-arrow-down:before {
+  content: "\f175";
+}
+.icon-long-arrow-up:before {
+  content: "\f176";
+}
+.icon-long-arrow-left:before {
+  content: "\f177";
+}
+.icon-long-arrow-right:before {
+  content: "\f178";
+}
+.icon-apple:before {
+  content: "\f179";
+}
+.icon-windows:before {
+  content: "\f17a";
+}
+.icon-android:before {
+  content: "\f17b";
+}
+.icon-linux:before {
+  content: "\f17c";
+}
+.icon-dribbble:before {
+  content: "\f17d";
+}
+.icon-skype:before {
+  content: "\f17e";
+}
+.icon-foursquare:before {
+  content: "\f180";
+}
+.icon-trello:before {
+  content: "\f181";
+}
+.icon-female:before {
+  content: "\f182";
+}
+.icon-male:before {
+  content: "\f183";
+}
+.icon-gittip:before {
+  content: "\f184";
+}
+.icon-sun:before {
+  content: "\f185";
+}
+.icon-moon:before {
+  content: "\f186";
+}
+.icon-archive:before {
+  content: "\f187";
+}
+.icon-bug:before {
+  content: "\f188";
+}
+.icon-vk:before {
+  content: "\f189";
+}
+.icon-weibo:before {
+  content: "\f18a";
+}
+.icon-renren:before {
+  content: "\f18b";
+}
+
+
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOiCnqEu92Fr1Mu51QrEzAdKg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TjASc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1Mu51xIIzc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51S7ACc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TzBic6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TLBCc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxIIzc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfBBc9.ttf) format('truetype');
+}
+  </style>
+  <title>
+   Only release one version of each version of your software &ndash; David Simpson &ndash; deliver.
+  </title>
+  <meta charset="utf-8">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <meta content="Versioning is there for a reason - for example it prevents silly mistakes. I'm aware some people even agree that version numbers should increment in some way. If you've already released version 1.0 of your code, its a good idea for the next version to be something like 1.0.1 or 1.1 or 2.0. 
+The key point here is that the next version number is different to the previous version and, if possible, a higher number than the last one.  
+I'm not claiming any higher insight or best practice here, I'm just hoping that it makes reasonable sense. Besides, others have already written about this.
+If your software is packaged as a Java jar, you could also publish this to a public maven repository. That would be a helpful bonus. I could reference your repository in my configuration and pull the dependency as required. 
+Do no evil
+Google however doesn't always think in this way. For example, gdata-core-1.0.jar was released in 2009 then followed by the next release gdata-core-1.0-jar in 2011. Some would say that this is a little confusing. It has had me confused. Initially, I thought that their documentation was pure lies. None of the methods documented were available in the software I was using.  After a while, I found out about the 2011 vintage of the code. As you can imagine, I was very excited by this curious discovery, using some very choice words to describe Google's engineers. 
+The good news was that the code and the documentation now actually matched. 
+Code examples work well with the 2011 vintage, but the 2009 vintage throws errors such as
+
+java.lang.NoSuchFieldError: V2_1
+	at com.google.gdata.client.analytics.AnalyticsService$Versions.&lt;clinit&gt;(AnalyticsService.java:69)
+	at com.google.gdata.client.analytics.AnalyticsService.&lt;clinit&gt;(AnalyticsService.java:88)
+
+Another tip: Don't let the 2009 vintage of gdata-code-1.0.jar get anywhere near your build server. Take it from me, it's a bad idea.
+" name="description">
+  <meta content="Versioning is there for a reason - for example it prevents silly mistakes. I'm aware some people even agree that version numbers should increment in some way. If you've already released version 1.0 of your code, its a good idea for the next version to be something like 1.0.1 or 1.1 or 2.0. 
+The key point here is that the next version number is different to the previous version and, if possible, a higher number than the last one.  
+I'm not claiming any higher insight or best practice here, I'm just hoping that it makes reasonable sense. Besides, others have already written about this.
+If your software is packaged as a Java jar, you could also publish this to a public maven repository. That would be a helpful bonus. I could reference your repository in my configuration and pull the dependency as required. 
+Do no evil
+Google however doesn't always think in this way. For example, gdata-core-1.0.jar was released in 2009 then followed by the next release gdata-core-1.0-jar in 2011. Some would say that this is a little confusing. It has had me confused. Initially, I thought that their documentation was pure lies. None of the methods documented were available in the software I was using.  After a while, I found out about the 2011 vintage of the code. As you can imagine, I was very excited by this curious discovery, using some very choice words to describe Google's engineers. 
+The good news was that the code and the documentation now actually matched. 
+Code examples work well with the 2011 vintage, but the 2009 vintage throws errors such as
+
+java.lang.NoSuchFieldError: V2_1
+	at com.google.gdata.client.analytics.AnalyticsService$Versions.&lt;clinit&gt;(AnalyticsService.java:69)
+	at com.google.gdata.client.analytics.AnalyticsService.&lt;clinit&gt;(AnalyticsService.java:88)
+
+Another tip: Don't let the 2009 vintage of gdata-code-1.0.jar get anywhere near your build server. Take it from me, it's a bad idea.
+" property="og:description">
+  <meta content="David Simpson" name="author">
+  <meta content="Only release one version of each version of your software" property="og:title">
+  <meta content="Only release one version of each version of your software" property="twitter:title">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@dvdsmpsn" name="twitter:site">
+  <meta content="@dvdsmpsn" name="twitter:creator">
+  <meta content="Versioning is there for a reason - for example it prevents silly mistakes. I'm aware some people even agree that version numbers should increment in some way. If you've already released version 1.0 of your code, its a good idea for the next version to be something like 1.0.1 or 1.1 or 2.0. 
+The key point here is that the next version number is different to the previous version and, if possible, a higher number than the last one.  
+I'm not claiming any higher insight or best practice here, I'm just hoping that it makes reasonable sense. Besides, others have already written about this.
+If your software is packaged as a Java jar, you could also publish this to a public maven repository. That would be a helpful bonus. I could reference your repository in my configuration and pull the dependency as required. 
+Do no evil
+Google however doesn't always think in this way. For example, gdata-core-1.0.jar was released in 2009 then followed by the next release gdata-core-1.0-jar in 2011. Some would say that this is a little confusing. It has had me confused. Initially, I thought that their documentation was pure lies. None of the methods documented were available in the software I was using.  After a while, I found out about the 2011 vintage of the code. As you can imagine, I was very excited by this curious discovery, using some very choice words to describe Google's engineers. 
+The good news was that the code and the documentation now actually matched. 
+Code examples work well with the 2011 vintage, but the 2009 vintage throws errors such as
+
+java.lang.NoSuchFieldError: V2_1
+	at com.google.gdata.client.analytics.AnalyticsService$Versions.&lt;clinit&gt;(AnalyticsService.java:69)
+	at com.google.gdata.client.analytics.AnalyticsService.&lt;clinit&gt;(AnalyticsService.java:88)
+
+Another tip: Don't let the 2009 vintage of gdata-code-1.0.jar get anywhere near your build server. Take it from me, it's a bad idea.
+" name="twitter:description">
+  <meta content="summary" name="twitter:card">
+  <meta content="/assets/dvdsmpsn-twitter-card.png" name="twitter:image">
+  <!--[if lt IE 9]>
+      
+    <![endif]-->
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div class="intro-header">
+   <div class="wrapper-masthead">
+    <div class="container">
+     <header class="masthead clearfix">
+      <div class="site-info">
+       <h1 class="site-name">
+        <a>
+         David Simpson
+        </a>
+       </h1>
+       <p class="site-description">
+        deliver. iterate.
+       </p>
+      </div>
+      <nav>
+       <a>
+        Blog
+       </a>
+       <a>
+        About
+       </a>
+       <a>
+        Projects
+       </a>
+       <a target="_blank" title="David Simpson Apps">
+        Apps
+       </a>
+      </nav>
+     </header>
+    </div>
+   </div>
+   <div class="container">
+    <div class="post-heading">
+     <h1>
+      Only release one version of each version of your software
+     </h1>
+     <div class="meta">
+      <div class="nav">
+       Posted by
+       <a>
+        David Simpson
+       </a>
+       on January  9, 2014.
+       <a>
+        Return to index
+       </a>
+       .
+      </div>
+      <div class="tags">
+       Tags:
+       <a class="tag">
+        google analytics
+       </a>
+      </div>
+      <div class="edit">
+       <a title="Edit this page">
+        <i aria-hidden="true" class="icon-code">
+        </i>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container" id="main" role="main">
+   <article class="post">
+    <div class="space-extra-small">
+    </div>
+    <div class="entry">
+     <p>
+      Versioning is there for a reason - for example it prevents silly mistakes. I'm aware some people even agree that version numbers should increment in some way.
+     </p>
+     <p>
+      The key point here is that the
+      <strong>
+       next version
+      </strong>
+      number is
+      <strong>
+       different to the previous version
+      </strong>
+      and, if possible,
+      <strong>
+       a higher number than the last one
+      </strong>
+      .
+     </p>
+     <p>
+      I'm not claiming any higher insight or best practice here, I'm just hoping that it makes reasonable sense. Besides, others have
+      <a>
+       already written about this
+      </a>
+      .
+     </p>
+     <p>
+      If your software is packaged as a Java jar, you could also publish this to a public maven repository. That would be a helpful bonus.
+     </p>
+     <h2>
+      Do no evil
+     </h2>
+     <p>
+      Google however doesn't always think in this way. For example,
+      <strong>
+       gdata-core-1.0.jar
+      </strong>
+      was released in 2009 then followed by the next release
+      <strong>
+       gdata-core-1.0-jar
+      </strong>
+      in 2011.
+     </p>
+     <p>
+      The good news was that the code and the documentation now actually matched.
+     </p>
+     <p>
+      Code examples work well with the 2011 vintage, but the 2009 vintage throws errors such as
+     </p>
+     <pre><code>
+java.lang.NoSuchFieldError: V2_1<br>
+	at com.google.gdata.client.analytics.AnalyticsService$Versions.&lt;clinit&gt;(AnalyticsService.java:69)<br>
+	at com.google.gdata.client.analytics.AnalyticsService.&lt;clinit&gt;(AnalyticsService.java:88)<br>
+</code></pre>
+     <p>
+      Another tip: Don't let the 2009 vintage of gdata-code-1.0.jar get anywhere near your build server. Take it from me, it's a bad idea.
+     </p>
+    </div>
+    <div class="comments">
+     <div id="disqus_recommendations" style="margin-bottom: 12px;">
+     </div>
+     <div id="disqus_thread">
+     </div>
+     <noscript>
+      Please enable JavaScript to view the
+      <a>
+       comments powered by Disqus.
+      </a>
+     </noscript>
+    </div>
+   </article>
+  </div>
+  <div class="wrapper-footer">
+   <div class="container">
+    <footer class="footer">
+     <div class="svg-icon">
+      <a>
+       <i class="icon-envelope icon-2x">
+       </i>
+      </a>
+      <a>
+       <i class="icon-github icon-2x">
+       </i>
+      </a>
+      <a>
+       <i class="icon-linkedin-sign icon-2x">
+       </i>
+      </a>
+      <a>
+       <i class="icon-twitter icon-2x">
+       </i>
+      </a>
+      <a>
+       <i class="icon-stackexchange icon-2x">
+       </i>
+      </a>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <!-- Google Analytics UA -->
+  <!-- End Google Analytics -->
+  <!-- Global site tag (gtag.js) - Google Analytics GA4 -->
+ </body>
+</html>

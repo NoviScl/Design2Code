@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="de">
+ <!--
+ use class="debug" here if you develope a template and want to check-->
+ <head>
+  <style>
+   ﻿@charset "UTF-8";
+/*------------------------------------*\
+	INUIT.CSS
+\*------------------------------------*/
+/*
+Author:             Harry Roberts
+Twitter:            @inuitcss
+Author URL:         csswizardry.com
+Project URL:        inuitcss.com
+Version:            3.2
+Date:               24 November 2011
+
+Copyright 2011 Harry Roberts
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+*/
+/*------------------------------------*\
+	CONTENTS
+\*------------------------------------*/
+/*
+RESET
+SHARED
+MAIN
+GRIDS
+CLEARFIX
+ISLAND
+MEDIA
+LOGO
+NAV
+TYPE
+IMAGES
+FORMS
+TABLES
+MESSAGES
+MISC
+CLASSES
+DIAGNOSTICS
+NARROW
+MOBILE
+PRINT
+*/
+
+
+
+
+
+/*------------------------------------*\
+	$RESET
+\*------------------------------------*/
+/*
+A more considered reset; more of a restart... csswizardry.com/2011/10/reset-restarted
+*/
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,hr,
+a,abbr,address,cite,code,
+del,dfn,em,img,ins,kbd,q,s,samp,
+small,strong,sub,sup,tt,var,
+b,u,i,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary,
+time,mark,audio,video{
+	margin:0;
+	padding:0;
+}
+article,aside,details,figcaption,figure,footer,
+header,hgroup,menu,nav,section{
+	display:block;
+}
+h1,h2,h3,h4,h5,h6{
+	font-size:1em;
+}
+table{
+	border-collapse:collapse;
+	border-spacing:0;
+}
+strong,b,mark{
+	font-weight:bold;
+	font-style:inherit;
+}
+em,i,cite,q,address,dfn,var{
+	font-style:italic;
+	font-weight:inherit;
+}
+abbr[title],dfn[title]{
+	cursor:help;
+	border-bottom:1px dotted;
+}
+ins{
+	border-bottom:1px solid;
+}
+a,u,ins{
+	text-decoration:none;
+}
+del,s{
+	text-decoration:line-through;
+}
+pre,code,samp,kbd{
+	font-family:monospace;
+}
+small{
+	font-size:0.75em;
+}
+img{
+	border:none;
+	font-style:italic;
+}
+input,
+select,option,optgroup,
+textarea{
+	font:inherit;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$SHARED
+\*------------------------------------*/
+/*
+Rather than repeating declarations over and over, let’s make a shared section.
+*/
+h1,h2,h3,h4,h5,h6,
+ul,ol,dl,p,address,figure,pre,fieldset,table,hr,
+.nav,.island,.media{
+	margin-bottom:24px;
+	margin-bottom:1.5rem;
+}
+figcaption,small{
+	font-size:12px;
+	font-size:0.75rem;
+}
+ul,ol,dd{
+	margin-left:3em;
+}
+small,code{
+	line-height:1;
+}
+pre,code,
+input,textarea{
+	font:inherit;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$MAIN
+\*------------------------------------*/
+html{
+	overflow-y:scroll; /* Force scrollbars 100% of the time */
+	font-size:100%; /* Use 16px as per informationarchitects.jp/en/100e2r/ and wilsonminer.com/posts/2008/oct/20/relative-readability/ */
+	line-height:1.5; /* A safe default for type of any size. */
+	/* You should always specify a colour and background, override these in your own stylesheet if desired. */
+	background-color:#fff;
+	color:#333;
+}
+body{
+	min-height:100%;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$GRIDS
+\*------------------------------------*/
+/*
+Build a custom grid-system igloo at inuitcss.com
+Include this igloo in igloos.css
+*/
+
+
+
+
+
+/*------------------------------------*\
+	$CLEARFIX
+\*------------------------------------*/
+/*
+Fix clearing issues as per: nicolasgallagher.com/micro-clearfix-hack/
+*/
+.cf,
+.grids,
+.media{
+	zoom:1;
+}
+.cf:before,
+.grids:before,
+.media:before,
+
+.cf:after,
+.grids:after,
+.media:after{
+	content:"";
+	display:table;
+}
+.cf:after,
+.grids:after,
+.media:after{
+	clear:both;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$ISLAND
+\*------------------------------------*/
+/*
+Use a class of .island whenever you want to box off an area of content as per: csswizardry.com/2011/10/the-island-object/
+Extend with classes like .promo to apply different colours etc to draw attention.
+*/
+.island{
+	padding:1.5em;
+}
+	.island > :last-child{
+		margin-bottom:0;
+	}
+
+
+
+
+
+/*------------------------------------*\
+	$MEDIA
+\*------------------------------------*/
+/*
+Based on @stubbornella’s media object: stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+<a class="media promo">
+	<img src=product.jpg alt="" class=img>
+	<p class=body>Get Product for half price!</p>
+</a>
+*/
+.media{
+	display:block;
+}
+	.media .img{
+		float:left;
+		margin-right:10px;
+	}
+	.media .body{
+		overflow:hidden;
+		margin-bottom:0;
+	}
+
+
+
+
+
+/*------------------------------------*\
+	$LOGO
+\*------------------------------------*/
+/*
+Your logo is an image, not a h1: csswizardry.com/2010/10/your-logo-is-an-image-not-a-h1/
+*/
+.logo,
+.logo img{
+	display:block;
+	width:auto; /* Width of your logo in pixels (ideally a round grid-number) */
+	height:auto; /* Height of your logo in pixels */
+}
+/* Based on the fact that we need to use an <img /> in our markup, let’s hide the actual image and use a background on the <a>--this gives us semantically sound markup and the ability to use sprites for hover effects! */
+.logo{
+	background:url(/path/to/logo);
+}
+	.logo:hover{
+		/* Hover states */
+		background-position:0 -00px;
+	}
+.logo img{
+	position:absolute;
+	left:-99999px;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$NAV
+\*------------------------------------*/
+/*
+Create an abstraction, as per: csswizardry.com/2011/09/the-nav-abstraction/
+*/
+.nav{
+	list-style:none;
+}
+.nav li{
+	display:inline;
+}
+.nav a{
+	display:inline-block;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$TYPE
+\*------------------------------------*/
+/*--- HEADINGS ---*/
+h1,.alpha{
+	font-size:2em;			/* 32px */
+	line-height:1.5;		/* 48px */
+}
+h2,.beta{
+	font-size:1.5em;		/* 24px */
+	line-height:1;			/* 24px */
+}
+h3,.gamma{
+	font-size:1.25em;		/* 20px */
+	line-height:1.2;		/* 24px */
+}
+h4,.delta{
+	font-size:1.125em;		/* 18px */
+	line-height:1.333;		/* 24px */
+}
+h5,.epsilon{
+	font-weight:bold;
+}
+h5,.epsilon,
+h6,.zeta{
+	font-size:1em;			/* 16px */
+	line-height:1.5;		/* 24px */
+}
+
+/*--- PARAGRAPHS ---*/
+/*
+Mo’ robust paragraph indenting: csswizardry.com/2010/12/mo-robust-paragraph-indenting/
+Uncomment to activate
+p+p{
+	text-indent:2em;
+	margin-top:-1.5em;
+}
+*/
+
+/*--- FIGURES ---*/
+figure img{
+	display:block;
+	margin-bottom:0;
+}
+
+/*--- LINKS ---*/
+/*
+Say no to negative hovers: csswizardry.com/2011/05/on-negative-hovers/
+A negative hover is one whose appearance is subtracted from on hover rather than added to.
+*/
+a:visited{
+	opacity:0.8; /* A bit basic, but it’s a bare minumum... */
+}
+a:hover{
+	text-decoration:underline;
+}
+a:active,
+a:focus{
+	/* Give clicked links a depressed effect. */
+	position:relative;
+	top:1px;
+}
+
+/*--- LISTS ---*/
+li > ul,
+li > ol{
+	/* Let’s take care of lists in lists */
+	margin-bottom:0;
+}
+
+/*
+A numbered list is NOT the same as an ordered one: csswizardry.com/2011/09/ordered-and-numbered-lists-the-differences/
+Use this class when you want a list to be numbered but it has no order.
+*/
+ul.numbered{
+	list-style:decimal outside;
+}
+dt{
+	font-weight:bold;
+}
+
+/*--- QUOTES ---*/
+/*
+Big up @boblet: html5doctor.com/blockquote-q-cite/
+*/
+q{ quotes:"‘" "’" "“" "”"; }
+
+q:before{ content:"‘"; content:open-quote; }
+q:after{ content:"’"; content:close-quote; }
+
+q q:before{ content: "“"; content: open-quote; }
+q q:after{ content: "”"; content: close-quote; }
+
+blockquote{ quotes: "“" "”"; }
+blockquote p:before{ content: "“"; content: open-quote; }
+blockquote p:after{ content: ""; content: no-close-quote; }
+blockquote p:last-of-type:after{ content: "”"; content: close-quote; }
+
+blockquote{
+	text-indent:-0.4em;
+}
+
+/*
+Mark up the source of a quote with .source:
+<blockquote>
+	<p>Lorem ipsum dolor sit amet. <b class=source>Joe Bloggs</b></p>
+</blockquote>
+*/
+.source{
+	display:block;
+	text-indent:0;
+	margin-top:-24px;
+	margin-top:-1.5rem;
+}
+	.source:before{
+		content:"—";
+	}
+
+/*--- GENERAL ---*/
+mark{
+	background-color:#ffc;
+	color:#333;
+}
+
+/*--- CODE ---*/
+pre,
+code{
+	font-family:"Inconsolata", "Monaco", "Consolas", "Courier New", Courier, monospace;
+}
+pre{
+	overflow:auto;
+	line-height:24px; /* Having to define explicit pixel values :( */
+}
+
+
+
+
+
+/*------------------------------------*\
+	$IMAGES
+\*------------------------------------*/
+img{
+	max-width:100%;
+	height:auto;
+	/* Give it some text styles to offset alt text */
+	color:#c00;
+}
+img.left	{ margin:0 1.5em 0 0; }
+img.right	{ margin:0 0 0 1.5em; }
+
+/*--- FLASH/VIDEO ---*/
+object,
+embed,
+video{
+	max-width:100%;
+	height:auto;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$FORMS
+\*------------------------------------*/
+/*
+Unfortunately, and somewhat obviously, forms don’t fit the baseline all too well. Perhaps in a later version...
+*/
+/*fieldset{
+	padding:1.5em;
+	border:1px solid #ccc;
+}
+label{
+	display:block;
+}
+.text-input{
+
+}
+label,
+.text-input,
+textarea,
+.btn{
+	cursor:pointer;
+}
+	.text-input:active,
+	.text-input:focus,
+	textarea:active,
+	textarea:focus{
+		cursor:text;
+	}
+
+.check-list{
+	width:100%;
+	overflow:hidden;
+	list-style:none;
+	margin-left:0;
+}
+.check-list li{
+	width:25%;
+	float:left;
+}
+.check-label{
+	display:inline;
+}
+fieldset > :last-child{
+
+	margin-bottom:0;
+}*/
+
+/*------------------------------------*\
+	$TABLES
+\*------------------------------------*/
+/*
+Unfortunately, and somewhat obviously, tables don’t fit the baseline all too well. Perhaps in a later version...
+*/
+table{
+	width:100%;
+	max-width:100%;
+}
+thead tr:last-of-type th{
+	/* Thicker border on the table-headers of the last row in the table head. */
+	border-bottom-width:2px;
+}
+tbody th{
+	/* Thicker right border on table-headers in the table body. */
+	border-right-width:2px;
+}
+th:empty{
+	/* Hide the borders on any empty table-headers. */
+	border:none;
+}
+th,td{
+	vertical-align:top;
+	padding:0.75em;
+	border:1px solid #ccc;
+}
+th{
+	font-weight:bold;
+	text-align:center
+}
+table [colspan]{
+	text-align:center;
+}
+table [rowspan]{
+	vertical-align:middle;
+}
+/*
+Assuming IE has an 'implied' colspan of one on cells without an explicit colspan attribute, fix/undo it.
+See jsfiddle.net/csswizardry/UJJay/
+*/
+[colspan="1"]{
+    text-align:left;
+}
+[rowspan="1"]{
+    vertical-align:top;
+}
+tbody tr:nth-of-type(odd){
+	background:rgba(0,0,0,0.05);
+}
+tfoot{
+	text-align:center;
+}
+tfoot td{
+	border-top-width:2px;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$MESSAGES
+\*------------------------------------*/
+/*
+Unfortunately feedback messages don’t fit the baseline all too well. Perhaps in a later version...
+*/
+.message{
+	font-weight:normal;
+	display:block;
+	padding:10px 10px 10px 36px;
+	border:1px solid #ccc;
+	margin-left:0;
+	
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,0.5) inset;
+	-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.5) inset;
+	box-shadow:0 1px 0 rgba(255,255,255,0.5) inset;
+}
+	/*
+	With multiple errors it’s nice to group them:
+	<ul class=message>
+		<li>Please provide a surname.</li>
+		<li>Please enter a valid email address.</li>
+	</ul>
+	*/
+	ul.message{
+		list-style:decimal outside; /* It’s also handy to number them. However, they might not necessarily be in a particular order, so we spoof it by putting numbers on an unordered list */
+		padding:10px 10px 10px 56px;
+	}
+.error{
+	border-color:#fb5766;
+	background:url(../img/css/icons/error.png) 10px center no-repeat #fab;
+}
+.success{
+	border-color:#83ba77;
+	background:url(../img/css/icons/success.png) 10px center no-repeat #d1feba;
+}
+.info{
+	border-color:#85a5be;
+	background:url(../img/css/icons/info.png) 10px center no-repeat #c4dbec;
+}
+.warning{
+	border-color:#d8d566;
+	background:url(../img/css/icons/warning.png) 10px center no-repeat #fef8c4;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$MISC
+\*------------------------------------*/
+.accessibility{
+	/* Hide content off-screen without hiding from screen-readers. N.B. This is not suited to RTL languages */
+	position:absolute;
+	left:-99999px;
+}
+.more-link:after{
+	/* Too many people use &raquo; in their markup to signify progression/movement, that ain’t cool. Let’s insert that using content:""; */
+	content:" »";
+}
+
+
+
+
+
+/*------------------------------------*\
+	$CLASSES
+\*------------------------------------*/
+/*
+Some not-too-pretty and insemantic classes to do odd jobs.
+*/
+.left	{ float:left; }
+.right	{ float:right; }
+.clear	{ clear:both; float:none; }
+
+.text-left		{ text-align:left; }
+.text-right		{ text-align:right; }
+.text-center,
+.text-centre	{ text-align:center; }
+
+
+
+
+
+/*------------------------------------*\
+	$DIAGNOSTICS
+\*------------------------------------*/
+/*
+Apply a class of .debug to the html element ONLY WHEN YOUR SITE IS ON DEV.
+*/
+
+/*
+Red border 		== 	something is wrong
+Yellow border 	== 	something may be wrong, you should double check.
+Green border 	== 	perfect, nice one!
+*/
+
+/*--- STYLES ---*/
+.debug [style],
+.debug style{
+	/* Inline styles aren’t great, can this be avoided? */
+	outline:5px solid yellow;
+}
+	.debug style{
+		display:block;
+	}
+
+/*--- IMAGES ---*/
+.debug img{
+	/* Images without alt attributes are bad! */
+	outline:5px solid red;
+}
+.debug img[alt]{
+	/* Images with alt attributes are good! */
+	outline-color:green;
+}
+.debug img[alt=""]{
+	/* Images with empty alt attributes are okay in the right circumstances. */
+	outline-color:yellow;
+}
+
+/*--- LINKS ---*/
+.debug a{
+	/* Links without titles are yellow, does your link need one? */
+	outline:5px solid yellow;
+}
+.debug a[title]{
+	/* Links with titles are green, title attributes can be very useful! */
+	outline-color:green;
+}
+.debug a[]{
+	/* Were you meant to leave that hash in there? */
+	outline-color:yellow;
+}
+.debug a[target]/*,
+.debug a[onclick],
+.debug a[href*=javascript]*/{
+	/* What were you thinking?! */
+	outline-color:red;
+}
+
+/*--- CLASSES/IDS ---*/
+.debug [class=""],
+.debug [id=""]{
+	/* Is this element meant to have an empty class/ID? */
+	outline:5px solid yellow;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$NARROW
+\*------------------------------------*/
+/*
+CSS for tablets and narrower devices
+*/
+@media (min-width: 721px) and (max-width: 960px){
+}
+/*--- END NARROW ---*/
+
+
+
+
+
+/*------------------------------------*\
+	$MOBILE
+\*------------------------------------*/
+/*
+CSS for mobile devices.
+Linearise it!
+*/
+@media (max-width: 720px){
+/*------------------------------------*\
+	MAIN
+\*------------------------------------*/
+html{
+	font-size:1.125em; /* Make text slightly larger for smaller devices to improve readability. */
+}
+body{
+	-webkit-text-size-adjust:none;
+}
+.wrapper{
+	width:auto;
+}
+.grids{
+	margin:0;
+	width:auto;
+}
+[class^="grid-"],
+.grids [class^="grid-"]{
+	width:auto;
+	float:none;
+	margin:0;
+}
+
+
+
+
+
+/*------------------------------------*\
+	LOGO
+\*------------------------------------*/
+.logo{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+
+
+
+/*------------------------------------*\
+	TYPE
+\*------------------------------------*/
+/*--- LISTS ---*/
+ul,
+ol,
+dl{
+	margin-left:1.5em;
+}
+
+
+
+
+
+/*------------------------------------*\
+	IMAGES
+\*------------------------------------*/
+img.left,
+img.right	{ max-width:50%; height:auto; }
+}
+/*--- END MOBILE ---*/
+
+
+
+
+
+/*------------------------------------*\
+	$PRINT
+\*------------------------------------*/
+/*
+Good ol’ fashioned paper...
+*/
+@media print{
+/*------------------------------------*\
+	MAIN
+\*------------------------------------*/
+/*
+Give everything some decent contrast.
+*/
+*{
+	background-color:#fff;
+	color:#000;
+	text-shadow:none!important;
+}
+/*
+Set a nice measure and take the font down to print-acceptable sizes.
+*/
+body{
+	font-size:0.75em; /* 12px (if base font-size was 16px) */
+}
+.wrapper{
+	width:75%;
+	margin:0 auto;
+}
+/*
+A list of things you don’t want printing. Add to/subtract from as necessary. 
+*/
+.nav,
+.footer{
+	display:none;
+}
+.logo img{
+	position:static;
+}
+/*
+Linearise
+*/
+.grids{
+	width:auto;
+}
+[class^="grid-"]{
+	width:auto;
+	float:none;
+	clear:both;
+}
+/*
+Don’t let images break anything.
+*/
+img{
+	max-width:100%;
+	height:auto;
+}
+/*
+Messages look odd with just borders.
+*/
+.message{
+	border:none;
+	font-weight:bold;
+}
+/*
+Display the href of any links.
+*/
+a:link:after,a:visited:after{
+	content:" (" attr(href) ")";
+	font-size:smaller;
+}
+/*
+Any links that are root relative to your site need prepending with your URL.
+*/
+a[href^="/"]:after{
+	content:" (http://yoururlhere.com" attr(href) ")";
+	font-size:smaller;
+}
+/*
+Any Flash/video content can’t be printed so leave a message.
+*/
+object:after{
+	content:"Flash/video content. Head to http://yoururlhere.com/ to view this content.";
+	display:block;
+	font-weight:bold;
+	margin-bottom:1.5em;
+}
+}
+/*--- END PRINT ---*/
+
+
+/*
+Page container
+*/
+.wrapper{
+	max-width:1080px;
+	margin:0 auto;
+	padding:1.5em 1em;
+}
+
+/*------------------------------------*\
+	GRIDS
+\*------------------------------------*/
+/*
+Most frameworks rely on class="end" or similar to remove the margin from the last column in a row of grids. We don't want to do that so we use a combination of margin- and negative margin-left. It's clever...
+We also allow you to use grid items as stand alone columns or in a series of columns. To use a series just wrap them all in <div class="grids">...</div>
+*/
+.grids{
+	max-width:1120px;
+	clear:both;
+	margin:0 0 0 -2.679%;
+	list-style:none; /* So we can make grids out of lists. */
+}
+
+/*
+Here we are using an attribute selector to detect the string 'grid-' in an element's class.
+This works by assuming that anything we call grid- we also want to be a grid item. It means less code and less for you to remember!
+
+Ensure any grid item's FIRST class is a grid- class. e.g.
+VALID: class="grid-4 text-centre"
+INVALID: class="left grid-4"
+*/
+[class^="grid-"]{
+	float:left;
+	margin:0 2.679% 0 0;
+}
+.grids [class^="grid-"]{
+	margin:0 0 0 2.679%;
+}
+
+/*
+Nested grids won't work with fluid layouts :(
+*/
+
+.grid-1{ width:3.571% }
+.grid-2{ width:9.821% }
+.grid-3{ width:16.071% }
+.grid-4{ width:22.321% }
+.grid-5{ width:28.571% }
+.grid-6{ width:34.821% }
+.grid-7{ width:41.071% }
+.grid-8{ width:47.321% }
+.grid-9{ width:53.571% }
+.grid-10{ width:59.821% }
+.grid-11{ width:66.071% }
+.grid-12{ width:72.321% }
+.grid-13{ width:78.571% }
+.grid-14{ width:84.821% }
+.grid-15{ width:91.071% }
+.grid-16{ width:97.321%; margin:0; }
+
+
+@charset "utf-8";
+/*------------------------------------*\
+	eve-styles.css
+\*------------------------------------*/
+
+/* Design of Template ResponseEve (eve-styles.css) by Silvia Gamsjäger (SiGa)*/
+/*
+Twitter:            @sg_layout
+Author URL:         sg-layout.com
+Project URL:        sg-layout.com
+Version:            1.0
+Date:               January 2012
+License:			MIT License (X11)
+					http://www.opensource.org/licenses/MIT
+
+Copyright (c) 2012 Silvia Gamsjäger (SiGa)
+
+You´ll find a copy of the license in the files
+you´ve downloaded.
+*/
+
+div.main-content
+{
+    text-align:center;
+}
+/*------------------------------------*\
+	MAIN
+\*------------------------------------*/
+html{font-family: Arial, sans-serif;color: #888;}
+body{background:url(../img/bg.jpg) repeat;}
+
+.social {text-align: right; position: relative;  margin: 4px 0;}
+.social img {margin-bottom: 0;}
+
+#footer {border-radius: 10px; background-color: #A5C100; color: #fff; padding: 10px 0;}
+#footer p {margin: 0; padding: 10px 0;}
+
+/*------------------------------------*\
+	LOGO
+\*------------------------------------*/
+
+#logo, #logo img{display:block;width:200px; height:100px;}
+#logo{float: left; background:url(../img/logo.png) top center no-repeat; position: relative; margin: 0; z-index: 120; display: inline; /* fixes IE6 margin bug */}
+#logo img{position:absolute; left:-99999px;}
+
+/*------------------------------------*\
+	TOP NAVIGATION
+\*------------------------------------*/
+.nav {list-style:none; margin:0 0 1.5em 0;}
+
+/*Add a class of centred/centered to create a centred nav.*/
+
+#nav.main{
+	float: right;
+	text-align:center;
+	margin: 0.5em 0 0 0;
+	padding: 0.4em 0;
+	font-family:'Oswald', Arial, sans-serif;
+}
+#nav.main li {display:inline; float:none;}
+
+#nav.main a{
+	display:inline-block;
+	padding: 0.6em 1.2em;
+	background-color: #EFEFEF;
+	border-radius: 10px;
+	border-right: 1px solid #bbb;
+	border-bottom: 2px solid #bbb;
+	color: #666;text-decoration:none; 
+	text-transform:uppercase; 
+	text-shadow: 1px 1px 1px #fff;
+	font-size: 1.1em;
+	margin: 0 0 0.6em 0;	
+}
+#nav.main a:hover{color: #666; text-shadow: 1px 1px 0px #fff; background-color: #EAFFC4; }
+
+#nav.main a.active{color: #fff; text-shadow: 1px 1px 1px #333; font-weight: bold; background-color: #A5C100; letter-spacing: 1px;}
+
+#nav li span {display: block; font-size: 10px; color: #666; text-shadow: none; line-height: 8px;}
+
+/*------------------------------------*\
+	TYPE
+\*------------------------------------*/
+/* @font-face kit by Fonts2u (http://www.fonts2u.com/oswald.schriftart) */
+/* Font Oswald, SIL-licenced, author Vernon Adams */  
+@font-face {font-family:"Oswald";src:url("Oswald.eot?") format("eot"),url("Oswald.woff") format("woff"),url("Oswald.ttf") format("truetype"),url("Oswald.svg#Oswald") format("svg");font-weight:normal;font-style:normal;}
+
+/*--- HEADINGS ---*/
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', Arial, sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	color: #A5C100;
+	text-shadow: 1px 1px 0px #6D8901;
+}
+
+h1{font-size:2.5em;	margin-bottom:0.75em; line-height:1.5;}
+h2{font-size:2.3em;	margin-bottom:1em; line-height:1.4em;}
+h3{font-size:2em; margin-bottom:1em; line-height:1.3;}
+h4{font-size:1.5em;	margin-bottom:0.8em; line-height:auto; text-shadow: none; font-weight:bold;}
+h5{font-size:1.3em; margin-bottom:0.6em; text-shadow: none; line-height:auto;}
+h6{font-size:1.2em; margin-bottom:0.6em; text-shadow: none; line-height:auto;}
+/*------------------------------------*\
+	CLASSES
+\*------------------------------------*/
+/*
+Some not-too-pretty and insemantic classes to do odd jobs.
+*/
+.left	{ float:left!important; }
+.right	{ float:right!important; }
+
+.intro {padding: 10px 0; color: #999;}
+.intro h2 {font-size: 3em; line-height: 1em; letter-spacing: -1px; text-transform:uppercase; padding-right:15px; margin: 0 0 20px 0;}
+.intro p {font-family: 'Oswald', Arial, sans-serif; font-size: 1.9em; line-height: 1.2em; letter-spacing: -2px; padding-right: 15px;}
+
+.quote {font-family: Arial, sans-serif; font-size: 1.4em; letter-spacing: -1px; font-style: italic; line-height: 1.3em; } /*a styled quote in addition to blockquote*/
+.quote span {display: block; font-size: 0.7em; padding-top: 10px; font-style: normal;}
+
+/*Colored boxes, green and grey*/
+.green, .grey {-webkit-border-radius: 15px; -moz-border-radius: 15px; -o-border-radius: 15px; border-radius: 15px; zoom: 1; border-top: 1px solid #fff; border-bottom: 1px solid #fff; margin-bottom: 15px!important;}
+.green {background-color: #EAFFC4;}
+.grey {background-color: #EFEFEF;}
+.green p, .grey p {padding:10px 30px 0;}
+.green h2, .grey h2, .green h3, .grey h3, .green h4, .grey h4 {border-bottom: 5px solid #fff; margin-bottom: 0; }
+.green h2, .grey h2, .green h3, .grey h3, .green h4, .grey h4, .green h5, .grey h5, .green h6, .grey h6 {padding: 0px 30px; line-height: 1.7em;}
+
+/*Additional whitespace top,bottom or both for any element. You don´t have to use hr or lots of <br />*/
+.top {margin-top: 30px!important;}
+.bottom {margin-bottom: 30px!important;}
+
+.ticker {border: none!important; background: none!important; line-height: auto;}
+
+/*------------------------------------*\
+	LINKS and BUTTON
+\*------------------------------------*/
+
+a{ color: #669B02;text-decoration:none;}
+
+a.button {
+	font-family: Arial, sans-serif;
+	font-size: 1em;
+	line-height: auto;
+	background-color: #6D8901;/* fallback for browsers that don´t support gradients */
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#A5C100), to(#6D8901));/* Safari 4+, Chrome 1-9 */
+	background-image: -moz-linear-gradient(top, #A5C100, #6D8901);/* Firefox 3.6+ */
+	background-image: -o-linear-gradient(top, #A5C100, #6D8901);/* Opera 11.10+ */
+	background-image: -webkit-linear-gradient(top, #A5C100, #6D8901);/* Safari 5.1+, Mobile Safari, Chrome 10+ */
+	background-image: -ms-linear-gradient(top, #A5C100, #6D8901);/* IE 10+ */
+    border: 1px solid #799C01;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 #9BCB76 inset;
+    color: white;
+    position: relative;
+    text-shadow: 0 1px 0 #424F1C;
+	text-decoration: none;
+	margin: 15px 0;
+	text-align: center;
+	font-weight: bold;
+	padding: 0.3em 0.7em;
+	display: inline-block;}
+	
+a.button:hover {
+	background-color: #A5C100;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6D8901), to(#A5C100));
+	background-image: -moz-linear-gradient(#6D8901, #A5C100);
+	background-image: -moz-linear-gradient(top, #6D8901, #A5C100);
+	background-image: -o-linear-gradient(top, #6D8901, #A5C100);
+	background-image: -webkit-linear-gradient(top, #6D8901, #A5C100);
+	background-image: -ms-linear-gradient(top, #6D8901, #A5C100);}
+
+/*------------------------------------*\
+	LISTS
+\*------------------------------------*/
+ul.check {list-style:none;
+	list-style-image:url(../img/check.png);
+	list-style-position: inside;
+	}
+/*------------------------------------*\
+	IMAGES
+\*------------------------------------*/
+img{margin-bottom: 10px;}
+table img
+{margin:0;
+}
+img.left	{ margin:0 20px 10px 0; }
+img.right	{ margin:0 0 10px 20px; }
+/* due to article of Chris Coyier 
+http://css-tricks.com/441-resizeable-images-at-full-resolution/ */
+img.expand { width: 24em; margin: 0; }
+
+/*-------------------------------------------*\
+	No borders and background for form-tables
+\*-------------------------------------------*/
+.form th, .form td {border:none; background:none; padding: 0.75em 0;}
+.form tbody tr:nth-of-type(odd){background:none;}
+/*------------------------------------*\
+	hr with image (leaf)
+\*------------------------------------*/
+hr{margin:1em 0; width: 100%; height: 26px; background: url(../img/hr.png) no-repeat top center; border:none;}
+
+/******************************************************************************************************
+TABS by Sohtanaka, CSS tweaked by SiGa
+*******************************************************************************************************/
+ul.tabs {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ height: 32px; /*--Set height of tabs--*/
+ width: 100%;
+ display: block;
+}
+ul.tabs li {
+ float: left;
+ margin: 0;
+ padding: 0;
+ height: 32px; 
+ line-height: 32px; /*--Vertically aligns the text within the tab--*/
+ border-bottom: 1px solid #fff;
+ border-left: 1px solid #fff;
+ overflow: hidden;
+ position: relative;
+ background: #CECECE;
+}
+ul.tabs li a {
+ text-decoration: none;
+ color: #666;
+ display: block;
+ font-size: 1.1em;
+ padding: 0 15px;
+ outline: none;
+}
+ul.tabs li a:hover {
+ background: #E0E0E0;
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+ background: #EFEFEF; border: none; border-bottom: 1px solid #EFEFEF;
+}
+.tab_container {
+ background: #EFEFEF;
+ overflow: hidden;
+ clear: both;
+float: left; width: 100%; margin-bottom: 25px;
+}
+.tab_content {
+ padding: 15px 18px 10px;
+ font-size: inherit;
+}
+.tab_content p {margin-bottom: 1em;}
+
+/*------------------------------------*\
+	NARROW  Media queries
+\*------------------------------------*/
+/*
+CSS for tablets and narrower devices
+*/
+
+@media (min-width: 721px) and (max-width: 960px){
+#logo{margin:0 auto 1em; width: 100%;}
+#nav.main{margin: 0 auto;float: none; padding: 0.4em 0 0 0}
+.intro h2 {font-size: 2.5em; line-height: 1em; letter-spacing: -1px; text-transform:uppercase; padding-right:15px; margin: 0 0 20px 0;}
+.intro p {font-family: 'Oswald',"Helvetica Neue", Arial, sans-serif;font-size: 1.6em; line-height: 1.2em; letter-spacing: -2px; padding-right: 20px;}	
+.social {text-align: center; margin: 30px 0 15px 0;}
+.wrapper{width:auto!important; padding:15px!important;}
+}
+
+/*------------------------------------*\
+	MOBILE  Media queries
+\*------------------------------------*/
+/*
+CSS for mobile devices.
+Linearise it!
+*/
+
+@media (max-width: 720px){
+
+.debug, .debug body{background:none!important;}
+body{-webkit-text-size-adjust:none;}
+
+.wrapper{line-height: 1.5em; width:auto!important; padding:10px!important;}
+.wrapper p {font-size:0.9em;}
+.social {text-align: center; margin: 30px 0 15px 0;}
+
+#nav.main a{display:inline-block;padding: 0.8em 1.2em;font-size: 0.9em;letter-spacing: 2px;}
+#nav.main{padding: 0.4em 0 0 0; float: none; margin: 0 auto; background-image: none; font-size: 100%;}
+
+#subheader {margin: 110px 0 20px;}
+
+h1{font-size:1.9em;margin-bottom:0.75em;line-height:1.7;}
+h2{font-size:1.7em;margin-bottom:1em;line-height:1.5;}
+h3{font-size:1.5em;	margin-bottom:1em;line-height:1.3em;}
+h4{font-size:1.1em;	margin-bottom:0.8em;line-height:auto;font-weight:bold;}
+h5,h6{font-size:1em;margin-bottom:0.8em;line-height:auto;}
+
+.intro p {font-size: 1.2em; line-height: 1.2em; letter-spacing: -1px;}
+.intro h2 {font-size: 2em;}	
+
+#footer p {margin: 0; padding: 0 10px;}
+	
+.grids{margin:0!important;width:auto!important;}
+[class^="grid-"],
+.grids [class^="grid-"]{
+	width:auto!important;
+	float:none!important;
+	margin:0!important;
+}
+
+
+/*------------------------------------*\
+	LOGO
+\*------------------------------------*/
+#logo{margin:0 auto 1em; width: 100%;}
+
+/* =============================================
+ 
+    MediaQuery-Reporter Styles
+	Uncomment and use this to display the screen 
+	sizes while developing your media queries!
+	http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/a-basic-responsive-grid-plus-handy-css3-media-query-reporter/
+ 
+================================================ */
+ 
+/*body:after {
+    content: "less than 320px";
+    font-size: 300%;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    text-align: center;
+    background-color: hsla(1,60%,40%,0.7);
+    color: #fff;
+}
+@media only screen and (min-width: 320px) {
+    body:after {
+        content: "320 to 480px";
+        background-color: hsla(90,60%,40%,0.7);
+    }
+}
+@media only screen and (min-width: 480px) {
+    body:after {
+        content: "480 to 768px";
+        background-color: hsla(180,60%,40%,0.7);
+    }
+}
+@media only screen and (min-width: 768px) {
+    body:after {
+        content: "768 to 1024px";
+        background-color: hsla(270,60%,40%,0.7);
+    }
+}
+@media only screen and (min-width: 1024px) {
+    body:after {
+        content: "1024 and up";
+        background-color: hsla(360,60%,40%,0.7);
+    }
+}
+*/
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+  <!--
+ some meta tags, important for SEO"-->
+  <meta content="index,follow" name="robots">
+  <title>
+   65% OFF Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue
+  </title>
+  <!--
+local fallback for JQuery-->
+ </head>
+ <!--
+===============================================================  Logo, social and menu =====================================================================================-->
+ <body>
+  <div class="wrapper">
+   <a id="logo">
+    <img alt="something" src="rick.jpg">
+    <h1 class="accessibility">
+     Reviews and product comparison ...
+    </h1>
+   </a>
+   <!--
+These are just samples, use your own icons. If you use larger ones, make sure too change the css-file to fit them in-->
+   <div class="social">
+    <a target="_blank" title="facebook">
+     <img alt="facebook" height="20" src="rick.jpg" width="20">
+    </a>
+    <a target="_blank" title="twitter">
+     <img alt="twitter" height="20" src="rick.jpg" width="20">
+    </a>
+    <a target="_blank" title="linkedin">
+     <img alt="linkedin" height="20" src="rick.jpg" width="20">
+    </a>
+   </div>
+   <ul class="main" id="nav">
+    <li>
+     <a>
+      Home
+      <!--
+<span>Die Startseite</span>-->
+     </a>
+    </li>
+   </ul>
+  </div>
+  <!--
+end of wrapper div-->
+  <div class="clear">
+  </div>
+  <!--
+===============================================================  Intro =====================================================================================-->
+  <!--
+===============================================================  Green box (sidebar) =====================================================================================-->
+  <div class="wrapper">
+   <div class="grids">
+    <!--
+===============================================================  Style playground =====================================================================================-->
+    <div class="grid-10 grid main-content">
+     <h2>
+      Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue
+     </h2>
+     <p>
+      <a data-cc="US" data-id="b41b92e2b7a5d05677620b0278dd7eb3" data-name='Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue' data-sid="ResponseEveImgClick" onclick="return linkHelper.setLink(this)" rel="nofollow">
+       <img alt="main picture" onerror="this.src='https://d33wubrfki0l68.cloudfront.net/62a2cb041e422d5e630e0f017ce85dd6409a5620/img-notfound.png'" src="rick.jpg">
+      </a>
+     </p>
+     <p>
+      We compared price of Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue across hundreds of online stores. We found Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue in 3 stores with lowest price $3.86 in iBuyOfficeSupply.com.
+     </p>
+     <table>
+      <thead>
+       <tr>
+        <th>
+         Merchant
+        </th>
+        <th>
+         Price
+        </th>
+        <th>
+         -
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         iBuyOfficeSupply.com
+        </td>
+        <td>
+         [
+         <a data-cc="US" data-id="3e8120101f6fa716edff1f1f0be6d030" data-name='AVE07300 Avery Durable Binder With Two Booster Ezd Rings, 1" Capacity, Navy Blue' data-sid="ResponseEveComparisonTableShowPrice" onclick="return linkHelper.setLink(this)">
+          show price
+         </a>
+         ]
+        </td>
+        <td>
+         <a data-cc="US" data-id="3e8120101f6fa716edff1f1f0be6d030" data-name='AVE07300 Avery Durable Binder With Two Booster Ezd Rings, 1" Capacity, Navy Blue' data-sid="ResponseEveComparisonTableClick" onclick="return linkHelper.setLink(this)" rel="nofollow">
+          <img src="rick.jpg">
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         DiscountOfficeItems.com
+        </td>
+        <td>
+         [
+         <a data-cc="US" data-id="7c369fcab264e43e88c2583b65fc9b6d" data-name="AVE07300 - Avery Durable Reference 1 3-Ring Binder" data-sid="ResponseEveComparisonTableShowPrice" onclick="return linkHelper.setLink(this)">
+          show price
+         </a>
+         ]
+        </td>
+        <td>
+         <a data-cc="US" data-id="7c369fcab264e43e88c2583b65fc9b6d" data-name="AVE07300 - Avery Durable Reference 1 3-Ring Binder" data-sid="ResponseEveComparisonTableClick" onclick="return linkHelper.setLink(this)" rel="nofollow">
+          <img src="rick.jpg">
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         UnbeatableSale.com
+        </td>
+        <td>
+         [
+         <a data-cc="US" data-id="b41b92e2b7a5d05677620b0278dd7eb3" data-name='Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue' data-sid="ResponseEveComparisonTableShowPrice" onclick="return linkHelper.setLink(this)">
+          show price
+         </a>
+         ]
+        </td>
+        <td>
+         <a data-cc="US" data-id="b41b92e2b7a5d05677620b0278dd7eb3" data-name='Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue' data-sid="ResponseEveComparisonTableClick" onclick="return linkHelper.setLink(this)" rel="nofollow">
+          <img src="rick.jpg">
+         </a>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <h3>
+      Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue description from UnbeatableSale.com
+     </h3>
+     <p>
+      Gap Free feature prevents ring misalignment so pages turn smoothly. Back-mounted slant rings hold up to 25 percent more sheets than same size round rings and allow pages to lie flat.
+     </p>
+     <h3>
+      Customer review
+     </h3>
+     <p>
+      Now I bought next two Avery 07300 Durable Slant Ring Reference Binder- 1" Capacity- Blue! This is the best binders what I ever Had!
+     </p>
+    </div>
+    <!--
+end of grid-10-->
+    <div class="grid-6">
+     <h4>
+      Other posts
+     </h4>
+     <ul>
+      <li>
+       <a title='Avery 07400 Durable Slant Ring Reference Binder- 1-1/2" Capacity- Blue'>
+        Avery 07400 Durable Slant Ring Reference Binder- 1-1/2" Capacity- Blue
+       </a>
+      </li>
+      <li>
+       <a title='Avery 07301 Durable Slant Ring Reference Binder- 1" Capacity- Black'>
+        Avery 07301 Durable Slant Ring Reference Binder- 1" Capacity- Black
+       </a>
+      </li>
+      <li>
+       <a title='Avery 08302 Durable Slant Ring Reference Binder With Label Holder- 1" Capacity- Black'>
+        Avery 08302 Durable Slant Ring Reference Binder With Label Holder- 1" Capacity- Black
+       </a>
+      </li>
+      <li>
+       <a title='Avery 08402 Durable Slant Ring Reference Binder With Label Holder- 1-1/2" Capacity- Black'>
+        Avery 08402 Durable Slant Ring Reference Binder With Label Holder- 1-1/2" Capacity- Black
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <!--
+end of grids-->
+   <hr>
+  </div>
+  <!--
+end of wrapper-->
+  <!--
+===============================================================  Bottom content =====================================================================================-->
+  <div class="wrapper">
+  </div>
+  <!--
+===============================================================  Footer =====================================================================================-->
+  <div class="wrapper">
+   <div id="footer">
+    <div class="grids">
+     <div class="grid-16 grid text-center">
+      <p>
+       &copy; BLOG 2014
+      </p>
+     </div>
+    </div>
+    <!--
+end of grids-->
+   </div>
+   <!--
+end of footer-->
+  </div>
+  <!--
+end of wrapper-->
+ </body>
+</html>

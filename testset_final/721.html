@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="">
+ <head>
+  <style>
+   @charset "UTF-8";
+
+/*
+   css Copyright Â© 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License  - http://creativecommons.org/licenses/by-sa/2.5/
+   All associated graphics belong to their respective owners and are licensed separately.
+*/
+
+/* IE7 hacks */
+
+*:first-child+html .gridItem img {
+	position:relative;
+	top:0px;
+}
+
+*:first-child+html .gridItem h3 {
+	position:relative;
+	top:0px;
+}
+
+/* Navigation arrows */
+div.text-navigation { text-align:center; margin-bottom:1em;}
+div.text-navigation div { display:inline; margin:0px 0.5em; }
+.collection-navigation .disabled-navigation { text-indent:-5000px; }
+
+/* 2.0 wrap compatibility. 2.0-compatible designs can further adjust these if they need */
+.wide { display:block; }
+
+.narrow.left {   /* Some designs won't respect without !important */
+    float:left!important;
+    clear:left!important;
+}
+.narrow.right {
+    float:right!important;
+    clear:right!important;
+}
+
+.wide.left   .graphic, img.wide.left,   .wide.left video,   .wide.left audio   { display:block; margin-left:0px; margin-right:auto; }
+.wide.center .graphic, img.wide.center, .wide.center video, .wide.center audio { display:block; margin-left:auto; margin-right:auto; }
+.wide.right  .graphic, img.wide.right,  .wide.right video,  .wide.right audio  { display:block; margin-left:auto; margin-right:0px; }
+
+
+.ImageElement.left, .AudioElement.left { text-align:left; }
+.ImageElement.center, .AudioElement.center { text-align:center; }
+.ImageElement.right, .AudioElement.right { text-align:right; }
+
+/* Captions should align themselves with the graphic */
+.graphic-container.left .caption { text-align:left; }
+.graphic-container.center .caption { text-align:center; }
+.graphic-container.right .caption { text-align:right; }
+
+/* Inline iframes need to display as a block to layout right */
+.graphic iframe { display:block; }
+
+/* Pagelet photo grids should be generally be auto width (some 1.x designs hardcoded an exact width) */
+.pagelet .photogrid-index { width:auto; }
+
+/* For content like amazon which forces white background. Design SHOULD set color for A tag and text color. */
+.whiteBackground
+{
+	background-color:white;
+}
+
+.article-info
+{
+	margin-bottom:1em;
+}
+
+/* Firefox reduce dotted lines on links */
+.photo-navigation a:focus, .replaced a:focus {overflow:hidden;}
+
+/* Disqus correction to prevent overflow scroll bars in some designs */
+#dsq-content { overflow:hidden; }
+#dsq-content .dsq-auth-header { width: auto!important; }
+#dsq-content .dsq-by { margin: 4px 6px 0px 0px; }
+#dsq-content .dsq-by a, #dsq-content .dsq-by a:hover { border: 0px none; }
+#dsq-content h3 { margin:0px; }
+
+/* Site menus. Don't wrap the top level items, and wrap sub-menu items normaly. */
+#sitemenu-content ul li span.in { white-space:nowrap;}
+* html #sitemenu-content ul li span.in {white-space: normal}
+*:first-child+html #sitemenu-content ul li span.in {white-space: normal}
+#sitemenu-content ul ul li span.in {white-space: normal}
+#sitemenu-content span.in { position: relative; }
+
+body { word-wrap:break-word; }
+
+/* Make sure scaled-down images look good in IE */
+img { -ms-interpolation-mode: bicubic; }
+
+
+
+/* Div that contains the entire list */
+div.amazonList
+{
+	margin-top: 20px;
+	padding: 6px;
+	overflow: auto;
+}
+
+div.amazonListPlaceholder
+{
+	width:140px;
+	height:200px;
+	background:rgba(0,0,0,0.25);
+	margin:auto;
+	padding:10px;
+}
+
+div.amazonListWhiteBackground /* additional items for .whiteBackground */
+{
+	border: 1px solid #AAA;
+	padding: 10px 5px;
+}
+
+
+div.amazonListRow
+{
+	clear:both;
+	margin-bottom: 25px !important;
+}
+
+
+
+/* Thumbnails */
+.amazonProductThumbnail
+{
+	margin-bottom: 8px !important;
+}
+
+div.amazonProductThumbnailFrame, img.amazonProductThumbnailFrame
+{
+	background-color: white !important;
+	padding: 3px !important;
+	border: 1px solid #AAA;	/* not so important, design may have its own */
+}
+
+.amazonProductThumbnailNoFrame
+{
+	padding:0 !important;
+	border-style:none !important;
+}
+
+p.amazonText {		/* Make sure paragraphs have no top margin or padding so they align with images */
+	margin:0 0 6px 0;
+	padding:0;
+}
+
+/* left, right and alternating layout */
+.amazonListLayoutLeft .amazonProductThumbnail, .amazonListLayoutAlt .o .amazonProductThumbnail { float:left; margin-right:8px; }
+.amazonListLayoutRight .amazonProductThumbnail, .amazonListLayoutAlt .e .amazonProductThumbnail { float:right; margin-left:8px; }
+
+.amazonListLayoutLeft p.amazonText, .amazonListLayoutAlt .o p.amazonText { text-align:left !important; }
+.amazonListLayoutRight p.amazonText, .amazonListLayoutAlt .e p.amazonText { text-align:right !important; }
+
+.amazonListLayoutLeft div.amazonText div.amazonListShowThumbnails, .amazonListLayoutAlt .o div.amazonText div.amazonListShowThumbnails .amazonTextWithThumbnail
+{
+	margin-left:65px !important;
+}
+.amazonListLayoutRight div.amazonText div.amazonListShowThumbnails, .amazonListLayoutAlt .e div.amazonText div.amazonListShowThumbnails .amazonTextWithThumbnail
+{
+	margin-right:65px !important;
+}
+
+
+/* Centered layout */
+.amazonListLayoutCenter .amazonListRow { text-align:center; }
+.amazonListLayoutCenter p.amazonText { text-align:center !important; }
+
+
+/* twoup layout */
+.amazonListLayoutTwoUp { margin:0 5px !important; }
+.amazonListLayoutTwoUp .e { clear:none !important;  }
+.amazonListLayoutTwoUp .amazonText { text-align:center; }
+.amazonListLayoutTwoUp .amazonListRow
+{
+	width:50%;
+	margin:0 0 10px 0;
+	float:left;
+	text-align:center;
+}
+.amazonListLayoutTwoUp p.amazonText
+{
+	margin-left:4px;
+	margin-right:4px;
+}
+
+/* Bullets */
+li.amazonList { margin: 0 0 8px 0; }
+p.amazonListBulletsParagraph
+{
+	padding:0;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+/* Enhanced */
+div.amazonListLayoutEnhanced, div.amazonListLayoutRandom { text-align:center; }
+
+textarea.fullWidth, input.fullWidth, select.fullWidth {
+	width:96%;
+	margin:4px 0;
+}
+textarea.fullWidth, select.fullWidth {
+	margin: 4px 1px
+}
+
+form.contactElement input.submit {
+	width:auto;
+	display:block;
+	margin-left:auto;
+	margin-right:2%;
+}
+form.contactElement th {
+	text-align:right;
+	font-weight:normal;
+	width:25%;
+}
+
+.contactError { color:red; font-weight:bold; }
+
+/* Contact Element For IE 7 */
+*:first-child+html form.contactElement input.submit {
+	padding:0px 10%;
+	min-width: 0px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+form.contactElement p {
+	text-align: left;
+}
+
+.social-bar-button a {border-bottom-style:none !important;}
+
+.photogrid-index-bottom { clear:left; }
+
+/* Overall pagelet */
+div.rssBadge
+{
+	margin: 10px;
+}
+
+/* Small icon option */
+img.smallRSSBadgeIcon { vertical-align:middle; }
+img.smallRSSBadgeIconLeft { margin-right:3px; }
+img.smallRSSBadgeIconRight { margin-left:3px; }
+
+/* Large icon option */
+div.largeRSSBadgeIcon, p.largeRSSBadgeIcon
+{
+	margin: 0 10px;
+	text-align:center !important;
+}
+
+img.largeRSSBadgeIcon { margin-bottom: 4px; }
+p.largeRSSBadgeIcon { margin: 0; }
+
+/* 
+   css Copyright Â© 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License 
+        - http://creativecommons.org/licenses/by-sa/2.5/ 
+   All associated graphics belong to their respective owners 
+        and are licensed separately. 
+*/
+
+a img { border: none; }
+
+ /* General styles  */
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+.hidden  {
+    display:none;
+}
+
+/* Images embedded in text.  "narrow" are 200 pixels wide or smaller. */
+.narrow {
+	display: block;
+	clear: right;
+    float: right;
+}
+img.wide {
+	clear: both;
+	display:block;
+}
+
+/* Block Level formatting, more or less in descending order */
+
+body {
+	font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;
+	font-size: 76%;
+	margin: 0;
+	background: #232323;
+	color: #bfc6ca;
+}
+
+h4, h5, h6 {
+	font-size: 100%;
+	margin: 0em 0em 0.8em 0em;
+}
+
+#page {
+    margin: auto;
+    width: 771px;
+    background: #4f4f4f url(background.png) repeat-y;
+}
+
+#page-top {
+    margin:0;
+    margin-left: 17px;
+    margin-right: 23px;
+	border-top: 1px solid #7a7a7a;
+	background: url(new_header_bkgd.png) no-repeat;
+}
+
+#title {
+    padding-top: 2px;
+	
+}
+
+h1 {
+    font-size: 2.9em;
+    text-align: left;
+    margin: 10px 25px 4px 25px;
+    display: block;
+    font-weight:normal;
+	text-shadow: 0px -1.5px 0px black;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html h1 {
+    height: 1%;
+}
+/* End hide from IE5-mac */
+
+h1 a {
+    text-decoration:none;
+    color: #bfc6ca;
+}
+
+h1 a:hover, h1 a:focus, h1 a:active {
+    border-bottom: 1px solid #bfc6ca;
+}
+
+/* gives better spacing in IE 7 */
+*:first-child+html #title {
+	border-bottom: 1px solid transparent;
+}
+
+#title img {
+    float: left;
+    margin: 3px;
+    margin-right: 10px;
+	position: relative;
+}
+
+#title p {
+    font-size: 0.9em;
+    text-align: left;
+    margin: 0px 25px 14px 25px;
+	font-style: italic;
+	text-shadow: 0px -1px 0px black;
+}
+
+/* IE Hack */
+/* Hides from IE5-mac \*/
+* html #title p {
+    height: 1%;
+}
+/* End hide from IE5-mac */
+
+
+/* BANNER HANDLING */
+
+body.has-custom-banner #page-top {
+	background: center top no-repeat;
+}
+
+body.has-custom-banner h1 {
+	margin-top: 32px;
+}
+
+body.has-custom-banner #title {
+	min-height: 140px;
+}
+
+* html body.has-custom-banner #title {
+	padding: 10px;
+}
+
+body.has-custom-banner #title h1, body.has-custom-banner #title h1 a, body.has-custom-banner #title p {
+	color: #fff;
+	font-weight: bold;
+}
+
+
+
+/* SITEMENU */
+
+#sitemenu-container {
+    clear:both;
+}
+
+#sitemenu {
+    background: rgb(10, 152, 210) url(links_bkgd.png) repeat-x;
+    min-height: 30px;
+    border-top: 1px solid #585858;
+    border-bottom: 1px solid #232323;
+	border-left: 1px solid #525252;
+	border-right: 1px solid #525252;
+	font-size: 1.1em;
+/* 	overflow: hidden; */
+}
+
+#sitemenu-content ul {
+    text-align: center;
+    padding: 3px 0px 0px 0px;
+	margin: 0 10px auto 10px;
+/* 	overflow: hidden; */
+	line-height: 200%;
+}
+
+#sitemenu-content ul li ul {
+    line-height: 160%;
+    background: #232323;
+}
+
+#sitemenu-content ul li ul li span.in {
+	border-color: #232323;
+}
+
+#sitemenu-content li {
+    margin: -1px 5px 0px 0px;
+    padding: 8px 5px 4px 5px;
+	display:inline;
+}
+
+#sitemenu-content a {
+    text-decoration: none;
+    color: white;
+    text-shadow: 0px 1.5px 2px black;
+}
+
+#sitemenu-content a:hover {
+	text-decoration: underline;
+}
+
+#sitemenu-content li li,
+#sitemenu-content li.currentPage li,
+#sitemenu-content li.currentParent li > a > span.in {
+    background: rgb(10, 152, 210) url(links_bkgd.png) repeat-x;
+}
+
+#sitemenu-content li.currentPage, 
+#sitemenu-content li li.currentParent > a > span.in,
+#sitemenu-content li.currentParent {
+	background: url(links_bkgd_current.png) top left repeat-x;
+	color: white;
+    text-shadow: 0px 1.5px 2px black;
+}
+
+#sitemenu-content ul ul li.currentPage {
+	text-decoration: underline;
+}
+
+#sitemenu-content ul ul li.currentPage li {
+	text-decoration: none;
+}
+
+#sitemenu-content ul li ul li span.in{
+	border-bottom:solid 1px #222 !important;
+}
+#page-content {
+    width: 731px;
+    margin: auto;
+    clear: both;
+}
+
+body.no-sidebar #page-content {
+    width: 726px;
+}
+
+#page-content a, #page-bottom a  {
+    color: #bfc6ca;
+    text-decoration: underline;
+}
+
+#page-content a:hover, #page-content a:focus, #page-content a:active, #page-bottom a:hover, #page-bottom a:focus, #page-bottom a:active {
+    color: #839ab1;
+}
+
+#page .imageLink {
+	border: 0px none;
+}
+
+#sidebar {
+	margin-top: 8px;
+    float: left;
+    width: 200px;
+	padding-right: 5px;
+	margin-right: 5px;
+    font-size: 0.8em;
+	background: url(sidebar_bkgd.png) top right repeat-y;
+}
+
+#sidebar p {
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: left;
+}
+
+.pagelet {
+    width:200px;
+    overflow:hidden;
+}
+
+#sidebar .pagelet h4, #sidebar h5.index-title{ text-align:center;}
+#sidebar h5.index-title{ border:0; margin:0; padding:0;}
+
+.callout .pagelet {
+	padding:5px;
+}
+
+.callout .pagelet.bordered {
+	background: #343434;	
+}
+
+.pagelet h4, .pagelet h5, .pagelet h6 {
+    margin: 0px 3px 6px 3px;
+	padding-top:14px;
+    font-weight: normal;
+    font-size: 1.3em;
+    text-shadow: 0px -1px 1px #343434;
+	border-bottom: 1px solid #3f3f3f;
+	padding-bottom: 4px;
+    text-align: center;
+}
+
+.pagelet.bordered h4 {
+	border-bottom-color: rgb(158,158,158);
+}
+
+.blockquote-container>.pagelet-body, .blockquote-container>.graphic {
+	position: relative;
+	padding: 10px 15px 10px 10px;
+	background: -27px 0px no-repeat;
+	background-image: url(QuotationMarks-SmoothDark.png);
+}
+
+.blockquote-container .pagelet-body:after, .blockquote-container .graphic:after {
+	display: block;
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	bottom: 0px;
+	right: 0px;
+	content: "";
+	background: transparent 50px 50px no-repeat;
+	background-image: url(QuotationMarks-SmoothDark.png);
+} 
+
+.blockquote-container blockquote {
+	margin: 0px;
+	padding-left: 10px;
+	z-index: 100;
+	position: relative;
+	font-style: italic;
+}
+
+#sidebar blockquote p, blockquote p {
+	margin: 0px;
+}
+
+#main {
+    min-height: 190px;
+}
+
+/* photo-page, html-page (in some cases), iframe-page don't have sidebar */
+body.no-sidebar #main {
+    margin-left: 8px;
+    margin-right: 13px;
+    font-size: 1em;
+}
+
+/* Most other pages have sidebars */
+body.allow-sidebar #main {
+    margin-right: 10px;
+    float: right;
+    width: 490px;
+    font-size: 1em;
+}
+
+/* IE Hack */
+
+/* Hides from IE5-mac \*/
+* html .body.allow-sidebar #main {
+    margin:0;
+    padding:0;
+    margin-right: 2px;
+    width: 513px;
+}
+/* End hide from IE5-mac */
+
+/* IE5/Mac Love */
+* html>body.allow-sidebar #main {
+	width: 470px;
+}
+
+
+.has-photo-navigation h2 {
+	min-height:23px;
+	padding-right:130px;
+}
+
+h2 {
+    display: block;
+    font-weight: normal;
+    text-shadow: 0px -1px 1px #343434;
+   
+    padding-left: 15px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    margin: 0px -7px;
+    border-bottom: 1px solid #3f3f3f;
+}
+
+/* Hides from IE5-mac \*/
+* html h2 {
+    height: 30px;
+    margin-right: -15px;
+    margin-top: -15px;
+}
+/* End hide from IE5-mac */
+
+#main ul, #sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-left: 5px;
+}
+
+#main li ul {
+	padding-top:8px!important;
+}
+
+#main ul li, #sidebar ul li {
+    padding-left: 25px;
+    background: url(bullet.png) no-repeat;
+    padding-bottom: 6px;
+	padding-top:2px;
+}
+
+ol {
+	padding-left: 25px;
+}
+
+dd {
+	margin-left: 25px;
+}
+
+.article, .no-callouts {
+	margin:0px 10px 10px 10px!important;
+	/*overflow: auto;*/
+	padding-bottom: 6px;
+	border-bottom: 1px solid #3f3f3f;
+}
+
+.article h3 {
+     padding: 5px;
+     text-shadow: 0px -1px 1px #343434;
+     font-weight: normal;
+}
+
+/* remove excessive spacing if the heading is used in a collection index */
+li h3 {
+	margin:0px;
+}
+
+
+
+.imageLink {
+	border: 0px none;
+}
+
+.article img {
+    border: none;
+}
+
+.article.narrow{
+    float: left; 
+	margin:5px 10px 5px 0; 
+}
+.narrow.left{
+	margin:5px 10px 5px 0;
+}
+.narrow.right{
+	margin:5px 0 5px 10px;
+}
+.article-info {
+	clear: right;
+}
+
+.article-thumbnail {
+    float: left;
+	margin: 5px 10px 5px 0;
+	clear:left;    
+}
+h3.index-title, .timestamp{
+	clear:left;
+}	
+.callout {
+    float: right;
+    margin: 10px;
+    margin-right: 0px;
+    border: 1px solid rgb(158, 158, 158);
+}
+
+.callout li, #sidebar li {
+    background: url(bullet.png) no-repeat !important;
+}
+
+.callout h4 {
+    font-weight: normal !important;
+    font-size: 1.1em !important;
+}
+
+#page-bottom {
+    background: url(footer.png) no-repeat bottom ;
+    font-size: 1em;
+    text-shadow: 0px -1px 1px #090909;
+    color: #b3b9bd;
+    min-height: 25px;
+	padding: 11px 30px 15px 30px; 
+}
+
+/*#page-bottom div {
+	overflow:hidden;
+	height:20px;
+}*/
+
+#page-bottom p {
+	display:inline;
+}
+
+#page-bottom p+p:before {
+	content: ' \002022  ';
+}
+
+div.photo-viewer-summary .article {
+    margin: auto;
+}
+
+.HTMLElement {
+    margin-bottom: 10px;
+}
+
+.ImageElement, .VideoElement {
+    text-align: center;
+/*	padding-top:20px;
+*/}
+
+
+.caption {
+    padding: 10px;
+}
+
+/* Used on Photo Grid Pages ... */
+
+.photogrid-index {
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    width: 480px;
+	/*float:left;*/
+}
+
+.photogrid-index:after{font-size:0px; line-height:0px; height:0px; content:'.'; visibility:hidden; display:block; clear:both}
+
+body.no-sidebar .photogrid-index {
+	width: 634px;
+	margin-left:33px;
+}
+
+* html body.no-sidebar .photogrid-index {
+	width:652px!important;
+}
+
+/* IE:Mac Hackery */
+/*\*//*/
+.photogrid-index { 
+	margin-right:0px;
+}
+/**/
+
+.photogrid-index a {
+	color:#000;
+	text-decoration:none;
+	border:0px;
+}
+
+.photogrid-index a:hover {
+	text-decoration:underline;
+}
+
+.gridItem {
+    float: left;
+    position:relative;
+    width:152px;
+    height:192px;	/* room for caption */
+    overflow: hidden;
+    margin: 3px;
+    padding-top: 6px;
+}
+
+.gridItem h3 {
+    font-size:12px;
+    font-weight:normal;
+    margin-top: 10px;
+    margin-left: 7px;
+    margin-right: 7px;
+    padding: 0px;
+    height: 48px;
+    overflow: hidden;
+    position:absolute;
+	top: 140px; /* needs to leave 38px from the bottom of the gridItem */
+	width: 136px;
+	border: 0px;
+}
+
+.gridItem img {
+    border: 1px solid rgb(80, 80, 80);
+    margin: auto;
+    display:block;
+    position: absolute;
+    top: 0;
+    bottom: 40px;
+    right: 0;
+    left: 0;
+}
+
+* html .gridItem img {
+	position: relative;
+	top:6px;
+}
+
+/* IE Hack */
+/* Hides from IE5-mac \*/
+
+
+* html .gridItem h3 {
+	position: relative;
+	top: 0px;
+}
+
+#sidebar .photogrid-index{
+	width:auto;
+	margin-left:20px;
+}
+
+
+/* End hide from IE5-mac */
+
+
+/* Used on index summary pages */
+.listing-index li h3 a {
+    font-weight:normal;
+}
+
+
+/* make linked lists look less blue */
+li a {
+	text-decoration:none;
+}
+
+li a:hover {
+	text-decoration:underline;
+}
+
+/* Individual Photo Pages */
+
+.photo-navigation {
+    position: relative;
+    z-index: 100;
+    height: 3px;
+    padding:0px;
+}
+
+/* Hides from IE5-mac \*/
+* html .photo-navigation {
+    margin-top: 2px;
+}
+/* End hide from IE5-mac */
+
+.photo-navigation a:active {
+    border: none;
+}
+
+#previous-photo	{
+    width: 35px;
+    height: 35px;
+    background: url(photo-buttons-disabled.png)		no-repeat;
+    position: absolute;
+    left: 594px;
+    margin-top: -42px;
+    text-indent: -5000em;
+}
+
+.allow-sidebar #previous-photo {
+	left:384px;
+}
+
+
+#previous-photo a {
+    width: 35px;
+    height: 35px;
+    display: block;
+    background: url(photo-buttons.png)		no-repeat;
+}
+
+#next-photo {
+    text-indent: -5000em;
+    width: 35px;
+    height: 35px;
+    background: url(photo-buttons-disabled-03.png)		no-repeat;
+    position: absolute;
+    left: 664px;
+    margin-top: -42px;
+}
+
+.allow-sidebar #next-photo {
+	left: 454px;
+}
+
+#next-photo a {
+    width: 35px;
+    height: 35px;
+    display: block;
+    background: url(photo-buttons-03.png)		no-repeat;
+}
+
+#photo-list {
+    text-indent: -5000em;
+    width: 35px;
+    height: 35px;
+    background: url(photo-buttons-disabled-02.png)		no-repeat;
+    position: absolute;
+    left: 629px;
+    margin-top: -42px;
+}
+
+.allow-sidebar #photo-list {
+	left:419px;
+}
+
+
+
+#photo-list a {
+    width: 35px;
+    height: 35px;
+    display: block;
+    background: url(photo-buttons-02.png)		no-repeat;
+}
+
+
+.text-navigation{width:auto!important; padding:15px 0;}
+.text-navigation #previous-photo, .text-navigation #next-photo, .text-navigation  #photo-list, .text-navigation a, .text-navigation a:hover{
+	background:none!important;
+	width:auto!important;
+	font-weight:bold;
+	text-indent:0!important;
+	left:auto;
+	position:relative;
+	display:inline!important;
+}
+
+.whiteBackground p
+{
+	color:#4f4f4f;
+}
+.whiteBackground p a{
+ 	color:#335c85!important;
+ }
+
+
+
+/* IE:Mac Hackery */
+
+/*\*//*/
+
+
+.article {
+    margin:0;
+    margin-top: -30px;
+    background: none;
+    border: none;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.article p {
+    clear: none;
+}
+
+.article a {
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+.article a:hover, a:focus, a:active {
+    border-bottom: none;
+    color: blue;
+}
+
+.article-summary {
+    padding: 0;
+    margin: 0;
+    clear: none;
+}
+
+#page-bottom p {
+    margin-top: 0;
+}
+
+/**/
+.no-page-title .photo-navigation {margin-top:49px;}
+
+
+.callout-container, .graphic-container { clear:both; }
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <title>
+   Farewell Party, December 1966 | Rock &rsquo;n' Roll Soldier
+  </title>
+  <meta content="Dean Kohler, Mike Ioli, John Voina, Army, Fort Bragg, Captain Leadbetter, 127th Military Police Company" name="keywords">
+  <meta content="Dean Kohler, Mike Ioli and John Voina performing for the Army's 127th Military Police Company prior to shipping out for Vietnam." name="description">
+  <meta content="all" name="robots">
+  <meta content="Sandvox 2.10.12" name="generator">
+  <meta content="width=772" name="viewport">
+  <meta content="f11Y6WDbtICMIAKAYYsl8QnuGR8vx/Q7lNiUpRQnzzQ=" name="verify-v1">
+  <!--[if lt IE 6]>
+		<![endif]-->
+  <!--
+		Photo credits for this website's design: <http://www.rocknrollsoldieramemoir.com/sandvox_SmoothDark/Credits.rtf>
+		Licensing for this website's design:     <http://www.rocknrollsoldieramemoir.com/sandvox_SmoothDark/License.rtf>
+		-->
+  <style type="text/css">
+   #sidebar { font-size: 1.1em; }
+  </style>
+ </head>
+ <body class="sandvox has-page-title no-sidebar no-custom-banner has-photo-navigation IR" id="www_rocknrollsoldieramemoir_com">
+  <div id="page-container">
+   <div id="page">
+    <div class="no-logo has-title has-tagline" id="page-top">
+     <div id="title">
+      <h1 class="title in">
+       <a>
+        <span class="in">
+         <span style="font-size: 50px; font-family: Impact; color: rgb(242, 242, 242);">
+          Rock&nbsp;&rsquo;n' Roll Soldier
+         </span>
+        </span>
+       </a>
+      </h1>
+      <p id="tagline">
+       <span class="in">
+        <span>
+         <span>
+          <span>
+           <span>
+            <span style="font-family: Arial; font-size: 18px; font-style: normal;">
+             <b>
+              <span>
+               <span>
+                <span style="color: rgb(242, 242, 242);">
+                 <span>
+                  <span style="font-size: 26px;">
+                   A Memoir
+                  </span>
+                 </span>
+                 &nbsp;&nbsp; &nbsp; &nbsp;
+                 <span style="font-size: 12px;">
+                  by Dean Ellis Kohler with Susan VanHecke &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                 </span>
+                </span>
+               </span>
+              </span>
+             </b>
+            </span>
+           </span>
+          </span>
+         </span>
+        </span>
+       </span>
+      </p>
+     </div>
+     <!-- title -->
+     <div id="sitemenu-container">
+      <div id="sitemenu">
+       <h2 class="hidden">
+        Site Navigation
+        <a rel="nofollow">
+         [Skip]
+        </a>
+       </h2>
+       <div id="sitemenu-content">
+        <ul>
+         <li class="i1 o currentParent">
+          <a title="Vietnam Photo Gallery">
+           <span class="in">
+            Vietnam Photo Gallery
+           </span>
+          </a>
+         </li>
+         <li class="i2 e">
+          <a title="Watch">
+           <span class="in">
+            Watch
+           </span>
+          </a>
+         </li>
+         <li class="i3 o">
+          <a title="Listen">
+           <span class="in">
+            Listen
+           </span>
+          </a>
+         </li>
+         <li class="i4 e">
+          <a title="More Stories of the 127th">
+           <span class="in">
+            More Stories of the 127th
+           </span>
+          </a>
+         </li>
+        </ul>
+       </div>
+       <!-- /sitemenu-content -->
+      </div>
+      <!-- /sitemenu -->
+     </div>
+     <!-- sitemenu-container -->
+    </div>
+    <!-- page-top -->
+    <div class="clear below-page-top">
+    </div>
+    <div class="has-photo-navigation" id="page-content">
+     <div id="main">
+      <div id="main-top">
+      </div>
+      <div id="main-content">
+       <h2 class="title">
+        <span class="in">
+         <font color="#FFFFFF">
+          Farewell Party, December 1966&nbsp;
+         </font>
+         <br>
+        </span>
+       </h2>
+       <div class="collection-navigation photo-navigation">
+        <div class="previous-page" id="previous-photo">
+         <a class="imageLink">
+          Previous
+         </a>
+        </div>
+        <div class="next-page" id="next-photo">
+         <a class="imageLink">
+          Next
+         </a>
+        </div>
+        <div class="collection-index" id="photo-list">
+         <a class="imageLink">
+          List
+         </a>
+        </div>
+       </div>
+       <div class="article">
+        <div class="article-content">
+         <div class="RichTextElement">
+          <div>
+           <p>
+           </p>
+           <p>
+            <span style="font-family: Arial;">
+             <span style="color: white;">
+              The night before we shipped out, Captain Leadbetter threw us a going-away party at the local enlisted club. Loaded us all onto trucks and shuttled us over.
+             </span>
+            </span>
+            <span style="color: white;">
+             <br>
+            </span>
+           </p>
+           <p>
+            <span style="font-family: Arial;">
+             <span style="color: white;">
+              <span style="font-family: 'Lucida Grande';">
+              </span>
+             </span>
+            </span>
+           </p>
+           <p style="text-align: left;">
+            <span>
+             <span>
+              <span style="font-family: Arial;">
+               <span style="color: white;">
+                Then Leadbetter called me and Ioli and Voina over to his table. "Head for the stage," he commanded.
+               </span>
+              </span>
+             </span>
+            </span>
+            <span style="font-family: Arial;">
+             <span style="color: white;">
+              <br>
+             </span>
+            </span>
+           </p>
+           <p style="text-align: left;">
+            <span>
+             <span style="font-family: Arial;">
+              <span style="color: white;">
+               We looked at him, at one another, our faces one big question mark. It was definitely an order &nbsp;So we climbed onstage.
+              </span>
+             </span>
+            </span>
+           </p>
+           <p>
+           </p>
+           <div class="first graphic-container wide center ImageElement">
+            <div class="graphic">
+             <div class="figure-content">
+              <!-- sandvox.ImageElement -->
+              <a class="imageLink">
+               <img alt height="495" src="rick.jpg" width="680">
+              </a>
+              <!-- /sandvox.ImageElement -->
+             </div>
+            </div>
+            <div class="graphic" style>
+             <div class="figure-content caption">
+              <p>
+               <span style="font-family: Helvetica;">
+                That's me on guitar, left, Ioli on drums, and Voina on the other guitar, right.
+               </span>
+              </p>
+             </div>
+            </div>
+           </div>
+           <br>
+          </div>
+         </div>
+        </div>
+        <!-- /article-content -->
+        <div class="article-info">
+        </div>
+        <!-- /article-info -->
+       </div>
+       <!-- /article -->
+      </div>
+      <!-- main-content -->
+      <div id="main-bottom">
+      </div>
+     </div>
+     <!-- main -->
+    </div>
+    <!-- content -->
+    <div class="clear below-content">
+    </div>
+    <div id="page-bottom">
+     <div id="page-bottom-contents">
+      <div>
+       <span style="font-family: Arial;">
+        <strong>
+         <em>
+          Rock 'N' Roll Soldier: A Memoir
+         </em>
+         &nbsp;
+        </strong>
+       </span>
+       <strong>
+        <span style="font-weight: normal; font-family: Arial;">
+         by Dean Ellis Kohler with Susan VanHecke, foreword by Graham Nash &nbsp;&bull; &nbsp;&copy; 2023 &nbsp;
+        </span>
+       </strong>
+      </div>
+      <div class="hidden">
+       <a rel="nofollow">
+        [Back To Top]
+       </a>
+      </div>
+     </div>
+    </div>
+    <!-- page-bottom -->
+   </div>
+   <!-- container -->
+   <div id="extraDiv1">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv2">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv3">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv4">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv5">
+    <span>
+    </span>
+   </div>
+   <div id="extraDiv6">
+    <span>
+    </span>
+   </div>
+  </div>
+  <!-- specific body type -->
+ </body>
+</html>

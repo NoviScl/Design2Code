@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+ <!--<![endif]-->
+ <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+ <!--[if lt IE 9]>
+      
+    <![endif]-->
+ <head>
+  <style>
+   /*
+Librivox styles 
+Author: Nudge Design
+Author URI: http://nudgedesign.ca
+Version: 1.0
+License: GNU General Public License
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Librivox redesign 2013 styles
+
+*/
+
+
+/************************************************************** 
+* icon fonts
+**************************************************************/
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: "librivox";
+  src:url("../type/librivox.eot");
+  src:url("../type/librivox.eot?#iefix") format("embedded-opentype"),
+  url("../type/librivox.ttf") format("truetype"),
+  url("../type/librivox.svg#librivox") format("svg"),
+      url("../type/librivox.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+}
+[data-icon]:before {
+  font-family: "librivox";
+  content: attr(data-icon);
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none !important;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "librivox";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none !important;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+}  
+
+
+
+/************************************************************** 
+* Reset
+**************************************************************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font-size: 100%;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+}  
+
+/* Paul Irish's box model http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+html {
+	font-size: 100%; 
+	overflow-y: scroll; /* Keeps page centred in all browsers regardless of content height */
+	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+	-ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+body {
+	background: #fff;
+	color: #333;
+	font: 1em/1.4em Arial, "Helvetica Neue", Helvetica, sans-serif;	
+}
+body, html {
+		height: 100%;
+
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+	display: block;
+}
+
+blockquote { 
+	font-style: italic;
+	font-size: 0.875em ;
+}
+blockquote:before {
+	content:"\201C";
+	font-size:3em;
+	line-height:.1em;
+	margin-right:.25em;
+	vertical-align:-0.4em;
+}
+blockquote p { 
+	padding: 0 15px 15px 25px;
+	margin-top: -1em;
+}
+ul {
+	padding-left: 20px;
+}
+ul, ol, p, dl, table {
+	margin-bottom: 20px;
+}
+ul ul, 
+ol ol {
+	margin-left: 10px;
+}
+dt {
+    font-weight: 600;
+}
+dd {
+	margin-bottom: 10px;
+}
+a  {
+	color: #2e6d7d;
+	text-decoration: none;
+	-webkit-transition: color 0.3s linear;
+	   -moz-transition: color 0.3s linear;
+         -o-transition: color 0.3s linear;
+	        transition: color 0.3s linear;
+}
+a:focus {
+	outline: thin dotted;
+}
+a:hover,
+a:active { 
+	outline: 0;
+	text-decoration: underline;
+}
+
+a img {
+	border: 0;
+}
+
+/* Text meant only for screen readers */
+.assistive-text {
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
+.clear {
+	clear: both;
+}
+
+/************************************************************** 
+* Headers 
+**************************************************************/
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+    line-height: 1em;
+    margin-bottom: 15px;    	
+}
+h1	{
+	font-size: 1.375em; /* 22/16 */
+
+}
+h2 {
+	font-size: 1.25em;   /* 20/16 */
+}
+h3	{
+	font-size: 1.125em;  /* 18/16 */   
+}
+h4 {
+	font-size:1em;
+}
+h5 {
+	font-size:0.875em;   /* 14/16 */
+    margin-bottom: 5px;	
+}
+h6 {
+	font-size:0.875em;   /* 14/16 */
+    margin-bottom: 5px;	
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+
+/************************************************************** 
+* Common Styles
+**************************************************************/
+.site-header,
+.main-menu,
+.main-content,
+.statistics,
+.footer {
+	margin: auto;
+	max-width: 960px;
+	overflow: hidden;
+	padding:  20px 0;
+	width: 100%;		
+}
+.main-content {
+	margin: 45px auto;
+	padding: 0;
+}
+.sidebar {
+	float: left;
+	margin-right: 3.125%;
+	width: 25%;
+}
+.size {
+	color: #8f8d8d;
+	font-size: 0.857em; /* 12/14 */
+}
+.last-name {
+	text-transform: uppercase;
+}
+/************************************************************** 
+* Header section
+**************************************************************/
+.header-wrap {
+	background-color: #f8f8f5;
+	padding: 10px 0 0;
+}
+.site-header,
+.main-menu {
+	padding: 0;
+	overflow: hidden;
+}
+.logo-wrap {
+	float: left;
+	margin-top: 45px;
+	width: 60%;
+}
+.logo {
+	font-size: 4em;
+	line-height: 1em; 
+	margin-bottom: 0;
+}
+.logo a {
+	color: #333;
+}
+.logo a:hover {
+	text-decoration: none;
+}
+.tagline {
+	font-size: 0.875em; /* 14 / 16*/ 
+}
+.sub-menu {
+	float: right;
+	font: 0.875em "Helvetica Neue", Helvetica, Arial, sans-serif; /* 14/16 */
+}
+.sub-menu-list {
+	display: inline-block;
+	list-style: none;
+}
+.sub-menu-list li {
+	border-right: 1px solid #333;
+	float: left;
+}
+.sub-menu-list li:nth-of-type(4){
+	border-right: none;
+}
+.sub-menu-list li a {
+	color: #000;
+	display: block;
+	padding: 0 10px;
+}
+.sub-menu-list li.twitter,
+.sub-menu-list li.facebook,
+.sub-menu-list li.rss {
+	background: url(../images/sprite.png) 0 2px no-repeat;
+	border-right: none;
+	margin-left: 10px;
+	overflow: hidden;
+	text-indent: 100%; 	
+	width: 21px; 
+	height: 16px;  
+	white-space: nowrap;
+}
+.sub-menu-list li.facebook {
+	background-position: -100px 0;
+	height: 18px;
+	margin-left: 15px;	
+}
+.sub-menu-list li.rss {
+	background-position: -200px 0;
+	height: 17px;
+	margin-left: 15px;	
+}
+.main-menu-wrap h3 {
+	font-size: 0.75em; /* 12/16 */
+	font-weight: bold;
+	margin: 20px 0 5px;
+	text-transform: uppercase;
+}
+.main-menu-list-wrap,
+.search-filter-wrap {
+	overflow: hidden;
+}
+.main-menu-list {
+	float: left;
+	list-style: none;
+	margin-bottom: 0;
+	padding: 0;
+	width: 100%;
+}
+.main-menu-list li {
+	background-color: #d5ebf1;
+	border-right: 1px solid #f8f8f5;
+	float: left;
+	text-align: center;
+	width: 25%;
+}
+.main-menu-list li:last-child {
+	border-radius: none;
+}
+.main-menu-list a {
+	color: #2e6d7d;
+	display: block;
+	font-size: 0.875em;
+	padding: 10px 0 ;	
+}
+.search-filter a {
+	padding: 9px 15px 5px;
+}
+.main-menu-list a:hover,
+.main-menu-list a:active,
+.main-menu-list a.active,
+.main-menu-list a.current-page {
+	background-color: #fff;
+	text-decoration: none;
+}
+.search-wrap{
+	clear: right;
+	float: right;
+	margin-top: 40px;
+}
+.searchform input.field {
+	background-color: #fff;
+	border-radius: 4px 0 0 4px;
+	border: 1px solid #d5d4d4;
+	border-width: 1px 0 1px 1px;
+	font-size: .875em;
+	float: left;
+	padding-left: 5px;
+	width: 250px;
+	height: 35px;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+     box-shadow: none
+}
+#searchsubmit {
+	background: #fff url(../images/sprite.png) 5px -395px no-repeat;
+	border: 1px solid #d5d4d4;
+	border-width: 1px 1px 1px 0;
+	border-radius: 0 4px 4px 0;
+	cursor: pointer;
+	height: 35px;
+	float: left;	
+	text-indent: -9999px;
+	width: 35px;	
+}
+.advanced-search {
+	font-size: 0.6875em; /* 11/16 */
+}
+/************************************************************** 
+* Icons
+**************************************************************/
+.author-icon,
+.genre-icon,
+.language-icon,
+.reader-icon,
+.title-icon {
+	background: url(../images/icons.png) 0 4px no-repeat;
+	display: inline-block;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: bottom;
+    width: 12px;
+}
+.genre-icon {
+	background-position: 0 -98px;
+	width: 10px;	
+}
+.language-icon {
+	background-position: 0 -198px;	
+	width: 16px;
+}
+.reader-icon {
+	background-position: 0 -297px;	
+	width: 26px;
+}
+.title-icon {
+    background-position: 0 -395px;
+    width: 20px;
+}
+.browse-list .author-icon,
+.browse-list .genre-icon,
+.browse-list .language-icon,
+.browse-list .reader-icon,
+.browse-list .title-icon {
+	display: block;
+	margin: auto;
+}
+
+/************************************************************** 
+* Sort Menus/Book Sidebar
+**************************************************************/
+.sort-menu {
+	float: right;
+}
+.sort-menu p {
+	float: left;
+	font-size: 0.8125em; /* 13/16 */
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-right: 10px;
+}
+.sort-type,
+.book-page-sidebar {
+	font-size: 0.8125em; /* 13/16 */
+}
+.book-page-sidebar {
+	margin-bottom: 20px;
+}
+.sort-type h4,
+.book-page-sidebar h4 {
+	border: 1px solid #eaeadb;
+	border-width: 1px 0;
+	font-weight: bold;
+	margin-bottom: 2px;
+	padding: 5px 2px;
+}
+.book-page-sidebar h4 {
+	margin-bottom: 10px;
+}
+.book-download-btn {
+    background-color: #609A41;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    text-align: center;
+    width: 80px;
+}
+a:hover.book-download-btn {
+	background-color: #83b16a;
+	text-decoration: none;
+}
+.book-page-sidebar p {
+	margin-bottom: 0;
+}
+.book-page-sidebar dt {
+    float: left;
+    font-weight: normal;
+    width: 50%;
+}
+.book-page-sidebar dd {
+    float: left;
+    margin-bottom: 0;
+    padding-left: 5px;
+    width: 50%;
+}
+.sort-type ul {
+	list-style: none;
+	padding-left: 0;
+}
+.sort-type ul a {
+	color: #333;
+	display: block;		
+	list-style: none;
+	padding-left: 20px;	
+	width: 100%;
+}
+.sort-type ul a:hover {
+	background-color: #f8f8f5;
+	text-decoration: none;	
+}
+.sort-type ul a.selected {
+	background-color: #f8f8f5;
+	color: #2e6d7d;
+	font-weight: bold;
+}	
+
+/************************************************************** 
+* Browse Main Styles
+**************************************************************/
+.browse,
+.page {
+	float: left;
+	max-width: 690px;
+	width: 71.875%;
+}
+.browse-header-wrap,
+.page-header-wrap {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.browse-header {
+	margin-bottom: 10px;
+}
+.browse-header-wrap .browse-header {
+	float: left;
+	margin-bottom: 0;
+	width: 50%;	
+}
+.browse-header span {
+	font-weight: bold;	
+}
+.browse-list {
+	list-style: none;
+	padding-left: 0;
+	height: 100%;
+	min-height: 100%;	
+}
+.catalog-result {
+	background-color: #f8f8f5;
+	border-radius: 4px;
+	display: table;
+	height: 75px;
+	margin-bottom: 5px;
+	position: relative;
+	width: 100%;
+}
+.catalog-result.all {
+	background: #f3f3e9;	
+}
+
+.catalog-result:hover.all {
+	background-color: #eaeadb;
+}
+.catalog-result:hover {
+	background: #f3f3e9;
+	-webkit-transition: background-color 0.3s linear;
+	   -moz-transition: background-color 0.3s linear;
+         -o-transition: background-color 0.3s linear;
+	        transition: background-color 0.3s linear;	
+}
+.catalog-type {
+	background-color: #d5ebf1;
+    border-radius: 4px 0 0 4px;	
+	color: #2e6d7d;
+	display: table-cell;
+	font-size: 0.6875em; /* 11/16 */	
+	max-width: 65px;
+	width: 9.5%;
+	text-align: center;
+	vertical-align: middle;
+}
+.book-cover,
+.result-data {
+	float: left;
+	margin: 10px 0 10px 5px;
+	line-height: 1;
+}
+.book-cover,
+.book-cover img {
+	border-radius: 4px;
+}
+.result-data {
+	margin: 10px 10px 10px 20px;
+    max-width: 430px;
+    width: 63%;	
+}
+.result-data h3 {
+	font-size: 0.9375em; /* 15/16 */
+	font-weight: bold;
+	margin-bottom: 5px;
+	line-height: 1.2;	
+}
+.browse-genre .result-data h3 {
+	font-weight: normal;
+}
+.browse-genre .result-data h3 span {
+	font-weight: bold;
+}
+.book-author {
+	font-size: 0.8125em; /* 13/16 */ 
+	margin-bottom: 7px;
+}
+.dod-dob {
+	color: #333;
+	font-size: 0.6875em ; /* 11/16 */
+	font-style: italic;
+	font-weight: normal;
+}
+.native-lang {
+	font-size: 0.8125em; /* 13/16 */
+	line-height: 1;
+	margin: -2px 0 5px 0;
+}
+.book-meta {
+	color: #666;
+	font-size: 0.6875em; /* 11/16 */
+	margin-bottom: 0;
+}
+.book-meta span {
+	font-weight: bold;
+}
+.download-btn {
+	float: right;
+	margin: 15px 15px 0 0;	
+	text-align: center;
+}
+.download-btn span {
+	display: block;
+	font-size: 0.6875em; /* 11/16 */	
+}
+.download-btn a {
+	background-color: #609a41;
+	border-radius: 2px;
+	color: #fff;
+	display: block;
+	font-size: 0.75em; /* 12/16 */
+	font-weight: bold;
+	padding: 3px 10px;
+	
+}
+.download-btn a:hover {
+	background-color: #83b16a ;
+	text-decoration: none;
+}
+.more-result {
+	float: right;
+	background: url(../images/sprite.png) -200px -400px;
+	margin-top: -17.5px;
+	overflow: hidden;
+	position: absolute;
+	top:50%;
+	right: 0;
+	text-indent: 100%; 	
+	width: 50px; 
+	height: 35px;  
+	white-space: nowrap;
+}
+.all .more-result {
+	background-position: -200px -300px;
+}
+
+/************************************************************** 
+* Reader page/Author page
+**************************************************************/
+.content-wrap {
+	background-color: #f8f8f5;
+	border-radius: 4px;
+	border: 1px solid #eaeadb;
+	font-size: 0.875em;
+	margin-bottom: 20px;
+	padding: 17px;
+}
+.content-wrap h1 {
+	font-size: 1.2857em; /* 18/14 */
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.content-wrap h1 span {
+	font-size: 0.667em; /* 12/18 */
+	font-style: italic;
+	font-weight: normal;
+}
+.page-header-half {
+	float: left;
+	width: 50%;
+}
+.content-wrap p {
+	margin-bottom: 0;
+}
+.content-wrapp span {
+	font-weight: bold;
+}
+p.description {
+	line-height: 1.4;
+	margin-bottom: 15px;
+}
+
+/************************************************************** 
+* Book page
+**************************************************************/
+.book-page h1 {
+	margin-bottom: 5px;
+}
+p.book-page-author {
+	font-size: 1.07em;	 /* 15/14 */
+	margin-bottom: 15px;
+}
+.book-page .description p {
+	margin-bottom: 15px;
+}
+.book-page-book-cover {
+	float: right;
+	margin: 0 0 20px 20px;
+}
+.book-page-genre span {
+	font-weight: bold;
+}
+.book-page-chapters a {
+	font-weight: bold;
+}
+.download-cover {
+	display: block;
+	font-size: 0.875em;
+	text-align: center;
+}
+
+/* Chaper Download table */
+.chapter-download,
+.table-list {	
+    border-collapse:separate;
+    border-spacing:0 5px;
+	font-size: 0.875em; /* 12/16 */
+	margin-bottom: 30px;		
+	text-align: left;
+	width: 100%;
+}
+.chapter-download thead tr,
+.table-list thead tr {
+	color: #2e6d7d;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+.chapter-download thead th,
+.table-list thead th {
+    background-color: #D5EBF1;
+	padding: 10px 0 7px 10px;
+}
+.chapter-download tr td:first-child,
+.chapter-download tr th:first-child,
+.table-list tr td:first-child,
+.table-list tr th:first-child  {
+	border-radius: 4px 0 0 4px;
+    background-color: #D5EBF1;
+    width: 55px;
+}
+.table-list tr td:first-child {
+	background-color: #f8f8f5;	
+}
+.chapter-download tr td:last-child,
+.chapter-download tr th:last-child,
+.table-list tr td:last-child,
+.table-list tr th:last-child   {
+	border-radius: 0 4px 4px 0;
+}
+.chapter-download a,
+.table-list a {
+	font-weight: bold;
+}
+.chapter-download td,
+.table-list td {
+	background-color: #f8f8f5;	
+	padding: 15px 10px;
+}
+.play-btn {
+	background: url(../images/sprite.png) -200px -200px no-repeat;
+	display: block;
+	margin-left: 10px;
+	overflow: hidden;
+	text-indent: 100%; 	
+	width: 13px; 
+	height: 19px;  
+	white-space: nowrap;
+}
+/************************************************************** 
+* Table list
+**************************************************************/
+.table-list {
+	table-layout: fixed;
+}
+.table-list tbody {
+	font-size: 0.875em;
+}
+.table-list thead th {
+	line-height: 1.2em;
+	padding: 7px;
+	vertical-align: bottom;
+}
+.table-list.reader-view tr td:first-child,
+.table-list.reader-view tr th.first,
+.table-list.reader-view th.assigned, 
+.table-list.pl-view tr th.first {
+	width: 15%;
+}
+.tabs {
+}
+.tab-btn {
+	background-color: #528F9E;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 0.75em;
+	font-weight: bold;
+	margin-right: 5px;
+	padding: 5px 12px;
+}
+a:hover.tab-btn {
+    background-color: #D5EBF1;
+    color: #2E6D7D;
+  	text-decoration: none;
+}
+.tab-btn.selected {
+    background-color: #D5EBF1;
+    color: #2E6D7D;
+  	padding: 5px 12px 14px;
+}
+
+/************************************************************** 
+* Advanced Search
+**************************************************************/
+.advanced-search-inner {
+	background-color: #f8f8f5;
+	border-radius: 4px;
+	border: 1px solid #eaeadb;
+	font-size: 0.9em;
+	max-width: 800px;
+	padding: 30px 30px 15px;
+	margin: auto;
+	width: 100%;
+}
+.control-group {
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+.advanced-search-form label span {
+	float: left;
+	width: 30%;
+}
+.advanced-search-form input {
+	background-color: #fff;
+	border-radius: 4px 0 0 4px;
+	border: 1px solid #d5d4d4;
+	display: block;	
+    margin-left: 30%;
+    max-width: 500px;
+    padding-left: 5px;
+    width: 70%;
+    height: 32px;    
+} 
+#exact_match {
+	width: auto;
+}
+.buttons {
+    margin: 20px auto 0;
+    max-width: 160px;
+    overflow: hidden;
+    text-align: center;
+    width: 40%;
+}
+.advanced-search-form .btn {
+	background-color: #609a41;
+    border: none;	
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-size: 0.9em;
+	font-weight:bold;
+    display: block;
+    margin-right:  10px;
+    padding: 5px 10px;
+}
+.advanced-search-form .btn.reset {
+	background-color: #528f9e;
+}
+
+.advanced-search-form .btn:hover {
+	background-color: #83b16a ;
+}
+
+/************************************************************** 
+* Sidebar
+**************************************************************/
+.disclaimer {
+	background-color: #f8f8f5;
+	border-radius: 4px;
+	border: 1px solid #eaeadb;
+	color: #535353;
+	font-size: 0.75em; /* 12/16 */
+	line-height: 1.4em;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.thank-reader,
+.donate {
+	background-color: #f0f8df;
+    border-radius: 2px;	
+	color: #609a41;
+	display: block;
+    font-size: 0.75em;	/* 12/16 */
+	font-weight:bold;
+    display: block;
+    margin-bottom:  10px;
+    padding: 2px 5px;
+}
+.thank-reader {
+	background-color: #d5ebf1;
+	color: #2e6d7d;	
+}
+.thank-reader span,
+.donate span {
+	background: url(../images/sprite.png) 0 -100px no-repeat;
+    float: right;
+    height: 12px;
+    margin-top: 5px;
+    width: 10px;
+}
+.thank-reader span {
+	background-position: -100px -100px;	
+}
+a:hover.thank-reader,
+a:hover.donate {
+	color: #fff;
+	background-color: #83b16a;
+	text-decoration: none;
+}
+a:hover.thank-reader {
+	background-color: #528F9E;
+	color: #fff;
+}
+a:hover.thank-reader span,
+a:hover.donate span {
+	background: url(../images/sprite.png) 0 -200px no-repeat;
+}
+
+/************************************************************** 
+* Page navigation
+**************************************************************/
+.page-number {
+	color: #666;
+	font-size: 0.75em; /* 12/16 */
+	margin: 0 3px;
+	padding: 5px 7px;
+}
+.page-number.active,
+.page-number:hover {
+	background: #528f9e;
+	border-radius: 4px;
+	color: #fff;
+	text-decoration: none;
+}
+
+/************************************************************** 
+* Footer
+**************************************************************/
+.footer-wrap {
+	background-color: #798086;
+	color: #fff;
+	font-size: 0.875em; /* 14/16 */
+	overflow: hidden;
+}
+
+/************************************************************** 
+* Temp Fix 
+**************************************************************/
+.white {
+    background-color:#FFF !important;
+}
+
+/************************************************************** 
+* Media queries for responsive design
+* These follow after primary styles so they will successfully override. 
+**************************************************************/
+
+@media screen and (max-width: 960px) { 
+        .header-wrap {
+                padding: 10px 20px 40px;
+        }
+        .logo-wrap {
+                width: 40%;
+        }
+        .main-content,
+        .home .main-content {
+                padding: 0 20px 50px;
+        }
+        .statistics-wrap,
+        .footer-wrap  {
+                padding: 0 20px;
+        }       
+}       
+@media screen and (max-width: 960px) { 
+        .header-wrap {
+                padding-bottom: 20px;
+        }
+        .main-content {
+                margin-top: 20px;
+        }       
+        .sidebar,
+        .browse,
+        .page {
+                clear: both;
+                float: none;
+                width: 100%;
+                max-width: inherit;
+        }
+        .sort-type,
+        .donate,
+        .thank-reader,
+        .book-page-sidebar {
+                width: 48%;
+                float: left;
+                margin-right: 2%;
+                margin-bottom: 20px;
+        }
+        .disclaimer {
+                clear: both;
+                min-height: 40px;
+                padding: 20px 10px;
+        }
+        
+}       
+@media screen and (max-width: 660px) {          
+        .site-header, .main-menu {
+            clear: both;
+            overflow: visible;          
+                position: relative;     
+        }
+        .main-small-navigation .sub-menu-list{
+                display: none;
+        }
+        .sub-menu {
+                float: none;
+                position: absolute;
+                top: 5px;
+                right: 0;
+            width: 100px;
+                z-index: 10;
+        }
+        
+        .icon-fontawesome-webfont:before  {
+          content: "c";
+        }
+        .sub-menu h1 {
+                cursor: pointer;
+                font-size: 2em;
+                margin-bottom: 0;
+                text-align: right;
+        }
+        .sub-menu h1 span {
+                display: block;         
+                overflow: hidden;
+                text-indent: 100%;      
+                width: 1px; 
+                height: 1px;  
+                white-space: nowrap;
+        }
+        .sub-menu-list li {
+                background-color: #fff;
+                border-bottom: 1px solid #eee;
+                border-right: none; 
+                float: none;
+                padding: 5px 10px;
+        }
+        .sub-menu-list li.twitter, .sub-menu-list li.facebook, .sub-menu-list li.rss {
+                background: none;
+                background-color: #fff;
+                margin-left: 0;
+                overflow: visible;
+                text-indent: 0;
+                width: 100%;
+                height: auto;
+        }
+        .sub-menu-list li:hover {
+                background-color: #F4f4f4;
+        }
+        .sub-menu-list li a:hover {
+                text-decoration: none;
+        }
+        .search-wrap {
+                clear: none;
+                float: none;
+                margin: 0;
+                position: absolute;
+                left: 0;
+        top: 5px;
+}
+        .sub-menu-list {
+                padding-left: 0;
+        }
+        .logo-wrap {
+            margin: 65px 0 30px;
+                text-align: center;
+                width: 100%;
+        }
+        .searchform input.field {
+                max-width: 225px;
+        }
+}
+@media screen and (max-width: 580px) {  
+	.header-wrap {
+		overflow: hidden;
+	}
+	.logo-wrap {
+		margin-bottom: 0;
+	}
+	.main-menu-wrap,
+	.sidebar .donate,
+	.sidebar .thank-reader,
+	.sidebar .disclaimer {
+		display: none;
+	}
+	.main-content {
+		position: relative;
+	}
+	.sidebar.book-page {
+		min-height: 500px;
+		position: absolute;
+		bottom: 0;
+		left: 20px;
+	}
+	.page.book-page {
+		margin-bottom: 29em;
+	}
+
+        .search-wrap {
+                width: 80%;
+        }
+        .searchform input.field {
+            width: 80%;
+        }
+        .advanced-search {
+                clear: both;
+                display: block;
+        }
+        .catalog-result {
+                margin-bottom: 10px;
+        }
+        .book-cover {
+                margin-right: 2%;
+                width: 15%;
+        }
+        .result-data {
+            margin: 10px 1% 10px 0;
+                max-width: inherit;
+                width: 80%;
+        }
+        .download-btn {
+                clear: both;
+                float: none;
+                margin: auto;
+                width: 75%;             
+        }
+        .download-btn a {
+                padding: 5px 10px;              
+        }
+        .main-menu-list {
+                float: none;
+        }
+        .main-menu-list li {
+                float: none;
+                text-align: left;
+                width: inherit;
+        }
+        .main-menu-list a {
+                padding-left: 20px;
+        }
+        .sort-type,
+        .donate,
+        .thank-reader,
+        .book-page-sidebar {
+                width: 100%;
+                float: none;
+                margin-right:0;
+        }
+        .page-header-half {
+                float: none;
+                width: inherit;
+        }
+        /* Advanced Search */
+        .advanced-search-inner {
+                padding: 30px 10px 15px;
+        }
+        .advanced-search-form label span,
+        .advanced-search-form input {
+                float: none;
+                width: 100%;
+                max-width:  inherit;
+        }
+        .advanced-search-form input {
+                margin-left: 0;
+        }
+        .buttons {
+                width: 100%;
+        }
+        /* table */
+        .table-list table, 
+        .table-list thead, 
+        .table-list tbody, 
+        .table-list th, 
+        .table-list td, 
+        .table-list tr { 
+                display: block; 
+        }
+                /* Hide table headers (but not display: none;, for accessibility) */
+        .table-list thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+        }
+        
+        .table-list tr { border: 1px solid #ccc; }
+        
+        .table-list td { 
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee; 
+                position: relative;
+                padding-left: 50%; 
+        }
+        
+        .table-list td:before { 
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+        }
+        .table-list tr td:first-child, .table-list tr th:first-child,
+        .table-list.reader-view tr td:first-child {
+                width: inherit;
+        }
+        .table-list td:before {
+                font-weight: bold;
+        }
+        /*
+        Label for Read View
+        */
+        .reader-view td:nth-of-type(1):before { content: "Title"; }
+        .reader-view td:nth-of-type(2):before { content: "Status"; }
+        .reader-view td:nth-of-type(3):before { content: "Assigned"; }
+        .reader-view td:nth-of-type(4):before { content: "Ready for PL"; }
+        .reader-view td:nth-of-type(5):before { content: "See PL notes"; }
+        .reader-view td:nth-of-type(6):before { content: "Ready for spot check"; }
+        .reader-view td:nth-of-type(7):before { content: "PL ok"; }
+        
+        /*
+        Label for PL view
+        */
+        .pl-view td:nth-of-type(1):before { content: "Title"; }
+        .pl-view td:nth-of-type(2):before { content: "Status"; }
+        .pl-view td:nth-of-type(3):before { content: "Ready for PL"; }
+        .pl-view td:nth-of-type(4):before { content: "See PL"; }
+        .pl-view td:nth-of-type(5):before { content: "Ready for spot check"; }
+        .pl-view td:nth-of-type(6):before { content: "PL ok"; }
+}
+@media screen and (max-width: 360px) {
+        .searchform input.field {
+                width: 60%;
+                
+        }
+ }
+
+@media screen and (max-width: 320px) { 
+
+        .download-btn {
+                width: 95%;
+        }
+        .download-btn a {
+                padding: 2px 10px;
+        }
+        
+ }
+
+
+/************************************************************** 
+* print styles
+* inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/ 
+**************************************************************/
+
+@media print {
+  * { background: transparent !important; color: #444 !important; text-shadow: none !important; }
+  a, a:visited { color: #444 !important; text-decoration: underline; }
+  a:after { content: " (" attr(href) ")"; } 
+  abbr:after { content: " (" attr(title) ")"; }
+  .ir a:after { content: ""; }  /* Don't show links for images */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */ 
+  tr, img { page-break-inside: avoid; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3{ page-break-after: avoid; }
+
+
+
+
+
+
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxsAXC-v.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI5wq_Gwfo.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjx4wWw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVSwiPHA.ttf) format('truetype');
+}
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <title>
+   LibriVox
+  </title>
+  <meta content="LibriVox" name="description">
+  <meta content="LibriVox" name="author">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+ </head>
+ <body>
+  <section class="header-wrap">
+   <header class="site-header">
+    <!-- Site title/Logo and tagline -->
+    <hgroup class="logo-wrap">
+     <h1 class="logo">
+      <a>
+       <img alt="librivox-logo" height="37" src="rick.jpg" width="180">
+       <span class="assistive-text">
+        LibriVox
+       </span>
+      </a>
+     </h1>
+     <h3 class="tagline">
+      Acoustical liberation of books in the public domain
+     </h3>
+    </hgroup>
+    <!-- Sub menu -->
+    <nav class="sub-menu">
+     <h1 class="assistive-text icon-fontawesome-webfont">
+      <span>
+       Menu
+      </span>
+     </h1>
+     <div class="assistive-text skip-link">
+      <a title="Skip to content">
+       Skip to content
+      </a>
+     </div>
+     <ul class="sub-menu-list">
+      <li class="first">
+       <a>
+        About
+       </a>
+      </li>
+      <li>
+       <a>
+        Contact
+       </a>
+      </li>
+      <li>
+       <a>
+        Forum
+       </a>
+      </li>
+      <li>
+       <a>
+        Help
+       </a>
+      </li>
+      <!-- <li class="facebook ir"><a >Facebook</a></li> -->
+     </ul>
+    </nav>
+    <!-- end sub-menu -->
+    <!-- Search Form -->
+    <div class="search-wrap">
+     <form action="#" class="searchform" id="searchform" method="get" role="search">
+      <label class="assistive-text" for="q">
+       Search LibriVox
+      </label>
+      <input class="field" id="q" name="q" placeholder="Search by Author, Title or Reader" type="text">
+      <input id="dummy" name="dummy" style="display:none;" type="text">
+      <input class="submit" id="searchsubmit" name="submit" type="submit" value="Search">
+     </form>
+     <a class="advanced-search js-advanced-search">
+      Advanced search
+     </a>
+    </div>
+    <!-- end search-wrap -->
+   </header>
+   <!-- Main menu -->
+   <div class="main-menu-wrap">
+    <section class="main-menu">
+     <h3>
+      Browse the catalog
+     </h3>
+     <nav class="main-menu-list-wrap">
+      <ul class="main-menu-list">
+       <li class="js-menu_item first" data-menu_item="author">
+        <a>
+         <span class="author-icon">
+         </span>
+         Author
+        </a>
+       </li>
+       <li class="js-menu_item last" data-menu_item="title">
+        <a>
+         <span class="title-icon">
+         </span>
+         Title
+        </a>
+       </li>
+       <li class="js-menu_item" data-menu_item="genre">
+        <a>
+         <span class="genre-icon">
+         </span>
+         Genre/Subject
+        </a>
+       </li>
+       <li class="js-menu_item" data-menu_item="language">
+        <a>
+         <span class="language-icon">
+         </span>
+         Language
+        </a>
+       </li>
+       <!-- <li data-menu_item="reader" class="js-menu_item "><a ><span class="reader-icon"></span>Reader</a></li> -->
+      </ul>
+     </nav>
+    </section>
+    <!-- end main-menu -->
+   </div>
+   <!-- end .main-menu-wrap -->
+  </section>
+  <!-- end .header-wrap -->
+  <input id="primary_key" type="hidden" value="0">
+  <div class="main-content">
+   <div class="sidebar book-page">
+    <a class="donate">
+     Donate to LibriVox
+    </a>
+    <a class="thank-reader">
+     Thank a reader
+    </a>
+    <div class="disclaimer">
+     LibriVox recordings are Public Domain in the USA. If you are not in the USA, please verify the copyright status of these works in your own country before downloading, otherwise you may be violating copyright laws.
+    </div>
+    <div class="book-page-sidebar">
+     <h4>
+      Listen/Download (
+      <a>
+       help?
+      </a>
+      )
+     </h4>
+     <dl class="listen-download clearfix">
+      <dt>
+       Whole book (zip file)
+      </dt>
+      <dd>
+       <a class="book-download-btn">
+        Download
+       </a>
+      </dd>
+      <dt>
+       Subscribe by iTunes
+      </dt>
+      <dd>
+       <a class="book-download-btn">
+        iTunes
+       </a>
+      </dd>
+      <dt>
+       RSS Feed
+      </dt>
+      <dd>
+       <a class="book-download-btn">
+        RSS
+       </a>
+      </dd>
+      <dt>
+       Download torrent
+      </dt>
+      <dd>
+       <a class="book-download-btn">
+        Torrent
+       </a>
+      </dd>
+     </dl>
+    </div>
+    <div class="book-page-sidebar">
+     <h4>
+      Production details
+     </h4>
+     <dl class="product-details clearfix">
+      <dt>
+       Running Time:
+      </dt>
+      <dd>
+       02:32:05
+      </dd>
+      <dt>
+       Zip file size:
+      </dt>
+      <dd>
+       71MB
+      </dd>
+      <dt>
+       Catalog date:
+      </dt>
+      <dd>
+       2018-09-12
+      </dd>
+      <dt>
+       Read by:
+      </dt>
+      <dd>
+       <a>
+        Jim Locke
+       </a>
+      </dd>
+      <dt>
+       Book Coordinator:
+      </dt>
+      <dd>
+       <a>
+        Jim Locke
+       </a>
+      </dd>
+      <dt>
+       Meta Coordinator:
+      </dt>
+      <dd>
+       <a>
+        DaveC
+       </a>
+      </dd>
+      <dt>
+       Proof Listener:
+      </dt>
+      <dd>
+       <a>
+        DaveC
+       </a>
+      </dd>
+     </dl>
+    </div>
+    <div class="book-page-sidebar">
+     <h4>
+      Links
+     </h4>
+     <p>
+      <a>
+       Internet Archive Page
+      </a>
+     </p>
+     <p>
+      <a>
+       Online text
+      </a>
+     </p>
+     <p>
+      <a>
+       Wikipedia - Josephine Brown
+      </a>
+     </p>
+     <p>
+      <a>
+       M4B Audiobook (70MB)
+      </a>
+     </p>
+    </div>
+   </div>
+   <div class="page book-page">
+    <div class="content-wrap clearfix">
+     <div class="book-page-book-cover">
+      <img alt="book-cover-large" height="175" src="rick.jpg" width="175">
+      <a class="download-cover">
+       Download cover art
+      </a>
+      <a class="download-cover">
+       Download CD case insert
+      </a>
+     </div>
+     <h1>
+      Biography of an American Bondman, By His Daughter
+     </h1>
+     <p class="book-page-author">
+      <a>
+       Josephine Brown
+       <span class="dod-dob">
+        (1839 - 1874)
+       </span>
+      </a>
+     </p>
+     <p class="description">
+      Josephine Brown's Biography of an American Bondsman faithfully follows the trajectory of her father's life as previously explored in his own narratives. She distills and summarizes the major revelatory moments of his autobiography while she also incorporates new anecdotal information and offers her own perspective on Brown's life.
+     </p>
+     <p class="book-page-genre">
+      <span>
+       Genre(s):
+      </span>
+      Biography &amp; Autobiography
+     </p>
+     <p class="book-page-genre">
+      <span>
+       Language:
+      </span>
+      English
+     </p>
+    </div>
+    <!-- end .content-wrap -->
+    <table class="chapter-download">
+     <thead>
+      <tr>
+       <th>
+        Section
+       </th>
+       <th>
+        Chapter
+       </th>
+       <th>
+        Reader
+       </th>
+       <th>
+        Time
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <a class="play-btn">
+         Play
+        </a>
+        01
+       </td>
+       <td>
+        <a class="chapter-name">
+         Chapters 1 and 2
+        </a>
+       </td>
+       <td>
+        <a>
+         Jim Locke
+        </a>
+        <br>
+       </td>
+       <td>
+        00:14:18
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <a class="play-btn">
+         Play
+        </a>
+        02
+       </td>
+       <td>
+        <a class="chapter-name">
+         Chapters 3 and 4
+        </a>
+       </td>
+       <td>
+        <a>
+         Jim Locke
+        </a>
+        <br>
+       </td>
+       <td>
+        00:07:04
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <a class="play-btn">
+         Play
+        </a>
+        03
+       </td>
+       <td>
+        <a class="chapter-name">
+         Chapters 5 and 6
+        </a>
+       </td>
+       <td>
+        <a>
+         Jim Locke
+        </a>
+        <br>
+       </td>
+       <td>
+        00:09:26
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+   <!-- end .page -->
+  </div>
+  <!-- end .main-content -->
+  <footer class="footer-wrap">
+   <div class="footer">
+    <p class="license clear">
+     <a>
+      <img alt="public-domain-license" height="31" src="rick.jpg" width="88">
+     </a>
+    </p>
+   </div>
+   <!-- end .footer-wrap -->
+  </footer>
+  <!--[if lte IE 9]>	
+	    
+     <![endif]-->
+ </body>
+</html>

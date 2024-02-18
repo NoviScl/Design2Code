@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html class="js" lang="en">
+ <head>
+  <style>
+   /**
+ * Demo styles
+ * Styling specific to the content and wrapping
+ * elements of each styled form control,
+ */
+html,
+body {
+	background: #fcfcfc;
+	font-family: arial;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	line-height: 1.4;
+}
+
+a {
+	color: #08599B;
+	font-weight: bold;
+}
+
+h4, h5 {
+	font-size: 1.05em;
+	line-height: 1.2;
+}
+
+h2, h3, h4, h5, h6 {
+	margin-top: 2em;
+}
+
+main {
+	padding-top: .75em;
+}
+
+.demo > header {
+	border-bottom: 1px solid #aaa;
+}
+
+a:hover,
+a:focus {
+	box-shadow: none;
+	outline: 2px solid;
+	outline-offset: 2px;
+	text-decoration: none;
+}
+
+pre {
+	background: #fdfdfd;
+	border: 1px solid #ccc;
+	max-width: 100%;
+	overflow: auto;
+	padding: .5em;
+}
+
+hr {
+	margin: 1.5em 0;
+}
+
+.demo-wrap {
+	background: #fff;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	margin: 0 auto;
+	max-width: 660px;
+	padding: 0 1.5em 3em;
+	overflow-x: hidden;
+}
+
+.demo-wrap__header {
+	background: #1a2a1a;
+	color: #fefefe;
+	margin: -1em -1.5em 0;
+	padding: 3em 1.5em 2em;
+	position: relative;
+}
+
+.demo-wrap__header a {
+	color: #fff;
+}
+
+.demo-wrap__header__title {
+	font-size: 1.3em;
+	margin-bottom: .5em;
+	margin-top: .5em;
+}
+
+.demo-details {
+	margin-top: 3em
+}
+
+.demo-details > h3:first-of-type {
+	margin-top: 0;
+}
+
+/* IE + Edge need this to treat as a block element */
+details {
+	display: block;
+}
+
+p code {
+	white-space: nowrap;
+}
+
+
+.progress-meter-example {
+	margin-bottom: 2em;
+}
+
+.progress-meter-example label:after {
+	content: "";
+	display: block;
+}
+
+
+
+/**
+ * Shared styling among the different form controls.
+ * Much of these styles are pulled from normalize.css.
+ * Use as necessary within your own style sheets.
+ */
+
+input,
+button,
+textarea,
+select {
+	border-radius: 0; /* may change, but start consistently */
+	box-sizing: border-box;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: normal;
+	margin: 0;
+	overflow: visible; /* show overflow in Edge */
+	text-transform: none; /* remove inheritance Edge, Firefox, IE */
+}
+
+/**
+ * Remove the Clear button added by MS browsers
+ */
+input::-ms-clear {
+	display: none;
+	height: 0;
+	width: 0;
+}
+
+/**
+ * Style for disabled text fields
+ */
+input:not([type])[disabled], input[type=text][disabled], textarea[disabled] {
+	opacity: .625;
+}
+
+/**
+ * <button> Focus Normalization:
+ * remove FireFox specific inner focus styles.
+ * focus style will be reapplied later.
+ */
+button::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+
+/**
+ * 1. Correct color inheritance in IE
+ * 2. Correct the text wrapping in Edge and IE
+ */
+legend {
+	color: inherit; /* 1 */
+	display: table; /* 2 */
+	line-height: normal;
+	max-width: 100%; /* 2 */
+	white-space: normal; /* 2 */
+}
+
+
+
+/** --------------------------------------------------------------------
+
+  ARIA Switch On / Off button
+
+  These styles have not been formatted to work with a
+  checkbox that has been modified into a role=switch, and
+  presently require a parent / child relationship, rather than
+  a sibling relationship as a "checkbox + element" would provide.
+
+--------------------------------------------------------------------- */
+
+.on-off-switch {
+  align-items: center;
+  color: #111;
+  cursor: default;
+  display: flex;
+  font-weight: normal;
+  justify-content: space-between;
+}
+
+/* hover/focus is applied to the span within instead */
+.on-off-switch:hover,
+.on-off-switch:focus {
+  outline: 0;
+}
+
+.on-off-switch span {
+  background: #eaeaea;
+  border-radius: 2px;
+  border: 1px solid;
+  display: inline-block;
+  outline-offset: 0px;
+  outline: 0px solid;
+  padding: .25rem;
+  pointer-events: none;
+  position: relative;
+}
+
+.on-off-switch span:before,
+.on-off-switch span:after {
+  border-radius: 2px;
+  color: #4a4a4a;
+  display: inline-block;
+  min-width: 5ch;
+  text-align: center;
+}
+
+.on-off-switch span:before {
+  content: "Off";
+}
+
+.on-off-switch span:after {
+  content: "On";
+}
+
+.on-off-switch[disabled] span:before,
+.on-off-switch[disabled] span:after,
+.on-off-switch[aria-disabled="true"] span:before,
+.on-off-switch[aria-disabled="true"] span:after {
+  opacity: .65;
+  pointer-events: none;
+}
+
+.on-off-switch:not([data-keep-disabled]):hover span,
+.on-off-switch:not([data-keep-disabled]):focus span {
+  background: #fff;
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+.on-off-switch[aria-checked="false"] span:before,
+.on-off-switch[aria-checked="true"] span:after {
+  color: #fff;
+  margin: 0;
+}
+
+.on-off-switch[aria-checked="false"] span:before {
+  background: #222;
+  outline: 1px solid #222;
+}
+.on-off-switch[aria-checked="true"] span:after {
+  background: green;
+  outline: 1px solid green;
+}
+
+
+
+/** --------------------------------------------------------------------
+
+  ARIA Switch Toggle Button
+
+--------------------------------------------------------------------- */
+.switch-toggle {
+  background: none;
+  border: none;
+  cursor: default;
+  display: block;
+  font-size: inherit;
+  line-height: 1;
+  margin: 1em 0 0;
+  padding: .5em 0;
+  position: relative;
+  text-align: left;
+  transition: box-shadow .2s ease-in-out;
+  width: 100%;
+}
+
+.switch-toggle:focus {
+  outline: none;
+}
+
+/* negate 'flash' of text color when pressing a button in some browsers */
+.switch-toggle:active {
+  color: inherit;
+}
+
+/* using the before/after pseudo elements of the span to create the "switch" */
+.switch-toggle span:before,
+.switch-toggle span:after {
+  border: 1px solid #565656;
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* styling specific to the knob of the switch */
+.switch-toggle span:after {
+  background: #fff;
+  border-radius: 100%;
+  height: 1.5em;
+  right: 1.5em;
+  transition: right .1825s ease-in-out;
+  width: 1.5em;
+}
+
+/* styling specific to the knob "container" */
+.switch-toggle span:before {
+  background: #eee;
+  border-radius: 1.75em;
+  height: 1.75em;
+  right: .25em;
+  transition: background .2s ease-in-out;
+  width: 2.75em;
+}
+
+.switch-toggle span {
+  pointer-events: none;
+}
+
+
+.switch-toggle:not([data-keep-disabled]):hover span:before,
+.switch-toggle:not([data-keep-disabled]):focus span:before {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* change the position of the knob to indicate it has been checked*/
+.switch-toggle[aria-checked="true"] span:after {
+  right: .25em;
+}
+
+/* update the color of the "container" to further visually indicate state */
+.switch-toggle[aria-checked="true"] span:before {
+  background: #2196f3;
+}
+
+.switch-toggle[disabled] span,
+.switch-toggle[aria-disabled="true"] span {
+  opacity: .65;
+}
+
+/**
+ * Toggle switch modifications for displaying On/Off labels
+ */
+.switch-toggle .show-labels:before {
+  content: "Off";
+  color: rgba(10, 10, 10, 1);
+  line-height: 1.6;
+  text-indent: 1.625em;
+  width: 3.5em;
+}
+
+.switch-toggle[aria-checked="false"] .show-labels:after {
+  right: 2.2em;
+}
+
+.switch-toggle[aria-checked="true"] .show-labels:before {
+  color: rgba(255 ,255 ,255 ,1);
+  content: "On";
+  text-indent: .25em;
+  text-shadow: 0 0 1px #000;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .switch-toggle span:after {
+    background-color: windowText;
+  }
+}
+
+
+
+/* containing label */
+.check-switch {
+  display: block;
+  overflow: hidden;
+  padding: .5em 0;
+  position: relative;
+}
+
+/* using the before/after pseudo elements of the span to create the "switch" */
+.check-switch span:before,
+.check-switch span:after {
+  border: 1px solid #565656;
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* styling specific to the knob of the switch */
+.check-switch span:after {
+  background: #fff;
+  border-radius: 100%;
+  height: 1.5em;
+  right: 1.5em;
+  transition: right .1825s ease-in-out;
+  width: 1.5em;
+}
+
+/* styling specific to the knob "container" */
+.check-switch span:before {
+  background: #eee;
+  border-radius: 1.75em;
+  height: 1.75em;
+  right: .25em;
+  transition: background .2s ease-in-out;
+  width: 2.75em;
+}
+
+/* hide the actual checkbox from view, but not from keyboards or ATs.
+   Instead of standard visually hidden styling, instead set opacity to
+   to 0 and set to full height/width of container element so that VO focus
+   ring outlines the component, instead of a tiny box within the component.
+   This will also allow for the checkbox input to be discovered if someone
+   were to search by touch.
+*/
+.check-switch input {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.check-switch input:disabled + span,
+.check-switch input[aria-disabled="true"] + span {
+  opacity: .65;
+}
+
+
+.check-switch:hover input:not([data-keep-disabled]) + span:before,
+.check-switch input:not([data-keep-disabled]):focus + span:before {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+
+/* change the position of the knob to indicate it has been checked*/
+.check-switch input:checked + span:after {
+  right: .25em;
+}
+
+/* update the color of the "container" to further visually indicate state */
+.check-switch input:checked + span:before {
+  background: #2196f3;
+}
+
+/* 'color in' the switch knob in high contrast mode by giving it
+   a large border */
+@media screen and (-ms-high-contrast: active) {
+  .check-switch span:after {
+    background-color: windowText;
+  }
+}
+  </style>
+  <meta charset="utf-8">
+  <title>
+   ARIA Switch Controls
+  </title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+ </head>
+ <body id="body">
+  <div class="demo-wrap" id="page">
+   <header class="demo-wrap__header">
+    <p class="demo-wrap__header__title">
+     Accessible Styled Form Controls
+    </p>
+    <nav>
+     <a>
+      See source on GitHub
+     </a>
+     ,
+     <a>
+      Index of styled form controls
+     </a>
+    </nav>
+   </header>
+   <main aria-label="Content">
+    <div class="demo">
+     <div>
+      <h1>
+       <abbr title="Accessible Rich Internet Applications">
+        ARIA
+       </abbr>
+       Switch Demos
+      </h1>
+      <p>
+       Published:
+       <span>
+        March 20, 2017
+       </span>
+      </p>
+      <p>
+       Last updated:
+       <span>
+        January 23, 2022
+       </span>
+      </p>
+     </div>
+     <h2>
+      Pattern Demos
+     </h2>
+     <p>
+      <code>
+       &lt;button&gt;
+      </code>
+      base
+     </p>
+     <button aria-checked="false" class="switch-toggle" data-switch data-switch-labels role="switch" type="button">
+      Enable dark mode
+      <span aria-hidden="true" class="show-labels">
+      </span>
+     </button>
+     <p>
+      <code>
+       &lt;span&gt;
+      </code>
+      base
+     </p>
+     <span aria-checked="false" class="switch-toggle" data-switch role="switch" tabindex="0">
+      Enable dark mode (no visible state labels)
+      <span aria-hidden="true">
+      </span>
+     </span>
+     <p>
+      <code>
+       &lt;input type=checkbox&gt;
+      </code>
+      base
+     </p>
+     <label class="check-switch">
+      <input data-keep-disabled data-switch disabled role="switch" type="checkbox">
+      Enable dark mode (disabled example)
+      <span aria-hidden="true">
+      </span>
+     </label>
+     <p>
+      <code>
+       &lt;div&gt;
+      </code>
+      base
+     </p>
+     <div aria-checked="false" class="on-off-switch" data-switch id="enabler" role="switch" tabindex="0">
+      Enable the next switch
+      <span aria-hidden="true">
+      </span>
+     </div>
+     <p>
+      <code>
+       &lt;a&gt;
+      </code>
+      base
+     </p>
+     <a aria-checked="false" aria-disabled="true" class="on-off-switch" data-keep-disabled data-switch id="target" role="switch" tabindex="-1">
+      Enable something else
+      <span aria-hidden="true">
+      </span>
+     </a>
+     <section class="demo-details">
+      <h3>
+       Pattern Details
+      </h3>
+      <details>
+       <summary>
+        Pattern Markup (before script runs)
+       </summary>
+       <pre><code>&lt;button data-switch
+  type="button"
+  class="switch-toggle"
+  data-switch-labels
+  disabled
+&gt;
+  Dark mode
+&lt;/button&gt;
+
+&lt;span data-switch class="switch-toggle" hidden&gt;
+  Dark mode (no visible state labels)
+&lt;/span&gt;
+
+&lt;label class="check-switch"&gt;
+  &lt;input type="checkbox" data-switch data-keep-disabled disabled&gt;
+  Enable dark mode
+&lt;/label&gt;
+
+&lt;div class="on-off-switch" data-switch id="enabler" hidden&gt;
+  Enable the next switch
+&lt;/div&gt;
+
+&lt;a id="target"
+  
+  data-keep-disabled
+  aria-disabled="true"
+  class="on-off-switch"
+  data-switch
+&gt;
+  Enable something else
+&lt;/a&gt;</code></pre>
+      </details>
+      <details>
+       <summary>
+        Pattern Markup (after script runs)
+       </summary>
+       <pre><code>&lt;button data-switch 
+  type="button"
+  class="switch-toggle" 
+  data-switch-labels 
+  role="switch" 
+  aria-checked="false"
+&gt;
+  Dark mode
+  &lt;span aria-hidden="true" class="show-labels"&gt;&lt;/span&gt;
+&lt;/button&gt;
+
+
+&lt;span data-switch 
+  class="switch-toggle" 
+  role="switch" 
+  tabindex="0" 
+  aria-checked="false"
+&gt;
+  Dark mode (no visible state labels)
+  &lt;span aria-hidden="true"&gt;&lt;/span&gt;
+&lt;/span&gt;
+
+
+&lt;label class="check-switch"&gt;
+  &lt;input type="checkbox" 
+    data-switch 
+    data-keep-disabled 
+    disabled 
+    role="switch"
+  &gt;
+  Enable dark mode
+  &lt;span aria-hidden="true"&gt;&lt;/span&gt;
+&lt;/label&gt;
+
+
+&lt;div class="on-off-switch" 
+  data-switch 
+  id="enabler" 
+  role="switch"
+  tabindex="0" 
+  aria-checked="false"
+&gt;
+  Enable the next switch
+  &lt;span aria-hidden="true"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+
+&lt;a id="target" 
+  data-keep-disabled 
+  aria-disabled="true" 
+  class="on-off-switch" 
+  data-switch 
+  role="switch" 
+  tabindex="-1" 
+  aria-checked="false"
+&gt;
+  Enable something else
+  &lt;span aria-hidden="true"&gt;&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+      </details>
+      <p>
+       A switch is meant to function similarly to a checkbox or toggle button, but assistive technologies are meant to announce it in a manner that is consistent with its on-screen appearance as an on/off sort of UI component.
+      </p>
+      <p>
+       This particular pattern uses a
+       <code>
+        &lt;button&gt;
+       </code>
+       as the base element that is then modified into a
+       <code>
+        role="switch"
+       </code>
+       with JavaScript. When a
+       <code>
+        &lt;button&gt;
+       </code>
+       is modified to be exposed as a
+       <code>
+        switch
+       </code>
+       , the
+       <code>
+        aria-checked
+       </code>
+       attribute needs to be added, and managed, to appropriately convey the current state to assistive technologies (AT).
+      </p>
+      <p>
+       For more information about switches and how AT, such as screen readers, interpret them, please review
+       <a>
+        the checkbox switch pattern
+       </a>
+       .
+      </p>
+      <p>
+       For more information on the JavaScript and markup used, please see the
+       <a>
+        ReadMe on the GitHub repo for this pattern
+       </a>
+       .
+      </p>
+      <h4>
+       Usage note
+      </h4>
+      <p>
+       Presently there are
+       <a>
+        inconsistencies with screen readers and ARIA switches
+       </a>
+       .
+
+              Please review them to understand how the role is treated depending on screen reader and browser pairings, and if there are any gaps you may need to consider when considering the use of this role.
+      </p>
+     </section>
+     <h3>
+      Continue reading
+     </h3>
+     <p>
+      For more information about switches, please read the
+      <a>
+       <abbr>
+        ARIA
+       </abbr>
+       specification for the
+       <code>
+        switch
+       </code>
+       role
+      </a>
+      .
+      <a>
+       Inclusive Components Toggle Buttons, by Heydon Pickering
+      </a>
+      .
+     </p>
+    </div>
+   </main>
+  </div>
+ </body>
+</html>

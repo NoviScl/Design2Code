@@ -1,0 +1,2205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "">
+<html class="js" dir="ltr" lang="en" xml:lang="en" xmlns="">
+ <head>
+  <style>
+   /*
+based from http://mayerweb.com/eric/thoughts/2007/04/12/reset-styles
+*/
+html,body,div, /*span,*/
+applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,font,img,ins,kbd,q,s,samp,
+small, /*strike,*/ sub,sup,tt,var,
+dd,dl,dt,li,ol,ul,
+fieldset,form,label,legend /*
+table,caption,tbody,tfoot,thead,tr,th,td*/ {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 100%;
+  line-height: 1;
+  font-family: inherit;
+  text-align: left;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol,ul {
+  list-style: none;
+}
+q:before,q:after,
+blockquote:before,blockquote:after {
+  content: "";
+}
+
+
+
+/*
+** HTML elements
+*/
+body.drag {
+  cursor: move;
+}
+th.active img {
+  display: inline;
+}
+tr.even, tr.odd {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  padding: 0.1em 0.6em;
+}
+tr.drag {
+  background-color: #fffff0;
+}
+tr.drag-previous {
+  background-color: #ffd;
+}
+td.active {
+  background-color: #ddd;
+}
+td.checkbox, th.checkbox {
+  text-align: center;
+}
+tbody {
+  border-top: 1px solid #ccc;
+}
+tbody th {
+  border-bottom: 1px solid #ccc;
+}
+thead th {
+  text-align: left; /* LTR */
+  padding-right: 1em; /* LTR */
+  border-bottom: 3px solid #ccc;
+}
+
+/*
+** Other common styles
+*/
+.breadcrumb {
+  padding-bottom: .5em
+}
+div.indentation {
+  width: 20px;
+  height: 1.7em;
+  margin: -0.4em 0.2em -0.4em -0.4em; /* LTR */
+  padding: 0.42em 0 0.42em 0.6em; /* LTR */
+  float: left; /* LTR */
+}
+div.tree-child {
+  background: url(../../misc/tree.png) no-repeat 11px center; /* LTR */
+}
+div.tree-child-last {
+  background: url(../../misc/tree-bottom.png) no-repeat 11px center; /* LTR */
+}
+div.tree-child-horizontal {
+  background: url(../../misc/tree.png) no-repeat -11px center;
+}
+.error {
+  color: #e55;
+}
+div.error {
+  border: 1px solid #d77;
+}
+div.error, tr.error {
+  background: #fcc;
+  color: #200;
+  padding: 2px;
+}
+.warning {
+  color: #e09010;
+}
+div.warning {
+  border: 1px solid #f0c020;
+}
+div.warning, tr.warning {
+  background: #ffd;
+  color: #220;
+  padding: 2px;
+}
+.ok {
+  color: #008000;
+}
+div.ok {
+  border: 1px solid #00aa00;
+}
+div.ok, tr.ok {
+  background: #dfd;
+  color: #020;
+  padding: 2px;
+}
+.item-list .icon {
+  color: #555;
+  float: right; /* LTR */
+  padding-left: 0.25em; /* LTR */
+  clear: right; /* LTR */
+}
+.item-list .title {
+  font-weight: bold;
+}
+.item-list ul {
+  margin: 0 0 0.75em 0;
+  padding: 0;
+}
+.item-list ul li {
+  margin: 0 0 0.25em 1.5em; /* LTR */
+  padding: 0;
+  list-style: disc;
+}
+ol.task-list li.active {
+  font-weight: bold;
+}
+.form-item {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+tr.odd .form-item, tr.even .form-item {
+  margin-top: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+tr.merge-down, tr.merge-down td, tr.merge-down th {
+  border-bottom-width: 0 !important;
+}
+tr.merge-up, tr.merge-up td, tr.merge-up th {
+  border-top-width: 0 !important;
+}
+.form-item input.error, .form-item textarea.error, .form-item select.error {
+  border: 2px solid red;
+}
+.form-item .description {
+  font-size: 0.85em;
+}
+.form-item label {
+  display: block;
+  font-weight: bold;
+}
+.form-item label.option {
+  display: inline;
+  font-weight: normal;
+}
+.form-checkboxes, .form-radios {
+  margin: 1em 0;
+}
+.form-checkboxes .form-item, .form-radios .form-item {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+.marker, .form-required {
+  color: #f00;
+}
+.more-link {
+  text-align: right; /* LTR */
+}
+.more-help-link {
+  font-size: 0.85em;
+  text-align: right; /* LTR */
+}
+.nowrap {
+  white-space: nowrap;
+}
+.item-list .pager {
+  clear: both;
+  text-align: center;
+}
+.item-list .pager li {
+  background-image:none;
+  display:inline;
+  list-style-type:none;
+  padding: 0.5em;
+}
+.pager-current {
+  font-weight:bold;
+}
+.tips {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 0.9em;
+}
+dl.multiselect dd.b, dl.multiselect dd.b .form-item, dl.multiselect dd.b select {
+  font-family: inherit;
+  font-size: inherit;
+  width: 14em;
+}
+dl.multiselect dd.a, dl.multiselect dd.a .form-item {
+  width: 10em;
+}
+dl.multiselect dt, dl.multiselect dd {
+  float: left; /* LTR */
+  line-height: 1.75em;
+  padding: 0;
+  margin: 0 1em 0 0; /* LTR */
+}
+dl.multiselect .form-item {
+  height: 1.75em;
+  margin: 0;
+}
+
+/*
+** Inline items (need to override above)
+*/
+.container-inline div, .container-inline label {
+  display: inline;
+}
+
+/*
+** Tab navigation
+*/
+ul.primary {
+  border-collapse: collapse;
+  padding: 0 0 0 1em; /* LTR */
+  white-space: nowrap;
+  list-style: none;
+  margin: 5px;
+  height: auto;
+  line-height: normal;
+  border-bottom: 1px solid #bbb;
+}
+ul.primary li {
+  display: inline;
+}
+ul.primary li a {
+  background-color: #ddd;
+  border-color: #bbb;
+  border-width: 1px;
+  border-style: solid solid none solid;
+  height: auto;
+  margin-right: 0.5em; /* LTR */
+  padding: 0 1em;
+  text-decoration: none;
+}
+ul.primary li.active a {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-bottom: #fff 1px solid;
+}
+ul.primary li a:hover {
+  background-color: #eee;
+  border-color: #ccc;
+  border-bottom-color: #eee;
+}
+ul.secondary {
+  border-bottom: 1px solid #bbb;
+  padding: 0.5em 1em;
+  margin: 5px;
+}
+ul.secondary li {
+  display: inline;
+  padding: 0 1em;
+  border-right: 1px solid #ccc; /* LTR */
+}
+ul.secondary a {
+  padding: 0;
+  text-decoration: none;
+}
+ul.secondary a.active {
+  border-bottom: 4px solid #999;
+}
+
+/*
+** Autocomplete styles
+*/
+/* Suggestion list */
+#autocomplete {
+  position: absolute;
+  border: 1px solid;
+  overflow: hidden;
+  z-index: 100;
+}
+#autocomplete ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#autocomplete li {
+  background: #fff;
+  color: #000;
+  white-space: pre;
+  cursor: default;
+}
+#autocomplete li.selected {
+  background: #0072b9;
+  color: #fff;
+}
+/* Animated throbber */
+html.js input.form-autocomplete {
+  background-image: url(../../misc/throbber.gif);
+  background-repeat: no-repeat;
+  background-position: 100% 2px; /* LTR */
+}
+html.js input.throbbing {
+  background-position: 100% -18px; /* LTR */
+}
+
+/*
+** Collapsing fieldsets
+*/
+html.js fieldset.collapsed {
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  margin-bottom: 0;
+  height: 1em;
+}
+html.js fieldset.collapsed * {
+  display: none;
+}
+html.js fieldset.collapsed legend {
+  display: block;
+}
+html.js fieldset.collapsible legend a {
+  padding-left: 15px; /* LTR */
+  background: url(../../misc/menu-expanded.png) 5px 75% no-repeat; /* LTR */
+}
+html.js fieldset.collapsed legend a {
+  background-image: url(../../misc/menu-collapsed.png); /* LTR */
+  background-position: 5px 50%; /* LTR */
+}
+/* Note: IE-only fix due to '* html' (breaks Konqueror otherwise). */
+* html.js fieldset.collapsed legend,
+* html.js fieldset.collapsed legend *,
+* html.js fieldset.collapsed table * {
+  display: inline;
+}
+/* For Safari 2 to prevent collapsible fieldsets containing tables from dissapearing due to tableheader.js. */
+html.js fieldset.collapsible {
+  position: relative;
+}
+html.js fieldset.collapsible legend a {
+  display: block;
+}
+/* Avoid jumping around due to margins collapsing into collapsible fieldset border */
+html.js fieldset.collapsible .fieldset-wrapper {
+  overflow: auto;
+}
+
+/*
+** Resizable text areas
+*/
+.resizable-textarea {
+  width: 95%;
+}
+.resizable-textarea .grippie {
+  height: 9px;
+  overflow: hidden;
+  background: #eee url(../../misc/grippie.png) no-repeat center 2px;
+  border: 1px solid #ddd;
+  border-top-width: 0;
+  cursor: s-resize;
+}
+html.js .resizable-textarea textarea {
+  margin-bottom: 0;
+  width: 100%;
+  display: block;
+}
+
+/*
+** Table drag and drop.
+*/
+.draggable a.tabledrag-handle {
+  cursor: move;
+  float: left; /* LTR */
+  height: 1.7em;
+  margin: -0.4em 0 -0.4em -0.5em; /* LTR */
+  padding: 0.42em 1.5em 0.42em 0.5em; /* LTR */
+  text-decoration: none;
+}
+a.tabledrag-handle:hover {
+  text-decoration: none;
+}
+a.tabledrag-handle .handle {
+  margin-top: 4px;
+  height: 13px;
+  width: 13px;
+  background: url(../../misc/draggable.png) no-repeat 0 0;
+}
+a.tabledrag-handle-hover .handle {
+  background-position: 0 -20px;
+}
+
+/*
+** Teaser splitter
+*/
+.joined + .grippie {
+  height: 5px;
+  background-position: center 1px;
+  margin-bottom: -2px;
+}
+/* Keeps inner content contained in Opera 9. */
+.teaser-checkbox {
+  padding-top: 1px;
+}
+div.teaser-button-wrapper {
+  float: right; /* LTR */
+  padding-right: 5%; /* LTR */
+  margin: 0;
+}
+.teaser-checkbox div.form-item {
+  float: right; /* LTR */
+  margin: 0 5% 0 0; /* LTR */
+  padding: 0;
+}
+textarea.teaser {
+  display: none;
+}
+html.js .no-js {
+  display: none;
+}
+
+/*
+** Progressbar styles
+*/
+.progress {
+  font-weight: bold;
+}
+.progress .bar {
+  background: #fff url(../../misc/progress.gif);
+  border: 1px solid #00375a;
+  height: 1.5em;
+  margin: 0 0.2em;
+}
+.progress .filled {
+  background: #0072b9;
+  height: 1em;
+  border-bottom: 0.5em solid #004a73;
+  width: 0%;
+}
+.progress .percentage {
+  float: right; /* LTR */
+}
+.progress-disabled {
+  float: left; /* LTR */
+}
+.ahah-progress {
+  float: left; /* LTR */
+}
+.ahah-progress .throbber {
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  background: transparent url(../../misc/throbber.gif) no-repeat 0px -18px;
+  float: left; /* LTR */
+}
+tr .ahah-progress .throbber {
+  margin: 0 2px;
+}
+.ahah-progress-bar {
+  width: 16em;
+}
+
+/*
+** Formatting for welcome page
+*/
+#first-time strong {
+  display: block;
+  padding: 1.5em 0 .5em;
+}
+
+/*
+** To be used with tableselect.js
+*/
+tr.selected td {
+  background: #ffc;
+}
+
+/*
+** Floating header for tableheader.js
+*/
+table.sticky-header {
+  margin-top: 0;
+  background: #fff;
+}
+
+/*
+** Installation clean URLs
+*/
+#clean-url.install {
+  display: none;
+}
+
+/*
+** For anything you want to hide on page load when JS is enabled, so
+** that you can use the JS to control visibility and avoid flicker.
+*/
+html.js .js-hide {
+  display: none;
+}
+
+/*
+** Styles for the system modules page (admin/build/modules)
+*/
+#system-modules div.incompatible {
+  font-weight: bold;
+}
+
+/*
+** Styles for the system themes page (admin/build/themes)
+*/
+#system-themes-form div.incompatible {
+  font-weight: bold;
+}
+
+/*
+** Password strength indicator
+*/
+span.password-strength {
+  visibility: hidden;
+}
+input.password-field {
+  margin-right: 10px; /* LTR */
+}
+div.password-description {
+  padding: 0 2px;
+  margin: 4px 0 0 0;
+  font-size: 0.85em;
+  max-width: 500px;
+}
+div.password-description ul {
+  margin-bottom: 0;
+}
+.password-parent {
+  margin: 0 0 0 0;
+}
+/*
+** Password confirmation checker
+*/
+input.password-confirm {
+  margin-right: 10px; /* LTR */
+}
+.confirm-parent {
+  margin: 5px 0 0 0;
+}
+span.password-confirm {
+  visibility: hidden;
+}
+span.password-confirm span {
+  font-weight: normal;
+}
+
+
+
+/* TimeEntry styles */
+.timeEntry_control {
+	vertical-align: middle;
+	margin-left: 2px;
+}
+* html .timeEntry_control { /* IE only */
+	margin-top: -4px;
+}
+
+
+
+
+/**
+ * Formatter styles
+ */
+
+.filefield-icon {
+  margin: 0 2px 0 0; /* RTL */
+}
+
+/* End formatter styles. */
+
+/**
+ * General widget form styles (applicable to all widgets).
+ */
+.filefield-element {
+  margin: 1em 0;
+  white-space: normal;
+}
+
+.filefield-element .widget-preview {
+  float: left; /* RTL */
+  padding: 0 10px 0 0; /* RTL */
+  margin: 0 10px 0 0; /* RTL */
+  border-width: 0 1px 0 0; /* RTL */
+  border-style: solid;
+  border-color: #CCC;
+  max-width: 30%;
+}
+
+.filefield-element .widget-edit {
+  float: left; /* RTL */
+  max-width: 70%;
+}
+
+.filefield-element .filefield-preview {
+  width: 16em;
+  overflow: hidden;
+}
+
+.filefield-element .widget-edit .form-item {
+  margin: 0 0 1em 0;
+}
+
+.filefield-element input.form-submit,
+.filefield-element input.form-file {
+  margin: 0;
+}
+
+.filefield-element input.progress-disabled {
+  float: none;
+  display: inline;
+}
+
+.filefield-element div.ahah-progress,
+.filefield-element div.throbber {
+  display: inline;
+  float: none;
+  padding: 1px 13px 2px 3px; /* RTL */
+}
+
+.filefield-element div.ahah-progress-bar {
+  display: none;
+  margin-top: 4px;
+  width: 28em;
+  padding: 0;
+}
+
+.filefield-element div.ahah-progress-bar div.bar {
+  margin: 0;
+}
+
+/* End general widget form styles. */
+
+
+
+/**
+ * Default alignment styles
+ */
+.video-left {
+  float: left;
+}
+
+.video-right {
+  float: right;
+}
+
+.video-center {
+  display: block;
+  margin: 0 auto;
+}
+
+body#video_filter {
+  padding: 2em;
+}
+
+
+
+
+#elements tr.region-message {
+  font-weight: normal;
+  color: #999;
+}
+#elements tr.region-populated {
+  display: none;
+}
+
+fieldset.custom_search-popup {
+  display: none;
+  position: absolute;
+}
+
+input.custom-search-default-value { color:#999;}
+.element-invisible {
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+
+/* MUST OVER RIDE THE NEXT TWO */
+#block-cms-mb-1 {
+	position: relative; bottom: 0; right: 0; width: 100%;
+}
+#block-cms-mb-2 {
+	position: absolute; top: 0; right: 0;
+}
+/* non size specific declarations */
+ul.cms-mb, ul.cms-mb li {
+	list-style: none; list-style-image: none; margin: 0; padding: 0; -webkit-padding-start: 0; -webkit-margin-before: 0;-webkit-margin-after:0; -webkit-margin-start:0; -webkit-margin-end:0;
+}
+/* next two rules fix the 4px spacing issue */
+ul.cms-mb {
+	letter-spacing: -4px;
+}
+ul.cms-mb li {
+	letter-spacing: 0;
+}
+
+/* horizontal */
+ul.cms-mb.horizontal li {
+	display: inline-block; text-indent: 0; padding: 0; margin: 0;
+}
+ul.cms-mb.horizontal li a {
+	padding: 0.3em 1em; display: block;
+}
+ul.cms-mb.horizontal li.active-trail a.active,
+ul.cms-mb.horizontal li a:hover {
+	background: rgba(0,0,0,0.4); color: #fff;
+}
+
+/* ddso */
+ul.cms-mb.ddso li ul {
+	display: none;
+}
+
+/* vertical */
+
+@media only screen and (min-width: 980px) {
+	/* desktop */
+	ul.cms-mb.ddso li {
+		display: inline-block;
+	}
+	ul.cms-mb.ddso li a {
+		padding: 10px 1em; /* may need adjustment */
+		height: 10px; /* may need adjustment */
+		background: rgba(0,0,0,0.6); /* may need adjustment */
+		border: 1px solid rgba(255,255,255,0.8); /* may need adjustment */
+	}
+	ul.cms-mb.ddso li li a {
+		display: block; white-space: nowrap;
+		height: 1em; /* may need adjustment */
+		padding: 0.5em 1em 0.9em; /* may need adjustment */
+	}
+	ul.cms-mb.ddso li:hover {
+		position: relative;
+	}
+	ul.cms-mb.ddso li:hover ul {
+		display: block; text-indent: 0; margin: 0; padding: 0; position: absolute; left: 0;
+		top: 28px; /* may need adjustment */
+		border: 1px solid rgba(255,255,255,0.8); /* may need adjustment */
+		border-top: none;
+	}
+	ul.cms-mb.ddso li:hover ul ul {
+		display: none;
+	}
+	ul.cms-mb.ddso li li:hover ul {
+		display: block; text-indent: 0; margin: 0; padding: 0; position: absolute; top: 0; left: 100%;
+	}
+	ul.cms-mb.ddso li ul li {
+		margin: 0; padding: 0; display: list-item; list-style: none; list-style-image: none;
+	}
+}
+
+@media only screen and (max-width: 979px) {
+	/* tablets large phones */
+	#small-nav-menu {
+		display: block;
+	}
+	#expand {
+		position: absolute; display: block; width: 50px; height: 50px; background: transparent url(nav-sprite.png) no-repeat 0 0;
+		top: 0; /* may need adjustment */
+		right: 0; /* may need adjustment */
+	}
+	#small-nav-menu ul.cms-mb {
+		display: none;
+	}
+	#small-nav-menu ul.expanded {
+		display: block; margin: 0; padding: 0;
+	}
+	#small-nav-menu ul.cms-mb.ddso.expanded li.active-trail.menuparent ul {
+		display: block; margin: 0; padding: 0;
+	}
+	.touch-menu ul.cms-mb.expanded {
+		min-height: 1em; z-index: inherit; display: normal;
+	}
+	ul.cms-mb.ddso li a {
+		display: block; padding: 0.3em 1em;
+	}
+	ul.cms-mb.ddso li li a {
+		padding: 0.3em 0 0.3em 2em;
+	}
+}
+
+
+
+body,div,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,font,img,ins,kbd,q,s,samp,
+small, sub,sup,tt,
+dd,dl,dt,li,ol,ul,
+fieldset,form,label,legend {
+  line-height: 1.3em;
+}
+body {
+  font: normal normal normal 10pt/1em Arial, sans-serif; /* font-style font-variant font-weight font-size/line-height font-family caption icon menu message-box small-caption status-bar */
+  color: #000;
+  background: #e3e3e3;
+}
+
+#site-map {
+}
+#site-map ul.site-map {
+}
+#site-map ul.site-map-menu li.leaf {
+}
+form {
+  padding: 1em 0;
+}
+#user-pass,
+#user-login {
+  width: 600px;
+  margin: 0 auto;
+  background: transparent;
+}
+#user-pass input.form-text,
+#user-login input.form-text {
+  width: 350px;
+}
+#user-pass .form-item label {
+  width: 200px;
+  text-align: right;
+  float: left;
+  background: transparent;
+  padding-right: 0.9em;
+  padding-top: 3px;
+}
+#user-login .form-item label {
+  width: 150px;
+  text-align: right;
+  float: left;
+  background: transparent;
+  padding-right: 0.9em;
+  padding-top: 3px;
+}
+#user-pass .form-item .description,
+#user-login .form-item .description {
+  margin-left: 165px;
+  background: transparent;
+  font-style: italic;
+}
+#user-pass input.form-submit {
+  width: 200px;
+  margin-left: 150px;
+}
+#user-login input.form-submit {
+  width: 75px;
+  margin-left: 200px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  display: block;
+  margin: 0.75em 0;
+  font-weight: bold;
+  page-break-after: avoid;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.17em;
+}
+h4 {
+  font-size: 1.12em;
+}
+h5 {
+  font-size: 0.83em;
+}
+h6 {
+  font-size: 0.75em;
+}
+
+div {
+  background: transparent;
+}
+span {
+  display: inline;
+  font-style: inherit;
+}
+p {
+  display: block;
+  margin: 1em 0;
+}
+fieldset {
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+}
+img {
+  border: 0;
+}
+
+ul {
+  margin: 1em 0 1em 30px;
+}
+ul li {
+  list-style-type: disc;  
+}
+ol {
+  margin: 1em 0 1em 30px;
+}
+ol li {
+  list-style-type: decimal;
+}
+
+s, strike {
+  text-decoration: line-through;
+}
+tbody {
+  border-top: none;
+}
+
+/*
+table {
+  display: table;
+  border-spacing: 2px;
+}
+th {
+  display: table-cell;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: inherit;
+}
+thead {
+  display: table-row-group;
+  vertical-align: middle;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-top: none;
+}
+tr {
+  display: table-row;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+tfoot {
+  display: table-footer-group;
+  vertical-align: middle;
+}
+
+/*formfield generic styling*/
+form input,
+form select,
+form textarea {
+  border-top: 1px solid #0e0e0e;
+  border-left: 1px solid #0e0e0e;
+}
+form.webform-client-form {
+  width: 600px;
+  margin: 0 auto;
+}
+.webform-client-form .webform-component-textfield label {
+  float: left;
+  width: 150px;
+  padding-top: 4px;
+  text-align: right;
+}
+.webform-client-form .webform-component-webform_email label,
+.webform-client-form .webform-component-email label {
+  float: left;
+  width: 150px;
+  padding-top: 4px;
+  text-align: right;
+}
+.webform-client-form .webform-component-textfield input.form-text {
+  margin-left: 15px;
+}
+.webform-client-form .webform-component-webform_email input.form-text,
+.webform-client-form .webform-component-email input.form-text {
+  margin-left: 15px;
+}
+.webform-client-form input.form-submit {
+  width: 75px;
+  margin-left: 250px;
+}
+
+/*clearfix*/
+.clearfix:after,
+.clear-block:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+* html .clearfix,
+* html .clear-block {height: 1%;}
+.clearfix, .clear-block {display: block;}
+/*end clearfix*/
+/*scrollbar link fix*/
+html {overflow: scroll;}
+html a:focus {outline: none;}
+/*end scrollbar*/
+
+/* system menus */
+ul.menu {
+  list-style: none;
+  border: none;
+  text-align:left; /* LTR */
+}
+ul.menu li {
+  margin: 0 0 0 0.5em; /* LTR */
+}
+li.expanded {
+  list-style-type: circle;
+  list-style-image: url(img/menu-expanded.png);
+  padding: 0.2em 0.5em 0 0; /* LTR */
+  margin: 0;
+}
+li.collapsed {
+  list-style-type: disc;
+  list-style-image: url(img/menu-collapsed.png); /* LTR */
+  padding: 0.2em 0.5em 0 0; /* LTR */
+  margin: 0;
+}
+li.leaf {
+  list-style-type: square;
+  list-style-image: url(img/menu-leaf.png);
+  padding: 0.2em 0.5em 0 0; /* LTR */
+  margin: 0;
+}
+li a.active {
+  color: #000;
+}
+td.menu-disabled {
+  background: #ccc;
+}
+ul.links {
+  margin: 0;
+  padding: 0;
+}
+ul.links.inline {
+  display: inline;
+}
+ul.links li {
+  display: inline;
+  list-style-type: none;
+  padding: 0 0.5em;
+}
+.block ul {
+  margin: 0;
+  padding: 0 0 0.25em 1em; /* LTR */
+}
+
+/* user */
+/* $Id: user.css,v 1.7 2007/06/21 04:38:41 unconed Exp $ */
+
+#permissions td.module {
+  font-weight: bold;
+}
+#permissions td.permission {
+  padding-left: 1.5em; /* LTR */
+}
+#access-rules .access-type, #access-rules .rule-type {
+  margin-right: 1em; /* LTR */
+  float: left; /* LTR */
+}
+#access-rules .access-type .form-item, #access-rules .rule-type .form-item {
+  margin-top: 0;
+}
+#access-rules .mask {
+  clear: both;
+}
+#user-login-form {
+  text-align: center;
+}
+#user-admin-filter ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+#user-admin-buttons {
+  float: left; /* LTR */
+  margin-left: 0.5em; /* LTR */
+  clear: right; /* LTR */
+}
+#user-admin-settings fieldset .description {
+  font-size: 0.85em;
+  padding-bottom: .5em;
+}
+
+/* Generated by user.module but used by profile.module: */
+.profile {
+  clear: both;
+  margin: 1em 0;
+}
+.profile .picture {
+  float: right; /* LTR */
+  margin: 0 1em 1em 0; /* LTR */
+}
+.profile h3 {
+  border-bottom: 1px solid #ccc;
+}
+.profile dl {
+  margin: 0 0 1.5em 0;
+}
+.profile dt {
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+}
+.profile dd {
+  margin: 0 0 1em 0;
+}
+
+/*date and calendar*/
+/* Fixes for date popup css so it will behave in Drupal */
+#calendar_div, #calendar_div td, #calendar_div th {
+  margin:0;
+  padding:0;
+}
+#calendar_div,
+.calendar_control,
+.calendar_links,
+.calendar_header,
+.calendar {
+  width: 185px;
+  border-collapse: separate;
+  margin: 0;
+}
+.calendar td {
+  padding: 0;
+}
+
+/* formatting for from/to dates in nodes and views */
+span.date-display-single {
+}
+span.date-display-start {
+}
+span.date-display-end {
+}
+span.date-display-separator {
+}
+
+.date-repeat-input {
+  float: left; /* LTR */
+  width:auto;
+  margin-right: 5px; /* LTR */
+}
+.date-repeat-input select {
+  min-width:7em;
+}
+.date-repeat fieldset {
+  clear:both;
+  float:none;
+}
+
+.date-views-filter-wrapper {
+  min-width:250px;
+}
+.date-views-filter input {
+  float: left !important; /* LTR */
+  margin-right: 2px !important; /* LTR */
+  padding:0 !important;
+  width:12em;
+  min-width:12em;
+}
+
+.date-nav {
+  width:100%;
+}
+.date-nav div.date-prev {
+  text-align: left; /* LTR */
+  width:24%;
+  float: left; /* LTR */
+}
+.date-nav div.date-next {
+  text-align: right; /* LTR */
+  width:24%;
+  float: right; /* LTR */
+}
+.date-nav div.date-heading {
+  text-align:center;
+  width:50%;
+  float: left; /* LTR */
+}
+.date-nav div.date-heading h3 {
+  margin:0;
+  padding:0;
+}
+
+.date-clear {
+  float:none;
+  clear:both;
+  display:block;
+}
+
+.date-clear-block {
+  float:none;
+  width:auto;
+  clear:both;
+}
+
+/*   
+ ** Markup free clearing that fixes unwanted scrollbars    
+ ** @see http://drupal.org/node/232959   
+ */    
+ .date-clear-block:after {   
+   content: " ";   
+   display: block;   
+   height: 0;    
+   clear: both;    
+   visibility: hidden;   
+ }   
+ .date-clear-block {   
+   display: inline-block;    
+ }   
+ /* Hides from IE-mac \*/    
+ * html .date-clear-block {    
+   height: 1%;   
+ }   
+ .date-clear-block {   
+   display: block;   
+ }   
+ /* End hide from IE-mac */
+
+.date-container .date-format-delete {
+  margin-top: 1.8em;
+  margin-left: 1.5em;
+  float: left;
+}
+.date-container .date-format-name {
+  float: left;
+}
+.date-container .date-format-type {
+  float: left;
+  padding-left: 10px;
+}
+
+.date-container .select-container {
+  clear: left;
+  float: left;
+}
+
+/* Calendar day css */
+div.date-calendar-day {
+  line-height: 1;
+  width: 40px;
+  float: left;
+  margin: 6px 10px 0 0;
+  background: #F3F3F3;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  color: #999;
+  text-align: center;
+  font-family: Georgia, Arial, Verdana, sans;
+}
+div.date-calendar-day span {
+  display: block;  
+  text-align: center;
+}
+div.date-calendar-day span.month {
+  font-size: .9em;
+  background-color: #B5BEBE;
+  color: white;
+  padding: 2px;
+  text-transform: uppercase;
+}
+div.date-calendar-day span.day {
+  font-weight: bold;
+  font-size: 2em;
+}
+div.date-calendar-day span.year {
+  font-size: .9em;
+  padding: 2px;
+}
+
+/*custom error*/
+.cms-error p {
+  width: 100%;
+  text-align: center;
+}
+.cms-error img {
+  padding: 0.3em;
+}
+
+
+
+/*
+  http://www.w3schools.com/css/css_websafe_fonts.asp
+  for a listing of websafe fonts and the appearance of them
+*/
+
+#sup-container {
+}
+#container-main {
+  width: 1000px;
+  background: transparent url(img/header-bg.jpg) no-repeat left top;
+  margin: 0 auto;
+}
+#header {
+  position: relative;
+  background: transparent;
+  width: 1000px;
+  height: 124px;
+  overflow: hidden;
+}
+* html #header {
+  height: 10px;
+}
+#menu {
+  background: transparent url(img/menu-bg.jpg) repeat-x left top; position: relative;
+  width: 1000px;
+  min-height: 52px;
+}
+#main-wrapper {
+  overflow: hidden;
+  width: 1000px;
+  background: white;
+}
+#sup-wrapper {
+  background: transparent;
+  width: 1000px;
+  min-height: 0px;
+}
+#left-sidebar {
+  float: left;
+  padding-bottom: 32767px;
+  margin-bottom: -32767px;
+}
+#content {
+  width: 930px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom:15px;
+  float: left;
+  background: white;
+  min-height: 250px;
+}
+#sup-content {
+  min-height: 3px;
+  background: transparent;
+  line-height: 0; /* hack to resolve false min-height when empty container ie7*/
+}
+* html #sup-content {
+  height: 3px;
+}
+#sub-content {
+  min-height: 0px;
+  background: transparent;
+}
+* html #sub-content {
+  height: 10px;
+}
+#right-sidebar {
+  float: right;
+  padding-bottom: 32767px;
+  margin-bottom: -32767px;
+}
+#sub-wrapper {
+  background: transparent;
+  width: 1000px;
+  min-height: 0px;
+}
+#footer {
+  width: 1000px;
+  min-height: 50px;
+  background: transparent url(img/footer-bg.jpg) no-repeat left top;
+}
+#sub-container {
+  width: 1000px;
+  background: transparent;
+  min-height: 20px;
+  margin: 0 auto;
+}
+#company-footer table td,
+#copyright {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1em 0;
+}
+#validation-links {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 1em;
+}
+ul.menu {
+  background: transparent;
+}
+
+
+
+/*header*/
+#header a,
+#header a:link {
+  color: #686868; padding: 7px 17px; font-size: 10pt;
+  text-decoration: none;
+}
+#header a:visited {
+  color: #686868;
+  text-decoration: none;
+}
+#header a:hover,
+#header a:active {
+  color: #232323;
+  text-decoration: none;
+}
+/*main-content*/
+#main-wrapper a,
+#main-wrapper a:link {
+  color: #000000;
+  text-decoration: none;
+}
+#main-wrapper a:visited {
+  color: #000002;
+  text-decoration: none;
+}
+#main-wrapper a:hover,
+#main-wrapper a:active {
+  color: #07823a;
+  text-decoration: none;
+}*/
+/*footer*/
+#copyright a,
+#copyright a:link,
+#footer a,
+#footer a:link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+#copyright a:visited,
+#footer a:visited {
+  color: #fffffe;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+#copyright a:active,
+#copyright a:hover,
+#footer a:hover,
+#footer a:active {
+  color: #626262;
+  text-decoration: underline;
+}
+/*sub-container*/
+#sub-container a,
+#sub-container a:link {
+  color: #fff; text-decoration: none;
+}
+#sub-container a:visited {
+  color: #fff; text-decoration: none;
+}
+#sub-container a:hover,
+#sub-container a:active {
+  color: #606060; text-decoration: underline;
+}
+
+/* Superfish Menu - Blue Theme */
+#block-superfish-1 {
+ clear: right;
+ float: left;
+ padding-left: 30px;
+ padding-top:0px;
+ margin-top: 0px;
+ margin-bottom: 0px;
+ position: relative;
+ z-index:3000;
+}
+
+.sf-menu.sf-style-blue a {
+  border: none;
+  font-weight: bold;
+  font-size: 1em;
+  color: #fdfbfb !important;
+}
+
+#block-superfish-1 .content ul {
+  margin:0;
+  padding: 0;
+}
+.sf-menu.sf-style-blue li {
+  border-right: 1px solid #454545; /* TOP Level border control */
+  height: 52px; /* height of the TOP menu LI's */
+  margin-bottom: 0px;
+}
+.sf-menu.sf-style-blue li a {
+  padding-top: 18px; /* pads the TOP menu Text down so its vertically centered to the TOP menu height */
+  padding-bottom: 0px;
+  display: block;
+}
+
+
+#block-superfish-1 .content ul li ul li {
+  border-right: 1px solid black; /* DROP DOWN Border */
+  border-left: 1px solid black; /* DROP DOWN Border */
+}
+
+#block-superfish-1 .content ul li ul .last {
+  border-bottom: 1px solid black; /* DROP DOWN Border */
+  border-right: 1px solid black; /* DROP DOWN Border */
+}
+
+.sf-menu.sf-style-blue .last  {
+  border-right: none; /* TOP Level border control - prevents the last one from displaying */
+}
+
+.sf-navbar.sf-style-blue a {
+  border: 0;
+}
+.sf-menu.sf-style-blue li,
+.sf-menu.sf-style-blue li a,
+.sf-navbar.sf-style-blue {
+  background: transparent;
+}
+.sf-menu.sf-style-blue li li {
+  background: transparent url(img/drop-menu-bg.png) repeat left top;
+  color: white;
+}
+
+.sf-menu.sf-style-blue li li a {
+}
+
+.sf-menu.sf-style-blue li li li {
+  background: transparent url(img/drop-menu-bg.png) repeat left top;
+  color: white;
+}
+.sf-menu.sf-style-blue li:hover,
+.sf-menu.sf-style-blue li.sfHover,
+.sf-menu.sf-style-blue li.active,
+.sf-menu.sf-style-blue li.active-trail {
+  background: transparent url(img/menu-roll-bg.jpg) repeat-x left top;
+}
+.sf-menu.sf-style-blue li.active a,
+.sf-menu.sf-style-blue li.active-trail a,
+.sf-menu.sf-style-blue a:focus,
+.sf-menu.sf-style-blue a:hover,
+.sf-menu.sf-style-blue a:active {
+  background: transparent;
+  color: #ffffff !important; /* TOP Level Active Color */
+}
+.sf-menu.sf-style-blue li li a,
+.sf-menu.sf-style-blue li.active-trail li a {
+  font-weight: normal;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+.sf-menu.sf-style-blue li li:hover,
+.sf-menu.sf-style-blue li li.sfHover,
+.sf-menu.sf-style-blue li li.active,
+.sf-menu.sf-style-blue li li.active-trail {
+  background: transparent url(img/drop-menu-roll-bg.png) repeat left top !important;
+}
+
+.sf-menu.sf-style-blue li.active a,
+.sf-menu.sf-style-blue li li.active a,
+.sf-menu.sf-style-blue li li.active-trail a,
+.sf-menu.sf-style-blue li li a:focus,
+.sf-menu.sf-style-blue li li a:hover,
+.sf-menu.sf-style-blue li li a:active,
+.sf-navbar.sf-style-blue li li {
+  background: transparent !important;
+  color: #60cf47 !important;
+}
+
+.sf-menu.sf-style-blue li.active-trail li.active-trail {
+  background: transparent url(img/drop-menu-roll-bg.png) repeat left top !important;
+}
+
+.sf-menu.sf-style-blue li.active-trail li.active-trail a {
+  border: none;
+  font-weight: normal;
+  background: transparent !important;
+  color: #60cf47 !important;
+}
+
+.sf-menu.sf-style-blue li li {
+  padding: 0px !important;
+  margin: 0px !important;
+  height: 24px !important;  /* crush padding and margins and set the height on the Drop down li's */
+}
+
+.sf-menu.sf-style-blue li li a {
+  padding: 0px !important;
+  margin: 0px !important;
+  height: 24px !important;
+  padding-left: 7px !important;
+  padding-top: 4px !important; /* pad the text in the li down to its centered for the height specified above */
+}
+#block-superfish-1 .content ul li ul {
+  margin-top: 19px !important; /* Pad the drop down UL down to adjust it for the height specified on the top level LI's */
+  margin-left: -1px;
+  width: 200px;
+}
+
+#block-superfish-1 .content ul li ul li ul {
+  margin-top: -1px !important; /* Pad the drop down UL down to adjust it for the height specified on the top level LI's */
+  margin-left: 0px;
+}
+#block-superfish-1 .content ul li ul li ul .first {
+  border-top: 1px solid black; /* DROP DOWN Border */
+}
+
+/*  *********  Top Menu  *********** */
+#block-superfish-2 {
+ float: right;
+ padding-right: 30px;
+ padding-top: 17px;
+ width: 205px;
+ position: relative;
+ background: transparent;
+ z-index:3000;
+}
+
+.sf-menu.sf-style-coffee li li {
+  background: transparent;
+}
+
+.sf-menu.sf-style-coffee a {
+  border: none;
+  font-weight: bold;
+  font-size: 0.9em;
+  background: transparent;
+  color: #686868 !important;
+}
+
+#block-superfish-2 .content ul {
+  margin:0;
+  padding: 0;
+}
+.sf-menu.sf-style-coffee li {
+  border-right: 1px solid #686868; /* TOP Level border control */
+  height: 24px; /* height of the TOP menu LI's */
+}
+.sf-menu.sf-style-coffee li a {
+  padding-top: 5px; /* pads the TOP menu Text down so its vertically centered to the TOP menu height */
+  padding-bottom: 5px;
+}
+
+#block-superfish-2 .content ul li ul {
+  border: none;
+  background: transparent url(img/menu-bg.png) repeat left top;
+  margin-top: -5px; /* controls where the top of the drop down starts */
+}
+
+#block-superfish-2 .content ul li ul li {
+  border-right: none; /* DROP DOWN Border */
+  border-left: none; /* DROP DOWN Border */
+}
+
+#block-superfish-2 .content ul li ul .last {
+  border-bottom: none; /* DROP DOWN Border */
+  border-right: none; /* DROP DOWN Border */
+}
+
+.sf-menu.sf-style-coffee .last  {
+  border-right: none; /* TOP Level border control - prevents the last one from displaying */
+}
+
+
+.sf-navbar.sf-style-coffee a {
+  border: 0;
+}
+.sf-menu.sf-style-coffee li,
+.sf-menu.sf-style-coffee li a,
+.sf-navbar.sf-style-coffee {
+  background: transparent;
+}
+.sf-menu.sf-style-coffee li li {
+  color: #ffffff;
+  height: 25px;
+}
+
+.sf-menu.sf-style-coffee li li a {
+}
+
+.sf-menu.sf-style-coffee li li li {
+  background: transparent;
+  color: #ffffff;
+}
+.sf-menu.sf-style-coffee li:hover,
+.sf-menu.sf-style-coffee li.sfHover,
+.sf-menu.sf-style-coffee li.active a,
+.sf-menu.sf-style-coffee li.active-trail a,
+.sf-menu.sf-style-coffee a:focus,
+.sf-menu.sf-style-coffee a:hover,
+.sf-menu.sf-style-coffee a:active {
+  background: transparent ;
+  color: #232323 !important; /* TOP Level Active Color */
+}
+.sf-menu.sf-style-coffee li li a,
+.sf-menu.sf-style-coffee li.active-trail li a {
+  font-weight: normal;
+  background: transparent;
+  color: #ffffff !important;
+}
+.sf-menu.sf-style-coffee li.active a,
+.sf-menu.sf-style-coffee li li:hover,
+.sf-menu.sf-style-coffee li li.sfHover,
+.sf-menu.sf-style-coffee li li.active a,
+.sf-menu.sf-style-coffee li li.active-trail a,
+.sf-menu.sf-style-coffee li li a:focus,
+.sf-menu.sf-style-coffee li li a:hover,
+.sf-menu.sf-style-coffee li li a:active,
+.sf-navbar.sf-style-coffee li li {
+  background: transparent;
+  color: #c2b28d !important;
+}
+
+.sf-menu.sf-style-coffee li.active-trail li.active-trail a {
+  border: none;
+  font-weight: normal;
+  background: transparent;
+  color: #c2b28d !important;
+}
+
+
+/* cms-mb override*/
+.block#block-cms-mb-1 {
+  margin-left: 40px;
+}
+.block#block-cms-mb-1 ul {
+  padding: 0; margin: 0;
+}
+ul.cms-mb.ddso li {
+  border-right: 1px solid #454545;
+}
+#cms-mb-menu-718-1 {
+  border-right: none;
+}
+ul.cms-mb.ddso li a {
+  background: none; border: none; text-decoration: none; display: block;
+  padding: 15px 1em 11px;
+  height: 24px;
+  color: #ffffff;
+  font-weight: bold;
+}
+ul.cms-mb.ddso li.menuparent:hover a,
+ul.cms-mb.ddso li a:hover,
+ul.cms-mb.ddso li.active-trail a.active-trail {
+  background: rgba(60,60,60,0.9); background-image: none;
+  color: #fff;
+}
+ul.cms-mb.ddso li.menuparent li a {
+  color: #ffffff !important; font-weight: normal; min-width: 10em; background-image: none;
+}
+ul.cms-mb.ddso li:hover ul {
+  top: 50px; border: none; margin: 0; padding: 0; z-index: 1000;
+  background: transparent; background-image: none; color: #ffffff;
+  border: none; /*1px solid #fff; border-top: none;*/
+  -webkit-box-shadow: 0px 7px 10px 0px rgba(50, 50, 50, 0.59);
+  -moz-box-shadow:    0px 7px 10px 0px rgba(50, 50, 50, 0.59);
+  box-shadow:         0px 7px 10px 0px rgba(50, 50, 50, 0.59);
+}
+ul.cms-mb.ddso li.menuparent li a:hover,
+ul.cms-mb.ddso li.active-trail.menuparent li a:hover,
+ul.cms-mb.ddso li.active-trail.menuparent li.active-trail a.active {
+  background: rgba(30,31,30,1) repeat-x left top; color: #60cf47 !important;
+}
+
+
+
+body {
+  color: #606060;
+  background: #000000 url(img/body-bg.jpg) repeat-x left top;;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+}
+#company-logo {
+  position: absolute; top: 14px; left: 22px;
+  width: 300px;
+/*  padding-left: 22px;
+  padding-top: 14px;
+  float: left;*/
+}
+/*
+#block-custom-search-blocks-1 {
+  float: right;
+  clear: right;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+*/
+#block-custom-search-blocks-1 {
+  position: absolute; bottom: 5px; right: 20px;
+}
+#custom-search-blocks-form-1 {
+  width: 225px;
+}
+#custom-search-blocks-form-1 form.seearch-form {
+  padding: 0; margin: 0;
+}
+#edit-custom-search-blocks-form-1-1-wrapper input {
+  width: 150px;
+  float: left;
+}
+#block-menu-menu-top-menu {
+  position: absolute; top: 23px; right: 34px;
+}
+#header ul.menu,
+#header ul.menu li.leaf {
+  -webkit-margin-before: 0; -webkit-margin-after: 0; -webkit-margin-start: 0;-webkit-margin-end:0;
+  margin: 0; padding: 0; list-style: none; list-style-image: none;
+  display: inline-block;
+}
+#header ul.menu li.first {
+  border-right: 1px solid #686868;
+}
+#header ul.menu li.last {
+  border-left: 1px solid #686868;
+}
+
+/*faq snippet*/
+.cms-ct-faq fieldset {
+  padding: 0.5em 0.9em;
+  border: 1px solid #023a4b;
+}
+.cms-ct-faq fieldset.collapsed {
+  border: none;
+}
+
+.custom-staff-teaser {
+  padding-top: 5px;
+  border-bottom: 1px solid #989898;
+  padding-bottom: 5px;
+  clear:both;
+  float:left;
+}
+
+#main-wrapper {
+  padding-bottom: 10px;
+}
+
+/*case-study-teaser*/
+.cms-ct-case-study-teaser {
+  float: left;
+  width: 310px;
+  min-height: 270px;
+  background: transparent;
+  margin-bottom: 0.9em;
+}
+.cms-ct-case-study-teaser .content {
+  width: 262px;
+  margin: 0 auto;
+}
+.cms-ct-case-study-teaser .item-list {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.cms-ct-case-study-teaser .item-list h3 {
+  margin-bottom: 0;
+  line-height: 1.3em;
+  text-align: center;
+}
+
+.cms-ct-case-study-teaser .item-list ul.case-studies {
+  margin: 0;
+  padding: 0;
+}
+.cms-ct-case-study-teaser .item-list ul.case-studies li {
+  list-style: none;
+  list-style-image: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.cms-ct-case-study-teaser div.label {
+  font-weight: bold;
+  float: left;
+  margin-right: 0.9em;
+}
+.cms-ct-case-study-teaser .case-study-link a {
+  display: block;
+  padding: 0.2em 0 0;
+  width: 262px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cms-ct-case-study-teaser h2.title {
+  display:none;
+}
+
+/*press-release*/
+.cms-ct-press-release-teaser h2.title {
+  margin: 0 0 0.2em 0;
+}
+.cms-ct-press-release-teaser .field-items {
+  margin: 0;
+}
+
+.node.custom-staff .field-field-custom-image {
+	float: left;
+	margin: 0 0.9em 0.9em 0;
+}
+.node.custom-staff .field-field-custom-staff-title {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+#content p a.button {
+  color: #808080; border-radius:5px; padding: 5px 10px; border: 1px solid #808080;
+}
+#content p a.button:hover {
+  color: #fff; background: #808080;
+}
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   Do I Need a Make Up Air Unit? | AbsolutAire
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <meta content="In larger buildings and locations, there is often a problem with infiltration of contaminated or unheated air. This creates a problem with both the pollution and air quality inside the building as well as the temperature within the location." name="description">
+  <meta content="1 day" name="revisit-after">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div class="clearfix" id="container-main">
+   <div class="clearfix" id="header">
+    <div class="block block-cms_admin" id="block-cms-admin-0">
+     <div class="content">
+      <div id="company-logo">
+       <a class="company-logo" title="AbsolutAire">
+        <img alt="AbsolutAire" height="85" src="rick.jpg" title="AbsolutAire" width="182">
+       </a>
+      </div>
+     </div>
+    </div>
+    <div class="block block-custom_search_blocks" id="block-custom-search-blocks-1">
+     <div class="content">
+      <form accept-charset="UTF-8" action="/information-article/do-i-need-make-air-unit" class="search-form" id="custom-search-blocks-form-1" method="post" target="_self">
+       <div>
+        <div class="form-item" id="edit-custom-search-blocks-form-1-1-wrapper">
+         <input class="form-text custom-search-default-value custom-search-box" id="edit-custom-search-blocks-form-1-1" maxlength="128" name="custom_search_blocks_form_1" size="15" title="Enter the terms you wish to search for." type="text" value="Search">
+        </div>
+        <fieldset class="custom_search-popup custom_search-processed">
+         <a class="custom_search-popup-close">
+          Close
+         </a>
+        </fieldset>
+        <input id="edit-delta" name="delta" type="hidden" value="1">
+        <input id="form-93t2ZfJQHDRZ8nwMP2tibifq1VFJcZDQoJ8_WSY_WoU" name="form_build_id" type="hidden" value="form-93t2ZfJQHDRZ8nwMP2tibifq1VFJcZDQoJ8_WSY_WoU">
+        <input id="edit-custom-search-blocks-form-1" name="form_id" type="hidden" value="custom_search_blocks_form_1">
+        <input class="default-text" id="edit-default-text" name="default_text" type="hidden" value="Search">
+        <input class="form-submit" id="edit-submit" name="op" type="submit" value="Search">
+       </div>
+      </form>
+     </div>
+    </div>
+    <div class="block block-menu" id="block-menu-menu-top-menu">
+     <div class="content">
+      <ul class="menu">
+       <li class="leaf first">
+        <a title="Direct and Indirect Fired Make-Up Air and Heating and Ventilating">
+         Home
+        </a>
+       </li>
+       <li class="leaf">
+        <a title="Contact Us">
+         Contact Us
+        </a>
+       </li>
+       <li class="leaf last">
+        <a title="Welcome to AbsolutAire&rsquo;s Pricing Software">
+         Login
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="clearfix" id="menu">
+    <div class="block block-cms_mb" id="block-cms-mb-1">
+     <div class="content">
+      <ul class="cms-mb ddso" id="cms-mb-1">
+       <li class="menuparent" id="cms-mb-menu-494-1">
+        <a title="About Us">
+         About Us
+        </a>
+        <ul>
+         <li id="cms-mb-menu-495-1">
+          <a title>
+           Overview
+          </a>
+         </li>
+         <li id="cms-mb-menu-499-1">
+          <a title="History">
+           History
+          </a>
+         </li>
+         <li class="menuparent" id="cms-mb-menu-603-1">
+          <a title="Our Team">
+           Our Team
+          </a>
+          <ul>
+           <li id="cms-mb-menu-577-1">
+            <a title="Administration">
+             Administration
+            </a>
+           </li>
+           <li id="cms-mb-menu-864-1">
+            <a title="*">
+             Data Services
+            </a>
+           </li>
+           <li id="cms-mb-menu-879-1">
+            <a title="Purchasing &amp; Inventory Control">
+             Purchasing &amp; Inventory Control
+            </a>
+           </li>
+           <li id="cms-mb-menu-604-1">
+            <a title="Marketing &amp; Sales">
+             Marketing &amp; Sales
+            </a>
+           </li>
+          </ul>
+         </li>
+         <li id="cms-mb-menu-523-1">
+          <a title="News">
+           News
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="menuparent" id="cms-mb-menu-496-1">
+        <a title="Products">
+         Products
+        </a>
+        <ul>
+         <li id="cms-mb-menu-549-1">
+          <a title="V-Series  - Direct Fired Make-up Air System">
+           V-Series
+          </a>
+         </li>
+         <li id="cms-mb-menu-554-1">
+          <a title="AA-Series - Direct Fired Heating and Ventilating">
+           AA-Series
+          </a>
+         </li>
+         <li id="cms-mb-menu-890-1">
+          <a title="H-Series HTLV - Space Heating">
+           H-Series
+          </a>
+         </li>
+         <li id="cms-mb-menu-555-1">
+          <a title="R-Series - Direct Fired Heating and Ventilating">
+           R-Series
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="menuparent" id="cms-mb-menu-497-1">
+        <a title="Solutions">
+         Solutions
+        </a>
+        <ul>
+         <li id="cms-mb-menu-591-1">
+          <a title="Kitchen Make Up Air">
+           Kitchen and Food Service
+          </a>
+         </li>
+         <li id="cms-mb-menu-592-1">
+          <a title="Heavy Industrial">
+           Heavy Industrial
+          </a>
+         </li>
+         <li id="cms-mb-menu-593-1">
+          <a title="Light Industrial">
+           Light Industrial
+          </a>
+         </li>
+         <li id="cms-mb-menu-594-1">
+          <a title="Warehousing">
+           Warehousing
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li id="cms-mb-menu-598-1">
+        <a title="Green Initiative">
+         Green Initiative
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="clearfix" id="main-wrapper">
+    <div id="sup-wrapper">
+     <img alt="default-banner" height="214" src="rick.jpg" title="default-banner" width="1000">
+    </div>
+    <div id="content">
+     <div id="sup-content">
+      <!-- -->
+     </div>
+     <h1 class="title">
+      Do I Need a Make Up Air Unit?
+     </h1>
+     <div class="node cms-ct-seo-art" id="node-138">
+      <div class="content">
+       <p>
+        In larger buildings and locations, there is often a problem with infiltration of contaminated or unheated air.
+        <br>
+        <br>
+        Make up air units are used to create the necessary replacement air within a larger building or locations.
+        <br>
+        <br>
+        One of the first things you need to look for when deciding whether or not a make up air unit is needed in your building is whether you are getting back drafts or cold drafts in your building.
+        <br>
+        <br>
+        Other problems which necessitate the use of a make up air unit have to do with ventilation.
+       </p>
+      </div>
+     </div>
+     <div id="sub-content">
+      <!-- -->
+     </div>
+    </div>
+   </div>
+   <div class="clearfix" id="footer">
+    <div class="block block-cms_admin" id="block-cms-admin-1">
+     <div class="content">
+      <div id="company-footer">
+       <table>
+        <tbody>
+         <tr>
+          <td>
+           AbsolutAire, Inc.
+           <br>
+           [ADDRESS REDACTED]
+           <br>
+           Phone: [PHONE REDACTED] | Fax: [PHONE REDACTED]
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="sub-container">
+   <div class="block block-cms_privacy_policy" id="block-cms-privacy-policy-0">
+    <div class="content">
+     <div id="copyright">
+      &copy; 2023 AbsolutAire All Rights Reserved.
+      <br>
+      <a target="_blank" title="Web Design">
+       Web Development
+      </a>
+      by Blue Fire Media Group |
+      <a title="view our sitemap">
+       Sitemap
+      </a>
+      |
+      <a title="view our privacy policy">
+       Privacy Policy
+      </a>
+      |
+      <a title="cms login">
+       Login
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

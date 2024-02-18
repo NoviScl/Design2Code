@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html class="" lang="de">
+ <head>
+  <style>
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  /* Responsive images (ensure images don't scale beyond their parents) */
+
+  max-width: 100%;
+  /* Part 1: Set a maxium relative to the parent */
+
+  width: auto\9;
+  /* IE7-8 need help adjusting responsive images */
+
+  height: auto;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+#map_canvas img,
+.google-maps img {
+  max-width: none;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+button,
+input {
+  *overflow: visible;
+  line-height: normal;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+@media print {
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+/*
+
+	*/
+.btn {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #333333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #e6e6e6;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  *margin-left: .3em;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+}
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+  color: #333333;
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+}
+.btn:active,
+.btn.active {
+  background-color: #cccccc \9;
+}
+.btn:first-child {
+  *margin-left: 0;
+}
+.btn:hover,
+.btn:focus {
+  color: #333333;
+  text-decoration: none;
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+  -moz-transition: background-position 0.1s linear;
+  -o-transition: background-position 0.1s linear;
+  transition: background-position 0.1s linear;
+}
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn.active,
+.btn:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+}
+.btn.disabled,
+.btn[disabled] {
+  cursor: default;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.btn-large {
+  padding: 11px 19px;
+  font-size: 17.5px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.btn-large [class^="icon-"],
+.btn-large [class*=" icon-"] {
+  margin-top: 4px;
+}
+.btn-small {
+  padding: 2px 10px;
+  font-size: 11.9px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.btn-small [class^="icon-"],
+.btn-small [class*=" icon-"] {
+  margin-top: 0;
+}
+.btn-mini [class^="icon-"],
+.btn-mini [class*=" icon-"] {
+  margin-top: -1px;
+}
+.btn-mini {
+  padding: 0 6px;
+  font-size: 10.5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}
+.btn-primary.active,
+.btn-warning.active,
+.btn-danger.active,
+.btn-success.active,
+.btn-info.active,
+.btn-inverse.active {
+  color: rgba(255, 255, 255, 0.75);
+}
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #006dcc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #0044cc;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #0044cc;
+  *background-color: #003bb3;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #003399 \9;
+}
+.btn-warning {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #faa732;
+  background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
+  background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+  background-image: -o-linear-gradient(top, #fbb450, #f89406);
+  background-image: linear-gradient(to bottom, #fbb450, #f89406);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', endColorstr='#fff89406', GradientType=0);
+  border-color: #f89406 #f89406 #ad6704;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #f89406;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning.disabled,
+.btn-warning[disabled] {
+  color: #ffffff;
+  background-color: #f89406;
+  *background-color: #df8505;
+}
+.btn-warning:active,
+.btn-warning.active {
+  background-color: #c67605 \9;
+}
+.btn-danger {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #da4f49;
+  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #bd362f;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.btn-danger.disabled,
+.btn-danger[disabled] {
+  color: #ffffff;
+  background-color: #bd362f;
+  *background-color: #a9302a;
+}
+.btn-danger:active,
+.btn-danger.active {
+  background-color: #942a25 \9;
+}
+.btn-success {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #5bb75b;
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #51a351;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  color: #ffffff;
+  background-color: #51a351;
+  *background-color: #499249;
+}
+.btn-success:active,
+.btn-success.active {
+  background-color: #408140 \9;
+}
+.btn-info {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #2f96b4;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.btn-info.disabled,
+.btn-info[disabled] {
+  color: #ffffff;
+  background-color: #2f96b4;
+  *background-color: #2a85a0;
+}
+.btn-info:active,
+.btn-info.active {
+  background-color: #24748c \9;
+}
+.btn-inverse {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #363636;
+  background-image: -moz-linear-gradient(top, #444444, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+  background-image: -webkit-linear-gradient(top, #444444, #222222);
+  background-image: -o-linear-gradient(top, #444444, #222222);
+  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+  border-color: #222222 #222222 #000000;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #222222;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-inverse:hover,
+.btn-inverse:focus,
+.btn-inverse:active,
+.btn-inverse.active,
+.btn-inverse.disabled,
+.btn-inverse[disabled] {
+  color: #ffffff;
+  background-color: #222222;
+  *background-color: #151515;
+}
+.btn-inverse:active,
+.btn-inverse.active {
+  background-color: #080808 \9;
+}
+button.btn,
+input[type="submit"].btn {
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+}
+button.btn::-moz-focus-inner,
+input[type="submit"].btn::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+button.btn.btn-large,
+input[type="submit"].btn.btn-large {
+  *padding-top: 7px;
+  *padding-bottom: 7px;
+}
+button.btn.btn-small,
+input[type="submit"].btn.btn-small {
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+}
+button.btn.btn-mini,
+input[type="submit"].btn.btn-mini {
+  *padding-top: 1px;
+  *padding-bottom: 1px;
+}
+.btn-link,
+.btn-link:active,
+.btn-link[disabled] {
+  background-color: transparent;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.btn-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: #0088cc;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: #005580;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.btn-link[disabled]:hover,
+.btn-link[disabled]:focus {
+  color: #333333;
+  text-decoration: none;
+}
+/* ---------------------------------------------------------- */
+.center {
+  text-align: center;
+}
+.floatLeft {
+  float: left;
+}
+.floatRight {
+  float: right;
+}
+.imgFloatLeft {
+  float: left;
+  margin: 10px 20px 10px 0;
+}
+.imgFloatRight {
+  float: right;
+  margin: 10px 0 10px 20px;
+}
+.large {
+  font-size: 120%;
+  line-height: 1.6em;
+}
+.left {
+  text-align: left;
+}
+.marginLeft {
+  margin-left: 20px;
+}
+.marginRight {
+  margin-right: 20px;
+}
+.noBorder,
+table.noBorder,
+table.noBorder td {
+  border: 0;
+}
+.noMargin {
+  margin: 0;
+}
+.noPadding {
+  padding: 0;
+}
+.right {
+  text-align: right;
+}
+.small {
+  font-size: 90%;
+  line-height: 1.8em;
+}
+.withBorder {
+  -webkit-box-shadow: 0px 0px 10px #888888;
+  -moz-box-shadow: 0px 0px 10px #888888;
+  box-shadow: 0px 0px 10px #888888;
+  border: 5px solid #f5f5f5;
+  margin: 5px;
+}
+.withShadow {
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.kleineSchrift {
+  font-size: 85%;
+}
+.grosseSchrift {
+  font-size: 200%;
+}
+/* ---------------------------------------------------------- */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+/* ---------------------------------------------------------- */
+a {
+  line-height: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+}
+a.btn,
+a.btn:visited {
+  text-decoration: none;
+}
+iframe {
+  border: 0;
+}
+p {
+  margin: 0 0 1em 0;
+}
+b,
+strong {
+  font-weight: bold;
+}
+em,
+i {
+  font-style: italic;
+}
+hr {
+  clear: both;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
+  padding: 0;
+}
+img {
+  border: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+table th,
+table td,
+table.table td,
+table.table th {
+  vertical-align: middle;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+textarea {
+  resize: vertical;
+}
+pre {
+  background: #f2eed0;
+  padding: 10px;
+  margin: 1px;
+  color: #333;
+  font-family: monospace;
+  font-size: 13px;
+}
+/* ---------------------------------------------------------- */
+img {
+  border: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+img.imgFloatLeft {
+  float: left;
+  margin: 0 2em 1em 0;
+}
+img.imgFloatRight {
+  float: right;
+  margin: 10px 0 10px 20px;
+}
+img.large {
+  width: 460px;
+  height: auto;
+}
+img.marginLeft {
+  margin-left: 20px;
+}
+img.marginRight {
+  margin-right: 20px;
+}
+img.max-image {
+  width: 100%;
+  height: auto;
+}
+img.medium {
+  width: 300px;
+  height: auto;
+}
+img.small {
+  width: 140px;
+  height: auto;
+}
+/* ---------------------------------------------------------- */
+.container:after {
+  clear: both;
+}
+.container {
+  position: relative;
+}
+/* ---------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+table,
+blockquote {
+  margin: 0 0 1em 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2em;
+  line-height: 140%;
+  font-weight: bold;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.3em;
+}
+/* ---------------------------------------------------------- */
+ul,
+ol {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+ul {
+  list-style: disc outside;
+}
+ul li,
+ol li {
+  margin-bottom: 0.3em;
+}
+ol {
+  list-style: decimal outside;
+}
+ol,
+ul {
+  margin-left: 1em;
+  padding-left: 1em;
+}
+ol ol,
+ul ul {
+  margin: 0.5em 0 0.5em 2em;
+}
+ul ul li,
+ul ol li,
+ol ol li,
+ol ul li {
+  margin-bottom: 5px;
+}
+td ul,
+td ol {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+ol > li {
+  counter-increment: root;
+}
+ol > li > ol {
+  counter-reset: subsection;
+  list-style-type: none;
+}
+ol > li > ol > li {
+  counter-increment: subsection;
+}
+ol > li > ol > li:before {
+  content: counter(root) "." counter(subsection) " ";
+}
+/* ---------------------------------------------------------- */
+br.clear {
+  clear: both;
+  line-height: 5px;
+  height: 5px;
+  font-size: 5px;
+}
+br.clear:after {
+  content: "";
+}
+/* ---------------------------------------------------------- */
+pre {
+  background: #f2eed0;
+  padding: 10px;
+  margin: 1px;
+  color: #333;
+}
+/* ---------------------------------------------------------- */
+#map_canvas {
+  width: 100%;
+  height: 400px;
+  -webkit-box-shadow: 0px 0px 10px #888888;
+  -moz-box-shadow: 0px 0px 10px #888888;
+  box-shadow: 0px 0px 10px #888888;
+  border: 5px solid #f5f5f5;
+  margin: 5px;
+}
+.routenplanung {
+  margin: 2em 0;
+}
+/* ---------------------------------------------------------- */
+div.attm {
+  margin: 10px 0 20px 0;
+  padding: 5px;
+  webkit-box-shadow: 0 0 10px #999;
+  -moz-box-shadow: 0 0 10px #999;
+  box-shadow: 0 0 10px #999;
+  border: 5px solid #f5f5f5;
+  background-color: #f5f5f5;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+div.attm img {
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid #fff;
+}
+ul.attm {
+  margin: 10px 0 20px 0;
+  padding: 5px;
+  webkit-box-shadow: 0 0 10px #999;
+  -moz-box-shadow: 0 0 10px #999;
+  box-shadow: 0 0 10px #999;
+  border: 5px solid #f5f5f5;
+  background-color: #f5f5f5;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+ul.attm li {
+  list-style: none;
+}
+ul.attm li img {
+  margin-left: 15px;
+  margin-right: 10px;
+}
+ul.attm li a {
+  margin: 0;
+  padding: 5px;
+  display: block;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+}
+ul.attm li a:hover {
+  background: #eee;
+}
+.horizontalNavigation,
+.horizontalNavigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Times New Roman', Verdana, Arial, Helvetica, sans-serif;
+}
+.horizontalNavigation li {
+  cursor: pointer;
+  display: inline;
+  padding: 0 10px 0 0;
+  margin: 0px;
+  line-height: 30px;
+}
+.horizontalNavigation a {
+  display: inline;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  color: #d9a501;
+  text-transform: uppercase;
+}
+.horizontalNavigation b {
+  font-weight: bold;
+}
+.horizontalNavigation a.active {
+  color: #c2003c;
+}
+.horizontalNavigation li a:hover {
+  color: #c2003c;
+}
+/* ------------------------------------------------------------------------------------
+     Allgemein
+   ------------------------------------------------------------------------------------ */
+.textFormatP {
+  font: normal 14px/24px "Open Sans", serif;
+  color: #333333;
+}
+.textFormatH1 {
+  font: normal 30px/42px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+  color: #d9a501;
+}
+.textFormatH2 {
+  font: normal 18px/28px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+  color: #c2003c;
+}
+body,
+p,
+h1,
+h2,
+h3,
+a,
+td,
+th {
+  font: normal 14px/24px "Open Sans", serif;
+  color: #333333;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
+a,
+a:active,
+a:hover {
+  text-decoration: underline;
+  color: #333333;
+}
+a:hover {
+  color: #c2003c;
+}
+.footer {
+  margin-top: 10px;
+  padding: 10px 0 0 0;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  line-height: 10px;
+}
+.footer p {
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+.footer p a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #d9a501;
+}
+.footer p a:hover {
+  color: #c2003c;
+}
+.indexTeaser {
+  text-align: center;
+}
+.indexTeaser h1 {
+  font-size: 50px;
+  font-style: italic;
+  margin: 10px 0;
+}
+.frameBuchung {
+  width: 940px;
+  height: 600px;
+}
+.content p {
+  margin: 5px 0 20px 0;
+}
+.seite-preise .spalte {
+  width:445px;
+  height:600px;
+  float:left;
+}
+.seite-preise p {
+  line-height: 20px;
+  margin: 0 0 10px 0;
+}
+.seite-preise h2 {
+  margin: 25px 0 5px 0;
+}
+.seite-preise table td {
+  border: 0;
+  vertical-align: top;
+  padding: 2px 0;
+}
+.seite-preise table td:first-of-type {
+  width: 140px;
+}
+.seite-en-tarif .spalte {
+  width:445px;
+  height:700px;
+  float:left;
+}
+.seite-en-tarif p {
+  line-height: 20px;
+  margin: 0 0 10px 0;
+}
+.seite-en-tarif h2 {
+  margin: 25px 0 5px 0;
+}
+.seite-en-tarif table td {
+  border: 0;
+  vertical-align: top;
+}
+.seite-en-tarif table td:first-of-type {
+  width: 140px;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#body {
+  margin: 0;
+  padding: 0;
+}
+#map_canvas {
+  width: 100%;
+  height: 600px;
+  margin: 20px 0;
+  -webkit-box-shadow: 0px 0px 10px #888888;
+  -moz-box-shadow: 0px 0px 10px #888888;
+  box-shadow: 0px 0px 10px #888888;
+  border: 5px solid #f5f5f5;
+  margin: 5px;
+}
+.btnMaps {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+.graphic,
+#prevBtn,
+#nextBtn,
+#slider1prev,
+#slider1next {
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  text-indent: -8000px;
+}
+#content {
+  position: relative;
+}
+#slider ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#slider li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#slider li {
+  width: 940px;
+  height: 600px;
+  overflow: hidden;
+}
+#prevBtn,
+#nextBtn,
+#slider1next,
+#slider1prev {
+  display: block;
+  width: 50px;
+  height: 100px;
+  position: absolute;
+  left: 30px;
+  top: 358px;
+  z-index: 1000;
+}
+#nextBtn,
+#slider1next {
+  left: 900px;
+}
+#prevBtn a,
+#nextBtn a,
+#slider1next a,
+#slider1prev a {
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 100px;
+  background: url(../media/buttonPrev.png) no-repeat 0 0;
+}
+#nextBtn a,
+#slider1next a {
+  background: url(../media/buttonNext.png) no-repeat 0 0;
+}
+
+.indexBuchung {
+    display: block;
+height: 64px;
+position: relative;
+cursor: pointer;
+opacity: 1;
+top: 0;
+left: 0;
+margin: 0;
+padding: 10px 10px;
+overflow: visible;
+border: 0 none rgb(177,106,2);
+border-bottom: 4px solid rgb(177,106,2);
+text-align: right;
+text-transform: uppercase;
+-o-text-overflow: clip;
+text-overflow: clip;
+white-space: nowrap;
+background: -webkit-linear-gradient(-90deg, rgb(213,157,9) 0, rgb(225,157,60) 100%), rgb(253, 218, 134);
+background: -moz-linear-gradient(180deg, rgb(213,157,9) 0, rgb(225,157,60) 100%), rgb(253, 218, 134);
+background: linear-gradient(180deg, rgb(213,157,9) 0, rgb(225,157,60) 100%), rgb(253, 218, 134);
+background: -webkit-linear-gradient(-90deg, rgb(253,218,134) 0, rgb(225,157,60) 100%), rgb(253, 218, 134);
+background: -moz-linear-gradient(180deg, rgb(253,218,134) 0, rgb(225,157,60) 100%), rgb(253, 218, 134);
+background: linear-gradient(180deg, rgb(253,218,134) 0, rgb(225,157,60) 100%), rgb(253, 218, 134);
+background-clip: border-box;
+-webkit-background-size: auto auto;
+background-size: auto auto;
+-webkit-box-shadow: 0 -1px 1px 0 rgba(255,255,255,0.701961) inset, 0 1px 1px 0 rgb(177,106,2) ;
+box-shadow: 0 -1px 1px 0 rgba(255,255,255,0.701961) inset, 0 1px 1px 0 rgb(177,106,2) ;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+transition: none;
+-webkit-transform: none;
+transform: none;
+-webkit-transform-origin: 50% 50% 0;
+transform-origin: 50% 50% 0;
+}
+.indexBuchung a {
+    font: normal normal bold 20px/40px "Open Sans", Helvetica, sans-serif;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.498039) ;
+    text-decoration:none;    
+    border:1px solid #c63931;
+    padding:4px 10px;
+    background:#c63931;
+    border-radius:6px;
+}
+.indexBuchung a:hover {
+    color: #d9a501;
+}
+/* ------------------------------------------------------------------------------------
+     Responsive styles
+   ------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------
+     Large
+   ------------------------------------------------------------------------------------ */
+@media only screen and (min-width: 980px) {
+  h1 {
+    font: normal 30px/42px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+    color: #d9a501;
+    font-size: 180%;
+    font-weight: normal;
+    margin: 0 ;
+    line-height: 1.8em;
+    padding: 0 0 5px 0;
+  }
+  h2 {
+    font: normal 18px/28px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+    color: #c2003c;
+    font-size: 120%;
+    font-weight: normal;
+    margin: 14px 0;
+    line-height: 1.7em;
+  }
+  h3 {
+    font: bold 22px/24px "Copse", serif;
+    color: #333333;
+  }
+  p {
+    margin: 5px 0;
+  }
+  .container {
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-align: left;
+    background: #fff;
+  }
+  .contentContainer {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .content {
+    width: 430px;
+    float: right;
+    min-height: 450px;
+    margin: 0 0 0 10px;
+  }
+  .contentImage {
+    width: 500px;
+    float: left;
+    margin: 10px 0 0 20px;
+  }
+  .contentBreit {
+    width: 980px;
+    padding: 0px 20px;
+  }
+  .headerWrapper {
+    margin: 10px 10px 0 10px;
+    height: 110px;
+    border-bottom: 2px solid #D9A501;
+  }
+  .headerLogo {
+    width: 220px;
+    padding: 0 10px;
+    float: left;
+  }
+  .headerMenu {
+    float: left;
+    height: 48px;
+    margin-top: 10px;
+    width: 720px;
+  }
+  .headerNavigation {
+    display: block;
+    margin: 2px 0 10px 20px;
+  }
+  .smallNavigation {
+    display: none;
+  }
+  .toggleNav {
+    display: none;
+  }
+  #textIndexSmartphone {
+    display: none;
+  }
+  .content p.zimmerbild {
+    margin-top:107px;
+  }
+}
+/* ------------------------------------------------------------------------------------
+     Medium
+   ------------------------------------------------------------------------------------ */
+@media only screen and (max-width: 979px) {
+  h1 {
+    font: normal 30px/42px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+    color: #d9a501;
+    padding: 5px 0;
+    margin: 0;
+  }
+  h2 {
+    font: normal 18px/28px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+    color: #c2003c;
+    margin: 1.5em 0 0.3em 0;
+  }
+  h3 {
+    font: bold 22px/24px "Copse", serif;
+    color: #333333;
+  }
+  .container {
+    max-width: 900px;
+    margin: 10px auto 40px auto;
+    padding: 10px;
+    text-align: left;
+    background: #fff;
+  }
+  .headerWrapper {
+    margin: 10px;
+    height: 110px;
+    border-bottom: 2px solid #D9A501;
+  }
+  .headerLogo {
+    width: 220px;
+    padding: 0 10px;
+    float: left;
+  }
+  .toggleNav {
+    display: none;
+  }
+  #slider {
+    display: none;
+  }
+  #textIndexSmartphone {
+    display: block;
+  }
+  .contentContainer {
+    margin: 0 width:100%;
+  }
+  .content {
+    padding: 0 15px;
+  }
+  .contentImage {
+    margin: 10px 20px;
+    text-align: center;
+  }
+  .content p {
+    padding: 0;
+    margin: 15px 0;
+  }
+  .contentBreit {
+    margin: 20px;
+  }
+  .smallNavigation {
+    display: block;
+    margin: 0 10px;
+    padding: 0 10px;
+  }
+  .smallNavigation .horizontalNavigation {
+    border: 0;
+  }
+  .smallNavigation .horizontalNavigation a {
+    display: inline;
+    text-decoration: none;
+    padding: 5px;
+    margin: 0;
+  }
+  .smallNavigation .horizontalNavigation li {
+    float: left;
+  }
+  .content {
+    margin: 10px;
+  }
+  .headerNavigation {
+    display: none;
+  }
+}
+/* ------------------------------------------------------------------------------------
+     Small
+   ------------------------------------------------------------------------------------ */
+@media only screen and (max-width: 440px) {
+  .toggleNav {
+    display: block;
+  }
+  .btnNavigation {
+    border: 1px solid #ccc;
+    margin: 0 10px;
+    padding: 2px 10px;
+    background: #f3f3f3;
+    display: block;
+  }
+  .btnNavigation span {
+    float: right;
+  }
+  .smallNavigation {
+    display: none;
+    border: 1px solid #ccc;
+    border-top: 0;
+    margin: 0 10px;
+    padding: 0 0px;
+  }
+  .smallNavigation .horizontalNavigation {
+    border: 0;
+  }
+  .smallNavigation .horizontalNavigation a {
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0;
+    color: #000;
+  }
+  .smallNavigation .horizontalNavigation li {
+    float: none;
+    display: block;
+    border-bottom: 1px dotted #ccc;
+    padding: 0px;
+  }
+  .smallNavigation .horizontalNavigation li:last-of-type {
+    border: 0;
+  }
+  h1 {
+    font: normal 30px/42px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+    color: #d9a501;
+    font-size: 18px;
+    padding: 5px 0;
+    margin: 0;
+  }
+  h2 {
+    font: normal 18px/28px "Times New Roman", Verdana, Arial, Helvetica, sans-serif;
+    color: #c2003c;
+    margin: 18px 0 5px 0;
+  }
+  h3 {
+    font: bold 18px/24px "Copse", serif;
+    color: #333333;
+  }
+  #slider {
+    display: none;
+  }
+  #textIndexSmartphone {
+    display: block;
+  }
+  #map_canvas {
+    width: 100%;
+    height: 500px;
+    margin: 20px 0;
+    -webkit-box-shadow: 0px 0px 10px #888888;
+    -moz-box-shadow: 0px 0px 10px #888888;
+    box-shadow: 0px 0px 10px #888888;
+    border: 5px solid #f5f5f5;
+    margin: 5px;
+  }
+  .content {
+    margin: 0;
+  }
+  .contentBreit {
+    margin: 0 20px;
+  }
+  .contentImage {
+    margin: 10px;
+    text-align: center;
+  }
+  .seite-preise table td {
+    border: 0;
+    padding: 2px 0;
+  }
+  .seite-en-tarif table td {
+    border: 0;
+    padding: 2px 0;
+  }
+}
+  </style>
+  <meta charset="utf-8">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0,maximum-scale=1.0" name="viewport">
+  <title>
+   Garage
+  </title>
+  <meta content="META_DESCRIPTION" name="description">
+  <style type="text/css">
+   .fancybox-margin{margin-right:0px;}
+  </style>
+ </head>
+ <body id="body" style>
+  <div class="container">
+   <div class="headerWrapper">
+    <div class="headerLogo">
+     <a title="zur Startseite Hotel am Rathaus - Augsburg">
+      <img alt="HOTEL AM RATHAUS - Augsburg" src="rick.jpg">
+     </a>
+    </div>
+   </div>
+   <div class="headerNavigation clearfix">
+    <ul class="horizontalNavigation">
+     <li class="first">
+      <a class="first" title="Site">
+       Site
+      </a>
+     </li>
+     <li>
+      <a class="" title="Hotel">
+       Hotel
+      </a>
+     </li>
+     <li>
+      <a class="" title="Rooms">
+       Rooms
+      </a>
+     </li>
+     <li class="current">
+      <a class="active" title="Garage">
+       Garage
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="toggleNav">
+    <p class="btnNavigation">
+     Show Menu
+     <span>
+      ▼
+     </span>
+    </p>
+   </div>
+   <div class="smallNavigation clearfix">
+    <ul class="horizontalNavigation">
+     <li class="first">
+      <a class="first" title="Site">
+       Site
+      </a>
+     </li>
+     <li>
+      <a class="" title="Hotel">
+       Hotel
+      </a>
+     </li>
+     <li>
+      <a class="" title="Rooms">
+       Rooms
+      </a>
+     </li>
+     <li class="current">
+      <a class="active" title="Garage">
+       Garage
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="contentContainer clearfix">
+    <div class="content seite-en-garage">
+     <h1>
+      Basement Garage
+     </h1>
+     <p>
+      Arrive and enjoy the charm of the historic old town.
+     </p>
+     <p>
+      We&nbsp;offer limited underground car parking spaces - a priceless advantage if you would like to lodge in the&nbsp;city center.&nbsp;We kindly ask to&nbsp;reserve a car parking space&nbsp;in advance.
+     </p>
+     <p>
+      Please be informed that the max. entrance high is 2,00 meters.
+     </p>
+     <p>
+      <em>
+       To enter the city center of Augsburg you need a valid enviroment badge. Please contact us for further questions.
+      </em>
+     </p>
+     <p>
+      You can reach the reception and all other floors via the lift from the underground car park.
+      <br>
+      <br>
+     </p>
+    </div>
+    <div class="contentImage">
+     <img src="rick.jpg">
+    </div>
+   </div>
+   <div class="footer">
+    <p>
+     HOTEL AM RATHAUS &middot; Am Hinteren Perlachberg 1 &middot; D-86150 Augsburg &middot; Telefon +49(0821)- 346490 &middot; Email: [EMAIL REDACTED]
+    </p>
+    <p>
+     Copyright &copy;
+     <!--datum-->
+     &middot;
+     <a title="Imprint">
+      Imprint
+     </a>
+     &middot;
+     <a>
+      German Version
+     </a>
+    </p>
+   </div>
+  </div>
+ </body>
+</html>
