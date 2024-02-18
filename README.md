@@ -2,19 +2,13 @@
 
 ## Data
 
-We have two versions of the test set: 
+- Test set: The full official test set is availble for downloading at [this link](https://drive.google.com/file/d/1AdqgWx8wgz_GM1qeupY1eyUiT7E2zo6_/view?usp=sharing). It contains 484 screenshot-code pairs. 
 
-1. The full test set can be downloaded from [this link](https://drive.google.com/file/d/1fUwEFLeo4XNntzgP-eMAlO38j4CHv205/view?usp=drive_link). It contains 776 examples. 
+- GPT-4V and Gemini-Pro predictions: All predictions (including rendered webpage screenshots) are available for downloading at [this link](https://drive.google.com/file/d/1zinGz87_4Y-YIkeA4uPgaoxITAMjjObH/view?usp=sharing).
 
-2. The mini version is a subset of 100 examples and can be loaded from the `testset_100` directory. Below is a snapshot of some examples. 
 
 ![](examples.png)
 
-## Prediction Files
-
-GPT-4V Predictions Full [link](https://drive.google.com/file/d/1m4dvP0drPoEhSVhKIJ9zWVm3vhIqP7FA/view?usp=sharing)
-
-Gemini-Pro Predictions Full: [link](https://drive.google.com/file/d/18qAatN6XC2PlxtvhutLVBj2OhHSZvq9c/view?usp=sharing)
 
 ## Code Structure
 
