@@ -7,6 +7,8 @@
 - GPT-4V and Gemini-Pro predictions: All predictions (including rendered webpage screenshots) are available for downloading at [this link](https://drive.google.com/file/d/1zinGz87_4Y-YIkeA4uPgaoxITAMjjObH/view?usp=sharing).
 
 
+- Sampled predictions for human evaluation: The sampled predictions used to obtain human evaluation can be found [here](https://drive.google.com/file/d/1L3tj35o9QiWEcDH95XpGFAZUij6LNAHu/view?usp=sharing).
+
 ![](examples.png)
 
 

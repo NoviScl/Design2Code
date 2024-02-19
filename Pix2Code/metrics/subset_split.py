@@ -4,6 +4,8 @@ import json
 import os
 from bs4 import BeautifulSoup
 import shutil
+import random 
+random.seed(2024)
 
 data_dirs = {
         "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
@@ -14,6 +16,7 @@ data_dirs = {
         "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting"
     }
 final_file_list = "prediction_file_name_list_final.json"
+testset_dir = "../../testset_final"
 
 def count_total_nodes(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -77,12 +80,37 @@ def collect_predictions():
 
         print (new_dir_name, len(os.listdir(new_dir_name)))
 
-# def sample():
-#     ## sample 200 examples from each dataset 
-#     data_dirs = {
-#         "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-#     }
+def sample():
+    ## sample 200 examples from each dataset 
+    easy = []
+    hard = []
+    with open(final_file_list, "r") as f:
+        file_name_list_final = json.load(f)
+    random.shuffle(file_name_list_final)
+    sampled_file_list = file_name_list_final[:200]
+    for filename in sampled_file_list:
+        sampled_file = os.path.join(testset_dir, filename)
+        with open(sampled_file, "r") as f:
+            html_content = f.read()
+        total_nodes = count_total_nodes(html_content)
+        if total_nodes < 133.5:
+            easy.append(filename)
+        else:
+            hard.append(filename)
+        
+        ## copy to sampled dir
+        for method, data_dir in data_dirs.items():
+            new_dir_name = "../../sampled_for_annotation/" + method
+            if not os.path.exists(new_dir_name):
+                os.makedirs(new_dir_name)
+            shutil.copy(os.path.join(data_dir, filename), os.path.join(new_dir_name, filename))
+            shutil.copy(os.path.join(data_dir, filename.replace(".html", ".png")), os.path.join(new_dir_name, filename.replace(".html", ".png")))
+        
+    print (len(easy))
+    print (len(hard))
+
+
                 
 if __name__ == "__main__":
-    collect_predictions()
-
+    # collect_predictions()
+    sample()
