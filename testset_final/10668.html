@@ -1,0 +1,757 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+ <head>
+  <style>
+   ï»¿/*
+Theme Name: WP MagaPress
+Theme URI: http://patrick.bloggles.info/wpthemes/
+Description: <strong>Screen: 800X600+</strong><br />Left sidebar and 2 column fixed width based WP-Andreas01, widgets ready, related post included.
+Version: 20.07
+Author: Patrick Chia
+Author URI: http://patrick.bloggles.info/
+*/
+
+/* Body */
+*{margin:0; padding:0;}
+body{background:#f4f4f4 url(img/bg.gif) top center repeat-y; color:#000; 
+font-family:Verdana,Tahoma,Arial,Sans-Serif;
+font-size:75%;}
+h1{color:#993300; font-size: 1.6em;}
+h2{color:#993300; font-size: 0.85em;}
+td{font-size: 0.9em;}
+#wrap{background-color:#ffffff; color:#000; margin:0 auto; width:760px;}
+
+/* Links */
+a{background-color:inherit; color:#993300; font-weight:normal; text-decoration:underline;}
+a:hover{background-color:inherit; color:#996600; font-weight:normal; text-decoration:underline;}
+a img{border:0;}
+
+/* Header */
+#header{margin:10px 0 0;}
+#header h1{background-color:inherit; float:left; font-size:2em; letter-spacing:-1px; margin:0 0 10px; width:350px;}
+#header h1 a{background-color:inherit;  text-decoration:none;}
+#header p{background-color:inherit; color:#808080; float:right; font-size:1.1em; font-weight:bold; line-height:1.3em; margin:6px 0 0; text-align:right; width:400px;}
+#frontphoto{margin:0 0 15px;text-align:right}
+
+/* Sidebars */
+#leftside{clear:left; float:left; line-height:1.4em; margin:0 0 5px; width:140px;}
+#extras{line-height:1.4em; margin:0 0 5px; width:140px;}
+#leftside p, #leftside ul, #leftside div.textwidget, #extras p, #extras ul, #extras div.textwidget{font-size:0.9em; margin:0 0 18px;}
+#leftside li, #extras li{line-height:1.2em; list-style:none; margin:0 0 6px;}
+#leftside ul ul, #extras ul ul{margin:6px 0 0 10px;}
+#leftside ul ul li, #extras ul ul li{margin:0 0 4px;}
+#leftside ul ul li a, #extras ul ul li a{font-weight:normal;}
+#leftside ul.linklist, #extras ul.linklist{font-size:1em;}
+#leftside ul.linklist ul, #extras ul.linklist ul{margin:0 0 18px;}
+#leftside ul.linklist ul li a, #extras ul.linklist ul li a{font-weight:bold;}
+#leftside h2, #leftside ul.linklist li h2, #leftside h3, #extras h2, #extras ul.linklist li h2, #extras h3{background-color:inherit; color:#505050; font-size:1.2em; margin:0 0 10px;}
+#leftside label, #extras label{display:none;}
+
+/* Main menu */
+ul.page{list-style:none; margin:0 0 18px; width:140px;}
+ul.page li{display:inline; line-height:1.4em; width:140px;}
+ul.page li a{background-color:#f4f4f4; border-left:4px solid #cccccc; color:#505050; float:left; font-weight:bold; margin-bottom:5px; padding:5px 1px 5px 5px; text-decoration:none; width:130px;}
+ul.page li a:hover, ul.page li.current_page_item a{background-color:#ffffcc; border-left:4px solid #993300; color:#505050;}
+ul.page ul{font-size:0.9em;margin:0 0 0 15px;padding:0 0 5px;width:125px;}
+ul.page ul a{padding:3px 1px 3px 5px;width:115px;}
+ul.page ul ul{width:113px;}
+ul.page ul ul a{width:100px;}
+
+/* Content */
+#content{border-left:1px solid #e0e0e0;border-right:1px solid #e0e0e0;line-height:1.6em;margin:0 150px 5px;padding:0 10px;}
+#contentwide{border-left:1px solid #f0f0f0;line-height:1.6em;margin:0 0 5px 150px;padding:0 0 0 15px;}
+#content h2,#contentwide h2{font-size:1.6em;margin:0 0 10px;}
+#content h3,#contentwide h3{font-size:1.25em;margin:0 0 8px; color: #666;}
+#content img,#contentwide img{border:1px solid #d0d0d0;float:left;margin:3px 10px 3px 0;}
+#content ul,#contentwide ul,#content ol,#contentwide ol{margin:0 0 16px 20px;}
+#content li,#contentwide li{padding:0 0 0 5px;}
+#content ul ul,#contentwide ul ul,#content ol ol,#contentwide ol ol{margin:0 0 0 16px;}
+
+/* Footer */
+#footer{background-color:#ffffff;border-top:2px solid #e0e0e0;clear:both;color:#808080;font-size:1.1em;font-weight:normal;line-height:1.3em;margin:0 auto;padding:10px 0;text-align:center;width:760px;}
+#footer p{margin:0;padding:0;}
+#footer a{background-color:inherit;color:#808080;font-weight:normal;text-decoration:none;}
+#footer a:hover{background-color:inherit;color:#505050;text-decoration:underline;}
+
+/* Subpage menu */
+#subpages{border-bottom:1px solid #e0e0e0;border-left:1px solid #e0e0e0;float:right;font-weight:bold;line-height:1.3em;margin:-5px 0 8px 15px;padding:0 0 10px 10px;width:190px;}
+#subpages h2{font-size:1.2em;font-weight:bold;letter-spacing:-1px;line-height:1.3em;margin:0 0 12px;}
+#subpages ul.submenu{line-height:1.4em;list-style:none; margin:0;}
+#subpages ul.submenu li{display:inline; line-height:1.4em; width:180px; padding:0;}
+#subpages ul.submenu li a{background-color:#f4f4f4;border-left:0px solid #cccccc;color:#505050;float:left;font-weight:bold;margin-bottom:5px;padding:3px 1px 3px 5px;text-decoration:none;width:180px;}
+#subpages ul.submenu li ul{margin:0 0 5px 10px;width:170px;}
+#subpages ul.submenu li ul li a{width:170px;}
+#subpages ul.submenu li ul ul{margin:0 0 5px 10px;width:160px;}
+#subpages ul.submenu li ul ul li a{width:160px;}
+#subpages ul.submenu li ul ul ul{margin:0 0 5px 10px;width:150px;}
+#subpages ul.submenu li ul ul ul li a{width:150px;}
+#subpages ul.submenu li a:hover,#subpages ul.submenu li.current_page_item a{background-color:#ffffcc;border-left:0px solid #993300;color:#505050;}
+#subpages ul.submenu li.current_page_item ul li a{background-color:#f4f4f4;border-left:0px solid #cccccc;color:#505050;}
+
+/* Tags */
+p,ul,ol{margin:0 0 16px;}
+blockquote{border-left:0px solid #e0e0e0;margin:20px;padding:8px 8px 8px 15px;}
+blockquote p{background-color:inherit;color:#505050;font-size:0.9em;line-height:1.3em;}
+label{background-color:inherit;color:#606060;font-size:0.9em;font-weight:bold;}
+table#wp-calendar{margin:0 0 18px;width:140px;}
+
+/* Forms */
+#s,#submit{background-color:#ffffff;border:1px solid #cccccc;color:#505050;font-size:0.9em;margin:0 0 16px;padding:4px;width:130px;}
+#author,#email,#url,#comment{border:1px solid #cccccc;font-family:Verdana,Tahoma,Arial,Sans-Serif;font-size:1em;margin:0;padding:4px;}
+#commentsection{margin-top: 10px; margin-left:15px 0 0;}
+#commentsection p{margin:0 0 6px; }
+
+/* Float fix */
+.contenttext{overflow:hidden;}
+* html .contenttext{height:1px;overflow:visible;}
+* html .contenttext p{overflow:hidden;width:99%;}
+
+/* Various classes */
+.left{border:1px solid #cccccc;float:left;margin:10px 15px 10px 0;}
+.right{border:1px solid #cccccc;float:right;margin:10px 0 5px 10px;}
+.center{border:1px solid #aaaaaa;margin:5px auto 12px;text-align:center;}
+.textright{text-align:right;}
+.small{font-size:0.8em;}
+.bold{font-weight:bold;}
+.hide{display:none;}
+.post{margin:0 0 25px;}
+.postinfo{background-color:#f4f4f4;border-left:0px solid #cccccc;color:#606060;font-size:0.9em;font-weight:bold;line-height:1.5em;margin:1px 0 40px;padding:8px 5px 8px 8px; margin-bottom: 10px;}
+.comment{background-color:#f4f4f4;border-left:0px solid #cccccc;color:#606060;margin:0 0 10px;padding:8px 5px 0 8px;}
+.comment p.commenthead{line-height:1.6em;}
+.comment p{font-size:0.9em;line-height:1.3em;margin:0 0 6px;padding-bottom:5px;}
+.navigation{display:block;margin:10px 0;padding:0 0 15px;text-align:center;}
+.navigation p{margin:0;padding:0;}
+.prevlink{margin-right:20px;}
+.nextlink{margin-left:20px;}
+
+.gen1 { margin-left: 8px; }
+.gen2 { margin-left: 16px; }
+.gen3 { margin-left: 24px; }
+.gen4 { margin-left: 32px; }
+.gen5 { margin-left: 40px; }
+.gen6 { margin-left: 48px; }
+.gen7 { margin-left: 56px; }
+.gen8 { margin-left: 64px; }
+.name { color: #993300; }
+.dob, .dod { font-style: italic; }
+li.alt p { font-style: italic; }
+dl { margin-left: 1em; margin-bottom: 1em;}
+dd { font-size:0.95em; }
+dt { font-weight:bold; }
+#kaywamobilizer { padding: 0px; }
+
+
+
+BODY, P, LI, DD, DT {
+	font-family: verdana, arial, sans-serif;
+	font-size: 10pt;
+	margin-left: 0px;
+	margin-top: 0px;
+	SCROLLBAR-FACE-COLOR: #999999;
+	SCROLLBAR-TRACK-COLOR: #cccccc;
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #ffffee;
+	SCROLLBAR-3DLIGHT-COLOR: #999999;
+	SCROLLBAR-ARROW-COLOR: #cccc99;
+	SCROLLBAR-DARKSHADOW-COLOR: #444444;
+	}
+
+BODY {
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-left: 10px;
+}
+
+BLOCKQUOTE	{
+	margin-left: 10px;
+	text-indent: 5px;
+	font-style: italic;
+}
+
+TABLE.index	{
+	margin-left: 15px;
+}
+
+.calendar_day {
+	color: #333333;
+	font-size: 7pt;
+}
+
+TD.key {
+	font-family: verdana, arial, sans-serif;
+	font-weight: bold;
+	color: #333333;
+}
+
+
+TD.even {
+	padding: 2px;
+	background: #ffffff;
+}
+
+TD.odd {
+	padding: 2px;
+	background: #ffffbb;
+}
+
+IMG.content {
+	border-style: solid;
+	border-color: #666666;
+	border-width: thin;
+	}
+
+.logheader {
+	font-family: verdana, arial, sans-serif;
+	font-size: 10pt;
+	color: #cccccc;
+	background: #666666;
+	padding: 0px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #666666;
+	width: 100%;
+	}
+
+.menu {
+	color: #666666;
+	font-size: 8pt;
+    margin-left: 3px;
+	}
+
+.intro {
+	font-family: verdana, arial, sans-serif;
+	color: #333;
+	/* color: #003333; */
+	background: #eec;
+	/* background: #99cccc; */
+	/* background: #ffcc66; */
+	/* border: 1px dashed  #999; */
+	padding: 5px;
+	/* border-width: thin;
+	border-style: solid;
+	border-color: #633;
+    border-left: thin solid #aaa;
+    border-top: thin solid #aaa; */
+
+	/* border-color: #ff9900; */
+	width: 100%;
+	}
+
+small.title {
+    color:#333366;
+	font-size: 8pt;
+}
+
+.panelGeek {
+	padding: 2px;
+	/* border:1px solid #999; 
+	background: #eee; */
+}
+
+.panelMain {
+	padding: 5px;
+	border: 1px dashed #ccc; 
+	background: #ffffee;
+}
+
+.panelPersonal {
+	/* padding: 0px;
+	border:1px dashed #999; */
+	background: #fff;
+}
+
+.panelCalendar {
+	padding: 2px;
+	margin-right: 5px;
+	margin-left: 0px;
+	border:1px dashed  #999999;
+	background: #eeeeee;
+}
+
+.sitetitle	{
+	color:#666666;
+	font-family: verdana, helv, arial, sans-serif;
+	font-size: 18px;
+	letter-spacing: 3px;
+	font-weight: bold;
+	margin-left: 12px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
+
+pre.title	{
+	color:#666666;
+}
+
+pre.highlighted	{
+	background: #eeeeee;
+}
+
+
+A {
+	color: #6666aa;
+	font-weight: normal;
+}
+
+A:hover {
+	background: #dddddd;
+	font-weight: normal;
+}
+
+A:visited {
+	color: #660033;
+	font-weight: normal;
+}
+
+A.sidebar {
+	margin-left: 8px;
+	margin-right: 3px;
+}
+
+P	{
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+CODE	{	
+	color: #003300;
+	background: #efffef;
+	}
+
+DL	{
+	MARGIN-LEFT: 15px;
+	}
+
+DT	{
+	font-weight: bold;
+	color: #333333;
+	margin-top: 10px;
+	}
+
+TD	{
+	font-size: 9pt;
+	}
+
+TH	{
+	font-size: 9pt;
+	background: #ffcc99;
+	color: #663300;
+	}
+
+H1, H2, H3, H4 { 
+	font-weight: bold;
+	color:#666666;
+	font-family: verdana, helv, arial, sans-serif;
+}
+
+
+H1	{
+	font-size: 18px;
+	margin-top: 0px;
+	margin-bottom: 12px;
+	}
+	
+H2	{
+	font-size: 11pt;
+	margin-top: 10px;
+	margin-bottom: 7px;
+	}
+
+H3	{
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 7px;
+	}
+
+H4	{
+	font-size: 11px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	}
+
+UL.tight	{
+        margin-top: 0px;
+        margin-left: 10px;
+        }
+
+
+.indent	{
+	MARGIN-LEFT: 20px;
+	}
+
+.code	{
+	MARGIN-LEFT: 20px;
+	color: #003300;
+	background: #efffef;
+	}
+
+.codesmall	{
+	MARGIN-LEFT: 20px;
+	color: #003300;
+	background: #efffef;
+	font-size: 9pt;
+	}
+
+.contents	{
+	font-size: 8pt;
+	background: #efffef;
+	border-color: #cccccc;
+	margin: 0px;
+	color: #666666;
+	}
+
+
+
+
+.leftcol {	
+	color: #ffffff;
+	}
+
+
+
+
+TABLE.seealso	{
+	background: #eeeeee;
+	color: #666666;
+        border-width: thin;
+        border-style: solid;
+        border-color: #333333;
+        border-left: thin solid #cccccc;
+        border-top: thin solid #cccccc;
+	}
+
+.banner	{
+	color: #cccccc;
+		border-width: 2px;
+	/*	border-width: thin; */
+        border-style: solid;
+        border-color: #333333;
+        border-left: thin solid #cccccc;
+        border-top: thin solid #cccccc;
+	}
+
+TABLE.contents	{
+	background: #efffef;
+	margin: 0px;
+	color: #666666;
+        border-width: thin;
+        border-style: solid;
+        border-color: #333333;
+        border-left: thin solid #cccccc;
+        border-top: thin solid #cccccc;
+	}
+
+.seealso	{
+	font-size: 8pt;
+	background: #eeeeee;
+	color: #666666;
+	}
+
+.smintro {
+	color: #ffffff;
+	background: #aaaaaa;
+	margin-left: 0px;
+	padding: 5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #666666;
+	}
+
+.bodyimage	{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #ffcc99;
+	}
+
+.tableform {
+	color: #ffffff;
+	background: #cccccc;
+	margin-bottom: 15px
+	}
+
+TABLE.data {
+	color: #333;
+	background: #eee;
+    border: thin solid #ccc;
+	}
+
+TD.tabledata {
+	background: #ffffff;
+}
+
+.blogrollLinkedText {
+	margin-left: 8px;
+	margin-right: 3px;
+	font-size: 8pt;
+}
+
+.blogrollText {
+	color: #666666;
+	font-size: 8pt;
+    margin-left: 3px;
+	font-weight: bold;
+	}
+
+.itemtitle {
+	font-size: 1.1em;
+	font-weight: bold;
+    margin-bottom: 1.2em;
+	margin-top: 0px;
+	padding: 0.3em;
+	background: #eeeeee;
+}
+
+
+	.generation {
+		margin-left: 1em;
+	}
+
+	.name {
+		font-weight: bold;
+	}
+
+	.dob {
+		padding-left: 0.5em;
+	}
+
+	.dod {
+		padding-left: 0.5em;
+	}
+
+	.spouse {
+		padding-left: 0.5em;
+		text-decoration: italic;
+	}
+	
+	.gen1, .gen2, .gen3, .gen4, .gen5, .gen6, .gen7, .gen8 {
+		margin-left: 0.5em;
+		margin-top: 1em;
+		width: 400;
+		border: thin #999999;
+	}
+
+	.gen1 {		background-color: #ccccff;	}
+	.gen2 {		background-color: #ccccee;	}
+	.gen3 {		background-color: #ccccdd;	}
+	.gen4 {		background-color: #cccccc;	}
+	.gen5 {		background-color: #ccccbb;	}
+	.gen6 {		background-color: #ccccaa;	}
+	.gen7 {		background-color: #cccc99;	}
+	.gen8 {		background-color: #cccc88;	}
+  </style>
+  <title>
+   Webmaster: Master of What?
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content name="description">
+  <meta content name="keywords">
+ </head>
+ <body alink="#008000" background bgcolor="#ffffff" link="#0000FF" text="#000000" vlink="#800080">
+  <div id="wrap">
+   <div id="header">
+    <h1>
+     <a>
+      DeeKnow&rsquo;s Grotto
+     </a>
+    </h1>
+    <p>
+     <strong>
+     </strong>
+    </p>
+   </div>
+   <div id="leftside">
+    <div align="center">
+     <a>
+      <img alt="DeeKnows Homepage" border="0" height="83" src="rick.jpg" title="Go to the Home page" width="64">
+     </a>
+    </div>
+    <h2 class="hide">
+     Main menu:
+    </h2>
+    <ul class="page">
+     <li class="page_item current_page_item">
+      <a>
+       Home
+      </a>
+     </li>
+     <li class="page_item">
+      <a title="About">
+       About
+      </a>
+     </li>
+     <li class="page_item current_page_item">
+      <a>
+       Wiki
+      </a>
+     </li>
+    </ul>
+    <div id="extras">
+     <h2>
+      Site search
+     </h2>
+     <form action="/index.php" id="searchform" method="get">
+      <div>
+       <label for="s">
+        Search for:
+       </label>
+       <input id="s" name="s" size="14" type="text" value>
+       <input id="searchsubmit" type="hidden" value="Search">
+      </div>
+     </form>
+     <p class="menu">
+      <strong>
+       Contents:
+      </strong>
+      <br>
+      <a class="sidebar" title="DeeKnow's Dynamic Dyno">
+       Dyno
+      </a>
+      <br>
+      <a class="sidebar" title="What the hell is Zope">
+       Zope
+      </a>
+      <br>
+      <a class="sidebar" title="list of funny Spam I've received lately">
+       Spam
+      </a>
+      <br>
+      <a class="sidebar" title="Maori Processes and Protocols">
+       M&auml;ori
+      </a>
+      <br>
+      <a class="sidebar" title="A timeline of events in Israel">
+       Israel
+      </a>
+      <br>
+      <a class="sidebar" title="Travel and Holiday notes">
+       Travel
+      </a>
+      <br>
+      <a class="sidebar" title="Some photos from this years Ski trip">
+       Skiing
+      </a>
+      <br>
+      <a class="sidebar" title="Results of a 'what are your beliefs' survey">
+       Beliefs
+      </a>
+      <br>
+      <a class="sidebar" title="Index of my Photos">
+       Photos
+      </a>
+      <br>
+      <a class="sidebar" title="Bits and pieces of Wisdom">
+       Wisdom
+      </a>
+      <br>
+      <a class="sidebar" title="Amazon Wishlist - go on, buy me something!">
+       WishList
+      </a>
+      <br>
+      <a class="sidebar" title="Some notes on end-of-days prophecy">
+       Prophecy
+      </a>
+      <br>
+      <a class="sidebar" title="DeeKnows WebCam">
+       WebCam
+      </a>
+      <br>
+      <a class="sidebar" title="Photos from the Tongariro Crossing">
+       Tongariro
+      </a>
+      <br>
+      <a class="sidebar" title="Notes, Links and Piccies re MS Flightsimulator">
+       Flight-sim
+      </a>
+      <br>
+      <a class="sidebar" title="Stuff about my current bike, and the ones I'd like to buy">
+       Motorbike
+      </a>
+      <br>
+      <a class="sidebar" title="My Technial Web News Blog">
+       Tech Stuff
+      </a>
+      <br>
+      <a class="sidebar" title="Various entertaining morsels">
+       Funny Shit
+      </a>
+      <br>
+      <a class="sidebar" title="Photos from my trip to Hong Kong in 2001">
+       Hong Kong
+      </a>
+      <br>
+      <a class="sidebar" title="Notes about the PS2 games I own">
+       PlayStation2
+      </a>
+      <br>
+      <a class="sidebar" title="Timeline of events surrounding the Freemasons, and the Crusades">
+       Freemasonry
+      </a>
+      <br>
+      <a class="sidebar" title="Stuff about the role of 'webmaster'">
+       Webmastering
+      </a>
+      <br>
+      <a class="sidebar" title="Some scary photos of dodgy hair-dos">
+       Haircuts from Hell
+      </a>
+      <!-- 		<br><a class="sidebar" href='/notes/tech/'>Tech Notes</a>
+<br><a class="sidebar" href='/notes/a'>Other Notes</a> -->
+     </p>
+     <!--
+	<p class='menu'><strong>Wot I'm Reading:</strong>
+	<br><a class="sidebar" >Biggie</a>
+	<br><a class="sidebar"  title="English language edition of Russian paper">Pravda</a>
+	<br><a class="sidebar" >All Africa</a>
+	<br><a class="sidebar" >MemePool</a>
+	<br><a class="sidebar" >The Onion</a>
+	<br><a class="sidebar" >Planet PS2</a>
+	<br><a class="sidebar"  title="Christian Science Monitor">CS Monitor</a>
+	<br><a class="sidebar" >Space Daily</a>
+	<br><a class="sidebar" >Islam-Online</a>
+	<br><a class="sidebar" >Google News</a>
+	<br><a class="sidebar" >Cycling News</a>
+	<br><a class="sidebar" >Palestine Daily</a>
+	<br><a class="sidebar"  title="Sydney Morning Herald">Sydney M. Herald</a>
+	<br><a class="sidebar" >The Smoking Gun</a>
+	<br><br><a class="sidebar" >more..&gt;&gt;</a>
+	</p>
+-->
+    </div>
+   </div>
+   <div id="frontphoto">
+    <img alt="DeeKnow&rsquo;s Grotto" height="175" src="rick.jpg" width="590">
+   </div>
+   <div id="contentwide">
+    <h1>
+     Webmaster: Master of What?
+    </h1>
+    <p class="intro">
+     The name means different things to different people and the role varies greatly between organisations of various types and sizes. Ask two people and you'll get three opinions, it really is something of a grey area.
+    </p>
+    <p>
+     If you have a web server installed on your computer at home, and you installed your O/S and web server yourself, and you perform backups, design and build your own web sites, then technically, you are a webmaster. Although you are master of a fairly small domain.
+    </p>
+    <p>
+     Large organisations such as Hospitals, Government Departments, Big Corporates or Universities often run many web servers which store thousands of web pages for many clients with different needs. In organisations of this scale there is a need to split web design and management roles amongst multiple people who may be formed into a
+     <a>
+      web team
+     </a>
+     with a dedicated Webmaster
+    </p>
+    <p>
+     In such a web team, the Webmaster is able to better focus on the Web service and servers and surrounding technologies and leave the other roles to the respective specialists in their areas, but the webmaster's responsibilities will often overlap with those of the other team members.
+    </p>
+    <p>
+     In smaller organisations a dedicated webmaster would be a luxury. This is where the role and your talents are generally spread the furtherst and where a webmaster must truely be a jack-of-all-trades possibly absorbing many of the other roles normally filled by a
+     <a>
+      web team
+     </a>
+     in a larger organisation.
+    </p>
+    <p>
+     Often, if required to be involved on smaller web projects, a web master may be project manager, spec writer, programmer, administrator as well as being a kind of mediator or liasion between the client and other project staff such as graphic artists an DBA's.
+    </p>
+   </div>
+  </div>
+ </body>
+</html>

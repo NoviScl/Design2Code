@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "">
+<html lang="en" xmlns="">
+ <head>
+  <style>
+   html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, abbr, em, img, strong, ol, ul, li, fieldset, form, label, input, select, textarea, legend, table, caption, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline;}
+/* fix FORM issues */
+input, select, textarea { border: solid 1px #3d3d3d; }
+input:hover, input:focus, input:active, select:hover, select:focus, select:active, textarea:hover, textarea:focus, textarea:active { outline: solid 2px #000;}
+input[type="checkbox"]:hover, input[type="checkbox"]:focus, input[type="checkbox"]:active, input[type="radio"]:hover, input[type="radio"]:focus, input[type="radio"]:active { outline: solid 3px #000;}
+
+body { text-align: left; color: #000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 75%;} 
+
+h3 { font-size: 1.75em; font-weight: bold;}
+h4 { font-size: 1.5em;}
+h5 { font-size: 1.333em;}
+h6 { font-size: 1.25em;}
+h1, h2, h3, h4, h5, h6 { letter-spacing: 1.5px;}
+p, ul, ol, h1, h2, h3, h4, h5, h6 { line-height: 1.5em;}
+p, ul, ol, h3, h4, h5, h6 { margin-bottom: 1em;}
+ul ul, ol ol, ul ol, ol ul { margin-bottom: 0;}
+p { font-size: 1em;}
+li { line-height: 1.5em;}
+a, a:visited, li { color: #000;font-size: 1em;}
+a:visited, ul a:visited { color: #000; text-decoration: underline;}
+a:focus, ul a:focus { color: #000; text-decoration: none;}
+ol, ul {  list-style: disc; margin-left: 1em;}
+ol li li, ul li li { margin-left: 1em;}
+ol li, ul a, ol li, ol a { line-height: 1.5em; letter-spacing: 1.2px; font-size: 1em;}
+ul a, ol a { text-decoration: underline;}
+
+#wrap { max-width:100%;} 
+#main, #main_content, #navbar_b { width: 825px; min-width: 825px; /*	width: expression(document.body.clientWidth > 825? "825px" : "auto"); 	*/}
+#main, #main_content { background: #fff; margin: 0 auto;}
+#header { background-color: #ACC7FF; border-bottom: 1px solid #000;}
+#hdr h1 { color: #000; font-size: 3em; line-height: 2em; text-align: center;}
+#hdr h1 a { text-decoration: none;}
+#hdr h2 { border-top: 1px solid #000; border-bottom: 1px solid #000; text-align: center; background: #BEFF9E; font-size: 1.5em; line-height: 2em; margin-bottom: .5em;}
+#content { width: 475px; margin: 2em 0 2em 1.25em; padding: 1.5em 3em; float: left; vertical-align: top; border: 1px solid #ccc; border-radius: 1em; -moz-border-radius: 1em; -webkit-border-radius: 1em;}
+#sidebar { width: 170px; margin: 2em 3.5em 2em 0; padding: 1em; float: right; border: 1px solid #ccc; border-radius: 1em; -moz-border-radius: 1em; -webkit-border-radius: 1em;}
+#side_nav, #navbar { float: left;}
+#footer { padding: 8px 0; clear: both; background: #BEFF9E;	/*	#BEFF9E	*/ border-top: 1px solid #000; border-bottom: 1px solid #000;}
+.akey{text-decoration: underline;}
+.bold { font-weight: bold;}
+img { display: block;}
+.inline {display: inline;}
+
+/* form */
+form { margin-bottom: 1.5em;}
+#forms { float: left; vertical-align: top; margin: .83333em;} 
+#forms p { margin: .8333em 0; line-height: 1.5em}
+fieldset { padding: .4166em .8333em; margin: .8333em; border: 1px solid #ccc; border-radius: 1em; -moz-border-radius: 1em; -webkit-border-radius: 1em; width: 57.5em;} 
+fieldset.inner { width: 54.1666em;} 
+#forms input, #forms select, #forms textarea { margin-bottom: .75em;} 
+form li { list-style:none;}
+label { float: left; width: 15em; margin-right: .25em; text-align: right; padding: .25em; position: relative;}
+legend { padding: .5em; margin: .25em; border: 0; font-size:1.25em;} 
+.submit {  margin: 1em auto;}
+span.req { color: #f00; font-weight: bold;}
+
+/* display directions/explainations of fields  right of input */ 
+label strong.msg1, label strong.msg2 { color: #888; font-size: .8em; font-style: normal; line-height: 2.5; position: absolute; top: 0;}
+label strong.msg1 { right: -17.25em;}
+label strong.msg2 { right: -33em;}
+
+/*	Used to create three columns for checkbox section	*/ 
+.content1, .content2, .content3 { list-style: none; width: 17.0833em; margin: .4166em;}
+.content1 label, .content2 label, .content3 label { float: left; width: 12em; margin-right: .25em; text-align: left; padding: 0 .25em;}
+.content1, .content2, .content3 { float: left;}
+
+/* skip nav */
+.hide a, .hide a:hover, .hide a:visited, .search label, span.hide, em, p.hide { display: block; position: absolute; left: -10000px; top: auto; width: 100%; height: 3em; font-weight: bold; text-align: center; border-bottom: 1px solid #000;} 
+.hide a:active, .hide a:focus { background: #BEFF9E; position: static; width: auto; height: auto; padding: 1em; margin: auto;}
+
+/* misc */
+#multiple_images img { display: inline; margin: 3px;}
+.photo { padding: 5px;}
+.photo_text { font-weight: bold; font-style: italic; font-size: 75%;}
+.ltr1, .nbr1 { text-align: left;}
+.ltr2, .nbr2 { text-align: center;}
+.ltr3, .nbr3 { text-align: right;}
+.em1 { font-weight: bold;}
+.em2 { color: #F00;}
+.em3, .italic { font-weight: italic;}
+.alpha, .alpha a { padding: 0; font-size: 1.25em; line-height: 1.5em;}
+.alpha { margin: 0 5% .75em 5%;}
+.alpha a { margin: 0 .1667em .5em .1667em;}
+.alpha a:hover, .alpha a:focus, .alpha a:active { text-decoration: none;}
+.title { font-weight: bold;}
+#content_t { width: 725px; margin: 12px;}
+.stripe { background: #ddd;}
+
+/* table */
+table, th, td { border: 1px solid #000; padding: .25em .5em; font-size: 1em; line-height: 1.5em;}
+table a:hover, table a:focus, table a:active { text-decoration: none;}
+table { margin: 1em 0; border-collapse: collapse;}
+th { background: #BEFF9E; text-align: center;}
+.none a { text-decoration: none;}
+caption { font-size: 1.5em; margin: .5em 0; }
+	
+/* search box */
+.search form { float: left; margin-bottom:0; padding: .5em 0 .25em 1em;}
+.search input { font-size: 1em;}	
+
+/* horizontal navigation */
+#navbar_h { width: 100%; float: left; border-bottom: 1px solid #000;}
+#nav_h { float: right;}
+ul#nav_h { font-size: 1em; font-weight: bold; list-style-type: none; margin-bottom: 0;}
+ul#nav_h li { float: left; background: #ACC7FF; border-left: 1px solid #000;}
+#nav_h a { float: left; display: block; color: #000; text-decoration: none; padding: .55em 1em; border-top: 1px solid #000;}
+#nav_h a:hover, #nav_h a:focus, #nav_h a:active { background: #BEFF9E;}
+
+/* vertical navigation */
+#nav, #nav2 { margin: .25em 0; padding: .5em; display: block; float: left; width: 14em;}
+#nav a, #nav2 a { width: 11em; font-size: 1em; line-height: 2em; padding: .5em;}
+#nav a:link, #nav a:visited, #nav2 a:link, #nav2 a:visited { text-decoration: none;}
+#nav a:hover, #nav a:focus, #nav a:active, #nav2 a:hover, #nav2 a:focus, #nav2 a:active { text-decoration: underline;}
+#nav li, #nav2 li { list-style: none; font-size: .9127em; margin: .25em 0;}
+
+/* bottom navigation */
+#navbar_b { margin: 0 auto; }
+#navbar_b p { text-align: center;}
+#nav_b ul { margin:0; padding: 0;}
+#nav_b li { display: inline; font-size: 1em; padding: 0 .25em;}
+#nav_b a:hover, #nav_b a:focus, #nav_b a:active { text-decoration: none;}
+
+/* print	*/
+@media print {
+	body { margin:0; padding: 0; text-align: left; color: #000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 100%;} 
+	#hdr, .hide, #sidebar, #footer { display: none !important; } 
+	#main, #wrap { border: 0;}
+	#content { float: left; list-style: none; margin: 0; padding: 5px; width: 85%;} 
+	#content a { color: #000;}
+	#content ul a { margin: 0; padding: 0; line-height: 20px; letter-spacing: 1.2px; text-decoration: underline;}
+	img { display: block;}
+	#nav, #event_type, #details, #add_attendees, #running_events, #events_past, #attending_events, #email_attendees, #account_info { display: block;}
+}
+  </style>
+  <title>
+   Books John F Croston III would recommend - jfc iii
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="en-us" http-equiv="Content-Language">
+  <style type="text/css">
+   <!--
+				#books a { 
+					border: 1px solid #ccc;
+					border-radius: 1em;
+					-moz-border-radius: 1em;
+					-webkit-border-radius: 1em;
+					padding-left: .75em;
+					margin-left: -.40em;
+				}
+				.author {font-weight: bold;}
+			-->
+  </style>
+ </head>
+ <body>
+  <div class="hide">
+   <a>
+    Skip to Main Content
+   </a>
+  </div>
+  <div id="wrap">
+   <div id="header">
+    <div id="hdr" role="banner">
+     <h1>
+      <a>
+       john f croston iii
+      </a>
+     </h1>
+     <h2>
+      &ldquo;It&rsquo;s only words and photos on the internet&rdquo;
+     </h2>
+    </div>
+   </div>
+   <div id="main_content">
+    <div id="sidebar">
+     <ul id="nav" role="navigation">
+      <li id="about">
+       <a>
+        About
+       </a>
+      </li>
+      <li id="accessibility">
+       <a>
+        Accessibility
+       </a>
+      </li>
+      <li id="blog">
+       <a>
+        Blog
+       </a>
+      </li>
+      <li id="books">
+       <a>
+        Books
+       </a>
+      </li>
+     </ul>
+     <h3>
+      Contact Info
+     </h3>
+     <ul id="nav2">
+      <li>
+       E-mail -
+       <a class="email">
+        [EMAIL REDACTED]
+       </a>
+      </li>
+      <li>
+       Twitter -
+       <a class="note url">
+        @jfc3
+       </a>
+      </li>
+      <li class="tel">
+       <span class="type">
+        Cell
+       </span>
+       -
+       <span class="value">
+        [PHONE REDACTED]
+       </span>
+      </li>
+     </ul>
+    </div>
+    <div id="content" role="main">
+     <h3 id="maincontent" tabindex="-1">
+      Book Recommendations
+     </h3>
+     <p>
+      The following is a list of books I have read or purchased and not yet read and would recommend that you read if you have not done so already.
+     </p>
+     <p>
+      <b>
+       I have added Amazon affiliate program links to all these books.
+      </b>
+     </p>
+     <h4>
+      Highly Recommend
+     </h4>
+     <ul>
+      <li>
+       <p>
+        <a>
+         Don't Make Me Think: A Common Sense Approach to Web Usability
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Steve Krug
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Web Form Design: Filling in the Blanks
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Luke Wroblewski
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Getting Real: The smarter, faster, easier way to build a successful web Application
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Jason Fried
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Soak Wash Rinse Spin
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Tolleson Design
+        </a>
+       </p>
+      </li>
+     </ul>
+     <h4>
+      Recommended
+     </h4>
+     <ul>
+      <li>
+       <p>
+        <a>
+         Bulletproof Web Design: Improving flexibility and protecting against worst-case scenarios with XHTML and CSS (2nd Edition)
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Dan Cederholm
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Eric Meyer on CSS: Mastering the Language of Web Design
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Eric Meyer
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Designing Web Usability
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Jakob Nielsen
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         The Art &amp; Science of Web Design
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Jeffrey Veen
+        </a>
+       </p>
+      </li>
+     </ul>
+     <h5>
+      Non-Technology Books
+     </h5>
+     <ul>
+      <li>
+       <p>
+        <a>
+         What Should I Do with My Life?: The True Story of People Who Answered the Ultimate Question
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Bo Bronson
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Oz Clarke's New Essential Wine Book: An Indispensable Guide to Wines of the World
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Oz Clarke
+        </a>
+       </p>
+      </li>
+     </ul>
+     <h4>
+      Currently Reading
+     </h4>
+     <p>
+      The list of books below is books I am currently in the middle of or have not yet finished books.
+     </p>
+     <ul>
+      <li>
+       <p>
+        <a>
+         DOM Scripting: Web Design with JavaScript and the Document Object Model
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Jeremy Keith
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         The Design of Everyday Things
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Donald A. Norman
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Train of Thoughts: Designing the Effective Web Experience (Voices)
+        </a>
+       </p>
+       <p>
+        by: John C. Lenker, Jr.
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Speed Up Your Site: Web Site Optimization
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Andrew B. King
+        </a>
+       </p>
+      </li>
+     </ul>
+     <h4>
+      Still to Read
+     </h4>
+     <p>
+      The following is a list of books I have purchased and have not yet had the time to read.
+     </p>
+     <ul>
+      <li>
+       <p>
+        <a>
+         Just Ask: Integrating Accessibility Throughout Design
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Shawn Lawton Henry
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Web Accessibility: Web Standards and Regulatory Compliance
+        </a>
+       </p>
+       <p>
+        by: multiple authors
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Designing with Web Standards (3rd Edition)
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Jeffrey Zeldman
+        </a>
+       </p>
+      </li>
+      <li>
+       <p>
+        <a>
+         Universal Design for Web Applications: Web Applications That Reach Everyone
+        </a>
+       </p>
+       <p>
+        by:
+        <a class="author">
+         Wendy Chisholm
+        </a>
+        and
+        <a class="author">
+         Matt May
+        </a>
+       </p>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div id="footer">
+    <div id="navbar_b">
+     <ul id="nav_b" role="navigation">
+      <li>
+       <a>
+        About
+       </a>
+      </li>
+      <li>
+       <a>
+        Accessibility
+       </a>
+      </li>
+      <li>
+       <a>
+        Blog
+       </a>
+      </li>
+      <li>
+       <a>
+        Books
+       </a>
+      </li>
+     </ul>
+     <p role="contentinfo">
+      &copy; 2007 - 2019
+      <a>
+       jfciii.com
+      </a>
+     </p>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

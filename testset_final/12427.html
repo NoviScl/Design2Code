@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   /* Source: https://github.com/huangyz0918/moving */
+@charset "UTF-8";
+/**
+ * Reset some basic elements
+ */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+  * Basic styling
+  */
+body {
+  font: 400 15.3px/1.6 "Bitter", "Times New Roman", "FangSong", "仿宋", STFangSong, "华文仿宋", serif;
+  color: #111;
+  background-color: #fdfdfd;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0 2%;
+}
+@media screen and (min-width: 600px) {
+  body {
+    padding: 0 5%;
+    font: 400 18px/1.8 "Bitter", "Times New Roman", "FangSong", "仿宋", STFangSong, "华文仿宋", serif;
+  }
+}
+
+/**
+  * Set `margin-bottom` to maintain vertical rhythm
+  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure {
+  margin-bottom: 15px;
+}
+
+/**
+  * `main` element
+  */
+main {
+  display: block;
+  /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+/**
+  * Divider
+  */
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  height: 1px;
+  background: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.5), transparent);
+  background: linear-gradient(left, transparent, rgba(0, 0, 0, 0.5), transparent);
+}
+
+/**
+  * Images
+  */
+img {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 2px 2px;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/**
+  * Figures
+  */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: 15.3px;
+}
+
+/**
+  * Lists
+  */
+ul,
+ol {
+  margin-left: 30px;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+/**
+  * Headings
+  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+/**
+  * Links
+  */
+a {
+  color: #2a7ae2;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/**
+  * Blockquotes
+  */
+blockquote {
+  color: #828282;
+  border-left: 4px solid #e8e8e8;
+  padding-left: 15px;
+  font-size: 18px;
+  letter-spacing: -1px;
+  font-style: italic;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/**
+  * Code formatting
+  */
+pre,
+code {
+  font-size: 16.2px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+}
+
+code {
+  padding: 1px 1px;
+}
+
+pre {
+  padding: 2px 2px;
+  overflow-x: auto;
+}
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/**
+  * Wrapper
+  */
+.wrapper {
+  max-width: -webkit-calc(800px - (30px));
+  max-width: calc(800px - (30px));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media screen and (min-width: 800px) {
+  .wrapper {
+    max-width: -webkit-calc(800px - (30px * 2));
+    max-width: calc(800px - (30px * 2));
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+/**
+  * Clearfix
+  */
+.wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+  * Icons
+  */
+.orange {
+  color: #f66a0a;
+}
+
+.grey {
+  color: #828282;
+}
+
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: currentColor;
+  padding: 5px 3px 2px 5px;
+  vertical-align: text-bottom;
+}
+
+/**
+  * Tables
+  */
+table {
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: left;
+  color: #3f3f3f;
+  border-collapse: collapse;
+  border: 1px solid #e8e8e8;
+}
+table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+table th,
+table td {
+  padding: 10px 15px;
+}
+table th {
+  background-color: #f0f0f0;
+  border: 1px solid #dedede;
+  border-bottom-color: #c9c9c9;
+}
+table td {
+  border: 1px solid #e8e8e8;
+}
+
+/**
+ * Site header
+ */
+.site-header {
+  border-top: 5px solid #424242;
+  border-bottom: 1px solid #e8e8e8;
+  min-height: 55.95px;
+  line-height: 72.9px;
+  position: relative;
+}
+
+.site-nav {
+  position: absolute;
+  top: 9px;
+  right: 15px;
+  background-color: #fdfdfd;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  text-align: right;
+}
+.site-nav .nav-trigger {
+  display: none;
+}
+.site-nav .menu-icon {
+  float: right;
+  width: 36px;
+  height: 26px;
+  line-height: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+.site-nav .menu-icon > svg path {
+  fill: #424242;
+}
+.site-nav label[for=nav-trigger] {
+  display: block;
+  float: right;
+  width: 36px;
+  height: 36px;
+  z-index: 2;
+  cursor: pointer;
+}
+.site-nav input ~ .trigger {
+  clear: both;
+  display: none;
+}
+.site-nav input:checked ~ .trigger {
+  display: block;
+  padding-bottom: 5px;
+}
+.site-nav .page-link {
+  color: #111;
+  line-height: 1.8;
+  display: block;
+  padding: 5px 10px;
+  margin-left: 20px;
+}
+.site-nav .page-link:not(:last-child) {
+  margin-right: 0;
+}
+@media screen and (min-width: 600px) {
+  .site-nav {
+    position: static;
+    float: right;
+    border: none;
+    background-color: inherit;
+  }
+  .site-nav label[for=nav-trigger] {
+    display: none;
+  }
+  .site-nav .menu-icon {
+    display: none;
+  }
+  .site-nav input ~ .trigger {
+    display: block;
+  }
+  .site-nav .page-link {
+    display: inline;
+    padding: 0;
+    margin-left: auto;
+  }
+  .site-nav .page-link:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+/**
+ * Site footer
+ */
+.site-footer {
+  padding: 20px 0;
+}
+
+.footer-heading {
+  font-size: 20.25px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 500px) {
+  .p-name {
+    font-size: 16.2px;
+  }
+}
+
+@media (max-width: 500px) {
+  .u-email {
+    font-size: 16.2px;
+  }
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+/**
+ * Page content
+ */
+.page-content {
+  padding: 30px 0;
+  flex: 1 0 auto;
+}
+
+.page-heading {
+  font-size: 36px;
+}
+
+.home-title {
+  margin-top: -10px;
+}
+
+.home-heading {
+  font-weight: 1000;
+  color: #373737;
+  font-size: 39.6px;
+}
+@media (max-width: 500px) {
+  .home-heading {
+    margin-top: 20px;
+    font-size: 30.6px;
+  }
+}
+
+.home-sub-heading {
+  margin-top: -0.6rem;
+  color: #515151;
+  font-size: 18px;
+}
+@media (max-width: 500px) {
+  .home-sub-heading {
+    font-size: 14.4px;
+  }
+}
+
+.post-list {
+  margin-top: 2.5rem;
+  margin-left: 0;
+  list-style: none;
+}
+.post-list li {
+  margin-bottom: 2.5px;
+}
+
+.post-year {
+  margin-top: 2rem;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  color: #373737;
+  font-size: 27px;
+}
+@media (max-width: 500px) {
+  .post-year {
+    font-size: 21.6px;
+  }
+}
+
+.post-meta {
+  display: inline-block;
+  min-width: 60px;
+  font-size: 18px;
+  color: #515151;
+}
+@media (max-width: 500px) {
+  .post-meta {
+    font-size: 14.4px;
+  }
+}
+
+.post-link-layout {
+  margin-left: 10%;
+  display: inline;
+  font-size: 21.6px;
+}
+@media (max-width: 500px) {
+  .post-link-layout {
+    font-size: 18px;
+  }
+}
+
+.black-link {
+  color: #111;
+  text-decoration: none;
+}
+.black-link:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+.post-back {
+  margin-bottom: 20px;
+  color: #515151;
+}
+
+/**
+ * Posts
+ */
+.post-header {
+  margin-bottom: 30px;
+}
+
+.post-title,
+.post-content h1 {
+  font-size: 39.6px;
+  line-height: 1.3;
+  font-weight: 1000;
+  margin-top: -0.5rem;
+}
+@media (max-width: 500px) {
+  .post-title,
+.post-content h1 {
+    font-size: 32.4px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .post-title,
+.post-content h1 {
+    font-size: 39.6px;
+  }
+}
+
+.post-content {
+  margin-top: 3.2rem;
+  margin-bottom: 30px;
+}
+.post-content h2 {
+  font-size: 31.5px;
+}
+@media screen and (min-width: 800px) {
+  .post-content h2 {
+    font-size: 36px;
+  }
+}
+.post-content h3 {
+  font-size: 24.75px;
+}
+@media screen and (min-width: 800px) {
+  .post-content h3 {
+    font-size: 29.25px;
+  }
+}
+.post-content h4 {
+  font-size: 20.25px;
+}
+@media screen and (min-width: 800px) {
+  .post-content h4 {
+    font-size: 22.5px;
+  }
+}
+
+.social-media-list {
+  margin-top: -1rem;
+  display: flex;
+  font-size: 18px;
+}
+.social-media-list li {
+  float: left;
+}
+.social-media-list li a {
+  padding-right: 6px;
+}
+
+/**
+ * Grid helpers
+ */
+@media screen and (min-width: 800px) {
+  .one-half {
+    width: -webkit-calc(50% - (30px / 2));
+    width: calc(50% - (30px / 2));
+  }
+}
+/**
+ * About Page
+ */
+.about-page {
+  display: inline-block;
+}
+.about-page .about-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.about-page .about-header .about-avatar {
+  padding: 1px;
+  border: 1px solid #e8e8e8;
+  width: 10rem;
+  height: 10rem;
+  margin: 0 2rem 0 0;
+}
+.about-page .about-header .about-info {
+  align-self: center;
+}
+.about-page .about-header .about-info .about-your-name {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  font-size: 27px;
+}
+.about-page .about-header .about-info .about-description {
+  margin-top: -0.6rem;
+  font-size: 18px;
+  color: #515151;
+}
+.about-page .about-content {
+  margin-top: 2rem;
+}
+
+
+
+/*!
+ * Agate by Taufik Nurrohman <https://github.com/tovic>
+ * ----------------------------------------------------
+ *
+ * #ade5fc
+ * #a2fca2
+ * #c6b4f0
+ * #d36363
+ * #fcc28c
+ * #fc9b9b
+ * #ffa
+ * #fff
+ * #333
+ * #62c8f3
+ * #888
+ *
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #333;
+  color: white;
+}
+
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-code,
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-tag {
+  color: #62c8f3;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #ade5fc;
+}
+
+.hljs-string,
+.hljs-bullet {
+  color: #a2fca2;
+}
+
+.hljs-type,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-quote,
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #ffa;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  color: #d36363;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: #fcc28c;
+}
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-code {
+  color: #888;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #c6b4f0;
+}
+
+.hljs-meta {
+  color: #fc9b9b;
+}
+
+.hljs-deletion {
+  background-color: #fc9b9b;
+  color: #333;
+}
+
+.hljs-addition {
+  background-color: #a2fca2;
+  color: #333;
+}
+
+.hljs a {
+  color: inherit;
+}
+
+.hljs a:focus,
+.hljs a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Unix and Me :)" property="og:title">
+  <meta content="Dmitry Rocha" name="author">
+  <meta content="en" property="og:locale">
+  <meta content="Annoying, annoying, annoying. This is Thunar without icons" name="description">
+  <meta content="Annoying, annoying, annoying. This is Thunar without icons" property="og:description">
+  <meta content="" property="og:url">
+  <meta content="Unix and Me :)" property="og:site_name">
+  <meta content="article" property="og:type">
+  <meta content="2017-11-02T10:23:00-03:00" property="article:published_time">
+ </head>
+ <body>
+  <main aria-label="Content" class="page-content">
+   <div class="wrapper">
+    <article class="post h-entry" itemscope itemtype="">
+     <title>
+      How to fix thunar missing icons
+     </title>
+     <header class="post-header">
+      <div class="post-back">
+       <a class="black-link">
+        &larr; Home
+       </a>
+      </div>
+      <h1 class="post-title p-name" itemprop="name headline">
+       How to fix thunar missing icons
+      </h1>
+      <p class="post-meta">
+       <time class="dt-published" datetime="2017-11-02 10:23:00 -0300 -0300" itemprop="datePublished" title="2017-11-02 10:23:00 -0300 -0300">
+        Nov 2, 2017
+       </time>
+       &bull; #unix #desktop
+      </p>
+     </header>
+     <div class="post-content e-content" itemprop="articleBody">
+      <section>
+       <hr>
+       <h1>
+        <abbr title="too long; didn't read">
+         tl;dr
+        </abbr>
+       </h1>
+       <p>
+        Edit
+        <code>
+         ~/.gtkrc-2.0
+        </code>
+        with something like:
+       </p>
+       <pre><code class="hljs ini"><span class="hljs-attr">gtk-icon-theme-name</span> = <span class="hljs-string">"Tango"</span>
+</code></pre>
+       <p>
+        And that is it :)
+       </p>
+       <hr>
+      </section>
+      <p>
+       <img alt="Thunar without icons" src="rick.jpg">
+      </p>
+      <p>
+       I'm still looking for a perfect filebrowser, nautilus is good I wish I could use it, but nautilus has so many dependencies that I always give up installing.
+      </p>
+      <p>
+       I tried thunar in a docker image (it is
+       <a>
+        here
+       </a>
+       if you want to use it), but you know we don't get many integrations in this way.
+      </p>
+      <p>
+       Like I said I tried first to use it in a Docker image, fixed this problem but I could not create the habit of using it. Then I moved to install it in my desktop.
+      </p>
+      <h1 id="fix-it">
+       Fix it!
+      </h1>
+      <p>
+       This &ldquo;missing icons&rdquo; problem happens only when there is no icons in your system (which is a rare case) or when your system is not configured properly.
+      </p>
+      <h2 id="if-you-dont-have-a-icon-theme">
+       If you don't have a icon theme
+      </h2>
+      <p>
+       In the first case you will have to install a icon pac to find &ldquo;instalables&rdquo; pacs type:
+      </p>
+      <div class="highlight">
+       <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell hljs" data-lang="shell"><span class="hljs-meta">$</span><span class="bash"> apt-cache search icon-theme</span>
+</code></pre>
+      </div>
+      <p>
+       In Ubuntu, or
+      </p>
+      <div class="highlight">
+       <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell hljs" data-lang="shell"><span class="hljs-meta">$</span><span class="bash"> pacman -Ss icon-theme</span>
+</code></pre>
+      </div>
+      <p>
+       In Arch.
+      </p>
+      <p>
+       Install it using
+       <code>
+        apt-get install ICON-THEME
+       </code>
+       or
+       <code>
+        pacman -S ICON-THEME
+       </code>
+       .
+      </p>
+      <h2 id="configure-it">
+       Configure it
+      </h2>
+      <p>
+       If you had installed or you already had a icon theme in order to fix this problem you have to create or edit this file:
+       <code>
+        ~/.gtkrc-2.0
+       </code>
+       to something like:
+      </p>
+      <pre><code class="hljs ini"><span class="hljs-attr">gtk-icon-theme-name</span>=<span class="hljs-string">"ICON-THEME"</span>
+</code></pre>
+      <p>
+       And that is it!
+      </p>
+      <footer>
+       <div class="references">
+        <h3>
+         Reference
+        </h3>
+        <ul>
+         <li>
+          "Icons for Thunar file manager"
+          <a>
+           https://www.linuxquestions.org/questions/slackware-14/icons-for-thunar-file-manager-773501/
+          </a>
+          .
+                    Accessed Nov 2, 2017.
+         </li>
+        </ul>
+       </div>
+       <div id="disqus_thread">
+       </div>
+      </footer>
+     </div>
+    </article>
+   </div>
+  </main>
+  <noscript>
+   Please enable JavaScript to view the
+   <a>
+    comments powered by Disqus.
+   </a>
+  </noscript>
+  <footer class="site-footer h-card">
+   <div class="wrapper">
+    <div class="footer-col-wrapper">
+     <div class="footer-col">
+      <ul class="contact-list">
+       <li class="p-name">
+        <a class="black-link">
+         github.com/dmitryrck
+        </a>
+       </li>
+       <li class="p-name">
+        <a class="black-link">
+         linkedin.com/in/dmitryrck
+        </a>
+       </li>
+       <li class="p-name">
+        <a class="black-link">
+         speakerdeck.com/dmitryrck
+        </a>
+       </li>
+       <li class="p-name">
+        <a class="black-link">
+         twitter.com/dmitryrck
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <div class="pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links ad-text adSense adBlock adContent adBanner" style="width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;">
+  </div>
+ </body>
+</html>

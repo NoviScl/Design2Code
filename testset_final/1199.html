@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+ <head>
+  <meta charset="utf-8">
+  <title>
+   Selection Functions (IEC 61131-3) - Select one Value from Others
+  </title>
+  <meta content="A collection of IEC 61131-3 standard selection functions to select one value from a set of values." name="description">
+  <meta content="#026c4e" name="theme-color">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <style>
+   h1{color:#ddd;font-weight:normal;padding:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAA8BAMAAAC9YJB/AAAAMFBMVEUCbE4Ca00CaUwCaEsCZkoCZEgCYkcCYUcCYEYCX0UCakwCYUYCak0CY0gCa04CYEWPtRulAAABXklEQVR42u3ZsU3DQBhA4SNQRVEKQHRUIVVEZ9NQUDlUiAoTK4pS4ozgEW4EarOEa9gBW3TQsUE6JHo6eJLJeyN8Ov367y6EPnX12Nt65RyGUWimE6GZxp3QTAdCQ82EhoZHITTTfhSa6VRoqEuhoW6FZtorhGYaVEJDq0clNCTdCK30v4Lum3TosXQlNCS9ERra8jqhoa+ttdDQo+m10FDnQkMdR6Gh5aMQGhrUF0JT46MSmmm0FBrqZSM09O0yFxrqqBMaWj/SrdDQTr0QGmoahYZe9OZCU8/UudBQH/dCU6veUmio54XQ1K28FRrqqRWaGiC50NSylzVCQ+96SSv0zkyQsCsNbhqhqQnyJjTUe1oKTd3Ns0poqHoVhYbG9Vm+FZpplORRaOhcT7JSaKhP6mAHG9fEwdb5u2GSN0JDHSarUmhqF5lkr1FoaBmp0z+YI7r+NEfuHn71aH8BXA7zO1OgfawAAAAASUVORK5CYII=);}
+		h3{color:#222;font-style:italic;}
+		h4{margin: 18px 0px 10px 0px;}
+		body{font-family:helvetica, sans-serif;font-size:10pt;}
+		a{text-decoration:none;color:#4C8033;}
+		p{max-width:800px;}
+		p.chmHelpOnly {display:none;}
+		li{max-width:760px;}
+		ul{padding-left:24px;}
+		ol{padding-left:28px;}
+		.Indent{margin-left:24px;}
+		.codeIndent{margin-left:24px;font-family:Courier New, Monospace;background-color:#f0f0f0;max-width:776px;}
+		p.Note{font-style:italic;margin-left:24px;}
+		p.CodeSample{font-family:Courier New, Monospace;background-color:#f0f0f0;max-width:776px;}
+		p.Footer{border-top:1px solid silver;padding-top:2px;text-align:left;font-size:x-small;}
+		ol.breadCrumbs{display:block;padding:0px;}
+		ol.breadCrumbs>li{list-style:none;white-space:nowrap;display:inline;}
+		ol.breadCrumbs>li:not(:last-child)::after{content:" » ";}
+		ol>li{margin-top:5px;margin-bottom:5px;}
+		ul>li{margin-top:5px;margin-bottom:5px;}
+		ol.procedure li {margin-bottom: 15px;}
+		ol.procedure li img {display: block;margin-top: 10px;}
+		li>img{margin-top:6px;}
+		table{border-style:solid;border-width:1px;border-spacing:0;max-width:776px;}
+		table th{font-weight:normal;text-align:left;background-color:#E4E4E4;vertical-align:top;}
+		table td{border-bottom:1px solid #e0e0e0;vertical-align:top;}
+		table td ul{padding-left:18px;}
+		td.Code{font-family:Courier New, Monospace;}
+		table.Code td{font-family:Courier New, Monospace;}
+		table.DataCable th{font-weight:bold;border:1px solid #e0e0e0;background-color:inherit;font-size:larger;text-align:center;}
+		table.DataCable td{border:1px solid #e0e0e0;vertical-align:top;text-align:center;}
+		pre{font-family:Courier New, Monospace;background-color:#f0f0f0;max-width:776px;}
+		.Code{font-family:Courier New, Monospace;}
+		img[usemap] {border:0px;}
+		dl.parameters dt{font-family:Courier New, Monospace;}
+		.nosp {}
+		@media all and (min-width:641px) {
+			table.Indent{margin-left:24px;}
+			table.Code{margin-left:24px;}
+			table.DataCable{margin-left:24px;}
+			.codeIndent{margin-left:24px;}
+			td, th{padding:5px 12px;}
+		}
+		@media all and (max-width:640px) {
+			html, body{margin:0px;}
+			td, th{padding:5px;}
+			pre{font-size:x-small;}
+			.Indent{margin-left:4px;}
+			.codeIndent{margin-left:4px;}
+			img{max-width:320px;height:auto;}
+			ol.breadCrumbs>li:not(:nth-last-child(-n+2)){display:none;}
+		}
+  </style>
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <h1>
+   Selection Functions
+  </h1>
+  <a style="float:right;">
+   Help Contents
+  </a>
+  <ol class="breadCrumbs">
+   <li>
+    <a>
+     <span>
+      Fernhill SCADA
+     </span>
+    </a>
+    <meta>
+   </li>
+   <li>
+    <a>
+     <span>
+      Help
+     </span>
+    </a>
+    <meta>
+   </li>
+   <li>
+    <a>
+     <span>
+      IEC 61131-3
+     </span>
+    </a>
+    <meta>
+   </li>
+   <li>
+    <a>
+     <span>
+      Common Elements
+     </span>
+    </a>
+    <meta>
+   </li>
+  </ol>
+  <h2>
+   Introduction
+  </h2>
+  <p>
+   The IEC 61131-3
+   <b>
+    Selection Functions
+   </b>
+   choose one value from a set of values.
+        These selection functions are supported:
+  </p>
+  <table class="Indent">
+   <tbody>
+    <tr>
+     <th>
+      Function
+     </th>
+     <th>
+      Explanation
+     </th>
+    </tr>
+    <tr>
+     <td>
+      <a>
+       MOVE
+      </a>
+     </td>
+     <td>
+      Assign one value to another.
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a>
+       SEL
+      </a>
+     </td>
+     <td>
+      Returns one of two values depending on a BOOL value.
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <a>
+       MAX
+      </a>
+     </td>
+     <td>
+      Returns the highest value input.
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <h2>
+   Standards Compliance
+  </h2>
+  <p>
+   IEC 61131-3 Second Edition: Table 27.
+  </p>
+  <p>
+   IEC 61131-3 Third Edition: Table 32.
+  </p>
+  <h2>
+   Further Information
+  </h2>
+  <p>
+   <a>
+    Common Elements
+   </a>
+  </p>
+  <p class="Indent">
+   To learn about other common language elements.
+  </p>
+  <p>
+   <a>
+    Glossary
+   </a>
+  </p>
+  <p class="Indent">
+   For the meaning of terms used in
+   <b>
+    Fernhill
+    <abbr title="Supervisory Control and Data Acquisition">
+     SCADA
+    </abbr>
+   </b>
+   .
+  </p>
+  <p class="Footer">
+   Fernhill SCADA Version 4.0 (20231031.2).  Copyright &copy; 2012-2023 Fernhill Software Ltd: All rights reserved.
+  </p>
+ </body>
+</html>

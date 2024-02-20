@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+ <head>
+  <style>
+   /*
+ * Copyright © 2002-2018  Michel Fortin
+ * <https://michelf.com/>
+ */
+
+html {
+	min-height: 100%;
+}
+html, body, #page-content {
+	-webkit-box-flex: 1.0;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+
+}
+body {
+	/* Positionnement. */
+	margin: 0;
+	padding: 0;
+	color: black;
+	
+	/* Police. */
+	font-family: Palatino, "Palatino Linotype", "URW Palladio L",
+	             "Book Antiqua", Georgia, "Times New Roman", serif;
+	line-height: 1.45;
+	font-variant-numeric: lining-nums proportional-nums;
+}
+
+#page-content {
+	width: 90%;
+	max-width: 52em;
+	margin: 0 auto;
+    padding: 0.8ex 5% 0;
+	padding-left: max(5%, env(safe-area-inset-left));
+	padding-right: max(5%, env(safe-area-inset-right));
+    position: relative;
+    background: white;
+}
+.sublayout, .narrow {
+	max-width: 35em;
+	margin: auto;
+	padding-bottom: 10ex;
+}
+body.wide .sublayout {
+	width: 100%;
+	max-width: 100%;
+	padding-bottom: 4ex;
+}
+.sublayout:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.sublayout::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+@media screen and (min-width: 45em) {
+	*>.sublayout div.panorama {
+		margin: 0 -15%;
+	}
+}
+@media screen and (min-width: 55em) {
+	*>.sublayout div.panorama {
+		margin: 0 -30%;
+	}
+}
+@media screen and (min-width: 60em) {
+	*>.sublayout div.panorama {
+		margin: 0 -45%;
+	}
+}
+.sublayout div.panorama {
+	text-align: center;
+}
+.sublayout div.panorama img {
+	max-width: 100%;
+}
+body.wide .sublayout div.panorama {
+	margin: auto;
+}
+
+
+a img {
+	border: none;
+}
+
+nav {
+	height: 115px;
+	background: white url(tete.gif) repeat-x;
+    background: -webkit-linear-gradient(top, #ffeb90 0%, #fffca1 38%, #fdffa9 52.17%, #e3ff85 52.17%, #fff 80.87%, #fff 100%);
+    background: 
+        -webkit-gradient(linear, left top, left bottom, 
+        from(#ffeb90),
+        to(#fff),
+        color-stop(0.2522, #fffca1),
+        color-stop(0.5217, #fdffa9),
+        color-stop(0.5217, #e3ff85)
+        color-stop(0.8087, #fff)
+        );
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+}
+#tete {
+	position: relative;
+	min-height: 93px;
+	max-width: 52em;
+	margin: 0 auto;
+	font: 95% -apple-system, "Lucida Grande", "Lucida Unicode", sans-serif;
+}
+
+#tete h1 {
+	margin: -1px -1px 0 -1px;
+    padding: 1px 0 0 1px;
+	font: 130% "Futura-CondensedMedium", "Lucida Grande", "Lucida Unicode", sans-serif;
+	
+	display: block;
+	text-align: center;
+    
+	-webkit-border-top-right-radius: 0.6em; -webkit-border-top-left-radius: 0.6em;
+	border-top-right-radius: 0.6em; border-top-left-radius: 0.6em;
+	-moz-border-radius-topright: 0.6em; -moz-border-radius-topleft: 0.6em;
+}
+
+#tete h1 a, #tete h1 strong {
+	position: relative;
+	z-index: 6;
+	display: block;
+	width: 108px;
+	margin: auto;
+}
+#tete h1 img {
+    display: block;
+	margin: 0 auto;
+	padding: 0;
+	
+	width: 108px;
+	height: 102px;
+	border-bottom: 1px solid transparent;
+}
+#tete h1 a .mflogo:hover {
+	border-bottom: 1px solid black;
+}
+#tete h1 .mflogo {
+	display: block;
+	height: 103px;
+	overflow: hidden;
+	border-bottom: 1px solid white;
+}
+#tete h1 .mflogo::before {
+	display: block;
+	content: "";
+	height: 102px;
+	background: url(logo-mf.gif) no-repeat center top;
+	padding-bottom: 2px;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1), screen and (min--moz-device-pixel-ratio: 1) {
+	*>#tete h1 .mflogo::before {
+		background-image: none, url(logo-mf.svg);
+	}
+}
+
+#main-nav {
+	list-style: none;
+	position: absolute;
+	display: block;
+	width: 100%;
+	top: 0;
+	margin: -1px -1px 0 -1px;
+	padding: 64px 0;
+	height: 1ex;
+
+	-webkit-border-top-right-radius: 0.6em; -webkit-border-top-left-radius: 0.6em;
+	border-top-right-radius: 0.6em; border-top-left-radius: 0.6em;
+	-moz-border-radius-topright: 0.6em; -moz-border-radius-topleft: 0.6em;
+}
+
+#main-nav li {
+	position: absolute;
+	z-index: 5;
+	top: 12px;
+	display: block;
+	margin-top: 25px;
+	text-align: center;
+	width: 108px; height: 55px;
+}
+#main-nav1 {
+	right: 66%;
+	margin-right: 83px;
+}
+#main-nav2 {
+	right: 61%;
+	margin-right: 7px;
+	z-index: 6 ! important;
+}
+#main-nav3 {
+	left: 61%;
+	margin-left: 7px;
+	z-index: 6 ! important;
+}
+#main-nav4 {
+	left: 66%;
+	margin-left: 83px;
+}
+#main-nav a, #main-nav strong, #tete h1 a, #tete h1 strong {
+	display: block;
+	padding: 0 0 10px 0;
+}
+#main-nav a.courant, #main-nav strong, #tete h1 a.courant, #tete h1 strong {
+	border: none;
+	background: url(triangle.png) no-repeat bottom center;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1), screen and (min--moz-device-pixel-ratio: 1) {
+	*>#main-nav a.courant, *>#main-nav strong, *>#tete h1 a.courant, *>#tete h1 strong {
+		background-image: none, url(triangle.svg);
+	}
+}
+* html #main-nav a.courant, * html #main-nav strong, * html #tete h1 a, * html #tete h1 strong {
+	background-image: url(triangle.gif);
+}
+#main-nav li a, #main-nav li strong {
+	padding-top: 27px;
+}
+#main-nav li strong { color: #570; cursor: default; }
+#main-nav li.logiciels {
+	background: url(icon-logiciels.png) no-repeat top center;
+}
+#main-nav li.services {
+	background: url(icon-services.png) no-repeat top center;
+}
+#main-nav li.blogue {
+	background: url(icon-blogue.png) no-repeat top center;;
+}
+#main-nav li.boutique {
+	background: url(icon-boutique.png) no-repeat top center;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1), screen and (min--moz-device-pixel-ratio: 1) {
+	*>#main-nav li.logiciels {
+		background-image: none, url(icon-logiciels.svg);
+	}
+	*>#main-nav li.services {
+		background-image: none, url(icon-services.svg);
+	}
+	*>#main-nav li.blogue {
+		background-image: none, url(icon-blogue.svg);
+	}
+	*>#main-nav li.boutique {
+		background-image: none, url(icon-boutique.svg);
+	}
+}
+
+#tete a {
+	text-decoration: none;
+	font-weight: bold;
+}
+#main-nav a {
+	color: black;
+}
+#pied a {
+    color: black;
+}
+#main-nav a:visited	{ color: #440; }
+#pied a:visited	{ color: #440; }
+#main-nav a:active	{ color: #c84; }
+#pied a:active	{ color: #c84; }
+
+#tete a:hover {
+	text-decoration: underline;
+}
+
+#pied hr, #tete hr {
+	color: white;
+	border: none;
+	background: transparent;
+	height: 1px;
+	clear: both;
+	margin: 0;
+}
+
+#pied {
+	clear: both;
+	position: relative;
+	margin: 1.4ex 5%;
+}
+* html #pied { height: 1ex; }
+
+#pied p {
+    clear: left;
+    color: #6e6650;
+	font: 93% -apple-system, "Lucida Grande", "Lucida Unicode", sans-serif;
+	margin: 0;
+
+	font-variant-numeric: proportional-nums;
+}
+
+#sitemap hr {
+    color: white;
+	border: none;
+	background: transparent;
+	height: 1px;
+	width: 100%;
+	clear: both;
+	margin: 0 0 1em;
+}
+#sitemap {
+	padding: 0;
+	padding-top: 3em;
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+	background: -webkit-linear-gradient(bottom, #f9ffdb 0%, #fcffef 40%, #fdfff6 60%, #fff 100%);
+	background: -webkit-gradient(linear, left bottom, left top,
+	from(#f9ffdb),
+	to(#fff),
+	color-stop(0.4, #fcffef),
+	color-stop(0.6, #fdfff6),
+	);
+}
+#sitemap-content {
+	color: #6e6650;
+	max-width: 52em;
+	margin: 2.4ex auto 0 auto;
+	padding: 0 5%;
+	clear: both;
+	position: relative;
+}
+#sitemap li {
+	font: 90% -apple-system, "Lucida Grande", "Lucida Unicode", sans-serif;
+}
+#sitemap li li {
+    font-size: inherit;
+}
+
+#sitemap div.pied {
+	clear: both;
+	border-top: 1px solid #ce9;
+	color: #6e6650;
+	padding: 1ex 0;
+	margin: 0 0 1em 0;
+	text-align: center;
+}
+#sitemap div.pied ul {
+	display: inline;
+	clear: none;
+	padding: 0;
+	margin: 0;
+}
+#sitemap div.pied li {
+	display: inline;
+	margin: 0 0.5em;
+	list-style: none;
+}
+
+
+#sitemap a          { text-decoration: none; color: #480; }
+#sitemap a:hover    { text-decoration: underline; }
+#sitemap a:visited	{ color: #340; }
+#sitemap a:active	{ color: #dc4; }
+
+#sitemap p {
+    clear: left;
+    color: #6e6650;
+	font-size: 95%;
+	margin: 0;
+}
+
+#sitemap div.navcolumn {
+    float: left;
+    padding: 0 2.9em 1em 0;
+}
+#sitemap div.navcolumn.lastcolumn {
+    padding: 0 0 1em 0;
+}
+#sitemap ul {
+    font-size: 93%;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    min-width: 20%;
+    margin-right: 2em;
+}
+#sitemap ul ul {
+    font-size: inherit;
+}
+#sitemap ul.continued { float: left; }
+#sitemap li { margin: 0.5ex 0; }
+@media (pointer:coarse) { #sitemap li { margin: 1ex 0; } }
+#sitemap li ul { margin-left: 1em; }
+#sitemap li ul { margin-left: 1em; }
+
+#sitemap .more { font-style: italic; }
+
+#page-content h1 {
+	margin-top: 0;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+
+.tagline {
+	font-size: 108%;
+	text-align: center;
+	max-width: 25em;
+	margin-top: 1ex;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.35; /* 0.05 */
+	
+	hyphens: manual;
+	hyphenate-limit-chars: 8;
+	-webkit-hyphenate-limit-before: 5;
+	-webkit-hyphenate-limit-after: 5;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+img.tagimage {
+	display: block;
+	width: 100%;
+	margin: 1ex auto 2ex auto;
+}
+
+.archives-journal th {
+	padding-top: 2ex;
+	text-align: center;
+	font-weight: bold;
+}
+.archives-journal .repeat-month {
+	opacity: 0.0;
+}
+.archives-journal .newmonth td {
+	padding-top: 2ex ! important;
+}
+.archives-journal td.date {
+	white-space: nowrap;
+	text-align: right;
+}
+
+/* MARK: Content */
+
+h1 {
+	font-style: none;
+	font-size: 130%;
+	color: #99cc44;
+	clear: both;
+	line-height: 1.15; /* 0.05 */
+}
+
+h2 {
+	font-size: 140%;
+	line-height: 1.1; /* 0.05 */
+	margin-top: 2.5ex;
+	margin-bottom: 1.7ex;
+	font-weight: normal;
+	clear: left;
+}
+h3 {
+	font: bold 110% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 4.4ex 0 2.85ex 0;
+}
+h2 + h3 {
+	margin-top: 2.85ex;
+}
+h4 {
+	font-size: 85%;
+	xmargin: 3.05ex 0; /* 0.2 */
+	margin: 2.85 0;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+p {
+	xmargin: 3.05ex 0; /* 0.2 */
+	margin: 2.4ex 0;
+	text-align: justify;
+	word-spacing: 0;
+	xmargin: 0;
+	
+	hyphens: auto;
+	hyphenate-limit-chars: 8;
+	-webkit-hyphenate-limit-before: 5;
+	-webkit-hyphenate-limit-after: 5;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+}
+
+sup, sub {
+	line-height: 0.5; /* don't disturb standard line height */
+}
+
+p + p {
+	xtext-indent: 2em;
+}
+
+/* MARK: Lists */
+
+ul, ol, p + ul, p + ol {
+	padding: 0;
+	margin: 1.5ex 0 1.5ex 2em;
+}
+li ul, li ol {
+	margin: 0 0 0 2em;
+}
+ul {
+	list-style: square;
+}
+
+
+/* MARK: Definition Lists */
+
+dt {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 105%;
+	margin: 2ex 0 1ex 0;
+}
+dt + dt { margin-top: 0.5ex; }
+dd { padding: 0; margin: 1.2ex 0 1.2ex 2em; }
+dd p { margin: 1.2ex 0; }
+
+/* MARK: Definition list with icons. */
+
+dl.icon-list dt, .icon-list dl dt {
+	clear: left;
+	padding-top: 5px;
+	margin-top: 1.5em;
+}
+dl.icon-list dt img, .icon-list dl dt img {
+	float: left;
+	margin: -5px 1.5em 2.3ex 0;
+	width: 64px;
+	height: 64px;
+	position: relative;
+}
+* html dl.icon-list td img, * html .icon-list dl td img {
+	position: relative;
+}
+dl.icon-list dd, .icon-list dl dd { margin-left: 64px; padding-left: 1.5em }
+
+/* MARK: Links */
+
+a			{ color: #470; }
+a:visited	{ color: #440; }
+a:active	{ color: #cb6; }
+
+a.download {
+	padding: 2px 0 0px 24px;
+	background: url(/style/download-link.svg) center left no-repeat;
+}
+a.appstore {
+	padding: 2px 0 0px 24px;
+	background: url(/style/appstore-link.svg) center left no-repeat;
+}
+a.twitter {
+	padding: 2px 0 0px 26px;
+	background: url(/style/tweet-link.svg) center left no-repeat;
+}
+a.mastodon {
+	padding: 2px 0 0px 26px;
+	background: url(/style/mastodon-link.svg) center left no-repeat;
+}
+a.github {
+	padding: 2px 0 0px 26px;
+	background: url(/style/github-link.svg) center left no-repeat;
+}
+a.newsletter {
+	padding: 2px 0 0px 26px;
+	background: url(/style/newsletter-link.svg) center left no-repeat;
+}
+a.email {
+	padding: 2px 0 0px 26px;
+	background: url(/style/email-link.svg) center left no-repeat;
+}
+a.feed {
+	padding: 2px 0 0px 26px;
+	background: url(/style/feed-link.svg) center left no-repeat;
+}
+
+/* MARK: Notes */
+
+.note, p.alt { clear: both; }
+span.note { font-style: italic; }
+p.note, .note p, p.alt { font-style: italic; margin-top: 2.2ex; }
+
+/* MARK: Discussion & Comments */
+
+h1#discussion {
+	margin-top: 2.5ex;
+}
+
+dl.commentaires dt { text-align: right; }
+dl.commentaires dt strong {
+	font-weight: normal;
+	float: left;
+	text-align: left;
+}
+dl.commentaires dt span {
+	white-space: nowrap; font-size: 95%;
+	color: #cc6;
+}
+dl.commentaires {
+	font-size: 95%;
+}
+dl.commentaires dd {
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+blockquote {
+	margin: 0 2.1em;
+	font-size: 95%;
+	line-height: 1.5;
+}
+blockquote p { margin: 0; }
+blockquote p + p { text-indent: 2.1em; }
+blockquote ul,
+blockquote ol,
+blockquote dd {
+	margin-left: 2.1em;
+}
+blockquote blockquote {
+	font-size: 100%;
+	margin-left: 2.1em;
+}
+blockquote pre {
+	display: block;
+	padding: 0;
+	margin: 1.5ex 2.4em;
+	border: none;
+}
+
+/* Verse quotation */
+
+blockquote.verse {
+	display: table; /* To be able to center the quotation. */
+	border-collapse: collapse;
+	margin: -2ex auto; /* Negative margin to compensate for inner paragraph margin which does not collapse with display table. */
+	padding: 0 2.1em;
+}
+blockquote.verse p {
+	text-align: left;
+	text-indent: 0;
+	margin: 2ex 2.1ex;
+	
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+
+pre {
+	margin: 1ex 3%;
+	line-height: inherit;
+	font-family: Consolas, "Droid Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
+	font-size: 96%;
+	font-size-adjust: 0.45;
+	color: #431;
+}
+code {
+	font-family: Consolas, "Droid Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
+	font-size: 100%;
+	font-size-adjust: 0.45;
+	line-height: 1.2; /* Only IE Mac can use that. */
+	text-transform: none;
+	letter-spacing: normal;
+	word-spacing: -0.2ex;
+	padding: 0 0.3ex;
+	color: #764;
+
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+pre code {
+	padding: 0;
+	word-spacing: normal;
+	color: inherit;
+}
+a code { color: inherit; }
+
+hr {
+	margin: 9ex auto 7ex auto;
+	height: 4px;
+	width: 50px;
+	background: #ce9 url(barre-v.gif);
+	color: #ce9;
+	border: none;
+}
+article hr {
+	margin: 3ex auto 4ex auto;
+}
+
+
+/* MARK: Sample HTML output box */
+
+div.figure {
+	position: relative;
+	display: table; /* Makes the width dependent on content. */
+	border-top: 1px solid #ce9;
+	border-bottom: 1px solid #ce9;
+	padding: 0 0.5em;
+	margin: 0 1.5em;
+	font: 95% serif;
+	line-height: normal;
+}
+div.figure.full-width {
+	width: 92%;
+}
+div.figure :first-child, div.figure p.caption:first-child + * {
+	xmargin-top: 0;
+}
+div.figure :last-child {
+	xmargin-bottom: 0;
+}
+div.figure p.caption, table caption {
+	display: table-caption;
+	padding: 1ex 0.5em 0 0.5em;
+	margin: 0;
+	font: italic 100% Palatino, "Palatino Linotype", "URW Palladio L", 
+	                  "Book Antiqua", Georgia, "Times New Roman", serif;
+	caption-side: bottom;
+	text-align: left;
+
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+table {
+	font-size: 95%;
+	font-variant-numeric: tabular-nums;
+}
+table caption {
+	border-top: 1px solid #ce9;
+	caption-side: bottom;
+	padding-top: 1ex;
+	-khtml-padding-top: 0.5ex;
+}
+
+div.figure h1, div.figure h2, div.figure h3, 
+div.figure h4, div.figure h5, div.figure h6 {
+	font: bold 100% serif; 
+	font-variant: normal;
+	text-shadow: none;
+	text-transform: none;
+	margin: 1ex 0;
+}
+div.figure h1 { font-size: 160%; }
+div.figure h2 { font-size: 145%; }
+div.figure h3 { font-size: 135%; }
+div.figure h4 { font-size: 120%; }
+div.figure h5 { font-size: 110%; }
+div.figure h6 { font-size: 100%; }
+div.figure p {
+	margin: 1.8ex 0; text-indent: 0; text-align: left;
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+div.figure blockquote { border: none; font-size: inherit; }
+div.figure pre {
+	background: transparent; border: none; 
+	padding: 0; margin: 2.2ex 0;
+}
+div.figure hr { color: #dcb; background: #dcb; }
+div.figure dt, div.figure th {
+	font: inherit;
+	text-transform: inherit;
+	letter-spacing: inherit;
+	font-weight: bold;
+}
+div.figure table { font: inherit; margin: 1.5ex 0; }
+div.figure caption { font: inherit; }
+div.figure td, div.figure th {
+	padding: 0.5ex 0.5em;
+	border: 1px solid #dcb;
+}
+div.figure table {
+	border-collapse: collapse;
+	border: 1px solid #dcb;
+}
+div.figure th[align="right"]	{ text-align: right; }
+div.figure th[align="center"]	{ text-align: center; }
+div.figure th[align="left"]	{ text-align: left; }
+div.figure th[align="justify"]{ text-align: justify; }
+
+
+/* MARK: Formulas */
+
+.formula {
+	display: table;
+	margin: 1ex auto;
+}
+
+
+/* MARK: Footnotes */
+
+body a[rel="footnote"], body a.footnote-ref      { padding: 0.4ex; padding-bottom: 1ex; }
+body a[rev="footnote"], body a.footnote-backref  { text-decoration: none; }
+body div.footnotes      { font-size: 92%; margin: 1.5em 0 2.5em 0; }
+body div.footnotes > hr { width: 40%; background: #ce9; color: #ce9; }
+body div.footnotes p    { margin: 1ex 0; }
+
+
+/* MARK: Table */
+
+table {
+	border-collapse: collapse;
+	margin: 1ex 1.5em;
+}
+td, th {
+	padding: 0.2ex 1em 0.2ex 0.5em;
+	vertical-align: baseline;
+}
+tbody tr:first-child td, tbody tr:first-child th {
+	padding-top: 0.8ex;
+}
+tbody tr:last-child td, tbody tr:last-child th {
+	padding-bottom: 0.6ex;
+}
+th {
+	font: 90% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	text-align: left;
+}
+thead td, thead th {
+	padding-bottom: 1ex;
+	border-bottom: 3px double #ce9;
+}
+tfoot td, tfoot th {
+	padding-top: 1ex;
+	border-top: 3px double #ce9;
+}
+
+/* MARK: main & secondary */
+div.secondary p, div.main p {
+	text-align: left;
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+div.main {
+	clear: right;
+    float: right;
+    width: 63%;
+}
+div.main.shift {
+    clear: left;
+    float: left;
+}
+div.main > *:first-child {
+    margin-top: 0;
+}
+div.secondary {
+	clear: left;
+	float: left;
+	width: 28%;
+	font-size: 85%;
+	line-height: 1.40;
+	border-right: 1px solid #ce9;
+	padding-right: 4%;
+	padding-top: 0;
+	padding-bottom: 2ex;
+}
+div.secondary.wide {
+	width: 63%;
+}
+div.secondary + div.secondary, div.vedette + div.secondary {
+	border-top: 1px solid #ce9;
+	padding-top: 2ex;
+}
+div.secondary.shift {
+    clear: right;
+    float: right;
+	border-left: 1px solid #ce9;
+	padding-left: 4%;
+	border-right: none;
+	padding-right: 0;
+}
+div.secondary#intro > *:first-child {
+    margin-top: 0.3em;
+}
+div.secondary hr { display: none; }
+div.secondary h1, div.secondary h2 {
+	font: 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 2ex 0 1ex 0;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+div.secondary ul, div.secondary ol {
+	margin-left: 0;
+	padding-left: 1.3em;
+}
+
+/* MARK: Blog */
+#intro {
+	border-top: none;
+	border-bottom: 1px solid white;
+}
+#intro img {
+	width: 100%; height: auto;
+}
+p.entry-info {
+	text-align: center;
+	font-style: italic;
+	
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+span.spacer {
+	visibility: hidden;
+}
+.entry-date-header {
+	margin-top: 3ex;
+	text-align: center;
+	
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+	
+	font: bold 90% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing: 0.1em;
+	color: #99cc44;
+}
+.entry-date {
+}
+* html div.secondary {
+	padding: 2ex 0;
+}
+* html div.secondary#intro {
+	padding-top: 0;
+}
+
+
+/* MARK: Form styling */
+fieldset {
+	background: #fbf9e9;
+	border: none;
+	border-radius: 1.5em;
+	font: 95% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	clear: both;
+}
+* html fieldset { width: 100%; }
+div.form-zone { display: table; margin: auto; }
+div.form-zone p { text-align: left; }
+p.side-note { font-size: 85%; float: right; width: 22%; padding: 0 2em; text-align: left }
+fieldset p.inner-note { text-align: center; font-size: 85%; margin-top: 1ex; margin-bottom: 2ex; margin-left: auto; margin-right: auto; }
+div.form-zone p.inner-note { max-width: 27em; margin-left: auto; margin-right: auto; }
+p.field-line { padding-left: 12em; text-indent: -12em; }
+p.field-line.compact { margin: 0.5ex 0; }
+p.field-line input { width: 90% }
+p.field-line span.label-text { display: inline-block; min-width: 12.9em; text-align: right; margin-right: 1em; text-transform: uppercase; font-size: 85%; letter-spacing: 0.17ex; }
+@media handheld, only screen and (max-device-width: 480px) {
+	p.side-note { float: none; width: auto; padding: 0; }
+}
+.zone-boutons { text-align: center; }
+
+.card-list { padding: 0 5px; }
+.card-list img { vertical-align: text-bottom; }
+
+
+.secondary .promo {
+    padding-top: 2ex;
+}
+.promo p {
+    margin-top: 0.5ex;
+}
+.promo img {
+    border: none;
+}
+.zone-pub .promo {
+    padding: 1ex 1em;
+    margin: 1ex auto;
+    width: 26em;
+}
+.zone-pub .promo img {
+    float: left;
+	margin: 0 1em 0 0;
+}
+.zone-pub .promo p {
+    padding-top: 1ex;
+	font-size: 90%;
+    text-align: left;
+	
+	hyphens: manual;
+	-webkit-hyphens: manual;
+	-moz-hyphens: manual;
+	-ms-hyphens: manual;
+}
+
+/* MARK: Vedette click boxes */
+
+.vedette {
+	margin: 4ex 0;
+	margin-right: -1%; /* compensate for rounding error */
+}
+.vedette + .vedette a {
+	border-top: 1px solid #CE9;
+}
+.vedette a {
+	display: block;
+	float: left;
+	width: 27%;
+	padding: 3%;
+	font-size: 95%;
+	height: 160px;
+	text-decoration: none !important;
+	position: relative;
+	line-height: 1.3;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.vedette a + a {
+	border-left: 1px solid #CE9;
+	margin-left: -1px;
+}
+.vedette.b2 a {
+	width: 44%;
+}
+.vedette.b1 a {
+	width: 94%;
+}
+.vedette.h2 a {
+	height: 180px;
+	padding-top: 30px;
+}
+.vedette a:hover {
+	background-color: #e0f2b8;
+}
+.vedette img {
+	padding-top: 2ex;
+}
+.vedette h1 {
+	margin: 1ex 0;
+	text-shadow: 0px -1px 1px white, 0px 1px 1px white;
+}
+.vedette h2 {
+	margin: 1ex 0;
+	color: #99cc44;
+	font-size: 125%;
+	font-weight: bold;
+	text-shadow: 0px -1px 1px white, 0px 1px 1px white;
+}
+.vedette p, .vedette h2, .vedette a {
+	text-align: center ! important;
+}
+.vedette p {
+	margin: 1ex 0;
+}
+.vedette .etiquette {
+	position: absolute;
+	top: 6%;
+	right: 8%;
+	background: white;
+	background: rgba(255,255,255,0.5);
+	padding: 0.4ex 0.5em 0.2ex;
+	font-size: 110%;
+	font-weight: bold;
+	border-radius: 1ex;
+	border: 1px solid #e0f2b8;
+	color: #99cc44;
+	line-height: 1.2;
+}
+
+/* MARK: Home page */
+
+.coteacote {
+	clear: both;
+	padding-top: 6ex;
+}
+.coteacote h1 {
+	clear: both;
+	float: left;
+	margin-bottom: 3ex;
+	width: 30%;
+	text-align: right ! important;
+}
+.coteacote div {
+	clear: right;
+	float: right;
+	width: 64%;
+	text-align: left;
+	margin-bottom: 3ex;
+}
+
+.coteacote .blog ul {
+	margin: 0 0 2ex 0;
+}
+.coteacote .blog li {
+	list-style-type: none;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+.coteacote .blog li .date {
+	padding-left: 1em;
+	font-size: 80%;
+	white-space: nowrap;
+}
+
+/* Size-specific rules */
+/* Note: Using this "*>" trick prevent IE 5 and 5.5 from interpreting
+   rules in the handheld section. */
+@media handheld, only screen and (max-width: 52em) {
+	*>#tete h1 { margin: 0 }
+    *>#page-content {
+		padding: 0.8ex 5% 3ex;
+    }
+}
+@media handheld, only screen and (max-width: 40em) {
+	*>nav {
+		margin-top: -1ex;
+	}
+	*>#tete h1 .mflogo {
+		-webkit-transform: scale(0.7);
+		-moz-transform: scale(0.7);
+		-ms-transform: scale(0.7);
+		-o-transform: scale(0.7);
+	}
+	*>#tete #main-nav li { width: 60px; }
+	*>#tete #main-nav1 {
+		right: 66%;
+		margin-right: 45px; font-weight: normal;
+	}
+	*>#tete #main-nav2 {
+		right: 62%;
+		margin-right: 0px;
+	}
+	*>#tete #main-nav3 {
+		left: 62%;
+		margin-left: 0px;
+	}
+	*>#tete #main-nav4 {
+		left: 66%;
+		margin-left: 45px;
+	}
+	*>#pied { margin: 2ex -1em 0 -1em; padding: 0.5ex 1em; width: auto; }
+	*>#intro img { width: 42%; margin-right: 1em; float: left; }
+	*>div.secondary, *>div.main { 
+		float: none ! important; width: auto ! important;
+		border: none ! important; padding: 0 ! important;
+	}
+	*>h1, *>p, *>ul, *>ol { margin-top: 1.5ex; margin-bottom: 1.5ex; }
+	*>dd, *>ul, *>ol { padding: 0; margin-left: 1em; }
+	*>p { text-align: inherit; }
+	*>blockquote, *>dl.commentaires dd { padding: 0; margin-left: 1em; }
+
+	*>.vedette.split3 a { float: none; width: auto; border: none; border: 1px solid #CE9; border-width: 1px 0; height: 80px; text-aligh: left; padding-left: 80px; padding-bottom: 0; background-position: left center; background-size: 80px; }
+	*>.vedette.split3 a + a { border-width: 0 0 1px; margin: 0; }
+	*>.coteacote { padding: 0; }
+	*>.coteacote h1, *.coteacote div { float: none; width: auto; text-align: inherit !important }
+}
+@media handheld, only screen and (max-device-width: 400px) {
+    *>#sitemap li { margin-top: 1ex; }
+    *>#sitemap li a { text-decoration: underline; }
+}
+html { -webkit-text-size-adjust: 100%; }
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   Michel Fortin
+  </title>
+  <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport">
+  <meta content="Michel Fortin" property="og:title">
+  <meta content="website" property="og:type">
+  <meta content="" property="og:url">
+  <meta content="Michel Fortin" property="og:site_name">
+  <meta content="en" property="og:locale">
+  <meta content="@michel_fortin" name="twitter:site">
+ </head>
+ <body class="wide">
+  <nav>
+   <div id="tete">
+    <h1>
+     <strong>
+      <span class="mflogo">
+       <img alt="Michel Fortin" src="rick.jpg">
+      </span>
+     </strong>
+    </h1>
+    <ul id="main-nav">
+     <li class="logiciels" id="main-nav1">
+      <a>
+       Software
+      </a>
+     </li>
+     <li class="services" id="main-nav2">
+      <a>
+       Services
+      </a>
+     </li>
+     <li class="blogue" id="main-nav3">
+      <a>
+       Blog
+      </a>
+     </li>
+     <li class="boutique" id="main-nav4">
+      <a>
+       Store
+      </a>
+     </li>
+    </ul>
+   </div>
+  </nav>
+  <div id="page-content">
+   <div class="sublayout">
+    <p class="tagline">
+     <img alt class="tagimage" src="rick.jpg">
+     Developer of Mac &amp; iOS apps.
+    </p>
+    <div class="vedette split3">
+     <a style="background-image: url(/style/counterparts-lite-backdrop.svg)">
+      <h1>
+       Counterparts Lite
+      </h1>
+      <p>
+       The classy string table editor.
+      </p>
+     </a>
+     <a style="background-image: url(/style/black-light-pro-backdrop.svg)">
+      <h1>
+       Black Light Pro
+      </h1>
+      <p>
+       Color effects on a schedule.
+      </p>
+     </a>
+     <a style="background-image: url(/style/gamma-control-backdrop.svg)">
+      <h1>
+       Gamma Control
+      </h1>
+      <p>
+       Calibrate your screen.
+      </p>
+     </a>
+    </div>
+    <div class="coteacote">
+     <h1>
+      Blog
+     </h1>
+     <div class="blog">
+      <ul>
+       <li>
+        <a>
+         Brighter than White &mdash; EDR on Macs
+        </a>
+        <span class="date">
+         December 5, 2020
+        </span>
+       </li>
+       <li>
+        <a>
+         macOS Big Sur and M1 Macs
+        </a>
+        <span class="date">
+         November 11
+        </span>
+       </li>
+       <li>
+        <a>
+         Sim Daltonism&rsquo;s purple bug
+        </a>
+        <span class="date">
+         June 19
+        </span>
+       </li>
+       <li>
+        <a>
+         More Hot Keys in Black Light Pro
+        </a>
+        <span class="date">
+         February 13
+        </span>
+       </li>
+      </ul>
+     </div>
+     <h1>
+      Contact
+     </h1>
+     <div>
+      <a class="email">
+       Email
+      </a>
+      <br>
+      <a class="mastodon" rel="me">
+       Mastodon
+      </a>
+      <br>
+      <a class="github" rel="me">
+       GitHub
+      </a>
+      <br>
+      <a class="feed" rel="me">
+       RSS
+      </a>
+      <br>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="sitemap">
+   <div id="sitemap-content">
+    <hr>
+    <div class="navcolumn">
+     <p>
+      <a rel="me">
+       Michel Fortin
+      </a>
+     </p>
+     <ul>
+      <li>
+       <a>
+        Blog
+       </a>
+       <ul>
+        <li>
+         <a>
+          Archive
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a>
+        Services
+       </a>
+      </li>
+      <li>
+       <a>
+        Contact
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="navcolumn">
+     <p>
+      <a>
+       Apps
+      </a>
+     </p>
+     <ul class="continued">
+      <li>
+       <a>
+        Gamma Control
+       </a>
+      </li>
+      <li>
+       <a>
+        Gamma Board
+       </a>
+      </li>
+      <li>
+       <a>
+        Black Light
+       </a>
+      </li>
+      <li>
+       <a>
+        Black Light Pro
+       </a>
+      </li>
+     </ul>
+     <ul class="continued">
+      <li>
+       <a>
+        Counterparts Lite
+       </a>
+      </li>
+      <li>
+       <a>
+        Sim Daltonism
+       </a>
+      </li>
+      <li>
+       <a>
+        Red Stripe
+       </a>
+      </li>
+      <li>
+       <a class="more">
+        more&hellip;
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="navcolumn">
+     <p>
+      <a>
+       Store
+      </a>
+     </p>
+     <ul>
+      <li>
+       <a>
+        Trials
+       </a>
+      </li>
+      <li>
+       <a>
+        Lost Codes
+       </a>
+      </li>
+      <li>
+       <a>
+        App Store&nbsp;&rarr;
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="navcolumn lastcolumn">
+     <p>
+      Miscellaneous
+     </p>
+     <ul>
+      <li>
+       <a>
+        Github&nbsp;&rarr;
+       </a>
+      </li>
+      <li>
+       <a>
+        Media Kits
+       </a>
+      </li>
+      <li>
+       <a>
+        Privacy Policy
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="pied">
+     <ul>
+      <li>
+       &copy; 2003&ndash;2023 Michel Fortin.
+      </li>
+     </ul>
+     <ul id="alt-nav">
+      <li lang="fr">
+       <a hreflang="fr">
+        Voir cette page en
+        <b>
+         Fran&ccedil;ais
+        </b>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

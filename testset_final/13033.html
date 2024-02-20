@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html class="js" dir="ltr" lang="en">
+ <head>
+  <style>
+   @font-face{font-family:Literata;src:url(/static/assets/Literata-ad86563c.woff2) format("woff2-variations");font-weight:1 999;font-display:optional}@font-face{font-family:Literata;font-style:italic;src:url(/static/assets/Literata-Italic-1bfd133d.woff2) format("woff2-variations");font-weight:1 999;font-display:optional}:root{--font-mod: 1.25;--font-family: Literata, Noto Serif, Droid Serif, Georgia, Times New Roman, Times, serif;--font-family-alternate: Noto Sans, Droid Sans, Verdana, sans-serif;--color-danger: #901;--color-danger-muted: #eadadc;--color-success: #190;--color-success-muted: #dceada;--color-neutral: rgba(0,0,0,.46667);--color-input-text: #403c37;--color-input-back: #ffffff;--color-input-bord: #bbbbbb;--color-back-bright: #ffffff;--color-back-dim: #eeeeee;--color-border: #dddddd;--color-border-light: #eeeeee;--color-border-medium: #bbbbbb;--color-border-dark: #333333;--raisin-black: hsl(290, 10%, 10%);--mint-cream: hsl(40, 37%, 99%);--burgundy: hsl(350, 85%, 52%);--rosewood: hsl(350, 93%, 36%);--dark-sienna: hsl(350, 89%, 15%);--eerie-black: hsl(230, 10%, 10%);--alabaster: hsl(50, 22%, 93%);--generic-viridian: hsl(170, 85%, 47%);--bottle-green: hsl(170, 93%, 31%);--blue-green-color-wheel: hsl(170, 89%, 15%);--color-text: var(--raisin-black);--color-back: var(--mint-cream);--color-back-rgb: 253, 253, 252;--color-link: var(--rosewood);--color-link-hover: var(--burgundy);--color-hilite: var(--generic-viridian);--hsl-backlight: 0, 0%, 100%;--hsl-highlight: 0, 0%, 100%;--hsl-shadow: 40, 20%, 10%;--dimmed: .75;--ease-in-out-quint: cubic-bezier(.83, 0, .17, 1);color-scheme:light}:root.force-dark{--color-danger: #b02;--color-danger-muted: #3c1a20;--color-success: #2b0;--color-success-muted: #203c1a;--color-neutral: rgba(255,255,255,.53333);--color-input-text: #e8edf2;--color-input-back: #242424;--color-input-bord: #777777;--color-back-bright: #000000;--color-back-dim: #272529;--color-border: #444444;--color-border-medium: #555555;--color-border-light: var(--color-back-dim);--color-text: var(--alabaster);--color-back: var(--eerie-black);--color-back-rgb: 23, 24, 28;--color-link: var(--bottle-green);--color-link-hover: var(--generic-viridian);--color-shadow: rgba(255,255,255,.2);--hsl-backlight: 0, 0%, 0%;--hsl-highlight: 40,20%, 10%;color-scheme:dark}@media (prefers-color-scheme: dark){:root:not(.force-light){--color-danger: #b02;--color-danger-muted: #3c1a20;--color-success: #2b0;--color-success-muted: #203c1a;--color-neutral: rgba(255,255,255,.53333);--color-input-text: #e8edf2;--color-input-back: #242424;--color-input-bord: #777777;--color-back-bright: #000000;--color-back-dim: #272529;--color-border: #444444;--color-border-medium: #555555;--color-border-light: var(--color-back-dim);--color-text: var(--alabaster);--color-back: var(--eerie-black);--color-back-rgb: 23, 24, 28;--color-link: var(--bottle-green);--color-link-hover: var(--generic-viridian);--color-shadow: rgba(255,255,255,.2);--hsl-backlight: 0, 0%, 0%;--hsl-highlight: 40,20%, 10%;color-scheme:dark}}:root{font:normal 16px/1.333 var(--font-family);font-feature-settings:"kern" on;text-rendering:optimizeLegibility;scrollbar-gutter:stable}@media (min-width: 601px){:root{scroll-padding-top:100px}}body{background:var(--color-back);color:var(--color-text);margin:0;display:flex;flex-direction:column;min-height:100vh;scrollbar-gutter:stable}:focus-visible{outline:2px solid var(--color-hilite);outline-offset:2px}a{color:var(--color-link);transition:color .3s}a:focus,a:hover{color:var(--color-link-hover)}svg{fill:currentColor;overflow:visible}th,td{padding:.2em .5em}th{font-weight:600}th[scope=row]{text-align:right}blockquote{font-style:italic}blockquote em,blockquote i{font-style:normal}.h1,h1{font-size:calc(1rem * var(--font-mod) * var(--font-mod) * var(--font-mod) * var(--font-mod) * var(--font-mod));font-weight:400;font-variation-settings:"opsz" 35}.h2,h2{font-size:calc(1rem * var(--font-mod) * var(--font-mod) * var(--font-mod) * var(--font-mod));font-weight:400}.h3,h3{font-size:calc(1rem * var(--font-mod) * var(--font-mod) * var(--font-mod));font-weight:400}.h4,h4{font-size:calc(1rem * var(--font-mod) * var(--font-mod))}.text_big,.h5,h5{font-size:calc(1rem * var(--font-mod))}.tiles .missing-cp,.tiles .cp:before,.ln .meta,.cp-toolbox,.cp-toolbox button,.page-footer,small,.text_small,figcaption{font-size:calc(1rem / var(--font-mod));font-family:var(--font-family-alternate)}dd+dt{margin-top:1em}.tiles>li>*,.card{border-radius:3px;background:rgba(0,0,0,.03922);box-shadow:2px 2px 5px hsla(var(--hsl-shadow),.2),-2px -2px 5px var(--color-input-back)}.card{padding:.75em}.tiles>li>*:focus,.tiles>li>*:hover,.card:focus{position:relative;top:-1px;left:-1px;box-shadow:10px 10px 20px hsla(var(--hsl-shadow),.2),-10px -10px 20px var(--color-input-back)}.ln{-webkit-text-decoration:none;text-decoration:none}.ln .meta{-webkit-text-decoration:none;text-decoration:none;white-space:nowrap;opacity:.75}.ln>svg{transition-property:transform,color;transition-duration:.3s;transition-timing-function:var(--ease-in-out-quint);vertical-align:top;margin-top:2px}.ln[data-sensitivity="3"]>svg>use{opacity:.3}.ln:not([data-sensitivity="3"]):focus>svg,.ln:not([data-sensitivity="3"]):hover>svg{transform:scale(1.33)}.tiles{clear:left;list-style:none;padding-left:0;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.5em;justify-content:center}.tiles>li{width:8em;display:flex}.tiles>li>*{display:flex;flex-direction:column;gap:.75em;padding:.75em .25em;width:100%;text-align:center;box-sizing:border-box}.tiles .missing-cp{text-align:center;opacity:.667}.tiles .ln{color:inherit}.tiles .cp:before{content:attr(data-cp);-webkit-text-decoration:none;text-decoration:none;display:block;text-align:center;position:relative;text-shadow:1px 1px var(--color-back)}.tiles .ln>svg{width:65%;height:auto;display:block;margin:0 auto}.tiles .ln:hover>svg,.tiles .ln:focus>svg{color:var(--color-link-hover)}.tiles .ln .title{-webkit-hyphens:auto;-ms-hyphens:auto;hyphens:auto;font-size:90%;flex-grow:1}.container--confusables{display:flex;flex-wrap:wrap;gap:24px}.tiles--confusables{display:flex;flex-wrap:wrap}.tiles--confusables:before{content:"";border:3px solid var(--color-input-bord);border-right-width:0;width:6px;display:block}.tiles--confusables:after{content:"";border:3px solid var(--color-input-bord);border-left-width:0;width:6px;display:block}.btn{display:inline-block;box-sizing:border-box}button,.btn,input,select,textarea{font-family:var(--font-family-alternate);-webkit-text-decoration:none;text-decoration:none;line-height:inherit;padding:.25em .5em;border-radius:2px}input,select,textarea{border:1px solid var(--color-input-bord);background:var(--color-input-back);color:var(--color-input-text)}button,.btn{text-align:center;transition-property:background,color,box-shadow,border-color;transition-duration:.3s;border:1px solid var(--color-border);background:linear-gradient(to bottom,var(--color-back-bright),var(--color-back-dim));color:var(--color-text);box-shadow:inset 0 1px hsla(var(--hsl-highlight),.67),0 1px hsla(var(--hsl-highlight),.67),inset 1px 0 hsla(var(--hsl-highlight),.33),inset -1px 0 hsla(var(--hsl-highlight),.33),0 -1px 1px hsla(var(--hsl-backlight),.05);text-shadow:0 1px var(--color-back-bright)}button:hover,button:focus,.btn:hover,.btn:focus,.btn-focus{border-color:var(--color-border-medium);background:var(--color-back-bright);background:linear-gradient(to bottom,var(--color-back-bright),var(--color-back));box-shadow:inset 0 1px hsla(var(--hsl-highlight),.67),0 0 3px 0 var(--color-hilite)}button:active,.btn:active,.btn-active{text-shadow:0 1px hsl(var(--hsl-highlight));color:var(--color-text);box-shadow:inset 0 4px 4px -4px hsla(var(--hsl-backlight),.2),inset 4px 0 4px -4px hsla(var(--hsl-backlight),.1),inset -4px 0 4px -4px hsla(var(--hsl-backlight),.1);border:1px solid var(--color-border-light)}button[disabled],.btn-disabled,[disabled]>.btn{border-color:var(--color-input-bord);background:var(--color-back-dim);box-shadow:inset 0 1px hsla(var(--hsl-highlight),.67),0 1px hsla(var(--hsl-highlight),.67),inset 1px 0 hsla(var(--hsl-highlight),.33),inset -1px 0 hsla(var(--hsl-highlight),.33),0 -1px 1px hsla(var(--hsl-backlight),.05);text-shadow:0 1px var(--color-back-bright);color:var(--color-input-text);cursor:default;opacity:.67}.sqfig{float:left;margin:2em 1em 1em 0;padding:0;border-radius:21px;background:rgba(0,0,0,.03922);box-shadow:10px 10px 20px hsla(var(--hsl-shadow),.2),-10px -10px 20px var(--color-input-back)}@media (min-width: 100.25rem){.sqfig{margin-left:-17.625rem}}.sqfig svg{display:block;width:15.625rem}main[data-sensitivity="3"] .sqfig svg{opacity:.3;filter:blur(8px);transform:scale(.3)}.sqfig figcaption{padding:.25em;text-align:center}.cpfig__img--So{overflow:hidden}@media (max-width: 600px){.main aside{display:flex;flex-direction:column;gap:1rem;margin:1rem 0}}.cp-toolbox--tools{display:flex;flex-direction:column;gap:.5rem}@media (min-width: 601px){.cp-toolbox{width:13.625rem;padding:0 1rem;margin:1em}.cp-toolbox--profile{float:left;clear:left}.cp-toolbox--tools{float:right;clear:right}}@media (min-width: 100.25rem){.cp-toolbox--profile{margin-left:-17.625rem}.cp-toolbox--tools{margin-right:-17.625rem}}.cp-toolbox dt{opacity:var(--dimmed);float:left;clear:left;margin:0;margin-right:.5rem;min-width:3rem}.cp-toolbox dt:after{content:":"}.cp-toolbox dd{margin:0;margin-bottom:.5rem}.cp-toolbox .btn,.cp-toolbox button{width:100%}.cp-toolbox .btn svg{vertical-align:middle}p .bl .meta,p .pl .meta{display:none}.props{margin-left:auto;margin-right:auto}.props th:first-child{text-align:right}.props .x{color:var(--color-neutral)}.props .y{color:var(--color-success)}.props .n{color:var(--color-danger)}.pagination{margin:1em 0;text-align:center}.pagination ol{list-style:none;margin:0;padding-left:0;display:inline-flex;flex-wrap:wrap;gap:1em;justify-content:center}.pagination li{margin:0}.pagination li>*{display:block;padding:.5em;min-width:1em;height:1em;line-height:1em;border:1px solid var(--color-input-bord)}.pagination a{-webkit-text-decoration:none;text-decoration:none}.pagination li>span{opacity:.667;cursor:default}.page-header{margin-bottom:1em}.page-header nav ul{list-style:none;padding-left:0;display:flex;flex-wrap:wrap;margin:0}.page-header nav a{display:block;padding:.5em 1em}.main-nav a svg{vertical-align:middle}.page-footer{margin-top:1rem;padding:1rem;border-top:1px solid var(--color-border-light)}.page-footer>*{max-width:65rem;margin:0 auto}.page-footer>*+*{margin-top:1rem}.page-footer ul{list-style:none;padding-left:0;display:flex;flex-wrap:wrap;margin:0;gap:2rem}.page-footer ul a{display:block;padding:.5em;margin:-.5rem}.page-footer a svg{vertical-align:middle}[data-barba=container]{display:flex;flex-direction:column}.main{padding:0 1em;flex-grow:1}.main>:not(.tiles):not(.sqfig):not(.full-width){max-width:65rem;margin-left:auto;margin-right:auto}.main--index{background:url(/static/assets/front_light-12f7b160.webp) no-repeat center top;background-size:contain}@media (min-width: 1201px){.main--index{background-size:1536px 702px}}:root.force-dark .main--index{background-image:url(/static/assets/front_dark-b12e1af0.webp)}@media (prefers-color-scheme: dark){:root:not(.force-light) .main--index{background-image:url(/static/assets/front_dark-b12e1af0.webp)}}.main--index>:not(h1){background:hsla(var(--hsl-backlight),.6);box-shadow:0 0 10px 10px hsla(var(--hsl-backlight),.6)}.main--index blockquote{text-align:center}.glossary__quicknav{list-style:none;padding:.5em;margin:1em 0;display:flex;flex-wrap:wrap;gap:1em;justify-content:center;position:-webkit-sticky;position:sticky;top:0;background-color:var(--color-back)}@media (min-width: 601px){.glossary__quicknav{top:93px}}#glossary,#glossary dt{scroll-margin-top:2.333em}@media (max-width: 65rem){#glossary,#glossary dt{scroll-margin-top:4.667em}}.transition-active{position:relative}.transition-active>*{position:absolute;width:100%;top:0}.main--index .searchform{text-align:center}.main--index .searchform input,.main--index .searchform button{font-size:calc(1rem * var(--font-mod) * var(--font-mod))}.main--index .searchform input{width:66%}@media (max-width: 600px){[data-barba=container]>cp-navigation{order:3}}cp-navigation{position:-webkit-sticky;position:sticky;z-index:1;background:rgba(var(--color-back-rgb),.85);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);font-family:var(--font-family-alternate);font-size:calc(1em / var(--font-mod));display:flex;gap:.5em;padding-bottom:.5rem}@media (max-width: 600px){cp-navigation{bottom:0;border-top:1px solid var(--color-border-light)}}@media (min-width: 601px){cp-navigation{top:0;border-bottom:1px solid var(--color-border-light)}}cp-navigation>*{width:25%;flex-grow:1}cp-navigation a{display:block;text-align:center;color:var(--color-link);-webkit-text-decoration:none;text-decoration:none}cp-navigation .ln svg,cp-navigation a svg{display:block;width:80%;height:80%;max-width:64px;max-height:64px;margin:1em auto 0;transition-property:transform,color;transition-duration:.3s;transition-timing-function:var(--ease-in-out-quint);vertical-align:top;fill:currentColor}cp-navigation a:focus>svg,cp-navigation a:hover>svg{transform:scale(1.33)}cp-navigation .meta{display:none}cp-navigation .title{display:block;max-height:1.5em;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;direction:rtl}cp-searchform form{display:flex;flex-wrap:wrap;gap:.3em}cp-searchform form p{flex-grow:1;width:100%}cp-search-freeform{flex-grow:1;display:flex;flex-wrap:wrap;width:100%;gap:.6em;margin:0 0 .6em;align-items:center}cp-search-freeform>label{flex-basis:120px}cp-searchform button[type=submit]{font-size:2em}.embed cp-navigation,.embed .cp-toolbox--tools,.embed .cpdesc,.embed .sqfig figcaption,.embed .embed-info,.embed .page-footer{display:none}@media (max-height: 100px){.main aside{display:none}}@media (max-width: 100px){.main h1{display:none}}@media (max-width: 200px) and (max-height: 40px){.main h1 .title__na{display:none}}.embed .main{padding-left:0;padding-right:0}.embed .sqfig{margin:0 .5rem 0 0;box-shadow:none;border-radius:0}.embed .sqfig svg{width:auto;max-width:100vw;max-height:100vh;aspect-ratio:1 / 1}.embed h1{font-size:1rem;margin:0}@media (min-height: 200px){.embed .embed-info{display:block;margin:0;position:fixed;top:auto;right:0;bottom:0;left:0}}.embed-info a{display:block;background:#f4d19e;color:var(--blue-green-color-wheel);font-family:var(--font-family-alternate);font-size:calc(1rem / var(--font-mod))}@media (min-height: 350px){.embed .embed-info a{padding:.5rem}}
+
+
+
+cp-navigation,.cp-toolbox--tools,.page-footer a,.page-footer nav{display:none}body{display:block}.tiles li{page-break-inside:avoid;-moz-column-break-inside:avoid;break-inside:avoid}a[href^=http]:after{content:" (" attr(href) ")"}
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width" name="viewport">
+  <title>
+   U+B0AF HANGUL SYLLABLE NAC: 낯 &ndash; Unicode &ndash; Codepoints
+  </title>
+  <meta content="낯, codepoint U+B0AF HANGUL SYLLABLE NAC in Unicode, is located in the block &ldquo;Hangul Syllables&rdquo;. It belongs to the Hangul script and is a Other Letter." name="description">
+  <meta content="#660000" name="theme-color">
+  <meta content="summary" name="twitter:card">
+  <meta content="@codepointsnet" name="twitter:site">
+  <meta content="" name="twitter:url">
+  <meta content="U+B0AF HANGUL SYLLABLE NAC: 낯 &ndash; Unicode" name="twitter:title">
+  <meta content="낯, codepoint U+B0AF HANGUL SYLLABLE NAC in Unicode, is located in the block &ldquo;Hangul Syllables&rdquo;. It belongs to the Hangul script and is a Other Letter." name="twitter:description">
+  <meta content="" name="twitter:image">
+  <meta content="Codepoints.net" property="og:site_name">
+  <meta content="article" property="og:type">
+  <meta content="U+B0AF HANGUL SYLLABLE NAC: 낯 &ndash; Unicode" property="og:title">
+  <meta content="낯, codepoint U+B0AF HANGUL SYLLABLE NAC in Unicode, is located in the block &ldquo;Hangul Syllables&rdquo;. It belongs to the Hangul script and is a Other Letter." property="og:description">
+  <meta content="" property="og:image">
+ </head>
+ <body>
+  <div data-barba="wrapper">
+   <div data-barba="container">
+    <div style="position: fixed;">
+    </div>
+    <cp-navigation>
+     <a aria-label="go to the homepage" rel="start">
+      <span class="title">
+       Home
+      </span>
+     </a>
+     <a class="ln cp" data-cp="U+B0AE" data-sensitivity="0" rel="prev">
+      <span class="title">
+       Hangul Syllable Naj
+      </span>
+     </a>
+     <a class="ln bl" rel="up">
+      <span class="meta">
+       U+AC00 to U+D7AF
+      </span>
+      <span class="title">
+       Hangul Syllables
+      </span>
+     </a>
+     <a class="ln cp" data-cp="U+B0B0" data-sensitivity="0" rel="next">
+      <span class="title">
+       Hangul Syllable Nak
+      </span>
+     </a>
+     <!-- -->
+    </cp-navigation>
+    <main class="main main--codepoint" data-cp="45231" data-sensitivity="0">
+     <div>
+      <figure class="sqfig cpfig">
+       <cp-copy content="낯">
+       </cp-copy>
+       <figcaption>
+        Source: Noto CJK
+       </figcaption>
+      </figure>
+     </div>
+     <h1>
+      <span class="title__cp">
+       U+B0AF
+      </span>
+      <span class="title__na">
+       Hangul Syllable Nac
+      </span>
+     </h1>
+     <aside>
+      <div class="cp-toolbox cp-toolbox--profile">
+       <dl>
+        <dt>
+         N&ordm;
+        </dt>
+        <dd>
+         45231
+        </dd>
+        <dt>
+         General Category
+        </dt>
+        <dd>
+         <a rel="nofollow">
+          Other Letter
+         </a>
+        </dd>
+        <dt>
+         Script
+        </dt>
+        <dd>
+         <a rel="nofollow">
+          Hangul
+         </a>
+        </dd>
+        <dt>
+         Bidirectional Category
+        </dt>
+        <dd>
+         <a rel="nofollow">
+          Left To Right
+         </a>
+        </dd>
+        <dt>
+         Decomposition Type
+        </dt>
+        <dd>
+         <a rel="nofollow">
+          Canonical
+         </a>
+        </dd>
+       </dl>
+      </div>
+      <div class="cp-toolbox cp-toolbox--tools">
+       <cp-copy content="낯">
+        <button type="button">
+         copy to clipboard
+        </button>
+       </cp-copy>
+       <cp-btn-share>
+        <a class="btn">
+         <cp-icon height="16" icon="share" width="16">
+          <!-- -->
+         </cp-icon>
+         share this codepoint
+        </a>
+        <!-- -->
+       </cp-btn-share>
+       <cp-btn-embed>
+        <button type="button">
+         embed this codepoint
+        </button>
+       </cp-btn-embed>
+      </div>
+     </aside>
+     <section class="cpdesc cpdesc--desc">
+      <!-- codepoint -->
+      <p>
+       U+B0AF was added to Unicode in version
+       <a rel="nofollow">
+        2.0
+       </a>
+       (1996). It belongs to the block
+       <a class="ln bl" rel="up">
+        <span class="meta">
+         U+AC00 to U+D7AF
+        </span>
+        <span class="title">
+         Hangul Syllables
+        </span>
+       </a>
+       in the
+       <a class="ln pl" rel="up">
+        <span class="meta">
+         U+0000 to U+FFFF
+        </span>
+        <svg height="16" width="16">
+         <svg height="100%" viewbox="194 97 1960 1960" width="100%">
+          <use xlink:>
+          </use>
+         </svg>
+        </svg>
+        <span class="title">
+         Basic Multilingual Plane
+        </span>
+       </a>
+       .
+      </p>
+      <!-- character -->
+      <p>
+       This character is a
+       <a rel="nofollow">
+        Other Letter
+       </a>
+       and is mainly used in the
+       <a rel="nofollow">
+        Hangul
+       </a>
+       script.
+      </p>
+      <!-- glyph -->
+      <p>
+       The glyph is a
+       <a rel="nofollow">
+        Canonical
+       </a>
+       composition of the glyphs
+       <a class="ln cp" data-cp="U+B098" data-sensitivity="0">
+        <svg class="cpfig__img cpfig__img--Lo" height="16" width="16">
+         <title>
+          Glyph for U+B098
+         </title>
+         <use>
+         </use>
+        </svg>
+        <span class="title">
+         Hangul Syllable Na
+        </span>
+       </a>
+       ,
+       <a class="ln cp" data-cp="U+11BE" data-sensitivity="0">
+        <svg class="cpfig__img cpfig__img--Lo" height="16" width="16">
+         <title>
+          Glyph for U+11BE
+         </title>
+         <use>
+         </use>
+        </svg>
+        <span class="title">
+         Hangul Jongseong Chieuch
+        </span>
+       </a>
+       . It has a
+       <a rel="nofollow">
+        Wide
+       </a>
+       East Asian Width. In bidirectional context it acts as
+       <a rel="nofollow">
+        Left To Right
+       </a>
+       and is
+       <a rel="nofollow">
+        not mirrored
+       </a>
+       . In text U+B0AF behaves as
+       <a rel="nofollow">
+        Hangul LVT Syllable
+       </a>
+       regarding line breaks. It has type
+       <a rel="nofollow">
+        Other Letter
+       </a>
+       for sentence and
+       <a rel="nofollow">
+        Alphabetic Letter
+       </a>
+       for word breaks. The Grapheme Cluster Break is
+       <a rel="nofollow">
+        Hangul Syllable Type LVT
+       </a>
+       .
+      </p>
+     </section>
+     <section class="cpdesc cpdesc--wikipedia">
+      <p>
+       The
+       <a>
+        Wikipedia
+       </a>
+       has the following information about this codepoint:
+      </p>
+      <blockquote>
+       <p class="mw-empty-elt">
+       </p>
+       <p>
+        The
+        <b>
+         Korean alphabet
+        </b>
+        , known as
+        <b>
+         Hangul
+        </b>
+        (
+        <small>
+         English:
+        </small>
+        <i title="English pronunciation respelling">
+         HAHN-gool
+        </i>
+        ) in South Korea and
+        <b>
+         Chosŏn'g&ubreve;l
+        </b>
+        in North Korea, is the modern official writing system for the Korean language.
+       </p>
+       <p>
+        Hangul was created in 1443 CE by King Sejong the Great in an attempt to increase literacy by serving as a complement (or alternative) to the logographic Sino-Korean
+        <i>
+         Hanja
+        </i>
+        , which had been used by Koreans as its primary script to write the Korean language since as early as the Gojoseon period (spanning more than a thousand years and ending around 108 BCE), along with the usage of Classical Chinese.
+        <b>
+         eonmun
+        </b>
+        ("vernacular writing", 언문, 諺文) and became the primary Korean script only in the decades after Korea's independence from Japan in the mid-20th century.
+       </p>
+       <p>
+        Modern Hangul orthography uses 24 basic letters: 14 consonant letters and 10 vowel letters.
+        <i>
+         han geul
+        </i>
+        ), not ㅎㅏㄴㄱㅡㄹ (
+        <i>
+         h a n g eu l
+        </i>
+        ). The syllables begin with a consonant letter, then a vowel letter, and then potentially another consonant letter called a
+        <i>
+         batchim
+        </i>
+        (Korean:&nbsp;받침).
+       </p>
+       <p>
+        Syllables may begin with basic or tense consonants but not complex ones. The vowel can be basic or complex, and the second consonant can be basic, complex or a limited number of tense consonants.
+       </p>
+       <p>
+        As in traditional Chinese and Japanese writing, as well as many other texts in East Asia, Korean texts were traditionally written top to bottom, right to left, as is occasionally still the way for stylistic purposes. However, Korean is now typically written from left to right with spaces between words serving as dividers, unlike in Japanese and Chinese.
+       </p>
+       <p>
+        Hangul has also seen limited use in the Cia-Cia and Aymara languages.
+       </p>
+      </blockquote>
+     </section>
+     <section class="cpdesc cpdesc--repr">
+      <h2>
+       Representations
+      </h2>
+      <cp-representations cp="45231">
+       <table class="props representations">
+        <tbody>
+         <tr class="primary" data-system="nr">
+          <th scope="row">
+           N&ordm;
+          </th>
+          <td class="repr-number">
+           45231
+          </td>
+         </tr>
+         <tr class="primary" data-system="utf-8">
+          <th scope="row">
+           UTF-8
+          </th>
+          <td>
+           EB 82 AF
+          </td>
+         </tr>
+         <tr class="primary" data-system="utf-16">
+          <th scope="row">
+           UTF-16
+          </th>
+          <td>
+           B0 AF
+          </td>
+         </tr>
+         <tr data-system="utf-32">
+          <th scope="row">
+           UTF-32
+          </th>
+          <td>
+           00 00 B0 AF
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </cp-representations>
+     </section>
+     <section class="cpdesc cpdesc--othersites">
+      <h2>
+       Elsewhere
+      </h2>
+      <ul>
+       <li>
+        <a>
+         Unicode website
+        </a>
+       </li>
+       <li>
+        <a>
+         Reference rendering on Unicode.org
+        </a>
+       </li>
+       <li>
+        <a>
+         Fileformat.info
+        </a>
+       </li>
+       <li>
+        <a>
+         Graphemica
+        </a>
+       </li>
+      </ul>
+     </section>
+     <section class="cpdesc cpdesc--record">
+      <h2>
+       Complete Record
+      </h2>
+      <table class="props">
+       <thead>
+        <tr>
+         <th scope="col">
+          Property
+         </th>
+         <th scope="col">
+          Value
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <th scope="row">
+          <cp-glossary-term term="age">
+           Age
+          </cp-glossary-term>
+         </th>
+         <td>
+          <a rel="nofollow">
+           2.0 (1996)
+          </a>
+         </td>
+        </tr>
+        <tr>
+         <th scope="row">
+          <cp-glossary-term term="na">
+           Unicode Name
+          </cp-glossary-term>
+         </th>
+         <td>
+          <a rel="nofollow">
+           HANGUL SYLLABLE NAC
+          </a>
+         </td>
+        </tr>
+        <tr>
+         <th scope="row">
+          <cp-glossary-term term="na1">
+           Unicode 1 Name
+          </cp-glossary-term>
+         </th>
+         <td>
+          <span class="x">
+           &mdash;
+          </span>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </section>
+    </main>
+   </div>
+  </div>
+  <footer class="page-footer">
+   <p>
+    This is Codepoints.net, a site dedicated to all things characters, letters and Unicode.         Currently displaying Unicode version
+    <strong>
+     15.0.0
+    </strong>
+    .
+    <a>
+     Read more about this site.
+    </a>
+   </p>
+   <nav>
+    <ul>
+     <li>
+      <a rel="me">
+       Mastodon
+      </a>
+     </li>
+     <li>
+      <a>
+       Blog
+      </a>
+     </li>
+     <li>
+      <a rel="search">
+       Search
+      </a>
+     </li>
+     <li>
+      <a>
+       Scripts
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </footer>
+ </body>
+</html>

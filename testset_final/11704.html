@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   /** Color customization **/
+:root {
+  --text: #F1F1F1;
+  --background: #012030;
+  --accent: #45C4B0;
+}
+
+/** Reset some basic elements */
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0; 
+}
+
+/** Basic styling */
+body {
+  font-family: 'Rubik', sans-serif;
+  font-size: 28px;
+  line-height: 150%;
+  font-weight: normal;
+  color: var(--text);
+  background-color: var(--background);
+  margin: 120px auto;
+  padding: 0 32px;
+}
+
+/** Images */
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.e-content img {
+  margin: 14px 0 44px 0;
+  border-radius: 4px;
+}
+
+/** Figures */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: 17.5px;
+}
+
+/** Lists */
+ul, ol {
+  margin-left: 40px;
+}
+
+li > ul, li > ol {
+  margin-bottom: 0;
+}
+
+ul li:last-of-type {
+  margin-bottom: 26px;
+}
+
+/** Headings */
+h1 {
+  margin-bottom: 30px;
+}
+
+h1, h1 a, h1 a:visited {
+  font-size: 58px;
+  line-height: 120%;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -.5px;
+}
+
+.h-entry h1 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.h-entry h1 a:hover {
+  text-decoration: underline;
+}
+
+h2, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight {
+  margin-bottom: 26px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin: 0 0 28px 0;
+  display: inline-block;
+}
+
+.seperator {
+  color: var(--accent);
+  margin: 0 4px 0 -8px;
+}
+
+/** Links */
+.e-content p a, .e-content p a:visited {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.e-content p a:hover, .h-entry a:hover {
+  color: var(--accent);
+}
+
+a, p a {
+  transition: all .2s ease;
+  color: var(--text);
+}
+
+a:hover, p a:hover {
+  color: var(--accent);
+}
+
+h3 a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+h3 a:hover {
+  text-decoration: underline;
+}
+
+/** Blockquotes */
+blockquote {
+  font-size: 28px;
+  padding-left: 36px;
+  color: var(--text);
+  margin: 32px 0 24px 0;
+  border-left: 10px solid var(--accent);
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/** Code formatting */
+pre, code {
+  font-size: 24px;
+  border-radius: 4px;
+  background: #00000050;
+  color: var(--text);
+}
+
+code {
+  padding: 4px 8px;
+}
+
+pre {
+  padding: 24px 32px;
+  overflow-x: scroll; 
+  margin: 36px 0;
+}
+
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/** Wrapper */
+.wrapper { 
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media screen and (max-width: 800px) { 
+  .wrapper {
+    max-width: -webkit-calc(800px - (30px));
+    max-width: calc(800px - (30px));
+    padding-right: 15px;
+    padding-left: 15px; 
+  }
+}
+
+/** Clearfix */
+.wrapper:after, .footer-col-wrapper:after {
+  content: "";
+  display: table;
+  clear: both; 
+}
+
+/** Site header */
+.site-header { 
+}
+
+img.site-image {
+  border-radius: 100px;
+  width: 100px;
+  margin-bottom: 40px;
+}
+
+.site-title {
+  font-size: 56px;
+  letter-spacing: -.25px;
+  margin: 0;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-title, .site-title:visited {
+  color: var(--text);
+}
+
+.navigation {
+  line-height: 100%;
+}
+
+.navigation a.page-link, .date, a.date, footer p, footer p a {
+  font-family: 'Roboto Mono', monospace;
+  text-decoration: none;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--text);
+  opacity: .4;
+  margin-right: 14px;
+}
+
+.navigation .page-link {
+  line-height: 100%;
+}
+
+.navigation a.page-link:hover, a.date:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.post p.date {
+  margin-bottom: 0;
+}
+
+.navigation .page-link:visited, a.date:visited, footer p a:visited {
+  color: var(--text);
+  opacity: .4;
+}
+
+footer p {
+  margin: 0;
+}
+
+/** Site footer */
+.site-footer {
+  padding: 0;
+}
+
+.footer-heading {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.contact-list, .social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.site-footer .copy {
+  font-size: 28px;
+}
+
+.site-footer .footer-title {
+  margin-left: 0;
+}
+
+/** Page content */
+.page-content {
+  padding: 110px 0 120px 0;
+}
+
+.page-content ul {
+  margin-bottom: 0;
+}
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-list > li {
+  margin-bottom: 120px;
+}
+
+li.h-entry:last-of-type {
+  margin-bottom: 0px;
+}
+
+.post-link {
+  display: block;
+  font-size: 24px;
+}
+
+/** Pagination **/
+#post-nav {
+  padding-top: 120px;
+}
+
+#post-nav .prev {
+  padding-right: 18px;
+}
+
+#post-nav .prev a, #post-nav .next a {
+  color: #012030;
+  text-decoration: none;
+  background: var(--accent);
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+#post-nav .prev a:hover, #post-nav .next a:hover {
+  background: var(--text);
+}
+
+video {
+  max-width: 100%;
+}
+
+iframe {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 510px;
+  overflow: hidden;
+}
+
+/** Archive **/
+.archive_categories {
+  border-bottom: 0 !important;
+}
+
+.archive_categories p {
+  display: inline;
+  margin-right: 14px;
+}
+
+.archive_categories p a {
+  color: var(--text);
+  opacity: .4;
+}
+
+.archive_categories p a:hover {
+  color: var(--accent);
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/** Conversations **/
+
+.microblog_conversation {
+  margin: 60px 0 0 0;
+}
+
+.microblog_conversation .microblog_post {
+  margin-bottom: 32px;
+  padding: 42px;
+  background: #00000050;
+  border-radius: 8px;
+}
+
+.microblog_conversation .microblog_post:last-of-type {
+  margin-bottom: 0px;
+}
+
+.microblog_user {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent);
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+}
+
+.microblog_avatar {
+  display: none;
+}
+
+.microblog_text p, .microblog_text p a {
+  font-size: 28px;
+  line-height: 150%;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.microblog_text p a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.microblog_time a {
+  color: var(--text);
+  opacity: .4;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.microblog_time a:hover {
+  color: var(--text);
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/** Mobile **/
+@media screen and (max-width: 800px) {
+
+  body {
+    font-size: 20px;
+    margin: 60px auto;
+    padding: 0 12px;
+  }
+
+  img.site-image {
+    width: 80px;
+    margin-bottom: 30px;
+  }
+
+  .page-content {
+    padding: 60px 0;
+  }
+
+  h1, h1 a, h1 a:visited {
+    font-size: 42px;
+  }
+
+  h3, .navigation .page-link, .date, a.date, footer p, footer p a, .microblog_user, .microblog_time a {
+    font-size: 14px;
+  }
+
+  .site-footer .copy, blockquote, .microblog_text p, .microblog_text p a, code {
+    font-size: 20px;
+  }
+
+  #post-nav {
+    padding-top: 60px;
+    display: flex;
+  }
+
+  .post-list > li {
+    margin-bottom: 60px;
+  }
+
+}
+
+
+
+/* Centre the pagination links */
+.extra-pagination { text-align: center; }
+
+/* pad out the older and newer pagination links */
+span.newer { padding-right:2rem; border-left: solid #ffffff 4px; }
+span.older { padding-left:2rem; border-right: solid #ffffff 4px; }
+
+/* code shall get monospace-fonts */
+code {
+    font-family: monospace;
+}
+
+
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xoDF4xlVMF-BfR8bXMIjhOsXG-q2oeuFoqFrlnAOW9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xoDF4xlVMF-BfR8bXMIjhOsXG-q2oeuFoqFrmAB-W9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vqPQw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_Of2PQw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v28/iJWbBXyIfDnIV7nEt3KSJbVDV49rz8tdE0Uw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v28/iJWbBXyIfDnIV7nEt3KSJbVDV49rz8u6FEUw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v28/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4i1UA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v28/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-4I-1UA.ttf) format('truetype');
+}
+
+
+
+.bigfoot-footnote__button {
+  position: relative;
+  z-index: 5;
+  top: -0.1em;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  padding: 0.35em;
+  margin: 0 0.1em 0 0.2em;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  background-color: rgba(110, 110, 110, 0.2);
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  font-size: 1rem;
+  line-height: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+}
+
+.bigfoot-footnote__button:hover,
+.bigfoot-footnote__button:focus {
+  outline: none;
+  background-color: rgba(110, 110, 110, 0.5);
+}
+
+.bigfoot-footnote__button:active {
+  background-color: rgba(110, 110, 110, 0.5);
+}
+
+.bigfoot-footnote__button.is-active {
+  background-color: #6e6e6e;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+.bigfoot-footnote__button:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.bigfoot-footnote__button__circle {
+  display: inline-block;
+  width: 0.25em;
+  height: 0.25em;
+  margin-right: 0.25em;
+  float: left;
+}
+
+.bigfoot-footnote__button__circle:last-child {
+  margin-right: 0;
+}
+
+.bigfoot-footnote__container {
+  display: inline-block;
+  position: relative;
+  text-indent: 0;
+}
+
+@media not print {
+  .footnote-print-only {
+    display: none !important;
+  }
+}
+
+@media print {
+  .bigfoot-footnote,
+  .bigfoot-footnote__button {
+    display: none !important;
+  }
+}
+
+.bigfoot-footnote {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 90%;
+  margin: 1.96924em 0;
+  background: #fafafa;
+  opacity: 0;
+  border-radius: 0.5em;
+  border: 1px solid #c3c3c3;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  line-height: 0;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transform: scale(0.1) translateZ(0);
+  -ms-transform: scale(0.1) translateZ(0);
+  transform: scale(0.1) translateZ(0);
+  -webkit-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+}
+
+.bigfoot-footnote.is-positioned-top {
+  top: auto;
+  bottom: 0;
+}
+
+.bigfoot-footnote.is-active {
+  -webkit-transform: scale(1) translateZ(0);
+  -ms-transform: scale(1) translateZ(0);
+  transform: scale(1) translateZ(0);
+  opacity: 0.97;
+}
+
+.bigfoot-footnote.is-bottom-fixed {
+  position: fixed;
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: auto;
+  -webkit-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  opacity: 1;
+  border-width: 1px 0 0;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.bigfoot-footnote.is-bottom-fixed.is-active {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.bigfoot-footnote.is-bottom-fixed .bigfoot-footnote__wrapper {
+  margin: 0 0 0 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  max-width: 100%;
+}
+
+.bigfoot-footnote.is-bottom-fixed .bigfoot-footnote__wrapper,
+.bigfoot-footnote.is-bottom-fixed .bigfoot-footnote__content {
+  border-radius: 0;
+}
+
+.bigfoot-footnote.is-bottom-fixed .bigfoot-footnote__tooltip {
+  display: none;
+}
+
+.bigfoot-footnote.is-scrollable:after {
+  content: '';
+  position: absolute;
+  bottom: 0.3375em;
+  left: 0.3375em;
+  z-index: 14;
+  display: block;
+  height: 0.78125em;
+  width: 0.625em;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTJweCIgaGVpZ2h0PSIxNXB4IiB2aWV3Qm94PSIwIDAgMTIgMTUiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pbllNaW4iPgogICAgPGcgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkFycm93IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxLjAwMDAwMCwgMS4wMDAwMDApIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiPgogICAgICAgICAgICA8cGF0aCBkPSJNNSwwIEw1LDExLjUiIGlkPSJMaW5lIj48L3BhdGg+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0wLjUsNy41IEw1LjAyNzY5Mjc5LDEyLjAyNzY5MjgiIGlkPSJMaW5lIj48L3BhdGg+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik00LjUsNy41IEw5LjAyNzY5Mjc5LDEyLjAyNzY5MjgiIGlkPSJMaW5lLTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcuMDAwMDAwLCAxMC4wMDAwMDApIHNjYWxlKC0xLCAxKSB0cmFuc2xhdGUoLTcuMDAwMDAwLCAtMTAuMDAwMDAwKSAiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=");
+  -webkit-background-size: cover;
+  background-size: cover;
+  opacity: 0.1;
+  transition-properties: opacity;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+
+.bigfoot-footnote.is-scrollable .bigfoot-footnote__wrapper:before,
+.bigfoot-footnote.is-scrollable .bigfoot-footnote__wrapper:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  z-index: 12;
+  left: 0;
+}
+
+.bigfoot-footnote.is-scrollable .bigfoot-footnote__wrapper:before {
+  top: -1px;
+  height: 1.1em;
+  border-radius: 0.5em 0.5em 0 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(rgba(250, 250, 250, 0)));
+  background-image: -webkit-linear-gradient(top, #fafafa 50%, rgba(250, 250, 250, 0) 100%);
+  background-image: linear-gradient(to bottom, #fafafa 50%, rgba(250, 250, 250, 0) 100%);
+}
+
+.bigfoot-footnote.is-scrollable .bigfoot-footnote__wrapper:after {
+  bottom: -1px;
+  height: 1.2em;
+  border-radius: 0 0 0.5em 0.5em;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#fafafa), to(rgba(250, 250, 250, 0)));
+  background-image: -webkit-linear-gradient(bottom, #fafafa 50%, rgba(250, 250, 250, 0) 100%);
+  background-image: linear-gradient(to top, #fafafa 50%, rgba(250, 250, 250, 0) 100%);
+}
+
+.bigfoot-footnote.is-scrollable ::-webkit-scrollbar {
+  display: none;
+}
+
+.bigfoot-footnote.is-fully-scrolled:after,
+.bigfoot-footnote.is-fully-scrolled:before {
+  opacity: 0;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+}
+
+.bigfoot-footnote__wrapper {
+  position: relative;
+  z-index: 14;
+  width: 22em;
+  display: inline-block;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  overflow: hidden;
+  margin: 0;
+  background-color: #fafafa;
+  border-radius: 0.5em;
+  line-height: 0;
+}
+
+.bigfoot-footnote__content {
+  position: relative;
+  z-index: 8;
+  display: inline-block;
+  max-height: 15em;
+  padding: 1.1em 1.3em 1.2em;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fafafa;
+  border-radius: 0.5em;
+  -webkit-font-smoothing: subpixel-antialiased;
+  line-height: normal;
+}
+
+.bigfoot-footnote__content img {
+  max-width: 100%;
+}
+
+.bigfoot-footnote__content *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.bigfoot-footnote__content *:first-child {
+  margin-top: 0 !important;
+}
+
+.bigfoot-footnote__tooltip {
+  position: absolute;
+  z-index: 12;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: -0.65em;
+  width: 1.3em;
+  height: 1.3em;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background: #fafafa;
+  border: 1px solid #c3c3c3;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  border-top-left-radius: 0;
+}
+
+.is-positioned-bottom .bigfoot-footnote__tooltip {
+  top: -0.65em;
+}
+
+.is-positioned-top .bigfoot-footnote__tooltip {
+  bottom: -0.65em;
+}
+
+/*# sourceMappingURL=bigfoot-default.css.map */
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width initial-scale=1" name="viewport">
+  <title>
+   Niels K.
+  </title>
+  <meta content="First the fix:
+Set the following in $HOME/.config/imsettings/xinputrc
+ export GTK_IM_MODULE=ibus export XMODIFIERS=@im=ibus export QT_IM_MODULE=ibus  If the folder $HOME/.config/imsettings doesn&rsquo;t exist, create it first.
+And now a bit of background.
+I switched for a short time to Ubuntu. My reasoning was that I can give better family support but I switched back to Fedora. Ubuntu was so far the worst Linux experience, at least with my existing configurations. But after switching back to Fedora 23 Japanese input didn&rsquo;t work." name="description">
+  <meta content="Japanese input in Fedora23" property="og:title">
+  <meta content="First the fix:
+Set the following in $HOME/.config/imsettings/xinputrc
+ export GTK_IM_MODULE=ibus export XMODIFIERS=@im=ibus export QT_IM_MODULE=ibus  If the folder $HOME/.config/imsettings doesn&rsquo;t exist, create it first.
+And now a bit of background.
+I switched for a short time to Ubuntu. My reasoning was that I can give better family support but I switched back to Fedora. Ubuntu was so far the worst Linux experience, at least with my existing configurations. But after switching back to Fedora 23 Japanese input didn&rsquo;t work." property="og:description">
+  <meta content="article" property="og:type">
+  <meta content="" property="og:url">
+  <meta content="2016-02-28T10:16:09+02:00" property="article:published_time">
+  <meta content="2016-02-28T10:16:09+02:00" property="article:modified_time">
+  <meta content="2016" property="article:section">
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="wrapper">
+    <a>
+     <img class="site-image" src="rick.jpg">
+    </a>
+    <h1 class="site-title">
+     <a>
+      Niels K.
+     </a>
+    </h1>
+    <div class="navigation">
+     <a class="page-link">
+      About
+     </a>
+     <a class="page-link">
+      Archive
+     </a>
+     <a class="page-link">
+      Datenschutz
+     </a>
+     <a class="page-link">
+      Search
+     </a>
+     <a class="page-link">
+      RSS
+     </a>
+    </div>
+   </div>
+  </header>
+  <div class="page-content">
+   <div class="wrapper">
+    <div class="post h-entry">
+     <header class="post-header">
+      <h3>
+       <a>
+        japanisch
+       </a>
+      </h3>
+      <span class="seperator">
+       ,
+      </span>
+      <h3>
+       <a>
+        Computer
+       </a>
+      </h3>
+      <span class="seperator">
+       ,
+      </span>
+      <h3>
+       <a>
+        Rechnerkram
+       </a>
+      </h3>
+      <span class="seperator">
+       ,
+      </span>
+      <h3>
+       <a>
+        linux
+       </a>
+      </h3>
+      <h1 class="p-name">
+       Japanese input in Fedora23
+      </h1>
+     </header>
+     <article class="post-content e-content">
+      <p>
+       First the fix:
+      </p>
+      <p>
+      </p>
+      <p>
+       Set the following in $HOME/.config/imsettings/xinputrc
+      </p>
+      <pre>export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+</pre>
+      <p>
+       If the folder $HOME/.config/imsettings doesn&rsquo;t exist, create it first.
+      </p>
+      <p>
+       And now a bit of background.
+      </p>
+      <p>
+       I switched for a short time to Ubuntu. My reasoning was that I can give better family support but I switched back to Fedora.
+      </p>
+      <p>
+       There is a script /etc/X11/xinit/xinitrc.d/50-xinput.sh. This script tries to do some magic and works pretty late in the process of starting your GUI when using the default GDM.
+      </p>
+      <p>
+       The folder creation part is the place where I guess the script failed for me.
+      </p>
+      <p>
+       And if that file doesn&rsquo;t get sourced by the script for whatever reason, the script looks up which LANG-variable you have set and compares it to a hardcoded list. And then sets up environment variables depending on your LANG-variable.
+      </p>
+      <p>
+       If you have set en_US.utf8 like me that means that they get set up in a minimal way which leads to not being able to use an IME. And of course the script doesn&rsquo;t bother logging anything.
+      </p>
+      <p>
+       Dear Fedora Project, this is too much magic and can fail. Especially since there are multiple places in $HOME where you can potentially set up the three environment variables, not all recommended but possible.
+      </p>
+     </article>
+     <p class="u-url date">
+      Sunday February 28, 2016
+     </p>
+    </div>
+   </div>
+  </div>
+  <footer class="site-footer">
+   <div class="wrapper">
+    <p>
+     <span class="copy">
+      &copy;
+     </span>
+     <span>
+      2023,
+     </span>
+     <span class="footer-title">
+      Niels K.
+     </span>
+    </p>
+   </div>
+  </footer>
+ </body>
+</html>

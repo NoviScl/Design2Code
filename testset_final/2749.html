@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    display: block;
+    width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    font-style: italic;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '"';
+    content: none;
+}
+input, button {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+em, i {
+    font-style: italic;
+}
+del {
+    text-decoration: line-through;
+}
+strong, b {
+    font-weight: bold;
+}
+ol {
+    width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+ol li {
+    list-style-type: decimal;
+}
+ul {
+    width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+ul li {
+    list-style: disc;
+}
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+body, html {
+    min-height: 100%;
+    /*height: 100%;*/
+}
+body {
+    background-color: #fff;
+    color: #1b1f23;
+    font-family: Helvetica Neue, Arial, sans-serif;
+}
+.wrap {
+    width: 605px;
+    margin: 100px auto 0;
+    text-align: center;
+}
+.wrap h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 90px;
+}
+.wrap h2 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 45px;
+    margin: 0 0 80px;
+}
+.wrap h3 {
+    font-size: 24px;
+    font-weight: 400px;
+    margin: 0 0 45px;
+}
+.wrap .author_link {
+    margin-top: 15px;
+    color: #616161;
+    margin: 0 0 50px;
+}
+.wrap .author_link a {
+    color: #000;
+}
+/**
+ * COUNTDOWN
+ **/
+
+.wrap .countdown {
+    margin: 0 0 85px;
+}
+.wrap .countdown span {
+    font-size: 30px;
+}
+/**
+ * SUBSCRIBE FORM
+ **/
+
+.wrap form.subscribe_form {
+    width: 465px;
+    margin: 0 0 75px;
+    display: inline-block;
+    border: 3px solid #e0e0e0;
+    box-sizing: border-box;
+}
+.wrap form.subscribe_form input {
+    margin: 0;
+    outline: 0;
+    border: 0;
+    float: left;
+    font-size: 18px;
+    padding: 20px 25px;
+    box-sizing: content-box;
+}
+.wrap form.subscribe_form input[type="text"] {
+    width: 245px;
+}
+.wrap form.subscribe_form input[type="submit"] {
+    background: #000;
+    color: #fff;
+    float: right;
+    cursor: pointer;
+    padding: 20px 30px;
+    border-left: 3px solid #e0e0e0;
+}
+.wrap form.subscribe_form input[type="submit"]:hover {
+    background: #fff;
+    color: #000;
+    border-left: 3px solid #e0e0e0;
+}
+.wrap form.subscribe_form input[type="submit"]:active {
+    background: #1e1e1e;
+    color: #fff;
+}
+.wrap form.subscribe_form .error {
+    color: red;
+}
+.wrap form.subscribe_form label.error {
+    display: none !important;
+}
+/**
+ * LOGIN FORM
+ **/
+
+.wrap form.login_form {
+    width: 100%;
+    margin: 15px 0 0;
+}
+.wrap form.login_form input {
+    display: inline-block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 3px solid #E2E2E2;
+    font-family: Helvetica Neue, Arial, sans-serif;
+    font-size: 16px;
+    margin: 0 10px 0 0;
+    outline: 0;
+    padding: 15px;
+}
+.wrap form.login_form input[type="submit"] {
+    background: #000;
+    color: #fff;
+    margin: 0;
+    border-color: #000;
+    font-weight: bold;
+    padding: 15px 30px;
+    cursor: pointer;
+}
+.wrap form.login_form input[type="submit"]:active {
+    position: relative;
+    top: 1px;
+}
+/**
+ * SOCIAL NETWORKS
+ **/
+
+.wrap .social {
+    margin: 0 0 70px;
+}
+.wrap .social a {
+    width: 22px;
+    height: 22px;
+    margin: 0 0 20px 55px;
+    background-image: url('../images/icn_sprite.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-indent: -999em;
+}
+.wrap .social a:first-of-type {
+    margin: 0 0 20px 0;
+}
+.wrap .social .git {
+    background-position: 0 0;
+}
+.wrap .social .fb {
+    background-position: -240px 0;
+}
+.wrap .social .tw {
+    background-position: -162px 0px;
+}
+.wrap .social .rss {
+    background-position: -402px 0;
+}
+.wrap .social .mail {
+    background-position: -560px 0;
+}
+.wrap .social .pin {
+    background-position: -322px 0;
+}
+.wrap .social .dribbble {
+    background-position: -82px 0;
+}
+.wrap .social .gplus {
+    background-position: -486px 0;
+}
+.wrap .social .linkedin {
+    background-position: -633px 0;
+}
+/**
+ * CONTACT FORM
+ **/
+
+.wrap .contact_us {
+    color: #000;
+    border: 3px solid #000;
+    font-size: 18px;
+    padding: 15px 40px;
+    display: inline-block;
+    margin: 0 0 70px;
+}
+.wrap .contact_us:hover {
+    background: #000;
+    color: #fff;
+}
+.contact_us {
+    text-decoration: none;
+}
+.contact {
+    position: fixed;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(27, 31, 35, 0.95);
+}
+.contact label.error {
+    color: red;
+    float: left;
+    font-size: 11px;
+    padding-top: 10px;
+}
+.contact .form {
+    width: 520px;
+    text-align: center;
+    padding: 40px;
+    background: #f9f9f9;
+    box-sizing: border-box;
+    margin: 100px auto;
+    transition: 0.2s transform ease-in-out;
+}
+.contact .form input, .contact .form textarea {
+    padding: 15px 20px;
+    margin: 0;
+    outline: 0;
+    width: 100%;
+    background: #f9f9f9;
+    border: 3px solid #e0e0e0;
+    font-size: 18px;
+    font-family: Helvetica Neue, Arial, sans-serif;
+    box-sizing: border-box;
+    resize: none;
+}
+.contact .form textarea {
+    height: 175px;
+    padding: 20px;
+}
+.contact .form input[type="text"]::-webkit-input-placeholder, .contact .form textarea::-webkit-input-placeholder {
+    color: #dadada;
+}
+.contact .form input[type="text"]::-moz-input-placeholder, .contact .form textarea::-moz-input-placeholder {
+    color: #dadada;
+}
+.contact .form input[type="text"]::-ms-input-placeholder, .contact .form textarea::-ms-input-placeholder {
+    color: #dadada;
+}
+.contact .form .col {
+    width: 205px;
+    margin: 0 0 30px;
+    display: inline-block;
+    float: left;
+}
+.contact .form .col.last {
+    float: right;
+}
+.contact .form .submit {
+    margin: 30px 0 0;
+    text-align: center;
+    clear: left;
+}
+.contact .form .submit input {
+    cursor: pointer;
+    display: inline-block;
+    background: #1b1f24;
+    color: #fff;
+    border: 0;
+    padding: 20px 45px;
+    width: auto;
+}
+/*======= MOVE ANIMATION =======*/
+
+.contact .move_top {
+    transform: perspective(1000px) translateY(-200px);
+}
+.contact .move_bottom {
+    transform: perspective(1000px) translateY(0);
+}
+/*======= ZOOM ANIMATION =======*/
+
+.contact .zoom {
+    transform: perspective(1000px) scale(0.5);
+    transition: 0.3s transform ease-in-out;
+}
+.contact .zoomed {
+    transform: perspective(1000px) scale(1);
+}
+/*======= FOLD ANIMATION =======*/
+
+.contact .fold {
+    transform: perspective(1000px) rotateY(90deg);
+}
+.contact .unfold {
+    transform: perspective(1000px) rotateY(0);
+}
+/**
+ * EDITS WHEN HAVE BACKGROUND CLASS
+ **/
+
+.background {
+    background: url('../images/backgrounds/bg1.jpg') no-repeat center top fixed;
+    background-size: cover;
+}
+.background .countdown span {
+    color: #fff;
+}
+.background form.subscribe_form input[type="submit"] {
+    color: #000;
+    background: #fff;
+}
+.background form.subscribe_form input[type="text"] {
+    background: transparent;
+    color: #fff;
+}
+.background form.subscribe_form input.error[type="text"] {
+    color: red;
+}
+.background form.subscribe_form input[type="text"]::-webkit-input-placeholder {
+    color: #fff;
+}
+.background form.subscribe_form input[type="text"]::-moz-input-placeholder {
+    color: #fff;
+}
+.background form.subscribe_form input[type="text"]::-ms-input-placeholder {
+    color: #fff;
+}
+.background .contact_us {
+    color: #fff;
+    border-color: #fff;
+}
+/**
+ * MEDIA QUERIES (RESPONSIVE)
+ **/
+
+@media only screen and (max-width: 700px) {
+    .wrap form.login_form {
+        width: 80%;
+        margin: 15px auto 0;
+    }
+    .wrap form.login_form input {
+        width: 49%;
+        margin: 0 2% 0 0;
+    }
+    .wrap form.login_form input[type="password"] {
+        margin: 0;
+    }
+    .wrap form.login_form input[type="submit"] {
+        width: 100%;
+        margin: 15px 0 0;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .wrap {
+        width: 90%;
+        margin: 50px auto 0;
+    }
+    .wrap h1 {
+        margin: 0 0 50px;
+    }
+    .wrap h2, .wrap h3 {
+        font-size: 18px;
+    }
+    .wrap form {
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .wrap form input {
+        box-sizing: border-box;
+    }
+    .wrap form input[type="text"], .wrap form input[type="submit"] {
+        width: 100%;
+    }
+    .wrap .contact_us {
+        margin: 0 0 50px;
+    }
+    .contact .form {
+        width: 90%;
+    }
+    .contact .form p.col {
+        width: 100%;
+    }
+    .contact .form input[type="submit"] {
+        width: 100%;
+    }
+    .wrap form.login_form {
+        width: 90%;
+    }
+    .wrap form.login_form input {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+    .wrap form.login_form input[type="submit"] {
+        margin: 10px 0 0;
+    }
+    ul, ol {
+        width: 80%;
+    }
+    blockquote, q {
+        width: 70%;
+    }
+}
+  </style>
+  <title>
+   H&amp;Iグローバルリサーチ（株）
+  </title>
+  <meta content="Designmodo" name="author">
+  <meta content="MarketsandMarkets日本代理店 - " name="description">
+  <meta content="Maintenance Mode" name="keywords">
+  <meta content="index, follow" name="robots">
+ </head>
+ <body class="" style>
+  <div class="wrap">
+   <h1>
+    H&amp;Iグローバルリサーチ（株）
+   </h1>
+   <h2>
+    当サイトはメインテナンス中です。
+    <br>
+    次のサイトをご利用ください。
+    <br>
+    <br>
+    <a>
+     https://www.marketreport.jp/
+    </a>
+    <br>
+    <br>
+    <a>
+     https://www.globalresearch.co.jp/
+    </a>
+   </h2>
+  </div>
+ </body>
+</html>

@@ -9,7 +9,7 @@ import retry
 import shutil 
 
 if __name__ == "__main__":
-    predictions_dirs = ["../../gemini_ultra_predictions_full/direct_prompting", "../../gemini_ultra_predictions_full/text_augmented_prompting", "../../gemini_ultra_predictions_full/visual_revision_prompting"]
+    predictions_dirs = ["../../gemini_pro_predictions_full/direct_prompting", "../../gemini_pro_predictions_full/text_augmented_prompting", "../../gemini_pro_predictions_full/visual_revision_prompting"]
     for predictions_dir in predictions_dirs:
         for filename in tqdm(os.listdir(predictions_dir)):
             if filename.endswith(".html"):
@@ -18,8 +18,7 @@ if __name__ == "__main__":
                 cleaned_html = cleanup_response(html_content)
                 with open(os.path.join(predictions_dir, filename), "w") as f:
                     f.write(cleaned_html)
-                print (filename)
                 try:
                     take_screenshot(os.path.join(predictions_dir, filename), os.path.join(predictions_dir, filename.replace(".html", ".png")))
                 except:
-                    continue 
+                    print ("screen shot failed for: ", filename)

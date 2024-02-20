@@ -1,0 +1,1057 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "">
+<html xmlns="">
+ <head>
+  <style>
+   @charset "UTF-8";
+
+/* SpryMenuBarHorizontal.css - version 0.6 - Spry Pre-Release 1.6.1 */
+
+/* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. */
+
+/*******************************************************************************
+
+ LAYOUT INFORMATION: describes box model, positioning, z-order
+
+ *******************************************************************************/
+
+/* The outermost container of the Menu Bar, an auto width box with no margin or padding */
+ul.MenuBarHorizontal
+{
+	margin: 0 0 0 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 10pt;
+	cursor: default;
+	width: auto;
+}
+/* Set the active Menu Bar with this class, currently setting z-index to accomodate IE rendering bug: http://therealcrisp.xs4all.nl/meuk/IE-zindexbug.html */
+ul.MenuBarActive
+{
+	z-index: 1000;
+}
+/* Menu item containers, position children relative to this container and are a fixed width */
+ul.MenuBarHorizontal li
+{
+	margin: 0;
+	padding: 0px;
+	list-style-type: none;
+	font-size: 100%;
+	position: relative;
+	text-align: left;
+	cursor: pointer;
+	/*width: 100px;*/
+	float: left;
+}
+/* Submenus should appear below their parent (top: 0) with a higher z-index, but they are initially off the left side of the screen (-1000em) */
+ul.MenuBarHorizontal ul
+{
+	margin: 0;
+	padding: 0px;
+	list-style-type: none;
+	font-size: 100%;
+	z-index: 1020;
+	cursor: default;
+	width: 12.0em;
+	position: absolute;
+	left: -1000em;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to auto so it comes onto the screen below its parent menu item */
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible
+{
+	left: auto;
+}
+/* Menu item containers are same fixed width as parent */
+ul.MenuBarHorizontal ul li
+{
+	width: 12.2em;
+		border-bottom: 1px solid #eee;
+		padding: 0px;
+}
+
+/* Submenus should appear slightly overlapping to the right (95%) and up (-5%) */
+ul.MenuBarHorizontal ul ul
+{
+	position: absolute;
+	margin: 15% 0 0 75%;
+	padding: 0px;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to 0 so it comes onto the screen */
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible
+{
+	left: auto;
+	top: 0;
+}
+
+/*******************************************************************************
+
+ DESIGN INFORMATION: describes color scheme, borders, fonts
+
+ *******************************************************************************/
+
+/* Submenu containers have borders on all sides */
+ul.MenuBarHorizontal ul
+{
+	border: 1px solid #eee;
+}
+/* Menu items are a light gray block with padding and no text decoration */
+ul.MenuBarHorizontal a
+{
+	display: block;
+	cursor: pointer;
+	background-color: #D81E05;
+	padding: 1em 1.25em;
+	color: #fff;
+	text-decoration: none;
+}
+/* Menu items that have mouse over or focus have a blue background and white text */
+ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus
+{
+	background-color: #D81E05;
+	color: #ff00ff;
+}
+/* Menu items that are open with submenus are set to MenuBarItemHover with a blue background and white text */
+ul.MenuBarHorizontal a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal a.MenuBarSubmenuVisible
+{
+	background-color: #999;
+	color: #fff;
+}
+
+/*******************************************************************************
+
+ SUBMENU INDICATION: styles if there is a submenu under a given menu item
+
+ *******************************************************************************/
+
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal a.MenuBarItemSubmenu
+{
+	background-image: url(SpryMenuBarDown.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 60%;
+}
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenu
+{
+	background-image: url(SpryMenuBarRight.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover
+{
+	background-image: url(SpryMenuBarDownHover.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 60%;
+}
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenuHover
+{
+	background-image: url(SpryMenuBarRightHover.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+
+/*******************************************************************************
+
+ BROWSER HACKS: the hacks below should not be changed unless you are an expert
+
+ *******************************************************************************/
+
+/* HACK FOR IE: to make sure the sub menus show above form controls, we underlay each submenu with an iframe */
+ul.MenuBarHorizontal iframe
+{
+	position: absolute;
+	z-index: 1010;
+	filter:alpha(opacity:0.1);
+}
+/* HACK FOR IE: to stabilize appearance of menu items; the slash in float is to keep IE 5.0 from parsing */
+@media screen, projection
+{
+	ul.MenuBarHorizontal li.MenuBarItemIE
+	{
+		display: inline;
+		f\loat: left;
+		background: #FFF;
+	}
+}
+
+
+
+@charset "utf-8";
+body  {
+		scrollbar-3d-light-color:#65788F; 
+	scrollbar-arrow-color:#b3bcc8;
+	scrollbar-base-color:#ffffff;
+	scrollbar-dark-shadow-color:#b3bcc8;
+	scrollbar-face-color:#ffffff;
+	scrollbar-highlight-color:#b3bcc8;
+	scrollbar-shadow-color:#c0c0c0;
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	background: #fff;
+	margin: 20px 0 0 10px; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+	background-image: url(../images/bg_grey_1.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
+
+A.link1 {
+		color: #ccc;
+}
+
+A.link2 {
+		color: #666;
+}
+
+A.link3 {
+		color: #000;
+}
+
+A.link5 {
+		color: #C00;
+		text-decoration: none;
+}
+
+
+
+A.link_crumb {
+		color: #999;
+}
+
+H2 {
+	font-size: 16pt;
+	color:#333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+
+.twoColFixLtHdr #container { 
+	width: 1000px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #eee;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+
+} 
+.twoColFixLtHdr #header { 
+	background: #fff; 
+	padding: 0 0px 0 0px;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+	text-align: right;
+	height:0px;
+} 
+.twoColFixLtHdr #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 10px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+	font-size: 2pt;
+}
+
+ 
+
+
+.twoColFixLtHdr #sidebar1 {
+	float: left; /* since this element is floated, a width must be given */
+	margin: 16px 0px 14px 20px;
+	}
+
+.twoColFixLtHdr #mainMenu {
+	margin: 17px 0 0px 240px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0px 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	background: #D81E05;
+	width: 738px;
+	border: solid 1px #fff;
+	height: 43px;
+} 
+
+.twoColFixLtHdr #mainContent { 
+	margin: 10px 0 0 240px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0 0; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+} 
+
+.twoColFixLtHdr #mainContent_sub { 
+	margin: 0px 0 0 0px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	}
+
+.twoColFixLtHdr #mainContent_sub #sub_images { 
+	margin: 0px 50px 0px 0px;/* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	width: 130px;
+	float: right;
+	z-index:1000;
+	text-align: center;
+}
+
+.twoColFixLtHdr #mainContent_sub #product_images { 
+	margin: 6px 0px 0px 0px;/* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	width: 220px;
+	float: right;
+	z-index:2000;
+	text-align: center;
+}
+
+.twoColFixLtHdr #mainContent_sub #product_main_images { 
+	margin: 50px 20px 0px 0px;/* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	float: right;
+	z-index:3000;
+	text-align: center;
+}
+
+.twoColFixLtHdr #mainContent_sub #product_main_images_2 { 
+	margin: 20px 20px 0px 0px;/* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	float: right;
+	z-index:3000;
+	text-align: center;
+}
+
+
+.twoColFixLtHdr #mainContent_sub #mainContent_text { 
+	margin: 5px 0 30px 0px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	width: 690px;
+	background: #fff;
+	border: solid 1px #dddddd;
+	}
+	
+	
+.twoColFixLtHdr #mainContent_text li{ 
+	font-size: 10pt;
+	}
+	
+	
+
+.twoColFixLtHdr #mainContent_sub h1{ 
+	font-size: 12pt;
+	font-family: arial;
+	color: #D81E05;
+}
+
+.twoColFixLtHdr #mainContent_sub h2{ 
+	font-size: 12pt;
+	font-family: arial;
+	color: #666;
+}
+
+.twoColFixLtHdr #mainContent_sub p{ 
+	font-size: 10pt;
+	font-family: arial;
+	color: #666;
+}
+
+.twoColFixLtHdr #mainContent_crumb { 
+	margin: 0 20px 0 20px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 4px 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+background-color: #fff;
+	font-size: 8pt;
+	color: #999;
+	border: solid 1px #dddddd;
+	}
+
+
+
+.twoColFixLtHdr #footer { 
+	padding: 20px 30px 20px 30px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+	background:#888;
+	text-align: left;
+	font-size: 8pt;
+	color: #ccc;
+} 
+.twoColFixLtHdr #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+TD.printleft 	{
+			font-family: Tahoma, Arial, Helvetica, sans-serif;
+			font-size: 8pt;
+		    font-weight: bold;
+			color: black;
+			padding-top: 10px;
+			border-top: solid 1px #c0c0c0;
+			text-transform: uppercase;
+			}
+			
+TD.printright 	{
+			font-family: Tahoma, Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			color: black;
+			padding: 10px;
+			background-color: #f1f1f1;
+			border-top: solid 1px #c0c0c0;
+			border-right: solid 1px #c0c0c0;
+			}
+			
+TD.head1 {
+			background-color: Gray;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 8pt;
+			color: white;
+			font-weight: bold;
+			padding: 1px;
+			margin: 1px;
+			}
+			
+TD.head2 {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			font-weight: bold;
+			}
+			
+TD.head2b {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			font-weight: bold;
+			background-color: #eee;
+			padding-left: 5px;
+			}
+			
+TD.head2c {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			font-weight: bold;
+			background-color: #ddd;
+			color: #000000;
+			padding-left: 5px;
+			}
+			
+TD.text1 {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			}
+			
+TD.text1b {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 8pt;
+			background-color: #e1e1e1;
+		    padding: 5px;
+			}
+			
+TD.text1c {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 8pt;
+			background-color: #d1d1d1;
+			padding: 5px;
+			}
+			
+TABLE.otherprods 	{
+			margin-top: 30px;
+			}
+			
+			
+LI.art {
+		list-style-type: square;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 10pt;
+		color: gray;
+		font-weight: normal;
+		padding-left: 10px;
+		margin-right: 20em;
+		margin-top: 1em;
+		}
+		
+.mysmall {
+		font-size: 9pt;
+		color: gray;
+		}
+		
+		
+TD.prodsubh 	{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 8pt;
+			background-color: #ccc;
+			color: #666;
+			font-weight: bold;
+			text-transform: uppercase;
+			text-align: center;
+			padding: 4px;
+		}
+		
+TD.proddata 	{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 9pt;
+			color: #666;
+			text-align: center;
+			border-bottom: solid 1px silver;
+			padding: 2px;
+		}
+		
+TR.rowEven {
+		 background-color: white;
+		 }
+		 
+.rowHighlight {
+		 background-color: #f1f1f1;
+		 }
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>
+   Chemical supplier located in Melbourne &gt; KCB &gt; Paint and Decorating &gt; Speedfilla Light - RTU - GSB Chemicals
+  </title>
+ </head>
+ <body class="twoColFixLtHdr">
+  <div id="container">
+   <div id="sidebar1">
+    <a>
+     <img alt="GSB Performance Chemicals" border="0" height="280" src="rick.jpg" title="GSB Performance Chemicals" width="200">
+    </a>
+   </div>
+   <div id="mainMenu">
+    <ul class="MenuBarHorizontal" id="MenuBar1">
+     <li style="width: 70px;">
+      <a>
+       Home
+      </a>
+     </li>
+     <li style="width: 100px;">
+      <a class="MenuBarItemSubmenu">
+       Company
+      </a>
+      <ul style="width: 200px;">
+       <li style="width: 200px;">
+        <a>
+         About GSB
+        </a>
+       </li>
+       <li style="width: 200px;">
+        <a>
+         Mission Statement
+        </a>
+       </li>
+       <li style="width: 200px;">
+        <a>
+         Environmental Policy
+        </a>
+       </li>
+       <li style="width: 200px;">
+        <a>
+         Disclaimer
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li style="width: 100px;">
+      <a class="MenuBarItemSubmenu">
+       Products
+      </a>
+      <ul>
+       <li>
+        <a class="MenuBarItemSubmenu">
+         Print
+        </a>
+        <ul>
+         <li style="width: 200px;">
+          <a>
+           Roller &amp; Blanket Washes
+          </a>
+         </li>
+         <li style="width: 200px;">
+          <a>
+           Fountain Solutions
+          </a>
+         </li>
+         <li style="width: 200px;">
+          <a>
+           UV Washes
+          </a>
+         </li>
+         <li style="width: 200px;">
+          <a>
+           Pressroom Specialties
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li>
+        <a class="MenuBarItemSubmenu">
+         Hardware
+        </a>
+        <ul>
+         <li>
+          <a class="MenuBarItemSubmenu">
+           KCB
+          </a>
+          <ul>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Paint &amp; Decorating
+            </a>
+            <ul>
+             <li style="width: 200px;">
+              <a>
+               Paint Stripper
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Linseed Oil Putty
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Premixed Linseed Oil
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Raw Linseed Oil
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Solvents
+            </a>
+            <ul>
+             <li style="width: 200px;">
+              <a>
+               Methylated Spirits
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Mineral Turpentine
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Kerosene
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Shellite
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Adhesives
+            </a>
+            <ul>
+             <li>
+              <a>
+               PVA Wood &amp; Craft Glue
+              </a>
+             </li>
+             <li>
+              <a>
+               Multi Bond Contact Adhesive
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Cleaning
+            </a>
+            <ul>
+             <li style="width: 200px;">
+              <a>
+               Phenyl
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Mould &amp; Mildew Killer
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Caustic Soda
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Timber Restorer
+              </a>
+             </li>
+            </ul>
+           </li>
+           <!--<li><a >Building</a>        
+        	<ul>
+    		<li style="width: 200px;"><a >Oxalic Acid</a></li>
+            			 </ul>
+   		 </li>-->
+          </ul>
+         </li>
+         <li>
+          <a class="MenuBarItemSubmenu">
+           Maxi
+          </a>
+          <ul>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Paint &amp; Decorating
+            </a>
+            <ul>
+             <li style="width: 200px;">
+              <a>
+               Paint Stripper
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Paint Remover Aerosol
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Citrus Paint Stripper
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Linseed Oil Putty
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Adhesives
+            </a>
+            <ul>
+             <li style="width: 200px;">
+              <a>
+               Mitre Fix - 2 Part Instant Fixing System
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <a class="MenuBarItemSubmenu">
+             Cleaning
+            </a>
+            <ul>
+             <li style="width: 200px;">
+              <a>
+               Acetone
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Prepsolve
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Timber Restorer
+              </a>
+             </li>
+             <li style="width: 200px;">
+              <a>
+               Concrete &amp; Paver Cleaner - Pressure Cleaner Wash
+              </a>
+             </li>
+            </ul>
+           </li>
+          </ul>
+         </li>
+         <li>
+          <a>
+           House Brand
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li>
+        <a>
+         Paint
+        </a>
+       </li>
+       <li>
+        <a>
+         Chemicals
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li style="width: 120px;">
+      <a class="MenuBarItemSubmenu">
+       SDS Data
+      </a>
+      <ul>
+       <li>
+        <a>
+         Aquacoat coatings
+        </a>
+       </li>
+       <li>
+        <a>
+         Consumables
+        </a>
+       </li>
+       <li>
+        <a>
+         Founts
+        </a>
+       </li>
+       <li>
+        <a>
+         Fillers
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+    <!-- end #mainMenu -->
+   </div>
+   <div id="mainContent">
+    <a>
+     <img alt="GSB Chemicals" border="0" height="224" src="rick.jpg" width="740">
+    </a>
+   </div>
+   <!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats -->
+   <br class="clearfloat">
+   <div id="mainContent_crumb">
+    YOU ARE HERE:
+    <a class="link_crumb">
+     GSB Performance Chemicals
+    </a>
+    <a class="link_crumb">
+     &gt; Products &gt;
+    </a>
+    <a class="link_crumb">
+     Hardware &gt;
+    </a>
+    <a class="link_crumb">
+     KCB &gt;
+    </a>
+    <a class="link_crumb">
+     Paint &amp; Decorating &gt;
+    </a>
+    <!-- end #mainContent -->
+   </div>
+   <div id="mainContent_sub">
+    <div align="center" id="product_images">
+     <img alt="See image" border="0" height="600" src="rick.jpg" vspace="0" width="220">
+    </div>
+    <div id="mainContent_text">
+     <h1>
+      Speedfilla Light - RTU
+     </h1>
+     <p>
+      <strong>
+       KCB Speedfilla Light
+      </strong>
+      is an ultra light, ready to use formula for filling cracks, nail heads and holes in a single application.
+     </p>
+     <table border="0" cellpadding="0" cellspacing="0" class="prod" width="100%">
+      <tbody>
+       <tr>
+        <td class="prodsubh" valign="top" width="25%">
+         Size
+        </td>
+        <td class="prodsubh" valign="top" width="25%">
+         Item Number
+        </td>
+        <td class="prodsubh" valign="top" width="25%">
+         Ctn. Qty.
+        </td>
+        <td class="prodsubh" valign="top" width="25%">
+         APN Barcode
+        </td>
+       </tr>
+       <tr onmouseout="this.className='rowEven';" onmouseover="this.className='rowHighlight';">
+        <td class="proddata" valign="top" width="25%">
+         100 GMS
+        </td>
+        <td class="proddata" valign="top" width="25%">
+         SFL100
+        </td>
+        <td class="proddata" valign="top" width="25%">
+         12 or 24
+        </td>
+        <td class="proddata" valign="top" width="25%">
+         9315 215 030 027
+        </td>
+       </tr>
+       <tr onmouseout="this.className='rowEven';" onmouseover="this.className='rowHighlight';">
+        <td class="proddata" valign="top" width="25%">
+         200 GMS
+        </td>
+        <td class="proddata" valign="top" width="25%">
+         SFL200
+        </td>
+        <td class="proddata" valign="top" width="25%">
+         12
+        </td>
+        <td class="proddata" valign="top" width="25%">
+         9315 215 030 034
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <p>
+      If you are interested in ordering this product please complete
+      <a class="link2">
+       this form
+      </a>
+      or
+      <a class="link2">
+       contact us
+      </a>
+      for further information.
+     </p>
+     <table class="otherprods" width="64%">
+      <tbody>
+       <tr>
+        <td valign="top" width="60%">
+         <p>
+          More paint &amp; decorating products:
+         </p>
+         <ul>
+          <li>
+           <a class="link3">
+            Paint Stripper
+           </a>
+          </li>
+          <li>
+           <a class="link3">
+            Linseed Oil Putty
+           </a>
+          </li>
+          <li>
+           <a class="link3">
+            Premixed Linseed Oil
+           </a>
+          </li>
+          <li>
+           <a class="link3">
+            Raw Linseed Oil
+           </a>
+          </li>
+         </ul>
+        </td>
+        <td valign="top" width="40%">
+         <p>
+          Other KCB categories:
+         </p>
+         <ul>
+          <li>
+           <a class="link3">
+            Paint &amp; Decorating
+           </a>
+          </li>
+          <li>
+           <a class="link3">
+            Solvents
+           </a>
+          </li>
+          <li>
+           <a class="link3">
+            Adhesives
+           </a>
+          </li>
+          <li>
+           <a class="link3">
+            Cleaning
+           </a>
+          </li>
+         </ul>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+   <br class="clearfloat">
+   <div id="footer" style="text-align:left;">
+    <table width="100%">
+     <tbody>
+      <tr>
+       <td valign="top" width="25%">
+        <a class="link1">
+         Home
+        </a>
+        <br>
+        <a class="link1">
+         Company information
+        </a>
+        <br>
+        <a class="link1">
+         Our range of products
+        </a>
+        <br>
+        <a class="link1">
+         SDS
+        </a>
+        <br>
+        <a class="link1">
+         Articles
+        </a>
+        <br>
+        <a class="link1">
+         What's new
+        </a>
+        <br>
+        <a class="link1">
+         Disclaimer
+        </a>
+        <br>
+        <a class="link1">
+         Sitemap
+        </a>
+        <br>
+        <a class="link1">
+         Contact GSB today
+        </a>
+        <br>
+       </td>
+       <td valign="top" width="25%">
+        HEAD OFFICE
+        <br>
+        Melbourne
+        <br>
+        84 Camp Road
+        <br>
+        Broadmeadows VIC 3047
+        <br>
+        t: [PHONE REDACTED]
+        <br>
+        f: [PHONE REDACTED]
+        <br>
+        e: [EMAIL REDACTED]
+        <br>
+        <!-- end #footer -->
+       </td>
+       <td valign="top" with="50%">
+        Copyright &copy; 2010
+        <br>
+        GSB Chemical Co. Pty. Ltd
+        <br>
+        ACN 004 355 113
+        <br>
+        ABN 13 004 355 113
+        <br>
+        <br>
+        <br>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+   <!-- end #container -->
+  </div>
+ </body>
+</html>

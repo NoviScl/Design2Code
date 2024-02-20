@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   /* FONTS */
+/* http://www.digitale-chancen.org/globalcustoms/fonts/open_sans/license.txt */
+/* normal */
+@font-face {
+  font-family:'Open Sans';
+  font-style:  normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-Regular-webfont.eot')  format('eot'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-Regular-webfont.ttf')  format('truetype'),  
+       url('/globalcustoms/fonts/open_sans/OpenSans-Regular-webfont.woff') format('woff');
+}
+
+/* bold */
+@font-face {
+  font-family:'Open Sans';
+  font-style:  normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-Bold-webfont.eot')  format('eot'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-Bold-webfont.ttf')  format('truetype'),  
+       url('/globalcustoms/fonts/open_sans/OpenSans-Bold-webfont.woff') format('woff');
+}
+
+/* normal italic */
+@font-face {
+  font-family:'Open Sans';
+  font-style:  italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-Italic-webfont.eot')  format('eot'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-Italic-webfont.ttf')  format('truetype'),  
+       url('/globalcustoms/fonts/open_sans/OpenSans-Italic-webfont.woff') format('woff');
+}
+
+/* bold italic */
+@font-face {
+  font-family:'Open Sans';
+  font-style:  italic;
+  font-weight: 700;
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), 
+       url('/globalcustoms/fonts/open_sans/OpenSans-BoldItalic-webfont.eot')  format('eot'),
+       url('/globalcustoms/fonts/open_sans/OpenSans-BoldItalic-webfont.ttf')  format('truetype'),  
+       url('/globalcustoms/fonts/open_sans/OpenSans-BoldItalic-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Patua One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Patua One'), local('PatuaOne-Regular'), 
+       url('/globalcustoms/fonts/patuaOne/PatuaOne-Regular.eot')  format('eot'),
+       url('/globalcustoms/fonts/patuaOne/PatuaOne-Regular.ttf')  format('truetype'),  
+       url('/globalcustoms/fonts/patuaOne/PatuaOne-Regular.woff') format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/*
+@font-face {
+  font-family: 'Patua One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Patua One'), local('PatuaOne-Regular'), url(https://fonts.gstatic.com/s/patuaone/v6/yAXhog6uK3bd3OwBILv_SFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+*/
+
+
+
+*, *:before, *:after {margin:0;padding:0;box-sizing:border-box;}
+html, body, #wrapper {width:100%;}
+body > #wrapper {float:right;}
+
+#wrapper {
+position:relative;
+height:auto !important;
+min-height:100%;
+margin:0px auto -320px;
+/*
+background: #D5D5D5;
+background: -webkit-linear-gradient(#D5D5D5, #fff);
+background: -o-linear-gradient(#D5D5D5, #fff);
+background: -moz-linear-gradient(#D5D5D5, #fff);
+*/
+background: linear-gradient(#D5D5D5, #fff);
+}
+
+div#minheight {
+height:320px;
+clear:both;
+}
+
+main {display: block;}
+
+#main {
+	background-color:#fff;
+	width:1024px;
+	-moz-hyphens: none;
+   	-o-hyphens: none;
+   	-webkit-hyphens: none;
+   	-ms-hyphens: none;
+   	hyphens: none;
+   	margin:auto;
+	}
+
+.clearfix:after {
+	content:".";
+	display:block;
+	height:1px;
+	clear:both;
+	visibility:hidden;
+	overflow:hidden;
+}
+
+* html .clearfix { height:1%;}
+
+body {
+		font-family:"Open Sans";
+		font-style:normal;
+		font-variant:normal;
+		font-weight:400;
+		line-height:1.5;
+		}
+
+h1, h2, h3, h4, p, ul {margin-bottom:1em;}
+h1, legend {font-size:1.2em;}
+h1 a {text-decoration:none;color:#000;}
+h2, h3 {font-size:1em;}
+ul li, ol li {margin-left:30px;padding:0;}
+ol, ul {margin-bottom:1em;}
+label {display:inline-block;width:10em;vertical-align:top;}
+fieldset {border:0;}
+legend {font-weight:bold;padding-bottom:1em;}
+.formalign {margin-left:13.3em;}
+.zwischenabstand {margin-left:1em;}
+.clearer {clear:both;height:1px;line-height:1px;}
+
+img {border:0;max-width:720px;}
+button, .clickable {cursor:pointer;}
+input, textarea {font-family:"Open Sans";font-size:0.9em;}
+input:focus, a:focus {/* border:1px solid #5686A7; */cursor:pointer;}
+
+a {color:#17375E;}
+a:hover {color:#000;border-bottom:2px solid #5686A7;cursor:pointer;text-decoration:none;}
+a.hlink {position: absolute;top: -1000px;left: -1000px;}
+a.hlink:focus,
+a.hlink:active {
+	position: absolute;
+	top: auto;
+	left: auto;
+	z-index: 10001;
+	background-color: #ffffff;
+	padding: 3px;
+	width: auto;
+	border: 1px solid #17375E;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.nospace {margin-bottom:0;}
+.brmobile, .brmobile2 {visibility:hidden;display:none;}
+.ndcleft {float:left;display:inline;}
+.ndccenter {text-align:center;}
+.ndcright {float:right;display:inline;}
+
+.errorflag {
+	color:#B6001E;
+	background-color:#FDF3F4;
+	padding:10px;
+	border:1px solid #B6001E;
+	font-size:0.875em;
+	margin-bottom:2em;
+	width:87.5%;
+	font-weight:bold;
+}
+
+.redflag {border:2px solid #B6001E !important;padding:2px;}
+
+.greenflag {
+	color:#000;
+	background-color:#ccffcc;
+	padding:10px;
+	border:1px solid #00b300;
+	font-size:0.875em;
+	margin-bottom:2em;
+	width:79%;
+}
+.mbutton {background-color:#fff;color:#000;padding:8px;font-weight:bold;}
+button.border_tuerkis:hover, button.border_tuerkis:focus {background-color:#17375E;color:#fff;}
+.fakebutton {border:0;background-color:#fff;font-family: "Open Sans"}
+.fakebutton:hover, .fakebutton:focus {/*text-decoration:underline;*/border-bottom: 2px solid #5686A7; cursor: pointer;}
+
+.border_tuerkis {border:2px solid #17375E;}
+.bgtuerkis {background-color:#5686A7;}
+
+/* Navigationsleiste oben */
+#header {border-bottom:5px solid #5686A7;width:1024px;z-index:98;height:140px;position:fixed;top:0px;background-color:#fff;}
+#header.nofix {border:0;position:relative;}
+#content.nofix {margin-top:0;}
+#logo {float:left;position:relative;top:30px;left:17px;}
+#logo img {height:100px;width:211px;}
+#content {margin-top:140px;}
+#iconbar {margin-top:21px;padding-left:575px;float:left;}
+#iconbar a {margin-right:10px;color:#434343;font-weight:bold;}
+
+#cookieBar {
+	border:1px solid black;
+	font-size:0.8em;
+	background-color:#f5f5f5;
+	border: 1px solid #ddd;
+	padding:5px 15px 0 15px;
+	min-height: 3em;
+	position:fixed;
+	z-index:99;
+	right:0;
+	left:0;
+	}
+
+#cookieBar p {
+	color:#555;
+	margin-bottom:0.5em;
+	}
+
+#cBar2 {margin:auto;max-width:960px;}
+#cBar2 a {color:#555;font-size:0.9em;}
+
+/* Breadcrumb */
+#breadcrumb {list-style-type:none;margin:20px 0 2em 0;color:#17375E;font-size:0.8em;padding:0;}
+#breadcrumb a {color:#17375E;text-decoration:none;}
+#breadcrumb li {display:inline-block;margin:0;padding-right:10px;vertical-align:middle;}
+
+/* Navigation oben */
+#navigation {vertical-align:bottom;}
+#navigation a {font-weight:bold;color:#000;text-decoration:none;}
+#navigation ul {list-style-type:none;padding:80px 0 0 250px;}
+#navigation ul li {display:inline-block;margin-right:10px;}
+
+#bluebox1, #bluebox2, #bluebox3, #bluebox4, #bluebox5 {background-color:#5686A7;visibility:hidden;display:inline-block;width:15px;height:15px;vertical-align:middle;margin-right:10px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;}
+#ntopic1.navon #bluebox1, #ntopic2.navon #bluebox2, #ntopic3.navon #bluebox3, #ntopic4.navon #bluebox4, #ntopic5.navon #bluebox5 {visibility:visible;}
+
+#pheader {margin:10px 0 1em 0;height:55px;width:100%;}
+#pheader h1 {color:#fff;font-weight:bold;text-align:center;line-height:55px;}
+
+/* Startseite Kopfteil */
+/* Neu MR */
+#bigheader {height:330px;margin:0 0 2em 0;width:100%;}
+.responsivebig { width: 100%;
+  							 max-width: 580px;
+                 height: auto;}
+
+/* alt */
+/* #bigheadertext {
+	position:absolute;
+	z-index:1;
+	overflow:hidden;
+	margin: 25px 0 0 50px;
+	background-color:#fff;
+	width:280px;
+	height:280px;
+	color:#000;
+	font-weight:bold;
+	border-radius: 230px;
+    padding:70px 40px 40px 50px;
+	} */
+/* neu	 */
+#bigheadertext {
+		position:relative;
+		text-align: left
+		z-index:1;
+		overflow:hidden;
+		margin: -110px auto;
+		background:#fff 0% 0% no-repeat;
+		opacity: 0.85;
+		width:100%;
+		height:32%;
+		color:#000;
+		font-weight:bold;
+	  padding: 1.5rem 1rem;
+		}
+
+
+#bigpic {margin:auto;width:580px;height:100%;overflow:hidden;z-index:0;}
+#bhtext2, #bhtext3, #bhtext4, #bp2, #bp3, #bp4, #bp5 {display:none;}
+#bigheadertext p {margin-bottom:0;}
+
+#bigleiste {z-index:1;position:relative;width:90px;margin:-50px auto;height:35px;text-align: center;}
+
+
+#playerbar {box-sizing:border-box;/*border:1px solid black;padding:0 10px 0 10px;*/ margin: 5px auto;height:35px;width:90px;/* background-color:#5686A7; */}
+.poeppel {
+	  display: inline-block;
+    width: 9px;
+    height: 9px;
+    margin: 0;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #000;
+    border-radius: 9px;
+
+}
+
+.poeppel:active {background-color: #000;}
+.poeppel_active {background-color: rgba(0,0,0) /* rgba(255,255,255,255)*/;}
+#bp1 img,#bp2 img,#bp3 img,#bp4 img,#bp5 img {object-fit:cover;}
+
+#navleiste {margin:1em 1em 0 0;background-color:#fff;width:25%;float:right;}
+#navleiste ul {color:#5686A7;}
+#navleiste ul li, #navleiste h2, #navleiste p {font-size:0.8em;line-height:1.8em;}
+#navleiste h2 {margin-bottom:0.5em;}
+.sform button, .sform2 button {line-height:1em;}
+.sform2 input {line-height:2em;width:74%;}
+.sform input {line-height:2em;}
+#infobox {display:none;}
+
+.leftpage {float:left;width:69%;padding-left:20px;}
+#fullpage {width:70%;min-height:600px;padding-left:20px;}
+#fullpage2 {width:900px;min-height:600px;padding-left:20px;}
+#fullpage3 {width:100%;min-height:600px;padding-left:20px;}
+
+.partpage {width:100%;}
+.rightlist {float:right;width:200px;}
+.rightlist img {max-width:200px;}
+.leftlist {float:left;max-width:72%;}
+
+/* Listen im Content */
+.contlist {margin-bottom:2em;}
+.contlist dt {float: left;font-weight:bold;color:#696969;}
+.contlist dd {margin-left:12em;margin-bottom:0.8em;}
+
+.autorbox {padding:5px 0 5px 0;border-top:1px solid #5A5A5A;border-bottom:1px solid black;font-size:0.9em;font-weight:bold;width:100%;}
+.autorbox {
+		 display: -webkit-box;
+  		 display: -moz-box;
+  		 display: -ms-flexbox;
+  		 display: -webkit-flex;
+  		 display: flex;
+
+		-ms-flex-align:center;
+		-webkit-align-items:center;
+		-webkit-box-align:center;
+		align-items: center;
+		flex-direction:row;
+		justify-content:flex-end;}
+.autorbox img {max-height:110px;}
+#ab3  {margin-right:auto;padding-right:20px;}
+
+/* Fußteil */
+#footer {
+	position:absolute;
+	bottom:0px !important;
+	width:1024px;
+	height:320px;
+	margin:0px auto;
+}
+#footer0 {background-color:#434343;}
+#footer1 a {font-weight:normal;color:#fff;text-decoration:none;}
+
+#footer1 {height:85px;border:0;}
+#footer1 ul {padding:30px 90px 0 60px;list-style-type:none;text-align: justify;}
+#footer1 ul::after {width: 100%; display: inline-block; content: "."; visibility: hidden}
+#footer1 ul li {display:inline-block;}
+
+#footer2 {margin:auto;padding-left:10px;}
+#footer2 ul {list-style-type:none;display:table;width:100%;}
+#footer2 ul li {display:table-cell;color:#6F6F6F;vertical-align:middle;/*width:33%;*/}
+#footer2 ul li:nth-child(1) {text-align:left;vertical-align:top;padding-top:10px;}
+#footer2 ul li:nth-child(2) {text-align:left;padding:50px 0 0 40px;}
+#footer2 ul li:nth-child(3) div {width:210px;margin-left:100px;}
+#footer2 ul li:nth-child(3) div span {margin-left:20px;}
+
+/*Kacheln*/
+#kachelbox {
+	display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
+  	flex-direction:row;justify-content:space-around;}
+#kachelbox2 {margin-top:4em;width:100%;min-height:600px;}
+#kachelbox2 a, #kachelbox a {text-decoration:none;color:#fff;}
+.kachel2 {float:left;}
+.goleft {margin-left:50px;}
+.kachel, .kachel2 {background-color:#17375E;height:300px;width:315px;margin-bottom:2em;}
+.kachel img, .kachel2 img {width:100%;height:180px;}
+.kachel h2 a:hover, .kachel2 h2 a:hover, #footer1 a:hover {border-bottom:2px solid #fff;}
+.kachel h2 a:focus, .kachel2 h2 a:focus, #footer1 a:focus {border:2px solid #fff;}
+.kachel h2, .kachel p, .kachel2 h2, .kachel2 p {padding:10px 0 0 10px;color:#fff;margin-bottom:0;}
+.kachel p, .kachel2 p {padding:0 10px 0 10px;}
+
+.dokkachel {height:350px;}
+
+#klappe {display:none;}
+#klapp-navigation  {
+  width: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color:#fff;
+  display:none;
+  z-index:99999 !important;
+}
+
+#maincontent {padding:10px;}
+#karte1 #map {width:300px !important;height:300px !important;border:1px solid black;}
+
+/*Suchmaske*/
+#suchboerse input[type=text] {height:2.5em;width:40%;padding-left:10px;}
+#suchboerse input[type=checkbox], input[type=radio] {}
+#suchboerse textarea {width:66%;padding:5px;}
+#suchboerse select {padding:9px;width:40%;}
+#suchboerse .pinkform:focus {outline:none;border:2px solid #C4124C;}
+#suchboerse .tuerkisform:focus {outline:none;border:2px solid #17375E;}
+#suchboerse label {width:11em;}
+.makeroom {padding-bottom:2em;margin-bottom:2em;}
+.makeroom2 {padding-bottom:1em;margin-bottom:2em;}
+
+.sucheleft {float:left;width:290px;margin-left:10px;}
+.sucheright {float:right;width:290px;margin-left:10px;}
+.sucheleft hr, .sucheright hr {margin-right:80px;}
+
+#suchboerse select, #suchboerse input, #suchboerse textarea {
+	background-color:#fff;
+	border:1px solid #ddd;
+	border-radius: 5px;
+}
+.suchbutton {border:1px solid black;padding:5px;margin-right:20px;background-color:#fff;}
+.suchbutton:hover, .suchbutton:focus {background-color:#5686A7;color:#fff;}
+.xecke {padding-right:22px;background-image:url(/assets/images/xecke.gif);background-repeat:no-repeat;background-position:right top;}
+
+.smaller {font-size:0.8em;font-weight:normal;}
+.terminliste {margin-top:1em;}
+.terminliste dt {float:left;}
+.terminbox {margin-top:0.3em;width:50px;height:50px;color:#fff;padding:5px;text-align:center;line-height:1.2em;background-color:#5686A7;}
+.terminliste dd {margin:0 0 1.5em 70px;}
+.terminliste dd a {color:#000;text-decoration:none;}
+.terminliste dd h2 {margin:0;padding:0;}
+.terminliste dd:after {clear:both;}
+
+.themenliste {margin:0;padding:0;list-style-type:none;}
+/*.themenliste a {color:#000;text-decoration:none;cursor:pointer;}*/
+.themenliste
+.themenliste h2 {margin:0;padding:0;}
+.themenliste h2 a {color:#000;text-decoration:none;}
+.themenliste li {clear:both;margin:0;padding:0.5em 0 2em 0;display:table;min-height:240px;}
+.themenliste div {display: table-cell;vertical-align:top;}
+.themenliste p, #matliste p {font-weight:normal;}
+.themenliste .vorschaubild {padding:1.9em 20px 0 0;width:297px;}
+.themenliste .vorschaubild img {position:absolute;clip:rect(0px,255px,170px,0px);}
+
+.fokusliste  {list-style-type:none;}
+.fokusliste , .fokusliste h2, .fokusliste li, .fokusliste h1 {margin:0;padding:0;}
+.fokusbild img {max-width:100%;}
+.fokusliste li ul, .fokusliste li ol {margin-left:2em;}
+
+.paging {
+	clear: both;
+	font-size: 12px;
+	margin-bottom: 2em;
+	padding: 10px 0px 3px 0px;
+}
+
+.paging div {
+	padding: 0em;
+	display: inline;
+}
+.paging strong, .paging a, .paging_button {
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 2px 5px;
+	margin: 0px 0.25em 0px 0.25em;
+	background: #fff;
+}
+
+.paging a:hover, .paging strong {
+	background:#17375E;
+	color:#fff !important;
+}
+
+.paging strong, .paging a, .paging_button {
+	border: 1px solid #5686A7;
+}
+
+.domore {display:inline-block;float:right;}
+.domore a {color:#17375E;font-size:2em;}
+
+.artikelbildrechts  {float:right;padding:5px 0 10px 20px;}
+.artikelbildlinks {float:left;padding:0.5em 20px 10px 0;}
+.artikelbildlinks img {width:100%;max-width:255px;}
+
+.autorleiste {font-size:0.8em;margin:-1em 0 1em 0;}
+.autorzeile {padding:5px 0 5px 0;border-top:1px solid #5A5A5A;border-bottom:1px solid #5A5A5A;font-size:0.8em;color:#5A5A5A;display:block !important;}
+
+#geduld {
+	    display:none;
+	    position: absolute;
+		top: 150px;
+		left: 20%;
+		background-color:#fff;
+		border:5px solid #17375E;
+		padding:20px;
+		height:200px;
+		width:400px;
+		text-align:center;
+		font-weight:bold;
+		opacity: 1;
+		-moz-box-shadow:0 1px 8px #000000;
+		-o-box-shadow:0 1px 8px #000000;
+	    -webkit-box-shadow:0 1px 8px #000000;
+		}
+
+
+.nohover:hover, .nohover:hover img {border:0;}
+
+.gojump {display: block;height:150px;margin-top:-150px;visibility:hidden;}
+
+a.infobox {position:relative;z-index:24;text-decoration:underline;}
+a.infobox:hover, a.infobox:focus {z-index:25;background-color:#ff0;}
+a.infobox span {display:none;}
+a.infobox:hover span, a.infobox:focus span  {
+    display:block;position:absolute;
+    top:2em; left:2em; width:26em;
+    border:2px solid #5686A7;color:#000;background-color:#fff;
+    padding:10px;}
+
+#applyform input[type="text"], #applyform textarea, #applyform select {padding:10px; line-height: 15px;
+	border: 1px solid #5686A7;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px grey;
+    width:22em;
+    margin-bottom:2em;
+    }
+
+#applyform input[type="text"]:focus, #applyform textarea:focus, #applyform select:focus {border:2px solid #5686A7;}
+#applyform input[type="submit"] {background-color:#fff;border:2px solid #5686A7;padding:10px;font-weight:bold;}
+#applyform input[type="submit"]:hover, #applyform input[type="submit"]:focus  {background-color:#005DA8;color:#fff;}
+
+.termin dt {float:left;}
+.termin dd {margin:0 0 1.5em 8em;}
+.termin dd a {color:#000;text-decoration:none;}
+.termin dd h2 {margin:0;padding:0;}
+.termin dd:after {clear:both;}
+
+.rbblock {margin:1em 0 2em 2em;width:20em;}
+.dblock {line-height:1.5em;display:block;}
+.dblock span {display:inline-block;margin-left:.8rem;}
+.row {display: table-row;width:50%;}
+.cblock {display: table-cell;vertical-align:middle;max-width:30px;}
+.dblock2 {display: table-cell;padding-left:10px;}
+.dblock2 {line-height:1.3em;margin-left:10px;width:100%;}
+
+#entryform.kontaktform {width:70%;padding:0;}
+
+#entryform input, #entryform textarea,  #entryform select {
+		line-height:1.5em;
+		border:1px solid #D6D6D6;
+		-webkit-border-radius:2px;
+    	-khtml-border-radius:2px;
+	    -moz-border-radius:2px;
+    	border-radius:2px;
+    	font-size:1em;
+    	font-family:Open Sans
+		}
+
+#entryform select {width:28.5%;}
+
+.ileft {float:left;width:12em;margin-right:1em;}
+.ileft input {width:90%;}
+
+#entryform label {display:block;line-height:1.5em;font-weight:bold;color:#111;}
+#entryform label.ilong, #entryform input.ilong, #entryform textarea.ilong {width:70%;}
+#entryform .rbox input {float:left;margin:5px 2% 0 0;}
+#entryform .rbox label {font-weight:normal;width:85%;}
+#entryform .rbox {width:75%;}
+#entryform p {width:75%;}
+.rwtable, #entryform .rbox {width:85%;}
+#entryform .rbox p {width:85%;}
+
+#entryform.kontaktform p {width:auto;}
+
+#entryform legend {color:#39579A;font-weight:bold;font-size:1.2em;}
+#entryform fieldset {border:0;margin-bottom:2em;}
+
+/* Fuer den Honeypot */
+.mail_wdh {
+	display: none;
+}
+
+/* Fuer die Luftballons */
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}0%{top:100%}}
+@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}
+@keyframes snowflakes-fall{0%{top:-10%}0%{top:100%}}
+@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.kachel2, #iconbar, .leftpage, #navleiste, .themenliste .vorschaubild, #fullpage, #fullpage2, #fullpage3, #main, #footer, #footer1, #footer2, #header, #navigation {width:100%;}
+.themenliste .vorschaubild, .themenliste div, .themenliste li, #kachelbox2, #kachelbox, #klappe, #footer1 ul  {display:block;}
+#navleiste, .artikelbildlinks {float:none;}
+.artikelbildlinks img, .vorschaubild img {width:100%;max-width:none;}
+
+.themenliste .vorschaubild {padding:0;width:100%;}
+.artikelbildrechts {float:none;width:100%;}
+.themenliste .vorschaubild img {position:relative;clip:auto;}
+.themenliste li, .fokusliste {padding:0 0 2em 0;}
+
+#fullpage3, #fullpage2 {padding-left:0;}
+#navigation {display:none;}
+#footer0, #footer1, #footer2 {height:auto;}
+#footer1 ul, #footer2 ul {padding: 20px 0 0 20px;overflow:hidden;}
+#kachelbox2 {margin-top: 1em;}
+#navleiste {padding: 0.5em 1em 0 1em;}
+.themenliste {margin-bottom:2em;}
+
+#logo {top:5px;left:5px;}
+#logo img {width:160px;height:auto;}
+#iconbar {padding:0;margin:0 2% 0 0;text-align:right;}
+
+#bigpic {width:100%;}
+#bp1, #bp2, #bp3, #bp4, #bp5 {height:80px;}
+/*#bp2 img, #bp3 img, #bp4 img, #bp5 img {margin-left:-30%;}*/
+
+/*neu*/
+#bigheader {max-height: 330px;margin:0 0 2em 0;width:100%;background-color: #fff;}
+#bigheadertext {font-size:0.8em;
+  width: 100%;
+  height: 34%;
+  position:relative;
+  text-align: left;
+  z-index:1;
+  overflow:hidden;
+  margin: 132px auto;
+  background:#fff 0% 0% no-repeat;
+  opacity: 0.85;
+  color:#000;
+  font-weight:bold;
+  padding: 1.8rem 0.8rem;}
+  /*width:190px;
+  height:190px;
+  border-radius:130px;
+  padding:35px 30px 0 35px;}*/
+#bigleiste {/* margin-top:200px;*/ margin-top: -245px;}
+
+#klappe {width:48px;margin:28px 5px 0 0;float:right;}
+#klapp-navigation {transition: width 0.3s ease;font-size:0.8em;display:block;overflow:scroll;}
+#klapp-navigation:target {width:290px;z-index:2;}
+#klapp-navigation:target + #wrapper {width:20%;}
+
+#main:target + #klapp-navigation {display:none;}
+
+#klapp-navigation ul {list-style-type:none;padding:0;margin:0;width:275px;border-bottom:1px solid #ccc;font-weight:bold;}
+#klapp-navigation li {margin:0;display:block;height:auto;letter-spacing:0.1em;padding:12px 0 12px 5px;border-top:1px solid #ccc;}
+#klapp-navigation .item2 {margin-left:25px;}
+#klapp-navigation .item2 a {display:block;}
+#klapp-navigation li:focus {background-color:#EBEBEB;}
+#klapp-navigation li.nohover:focus {background-color:#77335C;}
+#klapp-navigation li a {color:#000;text-decoration:none;padding-left:25px;}
+#klapp-navigation .tuerkisactive {background:url(/assets/images/tuerkisaktiv.gif) no-repeat 1% 50%;}
+#klapp-navigation .tuerkis_border2 {border-top:2px solid #00818F;border-bottom:0;}
+
+ .kachel:nth-child(1),.kachel:nth-child(2),.kachel:nth-child(3) {margin:auto;max-width:100%;margin-bottom:2em;}
+
+#suchboerse input[type=text], #suchboerse select {width:90%;float:none;display:block;margin-bottom:2em;}
+.zwischenabstand {margin-left:0;}
+#geduld {top:200px;left:5%;width:80%;}
+
+#footer1 ul li, #footer2 ul li {float:none;margin:0 0 2em 0;width:100%;display:block;}
+#footer1 ul, #footer2 ul {display:block;}
+#footer2 ul li:nth-child(2) {padding:0;}
+#footer2 ul li:nth-child(3) div {padding:0;margin:0;width:100%;}
+
+.sform2 input {width:50%;}
+
+a.infobox:hover span, a.infobox:focus span  {position:relative;width:80%;}
+.dokkachel {height:auto;padding-bottom:1em;}
+  </style>
+  <meta charset="utf-8">
+  <title>
+   childrens-rights.digital
+  </title>
+  <meta content="noodp" name="googlebot">
+  <meta content="default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline';img-src 'self'" http-equiv="Content-Security-Policy">
+  <meta content="Stiftung Digitale Chancen" name="copyright">
+  <meta content="Child Protection,Children&rsquo;s Rights,Digital World,digital environment,children&rsquo;s digital environment,UN-Convention on the Rights of the Child,Right to Access,Right to Freedom of Expression and Information,Right to Assembly and Association, Participation and Play,Right to Privacy and Data Protection,Right to Education and Digital Literacy,Right to Protection and Safety" name="Keywords">
+  <meta content="The project &lsquo;Child Protection and Children&rsquo;s Rights in the Digital World&rsquo; analyses the impact of digitisation on the everyday life of children and young people and measures for child protection and risk prevention. The aim is to develop and implement a strategy for child and youth policy measures that supports the realization of children's rights in all aspects of life and that enables children to exercise their rights and strengthens their ability for self-protection." name="Description">
+  <meta content="All" name="audience">
+  <meta content="3 days" name="revisit-after">
+  <meta content="article" property="og:type">
+  <meta content="" property="og:url">
+  <meta content="Child Protection and Children&rsquo;s Rights in the Digital World" property="og:title">
+  <meta content="The project &lsquo;Child Protection and Children&rsquo;s Rights in the Digital World&rsquo; analyses the impact of digitisation on the everyday life of children and young people and measures for child protection and risk prevention. The aim is to develop and implement a strategy for child and youth policy measures that supports the realization of children's rights in all aspects of life and that enables children to exercise their rights and strengthens their ability for self-protection." property="og:description">
+  <meta content="" property="og:image">
+  <meta content="" property="og:image:url">
+  <meta content="Child Protection and Children&rsquo;s Rights in the Digital World" property="og:site_name">
+  <meta content="" property="og:publisher">
+  <meta content="en_en" property="og:locale">
+  <meta content="summary" name="twitter:card">
+  <meta content="Child Protection and Children&rsquo;s Rights in the Digital World" name="twitter:creator">
+  <meta content="" name="twitter:site">
+  <meta content="Child Protection and Children&rsquo;s Rights in the Digital World" name="twitter:title">
+  <meta content="The project &lsquo;Child Protection and Children&rsquo;s Rights in the Digital World&rsquo; analyses the impact of digitisation on the everyday life of children and young people and measures for child protection and risk prevention. The aim is to develop and implement a strategy for child and youth policy measures that supports the realization of children's rights in all aspects of life and that enables children to exercise their rights and strengthens their ability for self-protection." name="twitter:description">
+  <meta content="" name="twitter:image:src">
+  <meta content="INDEX,FOLLOW" name="robots">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+ </head>
+ <body>
+  <a class="hlink" title="Jump to main content keyboard shortcut 2">
+   Jump to main content keyboard shortcut 2
+  </a>
+  <a class="hlink" title="Jump to navigation menu keyboard shortcut 1">
+   Jump to navigation menu keyboard shortcut 1
+  </a>
+  <a class="hlink" title="Jump to search keyboard shortcut 5">
+   Jump to search keyboard shortcut 5
+  </a>
+  <div id="wrapper">
+   <div id="klapp-navigation">
+    <ul role="menu">
+     <li class="bgtuerkis" role="menuitem">
+      <a title="Close navigation">
+       <img alt="Close navigation" height="20" src="rick.jpg" width="20">
+      </a>
+     </li>
+     <li role="menuitem">
+      <a>
+       INTRO
+      </a>
+     </li>
+     <li role="menuitem">
+      <a>
+       FOCUS
+      </a>
+     </li>
+     <li role="menuitem">
+      <a>
+       BACKGROUND
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div id="main">
+    <div id="header">
+     <div id="klappe">
+      <a title="Show navigation">
+       <img alt="Show navigation" height="48" src="rick.jpg" width="48">
+      </a>
+     </div>
+     <div id="logo">
+      <a>
+       <img alt="childrens-rights digital" height="100px" src="rick.jpg" width="210px">
+      </a>
+     </div>
+     <div id="iconbar">
+      <a class="padright" title="Events">
+       <img alt="Events" height="20" src="rick.jpg" width="20">
+      </a>
+      <a class="padright" title="Search">
+       <img alt="Search" height="20" src="rick.jpg" width="20">
+      </a>
+      <a class="padright" title="RSS-Feed">
+       <img alt="RSS-Feed" height="20" src="rick.jpg" width="20">
+      </a>
+      <a class="padright" title="Contact">
+       <img alt="Contact" height="21" src="rick.jpg" width="23">
+      </a>
+      <a title="Deutsche Version anzeigen">
+       DE
+      </a>
+      |
+      <a title="Show english version">
+       EN
+      </a>
+     </div>
+     <div id="navigation">
+      <ul class="clearfix">
+       <li id="ntopic1">
+        <div id="bluebox1">
+         <br>
+        </div>
+        <a>
+         INTRO
+        </a>
+       </li>
+       <li id="ntopic2">
+        <div id="bluebox2">
+         <br>
+        </div>
+        <a>
+         FOCUS
+        </a>
+       </li>
+       <li id="ntopic3">
+        <div id="bluebox3">
+         <br>
+        </div>
+        <a>
+         BACKGROUND
+        </a>
+       </li>
+       <li class="navon" id="ntopic5" title="Active topic">
+        <div id="bluebox5">
+         <br>
+        </div>
+        <a>
+         PROJECT
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="clearfix" id="content">
+     <div class="bgtuerkis" id="pheader">
+      <h1>
+       PROJECT
+      </h1>
+     </div>
+     <div id="maincontent">
+      <div id="fullpage">
+       <ul id="breadcrumb">
+        <li>
+         <a>
+          <img alt="Home" height="19" src="rick.jpg" width="21">
+         </a>
+        </li>
+        <li>
+         &gt;&nbsp;&nbsp;&nbsp;Project
+        </li>
+       </ul>
+       <div class="partpage">
+        <h1>
+         Child Protection and Children&rsquo;s Rights in the Digital World
+        </h1>
+        <p>
+         In April 2016 the Council of Europe adopted the so-called Sofia Strategy for implementing the UN Convention on the Rights of the Child. Next to aspects like equal opportunities, participation, a life free from violence and child-friendly justice it also encompasses children&rsquo;s rights in the digital environment.
+        </p>
+        <p>
+         Against this backdrop, research within the project &lsquo;Child Protection and Children&rsquo;s Rights in the Digital World&rsquo; analyses the impact of digitisation on the everyday life of children and young people and measures for child protection and risk prevention. The aim is to develop and implement a strategy for child and youth policy measures that supports the realization of children''s rights in all aspects of life and that enables children to exercise their rights and strengthens their ability for self-protection.
+        </p>
+        <p>
+         The project supports the Council of Europe&rsquo;s activities for the implementation of the Sofia Strategy and collaborates with international committees at the EU- and UN-level in the sector of Internet Governance as well as ICANN and further institutions. In close cooperation with the child charity Deutsches Kinderhilfswerk the project communicates German activities into the European and international context and promotes the implementation of the UN-CRC with regard to the digitization of the lifeworld of children.
+        </p>
+        <br>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div id="minheight">
+    </div>
+    <div class="clearfix" id="footer">
+     <div class="clearfix" id="footer0">
+      <div id="footer1">
+       <ul>
+        <li>
+         <a>
+          IMPRINT
+         </a>
+        </li>
+        <li>
+         <a>
+          NEWSLETTER
+         </a>
+        </li>
+        <li>
+         <a>
+          CONTACT
+         </a>
+        </li>
+        <li>
+         <a>
+          PRIVACY
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="clearfix" id="footer2">
+      <ul>
+       <li>
+        &copy; 2023
+       </li>
+       <li>
+        <div>
+         <a rel="noopener" target="_blank" title="Link zur Stiftung Digitale Chancen &ouml;ffnet in neuem Fenster">
+          <img alt="Logo: Stiftung Digitale Chancen" height="100" src="rick.jpg" width="210">
+         </a>
+        </div>
+       </li>
+       <li>
+        <div>
+         Funded by:
+         <br>
+         <a rel="noopener" target="_blank" title="Link Federal Ministry for Family Affairs, Senior Citizens, Women and Youth">
+          <img alt="Funded by: Federal Ministry for Family Affairs, Senior Citizens, Women and Youth" height="104" src="rick.jpg" width="213">
+         </a>
+        </div>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

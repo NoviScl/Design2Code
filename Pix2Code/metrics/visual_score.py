@@ -21,6 +21,7 @@ from copy import deepcopy
 from collections import Counter
 from copy import deepcopy
 from Pix2Code.metrics.ocr_free_utils import get_blocks_ocr_free
+from Pix2Code.data_utils.dedup_post_gen import check_repetitive_content
 from bs4 import BeautifulSoup, NavigableString, Comment
 import re
 
@@ -1195,6 +1196,7 @@ def make_html(filename):
 
 
 def pre_process(html_file):
+    check_repetitive_content(html_file)
     make_html(html_file)
     with open(html_file, 'r') as file:
         soup = BeautifulSoup(file, 'html.parser')

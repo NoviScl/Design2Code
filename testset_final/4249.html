@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   html, body { padding: 0 }
+
+html {
+	margin: 0;
+	background-color: #181818;
+}
+
+body {
+	min-width: 320px;
+	max-width: 58em;
+	position: relative;
+	margin: auto;
+	color: #ddd;
+	line-height: 1.7;
+	letter-spacing: 0.06em;
+	font: 13px "DejaVu Sans", "Bitstream Vera Sans", "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+}
+
+@media (min-width: 560px) {
+	html { padding: 0 22px }
+	body { margin: 22px auto; font-size: 14px; line-height: 1.7 }
+}
+
+@media (min-width: 714px) {
+	html { padding: 0 44px }
+	body { margin: 44px auto }
+}
+
+p {
+	text-align: inherit; /* justify, once hyphenation is a given? */
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+	padding: 0.5em 0;
+	margin: 0.3em 0;
+}
+
+hr { border: 0; border-top: 1px solid #ccc; margin: 1em 0 }
+
+abbr        { letter-spacing: 0.15em }
+abbr[title] { border-bottom: 1px dashed #666 }
+
+dt {
+	font-weight: bold;
+}
+dd {
+	padding: 0 0 0.6em;
+}
+
+ul {
+	list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAJCAQAAABUUf4oAAAAI0lEQVR4AWMAgf///zcwgAGUCxZAcGECCC5CAMbBrhfCIQwAlb8qWtY9uDsAAAAASUVORK5CYII=);
+	padding: 0;
+	margin: 0.5em 0 1em;
+}
+ul > li {
+	padding: 0 0 0 0.15em;
+	margin: 0.15em 0 0.15em 1.2em;
+}
+
+table {
+	width: 100%;
+	margin: 1em 0 1.5em;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 1px solid #666;
+}
+th[colspan] {
+	text-align: center;
+}
+td, th {
+	padding: 0.1em 0.9em;
+	border: 1px solid #666;
+}
+
+table.rows td {
+	border-width: 1px 0;
+}
+table.rows th {
+	border-width: 1px 0 3px;
+	border-bottom-style: double;
+}
+
+table.cols td,
+table.cols th {
+	border-width: 0 1px;
+}
+
+cite {
+	font-style: italic;
+}
+
+blockquote, pre {
+	background-color: #222;
+	border: 1px solid #444;
+	margin: 0;
+	padding: 0 0.5em;
+}
+blockquote {
+	color: #bbb;
+}
+pre {
+	clear: both;
+	line-height: 1.3;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	overflow-x: scroll;
+}
+blockquote blockquote {
+	padding: 0 1em;
+}
+blockquote pre {
+	padding: 0.5em 0;
+	border: 0;
+	margin: 0;
+}
+blockquote > p:first-child {
+	margin-top: 0;
+}
+blockquote > p {
+	margin-bottom: 0;
+}
+q {
+	quotes: '\201C' '\201D' '\2018' '\2019';
+}
+
+div.body > blockquote,
+div.body > pre,
+div.body > ins > blockquote,
+div.body > ins > pre,
+div.body > pre > samp,
+div.body > ins > pre > samp {
+	padding-left:  2em;
+	padding-right: 2em;
+	margin-left:  -2em;
+	margin-right: -2em;
+}
+div.body > ul > li > blockquote,
+div.body > ul > li > pre,
+div.body > ol > li > blockquote,
+div.body > ol > li > pre,
+div.body > ul > li > pre > samp,
+div.body > ol > li > pre > samp {
+	padding-left:  4.8em;
+	padding-right: 2em;
+	margin-left:  -4.8em;
+	margin-right: -2em;
+}
+
+div.body > blockquote,
+div.body > pre,
+div.body > ins > blockquote,
+div.body > ins > pre,
+div.body > ul > li > blockquote,
+div.body > ul > li > pre,
+div.body > ol > li > blockquote,
+div.body > ol > li > pre {
+	border-width: 1px 0;
+}
+
+div.body > blockquote:first-child,
+div.body > pre:first-child,
+div.body > ins > blockquote:first-child,
+div.body > ins > pre:first-child {
+	margin-top: 2em;
+}
+
+blockquote + blockquote,
+blockquote + pre,
+pre + blockquote,
+pre + pre {
+	margin-top: 1.125em;
+}
+
+h1 { font-size: 2.20em; }
+h2 { font-size: 1.90em; }
+h3 { font-size: 1.55em; }
+h4 { font-size: 1.30em; }
+h5 { font-size: 1.10em; }
+h6 { font-size: 1.00em; }
+h1, h2, h3, h4, h5, h6 {
+	color: #eee;
+	line-height: 1.2;
+	letter-spacing: 0.07em;
+	margin-bottom: 0;
+	text-align: left;
+	font-family: Georgia, "Hoefler Text", "DejaVu Serif", "Bistream Vera Serif", "Lucida Bright", serif;
+	font-weight: normal;
+}
+
+pre, code, var {
+	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Andale Mono", monospace;
+	word-spacing: 0;
+}
+var, code {
+	padding: 0 2px;
+	margin: 0;
+	background-color: #242424;
+	font-style: inherit;
+	letter-spacing: 0;
+	white-space: pre;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	-o-hyphens: none;
+	hyphens: none;
+}
+kbd {
+	padding: 0 0.3em;
+	border: 1px solid #999;
+}
+pre > code {
+	padding: 0;
+	margin: 0;
+	background: transparent;
+}
+pre > samp {
+	color: #fff;
+	background-color: #000;
+	display: block;
+	margin: -0.5em;
+	padding: 0.5em;
+}
+
+img {
+	padding: 0;
+	border: 0;
+	margin: 0;
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	text-decoration: none;
+	padding:  5px  0.2em  2px  0.2em;
+	margin:  -5px -0.2em -2px -0.2em;
+	box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+a:link {
+	color: #fff;
+	background: transparent;
+	border-bottom: 1px solid #999;
+}
+a:visited {
+	color: #ddd;
+	background: transparent;
+	border-bottom: 1px solid #666;
+}
+a:focus,
+a:hover {
+	text-decoration: none;
+	color: #fff;
+	background: #444;
+	border-bottom: 2px solid #444; /* should be 1px but that looks jumpy for some reason */
+}
+a:active {
+	color: #fff;
+	background: transparent;
+	border-bottom: 1px solid #999;
+}
+
+a[id],
+a[name] {
+	padding: 0;
+	margin: 0;
+}
+
+body > del,
+div > del,
+li > del {
+	text-decoration: line-through;
+	display: block;
+}
+
+body > ins,
+div > ins,
+li > ins {
+	display: block;
+	text-decoration: none;
+	padding: 0 2em;
+	margin: 0.5em -2em;
+	background-color: #191919;
+	border: 1px dotted #777;
+	border-width: 1px 0;
+}
+
+div.body {
+	word-spacing: -0.05em;
+}
+.drop-cap:first-letter,
+div.body > p:first-child:first-letter {
+	font-family: Georgia, "Hoefler Text", "DejaVu Serif", "Bistream Vera Serif", "Lucida Bright", serif;
+	font-size: 3.6em;
+	font-style: normal;
+	font-weight: normal;
+	color: #cecece;
+	float: left;
+	padding: 0.155em 0 0;
+	letter-spacing: 0.13em;
+	line-height: 0.64;
+}
+div.body > p:first-child + p {
+	clear: left;
+}
+div.body > ul,
+div.body > ol {
+	clear: left;
+}
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6 {
+	word-spacing: 0;
+}
+div.body > p:first-child + blockquote,
+div.body > p:first-child + pre {
+	margin-top: -0.325em;
+}
+div.body > p:first-child + blockquote:before {
+	content: "\A";
+	width: .8em;
+	height: 1em;
+	float: left;
+}
+
+.blocklink {
+	clear: both;
+	margin: auto;
+	display: table;
+}
+.blocklink > a {
+	text-align: center;
+	display: table-cell;
+	padding: 2px 2px 0.5em;
+	border: 1px solid #333;
+}
+.blocklink > a:focus,
+.blocklink > a:hover {
+	border-color: #444;
+}
+
+.attention {
+	color: #fff;
+	background-color: #393939;
+	padding: 0.5em 2em 0.5em 12em;
+	border: 1px solid #666;
+	margin: 0 -2em;
+	text-align: justify;
+}
+.attention .pull-out {
+	color: #aaa;
+	font-size: 3em;
+	padding: 0 0.25em 0 0;
+	line-height: 1.1;
+	font-family: Georgia, "Hoefler Text", "DejaVu Serif", "Bistream Vera Serif", "Lucida Bright", serif;
+	font-weight: normal;
+	float: left;
+}
+.attention > q:first-child {
+	display: inline-block;
+	text-indent: -.36em;
+}
+
+.mail {
+	font-family: "Bitstream Vera Sans Mono", "Andale Mono", monospace;
+	font-style: inherit;
+}
+
+.smiley {
+	font-size: 1.2em;
+	line-height: 1;
+	color: #ff0;
+}
+
+.via,
+.backlinks {
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+ol.conversation { display: table }
+ol.conversation > li { display: table-row }
+ol.conversation > li > span,
+ol.conversation > li > q { display: table-cell }
+ol.conversation,
+ol.conversation > li { list-style: none; margin: 0; padding: 0; }
+ol.conversation > li > span { text-align: right }
+ol.conversation > li > q { font-style: inherit; quotes: '' ''; padding-left: 1em }
+
+#meta {
+	float: left;
+}
+#meta a,
+#meta abbr {
+	border: 0;
+}
+
+#weblog .body + .title {
+	margin-top: 1.41818em; /* 1.8 * 2.6 / 3.3 */
+	margin-left:  -0.60606em; /* 2 / 3.3 */
+	margin-right: -0.60606em;
+	padding: 0.3939em 0.60606em 0; /* 0.5 * 2.6 / 3.3 */
+}
+#weblog .body + .title.single-word {
+	margin-top: 1.2em; /* 1.8 * 2.6 / 3.9 */
+	margin-left:  -0.51282em; /* 2 / 3.9 */
+	margin-right: -0.51282em;
+	padding: 0.3333em 0.51282em 0; /* 0.5 * 2.6 / 3.9 */
+}
+#weblog .body + .title.long {
+	margin-top: 1.8em; /* baseline */
+	margin-left:  -0.76923em; /* 2 / 2.6 */
+	margin-right: -0.76923em;
+	padding: 0.5em 0.76923em 0; /* baseline */
+}
+#weblog .title a[rel="bookmark"] {
+	text-decoration: none;
+	line-height: 1.3;
+}
+#weblog .title a[rel="bookmark"]:link,
+#weblog .title a[rel="bookmark"]:visited {
+	margin-left: 0;
+	padding-left: 0;
+	margin-right: 0;
+	padding-right: 0;
+	border-bottom: 1px dotted #666;
+}
+#weblog .title a[rel="bookmark"]:focus,
+#weblog .title a[rel="bookmark"]:hover,
+#weblog .title a[rel="bookmark"]:active {
+	margin-left: -.2em;
+	padding-left: .2em;
+	margin-right: -.2em;
+	padding-right: .2em;
+	border-bottom: 1px solid #444;
+}
+#weblog .body {
+	clear: left;
+}
+#weblog .body > blockquote:first-child,
+#weblog .body > pre:first-child {
+	margin-top: 0.5em;
+}
+#weblog .seen-list > li {
+	list-style: none none;
+	margin: 0 0 2em;
+}
+#weblog .seen-list > li > div > blockquote {
+	font-size: 0.9em;
+	margin: -.5em -2.2222222222em 0;
+	padding:    0  2.2222222222em 0;
+	border-width: 1px 0;
+}
+#weblog .seen-list > li > h4 {
+	float: left;
+	margin: 0;
+	padding: 0.375em 0 0;
+	white-space: nowrap;
+}
+#weblog .seen-list > li > h4::after {
+	content: '\2009â\2009';
+}
+#weblog .seen-list > li > h4 > a {
+	margin-top: -1px;
+	padding-top: 1px;
+	margin-bottom: -1px;
+	padding-bottom: 1px;
+	border-bottom-color: transparent;
+}
+
+#archive li { margin-bottom: .5em }
+#archive li.seen {
+	list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAJCAQAAABUUf4oAAAAFklEQVR4AWMgBvz//78BhQsTQMhSCAD1Mwx2HJLWGgAAAABJRU5ErkJggg==);
+}
+#archive li.seen > div:first-child > a {
+	font-size: 0.9em;
+}
+#archive .details {
+	font-size: 0.7em;
+	color: #777;
+	padding: 0;
+	margin: 0;
+}
+#archive .summary {
+	font-size: 0.9em;
+	color: #aaa;
+	padding: 0;
+	margin: 0;
+}
+
+#http-error {
+	font-size: 2.25em;
+	text-align: center;
+	font-family: Georgia, 'Hoefler Text', 'Bistream Vera Serif', 'Lucida Bright', serif;
+	letter-spacing: 0.075em;
+	color: #bbb;
+	background-color: #2c1111;
+	border: 1px solid #381616
+}
+
+
+#navigation {
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ddd;
+	margin-bottom: 2em;
+	position: relative;
+	text-align: right;
+}
+@media (min-width: 480px) and (max-width: 559px) { #navigation { margin: 11px } }
+@media print { #navigation { display: none } }
+#navigation ul,
+#navigation li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	white-space: nowrap;
+}
+#navigation a {
+	text-align: center;
+	text-decoration: none;
+	font-family: Georgia, "Hoefler Text", "DejaVu Serif", "Bistream Vera Serif", "Lucida Bright", serif;
+	font-size: 32px;
+	font-weight: bold;
+	color: #fff;
+	line-height: 2em;
+	padding: 0;
+	width: 2em;
+	height: 2em;
+	margin: 0;
+	border: 0;
+	border-left: 1px solid #ddd;
+	display: block;
+}
+#navigation a:focus,
+#navigation a:hover {
+	background-color: #333;
+}
+#navigation a b {
+	font-size: 44px;
+	font-weight: normal;
+	letter-spacing: 0.07em;
+	position: absolute;
+	display: none;
+	left: 16px;
+}
+#navigation a:focus b,
+#navigation a:hover b {
+	display: inline;
+}
+#nav-home a::before { content: '~' }
+#nav-back a::before { content: '*'; font-size: 40px; vertical-align: -0.28em; line-height: 40px }
+#nav-code a::before { content: '#!' }
+#nav-what a::before { content: '?'; font-family: 'Droid Serif', Georgia, sans-serif; vertical-align: -0.02em }
+
+#content { padding: 0 1px; margin: 0 }
+@media (min-width: 480px) { #content { padding: 0 11px } }
+@media (min-width: 560px) { #content { padding: 1.5em 2em; border: 1px solid #ddd } }
+@media print              { #content { padding: 1em; border: 1px solid #000 } }
+.title {
+	letter-spacing: 0.015em;
+	font-size: 3.3em;
+	text-align: right;
+	margin: 0 0 0.4em; /* 0.5 * 2.6 / 3.3 */
+}
+.title.single-word {
+	font-size: 3.9em;
+	margin-bottom: 0.33333333em; /* 0.5 * 2.6 / 3.9 */
+}
+.title.long {
+	font-size: 2.6em;
+	letter-spacing: 0.03em;
+	margin-bottom: 0.5em; /* baseline */
+}
+#paging,
+#copyright,
+.date {
+	color: #999;
+	font-size: 0.9em;
+	letter-spacing: -0.005em;
+}
+.date {
+	text-align: right;
+	margin-bottom: 1.25em;
+}
+.title + .date {
+	margin-top: -2em;
+}
+.date > a:link,
+.date > a:visited,
+.date > a:focus,
+.date > a:link,
+.date > a:visited,
+.date > a:hover {
+	color: #999;
+	border-bottom: 1px solid #666;
+}
+.date > a:focus,
+.date > a:hover {
+	color: #fff;
+	border-bottom: 2px solid #444; /* should be 1px but that looks jumpy for some reason */
+}
+#footer {
+	margin: 3em 0 0;
+	padding: 0;
+}
+#footer a {
+	padding:  7px  0.5em 4px;
+	margin:     0 -0.2em;
+}
+@media print { #footer { display: none } }
+#paging,
+#copyright {
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+#paging {
+	float: left;
+}
+#paging a:first-child {
+	margin-right: 1em;
+}
+  </style>
+  <title>
+   How to know you are using classic vi // plasmasturm.org
+  </title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+ </head>
+ <body>
+  <div id="navigation">
+   <ul>
+    <li id="nav-home">
+     <a>
+      <b>
+       Home
+      </b>
+     </a>
+    </li>
+    <li id="nav-back">
+     <a>
+      <b>
+       Archive
+      </b>
+     </a>
+    </li>
+    <li id="nav-code">
+     <a>
+      <b>
+       Code
+      </b>
+     </a>
+    </li>
+    <li id="nav-what">
+     <a>
+      <b>
+       About
+      </b>
+     </a>
+    </li>
+   </ul>
+  </div>
+  <div id="content">
+   <h1 class="title long">
+    How to know you are using classic vi
+   </h1>
+   <p class="date">
+    <a>
+     Wednesday, 19 Sep 2007
+    </a>
+   </p>
+   <div class="body">
+    <pre><samp><b>:version</b><br>Version 3.7, 6/7/85.</samp></pre>
+    <p>
+     Yes. 1985.
+    </p>
+    <p>
+     On a contemporary computer, it will probably look like this:
+    </p>
+    <pre><samp><b>:version</b><br>Version 4.0 (gritter) 12/25/06</samp></pre>
+    <p>
+     (The given date will vary.) This is
+     <a title="The Traditional Vi">
+      Gunnar Ritter&rsquo;s lightly modernised fork
+     </a>
+     &ndash; but still the classic vi.
+    </p>
+    <p>
+     Any other response means you are using a clone.
+    </p>
+   </div>
+   <div id="footer">
+    <p id="paging">
+     <a title="Enterprise software (Tuesday, 18 Sep 2007)">
+      &larr;&nbsp;Older
+     </a>
+     <a title="Everything old is old again (Thursday, 20 Sep 2007 [updated])">
+      Newer&nbsp;&rarr;
+     </a>
+    </p>
+    <p id="copyright">
+     &copy;2001&ndash;2023
+     <a>
+      Aristotle Pagaltzis
+     </a>
+    </p>
+   </div>
+  </div>
+ </body>
+</html>

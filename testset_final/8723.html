@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <style>
+   @charset "utf-8";
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight:600;
+	color: #4e5052;
+	background-color: #FFF;
+}
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight:bold;
+	color:#4e5052;
+}
+h1.title { 
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:18px;
+        color: #333333;
+        padding-top: 1em;
+}
+
+h1.km { 
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:120%;
+        color: #333333;
+        padding-top: 1em;
+}
+
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight:bold;
+	text-transform: uppercase;
+}
+h2.km {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333333;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #c4d1e6;
+        padding-top: 0.5em;
+        font-size: 125%;             /* Bug 16297496 */ 
+        background-color: #777773;   /* Bug 16297496 */ 
+        color: #FFFFFF;              /* Bug 16297496 */ 
+        text-transform: uppercase;   /* Bug 16297496 */ 
+        padding-top: 6px;            /* Bug 16297496 */ 
+        padding-bottom: 6px;         /* Bug 16297496 */ 
+        padding-left: 8px;           /* Bug 16297496 */
+}
+h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight:bold;
+	color: #4e5052;
+}
+h3.km {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:16px;
+        font-weight: bold;
+        color: #333333;
+        padding-top: 0.5em;
+}
+h4.km {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:101%;
+        font-weight: bold;
+        font-style:italic;
+        color: #000088;
+        padding-top: 0.5em;
+}
+
+/* H5 set to Slate Grey, Italics  */
+
+h5.km {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:101%;
+        font-weight: bold;
+        font-style:italic;
+        color: #666666;
+        padding-top: 0.5em;
+}
+
+
+table.km {
+        border-top-width: 1px;
+        border-left-width: 1px;
+        border-top-style: solid;
+        border-left-style: solid;
+        border-top-color: #c4d1e6;
+        border-left-color: #c4d1e6;
+}
+td.km {
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-right-color: #c4d1e6;
+        border-bottom-color: #c4d1e6;
+        padding: 4px;
+        vertical-align: top
+}
+th.km {
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-right-color: #c4d1e6;
+        border-bottom-color: #c4d1e6;
+        padding: 4px;
+        background-color: #dee6ef;
+        font-weight: bold;
+        text-align: left;
+        vertical-align: top
+}
+.kmnotebox {
+        background-color: #FEFCEE;
+        border: 2px solid #c1a90d;        
+        padding: 10px;
+        border: 0px;                /* Bug 16297496 */ 
+        background-color: #FFF9D7;  /* Bug 16297496 */ 
+        border: 1px solid #c1a90d;  /* Bug 16297496 */
+}
+.kmhidetext{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:103%;
+        color: #333333;
+}
+pre.km, code.km {
+        font-family:"Courier New",Courier,monospace;
+        font-size:90%;
+        white-space: -moz-pre-wrap; /* Mozilla */
+        white-space: -pre-wrap; /* Opera */
+        white-space: -o-pre-wrap; /* Opera */
+        white-space: pre-wrap; /* Standard CSS3 */
+        word-wrap: break-word; /* IE 5.5+ */ 
+}
+div.kmcodeblock {
+        background-color:#EEF3F7;
+        overflow:auto;
+        border-width:1px;
+        border-style:solid;
+        border-color:#C4D1E6;
+        padding:0.5em;
+        margin:0px;margin-top:5px; 
+        font-family:"Courier New",Courier,monospace;
+        font-size:90%;
+        xborder-width:0px;           /* Bug 16297496 */ 
+    	background-color: #E0EAF1;   /* Bug 16297496 */
+}
+div.kmindent1 {
+        display: block;
+        padding-left: 40px;
+}
+div.kmindent2 {
+        display: block;
+        padding-left: 80px;
+}
+span.kmfixedwidthfont {
+        font-family:"Courier New",Courier,monospace;
+}
+h2.awiz {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:105%;
+        color: #333333;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #c4d1e6;
+}
+h3.awiz {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:103%;
+        color: #333333;
+}
+pre.awiz, code.awiz {
+        font-family:"Courier New",Courier,monospace;
+        font-size:90%;
+}
+font {
+        font-family: Arial, Helvetica, sans-serif;
+}
+.bugOutputLabel{
+    font-family: Helvetica, sans-serif; 
+    font-size:130%; 
+    font-weight: bold;
+    color: #333333
+}
+.bugOutputText{
+    font-family: Helvetica, sans-serif; 
+    font-size:130%;     
+    color: #333333
+}
+.kmBrowserFavOText{
+    font-family: Tahoma, Verdana, Helvetica, sans-serif;
+    font-weight:normal;
+    font-size:11px;
+}
+.kmBrowserFavOTextSmall{
+    font-family: Tahoma, Verdana, Helvetica, sans-serif;
+    font-weight:normal;
+    font-size:9px;
+}
+.kmBrowserFavLink{
+    color:Navy; 
+    text-decoration:none;
+}
+.documentContent_links a:link       {font-family:Tahoma,Arial,Helvetica,Geneva,sans-serif;font-size:100%;font-weight:normal;color:#1C2A40}
+.documentContent_links a:active     {font-family:Tahoma,Arial,Helvetica,Geneva,sans-serif;font-size:100%;font-weight:normal;color:#800080;}
+.documentContent_links a:visited    {font-family:Tahoma,Arial,Helvetica,Geneva,sans-serif;font-size:100%;font-weight:normal;color:#800080;}
+
+.kmDialogDutton_Highlight {font-size:small; background-color:rgb(255,255,180); border-color:Red; border-style:solid;}
+.kmDialogDutton_Highlight:hover {font-size:small; background-color:rgb(255,255,100); border-color:Red; border-style:solid;}
+.kmDialogDutton_Highlight:focus {font-size:small; background-color:rgb(255,255,100); border-color:Red; border-style:solid;}
+
+.searchIconImage {
+    margin-left: -38px;
+}
+.kmContent img {
+    max-width: 100%;
+}
+
+.kmDocVisibilityInt{
+    color:rgb(238,0,0);
+    font-weight: bold;
+}
+
+.kmDocVisibilityExt{
+    color:Black;
+}
+
+.kmDocBorderInternal{
+    background-color:White;
+    position:static;
+    border-color:rgb(238,0,0);
+    border-style:solid;
+    padding-left: 5px;
+}
+
+.kmDocBorderExternal{
+    background-color:White;
+    position:static;
+}
+
+
+/*.km {
+	color: #FFF;
+	background-color: #939699;
+	padding: 2px 2px 2px 4px;
+}*/
+
+.km2 {
+	color: #FFF;
+	background-color: #f80000;
+	padding: 0px;
+}
+	
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #00758f;
+	text-decoration: none;
+}
+a:visited {
+	color: #00758f;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+	color: #1F4F82;
+}
+/* ~~ This fixed width container surrounds all other blocks ~~*/
+.container {
+	width: 90%; /* ~~ changed for mobile ~~ */
+	position:relative;
+	margin-left: 10%;  /* ~~ changed for mobile ~~ */
+    margin-right: auto;
+}
+
+
+
+/* ~~ These are the columns for the layout. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the block elements. The elements within these blocks have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the block itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the block element and place a second block element within it with no width and the padding necessary for your design.
+
+2) No margin has been given to the columns since they are all floated. If you must add margin, avoid placing it on the side you're floating toward (for example: a right margin on a block set to float right). Many times, padding can be used instead. For blocks where this rule must be broken, you should add a "display:inline" declaration to the block element's rule to tame a bug where some versions of Internet Explorer double the margin.
+
+3) Since classes can be used multiple times in a document (and an element can also have multiple classes applied), the columns have been assigned class names instead of IDs. For example, two sidebar blocks could be stacked if necessary. These can very easily be changed to IDs if that's your preference, as long as you'll only be using them once per document.
+
+4) If you prefer your nav on the left instead of the right, simply float these columns the opposite direction (all left instead of all right) and they'll render in reverse order. There's no need to move the blocks around in the HTML source.
+
+*/
+/* .sidebar1 {
+	float: left;
+	width: 10%;
+	background: #FFF
+	padding-bottom: 10px;
+	color:#FFFFFF;
+}*/
+/*.content {
+	padding: 10px 0;
+	width: 70%;
+	float: left;
+}*/
+.content { 
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:16px;
+        color: #333333;
+        padding-top: 1em;
+		padding: 10px 0;
+		width: 70%;
+		float: left;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol {
+	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+nav ul {
+	list-style: none; /* this removes the list marker */
+	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+}
+nav ul li {
+	border-bottom: 1px solid #666; /* this creates the button separation */
+}
+nav ul a, nav ul a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	text-decoration: none;
+	background: #00758f;
+}
+nav ul a:hover, nav ul a:active, nav ul a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background: #dee0e0;
+	color: #FFF;
+}
+
+/* ~~ The footer ~~ */
+footer {
+	color: #4e5052;
+	font-size:14px;
+	text-align:left;
+	font-weight:normal;
+	background: #dee0e0;
+	padding: 20px 20px 20px 20px;
+	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
+}
+/* ~~ Miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+
+aside {
+	color: #4e5052;
+	font-size:14px;
+	font-weight:normal;
+	margin-bottom: 20px;
+	margin-top:20px;
+}
+
+button {
+
+	font-weight:600;
+background-color: #f80000;
+width: 80px;
+height: 40px;
+margin:5px 20px 0 0;
+position:relative;
+	color: #FFF;
+}
+
+button:active {
+  background-color: #939699;
+
+}
+
+button:hover {
+	background-color:#969993;
+	cursor:default;
+    color: #FFF;
+}
+
+/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
+header, section, footer, aside, nav, article, figure {
+	display: block;
+}
+
+docid {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight:bold;
+	color: #4e5052;
+}
+
+mosaccess {
+	color:#f80000;
+	text-align: left;
+	font-size:16px;
+	font-weight:normal;
+	font-family: Arial, Helvetica, sans-serif;
+}
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta charset="utf-8">
+  <meta content="max-age=86400" http-equiv="cache-control">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Oracle Fusion General Ledger Cloud Service - Version 11.1.11.1.0 and later: How To Restrict Users From Viewing The Reports For Which The Users Doesn't Have Any Acces" name="description">
+  <meta content="BUG, CONNECT, ENHANCEMENT REQUEST, ESS, EXPECTED BEHAVIOR, INFORMATION, LEVEL, LIMITATION, My Oracle Support, PER, REPORT, RESPONSIBILITY, RESTRICTED, ROLE, SECURITY, SERVICE REQUEST, UPDATE, VIEW" name="keywords">
+  <meta content="Q10405" name="product_id">
+  <meta content="Q10405" name="product_id">
+  <meta content="How To Restrict Users From Viewing The Reports For Which The Users Doesn't Have Any Access." name="title">
+  <meta content="en" name="language">
+  <meta content="2023-09-24" name="last-modified-date">
+  <meta content="WM179069" name="contenttype_id">
+  <title>
+   How To Restrict Users From Viewing The Reports For Which The Users Doesn't Have Any Access.
+  </title>
+  <!--[if lt IE 9]>
+                
+                <![endif]-->
+ </head>
+ <body>
+  <div class="container">
+   <div class="sidebar1">
+    &nbsp;
+    <!-- end .sidebar1 -->
+   </div>
+   <!-- This sidebar with the space is required to keep the text from being flush to the left -->
+   <article class="content">
+    <h2 class="km2">
+     <img align="middle" alt="My Oracle Support Banner" height="auto" src="rick.jpg" width="80%">
+    </h2>
+    <h1 class="KM">
+     How To Restrict Users From Viewing The Reports For Which The Users Doesn't Have Any Access.
+     <docid>
+      (Doc ID 2248281.1)
+     </docid>
+    </h1>
+    <p>
+     Last updated on SEPTEMBER 24, 2023
+    </p>
+    <h2 class="km">
+     Applies to:
+    </h2>
+    Oracle Fusion General Ledger Cloud Service - Version 11.1.11.1.0 and later
+    <br>
+    Information in this document applies to any platform.
+    <br>
+    <h2 class="km">
+     <a name="SYMPTOM">
+     </a>
+     Symptoms
+    </h2>
+    <p>
+     <br>
+     ACTUAL BEHAVIOR
+     <br>
+     ---------------
+    </p>
+    <p>
+     All users having the same roles and responsibility should be able to access and view requests submitted by users having same responsibility.
+     <br>
+     <br>
+     Apparently everyone can see every person's output jobs.
+     <br>
+     <br>
+     EXPECTED BEHAVIOR
+     <br>
+     -----------------------
+     <br>
+     Restricted Secured by privileged level security.
+     <br>
+     <br>
+     <br>
+     STEPS
+     <br>
+     -----------------------
+     <br>
+     The issue can be reproduced at will with the following steps:
+     <br>
+     <br>
+     &nbsp;If two (2) users (u1, u2) are sharing the same role as RoleX.
+    </p>
+    <ol>
+     <li>
+      &nbsp;If any report is run by u1, can u2 see any and all output of any ESS job by u1?
+     </li>
+    </ol>
+    <p>
+     <br>
+     AP Role example Only AP Management should see what others in that role can see.
+    </p>
+    <p>
+     GL Manager should not.
+     <br>
+     <br>
+    </p>
+    <h2 class="km">
+     <a name="CHANGE">
+     </a>
+     Changes
+    </h2>
+    <p>
+     &nbsp;
+    </p>
+    <h2 class="km">
+     <a name="CAUSE">
+     </a>
+     Cause
+    </h2>
+    <table border="0" width="95%">
+     <tbody>
+      <tr>
+       <td align="left" width="10%">
+        <a rel="nofollow">
+         <button>
+          Sign In
+         </button>
+        </a>
+       </td>
+       <td width="90%">
+        <h3>
+         To view full details, sign in with your My Oracle Support account.
+        </h3>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <a rel="nofollow" target="_blank">
+         <button>
+          Register
+         </button>
+        </a>
+       </td>
+       <td>
+        <h3>
+         Don't have a My Oracle Support account?  Click to get started!
+        </h3>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p>
+    </p>
+    <hr>
+    <b>
+     In this Document
+    </b>
+    <br>
+    <table>
+     <tbody>
+      <tr>
+       <td width="0">
+       </td>
+       <td>
+        <a>
+         Symptoms
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table>
+     <tbody>
+      <tr>
+       <td width="0">
+       </td>
+       <td>
+        <a>
+         Changes
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table>
+     <tbody>
+      <tr>
+       <td width="0">
+       </td>
+       <td>
+        <a>
+         Cause
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table>
+     <tbody>
+      <tr>
+       <td width="0">
+       </td>
+       <td>
+        <a>
+         Solution
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table>
+     <tbody>
+      <tr>
+       <td width="0">
+       </td>
+       <td>
+        <a>
+         References
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <hr size="1">
+    <p>
+     <br>
+     <!-- class=km before applies to -->
+     <mosaccess>
+      My Oracle Support provides customers with access to over a million knowledge articles and a vibrant support community of peers and Oracle experts.
+     </mosaccess>
+     <br>
+    </p>
+    <footer>
+     Oracle offers a comprehensive and fully integrated stack of cloud applications and platform services. For more information about Oracle (NYSE:ORCL), visit
+     <a target="_blank" title="oracle.com">
+      oracle.com
+     </a>
+     .
+     <hr>
+     <a data-lbl="copyright" rel="nofollow" target="_new">
+      �&nbsp;Oracle
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      Contact and Chat
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      Support
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      Communities
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      Connect with us
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      <img align="texttop" alt="Facebook" border="0" height="16" hspace="4" src="rick.jpg" width="16">
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      <img align="texttop" alt="Twitter" height="16" hspace="4" src="rick.jpg" width="16">
+     </a>
+     |
+     <a rel="nofollow" target="_new">
+      <img align="texttop" alt="Linked In" height="16" hspace="4" src="rick.jpg" width="16">
+     </a>
+     |
+     <a data-lbl="legal notices" rel="nofollow" target="_new">
+      Legal Notices
+     </a>
+     <a rel="nofollow" target="_new">
+     </a>
+     |
+     <a data-lbl="terms of use" rel="nofollow" target="_new">
+      Terms of Use
+     </a>
+    </footer>
+   </article>
+   <!-- End content -->
+   <!-- end .content -->
+   <!-- end .container -->
+  </div>
+ </body>
+</html>

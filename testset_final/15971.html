@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US" xmlns="">
+ <head profile="">
+  <title>
+   Evolving A Learning Analytics Platform - Ari Bader-Natal
+  </title>
+  <meta charset="utf-8">
+  <meta content="Evolving A Learning Analytics Platform" name="title">
+  <meta content="Evolving A Learning Analytics Platform" property="og:title">
+  <meta content="Evolving A Learning Analytics Platform" name="twitter:title">
+  <meta content="Ari Bader-Natal" name="application-name">
+  <meta content="Ari Bader-Natal" name="author">
+  <meta content="" property="article:author">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5" name="viewport">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@aribadernatal" name="twitter:site">
+  <meta content="@aribadernatal" name="twitter:creator">
+  <meta content="Ari Bader-Natal" property="og:site_name">
+  <meta content="en_US" property="og:locale">
+  <style data-tippy-stylesheet>
+   .tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}
+  </style>
+  <meta content="" property="og:url">
+  <meta content="" name="twitter:url">
+  <meta content="article" property="og:type">
+  <meta content="2011-02-28T20:00:00+00:00" property="article:published_time">
+  <meta content="Publication" property="article:section">
+  <meta content="Proceedings of the 1st International Conference on Learning Analytics and Knowledge. ACM Press, 2011." name="description">
+  <meta content="Proceedings of the 1st International Conference on Learning Analytics and Knowledge. ACM Press, 2011." property="og:description">
+  <meta content="Proceedings of the 1st International Conference on Learning Analytics and Knowledge. ACM Press, 2011." name="twitter:description">
+  <meta content="" name="image">
+  <meta content="" property="og:image">
+  <meta content="" name="twitter:image">
+  <style>
+   @font-face {
+        font-family: "CallunaRegular";
+        font-display: swap;
+        src: url('/fonts/webFonts/CallunaRegular/font.woff2') format('woff2'),
+             url('/fonts/webFonts/CallunaRegular/font.woff2') format('woff');
+      }
+      @font-face {
+        font-family: "CallunaBoldItalic";
+        font-display: swap;
+        src: url('/fonts/webFonts/CallunaBoldItalic/font.woff2') format('woff2'),
+             url('/fonts/webFonts/CallunaBoldItalic/font.woff2') format('woff');
+      }
+      @font-face {
+        font-family: "CallunaBold";
+        font-display: swap;
+        src: url('/fonts/webFonts/CallunaBold/font.woff2') format('woff2'),
+             url('/fonts/webFonts/CallunaBold/font.woff2') format('woff');
+      }
+      @font-face {
+        font-family: "CallunaSansRegular";
+        font-display: swap;
+        src: url('/fonts/webFonts/CallunaSansRegular/font.woff2') format('woff2'),
+             url('/fonts/webFonts/CallunaSansRegular/font.woff2') format('woff');
+      }
+      @font-face {
+        font-family: "CallunaItalic";
+        font-display: swap;
+        src: url('/fonts/webFonts/CallunaItalic/font.woff2') format('woff2'),
+             url('/fonts/webFonts/CallunaItalic/font.woff2') format('woff');
+      }
+  </style>
+  <style type="text/css">
+   .highlight .c {
+    color: #c2b680;
+    background-color: #272822;
+}
+/* Comment */
+.highlight .err {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Error */
+.highlight .g {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Generic */
+.highlight .k {
+    color: #ff6651;
+    font-weight: bold;
+}
+/* Keyword */
+.highlight .l {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal */
+.highlight .n {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name */
+.highlight .o {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Operator */
+.highlight .x {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Other */
+.highlight .p {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Punctuation */
+.highlight .cm {
+    color: #c2b680;
+    background-color: #272822;
+}
+/* Comment.Multiline */
+.highlight .cp {
+    color: #c2aed0;
+    background-color: #272822;
+}
+/* Comment.Preproc */
+.highlight .c1 {
+    color: #75715e;
+    background-color: #272822;
+}
+/* Comment.Single */
+.highlight .cs {
+    color: #c2b680;
+    background-color: #272822;
+}
+/* Comment.Special */
+.highlight .gd {
+    color: #dcdccc;
+    background-color: #8b0000;
+}
+/* Generic.Deleted */
+.highlight .ge {
+    color: #d4b064;
+    text-decoration: underline;
+    background-color: #272822;
+}
+/* Generic.Emph */
+.highlight .gr {
+    color: #f07070;
+    background-color: #272822;
+}
+/* Generic.Error */
+.highlight .gh {
+    color: #f7f7f1;
+    font-weight: bold;
+    background-color: #000;
+}
+/* Generic.Heading */
+.highlight .gi {
+    color: #dcdccc;
+    background-color: #008b00;
+}
+/* Generic.Inserted */
+.highlight .go {
+    color: #9f8f80;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Generic.Output */
+.highlight .gp {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Generic.Prompt */
+.highlight .gs {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Generic.Strong */
+.highlight .gu {
+    color: #f7f7f1;
+    font-weight: bold;
+    background-color: #000;
+}
+/* Generic.Subheading */
+.highlight .gt {
+    color: #f07070;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Generic.Traceback */
+.highlight .kc {
+    color: #e0af91;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Keyword.Constant */
+.highlight .kd {
+    color: #77d8eb;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Keyword.Declaration */
+.highlight .kn {
+    color: #e0af91;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Keyword.Namespace */
+.highlight .kp {
+    color: #e0af91;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Keyword.Pseudo */
+.highlight .kr {
+    color: #e0af91;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Keyword.Reserved */
+.highlight .kt {
+    color: #dabfa5;
+    font-weight: bold;
+    background-color: #272822;
+}
+/* Keyword.Type */
+.highlight .ld {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.Date */
+.highlight .m {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.Number */
+.highlight .s {
+    color: #e6db6f;
+}
+/* Literal.String */
+.highlight .na {
+    color: #b5df5e;
+}
+/* Name.Attribute */
+.highlight .nb {
+    color: #dcdccc;
+}
+/* Name.Builtin */
+.highlight .nc {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Class */
+.highlight .no {
+    color: #afe091;
+    background-color: #272822;
+}
+/* Name.Constant */
+.highlight .nd {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Decorator */
+.highlight .ni {
+    color: #d4b064;
+    background-color: #272822;
+}
+/* Name.Entity */
+.highlight .ne {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Exception */
+.highlight .nf {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Function */
+.highlight .nl {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Label */
+.highlight .nn {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Namespace */
+.highlight .nx {
+    color: #ff6651;
+    background-color: #272822;
+}
+/* Name.Other */
+.highlight .py {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Property */
+.highlight .nt {
+    color: #ff6651;
+    font-weight: bold;
+}
+/* Name.Tag */
+.highlight .nv {
+    color: #ff6651;
+    background-color: #272822;
+}
+/* Name.Variable */
+.highlight .ow {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Operator.Word */
+.highlight .w {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Text.Whitespace */
+.highlight .mf {
+    color: #c2a4f8;
+    background-color: #272822;
+}
+/* Literal.Number.Float */
+.highlight .mh {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.Number.Hex */
+.highlight .mi {
+    color: #c2a4f8;
+    background-color: #272822;
+}
+/* Literal.Number.Integer */
+.highlight .mo {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.Number.Oct */
+.highlight .sb {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Backtick */
+.highlight .sc {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Char */
+.highlight .sd {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Doc */
+.highlight .s2 {
+    color: #e6db6f;
+    background-color: #272822;
+}
+/* Literal.String.Double */
+.highlight .se {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Escape */
+.highlight .sh {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Heredoc */
+.highlight .si {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Interpol */
+.highlight .sx {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Other */
+.highlight .sr {
+    color: #e6db6f;
+    background-color: #272822;
+}
+/* Literal.String.Regex */
+.highlight .s1 {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.String.Single */
+.highlight .ss {
+    color: #e6db6f;
+    background-color: #272822;
+}
+/* Literal.String.Symbol */
+.highlight .bp {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Name.Builtin.Pseudo */
+.highlight .vc {
+    color: #dabfa5;
+    background-color: #272822;
+}
+/* Name.Variable.Class */
+.highlight .vg {
+    color: #dabfa5;
+    background-color: #272822;
+}
+/* Name.Variable.Global */
+.highlight .vi {
+    color: #dabfa5;
+    background-color: #272822;
+}
+/* Name.Variable.Instance */
+.highlight .il {
+    color: #dcdccc;
+    background-color: #272822;
+}
+/* Literal.Number.Integer.Long */
+
+
+/* 12 COLUMN : RESPONSIVE GRID SYSTEM DEVELOPER : DENIS LEBLANC URL : http://responsive.gs VERSION : 3.0 LICENSE : GPL & MIT */
+/* SET ALL ELEMENTS TO BOX-SIZING : BORDER-BOX */
+ * {
+	 -webkit-box-sizing: border-box;
+	 -moz-box-sizing: border-box;
+	 box-sizing: border-box;
+}
+/* MAIN CONTAINER Set the width to whatever you want the width of your site to be. */
+ .container {
+	 max-width: 800px;
+	 margin: 0 auto;
+}
+/* SELF CLEARING FLOATS - CLEARFIX METHOD */
+ .container:after, .row:after, .col:after, .clr:after, .group:after {
+	 content: "";
+	 display: table;
+	 clear: both;
+}
+ .row {
+	 padding-bottom: 0em;
+}
+ .col {
+	 display: block;
+	 float: left;
+	 width: 100%;
+}
+ @media (min-width: 768px) {
+	 .gutters .col {
+		 margin-left: 2%;
+	}
+	 .gutters .col:first-child {
+		 margin-left: 0;
+	}
+}
+/* COLUMN WIDTH ON DISPLAYS +768px You might need to play with media queries here to suite your design. */
+ @media (min-width: 768px) {
+	 .span_1 {
+		 width: 8.[PHONE REDACTED]%;
+	}
+	 .span_2 {
+		 width: 16.[PHONE REDACTED]%;
+	}
+	 .span_3 {
+		 width: 25%;
+	}
+	 .span_4 {
+		 width: 33.[PHONE REDACTED]%;
+	}
+	 .span_5 {
+		 width: 41.[PHONE REDACTED]%;
+	}
+	 .span_6 {
+		 width: 50%;
+	}
+	 .span_7 {
+		 width: 58.[PHONE REDACTED]%;
+	}
+	 .span_8 {
+		 width: 66.[PHONE REDACTED]%;
+	}
+	 .span_9 {
+		 width: 75%;
+	}
+	 .span_10 {
+		 width: 83.[PHONE REDACTED]%;
+	}
+	 .span_11 {
+		 width: 91.[PHONE REDACTED]%;
+	}
+	 .span_12 {
+		 width: 100%;
+	}
+	 .gutters .span_1 {
+		 width: 6.5%;
+	}
+	 .gutters .span_2 {
+		 width: 15%;
+	}
+	 .gutters .span_3 {
+		 width: 23.5%;
+	}
+	 .gutters .span_4 {
+		 width: 32%;
+	}
+	 .gutters .span_5 {
+		 width: 40.5%;
+	}
+	 .gutters .span_6 {
+		 width: 49%;
+	}
+	 .gutters .span_7 {
+		 width: 57.5%;
+	}
+	 .gutters .span_8 {
+		 width: 66%;
+	}
+	 .gutters .span_9 {
+		 width: 74.5%;
+	}
+	 .gutters .span_10 {
+		 width: 83%;
+	}
+	 .gutters .span_11 {
+		 width: 91.5%;
+	}
+	 .gutters .span_12 {
+		 width: 100%;
+	}
+}
+/* rgba(218, 221, 229, 0.25) */
+/* #0070bb */
+/*============================================================================*/
+ * {
+	 margin: 0;
+	 padding: 0;
+	 box-sizing: border-box;
+}
+ .small-caps {
+	 font-kerning: normal;
+	 font-variant-ligatures: no-common-ligatures contextual;
+	 font-variant-numeric: oldstyle-nums proportional-nums;
+	 font-variant-caps: small-caps;
+	 -moz-font-feature-settings: "kern", "liga" 0, "clig" 0, "calt", "onum", "pnum", "smcp";
+	 -ms-font-feature-settings: "kern", "liga" 0, "clig" 0, "calt", "onum", "pnum", "smcp";
+	 -webkit-font-feature-settings: "kern", "liga" 0, "clig" 0, "calt", "onum", "pnum", "smcp";
+	 font-feature-settings: "kern", "liga" 0, "clig" 0, "calt", "onum", "pnum", "smcp";
+}
+ section.entry-content {
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-size: 1.2rem;
+	 margin-top: 10px;
+}
+ section.entry-content b, section.entry-content strong {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+}
+ section.entry-content i, section.entry-content em {
+	 font-family: CallunaItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-style: normal;
+}
+ section.entry-content b i, section.entry-content b em, section.entry-content strong i, section.entry-content strong em, section.entry-content i b {
+	 font-family: CallunaBoldItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+	 font-style: normal;
+}
+ .intro-paragraph {
+	 font-family: CallunaItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 margin: 0px 0px 25px;
+	 padding: 5px 0px 5px 15px !important;
+	 font-size: 26px;
+	 line-height: 1.4;
+	 text-align: left;
+	 border-left: 3px solid #999;
+}
+ .intro-paragraph.homepage-entry {
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .intro-paragraph.homepage-entry img {
+	 width: 100px;
+	 height: 100px;
+	 margin-right: 17px;
+	 margin-bottom: 0px;
+	 -webkit-border-radius: 10px;
+	 border-radius: 10px;
+	 -webkit-box-shadow: 1px 1px 3px 0px #9f9f98;
+}
+ article.row.gutters {
+	 max-width: 600px !important;
+	 margin: auto !important;
+}
+ body.Projects article.row.gutters, body.Blogs article.row.gutters {
+	 max-width: 800px !important;
+	 margin: auto !important;
+}
+ body.Projects .project-entry {
+	 display: inline-block;
+	 background-color: #fff;
+	 padding: 0px 20px;
+	 margin: 0px 0px 20px 0px !important;
+	 border-radius: 10px;
+	 -webkit-box-shadow: 1px 1px 3px 0px #9f9f98;
+	 transition: all 0.2s ease-in-out;
+}
+ body.Projects .project-entry:hover {
+	 transform: scale(1.02);
+	 cursor: pointer;
+}
+ body.Projects header h2, body.Projects article h2, body.Blogs header h2, body.Blogs .archive h2, body.Blogs article h2 {
+	 font-size: 28px;
+}
+/* .intro-paragraph > * {
+	 box-shadow: 0 0.2rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+ @supports (filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2))) {
+	 .intro-paragraph {
+		 filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+	}
+	 .intro-paragraph > * {
+		 box-shadow: none;
+	}
+}
+ */
+ body#main-body {
+	 background-color: #e5e1dd;
+	 background: #e5e1dd;
+	 border-top: 5px solid #e5e1dd;
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 color: #161925;
+	/* font-size:14px;
+	 */
+	 line-height: 1.5;
+	 padding-top: 0px;
+	 -webkit-font-smoothing: auto;
+	 -moz-osx-font-smoothing: auto;
+}
+ body#main-body b, body#main-body strong {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+}
+ body#main-body i, body#main-body em {
+	 font-family: CallunaItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-style: normal;
+}
+ body#main-body b i, body#main-body b em, body#main-body strong i, body#main-body strong em, body#main-body i b {
+	 font-family: CallunaBoldItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+	 font-style: normal;
+}
+ h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, table, img, hr, .fluid-width-video-wrapper, .highlight {
+	 margin-bottom: 20px;
+}
+ hr {
+	 margin-top: 20px;
+}
+ h1 {
+	 font-size: 36px;
+	 line-height: 1.3;
+}
+ h1, h2, h3 {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+}
+ header h2, article h2 {
+	 font-size: 42px;
+	 line-height: 1.2;
+}
+ blockquote {
+	 border-left: 2px solid #c4bbb2;
+	 padding: 0px 20px 0px;
+	 margin: 22px 0px;
+}
+ ul, ol {
+	 margin-left: 40px;
+}
+ img {
+	 max-width: 100%;
+	 height: auto;
+	 border: none;
+	 outline: none;
+}
+ a {
+	 text-decoration: none;
+}
+ hr {
+	 border: 0;
+	 height: 25px;
+	 background: url(/public/images/eagle.png) center center no-repeat;
+}
+ code {
+	 font-family: Consolas, Courier, monospace;
+	 font-size: 0.8rem;
+}
+ p code {
+	 padding: 0px 5px;
+	 border: 1px solid #ddd;
+	 background-color: #f8f8f8;
+	 border-radius: 3px;
+	 white-space: nowrap;
+}
+ table {
+	 border-collapse: collapse;
+	/* border: 1px solid $contrast-color;
+	 */
+}
+ table td, table th {
+	/* border: 1px solid $contrast-color;
+	 */
+	 padding: 5px 10px;
+}
+ table thead {
+	 background-color: #cfc8c0;
+}
+ dt {
+	 float: left;
+	 width: 30%;
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+}
+ dd {
+	 float: right;
+	 width: 70%;
+}
+ footer {
+	 font-size: 0.8rem;
+	 text-align: center;
+	/* border-top: 1px solid #ccc;
+	 */
+	 padding-top: 20px;
+	 margin-top: 20px;
+	 clear: both;
+}
+/*============================================================================*/
+ .azul a {
+	 color: #2957c9;
+}
+ .azul a:hover {
+	 color: #183274;
+}
+ .ruby a {
+	 color: #e0115f;
+}
+ .ruby a:hover {
+	 color: #810a37;
+}
+ .amber a {
+	 color: #ff7e00;
+}
+ .amber a:hover {
+	 color: #994c00;
+}
+ .avocado a {
+	 color: #568203;
+}
+ .avocado a:hover {
+	 color: #141e01;
+}
+/*----------------------------------------------------------------------------*/
+ pre.highlight {
+	 padding: 30px;
+	 border-radius: 6px;
+	 background-color: #000;
+	 color: #f8f8f2;
+	 line-height: 1;
+	 overflow-x: scroll;
+}
+ pre.highlight code {
+	 font-size: 0.7rem;
+}
+ .container {
+	 max-width: 1000px;
+	 padding: 0 40px;
+	 background: #f3efec;
+	/* border-left: 1px dashed #ccc;
+	 */
+	/* box-shadow: 0px 2px 5px 2px #ccc;
+	 */
+}
+ .container #name {
+	 display: none;
+}
+ .center {
+	 text-align: center;
+}
+ .right {
+	 float: right;
+	 margin: 0 0 20px 20px;
+}
+ .left {
+	 float: left;
+	 margin: 0 20px 20px 0;
+}
+ .top-navbar {
+	 margin-bottom: 35px;
+	 height: 100px;
+}
+ .top-navbar #nav-links-1 {
+	 display: inline-block;
+}
+ .top-navbar #nav-links-1 a {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .top-navbar #nav-links-2 {
+	 display: inline-block;
+}
+ .top-navbar a {
+	 display: inline-block;
+	 color: #161925;
+	 padding: 60px 8px 25px;
+	 margin-right: 10px;
+	 margin-top: -15px;
+	 text-transform: uppercase;
+	 border-radius: 0 0 5px 5px;
+	 transition: all ease-in-out 0.3s;
+	 font-size: 18px;
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 vertical-align: middle;
+}
+ .top-navbar a:hover, .top-navbar a.current-page {
+	 color: #e5e1dd;
+	 border-bottom: none;
+	 text-decoration: none !important;
+}
+ .top-navbar a:hover {
+	 background-color: #2957c9;
+	 transform: translateY(5px);
+}
+ .top-navbar a.current-page {
+	 background-color: #161925;
+}
+ .top-navbar a svg, .top-navbar a i, .top-navbar a img {
+	 width: 24px;
+	 height: 24px;
+	 margin-bottom: 0px;
+}
+ .archive, .single {
+	/* margin-bottom: 100px;
+	 */
+	 padding-bottom: 10px;
+	 margin-bottom: 20px;
+}
+ .single {
+	 font-size: 1.1rem;
+}
+ .single time, span.filed-under, span.filed-under a, .p-author, .permalink {
+	 color: #333;
+	 font-size: 0.9rem;
+}
+ .bundle {
+	 border-top: 1px solid #848eb6;
+	 padding-top: 10px;
+	 margin-bottom: 10px;
+}
+ .post-date {
+	 text-align: right;
+}
+ .not-found {
+	 margin-top: 150px;
+	 text-align: center;
+	 font-size: 2rem;
+}
+ .not-found h1 {
+	 font-size: 8rem;
+}
+ dl, .clearfix:before, .clearfix:after {
+	 content: " ";
+	 display: table;
+}
+ dl, .clearfix:after {
+	 clear: both;
+}
+/*============================================================================*/
+ #logo {
+	 display: inline-block;
+	/* height: 110px;
+	 width: 110px;
+	 background-size: 90px 90px;
+	 background-position: left center;
+	 background-repeat: no-repeat;
+	 */
+	 margin-top: 13px;
+	 height: 75px;
+	/* background-image: url(/public/images/aribadernatal.jpg);
+	 background-size: 100px 100px;
+	 background-position: center;
+	 background-repeat: no-repeat;
+	 */
+	 width: 75px !important;
+	/* display: inline-block;
+	 */
+	/* box-shadow: 1px 1px 3px 0px #999;
+	 */
+}
+ #logo img {
+	 width: 90px;
+	 height: 90px;
+	 -webkit-border-radius: 10px;
+	 border-radius: 10px;
+	 -webkit-box-shadow: 1px 1px 3px 0px #999;
+}
+ div.posts-by-year article div.col {
+	 margin-bottom: 8px;
+	 font-size: 18px;
+}
+/*============================================================================*/
+ @media screen and (max-width: 767px) {
+	 .hide-if-small {
+		 display: none;
+	}
+	 .container {
+		 padding: 0 20px;
+	}
+	 #homepage-entries {
+		 padding-right: 0px !important;
+	}
+	 div[data-tippy-root] {
+		 display: none;
+	}
+	 h1 {
+		 font-size: 1.8em;
+	}
+	 #nav-links-2 a svg {
+		 opacity: 0.4;
+	}
+	 #feed-control-container {
+		 padding-right: 10px;
+		 border-top: none;
+		 margin-top: 20px;
+	}
+	 #feed-control-container.loaded {
+		 border-right: none;
+	}
+	 .top-navbar {
+		 text-align: center;
+		 margin-top: 0px;
+		 margin-bottom: 25px !important;
+		 border-top: 1px dotted #ccc;
+		 border-bottom: 1px dotted #ccc;
+		 padding-top: 10px;
+		 height: inherit !important;
+	}
+	 .top-navbar a {
+		 padding: 2px 5px;
+		 margin: 2px 2px 8px 2px;
+		 border-radius: 0;
+		 border: none;
+		/* 1px solid $contrast-color;
+		 */
+		 transition: none;
+		 font-size: 18px;
+	}
+	 .top-navbar a:hover {
+		 transform: none;
+	}
+	 .top-navbar a.link-to-home {
+		 display: none;
+	}
+	 .bundle, .post-date {
+		/* text-align: center;
+		 */
+	}
+	 .bundle article {
+		/* margin-bottom: 30px;
+		 */
+	}
+	 #logo {
+		 background-position: center center;
+	}
+	 .homepage-entry img.large-icon {
+		 width: 64px;
+		 height: 64px;
+	}
+	 div.posts-by-year article.row.gutters {
+		/* a {
+			 margin-left:25px;
+			 margin-top:-7px;
+		}
+		 */
+	}
+	 div.posts-by-year article.row.gutters .post-icon {
+		 display: none !important;
+		 position: absolute;
+		 top: 0;
+		 left: 0px !important;
+		 color: #999;
+	}
+	 div.posts-by-year article.row.gutters::before {
+		 content: none !important;
+	}
+	 body.Projects div.project-entry div.project-icon-container {
+		 text-align: center;
+	}
+	 body.Projects div.project-entry div.project-icon-container img.project-icon {
+		 width: 64px;
+		 height: 64px;
+	}
+}
+/*=========================================*/
+ div.posts-by-year article.row.gutters {
+	/* margin-bottom: -17px !important;
+	 */
+	 position: relative;
+}
+ div.posts-by-year article.row.gutters .post-icon {
+	 display: none;
+	 position: absolute;
+	 top: 0;
+	 left: -17px;
+	 color: #999;
+}
+ div.posts-by-year article.row.gutters::before {
+	 content: "•";
+	 position: absolute;
+	 color: #0070bb;
+	 opacity: 0.5;
+}
+ div.posts-by-year article.row.gutters:hover .post-icon {
+	 color: #000;
+}
+ div.posts-by-year article.row.gutters a {
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ div.posts-by-year article.row.gutters .post-date {
+	 color: #666;
+}
+ cite {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+	 font-style: normal;
+}
+ #feed-control-container {
+	 float: left;
+	 padding-right: 10px;
+	 background-color: rgba(0, 0, 0, 0.05);
+}
+ #feed-control-container.loaded {
+	 border: 1px dotted #ccc;
+}
+ #feed-control {
+	 padding-top: 10px;
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: 300;
+	 line-height: 1.2;
+}
+ #feed-control ul {
+	 margin-left: 0px;
+	 list-style-type: none;
+}
+ #feed-control ul .favelog-link {
+	 font-size: 13px;
+	 padding-bottom: 9px;
+	 list-style-position: outside;
+	 margin-left: 32px;
+	 padding-left: 3px;
+}
+ #feed-control ul .favelog-link.get-pocket {
+	 list-style-image: url('/img/icons/get-pocket.svg');
+}
+ #feed-control ul .favelog-link.github {
+	 list-style-image: url('/img/icons/github.svg');
+}
+ #feed-control ul .favelog-link.twitter {
+	 list-style-image: url('/img/icons/twitter.svg');
+}
+ #feed-control ul .favelog-link.youtube {
+	 list-style-image: url('/img/icons/youtube.svg');
+}
+ #feed-control ul .favelog-link.medium {
+	 list-style-image: url('/img/icons/medium.svg');
+}
+ #feed-control ul .favelog-link.vimeo {
+	 list-style-image: url('/img/icons/vimeo.svg');
+}
+ #feed-control ul .favelog-link.bookmark {
+	 list-style-image: url('/img/icons/bookmark.svg');
+}
+ #feed-control ul .favelog-link::marker {
+	 font-size: 30px;
+	 line-height: 13px;
+}
+ #feed-control ul .favelog-link a {
+	 color: #333;
+	 border-bottom: 1px dotted transparent;
+}
+ #feed-control ul .favelog-link a:hover {
+	 border-bottom: 1px dotted #0070bb;
+}
+ #feed-control ul .favelog-link i {
+	 margin-right: 5px;
+	 margin-left: -20px;
+}
+ .favelog-header {
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-size: 16px;
+	 padding-top: 10px;
+	 padding-bottom: 10px;
+	 margin-left: 15px;
+}
+ .favelog-header a {
+	 color: #333;
+}
+ body#main-body #homepage-entries {
+	 padding-right: 25px;
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: 300;
+	 font-size: 18px;
+}
+ body#main-body #homepage-entries b, body#main-body #homepage-entries strong {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: inherit;
+}
+ body#main-body #homepage-entries i, body#main-body #homepage-entries em {
+	 font-family: CallunaItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-style: italic;
+	 font-style: normal;
+}
+ body#main-body #homepage-entries b i, body#main-body #homepage-entries b em, body#main-body #homepage-entries strong i, body#main-body #homepage-entries strong em, body#main-body #homepage-entries i b {
+	 font-family: CallunaBoldItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: inherit;
+	 font-style: normal;
+}
+ body#main-body #homepage-entries .homepage-entry {
+	 padding-bottom: 10px;
+}
+ body#main-body #homepage-entries .homepage-entry img.large-icon {
+	 width: 150px;
+	 height: 150px;
+	 margin: 0 10px 0 0;
+}
+ body#main-body #homepage-entries .homepage-entry img.medium-icon {
+	 width: 80px;
+	 height: 80px;
+	 border: none;
+	 margin: 10px 0px 10px 10px;
+}
+ body#main-body #homepage-entries .homepage-entry img.small-icon {
+	 width: 64px;
+	 height: 64px;
+	 border: none;
+	 margin: 10px 0px 10px 10px;
+}
+ .view-full-post, .external-post-excerpt {
+	 margin-top: 15px;
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-size: 24px;
+}
+ .view-full-post .fa, .external-post-excerpt .fa {
+	 font-size: 15px;
+	 vertical-align: top;
+}
+ .external-post-header {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 margin-top: 15px;
+	 font-size: 18px;
+}
+ div.sidebar {
+	 margin-top: -35px;
+}
+ form.navbar-search {
+	 margin-bottom: 20px;
+}
+ .tweets {
+	 margin-top: 15px !important;
+}
+ .tweets-header-container {
+	 position: inherit !important;
+}
+ .tweets-header-container .tweets-header {
+	 padding: 0px 0 5px !important;
+	 width: inherit !important;
+}
+ #dissertation {
+	 font-size: 17px;
+	 background-color: #ccc;
+}
+ .comments {
+	 font-size: 15px;
+	 line-height: 1.4;
+	 color: #333;
+}
+ .bundle.row.gutters.callout {
+	/* background-color:#ccc;
+	 */
+}
+ .ss {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+}
+ #extra-button {
+	 padding-top: 15px;
+	 font-size: 18px;
+}
+ #loading {
+	 color: #676767;
+	 font-size: 11px;
+	 margin: 10px;
+	 padding: 4px;
+}
+ .publication, .patent {
+	 font-size: 18px;
+	 line-height: 1.5;
+	 text-align: left;
+	 margin-bottom: 25px;
+}
+ .publication .abstract, .patent .abstract {
+	 margin-top: 20px;
+	 margin-left: 25px;
+	 font-size: 16px;
+	 font-family: CallunaItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .title, .patent-title {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: normal;
+}
+ .title cite {
+	 font-style: normal;
+}
+ .docs {
+	 padding-left: 15px;
+	 padding-top: 5px;
+}
+ .docs i {
+	 margin: 0 2px 0 10px;
+}
+ table.project-table tr td.tech {
+	 opacity: 0;
+	 color: #333;
+	 font-size: 13px;
+}
+ table.project-table tr:hover td.tech {
+	 opacity: 1;
+}
+ .homepage-entry a {
+	 border-bottom: 1px none;
+}
+ .homepage-entry a:hover, .featured-title a:hover {
+	 border-bottom: 1px dotted;
+}
+ div.abstract.show {
+	 display: block;
+}
+ div.abstract {
+	 color: #333;
+	 display: none;
+	 margin-top: 10px;
+	 padding: 0 0 0 10px;
+	 border-left: 1px solid #ccc;
+}
+ body.Publications h2 {
+	 font-size: 28px;
+}
+ body.Publications h1, body.Publications h2, body.Publications h3, body.Publications h4 {
+	 margin: 15px 0 0 0;
+}
+ body.Projects h1, body.Projects h2, body.Projects h3, body.Projects h4 {
+	 margin: 5px 0;
+}
+ body.Projects .status {
+	 font-size: 16px;
+	 padding: 1px 7px;
+	 color: #333;
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 border-radius: 10px;
+	 background-color: white;
+	 border: 1px dotted #ccc;
+	 float: right;
+}
+ body.Projects .dates {
+	 font-size: 13px;
+	 font-weight: normal;
+	 margin-left: 3px;
+}
+ body.Projects .status-current {
+	 background-color: green;
+}
+ body.Projects .status-recent {
+	 background-color: orange;
+}
+ body.Projects .status-ancient {
+	 background-color: red;
+}
+ body.Projects div.project-entry {
+	 position: relative;
+	 border-bottom: 1px dotted #eee;
+	 margin-bottom: 0;
+	 margin-top: 0;
+	 padding-bottom: 20px;
+	 padding-top: 20px;
+}
+ body.Projects div.project-entry .project-name {
+	 margin-bottom: 12px;
+	 font-size: 28px;
+}
+ body.Projects div.project-entry .status {
+	/* position: absolute;
+	 right: 0;
+	 top: 10px;
+	 */
+}
+ body.Projects .gfg-title, body.Projects .gfg-subtitle {
+	 display: none;
+}
+ .screenshots {
+	 text-align: center;
+	 width: 100%;
+}
+ .screenshots img {
+	 border: 1px solid #333;
+	 margin-bottom: 20px;
+}
+ .iframe-container iframe {
+	 margin: 10px 0 40px;
+	 border: 1px solid #ccc;
+}
+ body.Blogs h1 {
+	 margin: 15px 0 0 0;
+}
+ body.Blogs h2 {
+	 margin: 0;
+}
+ body.Blogs article h2 {
+	 margin-bottom: 0px;
+}
+ body.Blogs .external-post-explanation {
+	 margin-top: 10px;
+	 margin-bottom: 20px;
+}
+ body.Blogs .content-hidden {
+	 opacity: 0.5;
+}
+ body.Blogs .external-post-image img {
+	 border: 1px solid #ccc;
+}
+ .social-buttons {
+	 float: right;
+	 text-align: right;
+	 padding-bottom: 10px;
+	 padding-left: 10px;
+	 width: 80px;
+}
+ .small-list-container li {
+	 font-size: 18px;
+	 line-height: 1.5;
+}
+ .small-list-container div {
+	 font-size: 14px;
+	 margin-bottom: 10px;
+}
+ .small-list-container.container-compact div {
+	 line-height: 18px;
+}
+ a.separate-line {
+	 display: block;
+}
+ .primary {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .toggle-abstract {
+	 text-decoration: none;
+	 border-bottom: 1px dotted #999;
+}
+ .box-sidebar {
+	 border-left: 1px dotted #ccc;
+	 padding: 10px 15px;
+	/*border-top:1px dotted #ccc;
+	 */
+}
+ .box-sidebar:hover {
+	 opacity: 1;
+}
+ .featured_projects {
+	 background-color: rgba(255, 255, 255, 0.5);
+}
+ .archived-tweets a {
+	 font-size: 11px;
+}
+ .featured-block {
+	 padding: 8px;
+}
+ .featured-block .featured-title {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .featured-block .featured-secondary {
+	 font-size: 14px;
+	 color: #333;
+	 margin-bottom: 10px;
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: 300;
+}
+ .featured-block img {
+	 margin-bottom: 5px;
+	 border-radius: 10px;
+	 -webkit-box-shadow: 1px 1px 3px 0px #9f9f98;
+	 transition: all 0.2s ease-in-out;
+}
+ .featured-block:hover img {
+	 transform: scale(1.02);
+}
+ .row .row-header {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 padding: 26px 6px 6px 6px;
+	 font-size: 30px;
+	 margin: 37px 0px 21px;
+	 text-align: center;
+	 color: #333;
+	 border-top: 1px solid #000;
+}
+ .row:hover .row-header a {
+	 text-decoration: underline;
+}
+ .patent {
+	 line-height: 1.5 !important;
+	 margin-bottom: 16px !important;
+}
+ .post-image {
+	 text-align: center;
+}
+ .PageNavigation .prevnext-container {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .PageNavigation .prevnext-container .prevnext-title {
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .social li a {
+	 text-decoration: none;
+	 color: #333;
+}
+ .post-year.col {
+	 text-align: right;
+}
+ #lunrsearchresults {
+	 padding-top: 0.2rem;
+}
+ .lunrsearchresult {
+	 padding-bottom: 1rem;
+}
+ .lunrsearchresult .title {
+	 color: #2957c9;
+	 font-size: 18px;
+}
+ .lunrsearchresult .url {
+	 color: silver;
+}
+ .lunrsearchresult a, .lunrsearchresult a:hover {
+	 display: block;
+	 color: #777 !important;
+}
+ .lunrsearchresult a:hover, .lunrsearchresult a:focus {
+	 text-decoration: none;
+}
+ .lunrsearchresult a:hover .title {
+	 text-decoration: underline;
+}
+ input#lunrsearch {
+	 margin-bottom: 25px;
+	 height: 30px;
+	 padding: 20px 12px;
+	 font-size: 26px;
+	 color: #999;
+	 background: #eee;
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ #lunrsearchresults #results-header {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+ .svg-12 {
+	 margin-bottom: 0px;
+	 width: 12px;
+	 height: 12px;
+}
+ .at {
+	 vertical-align: top;
+}
+ .name {
+	 font-size: 18px;
+	 font-weight: regular;
+}
+ .title {
+	/*font-size: 15px;
+	*/
+	 margin-bottom: 10px;
+}
+ .group {
+	 font-size: 15px;
+	 display: flex;
+	 align-items: center;
+	 height: 130px;
+}
+ .group-title {
+	 width: 70px;
+	 font-family: CallunaBoldItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-size: 14px;
+}
+ .link {
+	 color: #5e8793;
+}
+ .social li {
+	 display: inline;
+	 margin: 0px 3px;
+}
+ .social li a {
+	 text-decoration: none;
+}
+ .social li a:hover {
+	 color: #0070bb;
+}
+ .social {
+	 margin-bottom: 32px;
+	 margin-top: 0px;
+	 margin-left: 0;
+}
+ .social i {
+	 vertical-align: middle;
+	 margin: 0 5px;
+}
+ .icon {
+	 width: 32px;
+	 height: 32px;
+}
+ .icon:hover {
+	 opacity: 0.6;
+}
+ .copyright {
+	 margin-top: -20px;
+	 margin-bottom: 20px;
+}
+ @media print {
+	 section.PageNavigation, header.top, footer {
+		 display: none;
+	}
+	 body#main-body {
+		 border-top: none;
+		 background: transparent;
+		 background-color: transparent;
+	}
+	 body {
+		 color: #000 !important;
+	}
+	 .container {
+		 background: transparent !important;
+	}
+}
+ .PageNavigation {
+	 font-size: 14px;
+	 display: block;
+	 width: auto;
+	 overflow: hidden;
+	/* background-color: rgba(0,0,0,0.025);
+	 */
+	 margin-left: -20px;
+	 padding-left: 20px;
+	 margin-right: -20px;
+	 padding-right: 20px;
+	 border-top: 3px solid #ccc;
+}
+ .PageNavigation .prevnext-container {
+	 display: block;
+	 width: 40%;
+	 float: left;
+	 margin: 1em 0;
+}
+ .PageNavigation .prevnext-container.prev {
+	 float: left;
+}
+ .PageNavigation .prevnext-container.next {
+	 float: right;
+	 text-align: right;
+}
+ .PageNavigation .prevnext-container .prevnext-img {
+	 padding-top: 5px;
+}
+ .PageNavigation .prevnext-container .prevnext-img img {
+	 border: 1px solid #ccc;
+}
+ .PageNavigation .prevnext-container .prevnext-img img:hover {
+	 border: 1px solid #000;
+}
+ .tippy-content {
+	 font-family: CallunaRegular, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: 300;
+	 padding: 20px 20px 0px;
+}
+ .tippy-content b, .tippy-content strong {
+	 font-family: CallunaBold, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: inherit;
+}
+ .tippy-content i, .tippy-content em {
+	 font-family: CallunaItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-style: normal;
+}
+ .tippy-content b i, .tippy-content b em, .tippy-content strong i, .tippy-content strong em, .tippy-content i b {
+	 font-family: CallunaBoldItalic, charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	 font-weight: inherit;
+	 font-style: normal;
+}
+  </style>
+  <style type="text/css">
+   .tippy-box[data-theme~=light-border]{background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,8,16,.15);color:#333;box-shadow:0 4px 14px -2px rgba(0,8,16,.08)}.tippy-box[data-theme~=light-border]>.tippy-backdrop{background-color:#fff}.tippy-box[data-theme~=light-border]>.tippy-arrow:after,.tippy-box[data-theme~=light-border]>.tippy-svg-arrow:after{content:"";position:absolute;z-index:-1}.tippy-box[data-theme~=light-border]>.tippy-arrow:after{border-color:transparent;border-style:solid}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-arrow:before{border-top-color:#fff}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-arrow:after{border-top-color:rgba(0,8,16,.2);border-width:7px 7px 0;top:17px;left:1px}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-svg-arrow>svg{top:16px}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-svg-arrow:after{top:17px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-arrow:before{border-bottom-color:#fff;bottom:16px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-arrow:after{border-bottom-color:rgba(0,8,16,.2);border-width:0 7px 7px;bottom:17px;left:1px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-svg-arrow>svg{bottom:16px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-svg-arrow:after{bottom:17px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-arrow:before{border-left-color:#fff}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-arrow:after{border-left-color:rgba(0,8,16,.2);border-width:7px 0 7px 7px;left:17px;top:1px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-svg-arrow>svg{left:11px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-svg-arrow:after{left:12px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-arrow:before{border-right-color:#fff;right:16px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-arrow:after{border-width:7px 7px 7px 0;right:17px;top:1px;border-right-color:rgba(0,8,16,.2)}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-svg-arrow>svg{right:11px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-svg-arrow:after{right:12px}.tippy-box[data-theme~=light-border]>.tippy-svg-arrow{fill:#fff}.tippy-box[data-theme~=light-border]>.tippy-svg-arrow:after{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCA2czEuNzk2LS4wMTMgNC42Ny0zLjYxNUM1Ljg1MS45IDYuOTMuMDA2IDggMGMxLjA3LS4wMDYgMi4xNDguODg3IDMuMzQzIDIuMzg1QzE0LjIzMyA2LjAwNSAxNiA2IDE2IDZIMHoiIGZpbGw9InJnYmEoMCwgOCwgMTYsIDAuMikiLz48L3N2Zz4=);background-size:16px 6px;width:16px;height:6px}
+  </style>
+ </head>
+ <body class="" id="main-body">
+  <div class="container azul h-entry">
+   <header class="top row gutters" role="banner">
+    <div class="col span_2 center">
+     <a title="Ari Bader-Natal">
+      <img alt="ABN" height="75" id="logo" src="rick.jpg" width="75">
+     </a>
+     <div id="name">
+      Ari Bader-Natal
+     </div>
+    </div>
+    <span role="navigation">
+     <nav class="col span_10 top-navbar">
+      <div id="nav-links-1">
+       <a aria-label="Projects" class="" title="Go to Projects">
+        Projects
+       </a>
+       <a aria-label="Blogs" class="current-page" title="Go to Blogs">
+        Posts
+       </a>
+       <a aria-label="Publications" class="" title="Go to Publications">
+        Publications
+       </a>
+      </div>
+      <div id="nav-links-2">
+       <a aria-label="Favorites" class="" title="Go to Favorites">
+       </a>
+       <a aria-label="Tweets" class="" title="Go to Tweets">
+       </a>
+       <a aria-label="Resume" class="" title="Go to Resume">
+       </a>
+       <a aria-label="Search" class="" title="Go to Search">
+       </a>
+      </div>
+     </nav>
+    </span>
+   </header>
+   <section class="entry-content e-content" role="main">
+    <h1 class="p-name">
+     New Publication: "Evolving a learning analytics platform"
+    </h1>
+    <article class="single row gutters">
+     <span itemprop="author" itemscope itemtype="">
+      <span class="p-author h-card" itemprop="name">
+       <a>
+        Ari Bader-Natal
+       </a>
+      </span>
+     </span>
+     &nbsp;&nbsp;
+     <time class="published dt-published" datetime="2011-02-28">
+      28 February 2011
+     </time>
+     &nbsp;&nbsp;
+     <span class="filed-under">
+      Filed under:
+      <a class="p-category" title="Category: Publications">
+       Publications
+      </a>
+     </span>
+     &nbsp;&nbsp;
+     <a class="permalink u-url">
+      Permalink
+     </a>
+     <div class="bundle row gutters">
+      <div class="homepage-entry col span_12">
+       <div id="publications">
+        <div class="publication">
+         <div>
+          Bader-Natal, A. and Lotze, T.
+          <span class="title">
+           <cite>
+            Evolving a learning analytics platform.
+           </cite>
+          </span>
+          Proceedings of the 1st International Conference on Learning Analytics and Knowledge. ACM Press, 2011.
+         </div>
+         <div class="docs">
+          <span class="toggle-abstract">
+           Abstract
+          </span>
+          <a class="primary">
+           <img alt="Draft PDF" class="svg-12" src="rick.jpg">
+           Draft PDF
+          </a>
+          <a class="">
+           <img alt="Talk Slides" class="svg-12" src="rick.jpg">
+           Talk Slides
+          </a>
+          <a class="">
+           <img alt="ACM Digital Library" class="svg-12" src="rick.jpg">
+           ACM Digital Library
+          </a>
+          <div class="abstract show" id="abstract-lak2011">
+           <p>
+            Web-based learning systems offer researchers the ability to collect and analyze fine-grained educational data on the performance and activity of students, as a basis for better understanding and support- ing learning among those students. The availability of this data enables stakeholders to pose a variety of interesting questions, often specifically focused on some subset of students.
+           </p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="related-project rn-highlight" style="font-weight:bold;">
+      Related to project:
+      <a>
+       <img alt src="rick.jpg" style="height:16px;margin-bottom:0px;">
+       Grockit
+      </a>
+     </div>
+     <br>
+    </article>
+    <section class="PageNavigation">
+     <div class="prevnext-container next">
+      <div class="prevnext-dir">
+       Next post:
+      </div>
+      <div class="prevnext-title">
+       <a>
+        What I cannot create, I do not understand
+       </a>
+      </div>
+      <div class="prevnext-img">
+       <a>
+        <img alt="What I cannot create, I do not understand" src="rick.jpg">
+       </a>
+      </div>
+     </div>
+     <div class="prevnext-container prev">
+      <div class="prevnext-dir">
+       Previous post:
+      </div>
+      <div class="prevnext-title">
+       <a>
+        Unlocking compliments with Google Translate
+       </a>
+      </div>
+      <div class="prevnext-img">
+       <a>
+        <img alt="Unlocking compliments with Google Translate" src="rick.jpg">
+       </a>
+      </div>
+     </div>
+    </section>
+   </section>
+  </div>
+  <footer>
+   <ul class="social">
+    <li>
+     <a aria-label="LinkedIn" class="url" rel="noopener" target="_blank">
+     </a>
+    </li>
+    <li>
+     <a aria-label="Twitter" class="url" rel="noopener" target="_blank">
+     </a>
+    </li>
+    <li>
+     <a aria-label="RSS Feed">
+     </a>
+    </li>
+    <li>
+     <a aria-label="Search" class="url">
+     </a>
+    </li>
+   </ul>
+   <div class="copyright">
+    &copy; 2005-2023, Ari Bader-Natal
+   </div>
+  </footer>
+ </body>
+</html>

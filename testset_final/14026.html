@@ -1,0 +1,1421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "">
+<html id="sixapart-standard" xmlns="">
+ <head>
+  <style>
+   /* Base Weblog (base-weblog.css) */
+
+/* basic elements */
+
+html
+{
+   margin: 0;
+   /* setting border: 0 hoses ie6 win window inner well border */
+   padding: 0;
+}
+
+body
+{
+   margin: 0;
+   /* setting border: 0 hoses ie5 win window inner well border */
+   padding: 0;
+   font-family: verdana, 'trebuchet ms', sans-serif;
+   font-size: 12px;
+}
+
+form, input { margin: 0; padding: 0; }
+a { text-decoration: underline; }
+a img { border: 0; }
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1, h2, h3, h4, h5, h6, p, ol, ul, pre, blockquote
+{
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+
+
+/* standard helper classes */
+
+.clr
+{
+   clear: both;
+   overflow: hidden;
+   width: 1px;
+   height: 1px;
+   margin: 0 -1px -1px 0;
+   border: 0;
+   padding: 0;
+   font-size: 0;
+   line-height: 0;
+}
+
+/* .pkg class wraps enclosing block element around inner floated elements */
+.pkg:after
+{
+   content: " ";
+   display: block;
+   visibility: hidden;
+   clear: both;
+   height: 0.1px;
+   font-size: 0.1em;
+   line-height: 0;
+}
+* html .pkg { display: inline-block; }
+/* no ie mac \*/
+* html .pkg { height: 1%; }
+.pkg { display: block; }
+/* */
+
+
+/* page layout */
+
+body { text-align: center; } /* center on ie */
+
+#container
+{
+   position: relative;
+   margin: 0 auto; /* center on everything else */
+   width: 720px;
+   text-align: left;
+}
+#container-inner { position: static; width: auto; }
+
+#banner { position: relative; }
+#banner-inner { position: static; }
+
+#pagebody { position: relative; width: 100%; }
+#pagebody-inner { position: static; width: 100%; }
+
+#alpha, #beta, #gamma, #delta
+{
+   display: inline; /* ie win bugfix */
+   position: relative;
+   float: left;
+   min-height: 1px;
+}
+
+#delta { float: right; }
+
+#alpha-inner, #beta-inner, #gamma-inner, #delta-inner
+{
+   position: static;
+}
+
+
+/* banner user/photo */
+
+.banner-user
+{
+   float: left;
+   overflow: hidden;
+   width: 64px;
+   margin: 0 15px 0 0;
+   border: 0;
+   padding: 0;
+   text-align: center;
+}
+
+.banner-user-photo
+{
+   display: block;
+   margin: 0 0 2px 0;
+   border: 0;
+   padding: 0;
+   background-position: center center;
+   background-repeat: no-repeat;
+   text-decoration: none !important;
+}
+
+.banner-user-photo img
+{
+   width: 64px;
+   height: auto;
+   margin: 0;
+   border: 0;
+   padding: 0;
+}
+
+
+/* content */
+
+.content-nav
+{
+   margin: 10px;
+   text-align: center;
+}
+
+.date-header,
+.entry-content
+{
+   position: static;
+   clear: both;
+}
+
+.entry,
+.trackbacks,
+.comments,
+.archive
+{
+   position: static;
+   overflow: hidden;
+   clear: both;
+   width: 100%;
+   margin-bottom: 20px;
+}
+
+.entry-content,
+.trackbacks-info,
+.trackback-content,
+.comment-content,
+.comments-open-content,
+.comments-closed
+{
+   clear: both;
+   margin: 5px 10px;
+}
+
+.entry-excerpt,
+.entry-body,
+.entry-more-link,
+.entry-more
+{
+   clear: both;
+}
+
+.entry-footer,
+.trackback-footer,
+.comment-footer,
+.comments-open-footer,
+.archive-content
+{
+   clear: both;
+   margin: 5px 10px 20px 10px;
+}
+
+.comments-open label { display: block; }
+
+#comment-author, #comment-email, #comment-url, #comment-text
+{
+   width: 240px;
+}
+
+#comment-bake-cookie
+{
+   margin-left: 0;
+   vertical-align: middle;
+}
+
+#comment-post
+{
+   font-weight: bold;
+}
+
+img.image-full { width: 100%; }
+
+.image-thumbnail
+{
+   float: left;
+   width: 115px;
+   margin: 0 10px 10px 0;
+}
+
+.image-thumbnail img
+{
+   width: 115px;
+   height: 115px;
+   margin: 0 0 2px 0;
+}
+
+
+/* modules */
+
+.module
+{
+   position: relative;
+   overflow: hidden;
+   width: 100%;
+}
+
+.module-content
+{
+   position: relative;
+   margin: 5px 10px 20px 10px;
+}
+
+.module-list,
+.archive-list
+{
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.module-list-item
+{
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+
+.module-presence img { vertical-align: middle; }
+.module-powered .module-content { margin-bottom: 10px; }
+.module-photo .module-content { text-align: center; }
+.module-wishlist .module-content { text-align: center; }
+
+.module-calendar .module-content table
+{
+   border-collapse: collapse;
+}
+
+.module-calendar .module-content th,
+.module-calendar .module-content td
+{
+   width: 14%;
+   text-align: center;
+}
+
+.typelist-thumbnailed { margin: 0 0 20px 0; }
+
+.typelist-thumbnailed .module-list-item
+{
+   display: block;
+   clear: both;
+   margin: 0;
+}
+
+/* positioniseverything.net/easyclearing.html */
+.typelist-thumbnailed .module-list-item:after
+{
+   content: " ";
+   display: block;
+   visibility: hidden;
+   clear: both;
+   height: 0.1px;
+   font-size: 0.1em;
+   line-height: 0;
+}
+* html .typelist-thumbnailed .module-list-item { display: inline-block; }
+/* no ie mac \*/
+* html .typelist-thumbnailed .module-list-item { height: 1%; }
+.typelist-thumbnailed .module-list-item { display: block; }
+/* */
+
+.typelist-thumbnail
+{
+   float: left;
+   min-width: 60px;
+   width: 60px;
+   /* no ie mac \*/width: auto;/* */
+   margin: 0 5px 0 0;
+   text-align: center;
+   vertical-align: middle;
+}
+
+.typelist-thumbnail img { margin: 5px; }
+
+.module-galleries .typelist-thumbnail img { width: 50px; }
+
+.typelist-description
+{
+   margin: 0;
+   padding: 5px;
+}
+
+.module-featured-photo .module-content,
+.module-photo .module-content
+{
+   margin: 0;
+}
+
+.module-featured-photo img { width: 100%; }
+
+.module-recent-photos { margin: 0 0 15px 0; }
+.module-recent-photos .module-content { margin: 0; }
+.module-recent-photos .module-list
+{
+   display: block;
+   height: 1%;
+   margin: 0;
+   border: 0;
+   padding: 0;
+   list-style: none;
+}
+
+/* positioniseverything.net/easyclearing.html */
+.module-recent-photos .module-list:after
+{
+   content: " ";
+   display: block;
+   visibility: hidden;
+   clear: both;
+   height: 0.1px;
+   font-size: 0.1em;
+   line-height: 0;
+}
+* html .module-recent-photos .module-list { display: inline-block; }
+/* no ie mac \*/
+* html .module-recent-photos .module-list { height: 1%; }
+.module-recent-photos .module-list { display: block; }
+/* */
+
+.module-recent-photos .module-list-item
+{
+   display: block;
+   float: left;
+   /* ie win fix \*/ height: 1%; /**/
+   margin: 0;
+   border: 0;
+   padding: 0;
+}
+
+.module-recent-photos .module-list-item a
+{
+   display: block;
+   margin: 0;
+   border: 0;
+   padding: 0;
+}
+
+.module-recent-photos .module-list-item img
+{
+   width: 60px;
+   height: 60px;
+   margin: 0;
+   padding: 0;
+}
+
+
+/* mmt calendar */
+
+.module-mmt-calendar { margin-bottom: 15px; }
+.module-mmt-calendar .module-content { margin: 0; }
+.module-mmt-calendar .module-header { margin: 0; }
+.module-mmt-calendar .module-header a { text-decoration: none; }
+.module-mmt-calendar table { width: 100%; }
+
+.module-mmt-calendar th { text-align: left; }
+
+.module-mmt-calendar td
+{
+   width: 14%;
+   height: 75px;
+   text-align: left;
+   vertical-align: top;
+}
+
+.day-photo
+{
+   width: 54px;
+   height: 54px;
+}
+
+.day-photo a
+{
+   display: block;
+}
+
+.day-photo a img
+{
+   width: 50px;
+   height: 50px;
+}
+
+
+
+
+/* Vicksburg (theme-vicksburg.css) */
+
+/* basic page elements */
+
+body
+{
+   font-family: 'trebuchet ms', verdana, helvetica, arial, sans-serif;
+   font-size: 12px;
+}
+
+a { color: #36414d; text-decoration: underline; }
+a:hover { color: #a3b8cc; }
+
+#banner a { color: #fff; text-decoration: none; }
+#banner a:hover { color: #fff; }
+
+.module-content a { color: #36414d; }
+.module-content a:hover { color: #a3b8cc; }
+
+h1, h2, h3, h4, h5, h6
+{
+   font-family: 'trebuchet ms', verdana, helvetica, arial, sans-serif;
+}
+
+.module-header,
+.trackbacks-header,
+.comments-header,
+.comments-open-header,
+.archive-header
+{
+   /* ie win (5, 5.5, 6) bugfix */
+   p\osition: relative;
+   width: 100%;
+   w\idth: auto;
+
+   margin: 0;
+   border-left: 5px solid #36414d;
+   padding: 5px;
+   color: #fff;
+   background: #a3b8cc;
+   font-size: 11px;
+   font-weight: bold;
+   line-height: 1;
+   text-transform: uppercase;
+}
+
+.module-header a,
+.module-header a:hover,
+.trackbacks-header a,
+.trackbacks-header a:hover,
+.comments-header a,
+.comments-header a:hover,
+.comments-open-header a,
+.comments-open-header a:hover
+.archive-header a,
+.archive-header a:hover
+{
+   color: #fff;
+}
+
+.entry-more-link,
+.entry-footer,
+.comment-footer,
+.trackback-footer,
+.typelist-thumbnailed
+{
+   font-size: 11px;
+}
+
+.commenter-profile img { vertical-align: middle; }
+
+
+/* page layout */
+
+body
+{
+   min-width: 720px;
+   color: #333;
+   background: #36414d;
+}
+
+#container
+{
+   width: 720px;
+   margin-bottom: 20px;
+   background: #fff;
+}
+
+#container-inner
+{
+   border-width: 0 5px 5px 5px;
+   border-style: solid;
+   border-color: #292e33;
+}
+
+#banner
+{
+   width: 710px; /* necessary for ie win */
+   background: #a3b8cc;
+}
+
+#banner-inner
+{
+   padding: 15px 13px;
+   border-width: 2px 2px 0 2px;
+   border-style: solid;
+   border-color: #fff;
+}
+
+.banner-user
+{
+   width: 70px;
+   margin-top: 5px;
+   font-size: 10px;
+}
+
+.banner-user-photo { border: 1px solid #fff; }
+
+#banner-header
+{
+   margin: 0;
+   color: #fff;
+   font-size: 30px;
+   font-weight: bold;
+   line-height: 1;
+   text-shadow: #36414d 0 2px 3px;
+}
+
+#banner-description
+{
+   margin-top: 5px;
+   margin-bottom: 0;
+   color: #fff;
+   background: none;
+   font-size: 12px;
+   font-weight: bold;
+   line-height: 1.125;
+   text-shadow: #36414d 0 1px 2px;
+}
+
+#alpha { margin: 15px 15px 0 15px; width: 480px; }
+#beta { width: 200px; background: #e6ecf2; }
+#gamma, #delta { width: 180px; background: #e6ecf2; }
+
+#beta-inner,
+#gamma-inner,
+#delta-inner
+{
+   padding: 10px 10px 0 10px;
+   border-width: 2px 2px 2px 0;
+   border-style: solid;
+   border-color: #fff;
+}
+
+.date-header
+{
+   margin-top: 0;
+   font-size: 11px;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+
+.entry-header
+{
+   margin-top: 0;
+   border-left: 5px solid #dae0e6;
+   padding: 0 0 0 10px;
+   color: #666;
+   font-size: 18px;
+}
+
+.entry-content,
+.comment-content,
+.trackback-content
+{
+   margin: 0;
+   line-height: 1.5;
+}
+
+.entry-footer,
+.comment-footer,
+.trackback-footer
+{
+   margin: 0 0 20px 0;
+   border-top: 1px solid #dae0e6;
+   padding-top: 3px;
+   color: #666;
+   font-size: 10px;
+   text-align: right;
+}
+
+.comment-content,
+.trackback-content,
+.comment-footer,
+.trackback-footer
+{
+   margin-left: 10px;
+}
+
+.content-nav { margin-top: 0; }
+
+#trackbacks-info
+{
+   margin: 10px 0;
+   border: 1px dashed #a3b8cc;
+   padding: 0 10px;
+   color: #292e33;
+   font-size: 11px;
+   text-align: center;
+   background: #e6ecf2;
+}
+
+.comments-open-footer
+{
+   margin: 10px 0;
+}
+
+
+/* modules */
+
+.module
+{
+   margin: 0 0 10px 0;
+   border-bottom: 1px solid #f3f6f9;
+   background: #dae0e6;
+}
+
+.module-content
+{
+   margin: 0 0 10px 0;
+   border-top: 1px solid #cfd4d9;
+   padding: 10px 10px 0 10px;
+   font-size: 10px;
+   line-height: 1.2;
+}
+
+.module-search input { font-size: 10px; }
+.module-search #search { width: 100px; }
+
+.module-mmt-calendar .module-content table,
+.module-calendar .module-content table { font-size: 10px; }
+
+.module-powered { border-width: 0; }
+.module-powered .module-content
+{
+   margin-bottom: 0;
+   border: 1px dashed #a3b8cc;
+   padding-bottom: 10px;
+   color: #292e33;
+   background: #fff;
+}
+
+.module-photo { background: none; }
+.module-photo img { border: solid 1px #fff; }
+
+.module-list
+{
+   margin: 0 15px 10px 15px;
+   list-style: disc;
+}
+
+.module-list .module-list
+{
+   margin: 5px 0 0 0;
+   padding-left: 15px;
+   list-style: circle;
+}
+
+.module-list-item
+{
+   margin-top: 0;
+   color: #666;
+   line-height: 1.2;
+}
+
+.typelist-thumbnailed .module-list
+{
+   margin: 0 0 10px 0;
+   list-style: none;
+}
+
+.typelist-thumbnailed .module-list-item
+{
+   margin: 1px 0;
+   padding: 0;
+   background: #f3f6f9;
+}
+
+.typelist-thumbnail
+{
+   background: #fff;
+}
+
+.module-photo img { border: 1px solid #fff; }
+
+.module-featured-photo { width: 398px; }
+.module-featured-photo .module-content
+{
+   margin: 0;
+   border-width: 0;
+   padding: 0;
+}
+.module-featured-photo img { width: 398px; }
+
+.module-recent-photos .module-content { padding: 10px 0 0 19px; }
+.module-recent-photos .module-list { margin: 0; }
+.module-recent-photos .module-list-item
+{
+   width: 64px; /* mac ie fix */
+   margin: 0 10px 10px 0;
+   padding: 0;
+   background: none;
+}
+
+.module-recent-photos .module-list-item a
+{
+   border: #cfd4d9 1px solid;
+   padding: 1px;
+   background: #fff;
+}
+
+.module-recent-photos .module-list-item a:hover
+{
+   border-color: #36414d;
+   background: #fff;
+}
+
+
+/* calendar tweaks */
+
+   .layout-calendar #alpha { width: 260px; }
+   .layout-calendar #beta { width: 420px; }
+
+   .layout-calendar #gamma,
+   .layout-calendar #delta
+   {
+      width: 190px;
+   }
+
+   .layout-calendar #gamma-inner,
+   .layout-calendar #delta-inner
+   {
+      border: 0;
+      padding: 0;
+   }
+
+   .module-mmt-calendar { width: 398px; }
+   .module-mmt-calendar .module-content
+   {
+      margin: 0;
+      border-width: 0;
+      padding: 10px;
+   }
+
+   .module-mmt-calendar table
+   {
+      width: 378px;
+      background: #a3b8cc;
+   }
+
+   .module-mmt-calendar th
+   {
+      color: #fff;
+      border-top: 1px solid #fff;
+      border-right: 1px solid #f3f6f9;
+      border-bottom: 1px solid #cfd4d9;
+      padding: 2px;
+      text-align: right;
+      font-weight: bold;
+   }
+
+   .module-mmt-calendar td
+   {
+      border-top: 1px solid #fff;
+      border-right: 1px solid #f3f6f9;
+      border-bottom: 1px solid #cfd4d9;
+      padding: 2px;
+      text-align: right;
+      font-weight: normal;
+      background: #e6ecf2;
+   }
+
+   th.weekday-7, td.day-7, td.day-14, td.day-21, td.day-28, td.day-35, td.day-42
+   {
+      border-right: none;
+   }
+
+   .module-mmt-calendar td { height: 70px; }
+
+   .day-photo
+   {
+      width: 49px;
+      height: 49px;
+   }
+	
+   .day-photo a
+   {
+      border: #cfd4d9 1px solid;
+      padding: 1px;
+      background: #fff;
+   }
+
+   .day-photo a:hover
+   {
+      border-color: #36414d;
+      background: #fff;
+   }
+
+   .day-photo a img
+   {
+      width: 45px;
+      height: 45px;
+   }
+
+
+/* artistic tweaks */
+
+   .layout-artistic #alpha { width: 260px; }
+   .layout-artistic #beta { width: 420px; }
+
+   .layout-artistic #gamma,
+   .layout-artistic #delta
+   {
+      width: 190px;
+   }
+
+   .layout-artistic #gamma-inner,
+   .layout-artistic #delta-inner
+   {
+      border: 0;
+      padding: 0;
+   }
+
+
+/* moblog1 tweaks */
+
+   .layout-moblog1 #alpha
+   {
+      margin: 0;
+      width: 180px;
+      background: #e6ecf2;
+   }
+
+   .layout-moblog1 #alpha-inner
+   {
+      padding: 10px 10px 0 10px;
+      border-width: 2px 0 2px 2px;
+      border-style: solid;
+      border-color: #fff;
+   }
+
+   .layout-moblog1 #beta
+   {
+      margin: 15px 15px 0 15px;
+      width: 320px;
+      background: none;
+   }
+
+   .layout-moblog1 #beta-inner
+   {
+      padding: 0;
+      border-width: 0;
+   }
+
+   .layout-moblog1 .module-recent-photos .module-content { padding: 10px 0 0 10px; }
+
+
+/* moblog2 tweaks */
+
+   .layout-moblog2 #alpha
+   {
+      margin: 0;
+      width: 86px;
+      background: #e6ecf2;
+   }
+
+   .layout-moblog2 #alpha-inner
+   {
+      padding: 10px 10px 0 10px;
+      border-width: 2px 0 2px 2px;
+      border-style: solid;
+      border-color: #fff;
+   }
+
+   .layout-moblog2 #beta
+   {
+      margin: 15px 15px 0 15px;
+      width: 260px;
+      background: none;
+   }
+
+   .layout-moblog2 #beta-inner
+   {
+      padding: 0;
+      border-width: 0;
+   }
+
+   .layout-moblog2 #delta
+   {
+      width: 154px;
+   }
+
+   .layout-moblog2 .module-recent-photos
+   {
+      border: 0;
+      background: none;
+   }
+
+   .layout-moblog2 .module-recent-photos .module-content
+   {
+      padding: 0;
+      border: 0;
+   }
+
+   .layout-moblog2 .module-recent-photos .module-list-item { margin: 0 0 10px 0; }
+
+
+/* timeline tweaks */
+
+   .layout-timeline #alpha { width: 260px; }
+   .layout-timeline #beta { width: 420px; }
+
+   .layout-timeline #gamma,
+   .layout-timeline #delta
+   {
+      width: 190px;
+   }
+
+   .layout-timeline #gamma-inner,
+   .layout-timeline #delta-inner
+   {
+      border: 0;
+      padding: 0;
+   }
+
+
+/* one-column tweaks */
+
+   .layout-one-column body { min-width: 520px; }
+   .layout-one-column #container { width: 520px; }
+   .layout-one-column #banner { width: 510px; } /* necessary for ie win */
+
+
+/* two-column-left tweaks */
+
+   .layout-two-column-left #alpha
+   {
+      margin: 0;
+      width: 200px;
+      background: #e6ecf2;
+   }
+
+   .layout-two-column-left #alpha-inner
+   {
+      padding: 10px 10px 0 10px;
+      border-width: 2px 0 2px 2px;
+      border-style: solid;
+      border-color: #fff;
+   }
+
+   .layout-two-column-left #beta
+   {
+      margin: 15px 15px 0 15px;
+      width: 480px;
+      background: none;
+   }
+
+   .layout-two-column-left #beta-inner
+   {
+      padding: 0;
+      border-width: 0;
+   }
+
+
+/* three-column tweaks */
+
+   .layout-three-column #alpha
+   {
+      margin: 0;
+      width: 180px;
+      background: #e6ecf2;
+   }
+
+   .layout-three-column #alpha-inner
+   {
+      padding: 10px 10px 0 10px;
+      border-width: 2px 0 2px 2px;
+      border-style: solid;
+      border-color: #fff;
+   }
+
+   .layout-three-column #beta
+   {
+      margin: 15px 15px 0 15px;
+      width: 320px;
+      background: none;
+   }
+
+   .layout-three-column #beta-inner
+   {
+      padding: 0;
+      border-width: 0;
+   }
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="Movable Type 4.32-en" name="generator">
+  <meta content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <meta content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+ </head>
+ <body class="layout-one-column">
+  " /&gt;
+  <title>
+   Stylized Facts: March 2010 Archives
+  </title>
+  <div id="container">
+   <div class="pkg" id="container-inner">
+    <div id="banner">
+     <div class="pkg" id="banner-inner">
+      <h1 id="banner-header">
+       <a accesskey="1">
+        Stylized Facts
+       </a>
+      </h1>
+      <h2 id="banner-description">
+       Frequent sideblog:
+       <a>
+        Coruscation
+       </a>
+       .
+      </h2>
+     </div>
+    </div>
+    <div id="goog">
+     <ins class="adsbygoogle adsbygoogle-noablate" data-ad-channel="[PHONE REDACTED]" data-ad-client="pub-4113643296189468" data-ad-format="728x90_as" data-ad-height="90" data-ad-type="text_image" data-ad-width="728" data-adsbygoogle-status="done" data-color-bg="99AACC" data-color-border="2D5893" data-color-link="000000" data-color-text="003366" data-color-url="000099" style="display: inline-block; width: 728px; height: 90px;">
+      <div aria-label="Advertisement" id="aswift_0_host" style="border: none; height: 90px; width: 728px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+      </div>
+     </ins>
+    </div>
+    <div id="pagebody">
+     <div class="pkg" id="pagebody-inner">
+      <div id="alpha">
+       <div class="pkg" id="alpha-inner">
+        <p class="content-nav">
+         <a>
+          &laquo; February 2010
+         </a>
+         |
+         <a>
+          Main
+         </a>
+         |
+         <a>
+          May 2010 &raquo;
+         </a>
+        </p>
+        <!--
+<rdf:RDF xmlns:rdf=""
+         xmlns:trackback=""
+         xmlns:dc="">
+<rdf:Description
+    rdf:about=""
+    trackback:ping=""
+    dc:title="The most important economic competition is actually between you and your own imagination - Tom Friedman"
+    dc:identifier=""
+    dc:subject="Quote"
+    dc:description="This isn&apos;t complicated. In today&apos;s wired world, the most important economic competition is no longer between countries or companies. The most important economic competition is actually between you and your own imagination. - Tom Friedman..."
+    dc:creator=""
+    dc:date="2010-03-23T02:06:02+00:00" />
+</rdf:RDF>
+-->
+        <h2 class="date-header">
+         March 23, 2010
+        </h2>
+        <a id="a008035">
+        </a>
+        <div class="entry" id="entry-8035">
+         <h3 class="entry-header">
+          The most important economic competition is actually between you and your own imagination -- Tom Friedman
+         </h3>
+         <div class="entry-content">
+          <div class="entry-body">
+           <p>
+            <br>
+            This isn't complicated.
+           </p>
+           <p>
+            --
+            <a>
+             Tom Friedman
+            </a>
+            <br>
+           </p>
+           <p class="entry-footer">
+            <span class="post-footers">
+             Posted by  at  2:06 AM
+            </span>
+            <span class="separator">
+             |
+            </span>
+            <a class="permalink">
+             Permalink
+            </a>
+            |
+            <a>
+             Comments (0)
+            </a>
+            |
+            <a>
+             TrackBacks (0)
+            </a>
+           </p>
+          </div>
+         </div>
+        </div>
+        <!--
+<rdf:RDF xmlns:rdf=""
+         xmlns:trackback=""
+         xmlns:dc="">
+<rdf:Description
+    rdf:about=""
+    trackback:ping=""
+    dc:title="The years from 1989 to 2009 were consumed by locusts."
+    dc:identifier=""
+    dc:subject="Culture"
+    dc:description="What caused this dire loss of faith in our government and leaders? Mr. Judt spreads the blame around. He criticizes the narcissistic left of the 1960s, which was largely uninterested in social justice. &quot;What united the &apos;60s generation was not..."
+    dc:creator=""
+    dc:date="2010-03-21T08:00:25+00:00" />
+</rdf:RDF>
+-->
+        <h2 class="date-header">
+         March 21, 2010
+        </h2>
+        <a id="a008030">
+        </a>
+        <div class="entry" id="entry-8030">
+         <h3 class="entry-header">
+          The years from 1989 to 2009 were consumed by locusts.
+         </h3>
+         <div class="entry-content">
+          <div class="entry-body">
+           <p>
+            <br>
+            What caused this dire loss of faith in our government and leaders?
+           </p>
+           <p>
+            He surveys an earlier and "superior class of statesmen," who, regardless of its members' political leanings, "represented a political class deeply sensitive to its moral and social responsibilities." Politically speaking, he declares, "ours is an age of the pygmies."
+           </p>
+           <p>
+            After the fall of the Berlin Wall, the West missed an opportunity to reshape the world. "Instead," Mr. Judt writes, "we sat back and congratulated ourselves upon having won the cold war: a sure way to lose the peace."
+           </p>
+           <p>
+            --
+            <a>
+             Tony Judt
+            </a>
+           </p>
+           <p class="entry-footer">
+            <span class="post-footers">
+             Posted by  at  8:00 AM
+            </span>
+            <span class="separator">
+             |
+            </span>
+            <a class="permalink">
+             Permalink
+            </a>
+            |
+            <a>
+             Comments (0)
+            </a>
+            |
+            <a>
+             TrackBacks (0)
+            </a>
+           </p>
+          </div>
+         </div>
+        </div>
+        <!--
+<rdf:RDF xmlns:rdf=""
+         xmlns:trackback=""
+         xmlns:dc="">
+<rdf:Description
+    rdf:about=""
+    trackback:ping=""
+    dc:title="Following through on the metaphor"
+    dc:identifier=""
+    dc:subject=""
+    dc:description="Raising social issues, the movement&apos;s leaders say, risks fracturing the strength it has built. &quot;Every social issue you bring in, you&apos;re adding planks to your mission,&quot; said Frank Anderson, a founder of the Independence Caucus, based in Utah. &quot;And planks..."
+    dc:creator=""
+    dc:date="2010-03-15T07:30:36+00:00" />
+</rdf:RDF>
+-->
+        <h2 class="date-header">
+         March 15, 2010
+        </h2>
+        <a id="a008024">
+        </a>
+        <div class="entry" id="entry-8024">
+         <h3 class="entry-header">
+          Following through on the metaphor
+         </h3>
+         <div class="entry-content">
+          <div class="entry-body">
+           <p>
+            <br>
+            Raising social issues, the movement's leaders say, risks fracturing the strength it has built. "Every social issue you bring in, you're adding
+            <strong>
+             planks
+            </strong>
+            to your mission," said Frank Anderson, a founder of the Independence Caucus, based in Utah. "And
+            <strong>
+             planks
+            </strong>
+            become
+            <strong>
+             splinters
+            </strong>
+            ."
+           </p>
+           <p>
+            U.S.
+            <br>
+            <a>
+             Tea Party Avoids Divisive Social Issues
+            </a>
+            <br>
+            By KATE ZERNIKE
+            <br>
+            Published: March 12, 2010
+            <br>
+            God, life and family get little mention in the party's statements, with the focus instead on fiscal responsibility.
+           </p>
+           <p class="entry-footer">
+            <span class="post-footers">
+             Posted by  at  7:30 AM
+            </span>
+            <span class="separator">
+             |
+            </span>
+            <a class="permalink">
+             Permalink
+            </a>
+            |
+            <a>
+             Comments (0)
+            </a>
+            |
+            <a>
+             TrackBacks (0)
+            </a>
+           </p>
+          </div>
+         </div>
+        </div>
+        <!--
+<rdf:RDF xmlns:rdf=""
+         xmlns:trackback=""
+         xmlns:dc="">
+<rdf:Description
+    rdf:about=""
+    trackback:ping=""
+    dc:title="the dark, half- crippled, doughnut-gobbling man-apes of the literary world"
+    dc:identifier=""
+    dc:subject="Quote"
+    dc:description="So let&apos;s read Lipsyte and rejoice; let&apos;s celebrate the laugh-producing Milo Burkes who are all too rarely brought to us by brave and bitter men - let&apos;s celebrate the canny, well-educated yet perpetually failing furtive Internet onanists, the dark, half-..."
+    dc:creator=""
+    dc:date="2010-03-10T05:48:48+00:00" />
+</rdf:RDF>
+-->
+        <h2 class="date-header">
+         March 10, 2010
+        </h2>
+        <a id="a008018">
+        </a>
+        <div class="entry" id="entry-8018">
+         <h3 class="entry-header">
+          the dark, half- crippled, doughnut-gobbling man-apes of the literary world
+         </h3>
+         <div class="entry-content">
+          <div class="entry-body">
+           <p>
+            So let's read Lipsyte and rejoice;
+            <a>
+             let's celebrate
+            </a>
+            the laugh-producing Milo Burkes who are all too rarely brought to us by brave and bitter men -- let's celebrate the canny, well-educated yet perpetually failing furtive Internet onanists, the dark, half- crippled, doughnut-gobbling man-apes of the literary world, who cast their lumpen shadows across the rest of us.
+           </p>
+           <p>
+            These are the kind of unlikable, lovable protagonists we miss; these are the self-loathing, mediocre secret geniuses who can set our people free.
+           </p>
+           <p>
+            <br>
+            Lydia Millet's
+           </p>
+           <p class="entry-footer">
+            <span class="post-footers">
+             Posted by  at  5:48 AM
+            </span>
+            <span class="separator">
+             |
+            </span>
+            <a class="permalink">
+             Permalink
+            </a>
+            |
+            <a>
+             Comments (0)
+            </a>
+            |
+            <a>
+             TrackBacks (0)
+            </a>
+           </p>
+          </div>
+         </div>
+        </div>
+        <!--
+<rdf:RDF xmlns:rdf=""
+         xmlns:trackback=""
+         xmlns:dc="">
+<rdf:Description
+    rdf:about=""
+    trackback:ping=""
+    dc:title="Enquiring Press needed - Douthat"
+    dc:identifier=""
+    dc:subject="Culture"
+    dc:description="It&apos;s remarkable, in a way, that the Enquirer still exists at all, let alone that it&apos;s enjoying a moment in the journalistic sun. In the age of Gawker, Twitter, and TMZ.com, a weekly scandal sheet seems quaint, if not archaic...."
+    dc:creator=""
+    dc:date="2010-03-07T18:33:14+00:00" />
+</rdf:RDF>
+-->
+        <h2 class="date-header">
+         March  7, 2010
+        </h2>
+        <a id="a008009">
+        </a>
+        <div class="entry" id="entry-8009">
+         <h3 class="entry-header">
+          Enquiring Press needed -- Douthat
+         </h3>
+         <div class="entry-content">
+          <div class="entry-body">
+           <p>
+            It's remarkable, in a way, that the Enquirer still exists at all, let alone that it's enjoying a moment in the journalistic sun. In the age of Gawker, Twitter, and TMZ.com, a weekly scandal sheet seems quaint, if not archaic.
+           </p>
+           <p>
+            But you'd be wrong.
+            <br>
+           </p>
+           <p>
+            OP-ED COLUMNIST
+            <br>
+            <a>
+             Enquiring Minds
+            </a>
+            <br>
+            By ROSS DOUTHAT
+            <br>
+            Published: February 21, 2010
+            <br>
+            Not all affairs produce corruption, but the media should be willing to go digging for those private acts that should be publicly disqualifying.
+           </p>
+           <p class="entry-footer">
+            <span class="post-footers">
+             Posted by  at  6:33 PM
+            </span>
+            <span class="separator">
+             |
+            </span>
+            <a class="permalink">
+             Permalink
+            </a>
+            |
+            <a>
+             Comments (0)
+            </a>
+            |
+            <a>
+             TrackBacks (0)
+            </a>
+           </p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;">
+   <div aria-label="Advertisement" id="aswift_1_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+   </div>
+  </ins>
+ </body>
+</html>

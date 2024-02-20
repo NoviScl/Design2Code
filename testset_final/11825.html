@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="de">
+ <head>
+  <style>
+   @font-face {
+    font-family: 'OS-RC';
+    src: url(../fonts/OpenSans-Light.woff2) format('woff2'),
+         url(../fonts/OpenSans-Light.woff) format('woff'),
+         url(../fonts/OpenSans-Light.ttf) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'OS-RC';
+    src: url(../fonts/OpenSans-Regular.woff2) format('woff2'),
+         url(../fonts/OpenSans-Regular.woff) format('woff'),
+         url(../fonts/OpenSans-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'OS-RC';
+    src: url(../fonts/OpenSans-SemiBold.woff2) format('woff2'),
+         url(../fonts/OpenSans-SemiBold.woff) format('woff'),
+         url(../fonts/OpenSans-SemiBold.ttf) format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'OS-RC';
+    src: url(../fonts/OpenSans-Bold.woff2) format('woff2'),
+         url(../fonts/OpenSans-Bold.woff) format('woff'),
+         url(../fonts/OpenSans-Bold.ttf) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+body {
+    font-family: 'OS-RC', 'Univers LT W01 45 Light', Arial, sans-serif, Helvetica;
+    font-weight: 300;
+}
+
+/*** VARIABLES ***/
+:root {
+    /* Corporate Design */
+    --cd-anthrazit: #323232;
+    --cd-mittelblau: #004191;
+    --cd-hellblau: #00beff;
+    --cd-farbverlauf: linear-gradient(45deg, #004191 0%, #00beff 100%);
+
+    /* Vordergrund */
+    --textauf-mittelblau: #fff;
+    --textauf-anthrazit: #fff;
+    --textauf-hellblau: #000;
+
+    /* Farben aus dem OpenCMS-Style */
+    --active-background: #fff;
+    --inactive-background: #ddd; /* "r-main" */
+    --blassblau: #ccf2ff; /* "bg-info" */
+
+    /* Sonstige Farben */
+    --himmelblau: #6ac5f6;
+    --text-lightgrey-bg: #eee;
+
+    /* Layout */
+    --topnav-padding: 8px;
+
+    --sidebar-base-width: 200px;
+
+    --outermost-padding-x: var(--page-padding-x);
+    --page-padding-x: 15px;
+    --page-padding-y: 20px;
+    --main-padding-x: var(--outermost-padding-x);
+    --main-padding-y: var(--page-padding-y);
+
+    --small-icon-size: 20px;
+    --medium-icon-size: 30px;
+    --large-icon-size: 42px;
+
+    --hamburger-margin: 10px;
+    --hamburger-total: calc(var(--hamburger-margin) + var(--large-icon-size));
+
+    /* Animationen */
+    --nav-transition-duration: 0.3s;
+    --nav-transition-open: var(--nav-transition-duration) ease-in-out;
+    --nav-transition-close: var(--nav-transition-duration) ease-in-out;
+}
+
+@media (min-width:  768px) { :root {
+    --content-width:  100%;
+    --sidebar-width:  calc(var(--sidebar-base-width) + 2*var(--page-padding-x) + var(--outermost-padding-x));
+} }
+@media (min-width:  992px) { :root {
+    --page-padding-x: 20px;
+    --topnav-padding: 10px;
+    --main-padding-x: 100px;
+    --main-padding-y: 25px;
+} }
+@media (min-width: 1200px) { :root {
+    --content-width: 1170px;
+    --main-padding-x: 200px;
+} }
+
+/*** BODY GRID ***/
+body {
+    display: grid;
+    grid-template-rows: min-content min-content min-content min-content 1fr min-content;
+    grid-template-columns: 100%;
+    gap: 0px 0px;
+    grid-template-areas: "mainidentity" "header" "topnav" "breadcrumbs" "main" "footer";
+}
+body > .mainidentity   { grid-area: mainidentity; }
+body > header          { grid-area: header;       }
+body > nav.topnav      { grid-area: topnav;       }
+body > nav.breadcrumbs { grid-area: breadcrumbs;  }
+body > main            { grid-area: main;         }
+body > footer          { grid-area: footer;       }
+
+/*** HEADER GRID ***/
+body > header {
+    display: grid;
+    grid-template-columns: auto auto min-content;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: "headleft headright hamburger";
+}
+@media (min-width:  768px) {
+    body > header {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "headleft headright";
+    }
+    body > header > .hamburger { display: none; }
+}
+body > header > .hamburger { grid-area: hamburger; }
+body > header > .headleft { grid-area: headleft; }
+body > header > .headright { grid-area: headright; }
+
+/*** FOOTER GRID ***/
+body > footer {
+    display: grid;
+    gap: 0px 0px;
+    grid-template: "foot1" min-content
+                   "foot2" min-content
+                   "foot3" min-content
+                   / min-content;
+} @media (min-width: 768px) { body > footer {
+    grid-template: "foot1 foot2 foot3" min-content
+                    / 1fr 1fr 1fr;
+} }
+body > footer > .foot1 { grid-area: foot1; }
+body > footer > .foot2 { grid-area: foot2; }
+body > footer > .foot3 { grid-area: foot3; }
+
+/*** REST ***/
+/* GrundsÃ¤tzliches */
+html, body, main, div {
+    padding: 0;
+    margin: 0;
+}
+html {
+    background: var(--inactive-background);
+}
+body {
+    width: var(--content-width);
+    margin: auto;
+    background: var(--active-background);
+    color: var(--cd-anthrazit);
+    position: relative;
+    min-height: 100vh;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: normal;
+}
+h1 > a.anchor, h2 > a.anchor, h3 > a.anchor, h4 > a.anchor, h5 > a.anchor, h6 > a.anchor {
+    text-decoration: none;
+    color: inherit;
+}
+h1 > a.anchor:hover, h2 > a.anchor:hover, h3 > a.anchor:hover, h4 > a.anchor:hover, h5 > a.anchor:hover, h6 > a.anchor:hover {
+    text-decoration: underline;
+}
+a {
+    text-decoration: underline;
+    color: var(--cd-mittelblau);
+}
+a:hover {
+    text-decoration: none;
+}
+code {
+    font-size: 0.95rem;
+}
+pre {
+    background: var(--text-lightgrey-bg);
+    padding: 18px 30px;
+}
+
+/* tables */
+table {
+    border-collapse: separate;
+    border: none;
+    border-spacing: 2px 0;
+}
+th, td {
+    padding: 5px 10px;
+}
+th {
+    background-color: var(--cd-anthrazit);
+    color: var(--textauf-anthrazit);
+}
+tr:nth-child(2n+1) td {
+    background-color: var(--text-lightgrey-bg);
+}
+
+/* layout aid */
+.nowrap {
+    white-space: nowrap;
+    hyphens: none;
+}
+
+/* footnotes contain a <p> internally that they shouldn't */
+ol > li[id^="fn-"] > p {
+    display: inline;
+}
+
+/* mainidentity: Ganz oben */
+body > .mainidentity {
+    padding-left: var(--outermost-padding-x);
+    padding-right: var(--outermost-padding-x);
+
+    position: relative;
+    background: var(--cd-mittelblau);
+    font-weight: 400;
+    text-align: right;
+    font-size: 12px;
+    height: 40px;
+}
+body > .mainidentity, body > .mainidentity a {
+    color: var(--textauf-mittelblau);
+    text-decoration: none;
+}
+body > .mainidentity > a > * {
+    vertical-align: top;
+    position: relative;
+    top: 50%;
+    display: inline-block;
+    transform: translateY(-50%);
+}
+body > .mainidentity .icon {
+    margin-left: 10px;
+}
+body > .mainidentity a {
+    margin-left: 25px;
+}
+
+/* Header */
+body > header {
+    padding-left: var(--outermost-padding-x);
+    padding-right: var(--outermost-padding-x);
+    padding-top: var(--page-padding-y);
+    padding-bottom: var(--page-padding-y);
+    background: var(--active-background);
+    height: 60px;
+}
+body > header img.logo {
+    width: calc( (100vw - var(--hamburger-total)) - 2 * var(--outermost-padding-x) );
+    max-width: 360px;
+    height: auto;
+} @media (min-width: 768px) { body > header img.logo {
+    width: 360px;
+} }
+body > header .hamburger {
+    margin-left: var(--hamburger-margin);
+}
+/*body > header .hamburger img {
+    width: var(--hamburger-total);
+}*/
+
+body > header > * {
+    display: flex;
+    align-items: center;
+}
+body > header .headright > * {
+    margin-left: auto;
+}
+body > header .headleft > * {
+    margin-right: auto;
+} @media (max-width: 767px) { body > header .headright {
+    display: none;
+} }
+
+
+/* Nav */
+body > nav a {
+    text-decoration: none;
+}
+
+/* Topnav */
+body > nav.topnav {
+    font-weight: 400;
+    line-height: 1.3em;
+} @media (max-width: 767px) { body > nav.topnav {
+    display: none;
+} }
+
+body > nav.topnav ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+body > nav.topnav ul li {
+    display: inline-block;
+}
+body > nav.topnav ul li a {
+    display: inline-block;
+    padding: var(--topnav-padding) var(--topnav-padding);
+}
+
+body > nav.topnav > ul {
+    padding: 0 calc(var(--outermost-padding-x) - var(--topnav-padding));
+}
+body > nav.topnav > ul,
+body > nav.topnav > ul a {
+    color: var(--nav-fg);
+    background: var(--nav-bg);
+}
+body > nav.topnav > ul a.nav-current {
+    background: var(--nav-act-bg);
+    color: var(--nav-act-fg);
+    text-decoration: var(--nav-act-deco);
+    font-weight: var(--nav-act-weight)
+}
+body > nav.topnav > ul a:not(.nav-current):hover {
+    color: var(--nav-hover-fg);
+    text-decoration: var(--nav-hover-deco);
+}
+body > nav.topnav > ul.stacked-1 {
+    --nav-bg: var(--cd-anthrazit);
+    --nav-fg: var(--textauf-anthrazit);
+    --nav-act-bg: var(--himmelblau);
+    --nav-act-fg: var(--textauf-hellblau);
+    --nav-act-weight: 900;
+    --nav-hover-fg: var(--himmelblau);
+}
+body > nav.topnav > ul.stacked-2 {
+    --nav-bg: var(--himmelblau);
+    --nav-fg: var(--textauf-hellblau);
+    --nav-act-deco: underline;
+    --nav-hover-deco: underline;
+}
+body > nav.topnav > ul.stacked-3 {
+    --nav-bg: #eeeeee;
+    --nav-fg: var(--cd-anthrazit);
+    --nav-act-deco: underline;
+    --nav-hover-deco: underline;
+}
+
+/* Breadcrumbs */
+body > nav.breadcrumbs {
+    display: none;
+    font-weight: 400;
+    font-size: 0.8em;
+    line-height: 1.3em;
+    padding: 5px var(--outermost-padding-x);
+    color: black;
+    background: #eeeeee;
+} @media (max-width: 767px) { body > nav.breadcrumbs {
+    display: block;
+} }
+body > nav.breadcrumbs a[href] {
+    text-decoration: underline;
+}
+@media (max-width:  767px) {
+    body > .breadcrumbs,
+    body > main {
+        filter: none;
+    }
+    .nav-is-open body > .breadcrumbs,
+    .nav-is-open body > main {
+        filter: brightness(0.5);
+
+        /* open transition */
+        transition: filter var(--nav-transition-open);
+    }
+    :not(.nav-is-open) body > .breadcrumbs,
+    :not(.nav-is-open) body > main {
+        /* open transition */
+        transition: filter var(--nav-transition-open);
+    }
+}
+
+/* Mobile nav */
+body > nav.mobilenav {
+    background: #eeeeee;
+    font-weight: 400;
+    padding-top: var(--page-padding-y);
+    padding-bottom: var(--page-padding-y);
+    padding-left: var(--outermost-padding-x);
+    padding-right: var(--outermost-padding-x);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 140px;
+    width: var(--sidebar-base-width);
+
+    display: none;
+}
+body > nav.mobilenav, body > nav a {
+    color: var(--cd-anthrazit);
+}
+body > nav.mobilenav a.nav-current {
+    font-weight: 900;
+}
+body > nav.mobilenav #nav-close-button {
+    position: absolute;
+    /* 9px is from the position of .icon.large i.x::before */
+    top: calc(var(--page-padding-y) - 9px);
+    right: calc(var(--page-padding-x) - 9px);
+}
+@media (max-width:  767px) {
+    body > nav.mobilenav {
+        display: block;
+
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(100%);
+    }
+    html, body {
+        overflow-x: hidden;
+    }
+    .nav-is-open body > nav.mobilenav {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: unset;
+        transform: translateX(0);
+
+        /* open transition */
+        transition:
+            transform var(--nav-transition-open),
+            opacity var(--nav-transition-open),
+            visibility var(--nav-transition-duration) step-start;
+    }
+    :not(.nav-is-open) body > nav.mobilenav {
+        /* close transition */
+        transition:
+            transform var(--nav-transition-close),
+            opacity var(--nav-transition-close),
+            visibility var(--nav-transition-duration) step-end;
+    }
+}
+body > nav.mobilenav .navsection {
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+body > nav.mobilenav ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style: disc;
+}
+body > nav.mobilenav ul ul {
+    padding-left: 16px;
+    list-style: circle;
+}
+body > nav.mobilenav ul ul ul {
+    padding-left: 16px;
+    list-style: square;
+}
+
+
+/* Main */
+body > main {
+    background: var(--active-background);
+    padding: var(--main-padding-y) var(--main-padding-x);
+}
+body > main > :first-child {
+    margin-top: 0;
+}
+body > main > :last-child {
+    margin-bottom: 0;
+}
+body > main strong, body > main b {
+    font-weight: bold;
+}
+
+/* Footer */
+body > footer {
+    background: var(--cd-anthrazit);
+    padding: 30px var(--outermost-padding-x);
+}
+body > footer > div {
+    padding: 20px 0;
+}
+body > footer, body > footer a {
+    color: var(--textauf-anthrazit);
+}
+body > footer .footsection {
+    font-weight: 900;
+}
+body > footer ul.linklist {
+    list-style: none;
+    padding-inline-start: 0;
+    max-width: 250px;
+}
+body > footer ul {
+    margin-bottom: 0;
+}
+
+/*** COMPONENTS ***/
+.bluebox {
+    border: 1px solid var(--cd-hellblau);
+    margin: 0;
+    padding: 5px;
+}
+.bluebox > :first-child {
+    margin-block-start: 0;
+}
+.bluebox > :last-child {
+    margin-block-end: 0;
+}
+
+/*** ICONS ***/
+.icon {
+    position: relative;
+    box-sizing: content-box;
+    display: inline-block;
+}
+.icon.small {
+    width: var(--small-icon-size);
+    height: var(--small-icon-size);
+}
+.icon.medium {
+    width: var(--medium-icon-size);
+    height: var(--medium-icon-size);
+}
+.icon.large {
+    width: var(--large-icon-size);
+    height: var(--large-icon-size);
+}
+.icon i {
+    overflow: hidden;
+    font: 0/0 serif;
+    text-shadow: none;
+    color: transparent;
+}
+.icon i::before {
+    background-size: 1450px 110px;
+    background-image: url(../img/sprites-icons-min.svg);
+    content: "";
+    position: absolute;
+}
+
+/* small icon: main-id-link */
+.icon.small i.main-id-link::before {
+    width: 20px;
+    height: 20px;
+    background-position: -25px 0;
+    top: 0;
+    left: 0;
+}
+
+/* medium icon: language */
+.icon.medium i.language::before {
+    width: 30px;
+    height: 28px;
+    background-position: -344px -76px;
+    top: 1px;
+    left: 0;
+}
+
+/* large icon: menu */
+.icon.large i.menu::before {
+    width: 26px;
+    height: 22px;
+    background-position: -895px 0;
+    top: 10px;
+    left: 8px;
+}
+
+/* large icon: x */
+.icon.large i.x::before {
+    width: 24px;
+    height: 24px;
+    background-position: -1105px 0;
+    left: 9px;
+    top: 9px;
+}
+
+/* large-icon-button */
+.large-icon-button {
+    padding: 0;
+    line-height: 0;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* button.border */
+.large-icon-button.border {
+    border: 1px solid var(--cd-anthrazit);
+}
+
+
+
+h1 {
+    hyphens: auto;
+}
+.floatafter {
+    display: grid;
+    grid-template:
+        "a" min-content
+        "b" min-content
+        / 1fr;
+}
+.floatafter .floatbase {
+    grid-area: a;
+}
+.floatafter .floatright, .floatafter .floatleft {
+    grid-area: b;
+}
+
+@media (min-width:  768px) {
+    .floatafter {
+        display: block;
+        /*grid-template: 
+            "a c" min-content
+            "b c" min-content
+            / 1fr max-content;*/
+    }
+    .floatafter .floatleft {
+        margin-right: var(--page-padding-x);
+        float: left;
+    }
+    .floatafter .floatright {
+        margin-left: var(--page-padding-x);
+        float: right;
+    }
+}
+
+.contact-card {
+    background: var(--text-lightgrey-bg);
+    padding: 18px 30px;
+}
+
+.blog-list h3 {
+    margin-block-end: 0.25em;
+}
+.blog-list p {
+    margin-block-start: 0.25em;
+}
+
+.image-link {
+    text-decoration: none;
+    display: inline-block;
+}
+.member-logos > * {
+    padding-inline-end: var(--page-padding-x);
+}
+.member-logos > :last-child {
+    padding-inline-end: 0;
+}
+  </style>
+  <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+  <meta charset="utf-8">
+  <title>
+   Stabsstelle Informationssicherheit (RUS-CERT) | Universit&auml;t Stuttgart
+  </title>
+ </head>
+ <body>
+  <div class="mainidentity">
+   <a>
+    <span>
+     Universit&auml;t Stuttgart
+    </span>
+    <span class="small icon">
+     <i class="main-id-link">
+     </i>
+    </span>
+   </a>
+  </div>
+  <header>
+   <div class="headleft">
+    <a>
+     <picture>
+      <source type="image/webp">
+      <img alt="Logo der Stabsstelle Informationssicherheit der Universit&auml;t Stuttgart" class="logo" height="59" src="rick.jpg" width="360">
+     </picture>
+    </a>
+   </div>
+   <div class="headright">
+    <a>
+     <picture>
+      <source type="image/webp">
+      <img alt="Logo des RUS-CERT" class="logo" height="47" src="rick.jpg" width="360">
+     </picture>
+    </a>
+   </div>
+   <div class="hamburger">
+    <button class="border large-icon-button" id="hamburger-toggle-button">
+     <span class="large icon">
+      <i class="menu">
+      </i>
+     </span>
+    </button>
+   </div>
+  </header>
+  <nav class="topnav">
+   <ul class="stacked-1">
+    <li>
+     <a class="nav-current">
+      Home
+     </a>
+    </li>
+    <li>
+     <a>
+      Aktuelles
+     </a>
+    </li>
+    <li>
+     <a>
+      Services
+     </a>
+    </li>
+    <li>
+     <a>
+      Themen
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <nav class="breadcrumbs">
+   <a>
+    Home
+   </a>
+  </nav>
+  <main>
+   <h1>
+    Stabsstelle Informationssicherheit
+    <span class="nowrap">
+     (RUS-CERT)
+    </span>
+   </h1>
+   <div class="floatafter">
+    <aside class="floatright contact-card">
+     <strong>
+      Kontakt
+     </strong>
+     <br>
+     E-Mail:
+     <a>
+      [EMAIL REDACTED]
+     </a>
+     <br>
+     Telefon:
+     <a>
+      [PHONE REDACTED]
+     </a>
+     <br>
+     <a>
+      Mehr...
+     </a>
+    </aside>
+    <div class="floatbase">
+     <p>
+      Die Stabsstelle Informationssicherheit (RUS-CERT) ist f&uuml;r die IT- und Informationssicherheit der Universit&auml;t Stuttgart zust&auml;ndig. Sie ist Stabsstelle des
+      <a>
+       Kanzlers
+      </a>
+      und damit direkt der Universit&auml;tsleitung unterstellt. Als Computernotfallteam (Computer Emergency Response Team, CERT) ist sie unter anderem die zentrale Melde- und Koordinationsstelle f&uuml;r Informationssicherheitsvorf&auml;lle.
+     </p>
+    </div>
+   </div>
+   <h2>
+    Aktuelles
+   </h2>
+   <div class="blog-list">
+    <h3>
+     <a>
+      Erpressungs-Mails
+     </a>
+    </h3>
+    <p>
+     Aus aktuellem Anlass weist die Stabsstelle Informationssicherheit auf kursierende Erpressungs-Mails hin.
+    </p>
+    <h3>
+     <a>
+      Neue Endpoint Protection L&ouml;sung
+     </a>
+    </h3>
+    <p>
+     F&uuml;r Besch&auml;ftigte an der Universit&auml;t steht eine neue Endpoint Protection L&ouml;sung zur Verf&uuml;gung. Ein Wechsel wird dringend empfohlen.
+    </p>
+    <h3>
+     <a>
+      Warnung vor CEO-Fraud
+     </a>
+    </h3>
+    <p>
+     Da in letzter Zeit vermehrt F&auml;lle von CEO-Fraud an der Universit&auml;t auftreten, m&ouml;chten wir etwas detaillierter &uuml;ber diese Betrugsmasche informieren.
+    </p>
+   </div>
+   <h2>
+    Mitgliedschaften
+   </h2>
+   <div class="member-logos">
+    <a class="image-link">
+     <picture>
+      <source type="image/webp">
+      <img alt="Logo von FIRST" class="logo" height="120" src="rick.jpg" width="201">
+     </picture>
+    </a>
+    <a class="image-link">
+     <picture>
+      <source type="image/webp">
+      <img alt="Logo von TI" class="logo" height="120" src="rick.jpg" width="120">
+     </picture>
+    </a>
+    <a class="image-link">
+     <picture>
+      <source type="image/webp">
+      <img alt="Logo des CV" class="logo" height="120" src="rick.jpg" width="120">
+     </picture>
+    </a>
+    <a class="image-link">
+     <picture>
+      <source type="image/webp">
+      <img alt="Logo des EDUCV" class="logo" height="120" src="rick.jpg" width="120">
+     </picture>
+    </a>
+   </div>
+  </main>
+  <footer>
+   <div class="foot1">
+    <div class="footsection">
+     Formalia
+    </div>
+    <ul class="linklist">
+     <li>
+      <a>
+       Impressum
+      </a>
+     </li>
+     <li>
+      <a>
+       Datenschutz
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="foot2">
+    <div class="footsection">
+     Die Stabsstelle
+    </div>
+    <ul class="linklist">
+     <li>
+      <a>
+       Kontakt
+      </a>
+     </li>
+     <li>
+      <a>
+       Jobs
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="foot3">
+    <div class="footsection">
+     Dokumente
+    </div>
+    <ul class="linklist">
+     <li>
+      <a>
+       <span class="nowrap">
+        Leitlinie zur Informations
+       </span>
+       &shy;
+       <span class="nowrap">
+        sicherheit (ISL)
+       </span>
+      </a>
+     </li>
+    </ul>
+   </div>
+  </footer>
+  <nav class="mobilenav">
+   <button class="large-icon-button" id="nav-close-button">
+    <span class="large icon">
+     <i class="x">
+     </i>
+    </span>
+   </button>
+   <div class="navsection">
+    Navigation
+   </div>
+   <ul>
+    <li>
+     <a class="nav-current">
+      Home
+     </a>
+    </li>
+    <li>
+     <a>
+      Aktuelles
+     </a>
+    </li>
+    <li>
+     <a>
+      Services
+     </a>
+    </li>
+    <li>
+     <a>
+      Themen
+     </a>
+    </li>
+   </ul>
+  </nav>
+ </body>
+</html>

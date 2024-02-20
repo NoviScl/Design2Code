@@ -1,0 +1,646 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "">
+<html>
+ <head>
+  <style>
+   /* ----------------------------------------------------------------------------
+
+    Ruby on Rails
+    Stylesheet for http://rubyonrails.org
+
+    1. General HTML elements
+    2. General classes
+    3. General structure
+		1. header
+		2. Content
+		3. Sidebar
+	4. Sitewide elements 
+		1. Introduction boxes
+		2. Navigation
+	5. Elements for specific areas
+		1. Weblog
+		2. Reference documentation	
+		3. Trac "integration"
+		
+---------------------------------------------------------------------------- */
+
+* {
+	margin:                     0;
+	padding:                    0;	
+}
+
+body {	
+	color:				#333333;
+
+	background-color:               #FFFFFF;
+	background-image:		url(../images/header_background.png);
+	background-repeat:		repeat-x;
+	background-position:	        0 -25px;
+
+	font-size:			80%;
+	font-family:			verdana, helvetica, arial, sans-serif;
+	line-height:			1.6em;
+	
+	/* Center in IE5.5 */
+	text-align:			center;
+}
+
+code {
+	font-size:			1.2em;
+}
+
+h1 {
+	margin-bottom:			0.5em;
+	font-size:			2em;
+	font-weight:			normal;
+	letter-spacing:			-0.04em;
+}
+
+h2 {
+	margin-top:			1em;
+	margin-bottom:			0.5em;
+	font-size:			1.5em;
+	font-weight:			normal;
+	letter-spacing:			-0.04em;
+}
+
+h3 {
+	margin-top:			1em;
+	margin-bottom:			0.5em;
+	font-size:			1.2em;
+	font-weight:			normal;
+	letter-spacing:			-0.06em;
+        font-weight: bold;
+}
+
+iframe {
+	border:				none;
+}
+
+img {
+	border:				none;
+}
+
+p {
+	margin-bottom:			1em;
+}
+
+a:link {
+	color:				#BB2233;
+}
+
+a:visited {
+	color:				#991122;
+}
+
+a:hover {
+	color:						#CC2233;
+	background-color:			#EEEEEE;
+}
+
+a:active {
+}
+
+small {
+	color:						#AAAAAA;
+}
+
+
+ul {
+	margin-top:					1em;
+	margin-bottom:				1em;
+	list-style-type:			none;
+}
+
+ul li {
+	margin-left:				0.5em;
+	padding-left:				1em;
+	
+	background-image:			url(../images/bullet.gif);
+	background-repeat:			no-repeat;
+	background-position:		0 0.55em;
+}
+
+ol {
+	margin-left:				1em;
+	padding-left:				1em;
+}
+
+ol li {
+	margin-left: 				0.5em;
+	padding-left:				0.5em;
+}
+
+input, textarea, select {
+	font-family:				verdana, helvetica, arial, sans-serif;
+	font-size:					1em;
+	padding:					0.2em;
+	border:						1px solid #888888;
+}
+
+input:focus, textarea:focus, select:focus {
+	border-color:				#333333;
+}
+
+blockquote {
+	font-style: 				italic;
+	padding-left: 				2em;
+	color: 						#888888;
+	margin-bottom:				1em;
+}
+
+q {
+	font-style: 				italic;
+}
+
+pre {
+	background-color: 			#eeeeee;
+	margin-bottom: 				1em;
+	padding: 					1em;
+	font-size:					1em;
+}
+
+table {
+	font-size:					1em;
+}
+
+table td {
+	padding:					0 1em 0 0;
+	vertical-align:				top;
+}
+
+table tr td:first-child {
+	padding-left:				0;
+}
+
+/* ----------------------------------------------------------------------------
+	Structure
+---------------------------------------------------------------------------- */
+
+div#container {
+	position:					relative;
+	width:						90%;
+	max-width:					720px;	
+
+	margin-top:					10px;
+	margin-left:				auto;
+	margin-right:				auto;
+        padding-bottom:                                  10px;
+
+	font-size:					1em;
+
+	/* Don't center text, only div#container */
+	text-align:					left;
+}
+
+div#header {
+	/* This height controls the vertical position of #content and #sidebar */
+	height:						160px;
+	/*	overflow:					hidden;*/
+}
+
+div#header h1 {
+	height:						70px;
+
+	margin:						0;
+	margin-left:				        170px;
+	padding:					0;
+	/* Move the text out of the way */
+        margin-top: 1em;
+        color:             #f9eaaf;
+        font-weight: bold;
+        text-align: right;
+	/*text-indent:				-5000px;*/
+}
+
+div#logo {
+	float:						left;
+	width:						110px;
+	height:						140px;
+	margin-right:				31px;
+        margin-top:  -10px;
+        margin-left: -40px;
+}
+
+div#content {
+	position:					absolute;
+	left:						140px;
+}
+
+/* Fix the IE only 3pixel jog - documented at http://www.positioniseverything.net/articles/hollyhack.html#haslayout \*/
+* html #content {
+	height: 1px;
+}
+/* End hide from IE5-mac */
+
+div.sidebar {
+	font-size:					0.8em;
+ 	line-height: 				1.6em;
+}
+
+div.sidebar#left {
+	float: 						left;
+	width: 						140px;
+
+	margin-top:					-4px;
+}
+
+div.sidebar h2 {
+	margin:						0;
+	
+	font-size:					1.1em;
+	font-weight:				bold;
+}
+
+div.sidebar ul {
+	margin-top:					0;
+	margin-bottom:				1em;
+        margin-left:                            1em;
+	padding:					0;
+}
+
+div.sidebar ul li {
+	margin:						0 0 0.2em 0;
+	padding:					0;
+
+	line-height:				1.3em;
+	
+	background-image:			none;
+}
+
+div.sidebar ul li a {
+	display:					block;
+	width:						110px;
+	padding:					0.2em 0;
+}
+
+div.sidebar ul li a:hover {
+}
+
+div.sidebar#right {
+        float: right;
+	margin-bottom:				1em;
+	padding:				1em;
+	background-color:			#D6DFE8;
+}
+address {
+    white-space: pre;
+    margin-left: 1em;
+    font-style: normal;
+}
+
+/* ----------------------------------------------------------------------------
+	Specific site-wide elements
+---------------------------------------------------------------------------- */
+
+/* Introduction boxes */
+
+.introduction {
+	margin-bottom:				1em;
+	padding:					1em;
+
+ 	font-size:					1.3em;
+ 	line-height: 				1.6em;
+	background-color:			#D6DFE8;
+	
+	-moz-border-radius-bottomright:	1em;
+}
+
+.introduction p {
+	margin-bottom:				0;
+}
+
+/* Navigation */
+
+ul#navMain {
+	height:						42px;
+        margin-left: 200px;
+	padding: 					0px 0 0 0;
+
+	list-style-type:			none;	
+}
+
+ul#navMain li {
+	display:					inline;
+	background-image:			none;	
+	margin:						0;
+	padding:					0;
+}
+
+ul#navMain li {
+	border-left:				1px solid #000000;
+}
+
+ul#navMain li.first-child {
+	/* Wouldn't it be nice if IE was up-to-date with the rest of the world so we could skip 
+	superfluous classes like this? */
+	border-left:				none;		
+}
+
+ul#navMain li a {		
+	padding:					0.2em 0.5em 0.2em 0.8em;	
+	text-decoration:			none;
+}
+
+ul#navMain li.first-child a {
+	/* Wouldn't it be nice if IE was up-to-date with the rest of the world? */
+	padding-left:				0;
+}
+
+ul#navMain li a:hover {	
+	text-decoration:			underline;
+	background-color:			transparent;
+}
+
+/* ----------------------------------------------------------------------------
+	Elements for specific areas
+---------------------------------------------------------------------------- */
+
+/* 1. Weblog */
+
+.blogEntry {
+	margin-bottom:				2em;
+}
+
+.blogEntry h2 {
+	margin-top:					0;
+	margin-bottom:				0;
+}
+
+.blogEntry h2 a {
+  color: black;
+  text-decoration: none;
+}
+
+.blogEntry h2 a:hover {
+  color: black;
+  text-decoration: underline;
+  background-color: white;
+}
+
+p.metaData {
+	color:						#999999;
+	font-size:					0.9em;
+}
+
+div.comments {
+	padding:					0.5em 1em;	
+	margin-bottom:				1em;
+
+	background-color:			#EEEEEE;
+	
+	-moz-border-radius-topleft:		1em;
+	-moz-border-radius-bottomright:	1em;
+}
+
+.comments textarea {
+	width:						99%;
+	height:						15em;
+}
+
+ol#commentList li {
+	font-weight:				bold;
+}
+
+ol#commentList li p {
+	font-weight:				normal;
+}
+
+ol#commentList li .metaData {
+	color:						#333333;
+	font-size:					1em;
+	font-weight:				bold;
+}
+
+
+/* 2. Reference documentation */
+
+#api #sidebar {
+	display:					none;
+	width:						0;
+}
+
+#api #content {
+	width:						100%;
+	height:						800px;
+
+	margin-left:				0;
+}
+
+#api #logo {
+	width:						80px;
+	height:						86px;
+
+	margin-right:				0;
+}
+
+#api #logo img {
+	height:						84px;
+}
+
+#api {
+	/* The header is smaller on the reference page, move the background up so the menu is in the 
+	proper place still */
+	padding-bottom:				0;
+	margin-bottom:				0;
+	background-position:		0 -70px;
+}
+
+#api #header {
+	height:						84px;
+	margin:						0;
+	overflow:					hidden;
+}
+
+#api #header h1 {
+	height:						24px;
+
+	margin-top:					2px;
+	margin-left:				0;
+	
+	background-image:			none;
+
+	text-indent:				0;
+	font-size:					1.5em;
+	font-weight:				bold;
+	
+}
+#api #container {
+	max-width:					100%;
+}
+
+
+/* 3. Trac "integration" */
+
+/* 4. About / frontpage */
+
+table.get_started {
+	/* Center the table */
+	margin-left:				auto;
+	margin-right:				auto;
+}
+
+table.get_started td {
+	line-height:				1.4em;
+	text-align:					center;
+	margin:						1em;
+}
+
+table.get_started td h3 {
+	margin:						0;
+	font-size:					1em;	
+	font-weight:				normal;
+	font-style:					italic;
+}
+
+table.frameworks td {
+	width:						30%;
+	padding:					0.5em;
+}
+
+
+
+/* Mark the current page */
+body#home a.home,
+body#debian a.debian,
+body#links a.links,
+body#software a.software, body#software a.software-main,
+body#software-kde-apt a.software, body#software-kde-apt a.kde-apt,
+body#software-birds a.software, body#software-birds a.birds {
+	font-weight:				bold;
+}
+  </style>
+  <title>
+   Lapinot's - Software
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+ </head>
+ <body id="software">
+  <div id="container">
+   <div id="header">
+    <h1>
+     Lapinot's home page
+    </h1>
+    <ul id="navMain">
+     <li class="first-child">
+      <a class="home">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="debian">
+       Debian
+      </a>
+     </li>
+     <li>
+      <a class="software">
+       Software
+      </a>
+     </li>
+     <li>
+      <a class="links">
+       Links
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="sidebar" id="left">
+    <h2>
+     Projects
+    </h2>
+    <ul>
+     <li>
+      <a class="software-main">
+       Autobuild
+      </a>
+     </li>
+     <li>
+      <a class="birds">
+       Birds
+      </a>
+     </li>
+     <li>
+      <a class="software-main">
+       Karamba theme
+      </a>
+     </li>
+     <li>
+      <a class="kde-apt">
+       KDE/APT
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div id="content">
+    <h1>
+     Projects
+    </h1>
+    <h2>
+     <a>
+      KDE/APT
+     </a>
+    </h2>
+    <p>
+     KDE/APT is made of two software packages: KIO/APT and KPkgManager. The first one gives
+    access to
+     <tt>
+      apt-cache
+     </tt>
+     -like functionalities in
+     <a>
+      Konqueror
+     </a>
+     .
+    The second allows very simple package management: install, remove and update/upgrade. It is 
+    designed to provide a simple but lightweight tool for everyday use while more complete tools
+    like aptitude are still necessary sometimes.
+    </p>
+    <h2>
+     <a>
+      Bird flock simulation
+     </a>
+    </h2>
+    <p>
+     An OpenGL-based bird flock simulation
+    </p>
+    <h2>
+     Karamba theme
+    </h2>
+    <p>
+     For people like me who like to have the KasBar and gkrellm for monitoring,
+    I adapted the smooth theme for Karamba to make it thiner.
+    Just check
+     <a>
+      a small screenshot
+     </a>
+     (320x200) and
+     <a>
+      a wider one
+     </a>
+     (1024x768).
+    </p>
+    <p>
+     You can download it
+     <a>
+      here
+     </a>
+     .
+    The theme file is doudou.theme. Be warned that I didn't adapt all the modules
+    that are available.
+    </p>
+    <h2 id="autobuild">
+     <a>
+      Autobuild
+     </a>
+     (on RubyForge)
+    </h2>
+    A ruby-based autobuilder. Look at
+    <a>
+     the readme
+    </a>
+    too.
+   </div>
+   <!-- content -->
+  </div>
+  <!-- container -->
+ </body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="uk-height-1-1">
+ <head>
+  <meta charset="utf-8">
+  <meta content="noindex" name="robots">
+  <meta content name="description">
+  <meta content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
+  <meta content="10.20.150.6" name="a">
+  <title>
+   CX Journeys &vellip; Sign In
+  </title>
+ </head>
+ <body class="uk-height-1-1">
+  <div class="uk-vertical-align uk-text-center uk-height-1-1">
+   <div class="uk-vertical-align-middle uk-width-large-2-6 uk-width-medium-5-6 uk-width-small-5-6">
+    <div style="width: 300px; margin:30px auto 0 auto">
+     <img class="uk-margin-bottom" id="logo" src="rick.jpg" width="100%">
+    </div>
+    <div class="" style="height: 30px;">
+     &nbsp;
+    </div>
+    <form action="/login/login" autocomplete="off" class="uk-form" id="loginForm" method="POST" onsubmit="return setSubmitUrl(this);" style="width: 300px; margin: 0 auto;max-width: 100%">
+     <div class="uk-form-row" data-uk-tooltip title="Email address">
+      <input autofocus="true" class="uk-width-1-1 uk-form-large" id="username" name="username" placeholder="Email address" required type="email" value>
+     </div>
+     <div class="uk-form-row uk-form-password">
+      <input class="uk-width-1-1 uk-form-large" id="password" name="password" placeholder="Password" required type="password">
+     </div>
+     <div id="recaptcha_element" style="text-align: center; min-height:15px">
+     </div>
+     <div class="d-flex-center" style="margin-top: 30px">
+      <button class="uk-width-3-10 uk-button uk-button-medium" onclick="return trackSigninType('cooladata');" style="width: 225px;height: 48px;font-size: 20px; background-color:#4cd2c0" type="submit">
+       Sign In
+      </button>
+     </div>
+     <div class="d-flex-center" style="margin-top: 20px">
+      <a>
+       Reset password
+      </a>
+     </div>
+     <div class="d-flex-center" style="margin-top:50px">
+      <a class="d-flex-center" id="google-connect-link" onclick="return trackSigninType(this,'google');">
+       <i>
+       </i>
+      </a>
+     </div>
+     <div style="margin-bottom:100px;margin-top:50px">
+      <a>
+       About Medallia Journey Analytics
+      </a>
+     </div>
+    </form>
+   </div>
+  </div>
+  <style>
+   @font-face {
+    font-family: 'HCo Gotham';
+    src:local('?'),
+    url(/assets/fonts/HCo_Gotham-normal-400.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+
+body, html {
+    margin: 0;
+    height: 100%;
+}
+html {
+    --bg-blue: #4050C6;
+    --border-grey: #ddd;
+    --placeholder-grey: #999;
+    --button-black: #444;
+    font: 400 14px/20px 'HCo Gotham',Arial,sans-serif;
+    font-family: 'HCo Gotham',Arial,sans-serif;
+}
+/* main container */
+body > .uk-vertical-align {
+    background-color: var(--bg-blue);
+    color: #fff;
+    height: 100%;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: auto;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+body > .uk-vertical-align > div {
+    max-height: 100%;
+}
+.uk-vertical-align a {
+    color: inherit;
+    text-decoration: none;
+    margin: 3px 0;
+}
+.uk-vertical-align a:hover:not(.uk-button) {
+    color: inherit;
+    text-decoration: underline;
+}
+/* The input fields */
+.uk-form-large {
+    width: 100%;
+    padding: 8px 6px;
+    border: 1px solid var(--border-grey);
+    border-radius: 4px;
+    -webkit-appearance: none;
+    font: inherit;
+    box-sizing: border-box;
+    outline: none;
+}
+.uk-form-large::placeholder {
+    color: var(--placeholder-grey);
+}
+.uk-form-row {
+    margin-top: 1em;
+}
+.uk-form-row:first-child {
+    margin-top: 0;
+}
+/* The submit button */
+#recaptcha_element + .uk-form-row {
+    display: flex;
+    justify-content: center;
+}
+.uk-button {
+    font: inherit;
+    border-radius: 4px;
+    border: none;
+    padding: 0 12px;
+    color: var(--button-black);
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--button-black);
+    line-height: 28px;
+}
+a.uk-button {
+    color: var(--button-black);
+}
+#recaptcha_element {
+    display: none;
+}
+/* RESET PASSWORD */
+.uk-width-medium-5-6 {
+    width: 600px;
+    max-width: 100%;
+}
+.uk-text-small + .uk-form-row {
+    margin: 0;
+    height: 15px;
+    border-bottom: 1px solid #fff;
+}
+.uk-width-medium-5-6 #logo {
+    width: 256px;
+}
+.uk-width-medium-5-6 hr {
+    display: none;
+}
+/* Forget your password? title */
+.uk-width-medium-5-6 h3 {
+    margin: 0;
+    padding: 25px 0;
+    font-size: 18px;
+    border-top: 1px solid #fff;
+    font-weight:400;
+}
+.uk-width-medium-5-6 h3 + div {
+    display: none;
+}
+/* we will send you... message */
+.uk-text-small {
+    font-size: 11px;
+}
+/* back to login link */
+[] {
+    font-size: 14px;
+}
+/* send button */
+[] + .uk-button {
+    text-shadow: 0 1px 0 #fff;
+    font-size: 14px;
+    min-width: 180px;
+}
+
+
+.uk-alert {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #ebf7fd;
+    color: #2d7091;
+    border: 1px solid rgba(45,112,145,.3);
+    border-radius: 4px;
+    text-shadow: 0 1px 0 #fff;
+}
+*+.uk-alert {
+    margin-top: 15px;
+}
+.uk-alert.uk-alert-warning {
+    background: #fffceb;
+    color: #e28327;
+    border-color: rgba(226,131,39,.3);
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#google-connect-link i{
+    background-repeat: no-repeat;
+    background-position: center;
+    background: url('/assets/images/google/[EMAIL REDACTED]');
+    width: 191px;
+    height: 46px;
+    display:inline-block;
+    background-size: contain;
+}
+#google-connect-link i:hover {
+    background: url("/assets/images/google/[EMAIL REDACTED]");
+    background-size: contain;
+}
+
+
+    #recaptcha_element > div {margin: auto; width: 100%}
+    #recaptcha_element {margin-top: 15px; margin-bottom: 15px; display: none}
+    .g-recaptcha{        display: inline-block;        margin: 10px 0;    }
+  </style>
+  <!-- Google Code for Remarketing Tag -->
+  <!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+  <noscript>
+   <div style="display:inline;">
+    <img alt height="1" src="rick.jpg" style="border-style:none;" width="1">
+   </div>
+  </noscript>
+ </body>
+</html>
