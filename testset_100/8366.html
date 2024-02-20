@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   *,*::before,*::after{box-sizing:border-box}*{margin:0;word-wrap:break-word}html,body{height:100%;min-width:300px}body{line-height:1.5;-webkit-font-smoothing:antialiased}img,picture,video,canvas,svg{display:block;max-width:100%}ul,ol{list-style-type:none;padding:0;margin:0}input,button,textarea,select{font:inherit}p,h1,h2,h3,h4,h5,h6{overflow-wrap:break-word;word-wrap:break-word}#root,#__next{isolation:isolate}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted}.flex-container-row-wrap{display:flex;flex-wrap:wrap;flex-direction:row}.flex-row{display:flex;flex-direction:row}.flex-col{display:flex;flex-direction:column}.flex-row-space-between{display:flex;flex-direction:row;justify-content:space-between}.font-red{color:#9b0101}.font-dark-grey{color:#313131}body{font-family:Georgia,Arial,Helvetica,lato,sans-serif;font-size:10px;text-decoration-skip-ink:auto}h1,.heading-1{font-size:1.8rem;line-height:2rem;font-weight:700}h2,.heading-2{font-size:1.5rem;line-height:1.7rem;padding-bottom:1rem;font-weight:700;margin:30px 0 10px}h3,.heading-3{font-size:1.2rem;line-height:1.4rem;font-weight:700;color:#9b0101;border-bottom:1px solid #9b0101;margin-top:20px;margin-bottom:20px;padding:0 0 12px}h4,.heading-4,h5,.heading-5,h6,.heading-6{font-size:1.2rem;line-height:1.4rem;font-weight:700;padding-top:1rem;padding-bottom:1rem;text-decoration-skip-ink:auto}.underline{text-decoration:underline}.bold,strong{font-weight:700}p{padding-bottom:1rem}p,div,span{font-size:1rem;line-height:1.8rem}a{text-decoration:none;color:inherit;padding-bottom:1px;text-decoration:underline;text-decoration-color:#9b0101;text-underline-offset:4px;text-decoration-skip-ink:auto}a:hover,a:focus{color:#fd0505}.text-color-red{color:#9b0101}.strong{font-weight:700!important}.upper{text-transform:uppercase}.cta{padding:3px;background-color:transparent;border:none;text-decoration:underline}.btn{all:unset;border:1px solid #9b0101;padding:8px 10px;border-radius:15px;background-color:#fff}.btn:focus,.btn:active,.btn:hover{background-color:#9b0101;border:1px solid #313131;color:#fff;padding:8px 20px}@media screen and (min-width:800px){h1,.heading-1{font-size:2rem;line-height:2.2rem;font-weight:700}h2,.heading-2{font-size:1.8rem;line-height:2.4rem;padding-bottom:1rem;font-weight:700}h3,.heading-3{font-size:1.6rem;line-height:2rem;font-weight:700;color:#9b0101}h4,.heading-4{font-size:1.4rem;line-height:1.6rem;font-weight:700}h5,.heading-5{font-size:1.2rem;line-height:1.4rem;font-weight:700}h6,.heading-6{padding-top:unset;font-size:1.2rem;line-height:1.4rem;font-weight:700}p{padding-bottom:2rem}}@keyframes slideLeft{0%{opacity:0;transform:translateX(100%)}100%{opacity:1;transform:translateX(0%)}}@keyframes slideRight{0%{opacity:1;transform:translateX(0%)}100%{opacity:0;transform:translateX(100%)}}.header{width:95%;max-width:1200px;margin:0 auto}.header .container{color:#000;width:100%;max-width:95vw;height:auto;min-height:50px;padding:0 2rem;margin:0 auto}.header .container a{color:#000;border:none}@media only screen and (max-width:992px){.header .container{padding:0 1rem;margin:0 auto}}.brand{display:none}.logo{max-width:200px;max-height:50px}.ct-slide-panel.ct-slide-panel--open{z-index:30}.header{display:block;top:0;left:0;width:100%;height:auto;padding:1rem 0;margin:0 auto;z-index:25;border:none;outline:none}.header .wrapper{display:flex;align-items:center;min-height:50px;position:relative}.header-item-left{display:flex;flex:0 0 17%}.header-item-center{display:flex;flex:0 0 66%}.header-item-right{display:flex;flex:0 0 17%;align-items:center;justify-content:flex-end;height:50px;position:absolute;right:0}.header-item-right .menu-icon{font-size:1.35rem;display:flex;align-items:center;justify-content:center;gap:1rem;margin-left:1rem;border:none;outline:none;transition:all .3s ease}.header .menu>ul>li{display:inline-block;line-height:3.125rem;margin-left:1rem;margin-right:1rem}.header .menu>ul>li>a{position:relative;font-family:inherit;font-size:1rem;font-weight:500;line-height:1.25;border:none;outline:none;text-transform:capitalize;text-rendering:optimizeLegibility;transition:color .3s ease-in-out}.header .menu>ul>li .menu-subs{position:absolute;width:100%;height:auto;margin-top:1.75rem;padding:1rem 2rem;border:none;outline:none;z-index:99999999999;opacity:0;visibility:hidden;border-radius:.25rem;transition:all .5s ease-in-out;background-color:#fff}.header .menu>ul>li .menu-subs>ul>li{line-height:1}.header .menu>ul>li .menu-subs>ul>li>a{display:inline-block;font-family:inherit;font-size:1rem;font-weight:500;line-height:1.25;padding:.75rem 0;color:#000;border:none;outline:none;text-transform:capitalize;text-rendering:optimizeLegibility;transition:all .3s ease-in-out}.header .menu>ul>li .menu-column-1{min-width:16rem;max-width:20rem}.header .menu>ul>li .menu-subs.menu-mega{left:50%;transform:translateX(-50%)}.header .menu>ul>li .menu-subs.menu-mega>.list-item>ul>li{display:block;line-height:1}.header .menu>ul>li .menu-subs.menu-mega>.list-item>ul>li>a{display:inline-block;font-family:inherit;font-size:1rem;font-weight:500;line-height:1.25;padding:.5rem 0;border:none;outline:none;text-transform:capitalize;text-rendering:optimizeLegibility;transition:color .3s ease-in-out}.header .menu>ul>li .menu-subs.menu-mega>.list-item>ul>li a:hover{text-decoration-thickness:2px}.header .menu>ul>li .menu-subs.menu-column-4{display:flex;flex-wrap:wrap;max-width:68rem;width:100%;padding:1.25rem 1rem}.header .menu>ul>li .menu-subs.menu-column-4>.list-item{flex:0 0 25%;padding:0 1rem}.header .menu>ul>li .menu-subs.menu-column-4 .list-item.text-center{border:1px solid #9b0101}.header .menu>ul>li .menu-subs.menu-column-4 .manufacturer-logo{margin-right:10px;display:flex;flex-direction:row;justify-content:center}.header .menu>ul>li .menu-subs.menu-column-4 .manufacturer-logo img{border-radius:50%}.header .menu>ul>li .menu-subs.menu-column-4 .title{font-family:inherit;font-size:1rem;font-weight:700;line-height:1;padding:.75rem 0;border:none;outline:none;text-transform:initial;text-rendering:optimizeLegibility;transition:all .3s ease-in-out;color:#000;border-bottom:1px solid #9b0101}.header .menu>ul>li .menu-subs.menu-column-4.text-center .title{text-align:start}.header .menu>ul>li .menu-subs.menu-column-4.text-center-desktop .title{text-align:center}.header .menu>ul>li .menu-subs.menu-column-4 img.responsive{max-width:100px;width:100%;height:auto;margin-top:.75rem;object-fit:cover;vertical-align:middle}.header .menu>ul>li a:hover{text-decoration-thickness:2px}@media only screen and (min-width:993px){.header-item-center{justify-content:center}.header .menu>ul>li.menu-item-has-children:hover .menu-subs{margin-top:.5rem;opacity:1;visibility:visible}.mobile-span{display:none}}.menu-mobile-header,.menu-mobile-trigger{display:none}@media only screen and (max-width:1114px){.header-item-center{flex:0 0 100%;order:3}.header-item-left,.header-item-right{flex:none}.wrapper{justify-content:space-between}.header .menu-mobile-trigger{position:relative;display:block;cursor:pointer;width:1.75rem;height:1rem;border:none;outline:none;margin-left:1.25rem;background:0 0;transform:rotate(0);transition:.35s ease-in-out}.header .menu-mobile-trigger span{display:block;position:absolute;width:100%;height:2px;left:0;border:none;outline:none;opacity:1;border-radius:.25rem;transform:rotate(0);transition:.25s ease-in-out;background-color:#000}.header .menu-mobile-trigger span:nth-child(1){top:0}.header .menu-mobile-trigger span:nth-child(2),.header .menu-mobile-trigger span:nth-child(3){top:.5rem}.header .menu-mobile-trigger span:nth-child(4){top:1rem}.header-item-right{align-items:center}.header .menu{position:fixed;top:0;left:0;width:20rem;height:100%;z-index:1099;overflow:hidden;background:#fff;transform:translate(-100%);transition:all .5s ease-in-out}.header .menu.active{transform:translate(0%);background-color:#fff}.header .menu>ul>li{display:block;line-height:1;margin:0;border-bottom:1px solid #9b0101}.header .menu>ul>li>a{display:block;line-height:3.125rem;height:3.125rem;padding:0 3.125rem 0 1rem;border-bottom:1px solid rgba(0,0,0,.1);position:relative}.header .menu>ul>li>a i.ion{position:absolute;font-size:1.25rem;line-height:3.125rem;top:0;right:0;width:3.125rem;height:3.125rem;text-align:center;transform:rotate(-90deg)}.header .menu>ul>li>a .mobile-span{position:absolute;font-size:1.25rem;line-height:3.125rem;top:0;right:0;width:3.125rem;height:3.125rem}.header .menu .menu-mobile-header{position:relative;position:sticky;display:flex;align-items:center;justify-content:space-between;top:0;height:3.125rem;z-index:501;border-bottom:1px solid rgba(0,0,0,.1);background:#fff}.header .menu .menu-mobile-header .menu-mobile-arrow{color:#000;display:none;font-size:1rem;font-weight:700;line-height:1.7rem;width:3.125rem;height:3.125rem;cursor:pointer;text-align:center}.header .menu .menu-mobile-header.active .menu-mobile-arrow{display:block}.header .menu .menu-mobile-header .menu-mobile-title{font-family:inherit;font-size:1rem;font-weight:500;line-height:inherit;text-transform:capitalize;text-rendering:optimizeLegibility}.header .menu .menu-mobile-header .menu-mobile-close{font-size:1rem;font-weight:700;line-height:1.7rem;cursor:pointer;width:3.125rem;height:3.125rem;text-align:center}.header .menu .menu-section{height:100%;overflow-y:auto;overflow-x:hidden}.header .menu>ul>li .menu-subs{position:absolute;display:none;top:0;left:0;max-width:none;min-width:auto;width:100%;height:100%;margin:0;padding:1rem;padding-top:4rem;opacity:1;overflow-y:auto;visibility:visible;transform:translateX(0%);box-shadow:none}.header .menu>ul>li .menu-subs.menu-mega{position:absolute;display:none;top:0;left:0;max-width:none;min-width:auto;width:100%;height:100%;margin:0;padding:1rem;padding-top:4rem;opacity:1;overflow-y:auto;visibility:visible;transform:translateX(0%);box-shadow:none}.header .menu>ul>li .menu-subs.active{display:block}.header .menu>ul>li .menu-subs.menu-column-4>.list-item{flex:0 0 100%;padding:0}.header .menu>ul>li .menu-subs.menu-column-4>.list-item img.responsive{margin-top:0}.header .menu>ul>li .menu-subs.menu-column-4>.list-item.text-center .title{margin-bottom:1.25rem}.header .menu>ul>li .menu-subs.menu-column-4>.list-item.text-center:last-child .title{margin-bottom:0}.header .menu>ul>li .menu-subs>ul>li>a{display:block}.header .menu>ul>li .menu-subs.menu-mega>.list-item>ul{margin-bottom:1rem}.header .menu>ul>li .menu-subs.menu-mega>.list-item>ul>li>a{display:block}.overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1098;opacity:0;visibility:hidden;background:rgba(0,0,0,.55);transition:all .5s ease-in-out}.overlay.active{opacity:1;visibility:visible}}.ToC-Container{margin-top:40px;padding-bottom:30px}.ToC-Container .ToC-heading,.ToC-Container .ToC-heading>.heading-3{padding-bottom:5px}.ToC-Container #TableOfContents ul li{font-weight:700;padding-left:10px;padding-bottom:5px;font-size:1rem}.ToC-Container #TableOfContents ul li ul li,.ToC-Container #TableOfContents ul li ul li em{font-style:unset;font-size:.8rem}.ToC-Container #TableOfContents ul li ul li::before{content:"> "}footer{content-visibility:auto;contain-intrinsic-size:120px;min-height:100px;background-color:#313131;color:#fff;padding:30px 30px 10px}footer .footer-container{max-width:1200px;margin:0 auto}footer .footer-container .multi-col{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between}footer .footer-container .multi-col .col{width:100%;padding:0 15px;margin-bottom:20px}@media screen and (min-width:500px){footer .footer-container .multi-col .col{max-width:45%}}@media screen and (min-width:1000px){footer .footer-container .multi-col .col{max-width:30%}}footer .footer-container .disclaimer-heading .disclaimer-heading-text{color:#fff;border-bottom:1px solid #fff}footer .footer-container .disclaimer-copy .disclaimer-copy-text p{font-size:.8rem}footer .footer-container .disclaimer-copy .disclaimer-copy-text h4{font-size:.8rem}footer .footer-container .categories-heading .categories-heading-text{color:#fff;border-bottom:1px solid #fff}footer .footer-container .categories-list-container{color:#fff}footer .footer-container .categories-list-container .categories-list-item{border-bottom:1px solid #fff;min-height:35px}footer .footer-container .categories-list-container .categories-list-link{border-bottom:none;text-decoration:none;padding:5px 0;line-height:1.2rem}footer .footer-container .categories-list-container .categories-list-link:hover,footer .footer-container .categories-list-container .categories-list-link:focus{color:#fff;text-decoration:underline}footer .footer-container .single-col{display:flex;flex-direction:row;align-content:flex-end;align-items:flex-end;height:30px}footer .footer-container .single-col.pull-right{justify-content:end}footer .footer-container .single-col .copyright-text,footer .footer-container .single-col .rights-reserved-text{color:#fff;font-size:.8rem;margin-left:10px;padding-bottom:0;line-height:1rem}.new-tab{position:relative}.new-tab:after{position:absolute;top:3px;right:-12px;content:"\1f855";font-size:13px;color:#000;line-height:3px;height:5px;width:5px;border-right:2px solid #fff;border-top:2px solid #fff}.new-tab:before{position:absolute;top:5px;right:-12px;content:" ";border:1px solid #000;width:8px;height:8px}body{background-color:#f5f5f5;min-width:300px}main.container{background-color:#fff;width:95%;max-width:1200px;min-height:80vh;margin:0 auto;padding:10px 20px;-webkit-box-shadow:0 5px 8px 0 rgba(0,0,0,.2);box-shadow:0 5px 8px rgba(0,0,0,.2)}.sidebar{position:absolute}table thead tr th{text-align:start;font-size:1rem;padding:1.5rem 5px}table thead tr th:empty{display:none}table tbody tr td{padding:15px 10px;width:fit-content;max-width:50vw;font-size:1rem}table tbody tr:nth-child(even){background-color:#cacaca}.hide{display:none!important}input{border:1px solid #000;transition:border-color .5s ease-out;width:100%;max-width:300px;min-height:30px}input[type=text],input[type=email]{padding:13px 40px 13px 16px;line-height:1rem;font-size:.9rem;border-radius:4px}input:required,textarea:required{border-color:#000}input:required:invalid,textarea:required:invalid{border-color:#9b0101}input:required:valid,textarea:required:valid{border-color:green}input:optional{border-color:#000}textarea{padding:13px 40px 13px 16px}*{scrollbar-width:thin;scrollbar-color:#9b0101 #DFE9EB}*::-webkit-scrollbar{width:10px;width:10px}*::-webkit-scrollbar-track{border-radius:5px;background-color:#dfe9eb}*::-webkit-scrollbar-track:hover{background-color:#b8c0c2}*::-webkit-scrollbar-track:active{background-color:#9b0101}*::-webkit-scrollbar-thumb{border-radius:5px;background-color:#9b0101}*::-webkit-scrollbar-thumb:hover{background-color:#9b0101}*::-webkit-scrollbar-thumb:active{background-color:#313131}.authors-container{padding:20px 0}.authors-container .author-profile-link{color:#9b0101}.authors-container .author-label{font-weight:700}.authors-container .author-profile-link:hover{color:#000}.categories-list{min-width:250px;margin-bottom:30px}.categories-list .categories-heading-lists-container .categories-heading-lists-text.heading-3{border:1px solid #000;position:relative;text-transform:uppercase;padding:4px 12px;z-index:3;font-size:14px;text-align:center;display:block;background-color:#fff;color:#9b0101;margin-bottom:20px}.categories-list .categories-heading-lists-container .categories-heading-lists-text.heading-3::after{border:1px solid #000;content:"";position:absolute;left:-5px;right:-5px;bottom:3px;display:block;z-index:1;height:100%}.categories-list .categories-lists-ul{min-width:250px;margin-bottom:30px}.categories-list .categories-lists-ul .categories-lists-li{border-bottom:1px solid #888;padding:5px 0;display:flex;flex-direction:row;justify-content:space-between}.categories-list .categories-lists-ul .categories-lists-li .categories-lists-link{border:unset;color:#313131;font-size:.8rem}.categories-list .categories-lists-ul .categories-lists-li .categories-lists-link::before{content:"> ";padding-right:10px}.categories-list .categories-lists-ul .categories-lists-li .categories-lists-link:hover{color:#9b0101}.categories-list .categories-lists-ul .categories-lists-li .countNumber{color:#313131;font-style:italic;font-size:1rem}.sidebar{display:inline-block;max-width:350px;word-wrap:normal;word-break:break-all;padding-left:20px;position:sticky}.sidebar .stl-container{max-height:500px;overflow-y:auto;padding-right:10px}.sidebar .stl-container .stl-header-container{position:sticky;top:0;background-color:#fff;border-bottom:#9b0101 1px solid;line-height:1rem}.sidebar .stl-container .stl-header-container .stl-header{font-size:1.3rem;line-height:1.4rem;margin:5px 0;text-underline-offset:5px}.sidebar .stl-container .stl-row-container{padding-bottom:5px;border-bottom:1px solid #000;padding-left:10px}.sidebar .stl-container .stl-row-container .product-container{padding:5px 0}.sidebar .stl-container .stl-row-container .product-container .product-name{font-size:1rem;line-height:1.8rem;margin-top:5px;white-space:wrap;word-break:break-word}.sidebar .stl-container .stl-row-container .get-product-container{padding-bottom:10px}.sidebar .stl-container .stl-row-container .get-product-container .get-product-link{font-size:.9rem;line-height:1rem}.sidebar .featured-posts-headings{padding:10px 0}.sidebar .featured-posts-headings .heading-2{padding-bottom:unset;font-size:1.3rem;line-height:1.4rem;margin:20px 0 10px}.sidebar .featured-posts-ul .featured-posts-list-items{padding-bottom:10px;font-size:.9rem;white-space:wrap;word-break:break-word}.sidebar .featured-posts-ul .featured-posts-list-items a{word-break:keep-all}.sidebar .featured-posts-ul .featured-posts-list-items::before{content:"> ";padding-right:8px}#breadcrumbs{max-width:1200px;min-width:300px;width:95%;margin:0 auto;overflow-x:auto;overflow-y:hidden}#breadcrumbs .slice{display:inline;margin-bottom:5px;width:fit-content}#breadcrumbs .slice a{word-spacing:0;display:inline;font-weight:400;font-size:.6rem;padding:2px 5px;border-bottom:none;text-decoration:none}#breadcrumbs .slice a span{font-size:.8rem}#breadcrumbs .slice a:hover,#breadcrumbs .slice a:focus{color:#000;border-bottom:1px solid #9b0101}#breadcrumbs .slice::after{content:" | "}#breadcrumbs .slice:last-child::after{content:""}.affiliate-Table{max-width:100%}.affiliate-Table .product-name-heading{text-align:start}.affiliate-Table .product-name-heading,.affiliate-Table .product-name{max-width:450px}.affiliate-Table .table-headings{display:none}.affiliate-Table .table-body{width:100%}.affiliate-Table .row{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;width:100%}.affiliate-Table .row .product-name{font-weight:700;white-space:wrap;text-overflow:ellipsis;max-width:100%;overflow:hidden;max-height:100px;height:100%}.affiliate-Table .row .retailer-name{width:45%;display:flex;flex-direction:row;justify-content:center}.affiliate-Table .row .retailer-name img{height:30px;display:inline-block}.affiliate-Table .row .get-price{width:45%;display:flex;flex-direction:row;justify-content:center}summary.faq-question-heading{cursor:pointer}summary.faq-question-heading:hover{text-decoration:underline}.faq-answer-content{padding:10px}.product-review{outline:1px solid #000;padding:20px 10px 30px;margin-bottom:20px}@media screen and (min-width:800px){.product-review .product-name{width:50%;display:inline-block}}.product-review .product-name-text{font-weight:700;font-size:1.3rem;text-transform:capitalize;text-align:center;text-decoration-skip-ink:auto}@media screen and (min-width:800px){.product-review .product-name-text{display:inline-block;text-align:start}}@media screen and (min-width:800px){.product-review .product-image{float:right;position:relative;height:100%;padding-right:40px}}.product-review .product-image-img{object-fit:contain;object-position:center;min-width:100px;max-width:200px}.product-review .product-image .second-list-mount{height:100%}@media screen and (min-width:800px){.product-review .content-block{width:70%;padding-right:20px}}.product-review .aff-cta{display:inline-block}.product-review .aff-heading{padding-top:20px;padding-bottom:10px}@media screen and (min-width:800px){.product-review .aff-heading{padding-bottom:0}}.product-review .aff-heading-text{font-weight:700;padding-bottom:10px}.product-review .row{display:flex;flex-direction:row;align-items:center;align-content:center;padding:0 10px}.product-review .row .logo-container{padding-right:10px}.byline-container{display:flex;flex-direction:column;justify-content:center;align-items:center;align-content:center;padding:0 0 20px;margin-bottom:10px;max-width:800px}@media screen and (min-width:800px){.byline-container{flex-direction:row}}.byline-container .author-container{line-height:unset}.byline-container .author-container .author-name{padding-right:10px;margin-right:10px;line-height:unset}@media screen and (min-width:800px){.byline-container .author-container .author-name{border-right:1px solid #000}}.byline-container .author-container .author-name span{font-size:.8rem}.byline-container .reading-time{line-height:unset;font-size:.8rem;padding-right:10px;margin-right:10px}@media screen and (min-width:800px){.byline-container .reading-time{border-right:1px solid #000}}.byline-container .dates-container .last-modified-text{line-height:unset;font-size:.8rem}.headline-container{margin-top:20px;margin-bottom:10px;padding-left:10px;background-color:rgba(255,255,255,.6);max-width:800px}.headline-container .headline-text{text-align:center;padding:7px 0;text-transform:uppercase;letter-spacing:.2rem}.feature-image-container{min-height:200px;max-width:800px;height:100%;max-height:500px;display:flex;flex-direction:row;justify-content:flex-start;margin-bottom:20px}.feature-image-container .feature-image{max-height:100%;width:100%;object-fit:contain}.content-container{width:100%;max-width:800px}.content-container .ToC-Container .heading-3{border-bottom:0;margin-bottom:0}.content-body-container{width:100%}.content-body-container ul,.content-body-container ol{list-style-type:square;margin-left:15px}.content-body-container figure{padding-bottom:20px}.content-body-container img{width:fit-content;margin:0 auto;max-height:300px}.content-body-container figcaption{text-align:center;font-weight:700;font-size:.8rem}
+
+
+@media screen and (min-width:800px){.feature-image-container{height:40vh;width:100%;background-position:50%}.feature-image-container .headline-container .headline-text{text-align:start}}@media screen and (min-width:1055px){.main-container{display:flex;flex-direction:row}.page-wrapper{max-width:800px}}
+  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+  <title>
+   What You Need to Know for Happy, Healthy Curls | CurlyHair.com
+  </title>
+  <meta content="madamenoire.com
+We know having healthy pH levels are important for your overall wellbeing, but did you know having an unbalanced pH&nbsp;on your scalp can limit the growth and overall health of your curly hair? No worries! We are going to walk you through the proper routine to make sure your curly hair is its healthiest and happiest.
+First things first: what is pH? pH is the measurement of acidity in a substance on a scale of 0-14." name="description">
+  <meta content="index" name="robots">
+  <meta content="articlePage" name="doctype">
+  <meta content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <meta content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ==" http-equiv="origin-trial">
+  <!-- Google tag (gtag.js) -->
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div class="root-container">
+   <header class="header">
+    <div class="container">
+     <div class="wrapper">
+      <div class="header-item-left">
+       <a>
+        <img alt="Logo" class="logo" fetchpriority="high" src="rick.jpg">
+       </a>
+      </div>
+      <div class="header-item-center">
+       <div class="overlay">
+       </div>
+       <nav class="menu">
+        <div class="menu-mobile-header">
+         <button class="menu-mobile-arrow" type="button">
+          <i>
+           &lt;
+          </i>
+         </button>
+         <div class="menu-mobile-title">
+         </div>
+         <button class="menu-mobile-close" type="button">
+          X
+         </button>
+        </div>
+        <ul class="menu-section">
+         <li>
+          <a>
+           Home
+          </a>
+         </li>
+         <li class="menu-item-has-children">
+          <a>
+           Products
+           <i class="mobile-span">
+            &gt;
+           </i>
+          </a>
+          <div class="menu-subs menu-mega menu-column-4">
+           <div class="list-item">
+            <h4 class="title strong">
+             Haircare
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Best Curly Hair Shampoo
+              </a>
+             </li>
+             <li>
+              <a>
+               Best Sulfate-Free Shampoo
+              </a>
+             </li>
+             <li>
+              <a>
+               Best Shampoo for the Curly Girl Method
+              </a>
+             </li>
+             <li>
+              <a>
+               Best Curly Hair Conditioners
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Styling and Care
+            </h4>
+            <ul>
+             <li>
+              <a>
+               8 Things Every Curly Girl Needs
+              </a>
+             </li>
+             <li>
+              <a>
+               Affordable Curl Care Masks
+              </a>
+             </li>
+             <li>
+              <a>
+               Curl Care Products for Fine Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               Moisturisers for Natural Curls
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Make your own
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Edge Control Gel
+              </a>
+             </li>
+             <li>
+              <a>
+               Chemical Free Hairspray
+              </a>
+             </li>
+             <li>
+              <a>
+               Curl Custard
+              </a>
+             </li>
+             <li>
+              <a>
+               Conditioning Bar
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Curly Girl Method
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Tried &amp; True Products
+              </a>
+             </li>
+             <li>
+              <a>
+               Suave Products
+              </a>
+             </li>
+             <li>
+              <a>
+               Approved Cowashes
+              </a>
+             </li>
+             <li>
+              <a>
+               Approved Products
+              </a>
+             </li>
+            </ul>
+           </div>
+          </div>
+         </li>
+         <li class="menu-item-has-children">
+          <a>
+           Hairstyles
+           <i class="mobile-span">
+            &gt;
+           </i>
+          </a>
+          <div class="menu-subs menu-mega menu-column-4">
+           <div class="list-item">
+            <h4 class="title strong">
+             by Features
+            </h4>
+            <ul>
+             <li>
+              <a>
+               for Black Hair
+              </a>
+             </li>
+             <li>
+              <a>
+               for 4c Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               for Round Faces
+              </a>
+             </li>
+             <li>
+              <a>
+               for Short Hair
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Hair Cuts
+            </h4>
+            <ul>
+             <li>
+              <a>
+               How to Cut Curly Hair
+              </a>
+             </li>
+             <li>
+              <a>
+               Bobs with Curly Hair
+              </a>
+             </li>
+             <li>
+              <a>
+               Bangs with Curly Hair
+              </a>
+             </li>
+             <li>
+              <a>
+               Short Cuts with Curly Hair
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             by Occasion
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Curly Hair Styles for Prom
+              </a>
+             </li>
+             <li>
+              <a>
+               Curly Hair Styles for a Summer Wedding
+              </a>
+             </li>
+             <li>
+              <a>
+               Curly Hair Styles for Brides
+              </a>
+             </li>
+             <li>
+              <a>
+               Curly Hair Styles for Work
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Ways to wear
+            </h4>
+            <ul>
+             <li>
+              <a>
+               A Messy Bun
+              </a>
+             </li>
+             <li>
+              <a>
+               A Slicked Back Ponytail
+              </a>
+             </li>
+             <li>
+              <a>
+               Pigtails
+              </a>
+             </li>
+             <li>
+              <a>
+               An Updo
+              </a>
+             </li>
+            </ul>
+           </div>
+          </div>
+         </li>
+         <li class="menu-item-has-children">
+          <a>
+           Hair Tips
+           <i class="mobile-span">
+            &gt;
+           </i>
+          </a>
+          <div class="menu-subs menu-mega menu-column-4">
+           <div class="list-item">
+            <h4 class="title strong">
+             Best practices
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Growing Long Strong Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               Correctly Moisturising Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               Understanding Your Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               Avoiding Curl Breakage
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Need to Know
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Curly Hair Lingo
+              </a>
+             </li>
+             <li>
+              <a>
+               Curl Care Product Not Working?
+              </a>
+             </li>
+             <li>
+              <a>
+               Curly Hacks Part 1
+              </a>
+             </li>
+             <li>
+              <a>
+               Curly Hacks Part 2
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             What not to do
+            </h4>
+            <ul>
+             <li>
+              <a>
+               Bad Habits Harming Your Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               Sabotaging Curls
+              </a>
+             </li>
+             <li>
+              <a>
+               Avoiding Triangle Hair
+              </a>
+             </li>
+             <li>
+              <a>
+               Mistakes You're Making with Your Curls
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="list-item">
+            <h4 class="title strong">
+             Products
+            </h4>
+            <ul>
+             <li>
+              <a>
+               DIY Curl Treatments
+              </a>
+             </li>
+             <li>
+              <a>
+               Coconut Oil
+              </a>
+             </li>
+            </ul>
+           </div>
+          </div>
+         </li>
+        </ul>
+       </nav>
+      </div>
+      <div class="header-item-right">
+       <button class="menu-mobile-trigger" type="button">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+       </button>
+      </div>
+     </div>
+    </div>
+   </header>
+   <main class="container">
+    <ul id="breadcrumbs" itemscope itemtype="">
+     <li class="slice" itemprop="itemListElement" itemscope itemtype="">
+      <a class="strong" itemprop="item">
+       <span itemprop="name">
+        Home
+       </span>
+      </a>
+      <meta content="1" itemprop="position">
+     </li>
+     <li class="slice" itemprop="itemListElement" itemscope itemtype="">
+      <a itemprop="item">
+       <span itemprop="name">
+        Hair tips
+       </span>
+      </a>
+      <meta content="2" itemprop="position">
+     </li>
+     <li class="slice" itemprop="itemListElement" itemscope itemtype="">
+      <a itemprop="item">
+       <span itemprop="name">
+        What You Need to Know for Happy, Healthy Curls
+       </span>
+      </a>
+      <meta content="3" itemprop="position">
+     </li>
+    </ul>
+    <div id="ezoic-pub-ad-placeholder-184">
+    </div>
+    <div class="headline-container">
+     <h1 class="headline-text">
+      What You Need to Know for Happy, Healthy Curls
+     </h1>
+    </div>
+    <div class="byline-container">
+     <div class="author-container">
+      <div class="author-name">
+       <span class="bold">
+        by
+       </span>
+       <span class="upper">
+        Staff Writer
+       </span>
+      </div>
+     </div>
+     <div class="reading-time">
+      1 min read
+     </div>
+     <div class="dates-container">
+      <div class="last-modified-container">
+       <div class="last-modified-text" id="last-modified-date">
+        Last modified:
+        <time datetime="2022-11-19 00:28:20 +0000 UTC">
+         Nov 19, 2022
+        </time>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="main-container">
+     <div class="page-wrapper">
+      <div class="content-container">
+       <section class="content-body-container">
+        <p>
+         <img alt="Healthy Scalp pH for Healthy Curls" decoding="async" loading="lazy" src="rick.jpg">
+        </p>
+        <p>
+         madamenoire.com
+        </p>
+        <p>
+         We know having healthy pH levels are important for your overall wellbeing, but did you know having an unbalanced pH&nbsp;on your scalp can limit the growth and overall health of your curly hair? No worries!
+        </p>
+        <p>
+         <strong>
+          First things first
+         </strong>
+         : what is pH?
+        </p>
+        <p>
+         Healthy pH levels are crucial for your curly hair, as this is what will fight off unwanted bacterias and funguses, as well as allow your curls to retain essential moisture. Your goal is&nbsp;to keep your hair&rsquo;s pH between 4.5-5.5 for optimal scalp and curl health.
+        </p>
+        <p>
+         <strong>
+          Use the right products
+         </strong>
+         : Avoid products using&nbsp;chemicals such as Triethanolamine and&nbsp;sodium hydroxide, which have an alkaline level of over 7.
+        </p>
+        <p>
+         If your hair currently has good elasticity, this is a good indicator of the overall health of your curls. In order to keep your curls at their best and bounciest, you&rsquo;re going to want to maintain essential moisture.
+        </p>
+        <p>
+         Finally, avoid overusing&nbsp;chemical treatments on your delicate curls, such as relaxers, perms or hair dyes. Use of these chemicals drastically alters your natural pH levels, which can cause the protein structure of your curls to weaken.
+        </p>
+       </section>
+      </div>
+     </div>
+     <aside class="sidebar">
+      <div class="sidebar-container sticky">
+       <div id="ezoic-pub-ad-placeholder-185">
+       </div>
+       <div class="featured-posts-container">
+        <div class="featured-posts-headings">
+         <p class="heading-2 text-color-red">
+          Featured Posts
+         </p>
+        </div>
+        <ul class="featured-posts-ul">
+         <li class="featured-posts-list-items">
+          <a>
+           Best Products for Oily Curly Hair
+          </a>
+         </li>
+         <li class="featured-posts-list-items">
+          <a>
+           Best Curly Hair Shampoo
+          </a>
+         </li>
+         <li class="featured-posts-list-items">
+          <a>
+           Best Dandruff Shampoos for Curly Hair
+          </a>
+         </li>
+         <li class="featured-posts-list-items">
+          <a>
+           Best Curly Hair Conditioners
+          </a>
+         </li>
+        </ul>
+       </div>
+       <div class="categories-list">
+        <div class="categories-heading-lists-container">
+         <div class="categories-heading-lists-text heading-3">
+          Curly Hair Posts
+         </div>
+        </div>
+        <div class="categories-lists-container">
+         <ul class="categories-lists-ul">
+          <li class="categories-lists-li">
+           <a class="categories-lists-link">
+            Curly Hair
+           </a>
+           <span class="countNumber">
+            (397)
+           </span>
+          </li>
+          <li class="categories-lists-li">
+           <a class="categories-lists-link">
+            Extensions
+           </a>
+           <span class="countNumber">
+            (4)
+           </span>
+          </li>
+          <li class="categories-lists-li">
+           <a class="categories-lists-link">
+            Hair Products
+           </a>
+           <span class="countNumber">
+            (560)
+           </span>
+          </li>
+          <li class="categories-lists-li">
+           <a class="categories-lists-link">
+            Hair Tips
+           </a>
+           <span class="countNumber">
+            (332)
+           </span>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </aside>
+    </div>
+    <div id="ezoic-pub-ad-placeholder-103">
+    </div>
+   </main>
+  </div>
+  <ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;">
+   <div aria-label="Advertisement" id="aswift_0_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement">
+   </div>
+  </ins>
+  <footer>
+   <div class="footer-container">
+    <div class="row multi-col">
+     <div class="col">
+      <div class="disclaimer-heading">
+       <p class="disclaimer-heading-text heading-3">
+        Disclaimer
+       </p>
+      </div>
+      <div class="disclaimer-copy">
+       <div class="disclaimer-copy-text">
+        <h4>
+         PLEASE NOTE
+        </h4>
+        <p>
+         Content on this site is intended for informational purposes only and does not constitute professional, medical or healthcare advice or diagnosis, and may not be used as such.
+        </p>
+        <h4>
+         DISCLOSURE
+        </h4>
+        <p>
+         CurlyHair.com is a participant in the Amazon Services LLC Associates Program. As an Amazon Associate, we earn from qualifying purchases.
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="col">
+      <div class="categories-heading">
+       <p class="categories-heading-text heading-3">
+        Categories
+       </p>
+      </div>
+      <div class="categories-list-container">
+       <ul class="categories-list">
+        <li class="categories-list-item">
+         <a class="categories-list-link">
+          Products
+         </a>
+        </li>
+        <li class="categories-list-item">
+         <a class="categories-list-link">
+          Hairstyles
+         </a>
+        </li>
+        <li class="categories-list-item">
+         <a class="categories-list-link">
+          Hair Tips
+         </a>
+        </li>
+        <li class="categories-list-item">
+         <a class="categories-list-link">
+          Routine
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="col">
+     </div>
+    </div>
+    <div class="row single-col pull-right">
+     <p class="rights-reserved-text">
+      All Right Reserved.
+     </p>
+     <p class="copyright-text">
+      &copy; copyright 2023
+     </p>
+    </div>
+   </div>
+  </footer>
+ </body>
+</html>

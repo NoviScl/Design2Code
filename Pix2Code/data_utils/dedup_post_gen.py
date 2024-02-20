@@ -1,7 +1,7 @@
 import difflib
 import os
 
-def check_repetitive_content(file_path, chunk_size=100, repetition_threshold=3, similarity_threshold=0.9):
+def check_repetitive_content(file_path, chunk_size=50, repetition_threshold=5, similarity_threshold=0.9):
     """
     Checks for repetitive content in a text file, considering both exact and similar chunks.
 
@@ -40,9 +40,16 @@ def check_repetitive_content(file_path, chunk_size=100, repetition_threshold=3, 
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content[:start_position])
 
-check_repetitive_content("/Users/zhangyanzhe/Downloads/dup_1.html")
-check_repetitive_content("/Users/zhangyanzhe/Downloads/dup_2.html")
-check_repetitive_content("/Users/zhangyanzhe/Downloads/dup_3.html")
-check_repetitive_content("/Users/zhangyanzhe/Downloads/dup_4.html")
-check_repetitive_content("/Users/zhangyanzhe/Downloads/dup_5.html")
-check_repetitive_content("/Users/zhangyanzhe/Downloads/dup_6.html")
+        # with open(file_path.replace(".html", "_new.html"), 'w', encoding='utf-8') as file:
+        #     file.write(content[:start_position])
+
+"""
+# Debug Log
+check_repetitive_content("/Users/zhangyanzhe/Downloads/Repetition_test/dup_1.html")
+check_repetitive_content("/Users/zhangyanzhe/Downloads/Repetition_test/dup_2.html")
+check_repetitive_content("/Users/zhangyanzhe/Downloads/Repetition_test/dup_3.html")
+check_repetitive_content("/Users/zhangyanzhe/Downloads/Repetition_test/dup_4.html")
+check_repetitive_content("/Users/zhangyanzhe/Downloads/Repetition_test/dup_5.html")
+check_repetitive_content("/Users/zhangyanzhe/Downloads/Repetition_test/dup_6.html")
+check_repetitive_content("/Users/zhangyanzhe/Downloads/good_1.html")
+"""

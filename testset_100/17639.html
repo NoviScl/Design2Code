@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   /**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Basic styling
+ */
+body {
+  font: 400 19px/1.6 "Georgia", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #363636;
+  background-color: #fdfdfd;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+}
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+.highlight {
+  margin-bottom: 20px;
+}
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  margin: 2rem auto;
+  display: block;
+}
+
+iframe {
+  width: 95%;
+  margin: 2rem auto;
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  iframe {
+    height: 225px;
+    width: 100%;
+  }
+}
+hr {
+  width: 90%;
+  margin: 2rem auto;
+  color: #c9c9c9;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  color: #636363;
+  font-size: 16.625px;
+  text-align: right;
+  font-style: italic;
+  margin-top: -1.5rem;
+}
+
+.sharing-text {
+  margin-top: 2rem;
+  font-size: 16.625px;
+  text-align: center;
+  font-style: italic;
+}
+
+/**
+ * Lists
+ */
+ul, ol {
+  margin-left: 30px;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #272727;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2.post-index {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/**
+ * Links
+ */
+a {
+  color: #2a7ae2;
+  text-decoration: none;
+}
+a:visited {
+  color: #1756a9;
+}
+a:hover {
+  color: #363636;
+  text-decoration: underline;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: #636363;
+  border-left: 0.3rem solid #c9c9c9;
+  padding: 0 1rem 0 1.75rem;
+  margin: 1.75rem 0;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.message {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  color: #717171;
+  background-color: #f9f9f9;
+}
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+  font-size: 15px;
+  border: 1px solid #c9c9c9;
+  border-radius: 3px;
+  background-color: #eef;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: -webkit-calc(700px - (30px * 2));
+  max-width: calc(700px - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+@media screen and (max-width: 650px) {
+  .wrapper {
+    max-width: -webkit-calc(700px - (30px));
+    max-width: calc(700px - (30px));
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/**
+ * Clearfix
+ */
+.footer-col-wrapper:after, .wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+ * Icons
+ */
+.icon > svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+.icon > svg path {
+  fill: #636363;
+}
+
+/**
+ * Site header
+ */
+.site-header {
+  border-top: 5px solid #232323;
+  border-bottom: 1px solid #c9c9c9;
+  min-height: 56px;
+  position: relative;
+}
+
+.site-title {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 56px;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  float: left;
+}
+.site-title, .site-title:visited {
+  color: #232323;
+}
+
+.site-nav {
+  float: right;
+  line-height: 56px;
+}
+.site-nav .menu-icon {
+  display: none;
+}
+.site-nav .page-link {
+  color: #363636;
+  line-height: 1.6;
+}
+.site-nav .page-link:not(:last-child) {
+  margin-right: 20px;
+}
+@media screen and (max-width: 600px) {
+  .site-nav {
+    position: absolute;
+    top: 9px;
+    right: 15px;
+    background-color: #fdfdfd;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    text-align: right;
+  }
+  .site-nav .menu-icon {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 26px;
+    line-height: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+  .site-nav .menu-icon > svg {
+    width: 18px;
+    height: 15px;
+  }
+  .site-nav .menu-icon > svg path {
+    fill: #232323;
+  }
+  .site-nav .trigger {
+    clear: both;
+    display: none;
+  }
+  .site-nav:hover .trigger {
+    display: block;
+    padding-bottom: 5px;
+  }
+  .site-nav .page-link {
+    display: block;
+    padding: 5px 10px;
+    margin-left: 20px;
+  }
+  .site-nav .page-link:not(:last-child) {
+    margin-right: 0;
+  }
+}
+
+/**
+ * Site footer
+ */
+.site-footer {
+  border-top: 1px solid #c9c9c9;
+  padding: 30px 0;
+}
+
+.footer-heading {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.footer-col-wrapper {
+  font-size: 15px;
+  color: #636363;
+  margin-left: -15px;
+}
+
+.footer-col {
+  float: left;
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
+
+.footer-col-1 {
+  width: -webkit-calc(35% - (30px / 2));
+  width: calc(35% - (30px / 2));
+}
+
+.footer-col-2 {
+  width: -webkit-calc(20% - (30px / 2));
+  width: calc(20% - (30px / 2));
+}
+
+.footer-col-3 {
+  width: -webkit-calc(45% - (30px / 2));
+  width: calc(45% - (30px / 2));
+}
+
+@media screen and (max-width: 650px) {
+  .footer-col-1,
+  .footer-col-2 {
+    width: -webkit-calc(50% - (30px / 2));
+    width: calc(50% - (30px / 2));
+  }
+  .footer-col-3 {
+    width: -webkit-calc(100% - (30px / 2));
+    width: calc(100% - (30px / 2));
+  }
+}
+@media screen and (max-width: 600px) {
+  .footer-col {
+    float: none;
+    width: -webkit-calc(100% - (30px / 2));
+    width: calc(100% - (30px / 2));
+  }
+}
+/**
+ * Page content
+ */
+.page-content {
+  padding: 30px 0;
+}
+
+.page-heading {
+  font-size: 20px;
+}
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+.post-list > li {
+  margin-bottom: 30px;
+}
+
+.post-meta {
+  font-size: 16.625px;
+  color: #636363;
+}
+
+.post-link {
+  display: block;
+  font-size: 24px;
+}
+
+/**
+ * Posts
+ */
+.post-header {
+  margin-bottom: 30px;
+}
+
+.post-title {
+  font-size: 42px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+@media screen and (max-width: 650px) {
+  .post-title {
+    font-size: 36px;
+  }
+}
+
+.post-content {
+  margin-bottom: 30px;
+}
+.post-content h2 {
+  font-size: 32px;
+}
+@media screen and (max-width: 650px) {
+  .post-content h2 {
+    font-size: 28px;
+  }
+}
+.post-content h3 {
+  font-size: 26px;
+}
+@media screen and (max-width: 650px) {
+  .post-content h3 {
+    font-size: 22px;
+  }
+}
+.post-content h4 {
+  font-size: 20px;
+}
+@media screen and (max-width: 650px) {
+  .post-content h4 {
+    font-size: 18px;
+  }
+}
+
+/**
+ * Syntax highlighting styles
+ */
+.highlight {
+  background: #fff;
+}
+.highlighter-rouge .highlight {
+  background: #eef;
+}
+.highlight .c {
+  color: #998;
+  font-style: italic;
+}
+.highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+.highlight .k {
+  font-weight: bold;
+}
+.highlight .o {
+  font-weight: bold;
+}
+.highlight .cm {
+  color: #998;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #999;
+  font-weight: bold;
+}
+.highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #999;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+.highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gr {
+  color: #a00;
+}
+.highlight .gh {
+  color: #999;
+}
+.highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+.highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+.highlight .go {
+  color: #888;
+}
+.highlight .gp {
+  color: #555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaa;
+}
+.highlight .gt {
+  color: #a00;
+}
+.highlight .kc {
+  font-weight: bold;
+}
+.highlight .kd {
+  font-weight: bold;
+}
+.highlight .kp {
+  font-weight: bold;
+}
+.highlight .kr {
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #458;
+  font-weight: bold;
+}
+.highlight .m {
+  color: #099;
+}
+.highlight .s {
+  color: #d14;
+}
+.highlight .na {
+  color: #008080;
+}
+.highlight .nb {
+  color: #0086B3;
+}
+.highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #008080;
+}
+.highlight .ni {
+  color: #800080;
+}
+.highlight .ne {
+  color: #900;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #900;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #555;
+}
+.highlight .nt {
+  color: #000080;
+}
+.highlight .nv {
+  color: #008080;
+}
+.highlight .ow {
+  font-weight: bold;
+}
+.highlight .w {
+  color: #bbb;
+}
+.highlight .mf {
+  color: #099;
+}
+.highlight .mh {
+  color: #099;
+}
+.highlight .mi {
+  color: #099;
+}
+.highlight .mo {
+  color: #099;
+}
+.highlight .sb {
+  color: #d14;
+}
+.highlight .sc {
+  color: #d14;
+}
+.highlight .sd {
+  color: #d14;
+}
+.highlight .s2 {
+  color: #d14;
+}
+.highlight .se {
+  color: #d14;
+}
+.highlight .sh {
+  color: #d14;
+}
+.highlight .si {
+  color: #d14;
+}
+.highlight .sx {
+  color: #d14;
+}
+.highlight .sr {
+  color: #009926;
+}
+.highlight .s1 {
+  color: #d14;
+}
+.highlight .ss {
+  color: #990073;
+}
+.highlight .bp {
+  color: #999;
+}
+.highlight .vc {
+  color: #008080;
+}
+.highlight .vg {
+  color: #008080;
+}
+.highlight .vi {
+  color: #008080;
+}
+.highlight .il {
+  color: #099;
+}
+
+/*# sourceMappingURL=main.css.map */
+
+
+.rrssb-buttons{box-sizing:border-box;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;height:36px;margin:0;padding:0;width:100%}.rrssb-buttons:after{clear:both}.rrssb-buttons:after,.rrssb-buttons:before{content:' ';display:table}.rrssb-buttons li{box-sizing:border-box;float:left;height:100%;line-height:13px;list-style:none;margin:0;padding:0 2px}.rrssb-buttons li.rrssb-email a{background-color:#0a88ff}.rrssb-buttons li.rrssb-email a:hover{background-color:#006ed6}.rrssb-buttons li.rrssb-facebook a{background-color:#306199}.rrssb-buttons li.rrssb-facebook a:hover{background-color:#244872}.rrssb-buttons li.rrssb-tumblr a{background-color:#32506d}.rrssb-buttons li.rrssb-tumblr a:hover{background-color:#22364a}.rrssb-buttons li.rrssb-linkedin a{background-color:#007bb6}.rrssb-buttons li.rrssb-linkedin a:hover{background-color:#005983}.rrssb-buttons li.rrssb-twitter a{background-color:#26c4f1}.rrssb-buttons li.rrssb-twitter a:hover{background-color:#0eaad6}.rrssb-buttons li.rrssb-googleplus a{background-color:#e93f2e}.rrssb-buttons li.rrssb-googleplus a:hover{background-color:#ce2616}.rrssb-buttons li.rrssb-youtube a{background-color:#df1c31}.rrssb-buttons li.rrssb-youtube a:hover{background-color:#b21627}.rrssb-buttons li.rrssb-reddit a{background-color:#8bbbe3}.rrssb-buttons li.rrssb-reddit a:hover{background-color:#62a3d9}.rrssb-buttons li.rrssb-pinterest a{background-color:#b81621}.rrssb-buttons li.rrssb-pinterest a:hover{background-color:#8a1119}.rrssb-buttons li.rrssb-pocket a{background-color:#ed4054}.rrssb-buttons li.rrssb-pocket a:hover{background-color:#e4162d}.rrssb-buttons li.rrssb-github a{background-color:#444}.rrssb-buttons li.rrssb-github a:hover{background-color:#2b2b2b}.rrssb-buttons li.rrssb-instagram a{background-color:#125688}.rrssb-buttons li.rrssb-instagram a:hover{background-color:#0c3a5b}.rrssb-buttons li.rrssb-delicious a{background-color:#0b79e5}.rrssb-buttons li.rrssb-delicious a:hover{background-color:#095fb4}.rrssb-buttons li.rrssb-vk a{background-color:#4d71a9}.rrssb-buttons li.rrssb-vk a:hover{background-color:#3d5a86}.rrssb-buttons li.rrssb-hackernews a{background-color:#f60}.rrssb-buttons li.rrssb-hackernews a:hover{background-color:#cc5200}.rrssb-buttons li a{background-color:#ccc;border-radius:2px;box-sizing:border-box;display:block;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-weight:700;height:100%;padding:11px 7px 12px 27px;position:relative;text-align:center;text-decoration:none;text-transform:uppercase;-webkit-transition:background-color .2s ease-in-out;transition:background-color .2s ease-in-out;width:100%}.rrssb-buttons li a .rrssb-icon{display:block;left:10px;padding-top:9px;position:absolute;top:0;width:10%}.rrssb-buttons li a .rrssb-icon svg{height:17px;width:17px}.rrssb-buttons li a .rrssb-icon svg path{fill:#fff}.rrssb-buttons li a .rrssb-text{color:#fff}.rrssb-buttons li a:active{box-shadow:inset 1px 3px 15px 0 rgba(22,0,0,.25)}.rrssb-buttons li.small a{padding:0}.rrssb-buttons li.small a .rrssb-icon{left:auto;margin:0 auto;overflow:hidden;position:relative;top:auto;width:100%}.rrssb-buttons li.small a .rrssb-text{visibility:hidden}.rrssb-buttons.large-format,.rrssb-buttons.large-format li{height:auto}.rrssb-buttons.large-format li a{-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:.2em;padding:8.5% 0 8.5% 12%}.rrssb-buttons.large-format li a .rrssb-icon{height:100%;left:7%;padding-top:0;width:12%}.rrssb-buttons.large-format li a .rrssb-icon svg{height:100%;position:absolute;top:0;width:100%}.rrssb-buttons.large-format li a .rrssb-text{-webkit-backface-visibility:hidden;backface-visibility:hidden}.rrssb-buttons.small-format{padding-top:5px}.rrssb-buttons.small-format li{height:80%;padding:0 1px}.rrssb-buttons.small-format li a .rrssb-icon{height:100%;padding-top:0}.rrssb-buttons.small-format li a .rrssb-icon svg{height:48%;position:relative;top:6px;width:80%}.rrssb-buttons.tiny-format{height:22px;position:relative}.rrssb-buttons.tiny-format li{padding-right:7px}.rrssb-buttons.tiny-format li a{background-color:transparent;padding:0}.rrssb-buttons.tiny-format li a .rrssb-icon svg{height:70%;width:100%}.rrssb-buttons.tiny-format li a:active,.rrssb-buttons.tiny-format li a:hover{background-color:transparent}.rrssb-buttons.tiny-format li.rrssb-email a .rrssb-icon svg path{fill:#0a88ff}.rrssb-buttons.tiny-format li.rrssb-email a .rrssb-icon:hover .rrssb-icon svg path{fill:#0054a3}.rrssb-buttons.tiny-format li.rrssb-facebook a .rrssb-icon svg path{fill:#306199}.rrssb-buttons.tiny-format li.rrssb-facebook a .rrssb-icon:hover .rrssb-icon svg path{fill:#18304b}.rrssb-buttons.tiny-format li.rrssb-tumblr a .rrssb-icon svg path{fill:#32506d}.rrssb-buttons.tiny-format li.rrssb-tumblr a .rrssb-icon:hover .rrssb-icon svg path{fill:#121d27}.rrssb-buttons.tiny-format li.rrssb-linkedin a .rrssb-icon svg path{fill:#007bb6}.rrssb-buttons.tiny-format li.rrssb-linkedin a .rrssb-icon:hover .rrssb-icon svg path{fill:#003650}.rrssb-buttons.tiny-format li.rrssb-twitter a .rrssb-icon svg path{fill:#26c4f1}.rrssb-buttons.tiny-format li.rrssb-twitter a .rrssb-icon:hover .rrssb-icon svg path{fill:#0b84a6}.rrssb-buttons.tiny-format li.rrssb-googleplus a .rrssb-icon svg path{fill:#e93f2e}.rrssb-buttons.tiny-format li.rrssb-googleplus a .rrssb-icon:hover .rrssb-icon svg path{fill:#a01e11}.rrssb-buttons.tiny-format li.rrssb-youtube a .rrssb-icon svg path{fill:#df1c31}.rrssb-buttons.tiny-format li.rrssb-youtube a .rrssb-icon:hover .rrssb-icon svg path{fill:#84111d}.rrssb-buttons.tiny-format li.rrssb-reddit a .rrssb-icon svg path{fill:#8bbbe3}.rrssb-buttons.tiny-format li.rrssb-reddit a .rrssb-icon:hover .rrssb-icon svg path{fill:#398bcf}.rrssb-buttons.tiny-format li.rrssb-pinterest a .rrssb-icon svg path{fill:#b81621}.rrssb-buttons.tiny-format li.rrssb-pinterest a .rrssb-icon:hover .rrssb-icon svg path{fill:#5d0b11}.rrssb-buttons.tiny-format li.rrssb-pocket a .rrssb-icon svg path{fill:#ed4054}.rrssb-buttons.tiny-format li.rrssb-pocket a .rrssb-icon:hover .rrssb-icon svg path{fill:#b61124}.rrssb-buttons.tiny-format li.rrssb-github a .rrssb-icon svg path{fill:#444}.rrssb-buttons.tiny-format li.rrssb-github a .rrssb-icon:hover .rrssb-icon svg path{fill:#111}.rrssb-buttons.tiny-format li.rrssb-instagram a .rrssb-icon svg path{fill:#125688}.rrssb-buttons.tiny-format li.rrssb-instagram a .rrssb-icon:hover .rrssb-icon svg path{fill:#061d2e}.rrssb-buttons.tiny-format li.rrssb-delicious a .rrssb-icon svg path{fill:#0b79e5}.rrssb-buttons.tiny-format li.rrssb-delicious a .rrssb-icon:hover .rrssb-icon svg path{fill:#064684}.rrssb-buttons.tiny-format li.rrssb-vk a .rrssb-icon svg path{fill:#4d71a9}.rrssb-buttons.tiny-format li.rrssb-vk a .rrssb-icon:hover .rrssb-icon svg path{fill:#2d4263}.rrssb-buttons.tiny-format li.rrssb-hackernews a .rrssb-icon svg path{fill:#f60}.rrssb-buttons.tiny-format li.rrssb-hackernews a .rrssb-icon:hover .rrssb-icon svg path{fill:#993d00}
+
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5-fCZJ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79D0KEwA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ptserif/v18/EJRVQgYoZZY2vCFuvAFWzro.ttf) format('truetype');
+}
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+  <title>
+   A Reaction to the Gospel: &ldquo;Did God Tell You That?!?&rdquo; | mark4.co
+  </title>
+  <meta content="Jekyll v4.3.2" name="generator">
+  <meta content="A Reaction to the Gospel: &ldquo;Did God Tell You That?!?&rdquo;" property="og:title">
+  <meta content="Living Missions" name="author">
+  <meta content="en_US" property="og:locale">
+  <meta content="This Ramadan I really enjoyed getting out and talking to the heaps of very friendly people that were out breaking their fast and lounging around late into the night. To give you a feel of what talking to these people is like, here&rsquo;s something that happened last week. While walking through the busy park with my friend, I felt pulled towards a group of guys sitting in the midst of a cluster of people and benches. To be truthful, I was pretty doubtful anything good would happen because one of them looked exactly like the kind of guy who would not be very interested or friendly at all. When we sat down beside this group though, another lady in front of us started immediately filling our hands with some snacks her and her son were eating. Yes, people can be that friendly. We had a nice chat with her and her son, and also exchanged a few questions and pleasantries with the group I originally felt led to. After a little talk about language, the guy I was most doubtful about got up, joyfully plunked himself right in front of me and said in a super-friendly manner, &ldquo;I&rsquo;m really interested in you. What&rsquo;s your religion??&rdquo; I started to tell him and his 3 friends about what I believed about God and what Jesus did for me. They leaned in and eagerly listened as I went on and on about Jesus&rsquo; love and sacrifice on the cross. It was wonderful to get to lay it forth so clearly for such open ears. They asked about the Bible being changed and untrustable. I explained that just because priests in the middle ages sold indulgances and organized crusades and did all sorts of horrible stuff, it doesn&rsquo;t mean that they were able to distort the Bible&hellip; it just means that they weren&rsquo;t following it. They were silenced and very impressed by this. Two other ladies were curiously eavesdropping and one jumped in and wanted to tell us all how sure they were that the Bible couldn&rsquo;t be trusted, then went away. I continued to talk with the guys, and one particularly religious one began to wax elloquent about how wonderful his fellowship that he belonged to was and all the great people and things they had in their history. I looked at him straight in the eye and said, &ldquo;That&rsquo;s all great, but what about you? Have you been able to make peace with God?&rdquo; &ldquo;No, of course not&rdquo; he responded, a little flustered, and explained how they&rsquo;ve been taught that Satan will always be assaulting them condemnation and doubt until the end of their lives. I gladly looked at all of them and said &ldquo;See, that&rsquo;s the thing. I don&rsquo;t have any doubt or condemnation. It&rsquo;s all gone because Jesus died to take it away!&rdquo; The guy sitting across from me was a little perplexed, &ldquo;Who says that all your sins are forgiven and you&rsquo;re on good terms with God. Is there anyone who can tell you that?&rdquo; &ldquo;God tells me.&rdquo; I said confidently. &ldquo;What?!&rdquo; he responded in shock, &ldquo;You mean God&rsquo;s actually communicated with you??!!&rdquo; The conversation ended around that point, and they went off probably thinking I was a little nuts. But if they do grow hungry for that salvation and peace that I talked about, they now have something freshly planted into their brains that they can grab on to. :-) Years ago I couldn&rsquo;t even imagine having conversations like this with random guys in crowded parks. God gladly and graciously teaches his people to reveal the depths of his mercy and grace that he&rsquo;s stored up in the simple story of Christ. He calls his servants forward into new places, languages, and cultures and turns the timid into powerful preachers. Trust him." name="description">
+  <meta content="This Ramadan I really enjoyed getting out and talking to the heaps of very friendly people that were out breaking their fast and lounging around late into the night. To give you a feel of what talking to these people is like, here&rsquo;s something that happened last week. While walking through the busy park with my friend, I felt pulled towards a group of guys sitting in the midst of a cluster of people and benches. To be truthful, I was pretty doubtful anything good would happen because one of them looked exactly like the kind of guy who would not be very interested or friendly at all. When we sat down beside this group though, another lady in front of us started immediately filling our hands with some snacks her and her son were eating. Yes, people can be that friendly. We had a nice chat with her and her son, and also exchanged a few questions and pleasantries with the group I originally felt led to. After a little talk about language, the guy I was most doubtful about got up, joyfully plunked himself right in front of me and said in a super-friendly manner, &ldquo;I&rsquo;m really interested in you. What&rsquo;s your religion??&rdquo; I started to tell him and his 3 friends about what I believed about God and what Jesus did for me. They leaned in and eagerly listened as I went on and on about Jesus&rsquo; love and sacrifice on the cross. It was wonderful to get to lay it forth so clearly for such open ears. They asked about the Bible being changed and untrustable. I explained that just because priests in the middle ages sold indulgances and organized crusades and did all sorts of horrible stuff, it doesn&rsquo;t mean that they were able to distort the Bible&hellip; it just means that they weren&rsquo;t following it. They were silenced and very impressed by this. Two other ladies were curiously eavesdropping and one jumped in and wanted to tell us all how sure they were that the Bible couldn&rsquo;t be trusted, then went away. I continued to talk with the guys, and one particularly religious one began to wax elloquent about how wonderful his fellowship that he belonged to was and all the great people and things they had in their history. I looked at him straight in the eye and said, &ldquo;That&rsquo;s all great, but what about you? Have you been able to make peace with God?&rdquo; &ldquo;No, of course not&rdquo; he responded, a little flustered, and explained how they&rsquo;ve been taught that Satan will always be assaulting them condemnation and doubt until the end of their lives. I gladly looked at all of them and said &ldquo;See, that&rsquo;s the thing. I don&rsquo;t have any doubt or condemnation. It&rsquo;s all gone because Jesus died to take it away!&rdquo; The guy sitting across from me was a little perplexed, &ldquo;Who says that all your sins are forgiven and you&rsquo;re on good terms with God. Is there anyone who can tell you that?&rdquo; &ldquo;God tells me.&rdquo; I said confidently. &ldquo;What?!&rdquo; he responded in shock, &ldquo;You mean God&rsquo;s actually communicated with you??!!&rdquo; The conversation ended around that point, and they went off probably thinking I was a little nuts. But if they do grow hungry for that salvation and peace that I talked about, they now have something freshly planted into their brains that they can grab on to. :-) Years ago I couldn&rsquo;t even imagine having conversations like this with random guys in crowded parks. God gladly and graciously teaches his people to reveal the depths of his mercy and grace that he&rsquo;s stored up in the simple story of Christ. He calls his servants forward into new places, languages, and cultures and turns the timid into powerful preachers. Trust him." property="og:description">
+  <meta content="" property="og:url">
+  <meta content="mark4.co" property="og:site_name">
+  <meta content="article" property="og:type">
+  <meta content="2014-07-31T00:00:00+00:00" property="article:published_time">
+  <meta content="summary" name="twitter:card">
+  <meta content="A Reaction to the Gospel: &ldquo;Did God Tell You That?!?&rdquo;" property="twitter:title">
+  <meta content="@mark4co" name="twitter:site">
+  <meta content="@mark4co" name="twitter:creator">
+  <!-- End Jekyll SEO tag -->
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="wrapper">
+    <a class="site-title">
+     mark4.co
+    </a>
+    <span class="site-title">
+     &nbsp;/&nbsp;
+    </span>
+    <a class="site-title">
+     articles
+    </a>
+    <nav class="site-nav">
+     <a class="menu-icon">
+     </a>
+     <div class="trigger">
+      <a class="page-link">
+       Topics
+      </a>
+      <a class="page-link">
+       Blog
+      </a>
+      <a class="page-link">
+       FAQ
+      </a>
+     </div>
+    </nav>
+   </div>
+  </header>
+  <div class="page-content">
+   <div class="wrapper">
+    <article class="post" itemscope itemtype="">
+     <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+       A Reaction to the Gospel: "Did God Tell You That?!?"
+      </h1>
+      <p class="post-meta">
+       <time datetime="2014-07-31T00:00:00+00:00" itemprop="datePublished">
+        Jul 31, 2014
+       </time>
+      </p>
+     </header>
+     <div class="post-content" itemprop="articleBody">
+      <p>
+       This Ramadan I really enjoyed getting out and talking to the heaps of very friendly people that were out breaking their fast and lounging around late into the night. To give you a feel of what talking to these people is like, here&rsquo;s something that happened last week.
+      </p>
+      <p>
+       While walking through the busy park with my friend, I felt pulled towards a group of guys sitting in the midst of a cluster of people and benches. To be truthful, I was pretty doubtful anything good would happen because one of them looked exactly like the kind of guy who would not be very interested or friendly at all.
+      </p>
+      <p>
+       I started to tell him and his 3 friends about what I believed about God and what Jesus did for me. They leaned in and eagerly listened as I went on and on about Jesus&rsquo; love and sacrifice on the cross.
+      </p>
+      <p>
+       Years ago I couldn&rsquo;t even imagine having conversations like this with random guys in crowded parks. God gladly and graciously teaches his people to reveal the depths of his mercy and grace that he&rsquo;s stored up in the simple story of Christ.
+      </p>
+     </div>
+    </article>
+    <p class="sharing-text">
+     Share this on...
+    </p>
+    <div style="margin-bottom: 3em;">
+     <ul class="rrssb-buttons rrssb-1 large-format" style="font-size: 17.4167px;">
+      <li class="rrssb-facebook" data-initwidth="33.333333333333336" data-size="72" style="width: 33.3333%;">
+       <!--  Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header:
+            https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+       <a class="popup">
+        <span class="rrssb-icon">
+        </span>
+        <span class="rrssb-text">
+         facebook
+        </span>
+       </a>
+      </li>
+      <li class="rrssb-twitter" data-initwidth="33.333333333333336" data-size="60" style="width: 33.3333%;">
+       <!-- Replace href with your Meta and URL information  -->
+       <a class="popup">
+        <span class="rrssb-icon">
+        </span>
+        <span class="rrssb-text">
+         twitter
+        </span>
+       </a>
+      </li>
+      <li class="rrssb-linkedin" data-initwidth="33.333333333333336" data-size="64" style="width: 33.3333%;">
+       <!-- Replace href with your meta and URL information -->
+       <a class="popup">
+        <span class="rrssb-icon">
+        </span>
+        <span class="rrssb-text">
+         linkedin
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div id="disqus_recommendations" style="margin-bottom: 12px;">
+    </div>
+    <div id="disqus_thread">
+    </div>
+    <noscript>
+     Please enable JavaScript to view the
+     <a rel="nofollow">
+      comments powered by Disqus.
+     </a>
+    </noscript>
+    <h2>
+     Related Posts
+    </h2>
+    <h3>
+     <a>
+      When Did We Lose Evangelism in Missions?
+      <small>
+       19 Nov 2019
+      </small>
+     </a>
+    </h3>
+    <h3>
+     <a>
+      Every Time You Go Out...
+      <small>
+       28 Aug 2019
+      </small>
+     </a>
+    </h3>
+    <h3>
+     <a>
+      Reaching the Unreached is Like Playing Hockey
+      <small>
+       05 Jul 2019
+      </small>
+     </a>
+    </h3>
+    <h2>
+     <a>
+      Other articles...
+     </a>
+    </h2>
+   </div>
+  </div>
+ </body>
+</html>

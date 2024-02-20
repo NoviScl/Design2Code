@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html xml:lang="en">
+ <head>
+  <style>
+   /* -----------------------------------------------------------------------
+
+
+ Blueprint CSS Framework 1.0.1
+ http://blueprintcss.org
+
+   * Copyright (c) 2007-Present. See LICENSE for more info.
+   * See README for instructions on how to use Blueprint.
+   * For credits and origins, see AUTHORS.
+   * This is a compressed file. See the sources in the 'src' directory.
+
+----------------------------------------------------------------------- */
+
+/* reset.css */
+html {margin:0;padding:0;border:0;}
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section {display:block;}
+body {line-height:1.5;background:white;}
+table {border-collapse:separate;border-spacing:0;}
+caption, th, td {text-align:left;font-weight:normal;float:none !important;}
+table, th, td {vertical-align:middle;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';}
+blockquote, q {quotes:"" "";}
+a img {border:none;}
+:focus {outline:0;}
+
+/* typography.css */
+html {font-size:100.01%;}
+body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
+h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
+h2 {font-size:2em;margin-bottom:0.75em;}
+h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+p {margin:0 0 1.5em;}
+.left {float:left !important;}
+p .left {margin:1.5em 1.5em 1.5em 0;padding:0;}
+.right {float:right !important;}
+p .right {margin:1.5em 0 1.5em 1.5em;padding:0;}
+a:focus, a:hover {color:#09f;}
+a {color:#06c;text-decoration:underline;}
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+strong, dfn {font-weight:bold;}
+em, dfn {font-style:italic;}
+sup, sub {line-height:0;}
+abbr, acronym {border-bottom:1px dotted #666;}
+address {margin:0 0 1.5em;font-style:italic;}
+del {color:#666;}
+pre {margin:1.5em 0;white-space:pre;}
+pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
+li ul, li ol {margin:0;}
+ul, ol {margin:0 1.5em 1.5em 0;padding-left:1.5em;}
+ul {list-style-type:disc;}
+ol {list-style-type:decimal;}
+dl {margin:0 0 1.5em 0;}
+dl dt {font-weight:bold;}
+dd {margin-left:1.5em;}
+table {margin-bottom:1.4em;width:100%;}
+th {font-weight:bold;}
+thead th {background:#c3d9ff;}
+th, td, caption {padding:4px 10px 4px 5px;}
+tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
+tfoot {font-style:italic;}
+caption {background:#eee;}
+.small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
+.large {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}
+.hide {display:none;}
+.quiet {color:#666;}
+.loud {color:#000;}
+.highlight {background:#ff0;}
+.added {background:#060;color:#fff;}
+.removed {background:#900;color:#fff;}
+.first {margin-left:0;padding-left:0;}
+.last {margin-right:0;padding-right:0;}
+.top {margin-top:0;padding-top:0;}
+.bottom {margin-bottom:0;padding-bottom:0;}
+
+/* forms.css */
+label {font-weight:bold;}
+fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
+legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
+fieldset, #IE8#HACK {padding-top:1.4em;}
+legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea {background-color:#fff;border:1px solid #bbb;color:#000;}
+input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus, input.text:focus, input.title:focus, textarea:focus {border-color:#666;}
+select {background-color:#fff;border-width:1px;border-style:solid;}
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:0.5em 0;}
+input.text, input.title {width:300px;padding:5px;}
+input.title {font-size:1.5em;}
+textarea {width:390px;height:250px;padding:5px;}
+form.inline {line-height:3;}
+form.inline p {margin-bottom:0;}
+.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+.error a, .alert a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}
+
+/* grid.css */
+.container {width:950px;margin:0 auto;}
+.showgrid {background:url(src/grid.png);}
+.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;}
+.last {margin-right:0;}
+.span-1 {width:30px;}
+.span-2 {width:70px;}
+.span-3 {width:110px;}
+.span-4 {width:150px;}
+.span-5 {width:190px;}
+.span-6 {width:230px;}
+.span-7 {width:270px;}
+.span-8 {width:310px;}
+.span-9 {width:350px;}
+.span-10 {width:390px;}
+.span-11 {width:430px;}
+.span-12 {width:470px;}
+.span-13 {width:510px;}
+.span-14 {width:550px;}
+.span-15 {width:590px;}
+.span-16 {width:630px;}
+.span-17 {width:670px;}
+.span-18 {width:710px;}
+.span-19 {width:750px;}
+.span-20 {width:790px;}
+.span-21 {width:830px;}
+.span-22 {width:870px;}
+.span-23 {width:910px;}
+.span-24 {width:950px;margin-right:0;}
+input.span-1, textarea.span-1, input.span-2, textarea.span-2, input.span-3, textarea.span-3, input.span-4, textarea.span-4, input.span-5, textarea.span-5, input.span-6, textarea.span-6, input.span-7, textarea.span-7, input.span-8, textarea.span-8, input.span-9, textarea.span-9, input.span-10, textarea.span-10, input.span-11, textarea.span-11, input.span-12, textarea.span-12, input.span-13, textarea.span-13, input.span-14, textarea.span-14, input.span-15, textarea.span-15, input.span-16, textarea.span-16, input.span-17, textarea.span-17, input.span-18, textarea.span-18, input.span-19, textarea.span-19, input.span-20, textarea.span-20, input.span-21, textarea.span-21, input.span-22, textarea.span-22, input.span-23, textarea.span-23, input.span-24, textarea.span-24 {border-left-width:1px;border-right-width:1px;padding-left:5px;padding-right:5px;}
+input.span-1, textarea.span-1 {width:18px;}
+input.span-2, textarea.span-2 {width:58px;}
+input.span-3, textarea.span-3 {width:98px;}
+input.span-4, textarea.span-4 {width:138px;}
+input.span-5, textarea.span-5 {width:178px;}
+input.span-6, textarea.span-6 {width:218px;}
+input.span-7, textarea.span-7 {width:258px;}
+input.span-8, textarea.span-8 {width:298px;}
+input.span-9, textarea.span-9 {width:338px;}
+input.span-10, textarea.span-10 {width:378px;}
+input.span-11, textarea.span-11 {width:418px;}
+input.span-12, textarea.span-12 {width:458px;}
+input.span-13, textarea.span-13 {width:498px;}
+input.span-14, textarea.span-14 {width:538px;}
+input.span-15, textarea.span-15 {width:578px;}
+input.span-16, textarea.span-16 {width:618px;}
+input.span-17, textarea.span-17 {width:658px;}
+input.span-18, textarea.span-18 {width:698px;}
+input.span-19, textarea.span-19 {width:738px;}
+input.span-20, textarea.span-20 {width:778px;}
+input.span-21, textarea.span-21 {width:818px;}
+input.span-22, textarea.span-22 {width:858px;}
+input.span-23, textarea.span-23 {width:898px;}
+input.span-24, textarea.span-24 {width:938px;}
+.append-1 {padding-right:40px;}
+.append-2 {padding-right:80px;}
+.append-3 {padding-right:120px;}
+.append-4 {padding-right:160px;}
+.append-5 {padding-right:200px;}
+.append-6 {padding-right:240px;}
+.append-7 {padding-right:280px;}
+.append-8 {padding-right:320px;}
+.append-9 {padding-right:360px;}
+.append-10 {padding-right:400px;}
+.append-11 {padding-right:440px;}
+.append-12 {padding-right:480px;}
+.append-13 {padding-right:520px;}
+.append-14 {padding-right:560px;}
+.append-15 {padding-right:600px;}
+.append-16 {padding-right:640px;}
+.append-17 {padding-right:680px;}
+.append-18 {padding-right:720px;}
+.append-19 {padding-right:760px;}
+.append-20 {padding-right:800px;}
+.append-21 {padding-right:840px;}
+.append-22 {padding-right:880px;}
+.append-23 {padding-right:920px;}
+.prepend-1 {padding-left:40px;}
+.prepend-2 {padding-left:80px;}
+.prepend-3 {padding-left:120px;}
+.prepend-4 {padding-left:160px;}
+.prepend-5 {padding-left:200px;}
+.prepend-6 {padding-left:240px;}
+.prepend-7 {padding-left:280px;}
+.prepend-8 {padding-left:320px;}
+.prepend-9 {padding-left:360px;}
+.prepend-10 {padding-left:400px;}
+.prepend-11 {padding-left:440px;}
+.prepend-12 {padding-left:480px;}
+.prepend-13 {padding-left:520px;}
+.prepend-14 {padding-left:560px;}
+.prepend-15 {padding-left:600px;}
+.prepend-16 {padding-left:640px;}
+.prepend-17 {padding-left:680px;}
+.prepend-18 {padding-left:720px;}
+.prepend-19 {padding-left:760px;}
+.prepend-20 {padding-left:800px;}
+.prepend-21 {padding-left:840px;}
+.prepend-22 {padding-left:880px;}
+.prepend-23 {padding-left:920px;}
+.border {padding-right:4px;margin-right:5px;border-right:1px solid #ddd;}
+.colborder {padding-right:24px;margin-right:25px;border-right:1px solid #ddd;}
+.pull-1 {margin-left:-40px;}
+.pull-2 {margin-left:-80px;}
+.pull-3 {margin-left:-120px;}
+.pull-4 {margin-left:-160px;}
+.pull-5 {margin-left:-200px;}
+.pull-6 {margin-left:-240px;}
+.pull-7 {margin-left:-280px;}
+.pull-8 {margin-left:-320px;}
+.pull-9 {margin-left:-360px;}
+.pull-10 {margin-left:-400px;}
+.pull-11 {margin-left:-440px;}
+.pull-12 {margin-left:-480px;}
+.pull-13 {margin-left:-520px;}
+.pull-14 {margin-left:-560px;}
+.pull-15 {margin-left:-600px;}
+.pull-16 {margin-left:-640px;}
+.pull-17 {margin-left:-680px;}
+.pull-18 {margin-left:-720px;}
+.pull-19 {margin-left:-760px;}
+.pull-20 {margin-left:-800px;}
+.pull-21 {margin-left:-840px;}
+.pull-22 {margin-left:-880px;}
+.pull-23 {margin-left:-920px;}
+.pull-24 {margin-left:-960px;}
+.pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12, .pull-13, .pull-14, .pull-15, .pull-16, .pull-17, .pull-18, .pull-19, .pull-20, .pull-21, .pull-22, .pull-23, .pull-24 {float:left;position:relative;}
+.push-1 {margin:0 -40px 1.5em 40px;}
+.push-2 {margin:0 -80px 1.5em 80px;}
+.push-3 {margin:0 -120px 1.5em 120px;}
+.push-4 {margin:0 -160px 1.5em 160px;}
+.push-5 {margin:0 -200px 1.5em 200px;}
+.push-6 {margin:0 -240px 1.5em 240px;}
+.push-7 {margin:0 -280px 1.5em 280px;}
+.push-8 {margin:0 -320px 1.5em 320px;}
+.push-9 {margin:0 -360px 1.5em 360px;}
+.push-10 {margin:0 -400px 1.5em 400px;}
+.push-11 {margin:0 -440px 1.5em 440px;}
+.push-12 {margin:0 -480px 1.5em 480px;}
+.push-13 {margin:0 -520px 1.5em 520px;}
+.push-14 {margin:0 -560px 1.5em 560px;}
+.push-15 {margin:0 -600px 1.5em 600px;}
+.push-16 {margin:0 -640px 1.5em 640px;}
+.push-17 {margin:0 -680px 1.5em 680px;}
+.push-18 {margin:0 -720px 1.5em 720px;}
+.push-19 {margin:0 -760px 1.5em 760px;}
+.push-20 {margin:0 -800px 1.5em 800px;}
+.push-21 {margin:0 -840px 1.5em 840px;}
+.push-22 {margin:0 -880px 1.5em 880px;}
+.push-23 {margin:0 -920px 1.5em 920px;}
+.push-24 {margin:0 -960px 1.5em 960px;}
+.push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12, .push-13, .push-14, .push-15, .push-16, .push-17, .push-18, .push-19, .push-20, .push-21, .push-22, .push-23, .push-24 {float:left;position:relative;}
+div.prepend-top, .prepend-top {margin-top:1.5em;}
+div.append-bottom, .append-bottom {margin-bottom:1.5em;}
+.box {padding:1.5em;margin-bottom:1.5em;background:#e5eCf9;}
+hr {background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:1px;margin:0 0 17px;border:none;}
+hr.space {background:#fff;color:#fff;visibility:hidden;}
+.clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
+.clearfix, .container {display:block;}
+.clear {clear:both;}
+
+
+/* -----------------------------------------------------------------------
+
+
+ Blueprint CSS Framework 1.0.1
+ http://blueprintcss.org
+
+   * Copyright (c) 2007-Present. See LICENSE for more info.
+   * See README for instructions on how to use Blueprint.
+   * For credits and origins, see AUTHORS.
+   * This is a compressed file. See the sources in the 'src' directory.
+
+----------------------------------------------------------------------- */
+
+/* print.css */
+body {line-height:1.5;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;color:#000;background:none;font-size:10pt;}
+.container {background:none;}
+hr {background:#ccc;color:#ccc;width:100%;height:2px;margin:2em 0;padding:0;border:none;}
+hr.space {background:#fff;color:#fff;visibility:hidden;}
+h1, h2, h3, h4, h5, h6 {font-family:"Helvetica Neue", Arial, "Lucida Grande", sans-serif;}
+code {font:.9em "Courier New", Monaco, Courier, monospace;}
+a img {border:none;}
+p img.top {margin-top:0;}
+blockquote {margin:1.5em;padding:1em;font-style:italic;font-size:.9em;}
+.small {font-size:.9em;}
+.large {font-size:1.1em;}
+.quiet {color:#999;}
+.hide {display:none;}
+a:link, a:visited {background:transparent;font-weight:700;text-decoration:underline;}
+a:link:after, a:visited:after {content:" (" attr(href) ")";font-size:90%;}
+
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizYRExUiTo99u79D0e0x8mN.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizdRExUiTo99u79D0e8fOydLxUY.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79D0KEwA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh0O6tKA.ttf) format('truetype');
+}
+
+
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkWVAexQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkyFjWVAexQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4gaVc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgshZ1x4gaVc.ttf) format('truetype');
+}
+
+
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/droidsans/v18/SlGVmQWMvZQIdix7AFxXkHNSaA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/droidsans/v18/SlGWmQWMvZQIdix7AFxXmMh3eDs1Yg.ttf) format('truetype');
+}
+
+
+
+
+	#ps_socialbutton{
+		background:transparent url("../images/share.png") no-repeat;
+		width:67px;
+		height:23px;
+		cursor:pointer;
+	}
+
+	#ps_websites {
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		z-index: 9999992;
+	}
+	
+	#ps_websites .ps_label {
+		color: #fff;
+		display: none;
+		font-size: 24px;
+		left: 0;
+		position: absolute;
+		top: 0;
+		white-space: nowrap;
+    text-shadow:
+    -1px -1px 2px rgba(40,40,40, 0.45),
+    1px -1px 2px rgba(40,40,40, 0.45),
+    -1px 1px 2px rgba(40,40,40, 0.45),
+    1px 1px 2px rgba(40,40,40, 0.45)
+	}
+	
+	#ps_websites ul {
+		list-style: none;
+		position: relative;
+		z-index: 1010;
+		width: 300px;
+	}
+	
+	#ps_websites li {
+		display: block;
+		float: left;
+		margin: 0 30px 40px 0;
+	}
+	
+	#ps_websites .ps_social_icon {
+		display: block;
+		cursor: pointer;
+	}
+	
+	#ps_overlay {
+		background: #000;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 9999991;
+	}
+
+
+/* sticky-footer.css */
+
+
+
+* {margin:0;padding:0;}
+
+html, body, #wrap {height: 100%;}
+
+body > #wrap {height: auto; min-height: 100%;}
+
+#main
+{
+	position:relative;
+    height: auto !important;
+    height: 100%;
+    min-height: 100% !important;
+    margin-bottom: -40px;   
+    *margin-bottom: -50px; /* IE 7 Hack http://webdesignerwall.com/tutorials/css-specific-for-internet-explorer */
+    overflow:hidden;
+}
+
+#footer
+{
+	position:relative;
+	display:block;
+    height: 40px; 
+}
+
+#push
+{
+	display:block;
+    height: 90px; /* This is footer's height + padding */
+}
+
+
+
+
+html, body {
+font-family: Arial, sans-serif;
+background: #FFF;
+}
+
+/*Always show vertical scroll bar */
+html {
+overflow: -moz-scrollbars-vertical;
+overflow-y: scroll;
+overflow-x: auto;
+}
+
+/*subtract the footer height from main div (height+margin)*/
+#main {
+	margin-bottom: -34px;
+}
+
+/*add the footer height from main div (height+margin), so content does not spill underneath footer*/
+#content {
+margin-bottom: 34px;
+}
+
+#contact {
+	width: 520px;
+}
+
+#header {
+	margin-top:16px;
+	margin-bottom:5px;
+}
+
+a,
+#menu li {
+	text-decoration:none;
+	color:#555;
+}
+
+a:hover,
+#menu li:hover {
+	color:#0099FF;
+}
+
+a.selected,
+#menu li.selected {
+	font-weight:bold;
+	color:#0099FF;
+}
+
+a.selected:hover,
+#menu li.selected:hover {
+	font-weight:bold;
+	color:#28a9ff;
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+ font-family: 'Droid Sans', Arial, sans-serif;
+ font-weight:bold;
+ color:#000;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a{
+ color:#000;
+}
+
+h1 {
+ font-size:24px;
+}
+
+h2 {
+ font-size:22px;
+}
+
+h3 {
+ font-size:20px;
+}
+
+h4 {
+ font-size:18px;
+}
+
+h4 {
+ font-size:28px;
+}
+
+
+#menu {
+ font-weight:500;
+ font-size:12px;
+ line-height:0.9em;
+ padding-right:15px;
+ -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+/*override the span 20 size, because of adding padding above*/
+.span-20 {
+	width:775px;
+}
+
+#menu ul,
+#menu li,
+#menu ol {
+	list-style:none;
+	margin:0;
+	padding:0;
+	cursor:pointer;
+}
+
+#menu li{
+	margin-bottom:0.65em;
+}
+
+#menu ol ol{
+	margin-left:20px;
+	display:none;
+}
+
+#menu ol:hover; {
+
+}
+
+#menu ol li a {
+	text-decoration:none;
+}
+
+
+
+#content h1,
+#content h2,
+#content h3,
+#content h4{
+ color:#666;
+ margin:0 0 5px 0;
+ padding:0;
+}
+
+#content h2 {
+ font-size:20px;
+}
+
+/*Overrides for blog*/
+#blog .post .title,
+#blog .post .title a{
+ font-size:20px;
+ font-family: 'Droid Sans', Arial, sans-serif;
+ font-weight:bold;
+ color:#666;
+}
+
+/*set color for img alt text*/
+img {
+	color:#FFF;
+}
+
+#content img {
+}
+
+
+#gallery img:hover {
+	opacity:0.65;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=65);
+}
+
+#gallery img {
+	opacity:1;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+    max-width:150px;
+    max-height:150px;
+}
+
+/*wrapper when displaying an image*/
+#image {
+ position:relative;
+ visibility:hidden;
+}
+
+#image a.nextimage{
+ position:absolute;
+ margin-top:25px;
+ margin-right:-44px;
+ right:0;
+ top:0;
+ display:inline-block;
+}
+
+#image a.previousimage{
+ position:absolute;
+ margin-top:25px;
+ margin-left:-35px;
+ left:0;
+ top:0;
+ display:inline-block;
+}
+
+#image a.nextimage:hover{
+        background-position: -7px;
+}
+
+#image a.previousimage:hover{
+        background-position: -7px;
+}
+#image a.nextimage{
+	width:35px;
+	height:37px;
+    background:url(../images/nav-next-small.png) no-repeat;
+    background-position: -42px;
+}
+#image a.previousimage{
+	width:35px;
+	height:37px;
+    background:url(../images/nav-prev-small.png) no-repeat;
+    background-position: -42px;
+}
+
+/*div for text for image*/
+#image_text {
+ position:relative;
+ width:200px;
+ min-height:35px;
+}
+
+#image_text #ps_socialbutton {
+position:absolute;
+top:0px;
+right:0px;
+display:block;
+margin:0;
+width:67px;
+height:23px;
+}
+
+.ecommerceFormButtons {
+margin-bottom:5px;
+}
+
+.ecommerceFormButtons div.addtocart {
+	float:left;
+	margin-right:2px;
+}
+
+.fb_edge_widget_with_comment span.fb_edge_comment_widget {
+left: -357px !important;
+top: -145px !important;
+}
+
+.connect_widget button_count {
+	left: -357px !important;
+}
+
+#image_text p.image_title {
+	font-weight:bold;
+	margin:0 0 5px 0;
+}
+
+
+#video {
+	margin-left:25px;
+}
+
+#footer {
+    background: #FFF;
+    height: auto;
+    line-height: 23px;
+    padding: 0;
+}
+
+#artistruncredit {
+	font-size:11px;
+}
+
+#artistruncredit {
+    height: 30px;
+    margin-top:4px;
+    line-height: 23px;
+    right:0px;
+    text-align:right;
+	/* IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	/* IE 5.5-7 */
+	filter: alpha(opacity=40);
+	/* Netscape */
+	-moz-opacity: 0.4;
+	/* Safari 1.x */
+	-khtml-opacity: 0.4;
+	/* Modern browsers */
+	opacity: 0.4;
+}
+
+
+
+#sociallinks {
+	
+}
+
+
+#sociallinks a {
+    background: url("images/social_icons.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 24px;
+    margin-left: 2px;
+    width: 24px;
+    text-decoration: none;
+}
+
+#sociallinks a.facebook{
+	background-position: 0 0;
+}
+
+#sociallinks a.twitter {
+    background-position: -24px 0;
+}
+
+#sociallinks a.youtube {
+    background-position: -48px 0;
+}
+
+#sociallinks a.linkedin {
+    background-position: -72px 0;
+}
+
+#sociallinks a.pinterest{
+    background-position: -96px 0;
+}
+
+#sociallinks a.flickr {
+    background-position: -120px 0;
+}
+
+#sociallinks a.tumblr {
+    background-position: -144px 0;
+}
+
+#sociallinks a.instagram {
+    background-position: -168px 0;
+}
+
+#sociallinks a.tiktok {
+    background-position: -192px 0;
+}
+  </style>
+  <!--[if lt IE 8]><![endif]-->
+  <meta content="noodp, noydir" name="robots">
+  <meta content="artistrunwebsite.com" name="generator">
+  <meta content="artistrunwebsite.com" name="publisher">
+  <meta content="Harry Stooshinoff" name="author">
+  <style media="screen, projection" type="text/css">
+   /*<![CDATA[*/
+#sold-dot {
+	display:inline-block;width:12px;height:12px;border-radius:6px;background:#f00;margin-left:0.5em;margin-top:0.2em;
+}   	 
+.sold-span {
+	float:left;
+}  	   	   	
+/*]]>*/
+  </style>
+  <style media="screen, projection" type="text/css">
+   /*<![CDATA[*/
+div#remotelogin, div#remotelogin h2.login, div#remotelogin h2.login a, div#remotelogin label {color:#222;}div#remotelogin a, div#remotelogin p.hint {color:#888;}a#artistlogin-icon { position:relative; background-image: url("/css/images/artist-login-lightbg.png"); width:8px; height:9px; display: inline-block; margin:0 0 0 0.3em; top:0.1em;}div#remotelogin a:hover {color:#0099FF;}html, body {background-color:#EDEDED;}img {color:#EDEDED;}#footer {background:transparent;}#header h1 {color:#555555;}#header h1 a {color:#555555;}#header h1 {font-size:24px;}#header h1 {font-weight:normal;}#header h1 {font-family:Arial,Arial,Helvetica,sansserif;}#page h2 {color:#616161;}#contact h2 {color:#616161;}#blog .post .title a {color:#616161;}#error h1, #error h2, #error h3 {color:#616161;}#blog h2.category {color:#616161;}#page h2, #contact h2, #blog .post .title a, #blog h2.category {line-height:15px;}#page h2 {font-size:15px;}#contact h2 {font-size:15px;}#blog .post .title a {font-size:15px;}#error h1, #error h2, #error h3 {font-size:15px;}#blog h2.category {font-size:15px;}#page h2 {font-weight:bold;}#contact h2 {font-weight:bold;}#blog .post .title a {font-weight:bold;}#error h1, #error h2, #error h3 {font-weight:bold;}#blog h2.category {font-weight:bold;}#page h2 {font-family:Arial,Arial,Helvetica,sansserif;}#contact h2 {font-family:Arial,Arial,Helvetica,sansserif;}#blog .post .title a {font-family:Arial,Arial,Helvetica,sansserif;}#error h1, #error h2, #error h3 {font-family:Arial,Arial,Helvetica,sansserif;}#blog h2.category {font-family:Arial,Arial,Helvetica,sansserif;}#blog, #blog .content p {color:#382C2C;}#page, #page p {color:#382C2C;}#image, #image p {color:#382C2C;}#contact, #contact p {color:#382C2C;}#error, #error p {color:#382C2C;}#sidebar .portlet-title {color:#382C2C;}#blog, #blog .content p {font-size:11px;}#page, #page p {font-size:11px;}#image, #image p {font-size:11px;}#contact, #contact p {font-size:11px;}#error, #error p {font-size:11px;}#sidebar .portlet-title {font-size:11px;}#blog, #blog .content p {font-weight:normal;}#page, #page p {font-weight:normal;}#image, #image p {font-weight:normal;}#contact, #contact p {font-weight:normal;}#error, #error p {font-weight:normal;}#sidebar .portlet-title {font-weight:normal;}#blog, #blog .content p {font-family:Arial,Arial,Helvetica,sansserif;}#page, #page p {font-family:Arial,Arial,Helvetica,sansserif;}#image, #image p {font-family:Arial,Arial,Helvetica,sansserif;}#contact, #contact p {font-family:Arial,Arial,Helvetica,sansserif;}#error, #error p {font-family:Arial,Arial,Helvetica,sansserif;}#sidebar .portlet-title {font-family:Arial,Arial,Helvetica,sansserif;}#menu a {color:#616161;}#menu li.folder {color:#616161;}#footer #artistruncredit a {color:#616161;}#footer #artistruncredit {color:#616161;}#sidebar .portlet-content ul li, #sidebar .portlet-content ul li a {color:#616161;}#blog a {color:#616161;}#page a {color:#616161;}#image a {color:#616161;}.ecommerceText a {color:#616161;}#blog a {text-decoration:none;}#page a {text-decoration:none;}#image a {text-decoration:none;}.ecommerceText a {text-decoration:none;}a.selected, #menu a.selected {color:#0099FF;}#menu a:hover {color:#0099FF;}#menu li.folder:hover {color:#0099FF;}#blog a:hover {color:#0099FF;}#page a:hover {color:#0099FF;}#image a:hover {color:#0099FF;}#footer #artistruncredit a:hover {color:#0099FF;}#header h1 a:hover {color:#0099FF;}.ecommerceText a:hover {color:#0099FF;}#sidebar .portlet-content ul li a:hover {color:#0099FF;}#menu {font-size:11px;}#sidebar .portlet-content ul li a {font-size:11px;}#menu ol li a {font-size:11px;}#menu li.folder {font-size:11px;}#sidebar .portlet-content ul li a {font-weight:normal;}#menu ol li a {font-weight:normal;}#menu li.folder {font-weight:normal;}#sidebar .portlet-content ul li a {text-decoration:none;}#menu ol li a {text-decoration:none;}#menu li.folder {text-decoration:none;}#sidebar .portlet-content ul li a {font-family:Arial,Arial,Helvetica,sansserif;}#menu ol li a {font-family:Arial,Arial,Helvetica,sansserif;}#menu li.folder {font-family:Arial,Arial,Helvetica,sansserif;}
+/*]]>*/
+  </style>
+  <style media="screen, projection" type="text/css">
+   /*<![CDATA[*/
+  iframe[name='google_conversion_frame'] {
+    height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin-top: -13px;
+    float: left;
+	visibility:hidden;
+}
+
+/*]]>*/
+  </style>
+  <title>
+   Far Stand, October 26 - Harry Stooshinoff - Artist
+  </title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="en" name="language">
+  <meta content="Far Stand, October 26. Acrylic, collage, on thin gessoed Masonite panel 8 x 8 inches, signed lightly in pencil. No framing on this piece is necessary! The panel painting is attached with 100% silicone adhesive (removable), to a recessed wooden back support, 1 inch deep. The back support is notched at the top to hang perfectly flat on your wall from a screw or nail....no other hanging apparatus is needed. This method of presentation pushes the piece visually forward, without the visual distraction inherent in most frames. Should you wish to present this piece in another way in the future, the painting can be removed with no damage to the panel. View the last 3 photos to see how this presentation method looks from the back, and on the wall." name="description">
+  <meta content="Harry Stooshinoff, paintings, drawings, prints, collages, abstract paintings" name="keywords">
+  <meta content="no" http-equiv="imagetoolbar">
+  <meta content="" property="og:image">
+  <meta content="Acrylic, collage, on thin gessoed Masonite panel 8 x 8 inches, signed lightly in pencil. No framing on this piece is necessary! The panel painting is attached with 100% silicone adhesive (removable), to a recessed wooden back support, 1 inch deep. The back support is notched at the top to hang perfectly flat on your wall from a screw or nail....no other hanging apparatus is needed. This method of presentation pushes the piece visually forward, without the visual distraction inherent in most fram ..." property="og:description">
+  <meta content="summary_large_image" property="twitter:card">
+  <meta content="Far Stand, October 26 - Harry Stooshinoff - Artist" property="og:title">
+  <meta content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9" http-equiv="origin-trial">
+ </head>
+ <body>
+  <div class="container" id="main">
+   <div class="span-24 last" id="header">
+    <h1>
+     <a>
+      Harry Stooshinoff - Artist
+     </a>
+    </h1>
+   </div>
+   <div class="span-4" id="menu">
+    <ol>
+     <li>
+      <a target="_blank">
+       Join Newsletter
+      </a>
+     </li>
+     <li class="folder">
+      <span>
+       Galleries
+      </span>
+     </li>
+     <ol style="display: block;">
+      <li>
+       <a class="selected" id="12239">
+        Sold Artworks, September 2016 - August 2021
+       </a>
+      </li>
+      <li>
+       <a id="18028">
+        Sold Artworks, August 2021 Forward
+       </a>
+      </li>
+      <li>
+       <a id="9396">
+        Sold Artworks, to September 2016
+       </a>
+      </li>
+      <li>
+       <a id="9381">
+        Winter Landscape Paintings
+       </a>
+      </li>
+     </ol>
+     <li class="folder">
+      <span>
+       About
+      </span>
+     </li>
+     <ol style="display: none;">
+      <li>
+       <a>
+        Biography and Statement
+       </a>
+      </li>
+      <li>
+       <a>
+        Curriculum Vitae
+       </a>
+      </li>
+      <li>
+       <a>
+        Text on Stooshinoff Painting Process.....A Continuous Critique
+       </a>
+      </li>
+     </ol>
+     <li class="folder">
+      <span>
+       Links
+      </span>
+     </li>
+     <ol style="display: none;">
+      <li>
+       <a target="_blank">
+        Paintbox on Etsy
+       </a>
+      </li>
+      <li>
+       <a target="_blank">
+        You Tube Stooshinoff videos (recent)
+       </a>
+      </li>
+      <li>
+       <a target="_blank">
+        You Tube Stooshinoff videos (less recent)
+       </a>
+      </li>
+      <li>
+       <a target="_blank">
+        On Facebook
+       </a>
+      </li>
+     </ol>
+    </ol>
+   </div>
+   <div class="span-20 last" id="content">
+    <div id="image" style="user-select: none; visibility: visible; opacity: 0.901409; width: 518px;">
+     <div class="gallery_name" id="12239">
+     </div>
+     <a>
+      <img alt="Acrylic painting Far Stand, October 26 by Harry Stooshinoff" src="rick.jpg" style="user-select: none; width: 518px; height: 515px;" title="Far Stand, October 26">
+     </a>
+     <div id="image_text" style="width: 518px;">
+      <div class="ecommerceFormButtons">
+      </div>
+      <p class="image_title" style="width: 458px;">
+       Far Stand, October 26
+      </p>
+      <p class="image_description" style="width: 458px;">
+       Acrylic, collage, on thin gessoed Masonite panel 8 x 8 inches, signed lightly in pencil. No framing on this piece is necessary!
+      </p>
+      <div class="ecommerceText">
+       <p id="pricestatus">
+       </p>
+       <div class="sold-span">
+        SOLD
+       </div>
+       <div id="sold-dot">
+       </div>
+       <p>
+       </p>
+      </div>
+      <div id="ps_socialbutton">
+      </div>
+      <a class="previousimage" title="Previous Image">
+      </a>
+      <a class="nextimage" title="Next Image">
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container" id="footer">
+   <div class="span-8" id="sociallinks">
+    <a class="facebook" rel="me" target="_blank" title="Follow me on Facebook">
+     &nbsp;
+    </a>
+    <a class="twitter" rel="me" target="_blank" title="Follow me on Twitter">
+     &nbsp;
+    </a>
+    <a class="youtube" rel="me" target="_blank" title="Follow me on Youtube">
+     &nbsp;
+    </a>
+    <a class="pinterest" rel="me" target="_blank" title="Follow me on Pinterest">
+     &nbsp;
+    </a>
+    <a class="flickr" rel="me" target="_blank" title="Follow me on Flickr">
+     &nbsp;
+    </a>
+    &nbsp;
+   </div>
+   <div class="prepend-10 span-6 last" id="artistruncredit">
+    <a title="Log in to edit your website | Make your own artist website">
+     my
+     <span style="font-size:0px">
+      &nbsp;
+     </span>
+     .
+     <span style="font-size:0px">
+      &nbsp;
+     </span>
+     artist
+     <span style="font-size:0px">
+      &nbsp;
+     </span>
+     run
+     <span style="font-size:0px">
+      &nbsp;
+     </span>
+     website
+    </a>
+    <a id="artistlogin-icon">
+    </a>
+   </div>
+  </div>
+  <noscript>
+   <img height="0" src="rick.jpg" style="display:none; visibility: hidden;" width="0">
+  </noscript>
+  <noscript>
+   <img height="1" src="rick.jpg" style="display:none" width="1">
+  </noscript>
+  <div id="protector" style="position: absolute; z-index: 99999; width: auto; height: auto; padding: 8px; text-align: center; color: rgb(255, 255, 255); font: 14px Verdana, Arial, Helvetica, sans-serif; background: rgb(34, 34, 34); display: none; border: 1px solid rgb(153, 153, 153); border-radius: 5px; text-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px; user-select: none; cursor: default;">
+   &copy; Harry Stooshinoff.
+   <br>
+   All rights reserved.
+  </div>
+  <div id="batBeacon490715933466" style="width: 0px; height: 0px; display: none; visibility: hidden;">
+   <img alt height="0" id="batBeacon306510442717" src="rick.jpg" style="width: 0px; height: 0px; display: none; visibility: hidden;" width="0">
+  </div>
+ </body>
+</html>

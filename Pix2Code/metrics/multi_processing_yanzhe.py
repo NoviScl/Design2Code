@@ -60,23 +60,15 @@ test_dirs = { \
              # "finetune-cogagent-chat-02-01-14-05_500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_500",\
              # "finetune-cogagent-chat-01-18-18-28": "../../predictions_100/finetune-cogagent-chat-01-18-18-28", \
              # "finetune-cogagent-chat-01-28-23-02": "../../predictions_100/finetune-cogagent-chat-01-28-23-02", \
-             # "websight": "../../predictions_100/websight", \
-             # "finetuned_v0": "../../predictions_100/finetuned_v0", \
-             # "finetune-cogagent-chat-02-05-00-02_3000": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_3000",\
-             # "finetune-cogagent-chat-02-07-13-24_1500_marker": "../../predictions_100/finetune-cogagent-chat-02-07-13-24_1500_marker",\
-             # "finetune-cogagent-chat-02-07-13-24_2000_marker": "../../predictions_100/finetune-cogagent-chat-02-07-13-24_2000_marker",\
-             # "finetune-cogagent-chat-02-07-13-24_2500_marker": "../../predictions_100/finetune-cogagent-chat-02-07-13-24_2500_marker",\
-             # "finetune-cogagent-chat-02-05-00-02_4000_marker": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000_marker",\
-             # "finetune-cogagent-chat-02-09-16-32_1500_marker": "../../predictions_100/finetune-cogagent-chat-02-09-16-32_1500_marker",\
-             # "finetune-cogagent-chat-02-09-16-32_2000_marker": "../../predictions_100/finetune-cogagent-chat-02-09-16-32_2000_marker",\
-             # "finetune-cogagent-chat-02-09-16-32_2499_marker": "../../predictions_100/finetune-cogagent-chat-02-09-16-32_2499_marker",\
-             "finetune-cogagent-chat-02-11-02-39_1000_marker": "../../predictions_100/finetune-cogagent-chat-02-11-02-39_1000_marker",\
-             "finetune-cogagent-chat-02-11-02-39_2000_marker": "../../predictions_100/finetune-cogagent-chat-02-11-02-39_2000_marker",\
-             "finetune-cogagent-chat-02-11-02-39_3000_marker": "../../predictions_100/finetune-cogagent-chat-02-11-02-39_3000_marker",\
-             "finetune-cogagent-chat-02-11-02-39_4000_marker": "../../predictions_100/finetune-cogagent-chat-02-11-02-39_4000_marker",\
-             "finetune-cogagent-chat-02-11-02-39_5000_marker": "../../predictions_100/finetune-cogagent-chat-02-11-02-39_5000_marker",\
+             "websight": "../../predictions_100/websight", \
+             "finetune-cogagent-chat-02-05-00-02_4000": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000",\
+             "finetune-cogagent-chat-02-05-00-02_5000": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_5000",\
+             "finetune-cogagent-chat-02-05-00-02_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000_05_11",\
+             "finetune-cogagent-chat-02-05-00-02_5000_05_11": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_5000_05_11",\
+             "finetune-cogagent-chat-02-15-17-32_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_4000_05_11",\
+             "finetune-cogagent-chat-02-15-17-32_5000_05_11": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_5000_05_11",\
             }
-file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-11-02-39_5000_marker") if item.endswith(".html") and item != "102.html"]
+file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000") if item.endswith(".html")]
 # """
 
 print(len(file_name_list))

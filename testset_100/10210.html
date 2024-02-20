@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <style>
+   .highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+
+
+
+@font-face {
+    font-family: "Ovo";
+    src: url(../assets/Ovo-Regular.otf);
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    src: url(../assets/Quicksand-Regular.otf);
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 300;
+    src: url(../assets/Quicksand-Light.otf);
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: italic;
+    font-weight: 300;
+    src: url(../assets/Quicksand-LightItalic.otf);
+}
+
+@font-face {
+    font-family: "Crimson Text";
+    font-style: normal;
+    src: url(../assets/CrimsonText-Roman.ttf);
+}
+
+@font-face {
+    font-family: "Crimson Text";
+    font-style: italic;
+    src: url(../assets/CrimsonText-Italic.ttf);
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    font-weight: normal;
+    src: url(../assets/SourceCodePro-Regular.otf);
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    font-weight: bold;
+    src: url(../assets/SourceCodePro-Semibold.otf);
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    font-weight: lighter;
+    src: url(../assets/SourceCodePro-Light.otf);
+}
+
+:root {
+    /* TODO color-scheme: light dark; */
+    --font-face-header: "Ovo", "Palatino", "Georgia", sans-serif;
+    --font-face-header-forced: "Ovo";
+    --font-face-secondary: "Quicksand", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica-Light", "Helvetica Neue", Helvetica, Calibri, Arial, sans-serif;
+    --font-face-secondary-forced: "Quicksand";
+    --font-face-main: "Crimson Text", "Linden Hill", "Palatino", serif;
+    --font-face-main-forced: "Crimson Text";
+    --font-face-mono: "Source Code Pro", "Menlo", "Consolas", monospace;
+    --font-face-mono-forced: "Source Code Pro";
+    --background-color-main: hsl(165, 33%, 98%);
+    --background-color-subtle: hsl(185, 10%, 97%);
+    --background-color-inverse: hsl(185, 10%, 12%);
+    --background-color-header: hsl(133, 15%, 82%);
+    --text-color-main: hsl(185, 10%, 24%);
+    --text-color-inverse: hsl(133, 15%, 82%);
+    --text-color-secondary: hsl(173, 7%, 54%);
+    --text-color-warn: hsl(28, 100%, 63%);
+    --link-color-main: hsl(202, 85%, 29%);
+    --link-color-main-active: hsl(208, 100%, 52%);
+    --link-color-secondary: var(--text-color-secondary);
+    --link-color-secondary-active: hsl(208, 50%, 52%);
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+html,
+button,
+input,
+select,
+textarea,
+body,
+h1 a:link, h1 a:visited, header h1 a:hover, header h1 a:active {
+    color: var(--text-color-main);
+}
+
+a { /* inspired by inessential.com */
+    transition: all 0.2s ease-in-out;
+}
+
+a:link, a:visited { color: var(--link-color-main); }
+a:hover, a:active, h1 a:hover, h1 a:active { color: var(--link-color-main-active); }
+
+body {
+    margin: 0;
+    font-size: 14pt;
+    line-height: 1.3;
+    font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Calibri, Arial, sans-serif;
+    background-color: var(--background-color-main);
+}
+
+h1, h2, h3, header .caption, article .figure {
+    font-family: var(--font-face-secondary);
+    font-weight: 300;
+    letter-spacing: -0.075em;
+    margin-bottom: 0.5em;
+    text-rendering: optimizelegibility;
+}
+
+time {
+    color: var(--text-color-secondary);
+    font-family: var(--font-face-secondary);
+    font-weight: 500;
+    font-size: 12pt;
+    letter-spacing: -1.5pt;
+    text-transform: uppercase;
+    text-rendering: optimizelegibility;
+}
+
+h1 {
+    font-size: 1.75em;
+    margin: 0.75em 0;
+}
+
+h1.with-time {
+    margin-bottom: 0;
+}
+
+h1.with-time + time {
+    display: block;
+    margin-bottom: 1em; /* match the 0.5em margin of h1 without time */
+}
+
+h1.with-time + time a:any-link {
+    color: var(--text-color-secondary);
+}
+
+p, blockquote, li, dt, dd, summary, details footer {
+    font: 15pt/22pt var(--font-face-main);
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+code, kbd, pre, samp {
+    font-family: var(--font-face-mono);
+    font-size: 11pt;
+    -webkit-hyphens: none;
+    hyphens: none;
+}
+
+.nohyphen {
+    -webkit-hyphens: none;
+    hyphens: none;
+}
+
+pre {
+    line-height: 17pt;
+    background-color: #f0f0f0;
+    border-color: #cccccc;
+    border-style: solid;
+    border-width: 0 0 0 6px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 3px 6px;
+}
+
+h1 code, h2 code, h3 code {
+    font-family: var(--font-face-mono);
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: lighter;
+}
+
+.highlighter-rouge > div.highlight > pre.highlight {
+    /*background-color: transparent;*/
+    border-width: 1px 1px 1px 6px;
+}
+
+header {
+    width: 100%;
+    margin: 0;
+    padding: 1.5em 0;
+    background-color: var(--background-color-header);
+}
+
+header h1 {
+    width: 100%;
+    text-align: center;
+    margin: 0.5em 0 0.2em 0;
+    font-family: var(--font-face-header);
+    font-weight: normal;
+    letter-spacing: 1pt;
+}
+
+h1 a {
+    text-decoration: none;
+}
+
+header .caption {
+    text-align: center;
+    font-size: 13pt;
+    line-height: 19pt;
+    margin: 0;
+}
+
+main {
+    margin: 0 auto;
+    padding: 1.5em 10px;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+body > footer {
+    margin: 1.5em 0 0.5em 0;
+    text-align: center;
+    color: var(--text-color-secondary);
+}
+
+body > footer a:link, body > footer a:visited {
+    color: var(--link-color-secondary);
+}
+
+body > footer a:hover, body > footer a:active {
+    color: var(--link-color-secondary-active);
+}
+
+body > footer p {
+    font-family: var(--font-face-secondary);
+    font-weight: 400;
+    font-size: 12pt;
+    line-height: 18pt;
+    -webkit-hyphens: none;
+    hyphens: none;
+    /* letter-spacing: -1pt; */
+}
+
+.latest h3 {
+    margin-bottom: 0.3em;
+}
+
+.latest h3 a {
+    text-decoration: none;
+}
+
+.latest .excerpt {
+    margin-top: 0;
+}
+
+.more {
+    font-style: italic;
+}
+
+.more:after {
+    content: " »";
+}
+
+body.home h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+body.home h2:after {
+    content: " —";
+}
+body.home h2:before {
+    content: "— ";
+}
+
+article footer {
+    margin-top: 1.25em;
+    color: var(--text-color-secondary);
+}
+
+article footer li, details footer {
+    font-size: 12pt;
+    line-height: 18pt;
+}
+
+/* footnote back-links */
+a.back:link, a.back:visited, a.back:hover, a.back:active {
+    color: var(--link-color-secondary);
+    font-size: 10pt;
+    text-decoration: none;
+}
+
+a.back:hover, a.back:active {
+    color: var(--link-color-secondary-active);
+}
+
+/* navigation between related posts */
+a.continue {
+    font-style: italic;
+}
+a.continue::after {
+    content: " ☞";
+}
+
+sup a {
+    padding-left: 1pt;
+    padding-right: 1pt;
+    font-size: 9pt;
+}
+
+nav ul, section.archive ol {
+    list-style: none;
+    padding: 0;
+}
+
+/* fin */
+section.archive h2:last-child {
+    text-transform: lowercase;
+    font-style: italic;
+}
+
+.archive li {
+    margin: 14pt 0;
+    padding-left: 90pt;
+    padding-right: 8pt; /* visually balance the perceived indent of <time>s */
+    line-height: 16pt;
+    -webkit-hyphens: none;
+    hyphens: none;
+}
+
+.archive time {
+    display: inline-block;
+    width: 67pt;
+    margin-left: -85pt;
+    margin-right: 15pt;
+    text-align: right;
+}
+
+.archive a {
+    -webkit-hyphens: none;
+    hyphens: none;
+}
+
+nav.links ul {
+    text-align: center;
+    padding: 0;
+}
+nav.links li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+nav.links li + li:before {
+    content: " • ";
+}
+
+.cc-notice {
+    display: block;
+    text-align: center;
+}
+.cc-notice a {
+    display: inline-block;
+    background-image: url(../assets/cc.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 1em 1em;
+    padding-left: 1.5em;
+    min-height: 1em;
+}
+
+article .figure {
+    max-width: 570px;
+    margin: 1em auto;
+    font-size: 85%;
+    font-style: italic;
+    text-align: center;
+}
+
+article .figure > a:first-child {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+article .figure img {
+    border-style: none;
+    max-width: 570px;
+}
+
+p.triforce {
+    padding-left: 20px;
+    background-size: 20px 18px;
+    min-height: 18px;
+    background-image: image-set(url(../assets/triforce-glyph-dark-20.png) 1x, url(../assets/triforce-glyph-dark-40.png) 2x);
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+p.triforce span {
+    display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    header {
+        padding: 0.5em 0;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    main {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    
+    time {
+        font-size: 11pt;
+        letter-spacing: -1.25pt;
+    }
+    
+    .archive li {
+        padding-left: 70pt;
+        padding-right: 4pt;
+    }
+    
+    .archive time {
+        width: 65pt;
+        margin-left: -70pt;
+        margin-right: 1pt;
+    }
+
+    article .figure {
+        max-width: 95%;
+    }
+
+    article .figure img {
+        max-width: 100%;
+    }
+}
+
+.editorial-note {
+    padding: 4pt;
+    border-radius: 4pt;
+    background-color: var(--background-color-subtle);
+    font-style: italic;
+}
+
+.editorial-note::before {
+    content: "❖ ";
+    font-style: normal;
+}
+
+blockquote cite {
+    display: block;
+    font-style: italic;
+    text-align: right;
+}
+
+blockquote cite:before {
+    content: "–";
+}
+
+blockquote.warn {
+    margin-left: 0.25em;
+    margin-right: 0.5em;
+    padding: 0.25em 0.25em 0.25em 0.5em;
+    border: 1px solid var(--text-color-warn);
+    border-left-width: 0.25em;
+    border-radius: 0.5em;
+    font: 13pt/19pt var(--font-face-secondary);
+    letter-spacing: -0.05em;
+    background-color: var(--background-color-subtle);
+}
+
+.post-modified {
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 18pt;
+    margin-top: 2em;
+}
+
+.discuss {
+    margin-top: 2.5em;
+    font-family: var(--font-face-secondary);
+    font-weight: 400;
+    font-size: 12pt;
+    letter-spacing: -1pt;
+}
+
+.discuss iframe {
+    display: inline-block;
+    margin-bottom: -5px;
+    margin-left: 0.25em;
+}
+
+dt {
+    font-weight: normal;
+    float: left;
+    clear: both;
+    width: 8em;
+    text-align: right;
+}
+dd {
+    float: left;
+    margin-left: 1.33em;
+    text-align: left;
+}
+dd + dd {
+    clear: left;
+    margin-left: 9.33em;
+}
+dd:last-child {
+    margin-bottom: 1em;
+}
+dl + * {
+    clear: both;
+}
+.color-samples dt, .color-samples dd {
+    line-height: 24pt;
+    padding-top: 2pt;
+}
+.color-sample {
+    display: inline-block;
+    width: 37pt;
+    height: 22pt;
+    padding: 0;
+    margin: 0 1em 0 0;
+}
+.color-sample.bordered {
+    width: 36pt;
+    height: 20pt;
+    border: 1pt solid #ccc;
+}
+.color-value {
+    color: var(--text-color-secondary);
+}
+
+@media only screen and (max-width: 400px) {
+    dt {
+        width: auto;
+        text-align: left;
+        float: none;
+    }
+    
+    dd, dd + dd {
+        margin-left: 1em;
+        float: none;
+    }
+}
+
+#color-sample-text-color-main .color-sample {
+    background-color: var(--text-color-main);
+}
+
+#color-sample-link-color-main .color-sample {
+    background-color: var(--link-color-main);
+}
+
+#color-sample-link-color-main-active .color-sample {
+    background-color: var(--link-color-main-active);
+}
+
+#color-sample-text-color-secondary .color-sample {
+    background-color: var(--text-color-secondary);
+}
+
+#color-sample-link-color-secondary-active .color-sample {
+    background-color: var(--link-color-secondary-active);
+}
+
+#color-sample-background-color-main .color-sample {
+    background-color: var(--background-color-main);
+}
+
+#color-sample-background-color-header .color-sample {
+    background-color: var(--background-color-header);
+}
+
+#font-sample-font-face-header {
+    font-family: var(--font-face-header-forced);
+    font-weight: normal;
+}
+
+#font-sample-font-face-secondary {
+    font-family: var(--font-face-secondary-forced);
+    font-weight: 300; letter-spacing: -0.075em;
+}
+
+#font-sample-font-face-main {
+    font-family: var(--font-face-main-forced);
+    font-weight: normal;
+}
+
+#font-sample-font-face-mono {
+    font-family: var(--font-face-mono-forced);
+    font-weight: normal;
+}
+
+.instagram-media {
+    width:79.375% ! important;
+    width:calc(80% - 2px) ! important;
+    margin: 1px auto ! important;
+}
+  </style>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport">
+  <meta content="A problem lately: I start running, and within five minutes or so, I start thinking about a title or description for my online training log. I should be payin..." name="description">
+  <meta content="Meta-Running?" property="og:title">
+  <meta content="article" property="og:type">
+  <meta content="2015-03-16" property="og:article:published_time">
+  <title>
+   Meta-Running?
+  </title>
+ </head>
+ <body class="">
+  <header>
+   <h1>
+    <a>
+     Running|Code
+    </a>
+   </h1>
+   <p class="caption">
+    About software and adventures on foot.
+   </p>
+  </header>
+  <main>
+   <article>
+    <h1 class="with-time">
+     Meta-Running?
+    </h1>
+    <time class="permalink" datetime="2015-03-16T00:00:00+00:00">
+     <a title="Permalink to Meta-Running?">
+      16 Mar 2015
+     </a>
+    </time>
+    <p>
+     A problem lately: I start running, and within five minutes or so, I start thinking about a title or description for my
+     <a>
+      online training log
+     </a>
+     .
+    </p>
+    <p>
+     Take today&rsquo;s run, for example.
+     <a>
+      Strava entry
+     </a>
+     about this in my head.
+    </p>
+    <p>
+     This is a bit of a problem, for me and I think a lot of other people (there is a steady stream of running-selfies out there, for one measure). Sometimes we are too connected; we quantify our runs until we neglect to feel the ground with each step, and we objectify our performance until we no longer feel our lungs fill with each breath.
+    </p>
+    <p>
+     Short of investing time in learning to meditate or throwing out all training technology (which really is useful), the only two solutions I know of are to run longer and work harder. Working hard or being out a long time, you will eventually get into a zone in which you are present to the reality of the run.
+    </p>
+    <p>
+     Maybe blogging about it will help.
+    </p>
+    <!--
+-->
+   </article>
+  </main>
+  <footer>
+   <nav class="links">
+    <ul>
+     <li>
+      <a>
+       My Apps
+      </a>
+     </li>
+     <li>
+      <a rel="me">
+       Contact
+      </a>
+     </li>
+     <li>
+      <a>
+       RSS
+      </a>
+     </li>
+    </ul>
+   </nav>
+   <p class="cc-notice">
+    <a>
+     2023
+    </a>
+   </p>
+  </footer>
+  <!-- generated by Jekyll 2023-08-23 02:24:51 +0000 -->
+ </body>
+</html>
