@@ -94,13 +94,17 @@ def rename_and_move_files(parent_folder):
         os.rmdir(subfolder_path)
 
 
-def pad_and_resize_image(image):
-    # Pad the image to make it square
-    max_size = max(image.width, image.height)
-    padded_img = ImageOps.pad(image, (max_size, max_size), color='white')
+def pad_and_resize_image(image, border_size=10):
+    # Add a black border around the image
+    bordered_img = ImageOps.expand(image, border=border_size, fill='black')
 
-    # Resize the image to 1280x1280
-    resized_img = padded_img.resize((1280, 1280))
+    # Pad the image to make it square
+    max_size = max(bordered_img.width, bordered_img.height)
+    padded_img = ImageOps.pad(bordered_img, (max_size, max_size), color='white')
+
+    # Resize the image
+    resized_img = padded_img.resize((2000, 2000))
+
     return resized_img
 
 def concatenate_images(folder_path, count):
@@ -138,7 +142,7 @@ def concatenate_images(folder_path, count):
                 total_width = sum(image.width for image in images)
 
                 # Create a new image with the appropriate size
-                new_img = Image.new('RGB', (total_width, 1280))
+                new_img = Image.new('RGB', (total_width, 2000))
 
                 x_offset = 0
                 for image in images:
