@@ -65,10 +65,12 @@ test_dirs = { \
              "finetune-cogagent-chat-02-05-00-02_5000": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_5000",\
              "finetune-cogagent-chat-02-05-00-02_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000_05_11",\
              "finetune-cogagent-chat-02-05-00-02_5000_05_11": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_5000_05_11",\
+             "finetune-cogagent-chat-02-15-17-32_4000_05": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_4000_05",\
+             "finetune-cogagent-chat-02-15-17-32_5000_05": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_5000_05",\
              "finetune-cogagent-chat-02-15-17-32_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_4000_05_11",\
              "finetune-cogagent-chat-02-15-17-32_5000_05_11": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_5000_05_11",\
             }
-file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000") if item.endswith(".html")]
+file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000") if item.endswith(".html") and "102.html" not in item]
 # """
 
 print(len(file_name_list))
