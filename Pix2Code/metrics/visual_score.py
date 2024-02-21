@@ -882,19 +882,13 @@ def find_possible_merge(A, B, consecutive_bonus, window_size, debug=False):
                     if debug:
                         print(new_A[i]['text'], diff)
 
-                """
-                if "Forum Page Spawn Plane Radius" in new_A[i]['text']:
-                    print_matching(updated_matching, new_A, B, cost_matrix)
-                    print(updated_cost)
-                # """
-                    
             merge_list.sort(key=sortFn, reverse=True)
             if len(merge_list) > 0:
                 A_changed = True
                 A = merge_blocks_by_list(A, merge_list)
-                updated_matching, updated_cost, _ = find_maximum_matching_v3(A, B, merge_bonus, merge_windows)
+                matching, current_cost, cost_matrix = find_maximum_matching_v3(A, B, merge_bonus, merge_windows)
                 if debug:
-                    print("Cost after optimization A:", updated_cost)
+                    print("Cost after optimization A:", current_cost)
 
         if len(B) >= 2:
             merge_list = []
@@ -910,13 +904,18 @@ def find_possible_merge(A, B, consecutive_bonus, window_size, debug=False):
                     if debug:
                         print(new_B[i]['text'], diff)
 
+                """
+                if "bpk-s integration kam-titan" in new_B[i]['text']:
+                    print(updated_cost)
+                # """
+            
             merge_list.sort(key=sortFn, reverse=True)
             if len(merge_list) > 0:
                 B_changed = True
                 B = merge_blocks_by_list(B, merge_list)
-                updated_matching, updated_cost, _ = find_maximum_matching_v3(A, B, merge_bonus, merge_windows)
+                matching, current_cost, cost_matrix = find_maximum_matching_v3(A, B, merge_bonus, merge_windows)
                 if debug:
-                    print("Cost after optimization B:", updated_cost)
+                    print("Cost after optimization B:", current_cost)
 
         if not A_changed and not B_changed:
             break
@@ -968,7 +967,7 @@ def mask_bounding_boxes_with_inpainting(image, bounding_boxes):
 
     # Draw white rectangles on the mask
     for bbox in bounding_boxes:
-        x_ratio, y_ratio, h_ratio, w_ratio = bbox
+        x_ratio, y_ratio, w_ratio, h_ratio = bbox
         x = int(x_ratio * width)
         y = int(y_ratio * height)
         w = int(w_ratio * width)
@@ -1002,6 +1001,8 @@ def rescale_and_mask(image_path, blocks):
 
         # Resize the image while maintaining aspect ratio
         img_resized = img.resize(new_size, Image.LANCZOS)
+
+        img_resized.save(image_path.replace(".png", "_resized.png"))
 
         return img_resized
 
@@ -1236,6 +1237,10 @@ def visual_eval_v3_multi(input_list, debug=False):
                 print("[Warning] No detected blocks in: ", original_img)
                 return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
                 continue
+
+            if debug:
+                print(predict_blocks)
+                print(original_blocks)
         
             predict_blocks = merge_blocks_by_bbox(predict_blocks)
             predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
@@ -1309,7 +1314,7 @@ def visual_eval_v3_multi(input_list, debug=False):
                 plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
                 plt.axis('off')
                 plt.show()
-            """
+            # """
         
             if len(max_areas) > 0:
                 sum_max_areas = np.sum(max_areas)
@@ -1318,7 +1323,7 @@ def visual_eval_v3_multi(input_list, debug=False):
                 final_matched_text_score = np.sum(matched_text_scores) / np.sum(max_areas)
                 final_position_score = np.sum(position_scores) / np.sum(max_areas)
                 final_text_color_score = np.sum(text_color_scores) / np.sum(max_areas)
-                final_clip_score =  calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks_m, original_blocks_m)
+                final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
 
                 # final_score = 0.25 * (3 - (3 - final_matched_text_score - final_position_score - final_text_color_score) * np.sum(max_areas) + final_clip_score)
                 final_score = 0.25 * (final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)

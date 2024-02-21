@@ -46,7 +46,7 @@ def process_html(input_file_path, output_file_path, offset=0):
     color_pool = ColorPool(offset)
 
     # Assign a unique color to text within each text-containing element
-    text_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'a', 'b', 'li', 'table', 'td', 'th', 'button', 'footer', 'header']  # Add more tags as needed
+    text_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'a', 'b', 'li', 'table', 'td', 'th', 'button', 'footer', 'header', 'figcaption']  # Add more tags as needed
     for tag in soup.find_all(text_tags):
         color = f"#{color_pool.pop_color()}"
         update_style(tag, 'color', color)
@@ -225,7 +225,7 @@ def get_blocks_from_image_diff_pixels(image_path, html_text_color_tree, differen
         x_max, y_max = np.max(coords, axis=0)
         color = average_color(image_path.replace("_p.png", ".png"), coords)
 
-        blocks.append({'text': item[0], 'bbox': (y_min / y_w, x_min / x_w, (y_max - y_min + 1) / y_w, (x_max - x_min + 1) / x_w), 'color': color})
+        blocks.append({'text': item[0].lower(), 'bbox': (y_min / y_w, x_min / x_w, (y_max - y_min + 1) / y_w, (x_max - x_min + 1) / x_w), 'color': color})
     return blocks
 
 
