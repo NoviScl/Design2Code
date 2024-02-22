@@ -88,6 +88,8 @@ def sample():
         file_name_list_final = json.load(f)
     random.shuffle(file_name_list_final)
     sampled_file_list = file_name_list_final[:200]
+    with open("sampled_file_list.json", "w") as f:
+        json.dump(sampled_file_list, f, indent=4)
     for filename in sampled_file_list:
         sampled_file = os.path.join(testset_dir, filename)
         with open(sampled_file, "r") as f:
