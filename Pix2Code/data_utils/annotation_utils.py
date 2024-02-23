@@ -152,9 +152,47 @@ def concatenate_images(folder_path, count):
                 # Save the concatenated image
                 new_img.save(os.path.join(folder_path, output_filename))
 
+
+def concatenate_images_with_border(img_paths, output_path, width=400, border_size=2, gap=10, bg_color='white'):
+    images = [Image.open(img_path) for img_path in img_paths]
+
+    # Resize images to width while maintaining aspect ratio
+    resized_images = [img.resize((width, int(width * img.height / img.width))) for img in images]
+
+    # Add a black border to each image
+    bordered_images = [Image.new("RGB", (img.width + 2 * border_size, img.height + 2 * border_size), "black") for img in resized_images]
+    for i, img in enumerate(resized_images):
+        bordered_images[i].paste(img, (border_size, border_size))
+
+    # Calculate total width for the final image
+    total_width = sum(img.width for img in bordered_images) + gap * (len(bordered_images) - 1)
+    max_height = max(img.height for img in bordered_images)
+
+    # Create a new image with the correct size
+    new_img = Image.new("RGB", (total_width, max_height), bg_color)
+
+    # Paste images into the new image
+    x_offset = 0
+    for img in bordered_images:
+        new_img.paste(img, (x_offset, 0))
+        x_offset += img.width + gap
+
+    # Save the final image
+    new_img.save(output_path)
+
+
 # Replace '/path/to/your/folder' with the path to your main folder
+"""
 folder_path = '/Users/zhangyanzhe/Downloads/sampled_for_annotation'
 count = rename_and_remove_png_files(folder_path)
 remove_files_except(folder_path, count)
 rename_and_move_files(folder_path)
 concatenate_images(folder_path, count)
+"""
+
+# Example usage
+for i in range(1, 7):
+    concatenate_images_with_border([f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}1.png', \
+                                    f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}2.png', \
+                                    f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}3.png'], \
+                                    f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}.png')
