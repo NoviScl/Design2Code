@@ -1206,18 +1206,21 @@ def pre_process(html_file):
 
 def visual_eval_v3_multi(input_list, debug=False):
     # print(input_list)
-    predict_img_list, original_img = input_list[0], input_list[1]
+    predict_html_list, original_html = input_list[0], input_list[1]
+    predict_img_list = [html.replace(".html", ".png") for html in predict_html_list]
     try:
         predict_blocks_list = []
-        for predict_img in predict_img_list:
+        for predict_html in predict_html_list:
             # This will help fix some html syntax error
-            predict_html = predict_img.replace(".png", ".html")
+            # predict_html = predict_img.replace(".png", ".html")
+            predict_img = predict_html.replace(".html", ".png")
             pre_process(predict_html)
             os.system(f"python3 screenshot_single.py --html {predict_html} --png {predict_img}")
             predict_blocks = get_blocks_ocr_free(predict_img)
             predict_blocks_list.append(predict_blocks)
 
-        original_html = original_img.replace(".png", ".html")
+        # original_html = original_img.replace(".png", ".html")
+        original_img = original_html.replace(".html", ".png")
         os.system(f"python3 screenshot_single.py --html {original_html} --png {original_img}")
         original_blocks = get_blocks_ocr_free(original_img)
         original_blocks = merge_blocks_by_bbox(original_blocks)
@@ -1332,7 +1335,7 @@ def visual_eval_v3_multi(input_list, debug=False):
         return return_score_list
     except:
         print("[Warning] Error not handled in: ", input_list)
-        return [[0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)] for _ in range(len(predict_img_list))]
+        return [[0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)] for _ in range(len(predict_html_list))]
 
 
 if __name__ == "__main__":

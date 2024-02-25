@@ -39,20 +39,21 @@ def print_multi_score(multi_score):
 debug = False
 
 reference_dir = "../../testset_full"
-# test_dirs = {
-#     "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
-#     "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
-#     "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
-#     # "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-#     # "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-#     # "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
-# }
-
 test_dirs = {
+    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
+    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
+    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
     "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting",
+    "websight": "../../websight_predictions_full"
 }
+
+# test_dirs = {
+#     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
+#     "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
+#     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
+# }
 
 
 file_name_list = []
