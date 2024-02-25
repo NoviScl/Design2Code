@@ -6,7 +6,9 @@ import json
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from transformers import GPT2TokenizerFast
 
+tokenizer = GPT2TokenizerFast.from_pretrained("openai-community/gpt2")
 
 def count_unique_tags(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -100,112 +102,30 @@ def size_buckets(data, k):
     return buckets
 
 if __name__ == "__main__":
-    all_tags = []
-    all_depth = []
-    all_nodes = []
-
-    dir = "testset_filtered_100"
-    for filename in os.listdir(dir):
+    all_counts = []
+    for filename in tqdm(os.listdir("../../testset_final")):
         if ".html" in filename:
-            full_path = os.path.join(dir, filename)
-            with open(full_path, "r", encoding="utf-8") as f:
+            full_path = os.path.join("../../testset_final", filename)
+            with open(full_path, "r") as f:
                 html_content = f.read() 
-                tags = count_unique_tags(html_content)
-                depth = calculate_dom_depth(html_content)
-                nodes = count_total_nodes(html_content)
+                
+                # length = tokenizer(html_content)["input_ids"]
+                # all_counts.append(len(length))
 
-                all_tags.append(tags)
-                all_depth.append(depth)
-                all_nodes.append(nodes)
+                # total_tags = count_total_nodes(html_content)
+                # all_counts.append(total_tags)
 
-    k = 8
-    average, minimum, maximum, buckets = compute_stats_and_bucketize(all_nodes, k)
-    # Calculate the range for each bucket
-    range_size = (maximum - minimum) / k
+                # dom_depth = calculate_dom_depth(html_content)
+                # all_counts.append(dom_depth)
 
-    # Counting the number of elements in each bucket and preparing labels
-    bucket_counts = []
-    labels = []
-    for i in range(k):
-        bucket_counts.append(len(buckets[i]))
-        lower_bound = minimum + i * range_size
-        upper_bound = lower_bound + range_size
-        labels.append(f"{lower_bound:.2f} - {upper_bound:.2f}")
+                unique_tags = count_unique_tags(html_content)
+                all_counts.append(unique_tags)
 
-    # Creating the bar plot
-    plt.bar(labels, bucket_counts)
-
-    # Adding title and labels
-    plt.title("Total #Nodes in Each Bucket (N=100)")
-    plt.xlabel("Bucket Range")
-    plt.ylabel("Number of Elements")
-
-    # Displaying the plot
-    plt.xticks(rotation=15)  # Rotate labels for better readability
-    plt.show()
+    print (len(all_counts))
+    print (np.mean(all_counts))
+    print (min(all_counts), max(all_counts))
+    print (np.std(all_counts))
+    
 
 
 
-
-'''
-unique_tags = {
-    "easy": [],
-    "hard": []
-}
-dom_depth = {
-    "easy": [],
-    "hard": []
-}
-total_nodes = {
-    "easy": [],
-    "hard": []
-}
-
-
-directory = "testset_manual_filtered"
-
-with open("/juice2/scr2/nlp/pix2code/auto_filtered.json", "r") as f:
-    filtered = json.load(f)
-
-for filename in tqdm(filtered):
-# for i in tqdm(range(1, 5000)):
-        # filename = str(i) + ".html"
-        full_path = os.path.join(directory, filename)
-        with open(full_path, "r", encoding="utf-8") as f:
-            html_content = f.read() 
-        tags = count_unique_tags(html_content)
-        depth = calculate_dom_depth(html_content)
-        nodes = count_total_nodes(html_content)
-
-        if tags < 20:
-            unique_tags["easy"].append(filename)
-        else:
-            unique_tags["hard"].append(filename)
-        
-        if depth < 12:
-            dom_depth["easy"].append(filename)
-        else:
-            dom_depth["hard"].append(filename)
-        
-        if nodes < 180:
-            total_nodes["easy"].append(filename)
-        else:
-            total_nodes["hard"].append(filename)
-
-print ("unique tags:")
-print (len(unique_tags["easy"]), len(unique_tags["hard"]), "\n")
-print ("dom depth:")
-print (len(dom_depth["easy"]), len(dom_depth["hard"]), "\n")
-print ("total nodes:")
-print (len(total_nodes["easy"]), len(total_nodes["hard"]), "\n")
-
-
-test_set_split = {
-    "unique_tags": unique_tags,
-    "dom_depth": dom_depth,
-    "total_nodes": total_nodes
-}
-
-with open("test_set_split_pilot.json", "w+") as f:
-    json.dump(test_set_split, f, indent=4)
-'''
