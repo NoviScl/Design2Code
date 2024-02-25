@@ -1002,8 +1002,6 @@ def rescale_and_mask(image_path, blocks):
         # Resize the image while maintaining aspect ratio
         img_resized = img.resize(new_size, Image.LANCZOS)
 
-        img_resized.save(image_path.replace(".png", "_resized.png"))
-
         return img_resized
 
 
