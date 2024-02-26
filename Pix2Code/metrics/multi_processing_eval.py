@@ -6,6 +6,7 @@ from tqdm import tqdm
 import numpy as np
 import json
 import os
+import shutil
 
 @contextlib.contextmanager
 def tqdm_joblib(tqdm_object):
@@ -36,7 +37,16 @@ def print_multi_score(multi_score):
 
 debug = False
 
-reference_dir = "../../testset_final"
+orig_reference_dir = "../../testset_final"
+
+## copy the original reference directory to a new directory
+reference_dir = "../../testset_final_copy"
+os.makedirs(reference_dir, exist_ok=True)
+for filename in os.listdir(orig_reference_dir):
+    if filename.endswith(".html") or filename == "rick.jpg":
+        shutil.copy(os.path.join(orig_reference_dir, filename), os.path.join(reference_dir, filename))
+print ("copied original reference directory to ", reference_dir)
+
 test_dirs = {
     "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
     "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
