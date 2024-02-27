@@ -44,7 +44,60 @@ tested_dict = {
     "6v2": "pix2code",
     "7v2": "websight_predictions_full",
 }
-check_id = "6v2"
+check_id = "7v2"
+
+
+def get_res(columns, j):
+    baseline_win = 0
+    tested_win = 0
+    tie = 0
+    res = []
+    ann = []
+
+    # Iterate over columns
+    for column in deepcopy(columns):
+        column = list(column)
+
+        # Process each column (each 'column' is a tuple of the column's values)
+        if "Overall" in column[0] or "generally speaking" in column[0]:
+
+            num = int(column[0].split(" ")[1])
+            if num == 0:
+                continue
+                
+            column = column[:j] + column[j+1:]
+            res.append(column[1:])
+
+            win1 = column.count('Example 1 better')
+            win2 = column.count('Example 2 better')
+            tie12 = column.count('Tie')
+
+            assert win1 + win2 + tie12 == 5
+
+            if os.path.isfile(os.path.join(img_folder, "testset_full_" + baseline + "_" + tested + "_" + str(num) + ".png")):
+                if win1 >= 3:
+                    baseline_win += 1
+                    ann.append("baseline")
+                elif win2 >= 3:
+                    tested_win += 1
+                    ann.append("tested")
+                else:
+                    tie += 1
+                    ann.append("tie")
+            elif os.path.isfile(os.path.join(img_folder, "testset_full_" + tested + "_" + baseline + "_" + str(num) + ".png")):
+                if win2 >= 3:
+                    baseline_win += 1
+                    ann.append("baseline")
+                elif win1 >= 3:
+                    tested_win += 1
+                    ann.append("tested")
+                else:
+                    tie += 1
+                    ann.append("tie")
+            else:
+                print(num)
+                raise NotImplementedError
+    return baseline_win, tested_win, tie, res, ann
 
 # Open the CSV file
 with open(f'/Users/zhangyanzhe/Downloads/{check_id}.csv', 'r') as file:
@@ -58,59 +111,18 @@ with open(f'/Users/zhangyanzhe/Downloads/{check_id}.csv', 'r') as file:
     # Transpose rows to columns
     columns = zip(*reader)
 
+    kappa_list = []
+
     for j in range(1, 7):
-        baseline_win = 0
-        tested_win = 0
-        tie = 0
-        res = []
-
-        # Iterate over columns
-        for column in deepcopy(columns):
-            column = list(column)
-            if "ID" in column[0]:
-                print(column)
-                name = column
-
-            # Process each column (each 'column' is a tuple of the column's values)
-            if "Overall" in column[0] or "generally speaking" in column[0]:
-
-                num = int(column[0].split(" ")[1])
-                if num == 0:
-                    continue
-                
-                column = column[:j] + column[j+1:]
-                res.append(column[1:])
-
-                win1 = column.count('Example 1 better')
-                win2 = column.count('Example 2 better')
-                tie12 = column.count('Tie')
-
-                assert win1 + win2 + tie12 == 5
-
-                if os.path.isfile(os.path.join(img_folder, "testset_full_" + baseline + "_" + tested + "_" + str(num) + ".png")):
-                    if win1 >= 3:
-                        baseline_win += 1
-                    elif win2 >= 3:
-                        tested_win += 1
-                    else:
-                        tie += 1
-                elif os.path.isfile(os.path.join(img_folder, "testset_full_" + tested + "_" + baseline + "_" + str(num) + ".png")):
-                    if win2 >= 3:
-                        baseline_win += 1
-                    elif win1 >= 3:
-                        tested_win += 1
-                    else:
-                        tie += 1
-                else:
-                    print(num)
-                    raise NotImplementedError
-                # print(baseline_win, tie, tested_win)
-        # print(res)
-        # Calculate Krippendorff's Alpha for the example data
-                
-        print(name[j])
-        alpha = calculate_krippendorff_alpha(res)
-        print("Krippendorff's Alpha:", alpha)
+        baseline_win, tested_win, tie, res, _ = get_res(columns, j)
         kappa = calculate_fleiss_kappa(res)
         print("Fleiss' Kappa:", kappa)
-        print(baseline_win, tie, tested_win)
+        kappa_list.append(kappa)
+    print(kappa_list)
+    baseline_win, tested_win, tie, res, ann = get_res(columns, 1 + kappa_list.index(max(kappa_list)))
+    kappa = calculate_fleiss_kappa(res)
+    print("Fleiss' Kappa:", kappa)
+    print(baseline_win, tie, tested_win)
+
+    with open(f"/Users/zhangyanzhe/Downloads/{check_id}.txt", "w") as text_file:
+        text_file.write("\n".join(ann))
