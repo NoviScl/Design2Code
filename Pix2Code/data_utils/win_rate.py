@@ -3,7 +3,7 @@ import os
 import krippendorff
 from statsmodels.stats.inter_rater import fleiss_kappa
 import numpy as np
-
+from copy import deepcopy
 
 def calculate_krippendorff_alpha(data):
     # Convert text responses to numerical codes
@@ -35,57 +35,82 @@ def calculate_fleiss_kappa(data):
     return kappa
 
 
+tested_dict = {
+    "1v2": "gpt4v_visual_revision_prompting",
+    "2v2": "gpt4v_text_augmented_prompting",
+    "3v2": "gpt4v_direct_prompting",
+    "4v2": "gemini_text_augmented_prompting",
+    "5v2": "gemini_visual_revision_prompting",
+    "6v2": "pix2code",
+    "7v2": "websight_predictions_full",
+}
+check_id = "6v2"
+
 # Open the CSV file
-with open('/Users/zhangyanzhe/Downloads/3_1.csv', 'r') as file:
+with open(f'/Users/zhangyanzhe/Downloads/{check_id}.csv', 'r') as file:
     reader = csv.reader(file)
 
-    img_folder = "/Users/zhangyanzhe/Downloads/sampled_for_annotation_v2"
-    baseline = "gpt4v_direct_prompting"
+    img_folder = "/Users/zhangyanzhe/Downloads/sampled_for_annotation_v4"
+    baseline = "gemini_direct_prompting"
     # tested = "gpt4v_visual_revision_prompting"
-    tested = "gemini_direct_prompting"
-    baseline_win = 0
-    tested_win = 0
-    tie = 0
+    tested = tested_dict[check_id]
 
     # Transpose rows to columns
     columns = zip(*reader)
-    res = []
 
-    # Iterate over columns
-    for column in columns:
-        column = list(column)
-        # Process each column (each 'column' is a tuple of the column's values)
-        if "Overall" in column[0] or "generally speaking" in column[0]:
+    for j in range(1, 7):
+        baseline_win = 0
+        tested_win = 0
+        tie = 0
+        res = []
 
-            res.append(column[1:])
-            num = int(column[0].split(" ")[1])
+        # Iterate over columns
+        for column in deepcopy(columns):
+            column = list(column)
+            if "ID" in column[0]:
+                print(column)
+                name = column
 
-            win1 = column.count('Example 1 better')
-            win2 = column.count('Example 2 better')
-            tie12 = column.count('Tie')
+            # Process each column (each 'column' is a tuple of the column's values)
+            if "Overall" in column[0] or "generally speaking" in column[0]:
 
-            if os.path.isfile(os.path.join(img_folder, "testset_full_" + baseline + "_" + tested + "_" + str(num) + ".png")):
-                if win1 >= 2:
-                    baseline_win += 1
-                elif win2 >= 2:
-                    tested_win += 1
+                num = int(column[0].split(" ")[1])
+                if num == 0:
+                    continue
+                
+                column = column[:j] + column[j+1:]
+                res.append(column[1:])
+
+                win1 = column.count('Example 1 better')
+                win2 = column.count('Example 2 better')
+                tie12 = column.count('Tie')
+
+                assert win1 + win2 + tie12 == 5
+
+                if os.path.isfile(os.path.join(img_folder, "testset_full_" + baseline + "_" + tested + "_" + str(num) + ".png")):
+                    if win1 >= 3:
+                        baseline_win += 1
+                    elif win2 >= 3:
+                        tested_win += 1
+                    else:
+                        tie += 1
+                elif os.path.isfile(os.path.join(img_folder, "testset_full_" + tested + "_" + baseline + "_" + str(num) + ".png")):
+                    if win2 >= 3:
+                        baseline_win += 1
+                    elif win1 >= 3:
+                        tested_win += 1
+                    else:
+                        tie += 1
                 else:
-                    tie += 1
-            elif os.path.isfile(os.path.join(img_folder, "testset_full_" + tested + "_" + baseline + "_" + str(num) + ".png")):
-                if win2 >= 2:
-                    baseline_win += 1
-                elif win1 >= 2:
-                    tested_win += 1
-                else:
-                    tie += 1
-            else:
-                print(num)
-                raise NotImplementedError
-            print(baseline_win, tie, tested_win)
-    # print(res)
-    # Calculate Krippendorff's Alpha for the example data
-    alpha = calculate_krippendorff_alpha(res)
-    print("Krippendorff's Alpha:", alpha)
-    kappa = calculate_fleiss_kappa(res)
-    print("Fleiss' Kappa:", kappa)
-    print(baseline_win, tie, tested_win)
+                    print(num)
+                    raise NotImplementedError
+                # print(baseline_win, tie, tested_win)
+        # print(res)
+        # Calculate Krippendorff's Alpha for the example data
+                
+        print(name[j])
+        alpha = calculate_krippendorff_alpha(res)
+        print("Krippendorff's Alpha:", alpha)
+        kappa = calculate_fleiss_kappa(res)
+        print("Fleiss' Kappa:", kappa)
+        print(baseline_win, tie, tested_win)
