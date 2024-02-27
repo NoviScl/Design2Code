@@ -8,15 +8,15 @@ from tqdm import tqdm
 cache_dir = '/juice2/scr2/nlp/pix2code/huggingface'
 
 direct_prompt = ""
-direct_prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
-direct_prompt += "A user will provide you with a screenshot of a webpage.\n"
-direct_prompt += "You need to return a single html file that uses HTML and CSS to reproduce the given website.\n"
-direct_prompt += "Include all CSS code in the HTML file itself.\n"
-direct_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
-direct_prompt += "Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.\n"
-direct_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
-direct_prompt += "Pay attention to things like size, text, position, and color of all the elements, as well as the overall layout.\n"
-direct_prompt += "Respond with the content of the HTML+CSS file:\n"
+# direct_prompt += "You are an expert web developer who specializes in HTML and CSS.\n"
+# direct_prompt += "A user will provide you with a screenshot of a webpage.\n"
+# direct_prompt += "You need to return a single html file that uses HTML and CSS to reproduce the given website.\n"
+# direct_prompt += "Include all CSS code in the HTML file itself.\n"
+# direct_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
+# direct_prompt += "Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.\n"
+# direct_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
+# direct_prompt += "Pay attention to things like size, text, position, and color of all the elements, as well as the overall layout.\n"
+direct_prompt += "Write the HTML code."
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -83,8 +83,8 @@ if __name__ == "__main__":
 
             # add any transformers params here.
             gen_kwargs = {"max_length": 2048,
-                            "temperature": 0.,
-                            "do_sample": True}
+                            # "temperature": 0.1,
+                            "do_sample": False}
 
             with torch.no_grad():
                 outputs = model.generate(**inputs, **gen_kwargs)

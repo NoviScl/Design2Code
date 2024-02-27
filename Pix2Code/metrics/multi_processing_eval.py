@@ -38,9 +38,10 @@ def print_multi_score(multi_score):
 debug = False
 
 orig_reference_dir = "../../testset_final"
+eval_name = "part1"
 
 ## copy the original reference directory to a new directory
-reference_dir = "../../testset_final_copy"
+reference_dir = "../../testset_final_" + eval_name
 os.makedirs(reference_dir, exist_ok=True)
 for filename in os.listdir(orig_reference_dir):
     if filename.endswith(".html") or filename == "rick.jpg":
@@ -52,16 +53,8 @@ test_dirs = {
     "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
     "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting",
-    "websight": "../../websight_predictions_full"
+    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting"
 }
-
-# test_dirs = {
-#     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-#     "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-#     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
-# }
 
 
 file_name_list = []
@@ -73,7 +66,7 @@ for filename in os.listdir(reference_dir):
             file_name_list.append(filename)
 
 print ("total #egs: ", len(file_name_list))
-with open("prediction_file_name_list_all.json", "w") as f:
+with open("prediction_file_name_list_{}.json".format(eval_name), "w") as f:
     json.dump(file_name_list, f, indent=4)
 
 input_lists = []
@@ -107,7 +100,7 @@ for i, filename in enumerate(file_name_list):
             res_dict[key].append([0, 0, 0, 0, 0, 0])
 
 ## cache all scores 
-with open("res_dict_all.json", "w") as f:
+with open("res_dict_{}.json".format(eval_name), "w") as f:
     json.dump(res_dict, f, indent=4)
 
 for key in test_dirs:

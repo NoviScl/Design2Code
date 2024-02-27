@@ -38,7 +38,7 @@ def print_multi_score(multi_score):
 debug = False
 
 orig_reference_dir = "../../testset_final"
-eval_name = "placeholder"
+eval_name = "part2"
 
 ## copy the original reference directory to a new directory
 reference_dir = "../../testset_final_" + eval_name
@@ -49,16 +49,11 @@ for filename in os.listdir(orig_reference_dir):
 print ("copied original reference directory to ", reference_dir)
 
 test_dirs = {
+    "websight": "../../websight_predictions_full",
     "pix2code_18b": "../../pix2code_predictions_full",
-    "pix2code_18b_placeholder": "../../pix2code_predictions_full_with_placeholder",
-    "websight_placeholder": "../../websight_predictions_full_with_placeholder"
+    "cogagent": "../../cogagent_predictions_full",
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting" 
 }
-
-# test_dirs = {
-#     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-#     "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-#     "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting"
-# }
 
 
 file_name_list = []
