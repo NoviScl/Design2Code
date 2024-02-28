@@ -16,6 +16,18 @@ def count_unique_tags(html_content):
     unique_tags = set(tags)
     return len(unique_tags)
 
+def update_tag_frequencies(html_content, tag_frequency_dict):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    tags = [tag.name for tag in soup.find_all()]
+    
+    # Update the passed dictionary with counts from the current HTML content
+    for tag in tags:
+        if tag in tag_frequency_dict:
+            tag_frequency_dict[tag] += 1
+        else:
+            tag_frequency_dict[tag] = 1
+    return tag_frequency_dict
+
 def calculate_dom_depth(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     
@@ -103,29 +115,69 @@ def size_buckets(data, k):
 
 if __name__ == "__main__":
     all_counts = []
+    tag_frequencies = {}
+    all_filenames = []
     for filename in tqdm(os.listdir("../../testset_final")):
         if ".html" in filename:
+            all_filenames.append(filename)
             full_path = os.path.join("../../testset_final", filename)
             with open(full_path, "r") as f:
                 html_content = f.read() 
+
+                # tag_frequencies = update_tag_frequencies(html_content, tag_frequencies)
                 
                 # length = tokenizer(html_content)["input_ids"]
                 # all_counts.append(len(length))
 
-                # total_tags = count_total_nodes(html_content)
-                # all_counts.append(total_tags)
+                total_tags = count_total_nodes(html_content)
+                all_counts.append(total_tags)
 
                 # dom_depth = calculate_dom_depth(html_content)
                 # all_counts.append(dom_depth)
 
-                unique_tags = count_unique_tags(html_content)
-                all_counts.append(unique_tags)
+    #             unique_tags = count_unique_tags(html_content)
+    #             all_counts.append(unique_tags)
 
     print (len(all_counts))
     print (np.mean(all_counts))
     print (min(all_counts), max(all_counts))
     print (np.std(all_counts))
+
+    ## get different percentiles 
+    numbers = np.array(all_counts)
+
+    # Find the indices corresponding to the 0th, 25th, 50th, 75th, and 100th percentiles
+    percentiles = [0, 25, 50, 75, 100]
+    percentile_values = np.percentile(numbers, percentiles)
+
+    # Find the closest indices corresponding to these percentile values
+    indices = [np.abs(numbers - pv).argmin() for pv in percentile_values]
+
+    indices_dict = dict(zip(percentiles, indices))
+    for k,v in indices_dict.items():
+        print(f"{k}th percentile: {all_filenames[v]}")
+        print (f"Value: {all_counts[v]}")
     
+    # sorted_tag_frequency_dict = dict(sorted(tag_frequencies.items(), key=lambda item: item[1], reverse=True))
+    # print (sorted_tag_frequency_dict)
+    # print (len(sorted_tag_frequency_dict))
 
+    ## bar plot 
+    # # Determine the range of the numbers and divide into 6 equal-width intervals
+    # min_num = min(all_counts)
+    # max_num = max(all_counts)
+    # bins = np.linspace(min_num, max_num, 5)
 
+    # # Create histogram data to count numbers in each bucket
+    # counts, _ = np.histogram(all_counts, bins)
+
+    # # Plotting
+    # fig, ax = plt.subplots()
+    # ax.bar(range(1, 5), counts, width=0.8, tick_label=[f"{bins[i]:.2f}-{bins[i+1]:.2f}" for i in range(4)])
+    # ax.set_xlabel('#Tags')
+    # ax.set_ylabel('Counts')
+    # ax.set_title('#Tags per Webpage Distribution')
+
+    # plt.xticks(rotation=15)
+    # plt.show()
 
