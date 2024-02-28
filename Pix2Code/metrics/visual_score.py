@@ -1245,6 +1245,16 @@ def visual_eval_v3_multi(input_list, debug=False):
         
             predict_blocks = merge_blocks_by_bbox(predict_blocks)
             predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
+            
+            filtered_matching = []
+            for i, j in matching:
+                text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
+                # Filter out matching with low similarity
+                if text_similarity < 0.5:
+                    continue
+                filtered_matching.append([i, j, text_similarity])
+            matching = filtered_matching
+
             indices1 = [item[0] for item in matching]
             indices2 = [item[1] for item in matching]
 
@@ -1265,13 +1275,8 @@ def visual_eval_v3_multi(input_list, debug=False):
                     unmatched_area_2 += original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
             max_areas.append(max(unmatched_area_1, unmatched_area_2))
         
-            for i, j in matching:
-                min_block_area = min(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
+            for i, j, text_similarity in matching:
                 max_block_area = max(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
-                text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
-                if text_similarity < 0.5:
-                    max_areas.append(max_block_area)
-                    continue
 
                 # Consider the max postion shift, either horizontally or vertically
                 position_similarity = 1 - calculate_distance_max_1d(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
@@ -1322,7 +1327,7 @@ def visual_eval_v3_multi(input_list, debug=False):
                 plt.show()
             # """
         
-            if len(max_areas) > 0:
+            if len(matched_areas) > 0:
                 sum_max_areas = np.sum(max_areas)
         
                 final_size_score = np.sum(matched_areas) / np.sum(max_areas)
