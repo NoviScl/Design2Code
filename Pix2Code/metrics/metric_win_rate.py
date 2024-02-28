@@ -1,15 +1,24 @@
 import json
 import numpy as np
+import math
+
+def update_list(alist):
+    new_list = []
+    for sublist in alist:
+        if math.isnan(sublist[0]):
+            sublist = [0.2 * sublist[-1], 0, 0, 0, 0, sublist[-1]]
+        new_list.append(sublist)
+    return new_list
 
 def update_dict(name_path, res_path, current_dict): 
     with open(name_path, 'r') as file:
         file_name = json.load(file)
-    print(file_name)
 
     with open(res_path, 'r') as file:
         res_dict = json.load(file)
     for key in res_dict:
-        c_list= res_dict[key]
+        c_list = res_dict[key]
+        c_list = update_list(c_list)
         new_dict = {}
         assert len(c_list) == len(file_name)
         for i, name in enumerate(file_name):
@@ -22,6 +31,16 @@ def update_dict(name_path, res_path, current_dict):
     
     return current_dict
 
+current_dict = {}
+
+name_path = 'prediction_file_name_list_part1.json'
+res_path = 'res_dict_part1.json'
+current_dict = update_dict(name_path, res_path, current_dict)
+
+name_path = 'prediction_file_name_list_part2.json'
+res_path = 'res_dict_part2.json'
+current_dict = update_dict(name_path, res_path, current_dict)
+
 tested_dict = {
     "1v2": "gpt4v_visual_revision_prompting",
     "2v2": "gpt4v_text_augmented_prompting",
@@ -31,15 +50,6 @@ tested_dict = {
     "6v2": "pix2code_18b",
     "7v2": "websight",
 }
-
-name_path = 'prediction_file_name_list_all.json'
-res_path = 'res_dict_all.json'
-current_dict = {}
-current_dict = update_dict(name_path, res_path, current_dict)
-
-name_path = 'prediction_file_name_list_placeholder.json'
-res_path = 'res_dict_placeholder.json'
-current_dict = update_dict(name_path, res_path, current_dict)
 
 for key in current_dict:
     print(key)
