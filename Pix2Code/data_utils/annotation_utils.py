@@ -190,9 +190,61 @@ rename_and_move_files(folder_path)
 concatenate_images(folder_path, count)
 """
 
+"""
 # Example usage
 for i in range(1, 7):
     concatenate_images_with_border([f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}1.png', \
                                     f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}2.png', \
                                     f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}3.png'], \
                                     f'/Users/zhangyanzhe/Downloads/example_pix2code/{i}.png')
+"""
+
+from PIL import Image, ImageOps
+import os
+
+def add_black_border(image, border_size=10):
+    """Add a black border around the image."""
+    return ImageOps.expand(image, border=border_size, fill='black')
+
+def pad_to_square(image, color=(255, 255, 255)):
+    """Pad an image to make it square."""
+    width, height = image.size
+    max_size = max(width, height)
+    new_image = Image.new("RGB", (max_size, max_size), color)
+    new_image.paste(image, (int((max_size - width) / 2), int((max_size - height) / 2)))
+    return new_image
+
+def concatenate_images(image1, image2):
+    """Concatenate two images side by side."""
+    dst = Image.new('RGB', (image1.width + image2.width, image1.height))
+    dst.paste(image1, (0, 0))
+    dst.paste(image2, (image1.width, 0))
+    return dst
+
+def process_and_concat_images(folder_path):
+    for i in range(1, 101):
+        img1_path = os.path.join(folder_path, f'testset_full_{i}.png')
+        img2_path = os.path.join(folder_path, f'gpt4v_visual_revision_prompting_{i}.png')
+        output_path = os.path.join(folder_path, f'testset_full_gpt4v_visual_revision_prompting_{i}.png')
+
+        if os.path.exists(img1_path) and os.path.exists(img2_path):
+            img1 = Image.open(img1_path)
+            img2 = Image.open(img2_path)
+
+            img1 = add_black_border(img1)
+            img2 = add_black_border(img2)
+
+            img1 = pad_to_square(img1)
+            img2 = pad_to_square(img2)
+
+            img1 = img1.resize((2000, 2000))
+            img2 = img2.resize((2000, 2000))
+
+            concatenated_img = concatenate_images(img1, img2)
+            concatenated_img.save(output_path)
+        else:
+            print(f"Image pair {i} not found. Skipping.")
+
+# Example usage
+folder_path = '/Users/zhangyanzhe/Downloads/sampled_for_annotation_v4'
+process_and_concat_images(folder_path)
