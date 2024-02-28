@@ -1350,7 +1350,8 @@ def visual_eval_v3_multi(input_list, debug=False):
                 return_score_list.append([sum_max_areas, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
             else:
                 print("[Warning] No matched blocks in: ", predict_img_list[k])
-                return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
+                final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
+                return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
         return return_score_list
     except:
         print("[Warning] Error not handled in: ", input_list)
