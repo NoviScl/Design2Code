@@ -23,6 +23,8 @@ MODEL = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.bfloat16,
 ).to(DEVICE)
 
+print ("parameter count: ", MODEL.num_parameters())
+
 image_seq_len = MODEL.config.perceiver_config.resampler_n_latents
 BOS_TOKEN = PROCESSOR.tokenizer.bos_token
 BAD_WORDS_IDS = PROCESSOR.tokenizer(["<image>", "<fake_token_around_image>"], add_special_tokens=False).input_ids
