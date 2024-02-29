@@ -38,7 +38,7 @@ def print_multi_score(multi_score):
 debug = False
 
 orig_reference_dir = "../../testset_final"
-eval_name = "part1"
+eval_name = "part1_new"
 
 ## copy the original reference directory to a new directory
 reference_dir = "../../testset_final_" + eval_name
