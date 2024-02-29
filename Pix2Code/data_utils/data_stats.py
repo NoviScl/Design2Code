@@ -10,6 +10,19 @@ from transformers import GPT2TokenizerFast
 
 tokenizer = GPT2TokenizerFast.from_pretrained("openai-community/gpt2")
 
+html5_tags = [
+    "!DOCTYPE", "a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "blockquote",
+    "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del",
+    "details", "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form",
+    "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd",
+    "label", "legend", "li", "link", "main", "map", "mark", "meta", "meter", "nav", "noscript", "object", "ol",
+    "optgroup", "option", "output", "p", "param", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp",
+    "script", "section", "select", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg", "table",
+    "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var",
+    "video", "wbr"
+]
+
+
 def count_unique_tags(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     tags = [tag.name for tag in soup.find_all()]
@@ -124,13 +137,13 @@ if __name__ == "__main__":
             with open(full_path, "r") as f:
                 html_content = f.read() 
 
-                # tag_frequencies = update_tag_frequencies(html_content, tag_frequencies)
+                tag_frequencies = update_tag_frequencies(html_content, tag_frequencies)
                 
                 # length = tokenizer(html_content)["input_ids"]
                 # all_counts.append(len(length))
 
-                total_tags = count_total_nodes(html_content)
-                all_counts.append(total_tags)
+                # total_tags = count_total_nodes(html_content)
+                # all_counts.append(total_tags)
 
                 # dom_depth = calculate_dom_depth(html_content)
                 # all_counts.append(dom_depth)
@@ -138,29 +151,33 @@ if __name__ == "__main__":
     #             unique_tags = count_unique_tags(html_content)
     #             all_counts.append(unique_tags)
 
-    print (len(all_counts))
-    print (np.mean(all_counts))
-    print (min(all_counts), max(all_counts))
-    print (np.std(all_counts))
+    # print (len(all_counts))
+    # print (np.mean(all_counts))
+    # print (min(all_counts), max(all_counts))
+    # print (np.std(all_counts))
 
-    ## get different percentiles 
-    numbers = np.array(all_counts)
+    # ## get different percentiles 
+    # numbers = np.array(all_counts)
 
-    # Find the indices corresponding to the 0th, 25th, 50th, 75th, and 100th percentiles
-    percentiles = [0, 25, 50, 75, 100]
-    percentile_values = np.percentile(numbers, percentiles)
+    # # Find the indices corresponding to the 0th, 25th, 50th, 75th, and 100th percentiles
+    # percentiles = [0, 25, 50, 75, 100]
+    # percentile_values = np.percentile(numbers, percentiles)
 
-    # Find the closest indices corresponding to these percentile values
-    indices = [np.abs(numbers - pv).argmin() for pv in percentile_values]
+    # # Find the closest indices corresponding to these percentile values
+    # indices = [np.abs(numbers - pv).argmin() for pv in percentile_values]
 
-    indices_dict = dict(zip(percentiles, indices))
-    for k,v in indices_dict.items():
-        print(f"{k}th percentile: {all_filenames[v]}")
-        print (f"Value: {all_counts[v]}")
+    # indices_dict = dict(zip(percentiles, indices))
+    # for k,v in indices_dict.items():
+    #     print(f"{k}th percentile: {all_filenames[v]}")
+    #     print (f"Value: {all_counts[v]}")
     
-    # sorted_tag_frequency_dict = dict(sorted(tag_frequencies.items(), key=lambda item: item[1], reverse=True))
-    # print (sorted_tag_frequency_dict)
-    # print (len(sorted_tag_frequency_dict))
+    sorted_tag_frequency_dict = dict(sorted(tag_frequencies.items(), key=lambda item: item[1], reverse=True))
+    print (sorted_tag_frequency_dict)
+    print (len(sorted_tag_frequency_dict))
+
+    ## filter out tags with only one occurrence 
+    filtered_tag_frequency_dict = {k: v for k, v in sorted_tag_frequency_dict.items() if k in html5_tags}
+    print (len(filtered_tag_frequency_dict))
 
     ## bar plot 
     # # Determine the range of the numbers and divide into 6 equal-width intervals
