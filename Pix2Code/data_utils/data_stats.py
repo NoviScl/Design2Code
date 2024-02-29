@@ -126,7 +126,36 @@ def size_buckets(data, k):
 
     return buckets
 
+def pie_chart():
+    topics = {
+        "product": 4,
+        "blog": 21,
+        "company/org": 23,
+        "homepage": 11,
+        "news": 4,
+        "forum": 3,
+        "information": 9,
+        # "login": 2,
+        # "forms": 2,
+        "others": 8
+    }
+
+    # Prepare data
+    labels = topics.keys()
+    sizes = topics.values()
+
+    # Create pie chart
+    plt.figure(figsize=(8, 6))
+    plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 14})
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    # plt.title('Percentage of Each Topic')
+    plt.savefig('topic_pie_chart.pdf', format='pdf', bbox_inches='tight')
+    plt.show()
+
 if __name__ == "__main__":
+    pie_chart() 
+
+    '''
     all_counts = []
     tag_frequencies = {}
     all_filenames = []
@@ -197,4 +226,5 @@ if __name__ == "__main__":
 
     # plt.xticks(rotation=15)
     # plt.show()
+    '''
 
