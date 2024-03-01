@@ -3,7 +3,7 @@ import os
 import krippendorff
 from statsmodels.stats.inter_rater import fleiss_kappa
 import numpy as np
-
+from copy import deepcopy
 
 def calculate_krippendorff_alpha(data):
     # Convert text responses to numerical codes
@@ -35,57 +35,103 @@ def calculate_fleiss_kappa(data):
     return kappa
 
 
-# Open the CSV file
-with open('/Users/zhangyanzhe/Downloads/3_1.csv', 'r') as file:
-    reader = csv.reader(file)
+tested_dict = {
+    "1v2": "gpt4v_visual_revision_prompting",
+    "2v2": "gpt4v_text_augmented_prompting",
+    "3v2": "gpt4v_direct_prompting",
+    "4v2": "gemini_text_augmented_prompting",
+    "5v2": "gemini_visual_revision_prompting",
+    "6v2": "pix2code",
+    "7v2": "websight_predictions_full",
+}
+check_id = "7v2"
 
-    img_folder = "/Users/zhangyanzhe/Downloads/sampled_for_annotation_v2"
-    baseline = "gpt4v_direct_prompting"
-    # tested = "gpt4v_visual_revision_prompting"
-    tested = "gemini_direct_prompting"
+
+def get_res(columns, j):
     baseline_win = 0
     tested_win = 0
     tie = 0
-
-    # Transpose rows to columns
-    columns = zip(*reader)
     res = []
+    ann = []
 
     # Iterate over columns
-    for column in columns:
+    for column in deepcopy(columns):
         column = list(column)
+
         # Process each column (each 'column' is a tuple of the column's values)
         if "Overall" in column[0] or "generally speaking" in column[0]:
 
-            res.append(column[1:])
             num = int(column[0].split(" ")[1])
+            if num == 0:
+                continue
+                
+            # column = column[:j] + column[j+1:]
+            res.append(column[1:])
 
             win1 = column.count('Example 1 better')
             win2 = column.count('Example 2 better')
             tie12 = column.count('Tie')
 
+            assert win1 + win2 + tie12 == 5
+
             if os.path.isfile(os.path.join(img_folder, "testset_full_" + baseline + "_" + tested + "_" + str(num) + ".png")):
-                if win1 >= 2:
+                if win1 >= 3:
                     baseline_win += 1
-                elif win2 >= 2:
+                    ann.append("baseline")
+                elif win2 >= 3:
                     tested_win += 1
+                    ann.append("tested")
                 else:
                     tie += 1
+                    ann.append("tie")
             elif os.path.isfile(os.path.join(img_folder, "testset_full_" + tested + "_" + baseline + "_" + str(num) + ".png")):
-                if win2 >= 2:
+                if win2 >= 3:
                     baseline_win += 1
-                elif win1 >= 2:
+                    ann.append("baseline")
+                elif win1 >= 3:
                     tested_win += 1
+                    ann.append("tested")
                 else:
                     tie += 1
+                    ann.append("tie")
             else:
                 print(num)
                 raise NotImplementedError
-            print(baseline_win, tie, tested_win)
-    # print(res)
-    # Calculate Krippendorff's Alpha for the example data
-    alpha = calculate_krippendorff_alpha(res)
-    print("Krippendorff's Alpha:", alpha)
-    kappa = calculate_fleiss_kappa(res)
-    print("Fleiss' Kappa:", kappa)
-    print(baseline_win, tie, tested_win)
+    return baseline_win, tested_win, tie, res, ann
+
+total_res = []
+for check_id in ["1v2", "2v2", "3v2", "4v2", "5v2", "6v2", "7v2"]:
+    # Open the CSV file
+    with open(f'/Users/zhangyanzhe/Downloads/{check_id}.csv', 'r') as file:
+        reader = csv.reader(file)
+
+        img_folder = "/Users/zhangyanzhe/Downloads/sampled_for_annotation_v4"
+        baseline = "gemini_direct_prompting"
+        # tested = "gpt4v_visual_revision_prompting"
+        tested = tested_dict[check_id]
+
+        # Transpose rows to columns
+        columns = zip(*reader)
+
+        kappa_list = []
+
+        for j in range(1, 2):
+            baseline_win, tested_win, tie, res, _ = get_res(columns, j)
+            kappa = calculate_fleiss_kappa(res)
+            print("J: ", j)
+            print("Fleiss' Kappa:", kappa)
+            kappa_list.append(kappa)
+        print(kappa_list)
+        baseline_win, tested_win, tie, res, ann = get_res(columns, 1 + kappa_list.index(max(kappa_list)))
+        kappa = calculate_fleiss_kappa(res)
+        print("Fleiss' Kappa:", kappa)
+        print(baseline_win, tie, tested_win)
+        total_res.extend(res)
+print(len(total_res))
+kappa = calculate_fleiss_kappa(total_res)
+print("Fleiss' Kappa:", kappa)
+
+"""
+with open(f"/Users/zhangyanzhe/Downloads/{check_id}.txt", "w") as text_file:
+    text_file.write("\n".join(ann))
+"""

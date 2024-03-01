@@ -8,6 +8,8 @@
 
 - Websight predictions: [this link](https://drive.google.com/file/d/1pNmAiGC259t_1VBfNeq7JI98RSM7zMHo/view?usp=sharing)
 
+- Pix2Code-18B predictions: [this link](https://drive.google.com/file/d/16meY5D_TWiXo7K1IUMLjoXhFH6DaSbLO/view?usp=sharing)
+
 - Sampled predictions for human evaluation: The sampled predictions used to obtain human evaluation can be found [here](https://drive.google.com/file/d/1L3tj35o9QiWEcDH95XpGFAZUij6LNAHu/view?usp=sharing).
 
 ![](examples.png)

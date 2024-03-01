@@ -38,7 +38,7 @@ def print_multi_score(multi_score):
 debug = False
 
 orig_reference_dir = "../../testset_final"
-eval_name = "part1_new"
+eval_name = "part2_new"
 
 ## copy the original reference directory to a new directory
 reference_dir = "../../testset_final_" + eval_name
@@ -49,11 +49,10 @@ for filename in os.listdir(orig_reference_dir):
 print ("copied original reference directory to ", reference_dir)
 
 test_dirs = {
-    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
-    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
-    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
-    "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting"
+    "websight": "../../websight_predictions_full",
+    "pix2code_18b": "../../pix2code_predictions_full",
+    "cogagent": "../../cogagent_predictions_full",
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting" 
 }
 
 

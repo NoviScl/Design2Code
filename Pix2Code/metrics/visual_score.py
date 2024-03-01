@@ -1245,11 +1245,21 @@ def visual_eval_v3_multi(input_list, debug=False):
         
             predict_blocks = merge_blocks_by_bbox(predict_blocks)
             predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
+            
+            filtered_matching = []
+            for i, j in matching:
+                text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
+                # Filter out matching with low similarity
+                if text_similarity < 0.5:
+                    continue
+                filtered_matching.append([i, j, text_similarity])
+            matching = filtered_matching
+
             indices1 = [item[0] for item in matching]
             indices2 = [item[1] for item in matching]
 
             matched_list = []
-            max_areas = []
+            sum_areas = []
             matched_areas = []
             matched_text_scores = []
             position_scores = []
@@ -1263,15 +1273,10 @@ def visual_eval_v3_multi(input_list, debug=False):
             for j in range(len(original_blocks_m)):
                 if j not in indices2:
                     unmatched_area_2 += original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
-            max_areas.append(max(unmatched_area_1, unmatched_area_2))
+            sum_areas.append(unmatched_area_1 + unmatched_area_2)
         
-            for i, j in matching:
-                min_block_area = min(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
-                max_block_area = max(predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3])
-                text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
-                if text_similarity < 0.5:
-                    max_areas.append(max_block_area)
-                    continue
+            for i, j, text_similarity in matching:
+                sum_block_area = predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3] + original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
 
                 # Consider the max postion shift, either horizontally or vertically
                 position_similarity = 1 - calculate_distance_max_1d(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
@@ -1287,11 +1292,16 @@ def visual_eval_v3_multi(input_list, debug=False):
                     print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
                 assert calculate_ratio(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2]) > 0 and calculate_ratio(predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) > 0, f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}"
         
-                max_areas.append(max_block_area)
-                matched_areas.append(max_block_area)
-                matched_text_scores.append(max_block_area * text_similarity)
-                position_scores.append(max_block_area * position_similarity)
-                text_color_scores.append(max_block_area * text_color_similarity)
+                sum_areas.append(sum_block_area)
+                matched_areas.append(sum_block_area)
+                # v1: weighted average
+                # matched_text_scores.append(sum_block_area * text_similarity)
+                # position_scores.append(sum_block_area * position_similarity)
+                # text_color_scores.append(sum_block_area * text_color_similarity)
+                # v2: average
+                matched_text_scores.append(text_similarity)
+                position_scores.append(position_similarity)
+                text_color_scores.append(text_color_similarity)
         
                 if debug:
                     print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
@@ -1317,21 +1327,31 @@ def visual_eval_v3_multi(input_list, debug=False):
                 plt.show()
             # """
         
-            if len(max_areas) > 0:
-                sum_max_areas = np.sum(max_areas)
+            if len(matched_areas) > 0:
+                sum_sum_areas = np.sum(sum_areas)
         
-                final_size_score = np.sum(matched_areas) / np.sum(max_areas)
-                final_matched_text_score = np.sum(matched_text_scores) / np.sum(max_areas)
-                final_position_score = np.sum(position_scores) / np.sum(max_areas)
-                final_text_color_score = np.sum(text_color_scores) / np.sum(max_areas)
+                final_size_score = np.sum(matched_areas) / np.sum(sum_areas)
+                # v1: weighted average
+                # final_matched_text_score = np.sum(matched_text_scores) / np.sum(sum_areas)
+                # final_position_score = np.sum(position_scores) / np.sum(sum_areas)
+                # final_text_color_score = np.sum(text_color_scores) / np.sum(sum_areas)
+
+                # v2: average
+                final_matched_text_score = np.mean(matched_text_scores)
+                final_position_score = np.mean(position_scores)
+                final_text_color_score = np.mean(text_color_scores)
                 final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
 
-                # final_score = 0.25 * (3 - (3 - final_matched_text_score - final_position_score - final_text_color_score) * np.sum(max_areas) + final_clip_score)
-                final_score = 0.25 * (final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)
-                return_score_list.append([sum_max_areas, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
+                # final_score = 0.25 * (3 - (3 - final_matched_text_score - final_position_score - final_text_color_score) * np.sum(sum_areas) + final_clip_score)
+                # v1: weighted average
+                # final_score = 0.25 * (final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)
+                # v2: average
+                final_score = 0.2 * (final_size_score + final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)
+                return_score_list.append([sum_sum_areas, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
             else:
                 print("[Warning] No matched blocks in: ", predict_img_list[k])
-                return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
+                final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
+                return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
         return return_score_list
     except:
         print("[Warning] Error not handled in: ", input_list)
