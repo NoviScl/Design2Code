@@ -58,6 +58,7 @@ if __name__ == "__main__":
             cache_dir=cache_dir
         ).to(DEVICE).eval()
 
+    print ("parameter count: ", model.num_parameters())
 
     test_dir = "/nlp/scr/clsi/Pix2Code/testset_final_copy"
     prediction_dir = "/nlp/scr/clsi/Pix2Code/cogagent_predictions_full"
