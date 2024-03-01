@@ -65,7 +65,7 @@ def get_res(columns, j):
             if num == 0:
                 continue
                 
-            column = column[:j] + column[j+1:]
+            # column = column[:j] + column[j+1:]
             res.append(column[1:])
 
             win1 = column.count('Example 1 better')
@@ -99,30 +99,39 @@ def get_res(columns, j):
                 raise NotImplementedError
     return baseline_win, tested_win, tie, res, ann
 
-# Open the CSV file
-with open(f'/Users/zhangyanzhe/Downloads/{check_id}.csv', 'r') as file:
-    reader = csv.reader(file)
+total_res = []
+for check_id in ["1v2", "2v2", "3v2", "4v2", "5v2", "6v2", "7v2"]:
+    # Open the CSV file
+    with open(f'/Users/zhangyanzhe/Downloads/{check_id}.csv', 'r') as file:
+        reader = csv.reader(file)
 
-    img_folder = "/Users/zhangyanzhe/Downloads/sampled_for_annotation_v4"
-    baseline = "gemini_direct_prompting"
-    # tested = "gpt4v_visual_revision_prompting"
-    tested = tested_dict[check_id]
+        img_folder = "/Users/zhangyanzhe/Downloads/sampled_for_annotation_v4"
+        baseline = "gemini_direct_prompting"
+        # tested = "gpt4v_visual_revision_prompting"
+        tested = tested_dict[check_id]
 
-    # Transpose rows to columns
-    columns = zip(*reader)
+        # Transpose rows to columns
+        columns = zip(*reader)
 
-    kappa_list = []
+        kappa_list = []
 
-    for j in range(1, 7):
-        baseline_win, tested_win, tie, res, _ = get_res(columns, j)
+        for j in range(1, 2):
+            baseline_win, tested_win, tie, res, _ = get_res(columns, j)
+            kappa = calculate_fleiss_kappa(res)
+            print("J: ", j)
+            print("Fleiss' Kappa:", kappa)
+            kappa_list.append(kappa)
+        print(kappa_list)
+        baseline_win, tested_win, tie, res, ann = get_res(columns, 1 + kappa_list.index(max(kappa_list)))
         kappa = calculate_fleiss_kappa(res)
         print("Fleiss' Kappa:", kappa)
-        kappa_list.append(kappa)
-    print(kappa_list)
-    baseline_win, tested_win, tie, res, ann = get_res(columns, 1 + kappa_list.index(max(kappa_list)))
-    kappa = calculate_fleiss_kappa(res)
-    print("Fleiss' Kappa:", kappa)
-    print(baseline_win, tie, tested_win)
+        print(baseline_win, tie, tested_win)
+        total_res.extend(res)
+print(len(total_res))
+kappa = calculate_fleiss_kappa(total_res)
+print("Fleiss' Kappa:", kappa)
 
-    with open(f"/Users/zhangyanzhe/Downloads/{check_id}.txt", "w") as text_file:
-        text_file.write("\n".join(ann))
+"""
+with open(f"/Users/zhangyanzhe/Downloads/{check_id}.txt", "w") as text_file:
+    text_file.write("\n".join(ann))
+"""

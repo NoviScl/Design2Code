@@ -1,10 +1,10 @@
 import numpy as np
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 
 # Load your data
-data = np.load("whole_res.npy")
+data = np.load("whole_res_new.npy")
 
 # Splitting the data into features and target
 X = data[:, 1:6]
@@ -30,6 +30,8 @@ y_pred_dev = result.predict(X_temp)
 y_pred_dev = (y_pred_dev > 0.5).astype(int)
 accuracy_dev = accuracy_score(y_temp, y_pred_dev)
 print("Development Set Accuracy:", accuracy_dev)
+f1_dev = f1_score(y_temp, y_pred_dev, average='macro')
+print("Development Set f1:", f1_dev)
 
 # Finally, evaluate on the test set
 # y_pred_test = model.predict(X_test)

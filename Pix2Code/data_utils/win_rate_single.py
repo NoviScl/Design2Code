@@ -11,8 +11,8 @@ def calculate_fleiss_kappa(data):
     count_matrix = np.zeros((len(data), 2))
     
     for i, item in enumerate(data):
-        count_matrix[i, 0] = item.count('Yes')
-        count_matrix[i, 1] = item.count('No')
+        count_matrix[i, 0] = item.count('Left')
+        count_matrix[i, 1] = item.count('Right')
 
     # Calculate Fleiss' Kappa
     kappa = fleiss_kappa(count_matrix, method='fleiss')
@@ -30,7 +30,7 @@ def get_res(columns, j):
         column = list(column)
 
         # Process each column (each 'column' is a tuple of the column's values)
-        if "can be replaced" in column[0]:
+        if "Question" in column[0]:
 
             num = int(column[0].split(" ")[1])
             if num == 0:
@@ -39,19 +39,26 @@ def get_res(columns, j):
             column = column[:j] + column[j+1:]
             res.append(column[1:])
 
-            win1 = column.count('Yes')
-            win2 = column.count('No')
+            win1 = column.count('Left')
+            win2 = column.count('Right')
 
             assert win1 + win2 == 5
 
             if win1 >= 3:
-                baseline_win += 1
+                if os.path.exists(f"/Users/zhangyanzhe/Downloads/singlestudy/testset_full_gpt4v_visual_revision_prompting_v2_{num}.png"):
+                    baseline_win += 1
+                elif os.path.exists(f"/Users/zhangyanzhe/Downloads/singlestudy/gpt4v_visual_revision_testset_full_prompting_v2_{num}.png"):
+                    tested_win += 1
             else:
-                tested_win += 1
+                if os.path.exists(f"/Users/zhangyanzhe/Downloads/singlestudy/testset_full_gpt4v_visual_revision_prompting_v2_{num}.png"):
+                    tested_win += 1
+                elif os.path.exists(f"/Users/zhangyanzhe/Downloads/singlestudy/gpt4v_visual_revision_testset_full_prompting_v2_{num}.png"):
+                    baseline_win += 1
+        print(baseline_win, tested_win)
     return baseline_win, tested_win, res
 
 # Open the CSV file
-with open(f'/Users/zhangyanzhe/Downloads/singlev2.csv', 'r') as file:
+with open(f'/Users/zhangyanzhe/Downloads/singlev32.csv', 'r') as file:
     reader = csv.reader(file)
 
     # Transpose rows to columns

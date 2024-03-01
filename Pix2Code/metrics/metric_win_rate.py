@@ -33,12 +33,12 @@ def update_dict(name_path, res_path, current_dict):
 
 current_dict = {}
 
-name_path = 'prediction_file_name_list_part1.json'
-res_path = 'res_dict_part1.json'
+name_path = 'prediction_file_name_list_part1_new.json'
+res_path = 'res_dict_part1_new.json'
 current_dict = update_dict(name_path, res_path, current_dict)
 
-name_path = 'prediction_file_name_list_part2.json'
-res_path = 'res_dict_part2.json'
+name_path = 'prediction_file_name_list_part2_new.json'
+res_path = 'res_dict_part2_new.json'
 current_dict = update_dict(name_path, res_path, current_dict)
 
 tested_dict = {
@@ -86,4 +86,4 @@ for check_id in tested_dict:
 
 whole_res = np.array(whole_res)
 print(whole_res.shape)
-np.save("whole_res.npy", whole_res)
+np.save("whole_res_new.npy", whole_res)
