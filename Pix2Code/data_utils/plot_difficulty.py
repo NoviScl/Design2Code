@@ -129,6 +129,30 @@ def correlation():
         print (correlation, p)
 
 
-if __name__ == "__main__":
-    correlation()
 
+def find_prompting_difference():
+
+    ## load the test scores of GPT-4V 
+    with open("../metrics/prediction_file_name_list_part1_new.json", "r") as f:
+        file_name_list = json.load(f)
+    with open("../metrics/res_dict_part1_new.json", "r") as f:
+        res_dict = json.load(f)
+    direct_prompting = res_dict["gpt4v_direct_prompting"]
+    text_augmented_prompting = res_dict["gpt4v_text_augmented_prompting"]
+    visual_revision_prompting = res_dict["gpt4v_visual_revision_prompting"]
+
+    differences = []
+    for i in range(len(file_name_list)):
+        diff = text_augmented_prompting[i][1] - direct_prompting[i][1]
+        differences.append(diff)
+    
+    ## get sorted indices
+    sorted_idx = sorted(range(len(differences)), key=lambda k: differences[k])[::-1]
+    for idx in sorted_idx[ : 10]:
+        print (file_name_list[idx], differences[idx])
+
+    return 
+
+if __name__ == "__main__":
+    # correlation()
+    find_prompting_difference()
