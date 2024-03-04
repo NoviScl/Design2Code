@@ -1,14 +1,16 @@
 from bs4 import BeautifulSoup
 from collections import Counter
-from tqdm import tqdm 
 import os
 import json
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from transformers import GPT2TokenizerFast
 
+from tqdm import tqdm 
+from datasets import load_dataset
+
+from transformers import GPT2TokenizerFast
 tokenizer = GPT2TokenizerFast.from_pretrained("openai-community/gpt2")
+import matplotlib.pyplot as plt
 
 html5_tags = [
     "!DOCTYPE", "a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "blockquote",
@@ -152,10 +154,55 @@ def pie_chart():
     plt.savefig('topic_pie_chart.pdf', format='pdf', bbox_inches='tight')
     plt.show()
 
+def websight():
+    dataset = load_dataset("HuggingFaceM4/WebSight", cache_dir="/juice2/scr2/nlp/pix2code/huggingface")
+    all_texts = [eg for eg in tqdm(dataset["train"]["text"])]
+
+    all_lengths = []
+    all_total_tags = []
+    all_dom_depths = []
+    all_unique_tags = []
+    tag_frequencies = {}
+
+    for html_content in tqdm(all_texts):
+        try:
+            html_content = html_content.strip()
+            tag_frequencies = update_tag_frequencies(html_content, tag_frequencies)
+            
+            length = tokenizer(html_content)["input_ids"]
+            all_lengths.append(len(length))
+
+            total_tags = count_total_nodes(html_content)
+            all_total_tags.append(total_tags)
+
+            dom_depth = calculate_dom_depth(html_content)
+            all_dom_depths.append(dom_depth)
+
+            unique_tags = count_unique_tags(html_content)
+            all_unique_tags.append(unique_tags)    
+        except:
+            continue 
+
+    filtered_tag_frequency_dict = {k: v for k, v in sorted_tag_frequency_dict.items() if k in html5_tags}
+    print ("tag frequency: ", filtered_tag_frequency_dict)
+    print (len(filtered_tag_frequency_dict))
+
+    with open("websight_stats.json", "w") as f:
+        json.dump({
+            "lengths": all_lengths,
+            "total_tags": all_total_tags,
+            "dom_depths": all_dom_depths,
+            "unique_tags": all_unique_tags,
+            "tag_frequencies": filtered_tag_frequency_dict
+        }, f, indent=4)
+
+
 if __name__ == "__main__":
-    pie_chart() 
+    websight()
 
     '''
+    pie_chart() 
+
     all_counts = []
     tag_frequencies = {}
     all_filenames = []
