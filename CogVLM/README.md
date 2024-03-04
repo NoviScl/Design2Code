@@ -1,3 +1,15 @@
+# Design2Code Finetuning
+
+We keep a snapshot of the CogAgent repo here, which we use for finetuning and inference.
+
+The code base is based on swissarmytransformer version 0.4.10.
+
+The finetuning script is [finetune_cogagent_lora_design2code.sh](finetune_demo/finetune_cogagent_lora_design2code.sh).
+
+Note that the LoRA modules are only added to the language decoder.
+
+We provide an example inference script [here](finetune_demo/inference_design2code.py).
+
 # CogVLM & CogAgent
 
 📗 [中文版README](./README_zh.md)
