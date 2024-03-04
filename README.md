@@ -12,7 +12,7 @@
 
 - Sampled predictions for human evaluation: The sampled predictions used to obtain human evaluation can be found [here](https://drive.google.com/file/d/1L3tj35o9QiWEcDH95XpGFAZUij6LNAHu/view?usp=sharing).
 
-![](test_examples_compare.pdf)
+![](examples.png)
 
 
 ## Code Structure
