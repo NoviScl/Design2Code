@@ -183,9 +183,14 @@ def websight():
         except:
             continue 
 
+    sorted_tag_frequency_dict = dict(sorted(tag_frequencies.items(), key=lambda item: item[1], reverse=True))
     filtered_tag_frequency_dict = {k: v for k, v in sorted_tag_frequency_dict.items() if k in html5_tags}
-    print ("tag frequency: ", filtered_tag_frequency_dict)
-    print (len(filtered_tag_frequency_dict))
+    # print ("tag frequency: ", filtered_tag_frequency_dict)
+    print ("mean length: ", np.mean(all_lengths))
+    print ("mean total tags: ", np.mean(all_total_tags))
+    print ("mean dom depth: ", np.mean(all_dom_depths))
+    print ("mean unique tags: ", np.mean(all_unique_tags))
+    print ("tag type: ", len(filtered_tag_frequency_dict))
 
     with open("websight_stats.json", "w") as f:
         json.dump({
