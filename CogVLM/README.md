@@ -8,7 +8,7 @@ The finetuning script is [finetune_cogagent_lora_design2code.sh](finetune_demo/f
 
 Note that the LoRA modules are only added to the language decoder.
 
-We provide an example inference script [here](finetune_demo/inference_design2code.py).
+We provide [the example inference script](finetune_demo/inference_design2code.py) and the [model weight](https://huggingface.co/SALT-NLP/Design2Code).
 
 # CogVLM & CogAgent
 
