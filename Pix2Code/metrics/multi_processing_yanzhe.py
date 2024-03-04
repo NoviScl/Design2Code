@@ -51,7 +51,7 @@ file_name_list = [item for item in os.listdir("../../gpt4v_predictions_full/gpt4
 # """
 
 # """
-reference_dir = "../../testset_100"
+reference_dir = "../../testset_final"
 test_dirs = { \
              # "finetune-cogagent-chat-02-01-14-05_2500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_2500",\
              # "finetune-cogagent-chat-02-01-14-05_2000": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_2000",\
@@ -60,7 +60,7 @@ test_dirs = { \
              # "finetune-cogagent-chat-02-01-14-05_500": "../../predictions_100/finetune-cogagent-chat-02-01-14-05_500",\
              # "finetune-cogagent-chat-01-18-18-28": "../../predictions_100/finetune-cogagent-chat-01-18-18-28", \
              # "finetune-cogagent-chat-01-28-23-02": "../../predictions_100/finetune-cogagent-chat-01-28-23-02", \
-             "websight": "../../predictions_100/websight", \
+             # "websight": "../../predictions_100/websight", \
              """
              "finetune-cogagent-chat-02-05-00-02_4000": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_4000",\
              "finetune-cogagent-chat-02-05-00-02_5000": "../../predictions_100/finetune-cogagent-chat-02-05-00-02_5000",\
@@ -71,10 +71,16 @@ test_dirs = { \
              "finetune-cogagent-chat-02-15-17-32_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_4000_05_11",\
              "finetune-cogagent-chat-02-15-17-32_5000_05_11": "../../predictions_100/finetune-cogagent-chat-02-15-17-32_5000_05_11",\
              """
-             "finetune-cogagent-chat-02-22-23-14_3000_05_11": "../../predictions_100/finetune-cogagent-chat-02-22-23-14_3000_05_11",\
-             "finetune-cogagent-chat-02-22-23-14_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-22-23-14_4000_05_11",\
+             # "finetune-cogagent-chat-02-22-23-14_3000_05_11": "../../predictions_100/finetune-cogagent-chat-02-22-23-14_3000_05_11",\
+             # "finetune-cogagent-chat-02-22-23-14_4000_05_11": "../../predictions_100/finetune-cogagent-chat-02-22-23-14_4000_05_11",\
+             # "finetune-cogagent-chat-02-26-12-32_1000_0.5_1.1": "../../predictions_final/finetune-cogagent-chat-02-26-12-32_1000_0.5_1.1",\
+             # "finetune-cogagent-chat-02-26-12-32_2000_0.5_1.1": "../../predictions_final/finetune-cogagent-chat-02-26-12-32_2000_0.5_1.1",\
+             # "finetune-cogagent-chat-02-26-12-32_3000_0.5_1.1": "../../predictions_final/finetune-cogagent-chat-02-26-12-32_3000_0.5_1.1",\
+             # "finetune-cogagent-chat-02-26-12-32_4000_0.5_1.1": "../../predictions_final/finetune-cogagent-chat-02-26-12-32_4000_0.5_1.1",\
+             # "finetune-cogagent-chat-02-15-17-32_4000_05_11"  : "../../predictions_final/finetune-cogagent-chat-02-15-17-32_4000_05_11",\
+             "design2code-18b-v0": "../../predictions_final/design2code-18b-v0",\
             }
-file_name_list = [item for item in os.listdir("../../predictions_100/finetune-cogagent-chat-02-22-23-14_3000_05_11") if item.endswith(".html") and "102.html" not in item]
+file_name_list = [item for item in os.listdir("../../testset_final") if item.endswith(".html")]
 # """
 
 print(len(file_name_list))
@@ -84,8 +90,8 @@ input_lists = []
 for filename in file_name_list:
     print(filename)
 
-    input_pred_list = [os.path.join(test_dirs[key], filename.replace(".html", ".png")) for key in test_dirs]
-    original = os.path.join(reference_dir, filename.replace(".html", ".png"))
+    input_pred_list = [os.path.join(test_dirs[key], filename) for key in test_dirs]
+    original = os.path.join(reference_dir, filename)
 
     input_list = [input_pred_list, original]
     input_lists.append(input_list)
@@ -100,15 +106,15 @@ for key in test_dirs:
     res_dict[key] = []
 
 for i, filename in enumerate(file_name_list):
-    print(filename)
+    # print(filename)
     return_score_list = return_score_lists[i]
     idx = 0
     for key in test_dirs:
         matched, final_score, multi_score = return_score_list[idx]
         idx += 1
         current_score = [final_score] + [item for item in multi_score]
-        print(key)
-        print(current_score)
+        # print(key)
+        # print(current_score)
         res_dict[key].append(current_score)
 
 for key in test_dirs:
