@@ -207,24 +207,5 @@ if __name__ == "__main__":
     ## filter out tags with only one occurrence 
     filtered_tag_frequency_dict = {k: v for k, v in sorted_tag_frequency_dict.items() if k in html5_tags}
     print (len(filtered_tag_frequency_dict))
-
-    ## bar plot 
-    # # Determine the range of the numbers and divide into 6 equal-width intervals
-    # min_num = min(all_counts)
-    # max_num = max(all_counts)
-    # bins = np.linspace(min_num, max_num, 5)
-
-    # # Create histogram data to count numbers in each bucket
-    # counts, _ = np.histogram(all_counts, bins)
-
-    # # Plotting
-    # fig, ax = plt.subplots()
-    # ax.bar(range(1, 5), counts, width=0.8, tick_label=[f"{bins[i]:.2f}-{bins[i+1]:.2f}" for i in range(4)])
-    # ax.set_xlabel('#Tags')
-    # ax.set_ylabel('Counts')
-    # ax.set_title('#Tags per Webpage Distribution')
-
-    # plt.xticks(rotation=15)
-    # plt.show()
     '''
 
