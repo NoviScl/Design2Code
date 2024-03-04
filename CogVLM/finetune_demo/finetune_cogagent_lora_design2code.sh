@@ -18,12 +18,12 @@ MODEL_ARGS="--from_pretrained $MODEL_TYPE \
     --version $VERSION"
 # TIPS: max_length include low-resolution image sequence (which has 256 tokens) 
 
-OPTIONS_SAT="SAT_HOME=/juice2/scr2/nlp/pix2code/zyanzhe/.sat_models"
+OPTIONS_SAT="SAT_HOME=/path/to/.sat_models"
 OPTIONS_NCCL="NCCL_DEBUG=info NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2 LOCAL_WORLD_SIZE=$NUM_GPUS_PER_WORKER"
 HOST_FILE_PATH="hostfile"
 
-train_data='/juice2/scr2/nlp/pix2code/zyanzhe/WebSight_164k_train_swap'
-valid_data='/juice2/scr2/nlp/pix2code/zyanzhe/WebSight_8k_val'
+train_data='/path/to/WebSight_164k_train_swap'
+valid_data='/path/to/WebSight_8k_val'
 
 gpt_options=" \
        --experiment-name finetune-$MODEL_TYPE \
@@ -41,7 +41,7 @@ gpt_options=" \
        --vit_checkpoint_activations \
        --save-interval 5000 \
        --eval-interval 5000 \
-       --save "/juice2/scr2/nlp/pix2code/zyanzhe/cogagent/checkpoints" \
+       --save "/path/to/cogagent/checkpoints" \
        --eval-iters 10 \
        --eval-batch-size 1 \
        --split 1. \
