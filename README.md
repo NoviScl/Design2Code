@@ -33,6 +33,11 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 python3 setup.py install --user
 ```
 
+Taking screenshots and running evaluations also need to install browsers
+
+```bash
+playwright install
+```
 
 ## Data and Predictions
 
@@ -90,11 +95,19 @@ The bash scripts include scripts for running Direct Prompting, Text-Augmented Pr
 
 ### Running Inference on CogAgent-18B
 
-
-
 ## Running Inference on Design2Code-18B
 
+The finetuned model is based on [CogAgent](./CogVLM/CogAgent_README.md), please install necessary libraries following the instructions.
+
+You can run inference by:
+
+```bash
+python CogVLM/finetune_demo/inference_design2code.py
+```
+
 ## Finetuning Design2Code-18B
+
+The finetuning script is [finetune_cogagent_lora_design2code.sh](./CogVLM/finetune_demo/finetune_cogagent_lora_design2code.sh).
 
 ## Running Automatic Evaluation
 
