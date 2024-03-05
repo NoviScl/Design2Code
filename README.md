@@ -57,10 +57,10 @@ Remember to replace the file name or directory in the script with your own.
 
 To facilitate more analysis, we also release all model predictions on our benchmark:
 
-- [GPT-4V](https://drive.google.com/file/d/1m4dvP0drPoEhSVhKIJ9zWVm3vhIqP7FA/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
-- [Gemini Pro Vision](https://drive.google.com/file/d/18qAatN6XC2PlxtvhutLVBj2OhHSZvq9c/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
-- [WebSight VLM-8B](https://drive.google.com/file/d/13RSMrelZZqFNTklP0OJg_nTJsdaKHqvh/view?usp=sharing) (Huggingface)
-- [Design2Code-18B](https://drive.google.com/file/d/1Ie0miwMKqlpZeUrNCDmgA4bjD2hV3smh/view?usp=sharing) (Ours)
+- [GPT-4V](https://drive.google.com/file/d/1SgWL4E5uKVo-8D3Bj-VWvysJs_2OguA1/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
+- [Gemini Pro Vision](https://drive.google.com/file/d/18cpGdL1Yhv9UU7odcqkncDItGo0Guuy_/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
+- [WebSight VLM-8B](https://drive.google.com/file/d/1lFqLyJSDwZAEhZ4mhRqrK_-d5hhcrrEM/view?usp=sharing) (Huggingface)
+- [Design2Code-18B](https://drive.google.com/file/d/1XxZMeVpAGu3fGvtKetHvk2bk3vyBcj2e/view?usp=sharing) (Ours)
 
 ## Running Prompting Experiments 
 
