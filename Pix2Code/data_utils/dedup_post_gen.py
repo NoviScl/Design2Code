@@ -67,11 +67,3 @@ def check_repetitive_content(file_path, chunk_size=100, repetition_threshold=5, 
         else:
             with open(file_path.replace(".html", "_new.html"), 'w', encoding='utf-8') as file:
                 file.write(content[:start_position])
-
-if __name__ == "__main__":
-    file_list = os.listdir("/Users/zhangyanzhe/Downloads/Repetition_test/")
-    file_list.sort()
-    for file in file_list:
-        if file.endswith(".html") and not file.endswith("_new.html"):
-            print(file)
-            check_repetitive_content(f"/Users/zhangyanzhe/Downloads/Repetition_test/{file}", debug=True)
