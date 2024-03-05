@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+
+# This is a patch for color map, which is not updated for newer version of numpy
 def patch_asscalar(a):
     return a.item()
 setattr(np, "asscalar", patch_asscalar)
