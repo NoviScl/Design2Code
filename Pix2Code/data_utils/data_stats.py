@@ -202,8 +202,23 @@ def websight():
         }, f, indent=4)
 
 
+def websight_stats():
+    with open("websight_stats.json", "r") as f:
+        stats = json.load(f)
+    lengths = stats["lengths"]
+    total_tags = stats["total_tags"]
+    dom_depths = stats["dom_depths"]
+    unique_tags = stats["unique_tags"]
+    tag_frequencies = stats["tag_frequencies"]
+    
+    print ("mean length: ", np.mean(lengths), np.std(lengths))
+    print ("mean total tags: ", np.mean(total_tags), np.std(total_tags))
+    print ("mean dom depth: ", np.mean(dom_depths), np.std(dom_depths))
+    print ("mean unique tags: ", np.mean(unique_tags), np.std(unique_tags))
+
 if __name__ == "__main__":
-    websight()
+    # websight()
+    websight_stats()
 
     '''
     pie_chart() 
