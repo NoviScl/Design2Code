@@ -27,10 +27,30 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 
 ## Set Up
 
+### With pip 
+
+### Without pip 
+
+```bash
+python3 setup.py install --user
+```
 
 
 ## Data and Predictions
 
+### Testset 
+
+You can download the full testset from this [Google Drive link](https://drive.google.com/file/d/1VdwCF5kuuYn4Otwy8WfzyHPwIjyC65cf/view?usp=sharing) or access it from the Huggingface dataset [page](https://huggingface.co/datasets/SALT-NLP/Design2Code).
+
+After you unzip it into `testset_final/`, the folder should include 484 pairs of screenshots (`xx.png`) and corresponding HTML code (`xx.html`). We also include the placeholder image file `rick.jpg` which is used in the HTML codes.
+
+### Taking Screenshots
+
+In case you want to take screenshots of webpages by yourself, you can do so by running:
+
+```bash
+python3 data_utils/screenshot.py 
+```
 
 ## Running Prompting Experiments 
 

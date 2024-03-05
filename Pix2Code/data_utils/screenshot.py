@@ -41,4 +41,3 @@ if __name__ == "__main__":
                 except:
                     print("Error with file: " + filename)
 
-    # take_screenshot("/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.html", "/Users/clsi/Desktop/Pix2Code/predictions_full/gemini_direct_prompting/348.png")
