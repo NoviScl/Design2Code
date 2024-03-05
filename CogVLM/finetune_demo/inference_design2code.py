@@ -16,7 +16,6 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--temperature', type=float, default=0.5)
 parser.add_argument('--repetition_penalty', type=float, default=1.1)
-parser.add_argument('--split_num', type=int, default=0)
 args = parser.parse_args()
 args.bf16 = True
 args.stream_chat = False
@@ -31,7 +30,7 @@ if not os.path.exists(predictions_dir):
     except:
         pass
 
-filename_list = [filename for filename in os.listdir(test_data_dir) if filename.endswith(".png") and int(filename[:-4]) % 4 == args.split_num]
+filename_list = [filename for filename in os.listdir(test_data_dir) if filename.endswith(".png")]
 print(len(filename_list))
 
 world_size = 1
