@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     print ("parameter count: ", model.num_parameters())
 
-    test_dir = "/nlp/scr/clsi/Pix2Code/testset_final_copy"
+    test_dir = "/nlp/scr/clsi/Pix2Code/testset_final"
     prediction_dir = "/nlp/scr/clsi/Pix2Code/cogagent_predictions_full"
     
     for filename in tqdm(os.listdir(test_dir)):
