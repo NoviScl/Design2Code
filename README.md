@@ -2,6 +2,8 @@
 
 __Design2Code: How Far Are We From Automating Front-End Engineering__
 
+[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code-hf) [[Model Weight]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) [[Project Page]](https://salt-nlp.github.io/Design2Code/)
+
 *Chenglei Si, Yanzhe Zhang, Zhengyuan Yang, Ruibo Liu, Diyi Yang*
 
 <details><summary>Abstract</summary>
@@ -13,16 +15,6 @@ Generative AI has made rapid advancements in recent years, achieving unprecedent
 ## Overview
 
 ![](example.png)
-
-- Test set: The full official test set is availble for downloading at [this link](https://drive.google.com/file/d/1AdqgWx8wgz_GM1qeupY1eyUiT7E2zo6_/view?usp=sharing). It contains 484 screenshot-code pairs. 
-
-- GPT-4V and Gemini-Pro predictions: All predictions (including rendered webpage screenshots) are available for downloading at [this link](https://drive.google.com/file/d/1zinGz87_4Y-YIkeA4uPgaoxITAMjjObH/view?usp=sharing).
-
-- Websight predictions: [this link](https://drive.google.com/file/d/1pNmAiGC259t_1VBfNeq7JI98RSM7zMHo/view?usp=sharing)
-
-- Pix2Code-18B predictions: [this link](https://drive.google.com/file/d/16meY5D_TWiXo7K1IUMLjoXhFH6DaSbLO/view?usp=sharing)
-
-- Sampled predictions for human evaluation: The sampled predictions used to obtain human evaluation can be found [here](https://drive.google.com/file/d/1L3tj35o9QiWEcDH95XpGFAZUij6LNAHu/view?usp=sharing).
 
 ## Installation
 
@@ -36,4 +28,14 @@ Generative AI has made rapid advancements in recent years, achieving unprecedent
 
 - `metrics` contains the metric scripts for the evaluation.
 
-- `prompting` contains the code for running all the prompting experiments, including the actual prompts used. 
+- `prompting` contains the code for running all the prompting experiments, including the actual prompts used.
+
+## License
+
+The data, code and model checkpoint are intended and licensed for research use only. Please do not use them for any malicious purposes.
+
+The benchmark is built on top of the C4 dataset, under the ODC Attribution License (ODC-By). 
+
+## Acknowledgement
+
+Our testset is filtered from [C4](https://huggingface.co/datasets/c4), training examples are sampled from [Websight](https://huggingface.co/datasets/HuggingFaceM4/WebSight). Our model is finetuned based on [CogAgent](https://github.com/THUDM/CogVLM). Thanks for their awsome work!
