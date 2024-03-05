@@ -1,28 +1,46 @@
-# Design2Code
+# Design2Code: How Far Are We From Automating Front-End Engineering?
 
-__Design2Code: How Far Are We From Automating Front-End Engineering__
-
-[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code) [[Model Weight]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) [[Project Page]](https://salt-nlp.github.io/Design2Code/)
-
-*Chenglei Si, Yanzhe Zhang, Zhengyuan Yang, Ruibo Liu, Diyi Yang*
-
-<details><summary>Abstract</summary>
-
-Generative AI has made rapid advancements in recent years, achieving unprecedented capabilities in multimodal understanding and code generation. This enabled a brand new paradigm of front-end development, where multimodal LLMs can potentially convert visual designs into code implementations directly, thus automating the front-end engineering pipeline. In this work, we provide the first systematic study on this visual design to code implementation task (dubbed as Design2Code). We manually curate a benchmark of 484 real-world webpages as test cases and develop a set of automatic evaluation metrics to assess how well current multimodal LLMs can generate the code implementations that directly render into the given reference webpages, given the screenshots as input. We develop a suit of multimodal prompting methods and show their effectiveness on GPT-4V and Gemini Vision Pro. We also finetune an open-source Design2Code-18B model that successfully matches the performance of Gemini Vision Pro. Both human evaluation and automatic metrics show that GPT-4V is the clear winner on this task, where annotators think GPT-4V generated webpages can replace the original reference webpages in 49% cases in terms of visual appearance and content; and perhaps surprisingly, in 64% cases GPT-4V generated webpages are considered better than even the original reference webpages. Our fine-grained break-down metrics indicate that open-source models mostly lag in recalling visual elements from the input webpages and in generating correct layout designs, while aspects like text content and coloring can be drastically improved with proper finetuning.
-
-</details>
+Quick Links:
+[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code) 
+[[Model Checkpoint]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) 
+[[Project Page]](https://salt-nlp.github.io/Design2Code/)
+[[Paper]]()
 
 ## Overview
 
+This is the official repo for our Design2Code project, maintained by the SALT lab from Stanford NLP. In this repo, we provide: 
+
+- The Design2Code benchmark dataset for the task of converting visual design (screenshot) into code implementation, which consists of 484 real-world webpages from C4 (examples shown below).
+
+- Code for running all automatic evaluation. 
+
+- Code for running multimodal prompting experiments on GPT-4V and Gemini Pro Vision. 
+
+- Code for finetuning and running inference on our open-source Design2Code-18B model. 
+
+</br>
+
+
 ![](example.png)
 
-## Installation
 
 
-## Example Script
+## Set Up
 
 
-## Code Structure
+
+## Data and Predictions
+
+
+## Running Prompting Experiments 
+
+## Running Inference on Design2Code-18B
+
+## Finetuning Design2Code-18B
+
+## Running Automatic Evaluation
+
+## Other Functions
 
 - `data_utils` contains the filtering and processing scripts to construct the test data from C4. 
 
