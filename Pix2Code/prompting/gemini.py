@@ -52,7 +52,7 @@ def direct_prompting(gemini_client, image_file):
     direct_prompt += "Include all CSS code in the HTML file itself.\n"
     direct_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
     direct_prompt += "Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.\n"
-    direct_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
+    direct_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scripts for dynamic interactions.\n"
     direct_prompt += "Pay attention to things like size, text, position, and color of all the elements, as well as the overall layout.\n"
     direct_prompt += "Respond with the content of the HTML+CSS file:\n"
     
@@ -84,7 +84,7 @@ def text_augmented_prompting(gemini_client, image_file):
     text_augmented_prompt += "Include all CSS code in the HTML file itself.\n"
     text_augmented_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
     text_augmented_prompt += "Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.\n"
-    text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
+    text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scripts for dynamic interactions.\n"
     text_augmented_prompt += "Pay attention to things like size, text, position, and color of all the elements, as well as the overall layout.\n"
     text_augmented_prompt += "Respond with the content of the HTML+CSS file (directly start with the code, do not add any additional explanation):\n"
 
@@ -160,7 +160,7 @@ def layout_marker_prompting(gemini_client, image_file, auto_insertion=False):
     text_augmented_prompt += "Include all CSS code in the HTML file itself.\n"
     text_augmented_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
     text_augmented_prompt += "Some images on the webpage are replaced with a blue rectangle as the placeholder, use \"rick.jpg\" for those as well.\n"
-    text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
+    text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scripts for dynamic interactions.\n"
     text_augmented_prompt += "Pay attention to things like size, text, position, and color of all the elements, as well as the overall layout.\n"
     text_augmented_prompt += "Respond with the content of the HTML+CSS file (directly start with the code, do not add any additional explanation):\n"
 
@@ -188,7 +188,7 @@ def layout_marker_prompting(gemini_client, image_file, auto_insertion=False):
         text_augmented_prompt += "You need to return a single html file that uses HTML and CSS. Include all CSS code in the HTML file itself.\n"
         text_augmented_prompt += "If it involves any images, use \"rick.jpg\" as the placeholder.\n"
         text_augmented_prompt += "Directly edit the given HTML implementation. Do not change the layout structure of the webpage, just insert the text elements into appropriate positions.\n"
-        text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scrips for dynamic interactions.\n"
+        text_augmented_prompt += "Do not hallucinate any dependencies to external files. You do not need to include JavaScript scripts for dynamic interactions.\n"
         text_augmented_prompt += "Pay attention to things like size, text, position, and color of all the elements, as well as the overall layout.\n"
         text_augmented_prompt += "Respond with the content of the HTML+CSS file (directly start with the code, do not add any additional explanation):\n"
 
@@ -220,9 +220,9 @@ if __name__ == "__main__":
     gemini_client = genai.GenerativeModel('gemini-pro-vision')
 
     ## specify file directory 
-    if args.subset == "testset_100":
-      test_data_dir = "../../testset_100"
-      cache_dir = "../../predictions_100/"
+    if args.subset == "testset_final":
+      test_data_dir = "../../testset_final"
+      cache_dir = "../../predictions_final/"
     elif args.subset == "testset_full":
       test_data_dir = "../../testset_full"
       cache_dir = "../../gemini_predictions_full/"

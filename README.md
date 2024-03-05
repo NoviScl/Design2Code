@@ -18,8 +18,6 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 
 - Code for finetuning and running inference on our open-source Design2Code-18B model. 
 
-</br>
-
 
 ![](example.png)
 
@@ -49,10 +47,46 @@ After you unzip it into `testset_final/`, the folder should include 484 pairs of
 In case you want to take screenshots of webpages by yourself, you can do so by running:
 
 ```bash
+cd Pix2Code
 python3 data_utils/screenshot.py 
 ```
 
+Remember to replace the file name or directory in the script with your own. 
+
+### Model Predictions
+
+To facilitate more analysis, we also release all model predictions on our benchmark:
+
+- [GPT-4V]() (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
+- [Gemini Pro Vision]() (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
+- [WebSight VLM-8B]() (Huggingface)
+- [Design2Code-18B]() (Ours)
+
 ## Running Prompting Experiments 
+
+To run prompting experiments, first put your OpenAI / Google Gemini API keys in a file called `api_keys.json` in the root directory. It should look like this:
+
+```json
+{
+    "organization_id": "",
+    "openai_key": "",
+    "gemini_api_key": ""
+}
+```
+
+Then, to run GPT-4V experiments, run:
+
+```bash
+bash prompting/gpt4v.sh
+```
+
+To run Gemini Pro Vision experiments, run:
+
+```bash
+bash prompting/gemini.sh
+```
+
+The bash scripts include scripts for running Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting. All prompts are written in `prompting/gpt4v.py` and `prompting/gemini.py`, you can modify it to run your own prompts or develop smarter prompting strategies. We welcome any contributions to this part of the project! 
 
 ## Running Inference on Design2Code-18B
 
