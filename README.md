@@ -2,7 +2,7 @@
 
 __Design2Code: How Far Are We From Automating Front-End Engineering__
 
-[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code-hf) [[Model Weight]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) [[Project Page]](https://salt-nlp.github.io/Design2Code/)
+[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code) [[Model Weight]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) [[Project Page]](https://salt-nlp.github.io/Design2Code/)
 
 *Chenglei Si, Yanzhe Zhang, Zhengyuan Yang, Ruibo Liu, Diyi Yang*
 
