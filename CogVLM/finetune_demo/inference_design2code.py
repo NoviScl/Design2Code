@@ -22,8 +22,9 @@ args.bf16 = True
 args.stream_chat = False
 args.version = "chat"
 
-test_data_dir = "/path/to/Pix2Code/testset_final"
-predictions_dir = "/path/to/Pix2Code/predictions_final/design2code-18b-v0"
+# You can download the testset from https://huggingface.co/datasets/SALT-NLP/Design2Code
+test_data_dir = "/path/to/Design2Code"
+predictions_dir = "/path/to/design2code_18b_v0_predictions"
 if not os.path.exists(predictions_dir):
     try:
         os.makedirs(predictions_dir)
