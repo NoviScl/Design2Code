@@ -1,7 +1,7 @@
 # Design2Code: How Far Are We From Automating Front-End Engineering?
 
 Quick Links:
-[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code) 
+[[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code-hf) 
 [[Model Checkpoint]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) 
 [[Project Page]](https://salt-nlp.github.io/Design2Code/)
 [[Paper]]()
@@ -57,10 +57,10 @@ Remember to replace the file name or directory in the script with your own.
 
 To facilitate more analysis, we also release all model predictions on our benchmark:
 
-- [GPT-4V]() (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
-- [Gemini Pro Vision]() (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
-- [WebSight VLM-8B]() (Huggingface)
-- [Design2Code-18B]() (Ours)
+- [GPT-4V](https://drive.google.com/file/d/1m4dvP0drPoEhSVhKIJ9zWVm3vhIqP7FA/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
+- [Gemini Pro Vision](https://drive.google.com/file/d/18qAatN6XC2PlxtvhutLVBj2OhHSZvq9c/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
+- [WebSight VLM-8B](https://drive.google.com/file/d/13RSMrelZZqFNTklP0OJg_nTJsdaKHqvh/view?usp=sharing) (Huggingface)
+- [Design2Code-18B](https://drive.google.com/file/d/1Ie0miwMKqlpZeUrNCDmgA4bjD2hV3smh/view?usp=sharing) (Ours)
 
 ## Running Prompting Experiments 
 
@@ -87,6 +87,10 @@ bash prompting/gemini.sh
 ```
 
 The bash scripts include scripts for running Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting. All prompts are written in `prompting/gpt4v.py` and `prompting/gemini.py`, you can modify it to run your own prompts or develop smarter prompting strategies. We welcome any contributions to this part of the project! 
+
+### Running Inference on CogAgent-18B
+
+
 
 ## Running Inference on Design2Code-18B
 
