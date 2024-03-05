@@ -32,8 +32,6 @@ if not os.path.exists(predictions_dir):
         pass
 
 filename_list = [filename for filename in os.listdir(test_data_dir) if filename.endswith(".png") and int(filename[:-4]) % 4 == args.split_num]
-print(len(filename_list))
-
 world_size = 1
 model, model_args = FineTuneTestCogAgentModel.from_pretrained(
         f"/path/to/design2code-18b-v0",
@@ -52,9 +50,6 @@ model, model_args = FineTuneTestCogAgentModel.from_pretrained(
 model = model.eval()
 model.add_mixin('auto-regressive', CachedAutoregressiveMixin())
 
-print(model.mixins)
-print(model)
-
 language_processor_version = model_args.text_processor_version if 'text_processor_version' in model_args else args.version
 print("[Language processor version]:", language_processor_version)
 tokenizer = llama2_tokenizer("lmsys/vicuna-7b-v1.5", signal_type=language_processor_version)
@@ -66,6 +61,7 @@ def get_html(image_path):
     with torch.no_grad():
         history = None
         cache_image = None
+        # We use an empty string as the query
         query = ''
     
         response, history, cache_image = chat(
