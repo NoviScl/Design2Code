@@ -95,7 +95,13 @@ The bash scripts include scripts for running Direct Prompting, Text-Augmented Pr
 
 ### Running Inference on CogAgent-18B
 
+We also provide code to run inference on the base model CogAgent-18B:
 
+```bash
+python3 prompting/cogagent.py
+```
+
+Be aware that the model is not finetuned on Design2Code, so the performance is very bad, often times not even producing valid HTML code.
 
 ## Running Inference on Design2Code-18B
 
