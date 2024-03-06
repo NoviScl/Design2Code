@@ -4,7 +4,7 @@ Quick Links:
 [[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code-hf) 
 [[Model Checkpoint]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) 
 [[Project Page]](https://salt-nlp.github.io/Design2Code/)
-[[Paper]]()
+[[Paper]](https://arxiv.org/abs/2403.03163)
 
 ## Overview
 
@@ -24,6 +24,8 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 
 
 ## Set Up
+
+All code is tested on Python 3.11.4. We recommend using a virtual environment to manage the dependencies.
 
 ### Without pip 
 
@@ -179,10 +181,11 @@ If you find our work helpful, please consider citing our paper:
 
 ```
 @misc{si2024design2code,
-      title={Design2Code: How Far Are We From Automating Front-End Engineering},
-      author={Chenglei Si and Yanzhe Zhang and Zhengyuan Yang and Ruibo Liu and Diyi Yang},
-      year={2024},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-  }
+    title={Design2Code: How Far Are We From Automating Front-End Engineering?},
+    author={Chenglei Si and Yanzhe Zhang and Zhengyuan Yang and Ruibo Liu and Diyi Yang},
+    year={2024},
+    eprint={2403.03163},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
 ```
