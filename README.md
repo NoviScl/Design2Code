@@ -4,7 +4,7 @@ Quick Links:
 [[Dataset]](https://huggingface.co/datasets/SALT-NLP/Design2Code-hf) 
 [[Model Checkpoint]](https://huggingface.co/SALT-NLP/Design2Code-18B-v0) 
 [[Project Page]](https://salt-nlp.github.io/Design2Code/)
-[[Paper]]()
+[[Paper]](https://arxiv.org/abs/2403.03163)
 
 ## Overview
 
