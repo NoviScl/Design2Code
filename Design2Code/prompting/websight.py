@@ -8,7 +8,7 @@ from tqdm import tqdm
 import os
 
 DEVICE = torch.device("cuda")
-HF_TOKEN = "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"
+HF_TOKEN = "YOUR HF TOKEN"
 
 PROCESSOR = AutoProcessor.from_pretrained(
     "HuggingFaceM4/VLM_WebSight_finetuned",
