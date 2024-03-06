@@ -121,11 +121,8 @@ The finetuning script is [finetune_cogagent_lora_design2code.sh](./CogVLM/finetu
 
 ## Other Functions
 
-- `data_utils` contains the filtering and processing scripts to construct the test data from C4. 
+- `data_utils` contains various filtering and processing scripts that we used to construct the test data from C4. 
 
-- `metrics` contains the metric scripts for the evaluation.
-
-- `prompting` contains the code for running all the prompting experiments, including the actual prompts used.
 
 ## License
 
@@ -133,6 +130,19 @@ The data, code and model checkpoint are intended and licensed for research use o
 
 The benchmark is built on top of the C4 dataset, under the ODC Attribution License (ODC-By). 
 
+
 ## Acknowledgement
 
 Our testset is filtered from [C4](https://huggingface.co/datasets/c4), training examples are sampled from [Websight](https://huggingface.co/datasets/HuggingFaceM4/WebSight). Our model is finetuned based on [CogAgent](https://github.com/THUDM/CogVLM). Thanks for their awsome work!
+
+If you find our work helpful, please consider citing our paper:
+
+```
+@misc{si2024design2code,
+      title={Design2Code: How Far Are We From Automating Front-End Engineering},
+      author={Chenglei Si and Yanzhe Zhang and Zhengyuan Yang and Ruibo Liu and Diyi Yang},
+      year={2024},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+  }
+```
