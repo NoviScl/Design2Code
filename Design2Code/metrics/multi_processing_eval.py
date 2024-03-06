@@ -1,4 +1,4 @@
-from Pix2Code.metrics.visual_score import visual_eval_v3_multi
+from Design2Code.metrics.visual_score import visual_eval_v3_multi
 from multiprocessing import Pool
 import contextlib, joblib
 from joblib import Parallel, delayed

@@ -19,8 +19,8 @@ import torch
 import clip
 from copy import deepcopy
 from collections import Counter
-from Pix2Code.metrics.ocr_free_utils import get_blocks_ocr_free
-from Pix2Code.data_utils.dedup_post_gen import check_repetitive_content
+from Design2Code.metrics.ocr_free_utils import get_blocks_ocr_free
+from Design2Code.data_utils.dedup_post_gen import check_repetitive_content
 from bs4 import BeautifulSoup, NavigableString, Comment
 import re
 import math

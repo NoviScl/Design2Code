@@ -1,6 +1,6 @@
 import os
 from tqdm import tqdm
-from Pix2Code.data_utils.screenshot import take_screenshot
+from Design2Code.data_utils.screenshot import take_screenshot
 from gpt4v_utils import cleanup_response, encode_image, gpt_cost, extract_text_from_html, index_text_from_html
 from gpt4v_utils import gemini_encode_image
 import json
