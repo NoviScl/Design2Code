@@ -55,7 +55,7 @@ Coming soon!
 
 ### Testset 
 
-You can download the full testset from this [Google Drive link](https://drive.google.com/file/d/1VdwCF5kuuYn4Otwy8WfzyHPwIjyC65cf/view?usp=sharing) or access it from the Huggingface dataset [page](https://huggingface.co/datasets/SALT-NLP/Design2Code).
+You can download the full testset from this [Google Drive link](https://drive.google.com/file/d/12uRO5EC7hkg6qAOyfJhb4YsrQ_qpL5bt/view?usp=sharing) or access it from the Huggingface dataset [page](https://huggingface.co/datasets/SALT-NLP/Design2Code).
 
 After you unzip it into `testset_final/`, the folder should include 484 pairs of screenshots (`xx.png`) and corresponding HTML code (`xx.html`). We also include the placeholder image file `rick.jpg` which is used in the HTML codes.
 
