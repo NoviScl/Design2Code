@@ -248,7 +248,7 @@ if __name__ == "__main__":
     shutil.copy(test_data_dir + "/rick.jpg", os.path.join(predictions_dir, "rick.jpg"))
 
     # get the list of predictions already made
-    existing_predictions = [item for item in os.listdir(predictions_dir)]
+    existing_predictions = [item for item in os.listdir(predictions_dir) if item.endswith(".png")]
     print ("#existing predictions: ", len(existing_predictions))
     
     test_files = []
@@ -258,7 +258,7 @@ if __name__ == "__main__":
       test_files = [args.file_name]
 
     counter = 0
-    for filename in tqdm(test_files[:1]):
+    for filename in tqdm(test_files):
         # print (filename)
         try:
             if args.prompt_method == "direct_prompting":
@@ -273,7 +273,7 @@ if __name__ == "__main__":
             with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
                 f.write(html)
             if args.take_screenshot:
-                take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+                take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename), do_it_again=True)
             counter += 1
         except:
             continue 

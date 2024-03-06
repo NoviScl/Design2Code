@@ -357,7 +357,7 @@ if __name__ == "__main__":
 				with open(os.path.join(predictions_dir, filename.replace(".png", ".html")), "w") as f:
 					f.write(html)
 				if args.take_screenshot:
-					take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename))
+					take_screenshot(os.path.join(predictions_dir, filename.replace(".png", ".html")), os.path.join(predictions_dir, filename), do_it_again=True)
 			except:
 				continue 
 

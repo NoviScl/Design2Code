@@ -30,7 +30,7 @@ All code is tested on Python 3.11. We recommend using a virtual environment to m
 Clone this repo and install the necessary libraries:
 
 ```bash
-python3 setup.py install --user
+pip install -e .
 ```
 
 Taking screenshots and running evaluations also need to install browsers
@@ -122,7 +122,7 @@ The finetuned model is based on [CogAgent](./CogVLM/CogAgent_README.md), please 
 You can run inference by:
 
 ```bash
-python CogVLM/finetune_demo/inference_design2code.py
+python3 CogVLM/finetune_demo/inference_design2code.py
 ```
 
 ## Finetuning Design2Code-18B
@@ -131,31 +131,62 @@ The finetuning script is [finetune_cogagent_lora_design2code.sh](./CogVLM/finetu
 
 ## Running Automatic Evaluation
 
-Our evaluation script involves many steps, so we provide a multiprocessing script to run the evaluation:
+You can use the following command to run automatic evaluation:
 
 ```bash
 python3 metrics/multi_processing_eval.py
 ```
 
-Note that you need to specify the directories where you store the model predictions, starting at line 51:
+Note that you need to specify the directories where you store the model predictions in `metrics/multi_processing_eval.py` (starting at line 54), like the following:
 
 ```python
 test_dirs = {
-    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
-    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
-    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
-    "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
-    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting", 
-    "websight": "../../websight_predictions_full",
-    "design2code_18b": "../../design2code_predictions_full",
-    "cogagent": "../../cogagent_predictions_full"
+        "gpt4v_direct_prompting": "../predictions_final/gpt4v_direct_prompting",
+        "gemini_direct_prompting": "../predictions_final/gemini_direct_prompting"
 }
 ```
 
-Change the directories to where you store the model predictions, or remove the ones that you are not evaluating. We will update the evaluation code very soon to support more flexible input, such as evaluation on a single provided example. 
+where we assume each directory in the dict contains the predictions of the corresponding model/method (i.e., each directory should contain 484 predicted HTML files for the full test set, or for some subset that you sampled for yourself). The script will compute scores for all automatic metrics for all examples in each directory and store the results in a dictionary, with the following format:
 
-For a quick reference, it can take up to 2 - 3 hours to run the the evaluation on the testset even with multiprocessing. We will improve the efficiency in the next version.
+```python
+{
+    "gpt4v_direct_prompting": {
+        "2.html": [0.1, 0.2, ...],
+        "6.html": [0.3, 0.4, ...],
+        ...
+    },
+    "gemini_direct_prompting": {
+        "2.html": [0.5, 0.6, ...],
+        "6.html": [0.7, 0.8, ...],
+        ...
+    }
+}
+```
+
+where each list contains the fine-grained breakdown metrics. The script will also print the average scores for each model/method in the end, with the following format:
+
+```
+gpt4v_direct_prompting
+
+Block-Match:  0.6240771561959276
+Text:  0.9769471025300969
+Position:  0.7787072741618328
+Color:  0.7068853534416764
+CLIP:  0.8924754858016968
+--------------------------------
+
+gemini_direct_prompting
+
+Block-Match:  0.6697374012874602
+Text:  0.9731735845969769
+Position:  0.6502285758036523
+Color:  0.8531304981602478
+CLIP:  0.8571878373622894
+--------------------------------
+```
+
+These metrics are also what we reported in the paper. By default, we support multiprocessing to speed up evaluation, you can also manually turn it off by setting `multiprocessing = True` on line 40.
+For your reference, it can take up to 1 hour to run the the evaluation on the full testset (for each model/method). 
 
 
 ## Other Functions
@@ -186,3 +217,5 @@ If you find our work helpful, please consider citing our paper:
     primaryClass={cs.CL}
 }
 ```
+
+We welcome all types of contributions to this project (PRs are welcome!). If you have any questions, please feel free to leave issues or email us.
