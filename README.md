@@ -174,10 +174,11 @@ If you find our work helpful, please consider citing our paper:
 
 ```
 @misc{si2024design2code,
-      title={Design2Code: How Far Are We From Automating Front-End Engineering},
-      author={Chenglei Si and Yanzhe Zhang and Zhengyuan Yang and Ruibo Liu and Diyi Yang},
-      year={2024},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-  }
+    title={Design2Code: How Far Are We From Automating Front-End Engineering?},
+    author={Chenglei Si and Yanzhe Zhang and Zhengyuan Yang and Ruibo Liu and Diyi Yang},
+    year={2024},
+    eprint={2403.03163},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
 ```
