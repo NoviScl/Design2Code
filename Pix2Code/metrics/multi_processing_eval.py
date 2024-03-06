@@ -38,7 +38,7 @@ def print_multi_score(multi_score):
 debug = False
 
 orig_reference_dir = "../../testset_final"
-eval_name = "part1_new"
+eval_name = "testset_final"
 
 ## copy the original reference directory to a new directory
 reference_dir = "../../testset_final_" + eval_name
@@ -53,7 +53,11 @@ test_dirs = {
     "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
     "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
     "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
-    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting"
+    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting", 
+    "websight": "../../websight_predictions_full",
+    "design2code_18b": "../../design2code_predictions_full",
+    "cogagent": "../../cogagent_predictions_full"
 }
 
 

@@ -25,9 +25,9 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 
 ## Set Up
 
-### With pip 
-
 ### Without pip 
+
+Clone this repo and install the necessary libraries:
 
 ```bash
 python3 setup.py install --user
@@ -38,6 +38,9 @@ Taking screenshots and running evaluations also need to install browsers
 ```bash
 playwright install
 ```
+### With pip 
+
+Coming soon!
 
 ## Data and Predictions
 
@@ -118,6 +121,32 @@ python CogVLM/finetune_demo/inference_design2code.py
 The finetuning script is [finetune_cogagent_lora_design2code.sh](./CogVLM/finetune_demo/finetune_cogagent_lora_design2code.sh).
 
 ## Running Automatic Evaluation
+
+Our evaluation script involves many steps, so we provide a multiprocessing script to run the evaluation:
+
+```bash
+python3 metrics/multi_processing_eval.py
+```
+
+Note that you need to specify the directories where you store the model predictions, starting at line 51:
+
+```python
+test_dirs = {
+    "gpt4v_direct_prompting": "../../gpt4v_predictions_full/gpt4v_direct_prompting",
+    "gpt4v_text_augmented_prompting": "../../gpt4v_predictions_full/gpt4v_text_augmented_prompting",
+    "gpt4v_visual_revision_prompting": "../../gpt4v_predictions_full/gpt4v_visual_revision_prompting",
+    "gemini_direct_prompting": "../../gemini_predictions_full/gemini_direct_prompting",
+    "gemini_text_augmented_prompting": "../../gemini_predictions_full/gemini_text_augmented_prompting",
+    "gemini_visual_revision_prompting": "../../gemini_predictions_full/gemini_visual_revision_prompting", 
+    "websight": "../../websight_predictions_full",
+    "design2code_18b": "../../design2code_predictions_full",
+    "cogagent": "../../cogagent_predictions_full"
+}
+```
+
+Change the directories to where you store the model predictions, or remove the ones that you are not evaluating. We will update the evaluation code very soon to support more flexible input, such as evaluation on a single provided example. 
+
+For a quick reference, it can take up to 2 - 3 hours to run the the evaluation on the testset even with multiprocessing. We will improve the efficiency in the next version.
 
 ## Other Functions
 
