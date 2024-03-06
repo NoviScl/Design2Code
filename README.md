@@ -55,7 +55,7 @@ After you unzip it into `testset_final/`, the folder should include 484 pairs of
 In case you want to take screenshots of webpages by yourself, you can do so by running:
 
 ```bash
-cd Pix2Code
+cd Design2Code
 python3 data_utils/screenshot.py 
 ```
 
