@@ -38,6 +38,13 @@ Taking screenshots and running evaluations also need to install browsers
 ```bash
 playwright install
 ```
+
+If the above doesn't work, try:
+
+```bash
+python3 -m playwright install
+```
+
 ### With pip 
 
 Coming soon!
