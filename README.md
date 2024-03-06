@@ -25,9 +25,7 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 
 ## Set Up
 
-All code is tested on Python 3.11.4. We recommend using a virtual environment to manage the dependencies.
-
-### Without pip 
+All code is tested on Python 3.11. We recommend using a virtual environment to manage the dependencies.
 
 Clone this repo and install the necessary libraries:
 
@@ -46,10 +44,6 @@ If the above doesn't work, try:
 ```bash
 python3 -m playwright install
 ```
-
-### With pip 
-
-Coming soon!
 
 ## Data and Predictions
 
@@ -90,6 +84,7 @@ To run prompting experiments, first put your OpenAI / Google Gemini API keys in 
 {
     "organization_id": "",
     "openai_key": "",
+    "openai_endpoint": "",
     "gemini_api_key": ""
 }
 ```
@@ -107,6 +102,8 @@ bash prompting/gemini.sh
 ```
 
 The bash scripts include scripts for running Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting. All prompts are written in `prompting/gpt4v.py` and `prompting/gemini.py`, you can modify it to run your own prompts or develop smarter prompting strategies. We welcome any contributions to this part of the project! 
+
+Also note that we are accessing the OpenAI API from Azure, and you might need some slight modification for directly calling the OpenAI API. 
 
 ### Running Inference on CogAgent-18B
 

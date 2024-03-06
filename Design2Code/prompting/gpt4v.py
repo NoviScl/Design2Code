@@ -291,37 +291,37 @@ if __name__ == "__main__":
 		total_cost = 0
 
 	## OpenAI API Key
-	with open("../../api_key.json", "r") as f:
+	with open("../api_key.json", "r") as f:
 		api_key = json.load(f)
 	
 	openai_client = AzureOpenAI(
-		api_key=api_key["salt_openai_key"],
+		api_key=api_key["openai_key"],
 		api_version="2023-12-01-preview",
-		azure_endpoint=api_key["salt_openai_endpoint"]
+		azure_endpoint=api_key["openai_endpoint"]
 	)
 
 	## specify file directory 
 	if args.subset == "testset_final":
-		test_data_dir = "../../testset_final"
-		cache_dir = "../../predictions_final"
+		test_data_dir = "../testset_final"
+		cache_dir = "../predictions_final"
 	elif args.subset == "testset_100":
-		test_data_dir = "../../testset_100"
-		cache_dir = "../../predictions_100/"
+		test_data_dir = "../testset_100"
+		cache_dir = "../predictions_100/"
 	elif args.subset == "testset_full":
-		test_data_dir = "../../testset_full"
-		cache_dir = "../../predictions_full/"
+		test_data_dir = "../testset_full"
+		cache_dir = "../predictions_full/"
 	else:
 		print ("Invalid subset!")
 		exit()
 
 	if args.prompt_method == "direct_prompting":
-		predictions_dir = cache_dir + "gpt4v_direct_prompting"
+		predictions_dir = cache_dir + "_gpt4v_direct_prompting"
 	elif args.prompt_method == "text_augmented_prompting":
-		predictions_dir = cache_dir + "gpt4v_text_augmented_prompting"
+		predictions_dir = cache_dir + "_gpt4v_text_augmented_prompting"
 	elif args.prompt_method == "layout_marker_prompting":
-		predictions_dir = cache_dir + "gpt4v_layout_marker_prompting" + ("_auto_insertion" if args.auto_insertion else "") 
+		predictions_dir = cache_dir + "_gpt4v_layout_marker_prompting" + ("_auto_insertion" if args.auto_insertion else "") 
 	elif args.prompt_method == "revision_prompting":
-		predictions_dir = cache_dir + "gpt4v_visual_revision_prompting"
+		predictions_dir = cache_dir + "_gpt4v_visual_revision_prompting"
 		orig_data_dir = cache_dir + args.orig_output_dir
 	else: 
 		print ("Invalid prompt method!")
@@ -329,7 +329,7 @@ if __name__ == "__main__":
 	
 	## create cache directory if not exists
 	os.makedirs(predictions_dir, exist_ok=True)
-	shutil.copy("rick.jpg", os.path.join(predictions_dir, "rick.jpg"))
+	shutil.copy(test_data_dir + "/rick.jpg", os.path.join(predictions_dir, "rick.jpg"))
 	
 	test_files = []
 	if args.file_name == "all":
