@@ -69,6 +69,9 @@ To facilitate more analysis, we also release all model predictions on our benchm
 - [Gemini Pro Vision](https://drive.google.com/file/d/18cpGdL1Yhv9UU7odcqkncDItGo0Guuy_/view?usp=sharing) (including Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting)
 - [WebSight VLM-8B](https://drive.google.com/file/d/1lFqLyJSDwZAEhZ4mhRqrK_-d5hhcrrEM/view?usp=sharing) (Huggingface)
 - [Design2Code-18B](https://drive.google.com/file/d/1XxZMeVpAGu3fGvtKetHvk2bk3vyBcj2e/view?usp=sharing) (Ours)
+- [Automatic Evaluation Results](https://drive.google.com/file/d/1qahQCmGqEXPXKmn2RzNwHsOI-CAQSP6P/view?usp=sharing)
+- [Human Eval - Pairwise Model Comparison](https://huggingface.co/datasets/SALT-NLP/Design2Code_human_eval_pairwise)
+- [Human Eval - Direct Assessment](https://huggingface.co/datasets/SALT-NLP/Design2Code_human_eval_reference_vs_gpt4v)
 
 ## Running Prompting Experiments 
 

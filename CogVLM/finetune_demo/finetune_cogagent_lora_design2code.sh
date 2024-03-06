@@ -22,6 +22,8 @@ OPTIONS_SAT="SAT_HOME=/path/to/.sat_models"
 OPTIONS_NCCL="NCCL_DEBUG=info NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2 LOCAL_WORLD_SIZE=$NUM_GPUS_PER_WORKER"
 HOST_FILE_PATH="hostfile"
 
+# "WebSight_164k_train_swap" is a subset of websight where we sampled 20% and swapped the position of HTML style and body. You can also replace this with your downloaded websight dataset.
+# The current dataset is defined as HTMLDataset in /CogVLM/utils/utils/dataset.py
 train_data='/path/to/WebSight_164k_train_swap'
 valid_data='/path/to/WebSight_8k_val'
 
