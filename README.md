@@ -185,7 +185,7 @@ CLIP:  0.8571878373622894
 --------------------------------
 ```
 
-These metrics are also what we reported in the paper. By default, we support multiprocessing to speed up evaluation, you can also manually turn it off by setting `multiprocessing = True` on line 40.
+These metrics are also what we reported in the paper. By default, we support multiprocessing to speed up evaluation, you can also manually turn it off by setting `multiprocessing = False` on line 40.
 For your reference, it can take up to 1 hour to run the the evaluation on the full testset (for each model/method). 
 
 
