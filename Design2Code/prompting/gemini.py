@@ -212,7 +212,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     ## load API Key
-    with open("../../api_key.json", "r") as f:
+    with open("../api_key.json", "r") as f:
         api_key = json.load(f)
     
     ## set up gemini client
@@ -221,11 +221,11 @@ if __name__ == "__main__":
 
     ## specify file directory 
     if args.subset == "testset_final":
-      test_data_dir = "../../testset_final"
-      cache_dir = "../../predictions_final/"
+      test_data_dir = "../testset_final"
+      cache_dir = "../predictions_final/"
     elif args.subset == "testset_full":
-      test_data_dir = "../../testset_full"
-      cache_dir = "../../gemini_predictions_full/"
+      test_data_dir = "../testset_full"
+      cache_dir = "../gemini_predictions_full/"
     else:
       print ("Invalid subset!")
       exit()
@@ -245,7 +245,7 @@ if __name__ == "__main__":
     
     ## create cache directory if not exists
     os.makedirs(predictions_dir, exist_ok=True)
-    shutil.copy("rick.jpg", os.path.join(predictions_dir, "rick.jpg"))
+    shutil.copy(test_data_dir + "/rick.jpg", os.path.join(predictions_dir, "rick.jpg"))
 
     # get the list of predictions already made
     existing_predictions = [item for item in os.listdir(predictions_dir)]
@@ -258,7 +258,7 @@ if __name__ == "__main__":
       test_files = [args.file_name]
 
     counter = 0
-    for filename in tqdm(test_files):
+    for filename in tqdm(test_files[:1]):
         # print (filename)
         try:
             if args.prompt_method == "direct_prompting":

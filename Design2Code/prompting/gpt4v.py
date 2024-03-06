@@ -303,7 +303,7 @@ if __name__ == "__main__":
 	## specify file directory 
 	if args.subset == "testset_final":
 		test_data_dir = "../testset_final"
-		cache_dir = "../predictions_final"
+		cache_dir = "../predictions_final/"
 	elif args.subset == "testset_100":
 		test_data_dir = "../testset_100"
 		cache_dir = "../predictions_100/"
@@ -315,13 +315,13 @@ if __name__ == "__main__":
 		exit()
 
 	if args.prompt_method == "direct_prompting":
-		predictions_dir = cache_dir + "_gpt4v_direct_prompting"
+		predictions_dir = cache_dir + "gpt4v_direct_prompting"
 	elif args.prompt_method == "text_augmented_prompting":
-		predictions_dir = cache_dir + "_gpt4v_text_augmented_prompting"
+		predictions_dir = cache_dir + "gpt4v_text_augmented_prompting"
 	elif args.prompt_method == "layout_marker_prompting":
-		predictions_dir = cache_dir + "_gpt4v_layout_marker_prompting" + ("_auto_insertion" if args.auto_insertion else "") 
+		predictions_dir = cache_dir + "gpt4v_layout_marker_prompting" + ("_auto_insertion" if args.auto_insertion else "") 
 	elif args.prompt_method == "revision_prompting":
-		predictions_dir = cache_dir + "_gpt4v_visual_revision_prompting"
+		predictions_dir = cache_dir + "gpt4v_visual_revision_prompting"
 		orig_data_dir = cache_dir + args.orig_output_dir
 	else: 
 		print ("Invalid prompt method!")

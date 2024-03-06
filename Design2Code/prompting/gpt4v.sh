@@ -16,5 +16,5 @@ python3 prompting/gpt4v.py \
  --prompt_method revision_prompting \
  --file_name all \
  --subset testset_final \
- --orig_output_dir "../predictions_final_gpt4v_text_augmented_prompting" \
+ --orig_output_dir "../predictions_final/gpt4v_text_augmented_prompting" \
  --take_screenshot
