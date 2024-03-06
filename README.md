@@ -25,6 +25,8 @@ This is the official repo for our Design2Code project, maintained by the SALT la
 
 ## Set Up
 
+All code is tested on Python 3.11.4. We recommend using a virtual environment to manage the dependencies.
+
 ### Without pip 
 
 Clone this repo and install the necessary libraries:
