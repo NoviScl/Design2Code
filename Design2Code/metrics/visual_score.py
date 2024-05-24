@@ -351,8 +351,9 @@ def mask_bounding_boxes_with_inpainting(image, bounding_boxes):
 def rescale_and_mask(image_path, blocks):
     # Load the image
     with Image.open(image_path) as img:
-        # use inpainting instead of simple mask
-        img = mask_bounding_boxes_with_inpainting(img, blocks)
+        if len(blocks) > 0:
+            # use inpainting instead of simple mask
+            img = mask_bounding_boxes_with_inpainting(img, blocks)
 
         width, height = img.size
 
@@ -454,14 +455,16 @@ def visual_eval_v3_multi(input_list, debug=False):
     return_score_list = []
 
     for k, predict_blocks in enumerate(predict_blocks_list):
-        if len(predict_blocks) == 0:
-            print("[Warning] No detected blocks in: ", predict_img_list[k])
-            return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
-            continue
-        elif len(original_blocks) == 0:
-            print("[Warning] No detected blocks in: ", original_img)
-            return_score_list.append([0.0, 0.0, (0.0, 0.0, 0.0, 0.0, 0.0)])
-            continue
+         if len(predict_blocks) == 0:
+                print("[Warning] No detected blocks in: ", predict_img_list[k])
+                final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
+                return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
+                continue
+            elif len(original_blocks) == 0:
+                print("[Warning] No detected blocks in: ", original_img)
+                final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
+                return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
+                continue
 
         if debug:
             print(predict_blocks)
