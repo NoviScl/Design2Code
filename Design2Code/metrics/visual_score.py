@@ -415,7 +415,7 @@ def make_html(filename):
     with open(filename, 'r') as file:
         content = file.read()
 
-    if not re.match(r'<html[^>]*>', content, re.IGNORECASE):
+    if not re.search(r'<html[^>]*>', content, re.IGNORECASE):
         new_content = f'<html><body><p>{content}</p></body></html>'
         with open(filename, 'w') as file:
             file.write(new_content)
