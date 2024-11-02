@@ -10,11 +10,13 @@ Quick Links:
 
 This is the official repo for our Design2Code project, maintained by the SALT lab from Stanford NLP. In this repo, we provide: 
 
-- The Design2Code benchmark dataset for the task of converting visual design (screenshot) into code implementation, which consists of 484 real-world webpages from C4 (examples shown below).
+- The **Design2Code** benchmark dataset for the task of converting visual design (screenshot) into code implementation, which consists of 484 real-world webpages from C4 (examples shown below).
+
+- The **Design2Code-Hard** dataset, a subset of 80 extra difficult test cases collected from Github Pages that challenges SoTA VLMs' capabilities of Web UI generation.
 
 - Code for running all automatic evaluation. 
 
-- Code for running multimodal prompting experiments on GPT-4V and Gemini Pro Vision. 
+- Code for running multimodal prompting experiments on GPT-4O, Gemini Pro Vision, and Claude 3.5 Model Family.
 
 - Code for finetuning and running inference on our open-source Design2Code-18B model. 
 
@@ -47,11 +49,16 @@ python3 -m playwright install
 
 ## Data and Predictions
 
-### Testset 
+### Design2Code 
 
-You can download the full testset from this [Google Drive link](https://drive.google.com/file/d/12uRO5EC7hkg6qAOyfJhb4YsrQ_qpL5bt/view?usp=sharing) or access it from the Huggingface dataset [page](https://huggingface.co/datasets/SALT-NLP/Design2Code).
+You can download the full Design2Code testset from this [Google Drive link](https://drive.google.com/file/d/12uRO5EC7hkg6qAOyfJhb4YsrQ_qpL5bt/view?usp=sharing) or access it from the Huggingface dataset [page](https://huggingface.co/datasets/SALT-NLP/Design2Code).
 
 After you unzip it into `testset_final/`, the folder should include 484 pairs of screenshots (`xx.png`) and corresponding HTML code (`xx.html`). We also include the placeholder image file `rick.jpg` which is used in the HTML codes.
+
+### Design2Code-HARD
+You can download the full Design2Code-HARD testset from this [link](https://huggingface.co/datasets/SALT-NLP/Design2Code-HARD/resolve/main/Design2Code-HARD.zip), or you may access it from the Huggingface dataset [page](https://huggingface.co/datasets/SALT-NLP/Design2Code-HARD).
+
+The downloaded folder includes 80 pairs of screenshots (`xx.png`) and corresponding HTML code (`xx.html`). We also include the placeholder image file `rick.jpg` which is used in the HTML codes.
 
 ### Taking Screenshots
 
@@ -99,6 +106,12 @@ To run Gemini Pro Vision experiments, run:
 
 ```bash
 bash prompting/gemini.sh
+```
+
+To run Claude 3.5 Sonnet experiments, run:
+
+```bash
+bash prompting/claude3-5.sh
 ```
 
 The bash scripts include scripts for running Direct Prompting, Text-Augmented Prompting, and Self-Revision Prompting. All prompts are written in `prompting/gpt4v.py` and `prompting/gemini.py`, you can modify it to run your own prompts or develop smarter prompting strategies. We welcome any contributions to this part of the project! 
